@@ -9,9 +9,11 @@ import com.golden.gamedev.object.Sprite;
 public class Enemy extends GameSprite
 {
     protected ArrayList<Behavior> behaviors;
-    public Enemy (BufferedImage im, double x, double y, String image)
+    public Enemy (BufferedImage im, double x, double y, String image, ArrayList<Behavior> behavior)
     {
         super(im, x, y, image);
+        behaviors = new ArrayList<Behavior>();
+        behaviors.addAll(behavior);
     }
 public void addBehavior(Behavior b)
 {

@@ -106,10 +106,10 @@ public class LevelEditor
         BaseLoader loader =
             new BaseLoader(new BaseIO(lv.getClass()), Color.PINK);
         ArrayList<GameSprite> collection = new ArrayList<GameSprite>();
-        collection.add(new Enemy(loader.getImage("resources/happy.jpg"),
+        /*collection.add(new Enemy(loader.getImage("resources/happy.jpg"),
                                  5,
                                  4,
-                                 "resources/happy.jpg"));
+                                 "resources/happy.jpg"));*/
         collection.add(new Platform(loader.getImage("resources/platform1.png"),
                                     4,
                                     5,

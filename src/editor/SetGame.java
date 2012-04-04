@@ -95,7 +95,7 @@ public class SetGame extends Game
                         40,
                         getImage("resources/happy.jpg"),
                         "resources/happy.jpg",
-                        "enemy");
+                        "enemy", null);
 
         Button bowserbutton =
             new Button("Bowser",
@@ -105,7 +105,7 @@ public class SetGame extends Game
                         40,
                         getImage("resources/Bowser.jpg"),
                         "resources/Bowser.jpg",
-                        "enemy");
+                        "enemy", null);
 
         TLabel l3 = new TLabel("Platforms", 2, 200, 196, 40);
         l3.UIResource().put("Text Horizontal Alignment Integer",
@@ -120,7 +120,7 @@ public class SetGame extends Game
                         40,
                         getImage("resources/platform1.png"),
                         "resources/platform1.png",
-                        "platform");
+                        "platform", null);
         Button platformbutton2 =
             new Button("Platform2",
                         100,
@@ -129,7 +129,7 @@ public class SetGame extends Game
                         40,
                         getImage("resources/platform2.png"),
                         "resources/platform2.png",
-                        "platform");
+                        "platform", null);
 
         TLabel l4 = new TLabel("File", 2, 300, 196, 40);
         l4.UIResource().put("Text Horizontal Alignment Integer",
@@ -203,7 +203,7 @@ public class SetGame extends Game
                                       getMouseX(),
                                       getMouseY() -
                                               button.getImage().getHeight(),
-                                      button.getImageName());
+                                      button.getImageName(), button.getBehaviors());
                     }
 
                     if (checkInterference(s)) myModel.addSprite(s);
@@ -213,7 +213,6 @@ public class SetGame extends Game
         }
         if(bsInput.isMouseDown(MouseEvent.BUTTON1) && spriteClicked==null)
         {
-            System.out.println("mouse is down!");
             for(GameSprite s: myModel.getSprites())
              {
                 if(this.checkPosMouse(s, true))
