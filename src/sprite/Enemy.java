@@ -1,11 +1,12 @@
 package sprite;
 
 import java.awt.image.BufferedImage;
+
+
 import java.util.ArrayList;
 
-import com.golden.gamedev.object.Sprite;
 
-
+@SuppressWarnings("serial")
 public class Enemy extends GameSprite
 {
     protected ArrayList<Behavior> behaviors;

@@ -1,26 +1,23 @@
 package editor;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
+
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import sprite.Enemy;
 import sprite.GameSprite;
 import sprite.Platform;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
-import com.golden.gamedev.object.Sprite;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 
 
 public class LevelEditor
@@ -84,14 +81,12 @@ public class LevelEditor
     {
 
         String jsonString = gson.toJson(list);
-        Type type = new TypeToken<ArrayList<GameSprite>>(){}.getType();
         FileWriter fileOut;
         try
         {
             fileOut = new FileWriter(fileName);
             BufferedWriter out = new BufferedWriter(fileOut);
             out.write(jsonString);
-            out.write(gson.toJson(list, type));
             out.close();
         }
         catch (IOException e)
@@ -109,9 +104,9 @@ public class LevelEditor
             new BaseLoader(new BaseIO(lv.getClass()), Color.PINK);
         ArrayList<GameSprite> collection = new ArrayList<GameSprite>();
         /*collection.add(new Enemy(loader.getImage("resources/happy.jpg"),
-                                 5,
-                                 4,
-                                 "resources/happy.jpg"));*/
+5,
+4,
+"resources/happy.jpg"));*/
         collection.add(new Platform(loader.getImage("resources/platform1.png"),
                                     4,
                                     5,

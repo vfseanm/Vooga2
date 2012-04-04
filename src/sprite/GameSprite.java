@@ -7,6 +7,7 @@ import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 
 
+@SuppressWarnings("serial")
 public class GameSprite extends Sprite
 {
 

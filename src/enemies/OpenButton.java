@@ -1,7 +1,6 @@
 package enemies;
 
-import java.io.File;
-import javax.swing.JFileChooser;
+
 import com.golden.gamedev.gui.TButton;
 import editor.SetGame;
 

@@ -1,9 +1,9 @@
 package sprite;
 
 import java.awt.image.BufferedImage;
-import com.golden.gamedev.object.Sprite;
 
 
+@SuppressWarnings("serial")
 public class Platform extends GameSprite
 {
 

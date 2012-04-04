@@ -1,12 +1,11 @@
 package editor;
 
 import java.awt.Color;
+
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
-import java.net.URI;
-import java.nio.*;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,28 +18,6 @@ import enemies.SaveButton;
 import sprite.Enemy;
 import sprite.GameSprite;
 import sprite.Platform;
-
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.net.URI;
-import java.nio.*;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
-
-import com.golden.gamedev.Game;
-import com.golden.gamedev.gui.*;
-import com.golden.gamedev.gui.toolkit.*;
-import com.golden.gamedev.object.Sprite;
-import sprite.Enemy;
-import sprite.GameSprite;
-import sprite.Platform;
-
 
 
 public class SetGame extends Game

@@ -1,15 +1,13 @@
 package editor;
 
-import java.awt.List;
+
 import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 
 import sprite.Behavior;
 import sprite.GameSprite;
 
-import com.golden.gamedev.object.Sprite;
-
-import sprite.Enemy;
 
 public class EditorModel {
 private ArrayList<GameSprite> sprites;

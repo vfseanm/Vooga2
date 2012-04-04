@@ -1,12 +1,7 @@
 package editor;
 
-import java.awt.event.MouseEvent;
+
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.JFrame;
-
 
 import com.golden.gamedev.gui.TButton;
 

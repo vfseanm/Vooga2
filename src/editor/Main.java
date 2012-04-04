@@ -1,9 +1,8 @@
 package editor;
 
 import java.awt.Dimension;
-import com.golden.gamedev.GameLoader;
-import demo.DemoGame;
 
+import com.golden.gamedev.GameLoader;
 
 public class Main
 {

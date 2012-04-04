@@ -1,6 +1,7 @@
 package editor;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.*;
@@ -63,7 +64,7 @@ public class DialogueBox extends JPanel {
             img = ImageIO.read(new File(myImagePath));
         } catch (IOException e) {
             System.out.println("There has been a problem importing your image");
-            //throw something! 
+            //throw something!
         }
         return img;
 
@@ -84,7 +85,7 @@ public class DialogueBox extends JPanel {
     }
 
 
-    private JComponent makeDestinationPanel() throws ClassNotFoundException, IOException { 
+    private JComponent makeDestinationPanel() throws ClassNotFoundException, IOException {
         JPanel panel = new JPanel();
         ArrayList<Class> list = reflection.getBehaviors();
         for (Class c: reflection.getBehaviors())
@@ -132,8 +133,7 @@ public class DialogueBox extends JPanel {
                         e1.printStackTrace();
                     }
             }
-            System.out.println(behaviors.size());
-            myModel.addEnemy(myImage, myImagePath, myName.getText(),  behaviors);
+            myModel.addEnemy(myImage, myImagePath, myName.getText(), behaviors);
             setVisible(false);
             }
     }
@@ -149,4 +149,3 @@ public class DialogueBox extends JPanel {
     
      
 }
-

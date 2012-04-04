@@ -1,6 +1,6 @@
 package enemies;
 
-import java.awt.image.BufferedImage;
+
 import com.golden.gamedev.gui.TButton;
 import editor.SetGame;
 
