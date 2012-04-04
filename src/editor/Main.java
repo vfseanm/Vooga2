@@ -4,7 +4,6 @@ import java.awt.Dimension;
 
 import com.golden.gamedev.GameLoader;
 
-
 public class Main
 {
     public static void main (String[] args)

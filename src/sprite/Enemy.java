@@ -2,8 +2,8 @@ package sprite;
 
 import java.awt.image.BufferedImage;
 
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 
 
 @SuppressWarnings("serial")

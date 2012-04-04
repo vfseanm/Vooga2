@@ -1,6 +1,7 @@
 package editor;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.*;
@@ -148,4 +149,3 @@ public class DialogueBox extends JPanel {
     
      
 }
-
