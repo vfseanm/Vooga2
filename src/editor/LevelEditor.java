@@ -84,12 +84,14 @@ public class LevelEditor
     {
 
         String jsonString = gson.toJson(list);
+        Type type = new TypeToken<ArrayList<GameSprite>>(){}.getType();
         FileWriter fileOut;
         try
         {
             fileOut = new FileWriter(fileName);
             BufferedWriter out = new BufferedWriter(fileOut);
             out.write(jsonString);
+            out.write(gson.toJson(list, type));
             out.close();
         }
         catch (IOException e)

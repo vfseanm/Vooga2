@@ -132,6 +132,7 @@ public class DialogueBox extends JPanel {
                         e1.printStackTrace();
                     }
             }
+            System.out.println(behaviors.size());
             myModel.addEnemy(myImage, myImagePath, myName.getText(),  behaviors);
             setVisible(false);
             }
