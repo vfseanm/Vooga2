@@ -48,6 +48,8 @@ public class SetGame extends Game
     private FrameWork framework;
     private ArrayList<Button> allButtons;
     private static final int MENU_START = 800;
+    private static final double HORIZONTAL_MOVE = 5;
+    private static final double VERTICAL_MOVE =5;
 
     private TButton openButton;
     private LevelEditor myEditor;
@@ -56,12 +58,18 @@ public class SetGame extends Game
     
     private GameSprite spriteClicked;
     private double[] origPosition;
-    private double[] offset;
+    private double[] clickedSpriteOffset;
+    
+    private double horizontalOffset;
+    private double verticalOffset;
+    
 
 
     @Override
     public void initResources ()
     {
+        horizontalOffset = 0;
+        verticalOffset = 0;
         myModel = new EditorModel(this);
         myEditor = new LevelEditor();
         allButtons = new ArrayList<Button>();
@@ -167,11 +175,12 @@ public class SetGame extends Game
     {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
-        framework.render(pen);
+        
         for (Sprite s : myModel.getSprites())
         {
             s.render(pen);
         }
+        framework.render(pen);
 
     }
 
@@ -219,9 +228,9 @@ public class SetGame extends Game
              
                 {
                     spriteClicked =s;
-                    offset = new double[2];
-                    offset[0] = this.getMouseX()- s.getX();
-                    offset[1] = this.getMouseY() - s.getY();
+                    clickedSpriteOffset = new double[2];
+                    clickedSpriteOffset[0] = this.getMouseX()- s.getX();
+                    clickedSpriteOffset[1] = this.getMouseY() - s.getY();
                     origPosition = new double[2];
                     origPosition[0] = s.getX();
                     origPosition[1] = s.getY();
@@ -232,8 +241,8 @@ public class SetGame extends Game
         if(spriteClicked!=null &&bsInput.isMouseDown(MouseEvent.BUTTON1))
         {
 
-            spriteClicked.setX(this.getMouseX()-offset[0]);
-            spriteClicked.setY(this.getMouseY()-offset[1]);
+            spriteClicked.setX(this.getMouseX()-clickedSpriteOffset[0]);
+            spriteClicked.setY(this.getMouseY()-clickedSpriteOffset[1]);
               
         }
         
@@ -243,8 +252,8 @@ public class SetGame extends Game
             
             myModel.getSprites().remove(spriteClicked);         
             
-            spriteClicked.setX(this.getMouseX()-offset[0]);
-            spriteClicked.setY(this.getMouseY()-offset[1]);
+            spriteClicked.setX(this.getMouseX()-clickedSpriteOffset[0]);
+            spriteClicked.setY(this.getMouseY()-clickedSpriteOffset[1]);
             if(!checkInterference(spriteClicked))
             {
                 spriteClicked.setX(origPosition[0]);
@@ -258,6 +267,39 @@ public class SetGame extends Game
         {
             myModel.getSprites().remove(spriteClicked);
             spriteClicked = null;
+        }
+        
+        if(bsInput.isKeyDown(java.awt.event.KeyEvent.VK_RIGHT))
+        {
+            for(Sprite s: myModel.getSprites())
+            {
+                s.setX(s.getX()-HORIZONTAL_MOVE);
+            }
+            horizontalOffset += HORIZONTAL_MOVE;
+        }
+        if(bsInput.isKeyDown(java.awt.event.KeyEvent.VK_LEFT))
+        {
+            for(Sprite s: myModel.getSprites())
+            {
+                s.setX(s.getX()+HORIZONTAL_MOVE);
+            }
+            horizontalOffset -= HORIZONTAL_MOVE;
+        }
+        if(bsInput.isKeyDown(java.awt.event.KeyEvent.VK_DOWN))
+        {
+            for(Sprite s: myModel.getSprites())
+            {
+                s.setY(s.getY()-VERTICAL_MOVE);
+            }
+            verticalOffset += VERTICAL_MOVE;
+        }
+        if(bsInput.isKeyDown(java.awt.event.KeyEvent.VK_UP))
+        {
+            for(Sprite s: myModel.getSprites())
+            {
+                s.setY(s.getY()+VERTICAL_MOVE);
+            }
+            verticalOffset -= VERTICAL_MOVE;
         }
 
 
@@ -279,6 +321,7 @@ public class SetGame extends Game
                     t = false;
                 }
             }
+            
         }
         if (s.getX() + s.getWidth() > MENU_START) t = false;
         return t;
@@ -294,8 +337,8 @@ public class SetGame extends Game
             File file = fc.getSelectedFile();
             myModel.clearSprites();
             myModel.addAllSprites(myEditor.readFile(file.getAbsolutePath()));
-            
-
+            horizontalOffset = 0;
+            verticalOffset = 0;
         }
     }
 public void addButton(Button newButton)
@@ -307,9 +350,19 @@ public void addButton(Button newButton)
 
     public void saveFile ()
     {
+        for(Sprite s: myModel.getSprites())
+        {
+            s.setX(s.getX()+horizontalOffset);
+            s.setY(s.getY()+verticalOffset);
+        }       
         String selectedValue =
             JOptionPane.showInputDialog("Where would you like to save the level?");
         myEditor.writeFile(selectedValue, myModel.getSprites());
+        for(Sprite s: myModel.getSprites())
+        {
+            s.setX(s.getX()-horizontalOffset);
+            s.setY(s.getY()-verticalOffset);
+        }
     }
     private JFrame frame;
     public void addEnemy()
