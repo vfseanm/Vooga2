@@ -15,12 +15,11 @@ public class GameSprite extends Sprite
     String myImageName;
 
 
-    GameSprite (BufferedImage im, double x, double y, String image)
+    protected GameSprite (BufferedImage im, double x, double y, String image)
     {
 
         super(im, x, y);
-        BaseLoader loader =
-            new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
+        BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
         setImage(im);
         myType = this.getClass().toString();
         myImageName = image;

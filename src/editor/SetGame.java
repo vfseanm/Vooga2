@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import platforms.Platform;
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
@@ -17,7 +20,6 @@ import enemies.OpenButton;
 import enemies.SaveButton;
 import sprite.Enemy;
 import sprite.GameSprite;
-import sprite.Platform;
 
 
 public class SetGame extends Game

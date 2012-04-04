@@ -11,8 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import platforms.Platform;
 import sprite.GameSprite;
-import sprite.Platform;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.google.gson.Gson;
