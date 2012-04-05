@@ -14,5 +14,16 @@ public class InvincibilityPowerUp extends PowerUp{
     public void update(long elapsedTime) {
         
     }
- 
+    
+    private InvincibilityPowerUp(BufferedImage im, String image, Fighter fighter) {
+        super(im, 0, 0, image, fighter);
+    }
+    
+    public PowerUp getFactory(BufferedImage im, String image, Fighter fighter) {
+        return new InvincibilityPowerUp(im, image, fighter);
+    }
+    
+    public PowerUp makeItem(double x, double y) {
+        return new InvincibilityPowerUp(getImage(), x, y, getImageName(), getFighter());
+    }
 }

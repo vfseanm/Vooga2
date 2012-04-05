@@ -1,13 +1,13 @@
 package platforms;
 import java.awt.image.BufferedImage;
-
-import sprite.GameSprite;
+import java.util.ArrayList;
+import sprite.AnimatedGameSprite;
 
 @SuppressWarnings("serial")
-public abstract class AbstractPlatform extends GameSprite {
+public abstract class AbstractPlatform extends AnimatedGameSprite {
 
-	protected AbstractPlatform(BufferedImage im, double x, double y, String image) {
-		super(im, x, y, image);
+	protected AbstractPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images) {
+		super(im, x, y, images);
 	}
 	
 	//public abstract void doBehavior();
