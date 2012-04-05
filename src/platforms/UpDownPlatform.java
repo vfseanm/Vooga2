@@ -1,14 +1,15 @@
 package platforms;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class UpDownPlatform extends AbstractPlatform {
 	
 	FrameTimer myTimer = new FrameTimer();
 
-	public UpDownPlatform(BufferedImage im, double x, double y, String image) {
-		super(im, x, y, image);
+	public UpDownPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images) {
+		super(im, x, y, images);
 	}
 
 	

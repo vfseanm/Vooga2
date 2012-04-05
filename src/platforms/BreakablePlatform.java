@@ -3,6 +3,8 @@ package platforms;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
+
+import powerUps.PowerUp;
 import sprite.GameSprite;
 
 @SuppressWarnings("serial")
@@ -15,7 +17,7 @@ public class BreakablePlatform extends AbstractPlatform {
 	}
 	
 	//TODO: implement getFactory methods when Dustin creates items
-	public void addItem(GameSprite item) {
+	public void addItem(PowerUp item) {
 		myFactoryList.add(item.getFactory());
 	}
 	
