@@ -29,9 +29,7 @@ public class Enemy extends GameSprite
         for (Attribute attribute : myAttributes)
         {
             if (attribute.getName().equals(name)) {
-                //type checking
-                attribute.update(billy,oranatan);
-                attribute.update(billy);
+                
             }
         }
         
