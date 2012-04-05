@@ -13,7 +13,7 @@ public class GameSprite extends Sprite
     String myImageName;
 
 
-    protected GameSprite (BufferedImage im, double x, double y, String image)
+    public GameSprite (BufferedImage im, double x, double y, String image)
     {
 
         super(im, x, y);
