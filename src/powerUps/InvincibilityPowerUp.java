@@ -14,4 +14,5 @@ public class InvincibilityPowerUp extends PowerUp{
     public void update(long elapsedTime) {
         
     }
+ 
 }

@@ -27,8 +27,7 @@ public class GameSprite extends Sprite
     {
         return myType;
     }
-
-
+    
     public String getImageName ()
     {
         return myImageName;
