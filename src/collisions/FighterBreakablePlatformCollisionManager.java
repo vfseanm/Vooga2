@@ -1,10 +1,9 @@
 package collisions;
-import com.golden.gamedev.object.CollisionManager;
+
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 import platforms.BreakablePlatform;
-import sprite.Fighter;
 
 
 public class FighterBreakablePlatformCollisionManager extends CollisionGroup {
