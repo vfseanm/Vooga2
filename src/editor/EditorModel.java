@@ -4,8 +4,8 @@ package editor;
 import java.awt.image.BufferedImage;
 
 import java.util.ArrayList;
+import enemies.Behavior;
 
-import sprite.Behavior;
 import sprite.GameSprite;
 
 

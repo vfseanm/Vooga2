@@ -11,11 +11,10 @@ import java.awt.Dimension;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import enemies.Behavior;
 
 import java.util.HashMap;
 
-import sprite.Behavior;
-//import view.TivooView.GoAction;
 
 
 @SuppressWarnings("serial")

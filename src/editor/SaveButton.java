@@ -1,8 +1,7 @@
-package enemies;
+package editor;
 
 
 import com.golden.gamedev.gui.TButton;
-import editor.SetGame;
 
 
 public class SaveButton extends TButton

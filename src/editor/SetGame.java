@@ -16,8 +16,6 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
 import com.golden.gamedev.object.Sprite;
-import enemies.OpenButton;
-import enemies.SaveButton;
 import sprite.Enemy;
 import sprite.GameSprite;
 

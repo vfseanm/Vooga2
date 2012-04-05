@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
 import platforms.Platform;
+import platforms.RotatingPlatform;
 import platforms.SideToSidePlatform;
 
 import com.golden.gamedev.Game;
@@ -32,7 +33,7 @@ public class DemoGame extends Game
 
     private SpriteGroup mySpriteGroup;
     private PlayField myPF;
-    private SideToSidePlatform myGround;
+    private RotatingPlatform myGround;
     private AdvanceSpriteGroup myGroundGroup;
 
     private ArrayList<Sprite> groundList;
@@ -78,7 +79,18 @@ public class DemoGame extends Game
 
         myBackground = new ImageBackground(getImage("resources/city.jpg"));
         myGroundGroup = new AdvanceSpriteGroup("ground");
+        BufferedImage[] images = new BufferedImage[2];
+        images[0] = getImage("resources/RotatingPlatform1.png");
+        images[1] = getImage("resources/RotatingPlatform2.png");
+        ArrayList<String> strings = new ArrayList<String>();
+        strings.add("resources/RotatingPlatform1.png");
+        strings.add("resources/RotatingPlatform2.png");
+        myGround = new RotatingPlatform(images, 100, 100, strings, null);
+        myGroundGroup.add(myGround);
+        myGround.doBehavior(0, 0); 
+        myGroundGroup.add(new Platform(getImage("resources/platform1.png"), 50, 500, "resources/platform1.png"));
         mySpriteGroup = new SpriteGroup("character");
+        myGroundGroup.add(new Platform(getImage("resources/platform1.png"), 0, 0, "resources/platform1.png"));
         mySpriteGroup.add(mySprite);
         myPF = new PlayField();
         myPF.add(mySprite);
@@ -121,7 +133,7 @@ public class DemoGame extends Game
         myGroundGroup.update(arg0);
         mySprite.update(arg0);
         myPF.update(arg0);
-
+    
     }
 
 

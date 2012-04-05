@@ -3,9 +3,9 @@ package editor;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import sprite.Behavior;
 
 import com.golden.gamedev.gui.TButton;
+import enemies.Behavior;
 
 
 public class Button extends TButton
