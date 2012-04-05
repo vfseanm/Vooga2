@@ -1,9 +1,9 @@
 package platforms;
 
 import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 
-import com.golden.gamedev.object.Timer;
 
 import sprite.Fighter;
 
