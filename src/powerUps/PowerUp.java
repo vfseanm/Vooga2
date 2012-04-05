@@ -15,5 +15,9 @@ public abstract class PowerUp extends GameSprite {
         character = fighter;
     }
     
+    public Fighter getFighter() {
+        return character;
+    }
+    
     public abstract void update(long elapsedTime);
 }
