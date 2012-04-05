@@ -2,13 +2,15 @@ package platforms;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import sprite.Fighter;
+
 @SuppressWarnings("serial")
 public class SideToSidePlatform extends AbstractPlatform {
 	
 	FrameTimer myTimer = new FrameTimer();
 
-	public SideToSidePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images) {
-		super(im, x, y, images);
+	public SideToSidePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter) {
+		super(im, x, y, images, fighter);
 	}
 	
 	public void doBehavior(double speed, double distance) {
