@@ -1,8 +1,9 @@
 package sprite;
 
 public class FightBehavior implements Behavior{
-public String getName()
-{
-    return "Fighting";
-}
+
+    public String getName()
+    {
+        return "Fighting";
+    }
 }

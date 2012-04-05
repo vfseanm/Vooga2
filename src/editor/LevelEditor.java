@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +21,7 @@ import com.golden.gamedev.engine.BaseLoader;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
 
 public class LevelEditor
@@ -39,6 +42,9 @@ public class LevelEditor
         {
             scanner = new Scanner(new File(fileName));
             String wholeFile = scanner.useDelimiter("\\A").next();
+            /*Type type = new TypeToken<Level>(){}.getType();
+            Level level = gson.fromJson(wholeFile, type);
+            level.setUp();*/
             JsonParser parser = new JsonParser();
             JsonArray array = parser.parse(wholeFile).getAsJsonArray();
 
@@ -75,6 +81,7 @@ public class LevelEditor
             e.printStackTrace();
         }
         return null;
+            
     }
 
 
