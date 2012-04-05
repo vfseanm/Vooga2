@@ -2,6 +2,8 @@ package powerUps;
 
 import java.awt.image.BufferedImage;
 
+import platforms.BreakablePlatformItemFactory;
+
 import sprite.Fighter;
 
 @SuppressWarnings("serial")
@@ -19,8 +21,8 @@ public class InvincibilityPowerUp extends PowerUp{
         super(im, 0, 0, image, fighter);
     }
     
-    public PowerUp getFactory(BufferedImage im, String image, Fighter fighter) {
-        return new InvincibilityPowerUp(im, image, fighter);
+    public static BreakablePlatformItemFactory getFactory(BufferedImage im, String image, Fighter fighter) {
+        return new BreakablePlatformItemFactory(new InvincibilityPowerUp(im, image, fighter));
     }
     
     public PowerUp makeItem(double x, double y) {

@@ -1,16 +1,16 @@
 package platforms;
-import sprite.GameSprite;
+import powerUps.PowerUp;
 
 //this class is a factory that allows the creation of power-ups/coins 
 //when a platform is hit and broken...
 public class BreakablePlatformItemFactory {
-	private GameSprite myObject;
+	private PowerUp myItem;
 	
-	public BreakablePlatformItemFactory(GameSprite object) {
-		myObject = object;
+	public BreakablePlatformItemFactory(PowerUp item) {
+		myItem = item;
 	}
 	
-	public GameSprite getObject() {
-		return myObject;
+	public PowerUp getItem() {
+		return myItem;
 	}	                                                      
 }

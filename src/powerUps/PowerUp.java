@@ -19,5 +19,9 @@ public abstract class PowerUp extends GameSprite {
         return character;
     }
     
+    
+
+    
+    public abstract PowerUp makeItem(double x, double y);
     public abstract void update(long elapsedTime);
 }

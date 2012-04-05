@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import powerUps.PowerUp;
-import sprite.GameSprite;
 
 @SuppressWarnings("serial")
 public class BreakablePlatform extends AbstractPlatform {
@@ -17,15 +16,15 @@ public class BreakablePlatform extends AbstractPlatform {
 	}
 	
 	//TODO: implement getFactory methods when Dustin creates items
-	public void addItem(PowerUp item) {
-		myFactoryList.add(item.getFactory());
+	public void addItem(BreakablePlatformItemFactory factory) {
+		myFactoryList.add(factory);
 	}
 	
 	//TODO: implement makeItem methods when Dustin creates items
-	public void releaseItem() {
+	public PowerUp releaseItem() {
 		Random chooser = new Random();
 		BreakablePlatformItemFactory factory = myFactoryList.get(chooser.nextInt(myFactoryList.size()));
-		factory.getItem().makeItem(getX(), getY());
+		return factory.getItem().makeItem(getX(), getY());
 	}
 	
 	//TODO: refused bequest on parameters...will fix later...
