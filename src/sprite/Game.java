@@ -3,6 +3,7 @@ package sprite;
 import java.awt.Color;
 
 
+
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.io.File;
@@ -12,6 +13,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+
 import com.golden.gamedev.GameLoader;
 
 import com.google.gson.Gson;
@@ -20,7 +23,6 @@ import com.google.gson.reflect.TypeToken;
 
 public class Game extends com.golden.gamedev.Game
 {
-
     Gson gson;
     GameSprite mySprite;
 

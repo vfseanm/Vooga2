@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+
+import platforms.Platform;
+import platforms.SideToSidePlatform;
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.*;
@@ -28,7 +32,7 @@ public class DemoGame extends Game
 
     private SpriteGroup mySpriteGroup;
     private PlayField myPF;
-
+    private SideToSidePlatform myGround;
     private AdvanceSpriteGroup myGroundGroup;
 
     private ArrayList<Sprite> groundList;
@@ -74,7 +78,6 @@ public class DemoGame extends Game
 
         myBackground = new ImageBackground(getImage("resources/city.jpg"));
         myGroundGroup = new AdvanceSpriteGroup("ground");
-
         mySpriteGroup = new SpriteGroup("character");
         mySpriteGroup.add(mySprite);
         myPF = new PlayField();
@@ -101,7 +104,6 @@ public class DemoGame extends Game
     @Override
     public void render (Graphics2D arg0)
     {
-
         myBackground.render(arg0);
         mySprite.render(arg0);
         myPF.render(arg0);
@@ -113,11 +115,10 @@ public class DemoGame extends Game
     @Override
     public void update (long arg0)
     {
-
+    	
         mySpriteMovement(arg0);
 
         myGroundGroup.update(arg0);
-
         mySprite.update(arg0);
         myPF.update(arg0);
 

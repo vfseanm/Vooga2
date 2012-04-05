@@ -10,7 +10,7 @@ public abstract class AbstractPlatform extends GameSprite {
 		super(im, x, y, image);
 	}
 	
-	public abstract void doBehavior();
-	public abstract AbstractPlatform getNextState();
+	//public abstract void doBehavior();
+	//public abstract AbstractPlatform getNextState();
 
 }
