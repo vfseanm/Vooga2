@@ -35,9 +35,11 @@ public class RotatingPlatform extends AbstractPlatform {
 	
 	public void rotateLeftAxisClockwise(int delay) {
 	    myTimer.update();
+	    
 	    if (myTimer.getElapsedTime() % delay == 0) {
             updateAnimation();
             myFrames++;
+            
 
             if (myFrames % 4 == 0) {
                 setLocation(getX(), getY() + myWidth - myHeight);
