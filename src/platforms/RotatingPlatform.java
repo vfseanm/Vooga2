@@ -33,32 +33,37 @@ public class RotatingPlatform extends AbstractPlatform {
 	    
 	}
 	
+	public void rotateLeftAxisClockwise(int delay) {
+	    myTimer.update();
+	    if (myTimer.getElapsedTime() % delay == 0) {
+            updateAnimation();
+            myFrames++;
+
+            if (myFrames % 4 == 0) {
+                setLocation(getX(), getY() + myWidth - myHeight);
+                //System.out.println("animate1");
+            }
+            
+            else if (myFrames % 4 == 1) {
+                //System.out.println("animate2");
+            }
+
+            else if (myFrames % 4 == 2) {
+                setX(getX() - myWidth + myHeight);
+                //System.out.println("animate3");
+            }
+
+            else if (myFrames % 4 == 3) {
+                setLocation(getX() + myWidth - myHeight, getY() - myWidth + myHeight);
+                //System.out.println("animate4");
+            }
+
+        }
+	}
+	
 	public void update(long elapsedTime) {
 	    myTimer.update();
-	    if (myTimer.getElapsedTime() % 50 == 0) {
-	        updateAnimation();
-	        myFrames++;
-
-	        if (myFrames % 4 == 0) {
-	            setLocation(getX(), getY() + myWidth - myHeight);
-	            //System.out.println("animate1");
-	        }
-	        
-	        else if (myFrames % 4 == 1) {
-	            //System.out.println("animate2");
-	        }
-
-	        else if (myFrames % 4 == 2) {
-	            setX(getX() - myWidth + myHeight);
-	            //System.out.println("animate3");
-	        }
-
-	        else if (myFrames % 4 == 3) {
-	            setLocation(getX() + myWidth - myHeight, getY() - myWidth + myHeight);
-	            //System.out.println("animate4");
-	        }
-
-	    }
+	    rotateLeftAxisClockwise(50);
 	}
 
 }
