@@ -1,6 +1,5 @@
 package demo;
 
-import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
 

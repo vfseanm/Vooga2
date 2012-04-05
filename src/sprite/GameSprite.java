@@ -1,9 +1,7 @@
 package sprite;
 
-import java.awt.Color;
+
 import java.awt.image.BufferedImage;
-import com.golden.gamedev.engine.BaseIO;
-import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 
 
@@ -19,7 +17,6 @@ public class GameSprite extends Sprite
     {
 
         super(im, x, y);
-        BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
         setImage(im);
         myType = this.getClass().toString();
         myImageName = image;
