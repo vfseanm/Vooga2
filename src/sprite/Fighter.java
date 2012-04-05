@@ -20,5 +20,9 @@ public class Fighter extends GameSprite {
             ability.update(elapsedTime);
         }
     }
-    
+    //STRATEGY pattern for the following?
+    //public void loseAllPowerUps()
+    //public void loseFirstPowerUp()
+    //public void loseLastPowerUp()
+    //public void loseRandomPowerUp()
 }
