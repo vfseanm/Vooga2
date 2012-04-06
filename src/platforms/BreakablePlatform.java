@@ -8,7 +8,7 @@ import powerUps.PowerUp;
 import sprite.Fighter;
 
 @SuppressWarnings("serial")
-public class BreakablePlatform extends AbstractPlatform {
+public class BreakablePlatform extends PlatformDecorator {
 	
 	ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
 	FighterBreakablePlatformCollisionManager myCollisionManager = new FighterBreakablePlatformCollisionManager();
