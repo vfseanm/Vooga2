@@ -92,7 +92,7 @@ public class Enemy extends GameSprite
                 }
             }
         }
-        myState.excuteBehavior(this);
+        if(myState!=null)myState.excuteBehavior(this);
     }
 
 
