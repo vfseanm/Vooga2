@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import sprite.Fighter;
 
 @SuppressWarnings("serial")
-public class SideToSidePlatform extends PlatformDecorator {
+public class SideToSidePlatform extends DecoratedPlatform {
 	
 	FrameTimer myTimer = new FrameTimer();
 

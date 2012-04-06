@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import sprite.Fighter;
 
 @SuppressWarnings("serial")
-public class UpDownPlatform extends PlatformDecorator {
+public class UpDownPlatform extends DecoratedPlatform {
 	
 	FrameTimer myTimer = new FrameTimer();
 
