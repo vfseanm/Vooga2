@@ -23,20 +23,22 @@ public class Fighter extends GameSprite {
 		myAttributeRemover = attributeRemover;
 	}
 	
-	public boolean containsAttribute(Class attribute) {
-	    for (Attribute ability: myInherentAttributes) {
-	        if (ability.getClass() == attribute) {
-	            return true;
-	        }
+	public int searchInherentAttributes(Class attribute) {
+	    for (int i = 0; i < myInherentAttributes.size(); i++) {
+            if (myInherentAttributes.get(i).getClass() == attribute) {
+                return i;
+            }
 	    }
-        return false;
+	    return -1;
 	}
 	
+	public void setAttributeFalse(int indexAttribute) {
+	    myInherentAttributes.get(indexAttribute).setActive(false);
+	}
 	
 	public void addExtraAttribute(Attribute extra) {
 	    myExtraAttributes.add(extra);
 	}
-	
 	
 	public void removeExtraAttribute() {
 		myAttributeRemover.removeAttribute(myExtraAttributes);
