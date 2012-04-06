@@ -14,7 +14,7 @@ public class SideToSidePlatform extends DecoratedPlatform {
 	}
 	
 	public SideToSidePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
-          super(im, x, y, images, fighter. decoratorComponent);
+          super(im, x, y, images, fighter, decoratorComponent);
       }
 	
 	public void doBehavior(double speed, double distance) {
