@@ -30,6 +30,10 @@ public class Fighter extends GameSprite {
         return false;
 	}
 	
+	public void addExtraAttribute(Attribute extra) {
+	    myExtraAttributes.add(extra);
+	}
+	
 	public void checkBounds() {
 	}
 	
