@@ -26,6 +26,9 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 		myFighter = fighter;
 	}
 
+	protected AbstractPlatform(){
+	    
+	}
 
 	public abstract void doBehavior(double speed, double distance);
 	public abstract void update(long elapsedTime);

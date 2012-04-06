@@ -21,7 +21,14 @@ public class GameSprite extends Sprite
         myType = this.getClass().toString();
         myImageName = image;
     }
+    
 
+    /**
+     * Java is implictly calling superclass constructor
+     */
+    protected GameSprite(){
+        
+    }
 
     public String getType ()
     {

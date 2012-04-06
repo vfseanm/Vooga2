@@ -22,9 +22,13 @@ public class RotatingPlatform extends DecoratedPlatform {
         // setAnimate(false);
     }
     
-     public RotatingPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
-          super(im, x, y, images, fighter, decoratorComponent);
-      }
+//     public RotatingPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
+//          super(im, x, y, images, fighter, decoratorComponent);
+//      }
+     
+     public RotatingPlatform(AbstractPlatform decoratorComponent){
+         super(decoratorComponent);
+     }
 
     // TODO: distance needed to conform to abstractPlatform
     // specifications...will try to fix later
