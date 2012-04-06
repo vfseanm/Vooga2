@@ -29,6 +29,11 @@ public class Enemy extends GameSprite
         myAttributes.add(attribute);
         attribute.setEnemy(this);
     }
+    
+    public void removeAttribute (Attribute attribute){
+        if(myAttributes.contains(attribute))
+            myAttributes.remove(attribute);
+    }
 
 
     public void updateAttribute (String name, Object ... o)
