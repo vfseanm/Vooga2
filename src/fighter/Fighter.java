@@ -55,7 +55,6 @@ public class Fighter extends GameSprite {
 		myDeathSequence = deathSequence;
 	}
 	
-	@SuppressWarnings("rawtypes")
     public Attribute searchAttributes(String attribute) {
             if (myAttributes.containsKey(attribute)) {
                 return myAttributes.get(attribute);
