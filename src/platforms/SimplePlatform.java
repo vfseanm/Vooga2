@@ -1,5 +1,5 @@
 package platforms;
 
-public class SimplePlatform {
+public class SimplePlatform extends AbstractPlatform {
 
 }
