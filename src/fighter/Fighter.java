@@ -1,20 +1,13 @@
 package fighter;
 
-import sprite.*;
-
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import sprite.*;
 import attributes.*;
-
 import com.golden.gamedev.*;
-import com.golden.gamedev.object.*;
-import com.golden.gamedev.object.sprite.*;
-import com.golden.gamedev.object.background.*;
-import com.golden.gamedev.object.collision.*;
-import com.golden.gamedev.util.*;
-import com.golden.gamedev.funbox.*;
+
 
 @SuppressWarnings("serial")
 public class Fighter extends GameSprite {
