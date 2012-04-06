@@ -19,7 +19,7 @@ public class Fighter extends GameSprite {
 	
 	public Fighter(BufferedImage image, double x, double y, String imagePath, AttributeRemover attributeRemover) {
 		super(image, x, y, imagePath);
-		myInherentAttributes = {new Health(3)};
+		myInherentAttributes = new ArrayList<Attribute>();
 		myExtraAttributes = new ArrayList<Attribute>();
 		myAttributeRemover = attributeRemover;
 	}
