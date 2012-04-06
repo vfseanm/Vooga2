@@ -37,6 +37,10 @@ public class Fighter extends GameSprite {
         return false;
 	}
 	
+	public void addExtraAttribute(Attribute extra) {
+	    myExtraAttributes.add(extra);
+	}
+	
 	public void checkBounds() {
 		if (getX() < 0)
 			setLocation(0, getY());
