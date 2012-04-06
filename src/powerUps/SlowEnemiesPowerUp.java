@@ -24,6 +24,7 @@ public class SlowEnemiesPowerUp extends PowerUp {
     public static BreakablePlatformItemFactory getFactory(BufferedImage im, String image, Fighter fighter) {
         return new BreakablePlatformItemFactory(new SlowEnemiesPowerUp(im, image, fighter));
     }
+    
     public PowerUp makeItem(double x, double y) {
         return new SlowEnemiesPowerUp(getImage(), x, y, getImageName(), getFighter());
     }
