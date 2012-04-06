@@ -14,11 +14,13 @@ public class Fighter extends GameSprite {
 
 	private List<Attribute>		myInherentAttributes;
 	private List<Attribute>		myExtraAttributes;
+	private AttributeRemover	myAttributeRemover;
 	
 	
-	public Fighter(BufferedImage image, double x, double y, String imagePath, ArrayList<Attribute> inherentAttributes) {
+	public Fighter(BufferedImage image, double x, double y, String imagePath, ArrayList<Attribute> inherentAttributes, AttributeRemover attributeRemover) {
 		super(image, x, y, imagePath);
 		myInherentAttributes = inherentAttributes;
+		myAttributeRemover = attributeRemover;
 	}
 	
 	public boolean containsAttribute(Class attribute) {
@@ -30,13 +32,15 @@ public class Fighter extends GameSprite {
         return false;
 	}
 	
+	
 	public void addExtraAttribute(Attribute extra) {
 	    myExtraAttributes.add(extra);
 	}
 	
-	public void checkBounds() {
-	}
 	
+	public void removeExtraAttribute() {
+		myAttributeRemover.removeAttribute(myExtraAttributes);
+	}
 	
 	public void updateSpeed() {
 	}
