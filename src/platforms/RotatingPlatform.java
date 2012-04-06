@@ -31,6 +31,10 @@ public class RotatingPlatform extends DecoratedPlatform {
     // TODO: distance needed to conform to abstractPlatform
     // specifications...will try to fix later
     public void doBehavior(int speed, double distance) {
+        if (myDecoratorComponent != null) {
+            myDecoratorComponent.doBehavior(speed, distance);
+        }
+        
         if (mySpeed != speed) {
             mySpeed = speed;
         }
