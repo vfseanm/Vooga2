@@ -2,6 +2,8 @@ package powerUps;
 
 import java.awt.image.BufferedImage;
 
+import platforms.BreakablePlatformItemFactory;
+
 import sprite.Fighter;
 import sprite.GameSprite;
 
@@ -18,9 +20,6 @@ public abstract class PowerUp extends GameSprite {
     public Fighter getFighter() {
         return character;
     }
-    
-    
-
     
     public abstract PowerUp makeItem(double x, double y);
     public abstract void update(long elapsedTime);

@@ -9,8 +9,8 @@ import com.golden.gamedev.object.Sprite;
 public class GameSprite extends Sprite
 {
 
-    String myType;
-    String myImageName;
+    private String myType;
+    private String myImageName;
 
 
     public GameSprite (BufferedImage im, double x, double y, String image)
