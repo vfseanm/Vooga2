@@ -23,10 +23,18 @@ public class RotatingPlatform extends DecoratedPlatform {
         myWidth = im[0].getWidth();
         // setAnimate(false);
     }
+    
+     public RotatingPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
+          super(im, x, y, images, fighter, decoratorComponent);
+      }
 
     // TODO: distance needed to conform to abstractPlatform
     // specifications...will try to fix later
-    public void doBehavior(int speed, double distance) {
+    public void doBehavior(double speed, double distance) {
+        if (myDecoratorComponent != null) {
+            myDecoratorComponent.doBehavior(speed, distance);
+        }
+        
         if (mySpeed != speed) {
             mySpeed = speed;
         }
@@ -86,6 +94,10 @@ public class RotatingPlatform extends DecoratedPlatform {
     }
 
     public void update(long elapsedTime) {
+        
+    	if (myDecoratorComponent != null) {
+            		myDecoratorComponent.update(elapsedTime);
+        	}
         myTimer.update();
         rotateCenterAxis(50); //test
     }

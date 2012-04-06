@@ -18,6 +18,10 @@ public class BreakablePlatform extends DecoratedPlatform {
 	}
 	
 	public void update(long elapsedTime) {
+		
+		if (myDecoratorComponent != null) {
+            		myDecoratorComponent.update(elapsedTime);
+        	}
 	    myCollisionManager.checkCollision();
 	}
 	
@@ -33,6 +37,9 @@ public class BreakablePlatform extends DecoratedPlatform {
 	
 	//TODO: refused bequest on parameters...will fix later...
 	public void doBehavior(double speed, double distance) {
+		if (myDecoratorComponent != null) {
+            		myDecoratorComponent.doBehavior(speed, distance);
+        	}
 		setFrame(1);
 		setActive(false);
 		
