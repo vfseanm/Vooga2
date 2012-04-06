@@ -1,10 +1,8 @@
 package platforms;
 
 import java.awt.image.BufferedImage;
-
 import java.util.ArrayList;
-
-import sprite.Fighter;
+import fighter.*;
 
 @SuppressWarnings("serial")
 public class RotatingPlatform extends DecoratedPlatform {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import collisions.FighterBreakablePlatformCollisionManager;
 import powerUps.PowerUp;
-import sprite.Fighter;
+import fighter.*;
 
 @SuppressWarnings("serial")
 public class BreakablePlatform extends DecoratedPlatform {
