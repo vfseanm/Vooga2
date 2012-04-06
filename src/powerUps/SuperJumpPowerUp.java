@@ -31,8 +31,9 @@ public class SuperJumpPowerUp extends PowerUp {
     }
     
     public Attribute getAttribute() {
-        if (getFighter().containsAttribute(Jump.class)) {
-            //set to false;
+        int indexAttribute = getFighter().searchInherentAttributes(Jump.class);
+        if (indexAttribute != -1) {
+            getFighter().setAttributeFalse(indexAttribute);
         }
         return new SuperJump(myGame);
     }
