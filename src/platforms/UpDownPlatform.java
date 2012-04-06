@@ -15,7 +15,7 @@ public class UpDownPlatform extends DecoratedPlatform {
 	}
 	
 	public UpDownPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
-          super(im, x, y, images, fighter. decoratorComponent);
+          super(im, x, y, images, fighter, decoratorComponent);
       }
 
 	
