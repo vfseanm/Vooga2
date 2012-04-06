@@ -16,6 +16,7 @@ import com.golden.gamedev.object.collision.*;
 import com.golden.gamedev.util.*;
 import com.golden.gamedev.funbox.*;
 
+@SuppressWarnings("serial")
 public class Fighter extends GameSprite {
 
 	private List<Attribute>		myInherentAttributes;
@@ -27,6 +28,14 @@ public class Fighter extends GameSprite {
 		myInherentAttributes = inherentAttributes;
 	}
 	
+	public boolean containsAttribute(Class attribute) {
+	    for (Attribute ability: myInherentAttributes) {
+	        if (ability.getClass() == attribute) {
+	            return true;
+	        }
+	    }
+        return false;
+	}
 	
 	public void checkBounds() {
 	}
@@ -104,4 +113,5 @@ public class Fighter extends GameSprite {
 		extraFire.refresh();
 		canFireExtra = true;
 	}
+
 }
