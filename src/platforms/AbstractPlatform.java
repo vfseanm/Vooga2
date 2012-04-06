@@ -18,7 +18,9 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 		myFighter = fighter;
 	}
 	
-	//public abstract void doBehavior();
+	
+	public abstract void doBehavior();
+	public abstract void update(long elapsedTime);
 	//public abstract AbstractPlatform getNextState();
 	
 	public String makeJsonString()
