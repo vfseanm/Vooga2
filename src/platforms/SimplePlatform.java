@@ -13,7 +13,7 @@ public class SimplePlatform extends AbstractPlatform {
         super(im, x, y, images, fighter);
     }
 
-    public void doBehavior() {
+    public void doBehavior(double speed, double distance) {
         //do nothing....yay!
     }
     
