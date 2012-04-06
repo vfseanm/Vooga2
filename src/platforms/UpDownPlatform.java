@@ -33,4 +33,11 @@ public class UpDownPlatform extends DecoratedPlatform {
 		}
 		myTimer.update();
 	}	
+	
+	public void update() {
+		
+		if (myDecoratorComponent != null) {
+            		myDecoratorComponent.update(elapsedTime);
+        	}
+	}
 }
