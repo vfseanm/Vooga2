@@ -28,7 +28,6 @@ public class SetGame extends Game
     private static final double HORIZONTAL_MOVE = 5;
     private static final double VERTICAL_MOVE =5;
 
-    private TButton openButton;
     private LevelEditor myEditor;
     private EditorModel myModel;
     private TPanel infoBox;
@@ -42,6 +41,7 @@ public class SetGame extends Game
     
 
 
+    @SuppressWarnings("unchecked")
     @Override
     public void initResources ()
     {
@@ -55,7 +55,7 @@ public class SetGame extends Game
         framework.getTheme()
                  .getUIRenderer("Label")
                  .put("Background Border Color", Color.BLACK);
-        TLabel label = new TLabel("Label test", 100, 100, 100, 100);
+
 
         infoBox = new TPanel(MENU_START, 0, 200, 600);
         infoBox.UIResource().put("Background Color", Color.LIGHT_GRAY);

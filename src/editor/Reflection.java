@@ -15,7 +15,7 @@ import enemies.Behavior;
 
 public class Reflection {
     
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
     private static List<Class> getClasses(String packageName) throws ClassNotFoundException, IOException 
     {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -39,7 +39,7 @@ public class Reflection {
     }
     
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "rawtypes" })
     private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException 
     {
         List<Class> classes = new ArrayList<Class>();
@@ -71,6 +71,7 @@ public class Reflection {
         return classes;
     }
     
+    @SuppressWarnings("rawtypes")
     public ArrayList<Class> getBehaviors() throws ClassNotFoundException, IOException
     {
         ArrayList<Class> behaviors = new ArrayList<Class>();
