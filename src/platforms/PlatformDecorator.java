@@ -1,5 +1,5 @@
 package platforms;
 
-public class PlatformDecorator {
+public class PlatformDecorator extends AbstractPlatform {
 
 }
