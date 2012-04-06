@@ -16,5 +16,9 @@ public class SimplePlatform extends AbstractPlatform {
     public void doBehavior() {
         //do nothing....yay!
     }
+    
+    public void update(elapsedTime) {
+        //do nothing....yay again!! 
+    }
 
 }
