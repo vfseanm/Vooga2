@@ -24,7 +24,7 @@ public class Fighter extends GameSprite {
 	
 	public Fighter(BufferedImage image, double x, double y, String imagePath, ArrayList<Attribute> inherentAttributes) {
 		super(image, x, y, imagePath);
-		myInherentAttributes = attributes;
+		myInherentAttributes = inherentAttributes;
 	}
 	
 	public boolean containsAttribute(Class attribute) {
