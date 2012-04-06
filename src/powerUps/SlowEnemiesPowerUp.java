@@ -1,9 +1,10 @@
 package powerUps;
 
 import java.awt.image.BufferedImage
+
 ;
 
-import attributes.Attribute;
+import fighter.attributes.*;
 
 import com.golden.gamedev.Game;
 

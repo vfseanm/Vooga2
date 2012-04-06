@@ -1,11 +1,11 @@
 package fighter;
 
-import java.util.List;
-import attributes.Attribute;
+import java.util.TreeMap;
+import fighter.attributes.*;
 
 public class AllAttributesRemover implements AttributeRemover {
 
-	public void removeAttribute(List<Attribute> attributes) {
+	public void removeAttribute(TreeMap<String, Attribute> attributes) {
 		attributes.clear();
 	}
 

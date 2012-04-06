@@ -25,8 +25,8 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 		super(im, x, y, images);
 		myFighter = fighter;
 	}
-	
-	
+
+
 	public abstract void doBehavior(double speed, double distance);
 	public abstract void update(long elapsedTime);
 	//public abstract AbstractPlatform getNextState();
@@ -41,7 +41,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         return gson.toJson(myList);
         
     }
-	
+
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static AbstractPlatform makePlatformFromJson(String json)
@@ -134,7 +134,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         
     }
     
-	
-	
+
+
 
 }

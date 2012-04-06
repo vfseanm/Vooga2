@@ -1,15 +1,16 @@
 package fighter;
 
-import java.util.List;
+import java.util.TreeMap;
+
 import java.util.Random;
 
-import attributes.Attribute;
+import fighter.attributes.*;
 
 public class RandomAttributeRemover implements AttributeRemover {
 
 	Random myRandom = new Random();
 	
-	public void removeAttribute(List<Attribute> attributes) {
+	public void removeAttribute(TreeMap<String, Attribute> attributes) {
 		if (!attributes.isEmpty()) {
 			int attributeToRemove = myRandom.nextInt(attributes.size());
 			attributes.remove(attributeToRemove);

@@ -2,9 +2,10 @@ package powerUps;
 
 import java.awt.image.BufferedImage;
 
+
 import com.golden.gamedev.Game;
 
-import attributes.Attribute;
+import fighter.attributes.*;
 
 import platforms.BreakablePlatformItemFactory;
 

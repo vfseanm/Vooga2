@@ -3,9 +3,10 @@ package powerUps;
 import java.awt.image.BufferedImage;
 
 
+
 import com.golden.gamedev.Game;
 
-import attributes.*;
+import fighter.attributes.*;
 
 
 import platforms.BreakablePlatformItemFactory;
@@ -31,10 +32,8 @@ public class SuperJumpPowerUp extends PowerUp {
     }
     
     public Attribute getAttribute() {
-        int indexAttribute = getFighter().searchInherentAttributes(Jump.class);
-        if (indexAttribute != -1) {
-            getFighter().setAttributeFalse(indexAttribute);
-        }
-        return new SuperJump(myGame);
+        Attribute found = getFighter().searchAttributes("jump");
+        getFighter().setAttributeFalse(found);
+        return new SuperJump(myGame, myFighter);
     }
 }

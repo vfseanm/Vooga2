@@ -1,13 +1,13 @@
 package fighter;
 
-import java.util.List;
-import attributes.Attribute;
+import java.util.TreeMap;
+import fighter.attributes.*;
 
 public class LastAttributeRemover implements AttributeRemover {
 
-	public void removeAttribute(List<Attribute> attributes) {
+	public void removeAttribute(TreeMap<String, Attribute> attributes) {
 		if (!attributes.isEmpty()) {
-			attributes.remove(attributes.size()-1);
+			attributes.remove(attributes.lastKey());
 		}
 	}
 
