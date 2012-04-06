@@ -4,9 +4,11 @@ import com.golden.gamedev.Game;
 
 public class Health extends Attribute {
 
+	private int myHitPoints;
+	
 	public Health(Game mygame, int hitPoints) {
 		super(mygame);
-		// TODO Auto-generated constructor stub
+		myHitPoints = hitPoints;
 	}
 
 	public void doFunction() {
