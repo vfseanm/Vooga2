@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import sprite.Fighter;
 
 @SuppressWarnings("serial")
-public class RotatingPlatform extends AbstractPlatform {
+public class RotatingPlatform extends PlatformDecorator {
 
     double mySpeed = -1;
     int myHeight;
