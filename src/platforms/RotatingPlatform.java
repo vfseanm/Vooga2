@@ -82,7 +82,7 @@ public class RotatingPlatform extends AbstractPlatform {
 	
 	public void update(long elapsedTime) {
 	    myTimer.update();
-	    rotateLeftAxisClockwise(50);
+	    rotateCenterAxis(50);
 	}
 
 }
