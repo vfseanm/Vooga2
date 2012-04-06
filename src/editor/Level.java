@@ -25,19 +25,7 @@ public class Level {
     private List<PowerUp> powerUps;
     
     
-    public void setUp()
-    {
-        BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
-        for(Enemy e: enemies)
-        {
-            e.setImage(loader.getImage(e.getImageName()));
-        }
-        
-        for(AbstractPlatform p: platforms)
-        {
-            p.setImage(loader.getImage(p.getImageName()));
-        }
-    }
+
     
     public String makeJsonString()
     {

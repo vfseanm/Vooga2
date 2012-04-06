@@ -13,7 +13,7 @@ public class BreakablePlatform extends DecoratedPlatform {
 	ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
 	FighterBreakablePlatformCollisionManager myCollisionManager = new FighterBreakablePlatformCollisionManager();
 
-	protected BreakablePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter) {
+	public BreakablePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter) {
 		super(im, x, y, images, fighter);
 	}
 	
