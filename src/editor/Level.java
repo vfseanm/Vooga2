@@ -1,12 +1,16 @@
 package editor;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
+import com.google.gson.Gson;
 
 import platforms.AbstractPlatform;
+import powerUps.PowerUp;
 
 import sprite.Enemy;
 
@@ -18,18 +22,29 @@ public class Level {
     
     private List<AbstractPlatform> platforms;
     
-    public void setUp()
+    private List<PowerUp> powerUps;
+    
+    
+
+    
+    public String makeJsonString()
     {
-        BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
+        Gson gson = new Gson();
+        HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+      /*  ArrayList<String> enemyJSONList = new ArrayList<String>();
         for(Enemy e: enemies)
         {
-            e.setImage(loader.getImage(e.getImageName()));
-        }
-        
+            
+        }*/
+        ArrayList<String> platformJsonList = new ArrayList<String>();
         for(AbstractPlatform p: platforms)
         {
-            p.setImage(loader.getImage(p.getImageName()));
+            platformJsonList.add(p.makeJsonString());
         }
+        map.put(AbstractPlatform.class.toString(), platformJsonList);
+        
+        return gson.toJson(map);
+        
     }
     
 }

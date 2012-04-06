@@ -8,16 +8,20 @@ import powerUps.PowerUp;
 import sprite.Fighter;
 
 @SuppressWarnings("serial")
-public class BreakablePlatform extends AbstractPlatform {
+public class BreakablePlatform extends DecoratedPlatform {
 	
 	ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
 	FighterBreakablePlatformCollisionManager myCollisionManager = new FighterBreakablePlatformCollisionManager();
 
-	protected BreakablePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter) {
+	public BreakablePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter) {
 		super(im, x, y, images, fighter);
 	}
 	
 	public void update(long elapsedTime) {
+		
+		if (myDecoratorComponent != null) {
+            		myDecoratorComponent.update(elapsedTime);
+        	}
 	    myCollisionManager.checkCollision();
 	}
 	
@@ -33,6 +37,9 @@ public class BreakablePlatform extends AbstractPlatform {
 	
 	//TODO: refused bequest on parameters...will fix later...
 	public void doBehavior(double speed, double distance) {
+		if (myDecoratorComponent != null) {
+            		myDecoratorComponent.doBehavior(speed, distance);
+        	}
 		setFrame(1);
 		setActive(false);
 		
