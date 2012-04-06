@@ -2,6 +2,7 @@ package enemies;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import enemies.attributes.Attribute;
 import sprite.GameSprite;
 
 
@@ -23,7 +24,7 @@ public class Enemy extends GameSprite
         myAttributes.add(attribute);
     }
 
-    //Type checking
+    
     public void updateAttribute (String name, Object... o)
     {
         for (Attribute attribute : myAttributes)
