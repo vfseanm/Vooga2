@@ -80,10 +80,14 @@ public class RotatingPlatform extends AbstractPlatform {
             }
         }
     }
+    
+    public void rotateRightAxisClockwise(int delay) {
+        //TODO: implement this method
+    }
 
     public void update(long elapsedTime) {
         myTimer.update();
-        rotateCenterAxis(50);
+        rotateCenterAxis(50); //test
     }
 
 }
