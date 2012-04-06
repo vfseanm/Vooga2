@@ -2,8 +2,7 @@ package platforms;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
-import sprite.Fighter;
+import fighter.*;
 
 public abstract class DecoratedPlatform extends AbstractPlatform {
       protected AbstractPlatform myDecoratorComponent;

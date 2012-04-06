@@ -1,7 +1,7 @@
 package collisions;
 
 import powerUps.PowerUp;
-import sprite.Fighter;
+import fighter.*;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.AdvanceCollisionGroup;

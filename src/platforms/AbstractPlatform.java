@@ -1,4 +1,5 @@
 package platforms;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
@@ -13,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import sprite.AnimatedGameSprite;
-import sprite.Fighter;
+import fighter.*;
 
 @SuppressWarnings("serial")
 public abstract class AbstractPlatform extends AnimatedGameSprite {
