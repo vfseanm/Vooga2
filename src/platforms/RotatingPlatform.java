@@ -94,6 +94,10 @@ public class RotatingPlatform extends DecoratedPlatform {
     }
 
     public void update(long elapsedTime) {
+        
+    	if (myDecoratorComponent != null) {
+            		myDecoratorComponent.update(elapsedTime);
+        	}
         myTimer.update();
         rotateCenterAxis(50); //test
     }
