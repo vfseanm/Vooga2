@@ -29,5 +29,12 @@ public class SideToSidePlatform extends DecoratedPlatform {
 			setHorizontalSpeed(-speed/25);
 		}
 		myTimer.update();
-	}	                                
+	}	 
+	
+	public void update() {
+		
+		if (myDecoratorComponent != null) {
+            		myDecoratorComponent.update(elapsedTime);
+        	}
+	}
 }
