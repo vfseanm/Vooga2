@@ -43,9 +43,9 @@ public void addAllSprites(ArrayList<GameSprite> s)
 
 public void addEnemy(BufferedImage image, String filePath, String name, ArrayList<Behavior> b)
 {
-    EnemyFramework enemyFrame = new EnemyFramework(image, name, b);
-    myEnemyFrameworks.add(enemyFrame);
-    System.out.println("Added new Enemy Frame:" + enemyFrame);
+    //EnemyFramework enemyFrame = new EnemyFramework(image, name, b);
+   // myEnemyFrameworks.add(enemyFrame);
+    //System.out.println("Added new Enemy Frame:" + enemyFrame);
     
     Button newButton = new Button(name, 10, 540, 60, 40, image, filePath, "enemy", b);
     myView.addButton(newButton);
