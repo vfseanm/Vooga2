@@ -23,7 +23,8 @@ public class Fighter extends GameSprite {
 		myAttributeRemover = attributeRemover;
 	}
 	
-	public int searchInherentAttributes(Class attribute) {
+	@SuppressWarnings("rawtypes")
+    public int searchInherentAttributes(Class attribute) {
 	    for (int i = 0; i < myInherentAttributes.size(); i++) {
             if (myInherentAttributes.get(i).getClass() == attribute) {
                 return i;

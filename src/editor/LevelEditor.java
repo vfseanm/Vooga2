@@ -34,6 +34,7 @@ public class LevelEditor
     }
 
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public ArrayList<GameSprite> readFile (String fileName)
     {
         Scanner scanner;
@@ -106,6 +107,7 @@ public class LevelEditor
     public static void main (String[] args) throws FileNotFoundException
     {
         LevelEditor lv = new LevelEditor();
+        @SuppressWarnings("unused")
         Gson gson = new Gson();
         BaseLoader loader =
             new BaseLoader(new BaseIO(lv.getClass()), Color.PINK);

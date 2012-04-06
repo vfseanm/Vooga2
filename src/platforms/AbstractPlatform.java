@@ -43,6 +43,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
     }
 	
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static AbstractPlatform makePlatformFromJson(String json)
     {
         Gson gson = new Gson();

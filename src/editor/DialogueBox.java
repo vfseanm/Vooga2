@@ -28,12 +28,14 @@ public class DialogueBox extends JPanel {
 
     private Reflection reflection;
     private EditorModel myModel;
+    @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> behaviorMap;
     private BufferedImage myImage;
     private String myImagePath;
 
 
     
+    @SuppressWarnings("rawtypes")
     public DialogueBox(EditorModel m) {
         behaviorMap = new HashMap<JCheckBox, Class>();
         myModel = m;
@@ -84,9 +86,10 @@ public class DialogueBox extends JPanel {
     }
 
 
+    @SuppressWarnings("rawtypes")
     private JComponent makeDestinationPanel() throws ClassNotFoundException, IOException {
         JPanel panel = new JPanel();
-        ArrayList<Class> list = reflection.getBehaviors();
+        //ArrayList<Class> list = reflection.getBehaviors();
         for (Class c: reflection.getBehaviors())
                 {
             JLabel label1 = new JLabel(c.getName());

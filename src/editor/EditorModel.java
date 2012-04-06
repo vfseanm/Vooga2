@@ -2,25 +2,28 @@ package editor;
 
 
 import java.awt.image.BufferedImage;
-
 import java.util.ArrayList;
+
+
 import enemies.Behavior;
+
 
 import sprite.GameSprite;
 
 
 public class EditorModel {
 private ArrayList<GameSprite> sprites;
-private ArrayList<EnemyFramework> myEnemyFrameworks;
-private ArrayList<BlankButton> blankButtons;
+//private ArrayList<EnemyFramework> myEnemyFrameworks;
+//private ArrayList<BlankButton> blankButtons;
 private SetGame myView;
 
 public EditorModel(SetGame view)
 {
     myView = view;
-    blankButtons = new ArrayList<BlankButton>();
-    myEnemyFrameworks = new ArrayList<EnemyFramework>();
+    //blankButtons = new ArrayList<BlankButton>();
+    //myEnemyFrameworks = new ArrayList<EnemyFramework>();
     sprites = new ArrayList<GameSprite>();
+
 }
 
 public ArrayList<GameSprite> getSprites()
