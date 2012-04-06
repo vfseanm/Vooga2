@@ -18,6 +18,9 @@ public class SideToSidePlatform extends DecoratedPlatform {
       }
 	
 	public void doBehavior(double speed, double distance) {
+		if (myDecoratorComponent != null) {
+            		myDecoratorComponent.doBehavior(speed, distance);
+        	}
 		double time = (distance * 5)/speed;
 		if (myTimer.getElapsedTime() % (time*2) == 0) {
 			setHorizontalSpeed(speed/25);
