@@ -13,10 +13,6 @@ public class SpeedUpPowerUp extends PowerUp {
         super(im, x, y, image, fighter);
     }
     
-    public void update(long elapsedTime) {
-        
-    }
-    
     private SpeedUpPowerUp(BufferedImage im, String image, Fighter fighter) {
         super(im, 0, 0, image, fighter);
     }

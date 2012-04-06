@@ -12,11 +12,7 @@ public class SuperJumpPowerUp extends PowerUp {
     public SuperJumpPowerUp(BufferedImage im, double x, double y, String image, Fighter fighter) {
         super(im, x, y, image, fighter);
     }
-    
-    public void update(long elapsedTime) {
-        
-    }
-    
+       
     private SuperJumpPowerUp(BufferedImage im, String image, Fighter fighter) {
         super(im, 0, 0, image, fighter);
     }
@@ -27,5 +23,12 @@ public class SuperJumpPowerUp extends PowerUp {
     
     public PowerUp makeItem(double x, double y) {
         return new SuperJumpPowerUp(getImage(), x, y, getImageName(), getFighter());
+    }
+    
+    public Attribute getAttribute() {
+        if (getFighter().containsAttribute(new JumpAttribute()) ) {
+            //set to false;
+        }
+        return new SuperJumpAttribute();
     }
 }

@@ -1,6 +1,7 @@
 package enemies;
 
 import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 import enemies.attributes.Attribute;
 import sprite.GameSprite;
