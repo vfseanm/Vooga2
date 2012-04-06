@@ -14,8 +14,12 @@ public abstract class PowerUp extends GameSprite {
         super(im, x, y, image);
         character = fighter;
     }
+    
+    public Fighter getFighter() {
+        return character;
+    }
 
     public abstract PowerUp makeItem(double x, double y);
-
-    public abstract void update(long elapsedTime);
+    
+    public abstract Attribute getAttribute();
 }

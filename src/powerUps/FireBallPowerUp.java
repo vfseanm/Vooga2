@@ -11,11 +11,7 @@ public class FireBallPowerUp extends PowerUp {
     public FireBallPowerUp(BufferedImage im, double x, double y, String image, Fighter fighter) {
         super(im, x, y, image, fighter);
     }
-    
-    public void update(long elapsedTime) {
-        
-    }
-    
+
     private FireBallPowerUp(BufferedImage im, String image, Fighter fighter) {
         super(im, 0, 0, image, fighter);
     }
