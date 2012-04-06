@@ -72,11 +72,11 @@ public class RotatingPlatform extends AbstractPlatform {
             if (myFrames % 2 == 0) {
                 setLocation(getX() - myWidth / 2.0 + myHeight / 2.0, getY()
                         + myWidth / 2.0 - myHeight / 2.0);
-                System.out.println("animate1");
+                //System.out.println("animate1");
             } else if (myFrames % 2 == 1) {
                 setLocation(getX() + myWidth / 2.0 - myHeight / 2.0, getY()
                         - myWidth / 2.0 + myHeight / 2.0);
-                System.out.println("animate2");
+                //System.out.println("animate2");
             }
         }
     }
