@@ -31,7 +31,7 @@ public class SideToSidePlatform extends DecoratedPlatform {
 		myTimer.update();
 	}	 
 	
-	public void update() {
+	public void update(long elapsedTime) {
 		
 		if (myDecoratorComponent != null) {
             		myDecoratorComponent.update(elapsedTime);
