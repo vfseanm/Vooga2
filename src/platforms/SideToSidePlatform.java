@@ -13,6 +13,10 @@ public class SideToSidePlatform extends DecoratedPlatform {
 		super(im, x, y, images, fighter);
 	}
 	
+	public SideToSidePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
+          super(im, x, y, images, fighter. decoratorComponent);
+      }
+	
 	public void doBehavior(double speed, double distance) {
 		double time = (distance * 5)/speed;
 		if (myTimer.getElapsedTime() % (time*2) == 0) {
