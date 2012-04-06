@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import sprite.Fighter;
 
-public class DecoratedPlatform extends AbstractPlatform {
+public abstract class DecoratedPlatform extends AbstractPlatform {
       protected AbstractPlatform myDecoratorComponent;
       
       
