@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import sprite.Fighter;
 
 public class DecoratedPlatform extends AbstractPlatform {
-      private AbstractPlatform myDecoratorComponent;
+      protected AbstractPlatform myDecoratorComponent;
       
       
       public DecoratedPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter) {
