@@ -1,13 +1,11 @@
 package fighter;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.TreeMap;
-import java.util.List;
-import java.util.Map;
 
 import sprite.*;
 import fighter.attributes.*;
+import fighter.attributes.attributeremover.AttributeRemover;
 
 
 @SuppressWarnings("serial")
@@ -41,6 +39,10 @@ public class Fighter extends GameSprite {
 		myAttributeRemover = attributeRemover;
 	}
 	
+	public void changeAttributeRemover(AttributeRemover newAttributeRemover) {
+		myAttributeRemover = newAttributeRemover;
+	}
+	
 	public void setMissile(Missile missile) {
 		myMissile = missile;
 	}
@@ -72,10 +74,7 @@ public class Fighter extends GameSprite {
 	public void removeExtraAttribute() {
 		myAttributeRemover.removeAttribute(myAttributes);
 	}
-	
-	public void changeAttributeRemover(AttributeRemover newAttributeRemover) {
-		myAttributeRemover = newAttributeRemover;
-	}
+
 
 	public void updateLives(int numLives) {
 		if (myAttributes.get("health").isActive())
