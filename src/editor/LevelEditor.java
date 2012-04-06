@@ -14,6 +14,8 @@ import java.util.Scanner;
 
 import platforms.Platform;
 import sprite.GameSprite;
+import sprite.GameSpriteGroup;
+
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.google.gson.Gson;
@@ -53,6 +55,8 @@ public class LevelEditor
                     Class spriteClass = Class.forName(g.getType().substring(6));
                     
                     spriteList.add((GameSprite) gson.fromJson(array.get(i), spriteClass));
+                    GameSpriteGroup.getInstance().addSprite(g);
+                    
                     
                 } catch (ClassNotFoundException e)
                 {
@@ -60,6 +64,8 @@ public class LevelEditor
                 }
                 
             }
+            GameSpriteGroup.getInstance().createManagers();
+            
             BaseLoader loader =
                 new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
             for (GameSprite s : spriteList)
