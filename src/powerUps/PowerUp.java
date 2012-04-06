@@ -1,8 +1,10 @@
 package powerUps;
 
 import java.awt.image.BufferedImage;
+import attributes.Attribute;
 
-import sprite.Fighter;
+
+import fighter.Fighter;
 import sprite.GameSprite;
 
 @SuppressWarnings("serial")

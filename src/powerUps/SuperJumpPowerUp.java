@@ -2,9 +2,12 @@ package powerUps;
 
 import java.awt.image.BufferedImage;
 
+import attributes.Attribute;
+
+
 import platforms.BreakablePlatformItemFactory;
 
-import sprite.Fighter;
+import fighter.Fighter;
 
 @SuppressWarnings("serial")
 public class SuperJumpPowerUp extends PowerUp {

@@ -2,8 +2,9 @@ package powerUps;
 
 import java.awt.image.BufferedImage;
 
+
 import platforms.BreakablePlatformItemFactory;
-import sprite.Fighter;
+import fighter.Fighter;
 
 @SuppressWarnings("serial")
 public class FireBallPowerUp extends PowerUp {
