@@ -11,7 +11,7 @@ import java.awt.Dimension;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import enemies.Behavior;
+import sprite.Behavior;
 
 import java.util.HashMap;
 

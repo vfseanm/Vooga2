@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
-import enemies.Behavior;
+import sprite.Behavior;
 
 
 public class Reflection {

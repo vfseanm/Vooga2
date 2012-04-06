@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 import com.golden.gamedev.gui.TButton;
-import enemies.Behavior;
+import sprite.Behavior;
 
 
 public class Button extends TButton

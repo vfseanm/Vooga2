@@ -12,7 +12,7 @@ import com.golden.gamedev.engine.BaseLoader;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import fighter.AbstractPlatform;
+import platforms.AbstractPlatform;
 
 import platforms.BreakablePlatform;
 import powerUps.PowerUp;

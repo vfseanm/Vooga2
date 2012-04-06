@@ -1,6 +1,6 @@
 package sprite;
 
-import enemies.Behavior;
+import sprite.Behavior;
 
 public class FightBehavior implements Behavior{
 
