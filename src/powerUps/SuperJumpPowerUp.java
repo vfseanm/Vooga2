@@ -29,9 +29,9 @@ public class SuperJumpPowerUp extends PowerUp {
     }
     
     public Attribute getAttribute() {
-        if (getFighter().containsAttribute(new JumpAttribute()) ) {
+        if (getFighter().containsAttribute(Jump.class)) {
             //set to false;
         }
-        return new SuperJumpAttribute();
+        return new SuperJump();
     }
 }
