@@ -3,9 +3,10 @@ package fighter;
 import sprite.*;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
-import attributes.Attribute;
+import attributes.*;
 
 import com.golden.gamedev.*;
 import com.golden.gamedev.object.*;
@@ -23,34 +24,17 @@ public class Fighter extends GameSprite {
 	
 	public Fighter(BufferedImage image, double x, double y, String imagePath, ArrayList<Attribute> inherentAttributes) {
 		super(image, x, y, imagePath);
-		myInherentAttributes = attributes;
+		myInherentAttributes = inherentAttributes;
 	}
 	
 	
 	public void checkBounds() {
-		if (getX() < 0)
-			setLocation(0, getY());
-		if (getY() < 0) {
-			if (!(myLevel instanceof Level2))
-				myLevel = myGame.levelUp();
-			else setLocation(getX(), 0);
-		}
-		if (getY() > 480-getHeight()) 
-			setLocation(getX(), 480-getHeight());
-		if (getX() > 640-getWidth())
-			setLocation(640-getWidth(), getY());
 	}
 	
 	
 	public void updateSpeed() {
-		if (myGame.keyDown(KeyEvent.VK_UP)) {
-			setLocation(getOldX(),getOldY()-0.7);
-		}
-		else if (myGame.keyDown(KeyEvent.VK_DOWN)) setLocation(getOldX(),getOldY()+0.7);;
-		
-		if (myGame.keyDown(KeyEvent.VK_LEFT)) setLocation(getOldX()-0.7,getOldY());
-		else if (myGame.keyDown(KeyEvent.VK_RIGHT)) setLocation(getOldX()+0.7,getOldY());
 	}
+	
 	
 	public void fireMissile(long elapsedTime) {
 		if (canFire == false) {
