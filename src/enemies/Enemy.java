@@ -4,20 +4,23 @@ import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
+
 import enemies.attributes.Attribute;
 import enemies.attributes.Updateable;
 import enemies.state.EnemyState;
+import sprite.AnimatedGameSprite;
 import sprite.GameSprite;
 
 
 @SuppressWarnings("serial")
-public class Enemy extends GameSprite
+public class Enemy extends AnimatedGameSprite
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;
 
 
-    public Enemy (BufferedImage im, double x, double y, String image)
+    public Enemy (BufferedImage[] im, double x, double y, List<String> image)
     {
         super(im, x, y, image);
         myAttributes = new ArrayList<Attribute>();

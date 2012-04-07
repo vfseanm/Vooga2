@@ -23,6 +23,7 @@ import enemies.Enemy;
 import platforms.AbstractPlatform;
 import platforms.RotatingPlatform;
 import powerUps.PowerUp;
+import sprite.AnimatedGameSprite;
 import sprite.GameSprite;
 
 
@@ -72,8 +73,8 @@ public class Level implements Serializable{
     
     public List<GameSprite> getAllSprites()
     {
-        List<GameSprite> list = new ArrayList<GameSprite>();
-        //list.addAll(platforms);
+        List<AnimatedGameSprite> list = new ArrayList<AnimatedGameSprite>();
+        list.addAll(platforms);
         list.addAll(enemies);
         list.addAll(powerUps);
         return list;
