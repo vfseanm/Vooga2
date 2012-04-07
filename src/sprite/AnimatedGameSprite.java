@@ -1,12 +1,13 @@
 package sprite;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 import com.golden.gamedev.object.AnimatedSprite;
 
 
 @SuppressWarnings("serial")
-public class AnimatedGameSprite extends AnimatedSprite
+public class AnimatedGameSprite extends AnimatedSprite implements Serializable
 {
 
     String myType;

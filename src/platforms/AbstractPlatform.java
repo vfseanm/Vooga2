@@ -10,7 +10,7 @@ import sprite.AnimatedGameSprite;
 import fighter.*;
 
 @SuppressWarnings("serial")
-public abstract class AbstractPlatform extends AnimatedGameSprite {
+public abstract class AbstractPlatform extends AnimatedGameSprite{
     
     Fighter myFighter;
 
