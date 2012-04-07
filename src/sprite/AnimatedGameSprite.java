@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.golden.gamedev.object.AnimatedSprite;
+import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 
 @SuppressWarnings("serial")
-public class AnimatedGameSprite extends AnimatedSprite implements Serializable
+public class AnimatedGameSprite extends AdvanceSprite implements Serializable
 {
 
     String myType;
