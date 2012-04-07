@@ -37,7 +37,7 @@ public class DemoGame extends Game
     private AdvanceSpriteGroup myGroundGroup;
 
     private ArrayList<Sprite> groundList;
-
+    
     boolean allowJump = true;
     int jump = 75;
 
