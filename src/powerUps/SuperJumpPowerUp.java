@@ -1,6 +1,7 @@
 package powerUps;
 
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 
 
@@ -15,20 +16,20 @@ import fighter.Fighter;
 @SuppressWarnings("serial")
 public class SuperJumpPowerUp extends PowerUp {
 
-    public SuperJumpPowerUp(BufferedImage im, double x, double y, String image, Fighter fighter, Game game) {
+    public SuperJumpPowerUp(BufferedImage[] im, double x, double y, List<String> image, Fighter fighter, Game game) {
         super(im, x, y, image, fighter, game);
     }
        
-    private SuperJumpPowerUp(BufferedImage im, String image, Fighter fighter, Game game) {
+    private SuperJumpPowerUp(BufferedImage[] im, List<String> image, Fighter fighter, Game game) {
         super(im, 0, 0, image, fighter, game);
     }
     
-    public static BreakablePlatformItemFactory getFactory(BufferedImage im, String image, Fighter fighter, Game game) {
+    public static BreakablePlatformItemFactory getFactory(BufferedImage[] im, List<String> image, Fighter fighter, Game game) {
         return new BreakablePlatformItemFactory(new SuperJumpPowerUp(im, image, fighter, game));
     }
     
     public PowerUp makeItem(double x, double y) {
-        return new SuperJumpPowerUp(getImage(), x, y, getImageName(), getFighter(), myGame);
+        return new SuperJumpPowerUp(getImages(), x, y, getImageNames(), getFighter(), myGame);
     }
     
     public Attribute getAttribute() {

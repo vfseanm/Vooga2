@@ -17,17 +17,16 @@ import java.util.List;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 
+import enemies.Enemy;
+
 
 import platforms.AbstractPlatform;
 import platforms.RotatingPlatform;
+import powerUps.PowerUp;
+import sprite.GameSprite;
 
 
 public class Level implements Serializable{
-    
-
-
-
-    
     /**
      * 
      */
@@ -35,6 +34,9 @@ public class Level implements Serializable{
     
     
     private List<AbstractPlatform> platforms;
+    private List<PowerUp> powerUps;
+    private List<Enemy> enemies;
+    
 
     
     
@@ -42,19 +44,39 @@ public class Level implements Serializable{
     {
         
         platforms = new ArrayList<AbstractPlatform>();
+        powerUps = new ArrayList<PowerUp>();
+        enemies = new ArrayList<Enemy>();
+        
         
     }
-    
-
     
     public void addPlatform(AbstractPlatform p)
     {
         platforms.add(p);
     }
+    
+    public void addPowerUp(PowerUp p)
+    {
+        powerUps.add(p);
+    }
+    
+    public void addEnemy(Enemy e)
+    {
+        enemies.add(e);
+    }
 
     public List<AbstractPlatform> getPlatforms()
     {
         return platforms;
+    }
+    
+    public List<GameSprite> getAllSprites()
+    {
+        List<GameSprite> list = new ArrayList<GameSprite>();
+        //list.addAll(platforms);
+        list.addAll(enemies);
+        list.addAll(powerUps);
+        return list;
     }
     public static void main(String[] args)
     {

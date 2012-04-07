@@ -1,6 +1,7 @@
 package fighter;
 
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.TreeMap;
 
 import sprite.*;
@@ -9,7 +10,7 @@ import fighter.attributes.attributeremover.AttributeRemover;
 
 
 @SuppressWarnings("serial")
-public class Fighter extends GameSprite {
+public class Fighter extends AnimatedGameSprite {
 
 	private Game							myGame;
 	// map of key = attributes -> value = boolean representing inherency
@@ -19,8 +20,8 @@ public class Fighter extends GameSprite {
 	private FighterDeath					myDeathSequence;
 	
 	
-	public Fighter(Game game, BufferedImage image, double x, double y, String imagePath) {
-		super(image, x, y, imagePath);
+	public Fighter(Game game, BufferedImage[] image, double x, double y, List<String> images) {
+		super(image, x, y, images);
 		myGame = game;
 		myAttributes = new TreeMap<String, Attribute>();
 	}

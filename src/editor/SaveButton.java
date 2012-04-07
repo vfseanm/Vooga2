@@ -7,7 +7,7 @@ import com.golden.gamedev.gui.TButton;
 public class SaveButton extends TButton
 {
 
-    SetGame myGame;
+    EditorView myGame;
 
 
     public SaveButton (String name,
@@ -15,7 +15,7 @@ public class SaveButton extends TButton
                        int y,
                        int width,
                        int height,
-                       SetGame s)
+                       EditorView s)
     {
         super(name, x, y, width, height);
         myGame = s;

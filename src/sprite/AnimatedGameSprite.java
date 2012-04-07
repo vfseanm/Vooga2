@@ -3,6 +3,8 @@ package sprite;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.golden.gamedev.object.AnimatedSprite;
 
 
@@ -11,13 +13,13 @@ public class AnimatedGameSprite extends AnimatedSprite implements Serializable
 {
 
     String myType;
-    ArrayList<String> myImageNames;
+    List<String> myImageNames;
 
 
     public AnimatedGameSprite (BufferedImage[] im,
                                double x,
                                double y,
-                               ArrayList<String> images)
+                               List<String> images)
     {
 
         super(im, x, y);
@@ -42,7 +44,7 @@ public class AnimatedGameSprite extends AnimatedSprite implements Serializable
     }
 
 
-    public ArrayList<String> getImageName ()
+    public List<String> getImageNames ()
     {
         return myImageNames;
     }

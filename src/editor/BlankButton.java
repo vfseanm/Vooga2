@@ -12,13 +12,13 @@ public class BlankButton extends TButton
     private BufferedImage myImage;
     private String imageName;
     private String myType;
-    private SetGame myView;
+    private EditorView myView;
 
     public BlankButton(String name,
                     int x,
                     int y,
                     int width,
-                    int height, SetGame view)
+                    int height, EditorView view)
     {
         super(name, x, y, width, height);
         myView = view;

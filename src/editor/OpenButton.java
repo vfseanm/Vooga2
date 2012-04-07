@@ -7,7 +7,7 @@ import com.golden.gamedev.gui.TButton;
 public class OpenButton extends TButton
 {
 
-    SetGame myGame;
+    EditorView myGame;
 
 
     public OpenButton (String name,
@@ -15,7 +15,7 @@ public class OpenButton extends TButton
                        int y,
                        int width,
                        int height,
-                       SetGame s)
+                       EditorView s)
     {
         super(name, x, y, width, height);
         myGame = s;
