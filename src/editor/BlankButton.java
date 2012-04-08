@@ -43,7 +43,7 @@ public class BlankButton extends TButton
     {
         myView.addEnemy();
            
-            }
+    }
     
 
 

@@ -1,8 +1,14 @@
 package enemies.attributes;
 
+import editor.editorConstructor;
+
 public class GroundMovement extends Attribute implements Updateable
 {
-
+    @editorConstructor(parameterNames = {""})
+    public GroundMovement()
+    {
+        
+    }
     public void update (long elaspedTime)
     {
         // TODO write groundmovement

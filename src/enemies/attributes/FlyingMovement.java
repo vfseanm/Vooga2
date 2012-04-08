@@ -1,7 +1,14 @@
 package enemies.attributes;
 
+import editor.editorConstructor;
+
 public class FlyingMovement extends Attribute implements Updateable
 {
+    @editorConstructor(parameterNames = {""})
+    public FlyingMovement()
+    {
+        
+    }
 
     public void update (long elaspedTime)
     {

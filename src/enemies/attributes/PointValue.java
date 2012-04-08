@@ -1,10 +1,12 @@
 package enemies.attributes;
 
+import editor.editorConstructor;
+
 public class PointValue extends Attribute
 {
     private int myPointValue;
 
-
+    @editorConstructor(parameterNames = { "point value" }) 
     public PointValue (int value)
     {
         myPointValue = value;

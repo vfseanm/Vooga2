@@ -1,8 +1,14 @@
 package enemies.attributes;
 
+import editor.editorConstructor;
+
 public class JumpingMovement extends Attribute implements Updateable
 {
-
+    @editorConstructor(parameterNames = {""})
+    public JumpingMovement()
+    {
+        
+    }
     public void update (long elaspedTime)
     {
         //TODO write jumping movement

@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 
 import com.golden.gamedev.gui.TButton;
-import sprite.Behavior;
+
+import enemies.attributes.Attribute;
 
 
 public class Button extends TButton
@@ -14,7 +15,7 @@ public class Button extends TButton
     private BufferedImage myImage;
     private String imageName;
     private String myType;
-    private ArrayList<Behavior> myBehaviors;
+    private ArrayList<Attribute> myAttributes;
 
 
     public Button (String name,
@@ -24,17 +25,17 @@ public class Button extends TButton
                     int height,
                     BufferedImage i,
                     String imName,
-                    String type, ArrayList<Behavior> b)
+                    String type, ArrayList<Attribute> b)
     {
         super(name, x, y, width, height);
-        myBehaviors = new ArrayList<Behavior>();
+        myAttributes = new ArrayList<Attribute>();
         myImage = i;
         imageName = imName;
         myType = type;
     }
 
-public ArrayList<Behavior> getBehaviors(){
-    return myBehaviors;
+public ArrayList<Attribute> getAttributes(){
+    return myAttributes;
 }
     public boolean getClicked ()
     {
