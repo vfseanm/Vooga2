@@ -114,8 +114,6 @@ public class EditorModel {
           fis = new FileInputStream(file);
           in = new ObjectInputStream(fis);
           myLevel = (Level)in.readObject();
-          System.out.println(getAllSprites().size());
-          System.out.println("gotldsfkjslf here");
           in.close();
         }
         catch(IOException ex)

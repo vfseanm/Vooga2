@@ -282,18 +282,17 @@ public class EditorView extends Game {
 
     public void openFile()
     {
-        this.stop();
+        //this.stop();
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
         int returnVal = fc.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION)
         {
             File file = fc.getSelectedFile();
             myModel.loadFile(file);
-            System.out.println(myModel.getAllSprites().size());
 
         }
-        System.out.println(myModel.getAllSprites().size());
-        this.start();
+
+        //this.start();
     }
 
     public void addButton(Button newButton)

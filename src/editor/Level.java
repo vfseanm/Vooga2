@@ -1,6 +1,10 @@
 package editor;
 
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -9,6 +13,8 @@ import java.util.Collections;
 import java.util.List;
 
 
+import com.golden.gamedev.engine.BaseIO;
+import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 
 
@@ -71,6 +77,27 @@ public class Level implements Serializable{
     public void setSpriteLocation(AnimatedGameSprite sprite, double x, double y)
     {
         sprite.setLocation(x, y);
+    }
+    
+    private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException
+    {
+        stream.defaultReadObject();
+        updateImages();
+        
+    }
+    
+    private void updateImages()
+    {
+        for(AnimatedGameSprite s: sprites)
+        {
+            BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
+            BufferedImage[] images = new BufferedImage[s.getImageNames().size()];
+            for(int i=0; i<images.length; i++)
+            {
+                images[i] = loader.getImage(s.getImageNames().get(i));
+            }
+            s.setImages(images);
+        }
     }
     
 /*    public static void main(String[] args)
