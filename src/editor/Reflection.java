@@ -3,15 +3,13 @@ package editor;
 
 import java.io.File;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
-
-import enemies.attributes.Attribute;
 
 
 public class Reflection {
