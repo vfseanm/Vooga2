@@ -7,6 +7,10 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.TreeMap;
 
+<<<<<<< HEAD
+=======
+import attributes.Attribute;
+>>>>>>> 5456bd21136892e187b6dae0372a4e74d3a3e882
 
 import sprite.*;
 import fighter.attributes.*;

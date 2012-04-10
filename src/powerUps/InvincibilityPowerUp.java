@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage
 ;
 import java.util.List;
 
+import attributes.Attribute;
+
 import com.golden.gamedev.Game;
 
 import fighter.attributes.*;

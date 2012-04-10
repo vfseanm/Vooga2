@@ -1,4 +1,4 @@
-package enemies.attributes;
+package attributes;
 
 import editor.editorConstructor;
 public class NumberOfLives extends Attribute

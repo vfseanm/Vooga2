@@ -14,13 +14,14 @@ import javax.swing.JOptionPane;
 
 import platforms.Platform;
 
+import attributes.Attribute;
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
 import com.golden.gamedev.object.Sprite;
 
 import enemies.Enemy;
-import enemies.attributes.Attribute;
 
 import sprite.AnimatedGameSprite;
 import sprite.GameSprite;
