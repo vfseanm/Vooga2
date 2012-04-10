@@ -1,11 +1,10 @@
 package sprite;
 
 import java.awt.image.BufferedImage;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.golden.gamedev.object.AnimatedSprite;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 

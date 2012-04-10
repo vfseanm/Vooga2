@@ -1,6 +1,7 @@
 package powerUps;
 
 import java.awt.image.BufferedImage;
+
 import java.util.List;
 
 
@@ -11,7 +12,6 @@ import fighter.attributes.*;
 
 import fighter.Fighter;
 import sprite.AnimatedGameSprite;
-import sprite.GameSprite;
 
 @SuppressWarnings("serial")
 public abstract class PowerUp extends AnimatedGameSprite {
