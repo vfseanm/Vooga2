@@ -88,9 +88,19 @@ public class DemoGame extends Game
         myGround = new RotatingPlatform(images, 100, 100, strings, null);
         myGroundGroup.add(myGround);
         myGround.doBehavior(0, 0); 
-        myGroundGroup.add(new Platform(getImage("resources/platform1.png"), 50, 500, "resources/platform1.png"));
+        
+        BufferedImage[] im = new BufferedImage[1];
+        im[0] = getImage("resources/platform1.png");
+        ArrayList<String> imageNames = new ArrayList<String>();
+        imageNames.add("resources/platform1.png");
+        myGroundGroup.add(new Platform(im, 50, 500, imageNames));
+        
         mySpriteGroup = new SpriteGroup("character");
-        myGroundGroup.add(new Platform(getImage("resources/platform1.png"), 0, 0, "resources/platform1.png"));
+        
+        im[0] = getImage("resources/platform1.png");
+        imageNames.set(0, "resources/platform1.png");
+        myGroundGroup.add(new Platform(im, 0, 0, imageNames));
+        
         mySpriteGroup.add(mySprite);
         myPF = new PlayField();
         myPF.add(mySprite);

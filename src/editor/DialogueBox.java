@@ -35,10 +35,12 @@ public class DialogueBox extends JPanel {
     private HashMap<JCheckBox, Attribute> attributeInstanceMap;
     private BufferedImage myImage;
     private String myImagePath;
+    private String myType;
 
     @SuppressWarnings("rawtypes")
-    public DialogueBox(EditorModel m)
+    public DialogueBox(EditorModel m, String type)
     {
+        myType = type;
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
         myModel = m;
@@ -134,7 +136,11 @@ public class DialogueBox extends JPanel {
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        JButton goButton = new JButton("Create Enemy");
+        String buttonPhrase = "Create Enemy";
+        if(myType.contentEquals("platform"))
+            buttonPhrase = "Create Platform";
+        		
+        JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
 
@@ -155,7 +161,7 @@ public class DialogueBox extends JPanel {
                 }
                     
             }
-            myModel.addEnemy(myImage, myImagePath, myName.getText(), attributes);
+            myModel.addButton(myImage, myImagePath, myName.getText(), attributes, myType);
             setVisible(false);
         }
     }
