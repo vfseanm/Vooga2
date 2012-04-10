@@ -57,33 +57,39 @@ public class EditorView extends Game {
 
         infoBox = new TPanel(MENU_START, 0, 200, 600);
         infoBox.UIResource().put("Background Color", Color.LIGHT_GRAY);
-        TLabel l = new TLabel("Menu", 2, 0, 196, 40);
+        TLabel l = new TLabel("Menu", 2, 0, 196, 20);
+        
+        PlayerButton playerButton = new PlayerButton("Configure Player", 25, 30, 150, 40, this);
+
+        infoBox.add(playerButton);
+        
         l.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
         l.UIResource().put("Text Horizontal Alignment Integer",
                 UIConstants.CENTER);
 
-        TLabel l2 = new TLabel("Enemies", 2, 80, 196, 40);
+        TLabel l2 = new TLabel("Enemies", 2, 70, 196, 40);
         l2.UIResource().put("Text Horizontal Alignment Integer",
                 UIConstants.CENTER);
         l2.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
 
+        
         infoBox.add(l);
         infoBox.add(l2);
+        
+        BlankButton newEnemyButton = new BlankButton("Create Enemy", 25, 110, 150, 40, this, "enemy");
 
-        /*
-         * Button button = new Button("Happy", 10, 140, 60, 40,
-         * getImage("resources/happy.jpg"), "resources/happy.jpg", "enemy",
-         * null);
-         * 
-         * Button bowserbutton = new Button("Bowser", 100, 140, 60, 40,
-         * getImage("resources/Bowser.jpg"), "resources/Bowser.jpg", "enemy",
-         * null);
-         */
+        infoBox.add(newEnemyButton);
+        
+        
 
-        TLabel l3 = new TLabel("Platforms", 2, 200, 196, 40);
+        TLabel l3 = new TLabel("Platforms", 2, 300, 196, 40);
         l3.UIResource().put("Text Horizontal Alignment Integer",
                 UIConstants.CENTER);
         l3.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
+        
+        BlankButton newPlatformButton = new BlankButton("Create Platform", 25, 340, 150, 40, this, "platform");
+
+        infoBox.add(newPlatformButton);
 
         /*
          * Button platformbutton1 = new Button("Platform1", 10, 240, 60, 40,
@@ -92,21 +98,13 @@ public class EditorView extends Game {
          * 100, 240, 60, 40, getImage("resources/platform2.png"),
          * "resources/platform2.png", "platform", null);
          */
-        TLabel l4 = new TLabel("File", 2, 300, 196, 40);
-        l4.UIResource().put("Text Horizontal Alignment Integer",
-                UIConstants.CENTER);
-        l4.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
 
-        TButton openButton = new OpenButton("Open", 10, 340, 60, 40, this);
+        TButton openButton = new OpenButton("Open", 20, 540, 60, 40, this);
 
-        SaveButton saveButton = new SaveButton("Save", 100, 340, 60, 40, this);
+        SaveButton saveButton = new SaveButton("Save", 120, 540, 60, 40, this);
 
-        BlankButton blankButton = new BlankButton("+Enemy", 100, 440, 60, 40,
-                this);
-
-        infoBox.add(blankButton);
+        
         infoBox.add(l3);
-        infoBox.add(l4);
 
         /*
          * infoBox.add(button); infoBox.add(bowserbutton);
@@ -315,7 +313,19 @@ public class EditorView extends Game {
 
     public void addEnemy()
     {
-        DialogueBox myView = new DialogueBox(myModel);
+        DialogueBox myView = new DialogueBox(myModel, "enemy");
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+
+    }
+    public void addPlatform()
+    {
+        DialogueBox myView = new DialogueBox(myModel, "platform");
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
