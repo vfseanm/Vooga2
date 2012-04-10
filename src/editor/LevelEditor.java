@@ -116,10 +116,10 @@ public class LevelEditor
 5,
 4,
 "resources/happy.jpg"));*/
-        collection.add(new Platform(loader.getImage("resources/platform1.png"),
-                                    4,
-                                    5,
-                                    "resources/platform1.png"));
+//        collection.add(new Platform(loader.getImage("resources/platform1.png"),
+//                                    4,
+//                                    5,
+//                                    "resources/platform1.png"));
         lv.writeFile("sample_file.json", collection);
 
         List<GameSprite> s = lv.readFile("sample_file.json");

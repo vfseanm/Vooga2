@@ -23,6 +23,7 @@ import enemies.Enemy;
 import enemies.attributes.Attribute;
 
 import sprite.AnimatedGameSprite;
+import sprite.GameSprite;
 
 public class EditorView extends Game {
     private FrameWork framework;
@@ -148,16 +149,20 @@ public class EditorView extends Game {
             {
                 if (button.getClicked())
                 {
+                    System.out.println(button.getType());
                     AnimatedGameSprite s = null;
-/*                    if (button.getType().equals("platform"))
+                    if (button.getType().equals("platform"))
                     {
-                        BufferedImage[] b = new BufferedImage[1];
-                        b[0] = button.getImage();
-                        s = new Platform(b, getMouseX(), getMouseY()
-                                - button.getImage().getHeight(),
-                                button.getImageName());
-                    }*/
-                    if (button.getType().equals("enemy"))
+                        BufferedImage[] im = new BufferedImage[1];
+                        im[0] = button.getImage();
+                        ArrayList<String> imageNames = new ArrayList<String>();
+                        imageNames.add(button.getImageName());
+                        Platform e = new Platform(im, getMouseX(),
+                                getMouseY() - button.getImage().getHeight(),
+                                imageNames);
+                        s= e;
+                    }
+                    else if (button.getType().equals("enemy"))
                     {
                         BufferedImage[] im = new BufferedImage[1];
                         im[0] = button.getImage();

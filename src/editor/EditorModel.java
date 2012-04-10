@@ -171,7 +171,7 @@ public void addButton(BufferedImage image, String filePath, String name, ArrayLi
         }
         else
         {
-            Button newButton = new Button(name, platformButtonPlacement[platformButtonCounter], platformButtonPlacement[platformButtonCounter+1], 50, 40, image, filePath, "enemy", b);
+            Button newButton = new Button(name, platformButtonPlacement[platformButtonCounter], platformButtonPlacement[platformButtonCounter+1], 50, 40, image, filePath, "platform", b);
             platformButtonCounter +=2;
             myView.addButton(newButton);
         }
