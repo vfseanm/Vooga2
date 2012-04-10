@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.TreeMap;
 
+import attributes.Attribute;
+
 import sprite.*;
 import fighter.attributes.*;
 import fighter.attributes.attributeremover.AttributeRemover;

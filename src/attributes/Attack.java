@@ -1,4 +1,4 @@
-package enemies.attributes;
+package attributes;
 
 public class Attack extends Attribute implements Updateable
 {

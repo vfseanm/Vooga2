@@ -7,8 +7,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import enemies.attributes.Attribute;
-import enemies.attributes.Updateable;
+import attributes.Attribute;
+import attributes.Updateable;
+
 import enemies.state.EnemyState;
 import sprite.AnimatedGameSprite;
 

@@ -15,7 +15,8 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import enemies.attributes.Attribute;
+import attributes.Attribute;
+
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package fighter.attributes;
+package attributes;
 
 import java.awt.event.KeyEvent;
 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import fighter.attributes.*;
 
+import attributes.Attribute;
+
 import com.golden.gamedev.Game;
 
 
