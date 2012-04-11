@@ -2,11 +2,22 @@ package sidescrolling;
 
 import com.golden.gamedev.object.*;
 
-public interface Sidescroller {
+public abstract class Sidescroller {
          
-    public void update(long elapsedTime);
+    public void update(long elapsedTime) {
         
-    public void move(Sprite sprite);
+        for (SpriteGroup group: getSpriteGroups()) {
+            
+            for (Sprite object: group.getSprites()) {
+                if (object != null) {
+                    move(object);
+                }
+            }
+            
+        }
+    }
+        
+    public abstract void move(Sprite sprite);
 
-    public SpriteGroup[] getSpriteGroups();
+    public abstract SpriteGroup[] getSpriteGroups();
 }

@@ -12,7 +12,6 @@ import com.golden.gamedev.object.*;
 
 import fighter.Fighter;
 
-/*
 public class TestGame extends Game {
     
     private SpriteGroup group1;
@@ -60,8 +59,10 @@ public class TestGame extends Game {
         sidescroller = new ConcreteSidescroller(group1, group2);
         sidescroller = new LeftSidescroller(this, sidescroller);
         sidescroller = new RightSidescroller(this, sidescroller);
-        sidescroller = new ForcedLeftSidescroller(sidescroller);
-        sidescroller = new ForcedRightSidescroller(sidescroller);        
+        sidescroller = new UpSidescroller(this, sidescroller);
+        sidescroller = new DownSidescroller(this, sidescroller);
+        //sidescroller = new ForcedUpSidescroller(sidescroller);
+        //sidescroller = new ForcedRightSidescroller(sidescroller);        
     }
     
     public void render (Graphics2D pen) {
@@ -80,4 +81,3 @@ public class TestGame extends Game {
         sidescroller.update(elapsedTime);
     }
 }
-*/
