@@ -1,9 +1,13 @@
 package fighter;
 
 import java.awt.image.BufferedImage;
+
 import java.util.List;
 import java.util.TreeMap;
 
+import com.golden.gamedev.Game;
+
+import attributes.Attribute;
 import sprite.*;
 import fighter.attributes.*;
 import fighter.attributes.attributeremover.AttributeRemover;
@@ -25,9 +29,9 @@ public class Fighter extends AnimatedGameSprite {
 		myGame = game;
 		myAttributes = new TreeMap<String, Attribute>();
 	}
-	
 
-	public void update(long elapsedTime) {
+	/*
+    public void update(long elapsedTime) {
 		
 		// if ability isn't inherent, performs appropriate function
 		for (String ability: myAttributes.keySet()) {
@@ -35,6 +39,7 @@ public class Fighter extends AnimatedGameSprite {
 		}
 		
 	}
+	*/
 	
 	public void setAttributeRemover(AttributeRemover attributeRemover) {
 		myAttributeRemover = attributeRemover;

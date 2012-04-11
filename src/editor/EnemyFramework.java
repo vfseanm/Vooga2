@@ -4,7 +4,8 @@ import java.awt.image.BufferedImage;
 
 import java.util.ArrayList;
 
-import enemies.attributes.Attribute;
+import attributes.Attribute;
+
 
 public class EnemyFramework {
 

@@ -1,4 +1,4 @@
-package enemies.attributes;
+package attributes;
 
 /**
  * This interface is used to distinguish whether or not a given attribute

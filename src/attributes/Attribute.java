@@ -1,4 +1,4 @@
-package enemies.attributes;
+package attributes;
 
 import enemies.Enemy;
 /**

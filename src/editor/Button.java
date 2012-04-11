@@ -4,9 +4,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 
+import attributes.Attribute;
+
 import com.golden.gamedev.gui.TButton;
 
-import enemies.attributes.Attribute;
 
 
 public class Button extends TButton
