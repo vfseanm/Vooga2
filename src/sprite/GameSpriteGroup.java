@@ -60,7 +60,7 @@ public class GameSpriteGroup {
 	
 	public List<CollisionGroup> createManagers (){		
 		if (managerList.isEmpty()){
-			EnemyPlatformCollisionManager enTplat = new EnemyPlatformCollisionManager();
+			BottomTopCollisionManager enTplat = new BottomTopCollisionManager();
 			enTplat.setCollisionGroup(enemyGroup, platformGroup);		
 			managerList.add(enTplat);
 			pen.addCollisionGroup(enemyGroup, platformGroup, enTplat);
