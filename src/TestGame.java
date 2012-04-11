@@ -12,6 +12,7 @@ import com.golden.gamedev.object.*;
 
 import fighter.Fighter;
 
+/*
 public class TestGame extends Game {
     
     private SpriteGroup group1;
@@ -81,3 +82,4 @@ public class TestGame extends Game {
         sidescroller.update(elapsedTime);
     }
 }
+*/
