@@ -105,7 +105,7 @@ public class DialogueBox extends JPanel {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
         // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("enemies.attributes", Attribute.class))
+        for (Class c : reflection.getInstancesOf("attributes", Attribute.class))
         {
             boolean isAnnotated = false;
             for(Constructor constructor : c.getConstructors())

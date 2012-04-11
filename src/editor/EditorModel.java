@@ -44,7 +44,9 @@ public class EditorModel {
 
     }
     
-    
+    /*
+     * 
+     */
     public void moveHorizonally(double x)
     {
         myLevel.moveHorizontally(x);
