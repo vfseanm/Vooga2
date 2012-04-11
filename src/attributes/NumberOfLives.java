@@ -1,10 +1,11 @@
-package enemies.attributes;
+package attributes;
 
+import editor.editorConstructor;
 public class NumberOfLives extends Attribute
 {
     private int myLives;
 
-
+    @editorConstructor(parameterNames = { "number of lives" })
     public NumberOfLives (int lives)
     {
         myLives = lives;

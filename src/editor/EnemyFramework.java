@@ -3,23 +3,25 @@ package editor;
 import java.awt.image.BufferedImage;
 
 import java.util.ArrayList;
-import sprite.Behavior;
+
+import attributes.Attribute;
+
 
 public class EnemyFramework {
 
-    protected ArrayList<Behavior> behaviors;
+    protected ArrayList<Attribute> attributes;
     @SuppressWarnings("unused")
     private BufferedImage myImage;
     @SuppressWarnings("unused")
     private String myName;
 
-    public EnemyFramework(BufferedImage im, String name, ArrayList<Behavior> b) {
-        behaviors = b;
+    public EnemyFramework(BufferedImage im, String name, ArrayList<Attribute> b) {
+        attributes = b;
         myImage = im;
         myName = name;
     }
 
-    public void addBehavior(Behavior b) {
-        behaviors.add(b);
+    public void addBehavior(Attribute b) {
+        attributes.add(b);
     }
 }

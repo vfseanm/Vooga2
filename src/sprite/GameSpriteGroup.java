@@ -12,6 +12,7 @@ import collisions.EnemyPowerUpCollisionManager;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.collision.CollisionGroup;
+import enemies.Enemy;
 
 public class GameSpriteGroup {
 	private SpriteGroup enemyGroup = new SpriteGroup("enemy");
@@ -30,11 +31,11 @@ public class GameSpriteGroup {
 	}
 	
 	public void addSprite (GameSprite mySprite){
-		if (mySprite.getClass()== PowerUp.class)
+		if (mySprite.getClass().isInstance(PowerUp.class) )
 			powerGroup.add(mySprite);
-		if (mySprite.getClass() == Enemy.class)
+		if (mySprite.getClass().isInstance(Enemy.class) )
 			enemyGroup.add(mySprite);
-		if (mySprite.getClass() == Platform.class)
+		if (mySprite.getClass().isInstance( Platform.class))
 			platformGroup.add(mySprite);
 	}
 	

@@ -1,43 +1,30 @@
 package editor;
 
+
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
-
-import attributes.Attribute;
 
 import com.golden.gamedev.gui.TButton;
 
 
-
-public class Button extends TButton
+public class PlayerButton extends TButton
 {
     private boolean pressed;
     private BufferedImage myImage;
     private String imageName;
     private String myType;
-    private ArrayList<Attribute> myAttributes;
+    private EditorView myView;
 
-
-    public Button (String name,
+    public PlayerButton(String name,
                     int x,
                     int y,
                     int width,
-                    int height,
-                    BufferedImage i,
-                    String imName,
-                    String type, ArrayList<Attribute> b)
+                    int height, EditorView view)
     {
         super(name, x, y, width, height);
-        myAttributes = new ArrayList<Attribute>();
-        myImage = i;
-        imageName = imName;
-        myType = type;
+        myView = view;
     }
 
-public ArrayList<Attribute> getAttributes(){
-    return myAttributes;
-}
+
     public boolean getClicked ()
     {
         boolean t = pressed;
@@ -54,9 +41,11 @@ public ArrayList<Attribute> getAttributes(){
 
     public void doAction ()
     {
-        
-        pressed = true;
+        System.out.println("There will be a player configuration box");
+        //myView.addEnemy();
+           
     }
+    
 
 
     public String getType ()

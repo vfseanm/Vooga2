@@ -1,6 +1,8 @@
 package fighter.attributes.attributeremover;
 
 import java.util.TreeMap;
+
+import attributes.Attribute;
 import fighter.attributes.*;
 
 public class LastAttributeRemover implements AttributeRemover {

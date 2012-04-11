@@ -18,10 +18,11 @@ public class BlankButton extends TButton
                     int x,
                     int y,
                     int width,
-                    int height, EditorView view)
+                    int height, EditorView view, String type)
     {
         super(name, x, y, width, height);
         myView = view;
+        myType = type;
     }
 
 
@@ -41,9 +42,12 @@ public class BlankButton extends TButton
 
     public void doAction ()
     {
-        myView.addEnemy();
+        if(myType.contentEquals("enemy"))
+            myView.addEnemy();
+        else if (myType.contentEquals("platform"))
+            myView.addPlatform();
            
-            }
+    }
     
 
 

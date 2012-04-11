@@ -1,4 +1,4 @@
-package enemies.attributes;
+package attributes;
 
 /**
  * Experimenting with building a layer ontop of the GTGE methods to consolidate

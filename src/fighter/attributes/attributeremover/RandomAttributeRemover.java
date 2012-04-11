@@ -4,6 +4,8 @@ import java.util.TreeMap;
 
 import java.util.Random;
 
+import attributes.Attribute;
+
 import fighter.attributes.*;
 
 public class RandomAttributeRemover implements AttributeRemover {

@@ -3,28 +3,22 @@ package editor;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import java.util.List;
 
+
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
+import com.golden.gamedev.object.Sprite;
 
-import enemies.Enemy;
 
-
-import platforms.AbstractPlatform;
-import platforms.RotatingPlatform;
-import powerUps.PowerUp;
 import sprite.AnimatedGameSprite;
-import sprite.GameSprite;
 
 
 public class Level implements Serializable{
@@ -34,52 +28,79 @@ public class Level implements Serializable{
     private static final long serialVersionUID = -7585264855447840739L;
     
     
-    private List<AbstractPlatform> platforms;
-    private List<PowerUp> powerUps;
-    private List<Enemy> enemies;
-    
+    private List<AnimatedGameSprite> sprites;
 
-    
+  
     
     public Level()
     {
         
-        platforms = new ArrayList<AbstractPlatform>();
-        powerUps = new ArrayList<PowerUp>();
-        enemies = new ArrayList<Enemy>();
+        sprites = new ArrayList<AnimatedGameSprite>();
+    }
+    
+    public void addSprite(AnimatedGameSprite s)
+    {
+        sprites.add(s);
+    }
+   
+    public void moveHorizontally(double x)
+    {
+        for (Sprite s : sprites)
+        {
+            s.setX(s.getX() + x);
+        }
+    }
+    
+    public void moveVertically(double y)
+    {
+        for(Sprite s: sprites)
+        {
+            s.setY(s.getY()+y);
+        }
+    }
+    
+    public void clear()
+    {
+        sprites.clear();
+    }
+    
+    public List<AnimatedGameSprite> getAllSprites()
+    {
+        return Collections.unmodifiableList(sprites);
+    }
+    
+    public void removeSprite(AnimatedGameSprite sprite)
+    {
+        sprites.remove(sprite);
+    }
+    
+    public void setSpriteLocation(AnimatedGameSprite sprite, double x, double y)
+    {
+        sprite.setLocation(x, y);
+    }
+    
+    private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException
+    {
+        stream.defaultReadObject();
+        updateImages();
         
-        
     }
     
-    public void addPlatform(AbstractPlatform p)
+    private void updateImages()
     {
-        platforms.add(p);
+        for(AnimatedGameSprite s: sprites)
+        {
+            BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
+            BufferedImage[] images = new BufferedImage[s.getImageNames().size()];
+            for(int i=0; i<images.length; i++)
+            {
+                images[i] = loader.getImage(s.getImageNames().get(i));
+            }
+            s.setImages(images);
+        }
     }
     
-    public void addPowerUp(PowerUp p)
-    {
-        powerUps.add(p);
-    }
-    
-    public void addEnemy(Enemy e)
-    {
-        enemies.add(e);
-    }
-
-    public List<AbstractPlatform> getPlatforms()
-    {
-        return platforms;
-    }
-    
-    public List<GameSprite> getAllSprites()
-    {
-        List<AnimatedGameSprite> list = new ArrayList<AnimatedGameSprite>();
-        list.addAll(platforms);
-        list.addAll(enemies);
-        list.addAll(powerUps);
-        return list;
-    }
-    public static void main(String[] args)
+/*    public static void main(String[] args)
     {
         String filename = "level.ser";
         Level lev = new Level();
@@ -131,14 +152,7 @@ public class Level implements Serializable{
         {
             ex.printStackTrace();
         }
-        
-        
-        
-        
-    }
+    }*/
    
-    
-
-    
 }
 

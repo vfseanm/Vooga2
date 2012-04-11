@@ -3,14 +3,13 @@ package editor;
 
 import java.io.File;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
-import sprite.Behavior;
 
 
 public class Reflection {
@@ -72,21 +71,27 @@ public class Reflection {
     }
     
     @SuppressWarnings("rawtypes")
-    public ArrayList<Class> getBehaviors() throws ClassNotFoundException, IOException
+    public ArrayList<Class> getInstancesOf(String packageName, Class superClass) throws ClassNotFoundException, IOException
     {
         ArrayList<Class> behaviors = new ArrayList<Class>();
-        List<Class> list = getClasses("sprite");
+        List<Class> list = getClasses(packageName);
         for(Class c: list)
         {
-            if(Arrays.asList(c.getInterfaces()).contains(Behavior.class))
+            if(c.getSuperclass()!=null)
             {
-                behaviors.add(c);
+                if(c.getSuperclass().equals(superClass))
+                {
+                    behaviors.add(c);
+                }
             }
         }
         return behaviors;        
     }
     
     public Reflection(){};
+    
+    
+
     
 
     

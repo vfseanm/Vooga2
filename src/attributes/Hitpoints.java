@@ -1,11 +1,13 @@
-package enemies.attributes;
+package attributes;
+
+import editor.editorConstructor;
 
 public class Hitpoints extends Attribute
 {
     private int myHitpoints;
     private int maxHP;
 
-
+    @editorConstructor(parameterNames = { "number of hitpoints" })
     public Hitpoints (int hitpoints)
     {
         myHitpoints = hitpoints;

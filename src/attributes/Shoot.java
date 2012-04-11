@@ -1,16 +1,17 @@
-package fighter.attributes;
+package attributes;
 
 import com.golden.gamedev.Game;
 import fighter.*;
 
-public class SuperJump extends Attribute {
+public class Shoot extends Attribute {
 
-	public SuperJump(Game game, Fighter fighter) {
+	public Shoot(Game game, Fighter fighter) {
 		super(game, fighter);
-		myName = "superjump";
+		myName = "shoot";
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	public void doFunction() {
 		// TODO Auto-generated method stub
 		
