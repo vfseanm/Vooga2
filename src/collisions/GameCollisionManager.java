@@ -30,7 +30,6 @@ public class GameCollisionManager{
 					int side = SideChecker (sprite1, gs1);
 					for (ActionPerformer ap: actionList){
 					    System.out.println("COLLISION");
-					    System.out.println("bowser'sclass:" + sprite1.getClass());
 						ap.action(sprite1, gs1, side);
 					}
 				}
@@ -40,23 +39,25 @@ public class GameCollisionManager{
 	}
 	
 	private int SideChecker (Sprite sprite1, AnimatedGameSprite gs1){
-		if (sprite1.getX() > gs1.getX() && (sprite1.getY() < gs1.getY()+gs1.getHeight()) && (sprite1.getY() + sprite1.getHeight() > gs1.getY()) 
-				&& (sprite1.getX() + sprite1.getWidth() <= gs1.getX()) ){
+		if ((sprite1.getX()>=gs1.getX()) && (sprite1.getY()<=gs1.getY() + gs1.getHeight()) && (sprite1.getY() + sprite1.getHeight()>=gs1.getY()) 
+				&& (sprite1.getX() + sprite1.getWidth()>=gs1.getX()) ){
 			//Left_to_Right collision
 			return CollisionGroup.LEFT_RIGHT_COLLISION;
 		}
-		else if (sprite1.getX() < gs1.getX() && (sprite1.getY() < gs1.getY()+gs1.getHeight() && (sprite1.getY() + sprite1.getHeight() > gs1.getY()) )
-				&& (sprite1.getX() + sprite1.getWidth() >= gs1.getX()) ){
+		else if (sprite1.getX() <= gs1.getX() && (sprite1.getY()<=gs1.getY()+gs1.getHeight()) && (sprite1.getY() + sprite1.getHeight()>=gs1.getY())
+				&& (sprite1.getX() + sprite1.getWidth()>=gs1.getX()) ){
 			//Right_to_left collision
 			return CollisionGroup.RIGHT_LEFT_COLLISION;
 		}
-		else if ((sprite1.getY() >= gs1.getY()) && (sprite1.getX() < gs1.getX()) 
-				&& (sprite1.getX() + sprite1.getWidth() > gs1.getX() + gs1.getWidth()) ){
+		else if ((sprite1.getY() >= gs1.getY()) &&( (sprite1.getX()<gs1.getX() 
+				&& (sprite1.getX() + sprite1.getWidth()>gs1.getX() + gs1.getWidth())) || (sprite1.getX() >= gs1.getX() 
+						&& (sprite1.getX() + sprite1.getWidth() <= gs1.getX() + gs1.getWidth())) )){
 			//Top_to_Bottom
 			return CollisionGroup.TOP_BOTTOM_COLLISION;
 		}
-		else if ( (sprite1.getY() <= gs1.getY()) && (sprite1.getX() < gs1.getX()) 
-				&& (sprite1.getX() + sprite1.getWidth() > gs1.getX() + gs1.getWidth()) ){
+		else if ( (sprite1.getY() <= gs1.getY()) && ( (sprite1.getX()<gs1.getX() 
+				&& (sprite1.getX() + sprite1.getWidth()>gs1.getX() + gs1.getWidth())) || (sprite1.getX() >= gs1.getX() 
+						&& (sprite1.getX() + sprite1.getWidth() <= gs1.getX() + gs1.getWidth())) ) ){
 			//Bottom_to_Top
 			return CollisionGroup.BOTTOM_TOP_COLLISION;
 		}
@@ -64,8 +65,8 @@ public class GameCollisionManager{
 			return 0; 
 	}
 
-	private boolean CollisionChecker (double csRB, double csLT, double gsRB, double gsLT){
-		if ( (csLT < gsLT && csRB > gsLT) || (csLT < gsRB && csRB > gsRB) ){
+	private boolean CollisionChecker (double firstRB, double firstLT, double secondRB, double secondLT){
+		if ( (firstLT < secondLT && firstRB > secondLT) || (firstLT < secondRB && firstRB > secondRB) ){
 			return true;
 		}
 		else 

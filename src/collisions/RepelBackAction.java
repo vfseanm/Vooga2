@@ -35,30 +35,15 @@ public class RepelBackAction implements ActionPerformer{
 		}
 	}
 	
-	public void action (Fighter sprite1, Fighter sprite2, int collisionType){
-		if (collisionType== CollisionGroup.RIGHT_LEFT_COLLISION ){
-			for (int i=0; i<=40; i++){
-				sprite1.setX(sprite1.getX()-1);
-			}
-		}
+	public void action (Fighter sprite1, AbstractPlatform sprite2, int collisionType){
+		
 	}
-	
-	public void action (Fighter sprite1, AbstractPlatform sprite2, int collisionType){}
 	
 
 	public void action(Sprite sprite1, Sprite sprite2, int collisionType) {
-		// TODO Auto-generated method stub
-		
-	}
+		if ((sprite1 instanceof Fighter) && (sprite2 instanceof Enemy)){
+			action ((Fighter)sprite1, (Enemy) sprite2, collisionType);
+		}
 
-	public void action(Enemy sprite1, BreakablePlatform sprite2,
-			int collisionType) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void action(Enemy sprite1, SimplePlatform sprite2, int collisionType) {
-		// TODO Auto-generated method stub
-		
 	}
 }
