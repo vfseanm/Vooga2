@@ -81,7 +81,7 @@ public class UpDownMovement extends Attribute implements Updateable
     public String toString ()
     {
         return "Attribute UpDownMovement my distance is " + myDistance +
-               " my time to turn is" + myTurnTime;
+               " my time to turn is " + myTurnTime;
     }
 
 }

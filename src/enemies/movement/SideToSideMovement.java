@@ -75,7 +75,7 @@ public class SideToSideMovement extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute SideToSideMovement my distance is " + myDistance + " my time to turn is" + myTurnTime;
+        return "Attribute SideToSideMovement my distance is " + myDistance + " my time to turn is " + myTurnTime;
     }
 
 }
