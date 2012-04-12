@@ -57,7 +57,7 @@ public class Enemy extends AnimatedGameSprite
 
         for (Attribute attribute : myAttributes)
         {
-            if (hasAttributeByName(attribute.getName()))
+            if (attribute.getName().equals(name))
             {
                 Class<?> c = attribute.getClass();
                 for (Method m : c.getMethods())
