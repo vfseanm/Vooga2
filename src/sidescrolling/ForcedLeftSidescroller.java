@@ -1,0 +1,21 @@
+package sidescrolling;
+
+import com.golden.gamedev.object.Sprite;
+
+public class ForcedLeftSidescroller extends DecoratedSidescroller {
+
+    private double forcedLeftSpeed;
+    
+    public ForcedLeftSidescroller(Sidescroller scroller, double speed) {
+        super(scroller);
+        if (speed < 0) {
+            speed = 0;
+        }
+    }
+
+    public void move(Sprite sprite) {
+        sprite.moveX(forcedLeftSpeed);
+        super.move(sprite);
+    }
+    
+}

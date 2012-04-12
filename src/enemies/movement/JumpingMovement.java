@@ -1,17 +1,24 @@
-package attributes;
+package enemies.movement;
 
 import editor.editorConstructor;
+import attributes.Attribute;
+import attributes.Updateable;
+
 
 public class JumpingMovement extends Attribute implements Updateable
 {
-    @editorConstructor(parameterNames = {""})
-    public JumpingMovement()
-    {
+    @editorConstructor(parameterNames = { "distance", "time" })
+    public JumpingMovement (int distance,int time){
+    
+
+    }
+
+    public void modifyJumpingMovement(){
         
     }
+
     public void update (long elaspedTime)
     {
-        //TODO write jumping movement
 
     }
 
@@ -19,15 +26,14 @@ public class JumpingMovement extends Attribute implements Updateable
     @Override
     public String getName ()
     {
-
         return "JumpingMovement";
     }
 
 
-    //Will update to reflect changes of class
     public String toString ()
     {
-        return "Attribute JumpingMovement";
+        return "Attribute JumpingMovemet";
+
     }
 
 }

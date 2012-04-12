@@ -1,21 +1,18 @@
 package enemies;
 
 import java.awt.image.BufferedImage;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
 import attributes.Attribute;
 import attributes.Updateable;
-
 import enemies.state.EnemyState;
 import sprite.AnimatedGameSprite;
 
 
 @SuppressWarnings("serial")
-public class Enemy extends AnimatedGameSprite 
+public class Enemy extends AnimatedGameSprite
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;
@@ -27,21 +24,37 @@ public class Enemy extends AnimatedGameSprite
         myAttributes = new ArrayList<Attribute>();
     }
 
+    public boolean hasAttributeByName(String name)
+    {
+        for(Attribute attribute: myAttributes)
+        {
+            if(attribute.getClass().getName().equalsIgnoreCase(name))
+                return true;
+        }
+        return false;
+    }
 
     public void addAttribute (Attribute attribute)
     {
         myAttributes.add(attribute);
         attribute.setEnemy(this);
     }
-    
-    public void removeAttribute (Attribute attribute){
-        if(myAttributes.contains(attribute))
-            myAttributes.remove(attribute);
+
+
+    public void removeAttributeByName (String name)
+    {
+        for(Attribute attribute: myAttributes)
+        {
+            if(attribute.getName().equalsIgnoreCase(name));
+                myAttributes.remove(attribute);
+        }
+        
     }
 
 
     public void updateAttribute (String name, Object ... o)
     {
+
         for (Attribute attribute : myAttributes)
         {
             if (attribute.getName().equals(name))
@@ -54,8 +67,9 @@ public class Enemy extends AnimatedGameSprite
                     for (int i = 0; i < m.getGenericParameterTypes().length; i++)
                     {
                         Class<?> t = m.getParameterTypes()[i];
-                        if (!t.isInstance(o[i]))
+                        if (!t.equals(o[i]))
                         {
+                            
                             continue;
                         }
 
@@ -87,21 +101,27 @@ public class Enemy extends AnimatedGameSprite
 
     public void update (long elapsedTime)
     {
+
         for (Attribute attribute : myAttributes)
         {
-            if (attribute.getClass().isInterface())
+
+            if (attribute.getClass().getInterfaces().length != 0 &&
+                attribute.getClass().getInterfaces()[0].equals(Updateable.class))
             {
                 try
                 {
+                    //necessary?
+
                     ((Updateable) attribute).update(elapsedTime);
                 }
                 catch (ClassCastException e)
                 {
+
                     e.printStackTrace();
                 }
             }
         }
-        if(myState!=null)myState.excuteBehavior(this);
+        if (myState != null) myState.excuteBehavior(this);
     }
 
 
@@ -114,12 +134,16 @@ public class Enemy extends AnimatedGameSprite
     public String toString ()
     {
         StringBuilder toReturn = new StringBuilder();
+        toReturn.append("Enemy\n");
         for (Attribute attribute : myAttributes)
         {
             toReturn.append(attribute.toString());
             toReturn.append("\n");
         }
-        toReturn.append(myState.toString());
+        if(myState!=null)
+        {
+            toReturn.append(myState.toString());
+        }
         return toReturn.toString();
     }
 }

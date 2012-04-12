@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class DialogueBox extends JPanel {
+public class EnemyDialogueBox extends JPanel {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -40,7 +40,7 @@ public class DialogueBox extends JPanel {
     private String myType;
 
     @SuppressWarnings("rawtypes")
-    public DialogueBox(EditorModel m, String type)
+    public EnemyDialogueBox(EditorModel m, String type)
     {
         myType = type;
         attributeMap = new HashMap<JCheckBox, Class>();
@@ -105,8 +105,9 @@ public class DialogueBox extends JPanel {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("attributes", Attribute.class))
+        List<Class> list = reflection.getInstancesOf("enemies.movement", Attribute.class);
+        list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
+        for (Class c : list)
         {
             boolean isAnnotated = false;
             for(Constructor constructor : c.getConstructors())

@@ -44,7 +44,9 @@ public class EditorModel {
 
     }
     
-    
+    /*
+     * 
+     */
     public void moveHorizonally(double x)
     {
         myLevel.moveHorizontally(x);
@@ -86,8 +88,8 @@ public class EditorModel {
     public void writeFile(String filename)
     {
         
-        myLevel.moveHorizontally(horizontalOffset);
-        myLevel.moveVertically(verticalOffset);
+        myLevel.moveHorizontally(-horizontalOffset);
+        myLevel.moveVertically(-verticalOffset);
        
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
@@ -102,8 +104,8 @@ public class EditorModel {
         {
           ex.printStackTrace();
         }
-        myLevel.moveHorizontally(-horizontalOffset);
-        myLevel.moveVertically(-verticalOffset);
+        myLevel.moveHorizontally(horizontalOffset);
+        myLevel.moveVertically(verticalOffset);
     }
     public void loadFile(File file)
     {
@@ -115,6 +117,7 @@ public class EditorModel {
           fis = new FileInputStream(file);
           in = new ObjectInputStream(fis);
           myLevel = (Level)in.readObject();
+          //System.out.println(myLevel.getAllSprites().get(0).toString());
           in.close();
         }
         catch(IOException ex)
@@ -150,7 +153,7 @@ public class EditorModel {
             platformButtonPlacement = setUp;
     }
 
-public void addButton(BufferedImage image, String filePath, String name, ArrayList<Attribute> b, String type)
+public void addButton( String name, Framework framework, String type)
 {
     if (type.contentEquals("enemy"))
     {
@@ -160,7 +163,7 @@ public void addButton(BufferedImage image, String filePath, String name, ArrayLi
         }
         else
         {
-            Button newButton = new Button(name, enemyButtonPlacement[enemyButtonCounter], enemyButtonPlacement[enemyButtonCounter+1], 50, 40, image, filePath, "enemy", b);
+            Button newButton = new Button(name, enemyButtonPlacement[enemyButtonCounter], enemyButtonPlacement[enemyButtonCounter+1], 50, 40, framework, myView);
             enemyButtonCounter +=2;
             myView.addButton(newButton);
         }
@@ -172,7 +175,7 @@ public void addButton(BufferedImage image, String filePath, String name, ArrayLi
         }
         else
         {
-            Button newButton = new Button(name, platformButtonPlacement[platformButtonCounter], platformButtonPlacement[platformButtonCounter+1], 50, 40, image, filePath, "platform", b);
+            Button newButton = new Button(name, platformButtonPlacement[platformButtonCounter], platformButtonPlacement[platformButtonCounter+1], 50, 40, framework, myView);
             platformButtonCounter +=2;
             myView.addButton(newButton);
         }

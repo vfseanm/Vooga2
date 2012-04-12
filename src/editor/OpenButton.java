@@ -19,6 +19,7 @@ public class OpenButton extends TButton
     {
         super(name, x, y, width, height);
         myGame = s;
+        System.out.println("making open button");
     }
 
 

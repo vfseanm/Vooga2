@@ -16,13 +16,17 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import enemies.Enemy;
+
+import sprite.AnimatedGameSprite;
+
 import attributes.Attribute;
 
 
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class DialogueBox extends JPanel {
+public class EditEnemyDialogue extends JPanel {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -38,18 +42,20 @@ public class DialogueBox extends JPanel {
     private BufferedImage myImage;
     private String myImagePath;
     private String myType;
-
+    private Enemy mySprite;
+    
     @SuppressWarnings("rawtypes")
-    public DialogueBox(EditorModel m, String type)
+    public EditEnemyDialogue(EditorModel m, Enemy sprite)
     {
-        myType = type;
+        mySprite = sprite;
+        myImage = mySprite.getImage();
+        
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;
         reflection = new Reflection();
         setLayout(new BorderLayout());
         
-
         add(makeInputPanel(), BorderLayout.NORTH);
     }
 
@@ -105,8 +111,9 @@ public class DialogueBox extends JPanel {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("attributes", Attribute.class))
+        List<Class> list = reflection.getInstancesOf("enemies.movement", Attribute.class);
+        list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
+        for (Class c : list)
         {
             boolean isAnnotated = false;
             for(Constructor constructor : c.getConstructors())
@@ -121,6 +128,11 @@ public class DialogueBox extends JPanel {
                 JLabel label1 = new JLabel(c.getName());
                 panel.add(label1);
                 JCheckBox box = new JCheckBox();
+                if(mySprite.hasAttributeByName(c.getName()))
+                {
+                    System.out.println("setting to true");
+                    box.setSelected(true);
+                }
                 panel.add(box);
                 box.addActionListener(new CheckBoxListener(box, c));
                 attributeMap.put(box, c);
@@ -138,10 +150,8 @@ public class DialogueBox extends JPanel {
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create Enemy";
-        if(myType.contentEquals("platform"))
-            buttonPhrase = "Create Platform";
-        		
+        String buttonPhrase = "Save Enemy";
+                
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
@@ -213,17 +223,12 @@ public class DialogueBox extends JPanel {
                     argList[i]=Integer.parseInt(selectedValue);
                 }
             }
-             
                    // Attribute att = (Attribute) constructor.newInstance(argList);
                     List<Object> attribute = new ArrayList<Object>();
                     attribute.add(constructor);
                     attribute.add(argList);
                     attributeInstanceMap.put(box, attribute);
                 
-            
-            
-            
-            
             }
     }
 
