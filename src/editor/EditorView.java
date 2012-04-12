@@ -29,7 +29,7 @@ import sprite.GameSprite;
 public class EditorView extends Game {
     private FrameWork framework;
     private ArrayList<Button> allButtons;
-    private static final int MENU_START = 1000;
+    private static final int MENU_START = 900;
     private static final double HORIZONTAL_MOVE = 5;
     private static final double VERTICAL_MOVE = 5;
 
@@ -56,7 +56,7 @@ public class EditorView extends Game {
         myModel = new EditorModel(this);
         allButtons = new ArrayList<Button>();
         
-        framework = new FrameWork(bsInput, 1400, 800);
+        framework = new FrameWork(bsInput, 1300, 800);
         framework.getTheme().getUIRenderer("Label")
                 .put("Background Border Color", Color.BLACK);
 
@@ -110,9 +110,9 @@ public class EditorView extends Game {
         infoBox.add(newpowerUpButton);
         
   
-        TButton openButton = new OpenButton("Open", 100, 720, 60, 40, this);
+        TButton openButton = new OpenButton("Open", 100, 660, 60, 40, this);
 
-        SaveButton saveButton = new SaveButton("Save", 200, 720, 60, 40, this);
+        SaveButton saveButton = new SaveButton("Save", 200, 660, 60, 40, this);
 
         
         infoBox.add(l3);
@@ -154,35 +154,6 @@ public class EditorView extends Game {
                     System.out.println("a button is clicked");
                     AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
                     
-//                    System.out.println(button.getType());
-//                    AnimatedGameSprite s = null;
-//                    if (button.getType().equals("platform"))
-//                    {
-//                        BufferedImage[] im = new BufferedImage[1];
-//                        im[0] = button.getImage();
-//                        ArrayList<String> imageNames = new ArrayList<String>();
-//                        imageNames.add(button.getImageName());
-//                        Platform e = new Platform(im, getMouseX(),
-//                                getMouseY() - button.getImage().getHeight(),
-//                                imageNames);
-//                        s= e;
-//                    }
-//                    else if (button.getType().equals("enemy"))
-//                    {
-//                        BufferedImage[] im = new BufferedImage[1];
-//                        im[0] = button.getImage();
-//                        ArrayList<String> imageNames = new ArrayList<String>();
-//                        imageNames.add(button.getImageName());
-//                        Enemy e = new Enemy(im, getMouseX(),
-//                                getMouseY() - button.getImage().getHeight(),
-//                                imageNames);
-//                        for(Attribute a: button.getAttributes())
-//                        {
-//                            e.addAttribute(a);
-//                        }       
-                        
-                    //}
-
                     if (checkInterference(s))
                         myModel.addSprite(s);
                 }
@@ -336,11 +307,10 @@ public class EditorView extends Game {
         frame.getContentPane().add(myView);
         frame.pack();
         frame.setVisible(true);
-
     }
     public void addPlatform()
     {
-        EnemyDialogueBox myView = new EnemyDialogueBox(myModel, "platform");
+        PlatformDialogueBox myView = new PlatformDialogueBox(myModel, "platform");
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -348,7 +318,17 @@ public class EditorView extends Game {
         frame.getContentPane().add(myView);
         frame.pack();
         frame.setVisible(true);
-
+    }
+    public void addPowerUp()
+    {
+        PowerupDialogueBox myView = new PowerupDialogueBox(myModel, "platform");
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
     }
 
 }

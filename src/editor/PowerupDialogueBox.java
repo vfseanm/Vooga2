@@ -16,16 +16,13 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import platforms.AbstractPlatform;
-import platforms.DecoratedPlatform;
-
 import attributes.Attribute;
 
 
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class PlatformDialogueBox extends JPanel {
+public class PowerupDialogueBox extends JPanel {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -35,17 +32,19 @@ public class PlatformDialogueBox extends JPanel {
     private Reflection reflection;
     private EditorModel myModel;
     @SuppressWarnings("rawtypes")
-    private HashMap<JCheckBox, Class> classMap;
+    private HashMap<JCheckBox, Class> attributeMap;
     
+    private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
     private BufferedImage myImage;
     private String myImagePath;
     private String myType;
 
     @SuppressWarnings("rawtypes")
-    public PlatformDialogueBox(EditorModel m, String type)
+    public PowerupDialogueBox(EditorModel m, String type)
     {
         myType = type;
-        classMap = new HashMap<JCheckBox, Class>();
+        attributeMap = new HashMap<JCheckBox, Class>();
+        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;
         reflection = new Reflection();
         setLayout(new BorderLayout());
@@ -107,18 +106,28 @@ public class PlatformDialogueBox extends JPanel {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
         // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("platforms", DecoratedPlatform.class))
+        for (Class c : reflection.getInstancesOf("attributes", Attribute.class))
         {
-
-            
+            boolean isAnnotated = false;
+            for(Constructor constructor : c.getConstructors())
+            {
+                if(constructor.isAnnotationPresent(editorConstructor.class))
+                {
+                    isAnnotated = true;
+                }
+            }
+            if(isAnnotated)
+            {
                 JLabel label1 = new JLabel(c.getName());
                 panel.add(label1);
                 JCheckBox box = new JCheckBox();
                 panel.add(box);
-                classMap.put(box, c);
+                box.addActionListener(new CheckBoxListener(box, c));
+                attributeMap.put(box, c);
+            }
         }
 
-        JLabel label1 = new JLabel("Platform Name");
+        JLabel label1 = new JLabel("Enemy Name");
         panel.add(label1);
 
         myName = new JTextField(10);
@@ -129,8 +138,9 @@ public class PlatformDialogueBox extends JPanel {
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create Platform";
-        
+        String buttonPhrase = "Create Enemy";
+        if(myType.contentEquals("platform"))
+            buttonPhrase = "Create Platform";
                 
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
@@ -144,25 +154,79 @@ public class PlatformDialogueBox extends JPanel {
         
         public void actionPerformed(ActionEvent e)
         {
-            List<Class> platformTypes = new ArrayList<Class>();
-            for (JCheckBox box : classMap.keySet())
+            ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
+            for (JCheckBox box : attributeMap.keySet())
             {
                 if (box.isSelected())
                 {
-                    platformTypes.add(classMap.get(box));
+                    attributes.add( attributeInstanceMap.get(box));
                 }
                     
             }
             BufferedImage[] s = new BufferedImage[1];
             s[0] = myImage;
-            List<String> imagePaths = new ArrayList<String>();
+            ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
-            PlatformFramework framework = new PlatformFramework(s, imagePaths, platformTypes);
+            EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
             myModel.addButton(myName.getText(), framework, myType);
             setVisible(false);
         }
     }
-   
+    
+    private class CheckBoxListener implements ActionListener {
+        Class associatedClass;
+        JCheckBox box;
+        
+        public CheckBoxListener(JCheckBox b, Class c)
+        {
+            associatedClass= c;
+            box = b;
+        }
+        public void actionPerformed(ActionEvent e)
+        {
+            Constructor[] constructors = associatedClass.getConstructors();
+            Constructor constructor = null;
+            for(Constructor c: constructors)
+            {
+                if(c.isAnnotationPresent(editorConstructor.class))
+                {
+                    constructor = c;
+                }
+            }
+            if(constructor == null)
+            {
+                throw new RuntimeException();
+            }
+            
+            Annotation a = constructor.getAnnotation(editorConstructor.class);
+            String[] paramNames = ((editorConstructor) a).parameterNames();
+            Object[] argList = null;
+            System.out.println(paramNames.length);
+            System.out.println("got here");
+            if(!paramNames[0].equals(""))
+            {
+                argList = new Object[paramNames.length];
+                for(int i=0; i< paramNames.length; i++)
+                {
+                    String selectedValue = JOptionPane
+                        .showInputDialog("What would you like the "+ paramNames[i]+ " to be?");
+                    argList[i]=Integer.parseInt(selectedValue);
+                }
+            }
+             
+                   // Attribute att = (Attribute) constructor.newInstance(argList);
+                    List<Object> attribute = new ArrayList<Object>();
+                    attribute.add(constructor);
+                    attribute.add(argList);
+                    attributeInstanceMap.put(box, attribute);
+                
+            
+            
+            
+            
+            }
+    }
+
     private class ImageAction implements ActionListener {
         public void actionPerformed(ActionEvent e)
         {
