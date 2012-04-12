@@ -17,8 +17,10 @@ import com.golden.gamedev.object.background.ImageBackground;
 import enemies.Enemy;
 import enemies.movement.Flying;
 import enemies.movement.Gravity;
+import enemies.movement.JumpingMovement;
 import enemies.movement.OneDirectionMovement;
 import enemies.movement.SideToSideMovement;
+import enemies.movement.TeleportMovement;
 import enemies.movement.UpDownMovement;
 import fighter.Fighter;
 
@@ -39,12 +41,14 @@ public class TestGame extends Game {
         b[0]=getImage("resources/Bowser.jpg");
         ArrayList<String> a = new ArrayList<String>();
         a.add("resources/Bowser.jpg");
-         bob = new Enemy(b, 500, 300, a);
-        bob.addAttribute(new SideToSideMovement(1,100));
-        bob.addAttribute(new UpDownMovement(0,50));
-        bob.addAttribute(new Flying());
-        bob.addAttribute(new Gravity(1));
+         bob = new Enemy(b, 300, 300, a);
+        
+        
+       // bob.addAttribute(new Gravity(1));
+        
        
+        bob.addAttribute(new TeleportMovement(100,100,300));
+        
         counter=0;
         a.clear(); 
         BufferedImage[] b1 = new BufferedImage[1];
@@ -75,12 +79,12 @@ public class TestGame extends Game {
         myBackground.update(arg0);
         counter++;
         bob.update(arg0);
-        if(counter==100){
-            bob.addAttribute(new Flying());
-        }
-        if(counter==400){
-            bob.updateAttribute("Flying", false);
-        }
+//        if(counter%200==0){
+//            bob.updateAttribute("JumpingMovement");
+//        }
+//        if(counter==400){
+//            bob.updateAttribute("Flying", false);
+//        }
         p.update(arg0);
         gc.GameCollision(bob, list);
         
