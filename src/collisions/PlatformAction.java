@@ -1,14 +1,14 @@
-package src.collisions;
+package collisions;
 
-import src.platforms.BreakablePlatform;
-import src.platforms.DecoratedPlatform;
-import src.platforms.SimplePlatform;
-import src.platforms.AbstractPlatform;
+import platforms.BreakablePlatform;
+import platforms.DecoratedPlatform;
+import platforms.SimplePlatform;
+import platforms.AbstractPlatform;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
-import src.fighter.Fighter;
-import src.sprite.AnimatedGameSprite;
+import fighter.Fighter;
+import sprite.AnimatedGameSprite;
 
 
 public class PlatformAction extends ActionPerformer{

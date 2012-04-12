@@ -1,4 +1,4 @@
-package src.collisions;
+package collisions;
 
 import com.golden.gamedev.object.Sprite;
 

@@ -1,12 +1,12 @@
-package src.collisions;
+package collisions;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import sprite.*;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
-import src.sprite.AnimatedGameSprite;
+
 
 public class GameCollisionManager{
 	List<ActionPerformer> actionList = new ArrayList<ActionPerformer>(); 

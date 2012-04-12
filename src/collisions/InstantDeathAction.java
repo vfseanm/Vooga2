@@ -1,8 +1,8 @@
-package src.collisions;
+package collisions;
 
 import com.golden.gamedev.object.Sprite;
-import src.fighter.Fighter;
-import src.enemies.Enemy;
+import fighter.Fighter;
+import enemies.Enemy;
 
 public class InstantDeathAction extends ActionPerformer{
 	

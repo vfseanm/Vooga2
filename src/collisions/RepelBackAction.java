@@ -1,12 +1,12 @@
-package src.collisions;
+package collisions;
 
-import src.platforms.AbstractPlatform;
+import platforms.AbstractPlatform;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
-import src.enemies.Enemy;
-import src.fighter.Fighter;
+import enemies.Enemy;
+import fighter.Fighter;
 
 public class RepelBackAction extends ActionPerformer{
 	
