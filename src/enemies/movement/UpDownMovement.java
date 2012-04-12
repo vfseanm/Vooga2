@@ -5,6 +5,7 @@ import attributes.Attribute;
 import attributes.Updateable;
 // similiar to side to side
 // hmm?
+// flying
 
 
 public class UpDownMovement extends Attribute implements Updateable
