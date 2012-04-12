@@ -1,5 +1,6 @@
 package enemies.movement;
 
+import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
@@ -9,7 +10,7 @@ public class Flying extends Attribute implements Updateable
 
     private boolean flying;
 
-
+    @editorConstructor(parameterNames = { "" })
     public Flying ()
     {
         flying = true;

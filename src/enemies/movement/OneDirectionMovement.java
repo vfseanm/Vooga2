@@ -1,5 +1,6 @@
 package enemies.movement;
 
+import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
@@ -9,7 +10,7 @@ public class OneDirectionMovement extends Attribute implements Updateable
     private String myDirection;
     private int myDistance;
 
-
+    @editorConstructor(parameterNames = { "direction", "distance" })
     public OneDirectionMovement (String direction, int distance)
     {
         myDirection = direction;
