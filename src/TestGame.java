@@ -7,14 +7,61 @@ import platforms.*;
 
 import sidescrolling.*;
 
+import attributes.Location;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
+import com.golden.gamedev.object.background.ImageBackground;
 
+import enemies.Enemy;
+import enemies.movement.OneDirectionMovement;
+import enemies.movement.SideToSideMovement;
 import fighter.Fighter;
 
-/*
+
 public class TestGame extends Game {
-    
+    private Enemy bob;
+    private Background myBackground;
+    private int counter;
+    @Override
+    public void initResources ()
+    {
+        myBackground = new ImageBackground(getImage("resources/city.jpg"));
+        BufferedImage[] b = new BufferedImage[1];
+        b[0]=getImage("resources/Bowser.jpg");
+        ArrayList<String> a = new ArrayList<String>();
+        a.add("resources/Bowser.jpg");
+         bob = new Enemy(b, 500, 300, a);
+        bob.addAttribute(new SideToSideMovement(1,100));
+        bob.addAttribute(new OneDirectionMovement("down",1));
+        counter=0;
+        
+        
+    }
+
+    @Override
+    public void render (Graphics2D arg0)
+    {
+        myBackground.render(arg0);
+       bob.render(arg0);
+       
+        
+    }
+
+    @Override
+    public void update (long arg0)
+    {
+        myBackground.update(arg0);
+        counter++;
+        bob.update(arg0);
+        
+        
+        
+        
+        
+    }
+
+}
+/*    
     private SpriteGroup group1;
     private SpriteGroup group2;
     private SpriteGroup FIGHTER_GROUP;
