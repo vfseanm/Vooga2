@@ -65,6 +65,6 @@ public class PlatformFramework implements Framework {
         }
         
         
-        return platform;
+        return myPlatform;
     }
 }
