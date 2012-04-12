@@ -45,7 +45,7 @@ public class TestGame extends Game {
         b[0]= getImage("resources/platform1.png"); 
         p = new SimplePlatform (b, 500,500, a, null);
         
-        
+        List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
     }
 
     @Override
