@@ -20,7 +20,6 @@ import enemies.movement.Gravity;
 import enemies.movement.JumpingMovement;
 import enemies.movement.OneDirectionMovement;
 import enemies.movement.SideToSideMovement;
-import enemies.movement.TeleportMovement;
 import enemies.movement.UpDownMovement;
 import fighter.Fighter;
 
@@ -47,7 +46,6 @@ public class TestGame extends Game {
        // bob.addAttribute(new Gravity(1));
         
        
-        bob.addAttribute(new TeleportMovement(100,100,300));
         
         counter=0;
         a.clear(); 
