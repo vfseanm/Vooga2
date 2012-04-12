@@ -5,6 +5,7 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 //ground movement
+//reset attributes called from collision
 public class JumpingMovement extends Attribute implements Updateable
 {
     private int myDistance;
