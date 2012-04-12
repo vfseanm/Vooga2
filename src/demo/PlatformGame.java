@@ -54,7 +54,7 @@ public  class PlatformGame extends Game {
     @Override
     public void initResources()
     {
-        loadLevel("level");
+        loadLevel("level2");
         
         System.out.println(((Enemy)sprites.get(0)));
         

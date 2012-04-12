@@ -48,5 +48,11 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable
     {
         return myImageNames;
     }
+    
+    public void setImageNames(List<String> names)
+    {
+        myImageNames = names;
+    }
+    
 
 }
