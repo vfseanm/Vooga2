@@ -28,7 +28,7 @@ public class Enemy extends AnimatedGameSprite
     {
         for(Attribute attribute: myAttributes)
         {
-            if(attribute.getName().equalsIgnoreCase(name));
+            if(attribute.getClass().getName().equalsIgnoreCase(name))
                 return true;
         }
         return false;

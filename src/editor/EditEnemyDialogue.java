@@ -111,8 +111,9 @@ public class EditEnemyDialogue extends JPanel {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("attributes", Attribute.class))
+        List<Class> list = reflection.getInstancesOf("enemies.movement", Attribute.class);
+        list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
+        for (Class c : list)
         {
             boolean isAnnotated = false;
             for(Constructor constructor : c.getConstructors())
@@ -127,11 +128,12 @@ public class EditEnemyDialogue extends JPanel {
                 JLabel label1 = new JLabel(c.getName());
                 panel.add(label1);
                 JCheckBox box = new JCheckBox();
-                panel.add(box);
-                if(mySprite.hasAttribute(c.getName()))
+                if(mySprite.hasAttributeByName(c.getName()))
                 {
-                    
+                    System.out.println("setting to true");
+                    box.setSelected(true);
                 }
+                panel.add(box);
                 box.addActionListener(new CheckBoxListener(box, c));
                 attributeMap.put(box, c);
             }
@@ -148,9 +150,7 @@ public class EditEnemyDialogue extends JPanel {
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create Enemy";
-        if(myType.contentEquals("platform"))
-            buttonPhrase = "Create Platform";
+        String buttonPhrase = "Save Enemy";
                 
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
@@ -223,17 +223,12 @@ public class EditEnemyDialogue extends JPanel {
                     argList[i]=Integer.parseInt(selectedValue);
                 }
             }
-             
                    // Attribute att = (Attribute) constructor.newInstance(argList);
                     List<Object> attribute = new ArrayList<Object>();
                     attribute.add(constructor);
                     attribute.add(argList);
                     attributeInstanceMap.put(box, attribute);
                 
-            
-            
-            
-            
             }
     }
 

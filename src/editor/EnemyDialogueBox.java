@@ -105,9 +105,9 @@ public class EnemyDialogueBox extends JPanel {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        // ArrayList<Class> list = reflection.getBehaviors();
-        System.out.println(reflection.getInstancesOf("enemies.movement", Attribute.class));
-        for (Class c : reflection.getInstancesOf("enemies.movement", Attribute.class))
+        List<Class> list = reflection.getInstancesOf("enemies.movement", Attribute.class);
+        list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
+        for (Class c : list)
         {
             boolean isAnnotated = false;
             for(Constructor constructor : c.getConstructors())
