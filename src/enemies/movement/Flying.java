@@ -26,7 +26,6 @@ public class Flying extends Attribute implements Updateable
     public void update (long elaspedTime)
     {
         if (flying) {
-            System.out.println("Flying");
             myEnemy.updateAttribute("Gravity", 0);
         }
         else

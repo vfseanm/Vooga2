@@ -10,25 +10,23 @@ public class UpDownPlatform extends DecoratedPlatform
 {
 
     FrameTimer myTimer = new FrameTimer();
-
-
-    public UpDownPlatform (BufferedImage[] im,
-                           double x,
-                           double y,
-                           ArrayList<String> images,
-                           Fighter fighter)
-    {
-        super(im, x, y, images, fighter);
-    }
-
-
-//	public UpDownPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
-//          super(im, x, y, images, fighter, decoratorComponent);
-//      }
+    double mySpeed = 10;
+    double myDistance = 10;
+    
 
     public UpDownPlatform (AbstractPlatform decoratorComponent)
     {
         super(decoratorComponent);
+        setX(decoratorComponent.getX());
+        setY(decoratorComponent.getY());
+    }
+    
+    public void setSpeed(double speed) {
+    	mySpeed = speed;
+    }
+    
+    public void setDistance(double distance) {
+    	myDistance = distance;
     }
 
 
@@ -48,7 +46,6 @@ public class UpDownPlatform extends DecoratedPlatform
         {
             setVerticalSpeed(-speed / 25);
         }
-        myTimer.update();
     }
 
 
@@ -59,6 +56,8 @@ public class UpDownPlatform extends DecoratedPlatform
         {
             myDecoratorComponent.update(elapsedTime);
         }
+        doBehavior(mySpeed, myDistance);
+        myTimer.update(elapsedTime);
     }
     
     public String toString()
