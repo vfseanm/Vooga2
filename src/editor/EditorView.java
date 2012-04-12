@@ -110,9 +110,9 @@ public class EditorView extends Game {
         infoBox.add(newpowerUpButton);
         
   
-        TButton openButton = new OpenButton("Open", 100, 720, 60, 40, this);
+        TButton openButton = new OpenButton("Open", 100, 660, 60, 40, this);
 
-        SaveButton saveButton = new SaveButton("Save", 200, 720, 60, 40, this);
+        SaveButton saveButton = new SaveButton("Save", 200, 660, 60, 40, this);
 
         
         infoBox.add(l3);

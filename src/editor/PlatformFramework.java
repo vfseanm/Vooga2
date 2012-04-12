@@ -19,7 +19,6 @@ import attributes.Attribute;
 
 public class PlatformFramework implements Framework {
 
-    protected ArrayList<Attribute> attributes;
     @SuppressWarnings("unused")
     private BufferedImage[] myImages;
     @SuppressWarnings("unused")
@@ -28,13 +27,8 @@ public class PlatformFramework implements Framework {
 
     public PlatformFramework(BufferedImage[] im, ArrayList<String> images, List<Class> platformWrappers) {
         myImages = im;
-        System.out.println("attributes:" + attributes);
         imageNames = images;
         myPlatformWrappers = platformWrappers;
-    }
-
-    public void addBehavior(Attribute b) {
-        attributes.add(b);
     }
 
 
