@@ -35,14 +35,16 @@ public class PlatformFramework implements Framework {
 
 
     public AnimatedGameSprite getSprite(int x, int y) {
-        
-        SimplePlatform platform = new SimplePlatform(myImages, x, y, imageNames, null);
+        System.out.println("framework- imageArray:" + myImages);
+        SimplePlatform platform = new SimplePlatform(myImages, x, y - myImages[0].getHeight(), imageNames, null);
         DecoratedPlatform myPlatform = null;
         Object[] list = new Object[1];
         list[0] = platform;
         for(Class c: myPlatformWrappers)
         {
-            Constructor constructor=  c.getConstructors()[0];
+            System.out.println("class:" + c);
+            System.out.println("lenght" + c.getConstructors().length);
+            Constructor constructor=  c.getConstructors()[1];
             try {
                 myPlatform = (DecoratedPlatform) constructor.newInstance(list);
             } catch (IllegalArgumentException e) {
@@ -63,6 +65,6 @@ public class PlatformFramework implements Framework {
         }
         
         
-        return myPlatform;
+        return platform;
     }
 }
