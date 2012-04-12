@@ -15,10 +15,15 @@ import sprite.AnimatedGameSprite;
 public class PlatformAction implements ActionPerformer{
 
 	public void standardaction (AnimatedGameSprite sprite1, AbstractPlatform sprite2, int collisionType){ 
+	    System.out.println("doing standard action");
+	    System.out.println(collisionType);
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
 			if ( (sprite1.getX()+(sprite1.getWidth()/2) >= sprite2.getX())
 					&& (sprite1.getX()+(sprite1.getWidth()/2) <= sprite2.getX()+ sprite2.getWidth()) ){
 				sprite1.setY(sprite2.getY() - sprite1.getHeight());
+				System.out.println("changing gravity!");
+				((Enemy) sprite1).updateAttribute("JumpingMovement");
+			    sprite1.setY(sprite1.getOldY()-sprite2.getHeight());
 				//Gravity is 0? Because you should be able to jump when you're on platform...
 			}
 		}
@@ -32,6 +37,7 @@ public class PlatformAction implements ActionPerformer{
 	}
 	
 	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
+	    System.out.println("doing correct action");
 		standardaction (sprite1, sprite2, collisionType);
 	}
 
