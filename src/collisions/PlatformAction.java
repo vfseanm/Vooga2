@@ -45,26 +45,9 @@ public class PlatformAction implements ActionPerformer{
 	}
 	
 	public void action(Sprite sprite1, Sprite sprite2, int collisionType) { 
-<<<<<<< HEAD
 		if ((sprite1 instanceof Enemy) && (sprite2 instanceof SimplePlatform)){
 			action ((Enemy)sprite1, (SimplePlatform) sprite2, collisionType);
 		}
 
 	}
-	
 }
-=======
-	    if(!sprite1.getClass().equals(Enemy.class))
-	            return;
-	    if(!sprite2.getClass().equals(SimplePlatform.class))
-	            return;
-	    ((Enemy) sprite1).updateAttribute("Gravity",0);
-	        
-	}
-
-
-        
-    }
-    
-    
->>>>>>> 3d164752924b259ef85bb6bba2a92822f4e4a5fb
