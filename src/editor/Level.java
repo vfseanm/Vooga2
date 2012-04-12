@@ -69,6 +69,11 @@ public class Level implements Serializable{
         return Collections.unmodifiableList(sprites);
     }
     
+    public List<AnimatedGameSprite> getSprites()
+    {
+        return sprites;
+    }
+    
     public void removeSprite(AnimatedGameSprite sprite)
     {
         sprites.remove(sprite);

@@ -152,7 +152,7 @@ public class EditorModel {
             platformButtonPlacement = setUp;
     }
 
-public void addButton(BufferedImage image, String filePath, String name, ArrayList<Attribute> b, String type)
+public void addButton(BufferedImage image, String filePath, String name, ArrayList<List<Object>> b, String type)
 {
     if (type.contentEquals("enemy"))
     {
