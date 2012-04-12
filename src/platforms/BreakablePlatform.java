@@ -10,13 +10,14 @@ import fighter.*;
 @SuppressWarnings("serial")
 public class BreakablePlatform extends DecoratedPlatform {
 	
+	public BreakablePlatform(AbstractPlatform decoratorComponent) {
+		super(decoratorComponent);
+		// TODO Auto-generated constructor stub
+	}
+
 	ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
 	FighterBreakablePlatformCollisionManager myCollisionManager = new FighterBreakablePlatformCollisionManager();
 
-	public BreakablePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter) {
-		super(im, x, y, images, fighter);
-	}
-	
 	public void update(long elapsedTime) {
 		
 		if (myDecoratorComponent != null) {
@@ -32,7 +33,7 @@ public class BreakablePlatform extends DecoratedPlatform {
 	public PowerUp releaseItem() {
 		Random chooser = new Random();
 		BreakablePlatformItemFactory factory = myFactoryList.get(chooser.nextInt(myFactoryList.size()));
-		return factory.getItem().makeItem(getX(), getY());
+		return factory.getItem(getX(), getY());
 	}
 	
 	//TODO: refused bequest on parameters...will fix later...

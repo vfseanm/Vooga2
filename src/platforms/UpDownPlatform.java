@@ -11,24 +11,11 @@ public class UpDownPlatform extends DecoratedPlatform
 
     FrameTimer myTimer = new FrameTimer();
 
-
-    public UpDownPlatform (BufferedImage[] im,
-                           double x,
-                           double y,
-                           ArrayList<String> images,
-                           Fighter fighter)
-    {
-        super(im, x, y, images, fighter);
-    }
-
-
-//	public UpDownPlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
-//          super(im, x, y, images, fighter, decoratorComponent);
-//      }
-
     public UpDownPlatform (AbstractPlatform decoratorComponent)
     {
         super(decoratorComponent);
+        setX(decoratorComponent.getX());
+        setY(decoratorComponent.getY());
     }
 
 

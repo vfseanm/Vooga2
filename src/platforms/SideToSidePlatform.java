@@ -12,20 +12,6 @@ public class SideToSidePlatform extends DecoratedPlatform
     FrameTimer myTimer = new FrameTimer();
 
 
-    public SideToSidePlatform (BufferedImage[] im,
-                               double x,
-                               double y,
-                               ArrayList<String> images,
-                               Fighter fighter)
-    {
-        super(im, x, y, images, fighter);
-    }
-
-
-//	public SideToSidePlatform(BufferedImage[] im, double x, double y, ArrayList<String> images, Fighter fighter, AbstractPlatform decoratorComponent) {
-//          super(im, x, y, images, fighter, decoratorComponent);
-//      }
-
     public SideToSidePlatform (AbstractPlatform decoratorComponent)
     {
         super(decoratorComponent);

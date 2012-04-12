@@ -10,7 +10,7 @@ public class BreakablePlatformItemFactory {
 		myItem = item;
 	}
 	
-	public PowerUp getItem() {
-		return myItem;
+	public PowerUp getItem(double x, double y) {
+		return myItem.makeItem(x, y);
 	}	                                                      
 }
