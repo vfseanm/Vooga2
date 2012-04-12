@@ -293,7 +293,7 @@ public class EditorView extends Game {
     public void editEnemy(Enemy s)
     {
         System.out.println("editing enemy!");
-        EditEnemyDialogue myView = new EditEnemyDialogue(myModel, s);
+        EditEnemyDialogue myView = new EditEnemyDialogue(myModel, s, this.getMouseX(), this.getMouseY());
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -303,6 +303,10 @@ public class EditorView extends Game {
         frame.setVisible(true);
     }
     
+    public void closeFrame()
+    {
+        frame.setVisible(false);
+    }
     
     public void setFramework(Framework f)
     {
@@ -314,7 +318,7 @@ public class EditorView extends Game {
         System.out.println("button added:" + newButton);
         infoBox.add(newButton);
         allButtons.add(newButton);
-        frame.setVisible(false);
+        
     }
 
     public void saveFile()
