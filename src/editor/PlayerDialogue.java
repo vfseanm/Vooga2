@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class EnemyDialogueBox extends JPanel {
+public class PlayerDialogue extends JPanel {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -37,19 +37,16 @@ public class EnemyDialogueBox extends JPanel {
     private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
     private BufferedImage myImage;
     private String myImagePath;
-    private String myType;
 
     @SuppressWarnings("rawtypes")
-    public EnemyDialogueBox(EditorController m, String type)
+    public PlayerDialogue(EditorController m)
     {
-        myType = type;
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;
         reflection = new Reflection();
         setLayout(new BorderLayout());
         
-
         add(makeInputPanel(), BorderLayout.NORTH);
     }
 
@@ -139,10 +136,8 @@ public class EnemyDialogueBox extends JPanel {
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create Enemy";
-        if(myType.contentEquals("platform"))
-            buttonPhrase = "Create Platform";
-        		
+        String buttonPhrase = "Configure Player";
+                
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
@@ -169,7 +164,7 @@ public class EnemyDialogueBox extends JPanel {
             ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
             EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            myModel.addButton(myName.getText(), framework, myType);
+            //myModel.addButton(myName.getText(), framework, myType);
             setVisible(false);
         }
     }
@@ -221,6 +216,10 @@ public class EnemyDialogueBox extends JPanel {
                     attribute.add(argList);
                     attributeInstanceMap.put(box, attribute);
                 
+            
+            
+            
+            
             }
     }
 

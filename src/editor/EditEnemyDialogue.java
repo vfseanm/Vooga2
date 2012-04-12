@@ -34,9 +34,10 @@ public class EditEnemyDialogue extends JPanel {
     private JTextField myName;
 
     private Reflection reflection;
-    private EditorModel myModel;
+    private EditorController myModel;
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> attributeMap;
+    private List<Attribute> myOldAttributes;
     
     private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
     private BufferedImage myImage;
@@ -47,7 +48,7 @@ public class EditEnemyDialogue extends JPanel {
     private int myY;
     
     @SuppressWarnings("rawtypes")
-    public EditEnemyDialogue(EditorModel m, Enemy sprite, int x, int y)
+    public EditEnemyDialogue(EditorController m, Enemy sprite, int x, int y)
     {
         myX = x;
         myY = y;
@@ -55,6 +56,9 @@ public class EditEnemyDialogue extends JPanel {
         myImage = mySprite.getImage();
         
         attributeMap = new HashMap<JCheckBox, Class>();
+        myOldAttributes = new ArrayList<Attribute>();
+        myOldAttributes.addAll(mySprite.getAttributes());
+        
         attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;
         reflection = new Reflection();
@@ -168,12 +172,31 @@ public class EditEnemyDialogue extends JPanel {
         public void actionPerformed(ActionEvent e)
         {
             ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
+            ArrayList<Attribute> oldAttributes = new ArrayList<Attribute>();
             for (JCheckBox box : attributeMap.keySet())
             {
                 if (box.isSelected())
                 {
+                    boolean inOldList = false;
+                    for(Attribute a: myOldAttributes)
+                    {
+                        System.out.println("checking old attribute:" + a);
+                        if(attributeMap.get(box).equals(a.getClass())) // if you previously had an instance of this class
+                        {
+                            if (!attributeInstanceMap.keySet().contains(box)) // if you haven't put in a new instance of this class
+                            {
+                                System.out.println("adding a previous attribute:" + a);
+                                oldAttributes.add(a);
+                                inOldList = true;
+                            }
+                        }
+                    }
+                    if(!inOldList)
+                    {
                     System.out.println("this attribute is selected:" + box);
+                    System.out.println(attributeInstanceMap.get(box));
                     attributes.add( attributeInstanceMap.get(box));
+                    }
                 }
                     
             }
@@ -188,6 +211,7 @@ public class EditEnemyDialogue extends JPanel {
                     imagePaths);
             for(List<Object> list: attributes)
             {
+                System.out.println("list:" + list);
                 Constructor c = (Constructor) list.get(0);
                 Object[] parameterList = (Object[]) list.get(1);
                 Attribute attribute = null;
@@ -208,12 +232,16 @@ public class EditEnemyDialogue extends JPanel {
                 }
                 enemy.addAttribute(attribute);
             }  
+            for (Attribute oldAttribute: oldAttributes)
+            {
+                enemy.addAttribute(oldAttribute);
+            }
             myModel.replaceSprite(mySprite, enemy);
-            
             
             setVisible(false);
         }
     }
+    
     
     private class CheckBoxListener implements ActionListener {
         Class associatedClass;
@@ -243,8 +271,6 @@ public class EditEnemyDialogue extends JPanel {
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
             Object[] argList = null;
-            System.out.println(paramNames.length);
-            System.out.println("got here");
             if(!paramNames[0].equals(""))
             {
                 argList = new Object[paramNames.length];
@@ -259,6 +285,7 @@ public class EditEnemyDialogue extends JPanel {
                     List<Object> attribute = new ArrayList<Object>();
                     attribute.add(constructor);
                     attribute.add(argList);
+                    System.out.println("ADDING AN ATTRIBUTE" + attribute);
                     attributeInstanceMap.put(box, attribute);
                 
             }

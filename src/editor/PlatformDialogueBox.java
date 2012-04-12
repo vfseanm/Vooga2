@@ -33,7 +33,7 @@ public class PlatformDialogueBox extends JPanel {
     private JTextField myName;
 
     private Reflection reflection;
-    private EditorModel myModel;
+    private EditorController myModel;
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> classMap;
     
@@ -42,7 +42,7 @@ public class PlatformDialogueBox extends JPanel {
     private String myType;
 
     @SuppressWarnings("rawtypes")
-    public PlatformDialogueBox(EditorModel m, String type)
+    public PlatformDialogueBox(EditorController m, String type)
     {
         myType = type;
         classMap = new HashMap<JCheckBox, Class>();
