@@ -1,6 +1,8 @@
 package collisions;
 
 import platforms.AbstractPlatform;
+import platforms.BreakablePlatform;
+import platforms.SimplePlatform;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
@@ -8,7 +10,7 @@ import com.golden.gamedev.object.collision.CollisionGroup;
 import enemies.Enemy;
 import fighter.Fighter;
 
-public class RepelBackAction extends ActionPerformer{
+public class RepelBackAction implements ActionPerformer{
 	
 	public void action (Fighter sprite1, Enemy sprite2, int collisionType){
 		if (collisionType == CollisionGroup.RIGHT_LEFT_COLLISION){
@@ -44,8 +46,18 @@ public class RepelBackAction extends ActionPerformer{
 	public void action (Fighter sprite1, AbstractPlatform sprite2, int collisionType){}
 	
 
-	@Override
 	public void action(Sprite sprite1, Sprite sprite2, int collisionType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void action(Enemy sprite1, BreakablePlatform sprite2,
+			int collisionType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void action(Enemy sprite1, SimplePlatform sprite2, int collisionType) {
 		// TODO Auto-generated method stub
 		
 	}
