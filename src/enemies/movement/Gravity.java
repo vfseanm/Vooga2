@@ -1,4 +1,7 @@
-package attributes;
+package enemies.movement;
+
+import attributes.Attribute;
+import attributes.Updateable;
 
 public class Gravity extends Attribute implements Updateable
 {
