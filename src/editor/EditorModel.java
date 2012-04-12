@@ -77,6 +77,12 @@ public class EditorModel {
     {
         myLevel.setSpriteLocation(s,x,y);
     }
+    
+    public void replaceSprite(AnimatedGameSprite oldSprite, AnimatedGameSprite newSprite)
+    {
+        myLevel.replaceSprite(oldSprite, newSprite);
+        myView.closeFrame();
+    }
 
     
     
@@ -152,6 +158,7 @@ public class EditorModel {
             };
             platformButtonPlacement = setUp;
     }
+   
 
 public void addButton( String name, Framework framework, String type)
 {
@@ -179,6 +186,7 @@ public void addButton( String name, Framework framework, String type)
             platformButtonCounter +=2;
             myView.addButton(newButton);
         }
+    myView.closeFrame();
 }
 
 
