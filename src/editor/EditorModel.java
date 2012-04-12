@@ -163,23 +163,22 @@ public void addButton( String name, Framework framework, String type)
         }
         else
         {
-            System.out.println("making button");
             Button newButton = new Button(name, enemyButtonPlacement[enemyButtonCounter], enemyButtonPlacement[enemyButtonCounter+1], 50, 40, framework, myView);
             enemyButtonCounter +=2;
             myView.addButton(newButton);
         }
     }
-//    else if (type.contentEquals("platform"))
-//        if(platformButtonCounter==5)
-//        {
-//            // make a + button that lets you look at your other ones
-//        }
-//        else
-//        {
-//            Button newButton = new Button(name, platformButtonPlacement[platformButtonCounter], platformButtonPlacement[platformButtonCounter+1], 50, 40, image, filePath, "platform", b);
-//            platformButtonCounter +=2;
-//            myView.addButton(newButton);
-//        }
+    else if (type.contentEquals("platform"))
+        if(platformButtonCounter==5)
+        {
+            // make a + button that lets you look at your other ones
+        }
+        else
+        {
+            Button newButton = new Button(name, platformButtonPlacement[platformButtonCounter], platformButtonPlacement[platformButtonCounter+1], 50, 40, framework, myView);
+            platformButtonCounter +=2;
+            myView.addButton(newButton);
+        }
 }
 
 

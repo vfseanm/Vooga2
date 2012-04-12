@@ -153,9 +153,13 @@ public class EditorView extends Game {
                 {
                     System.out.println("a button is clicked");
                     AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
-                    
+                    //System.out.println(s.getClass());
                     if (checkInterference(s))
+                    {
+                        System.out.println("in if statement");
                         myModel.addSprite(s);
+                        
+                    }
                 }
             }
 

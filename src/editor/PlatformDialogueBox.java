@@ -157,6 +157,7 @@ public class PlatformDialogueBox extends JPanel {
             s[0] = myImage;
             List<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
+            
             PlatformFramework framework = new PlatformFramework(s, imagePaths, platformTypes);
             myModel.addButton(myName.getText(), framework, myType);
             setVisible(false);
