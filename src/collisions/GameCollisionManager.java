@@ -6,6 +6,8 @@ import sprite.*;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
+import enemies.Enemy;
+
 
 
 public class GameCollisionManager{
@@ -25,6 +27,8 @@ public class GameCollisionManager{
 						&& CollisionChecker(sprite1.getY()+sprite1.getHeight(), sprite1.getY(), gs1.getY()+gs1.getHeight(), gs1.getY()) ){
 					int side = SideChecker (sprite1, gs1);
 					for (ActionPerformer ap: actionList){
+					    System.out.println("COLLISION");
+					    System.out.println("bowser'sclass:" + sprite1.getClass());
 						ap.action(sprite1, gs1, side);
 					}
 				}

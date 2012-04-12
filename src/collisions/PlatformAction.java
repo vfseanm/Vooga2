@@ -26,6 +26,11 @@ public class PlatformAction extends ActionPerformer{
 	public void action (Enemy sprite1, DecoratedPlatform sprite2, int collisionType){ }
 	
 	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
+	    if(!sprite1.getClass().equals(Fighter.class))
+            return;
+	    if(!sprite2.getClass().equals(BreakablePlatform.class))
+            return;
+	    System.out.println("platform action!");
 		standardaction (sprite1, sprite2, collisionType);
 	}
 	
@@ -40,6 +45,17 @@ public class PlatformAction extends ActionPerformer{
 	}
 
 	
-	public void action(Sprite sprite1, Sprite sprite2, int collisionType) { }
+	public void action(Sprite sprite1, Sprite sprite2, int collisionType) { 
+	    if(!sprite1.getClass().equals(Enemy.class))
+	            return;
+	    if(!sprite2.getClass().equals(SimplePlatform.class))
+	            return;
+	    ((Enemy) sprite1).updateAttribute("Gravity",0);
+	        
+	}
 
-}
+
+        
+    }
+    
+    

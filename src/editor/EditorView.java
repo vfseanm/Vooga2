@@ -164,12 +164,10 @@ public class EditorView extends Game {
             {
                 if (button.getClicked())
                 {
-                    System.out.println("a button is clicked");
                     AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
                     //System.out.println(s.getClass());
                     if (checkInterference(s))
                     {
-                        System.out.println("in if statement");
                         myModel.addSprite(s);
                         
                     }
@@ -249,15 +247,12 @@ public class EditorView extends Game {
         }
         if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
-            System.out.println("right clicking!!");
             for (AnimatedGameSprite s : myModel.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
                 {
-                    System.out.println("selected");
                     if(s.getClass().equals(Enemy.class))
                     {
-                        System.out.println("in if statement");
                         editEnemy( (Enemy) s);
                     }
                 }
@@ -271,7 +266,6 @@ public class EditorView extends Game {
         boolean t = true;
         for (Sprite sprite : myModel.getAllSprites())
         {
-            // System.out.println("checking");
             if(sprite!=spriteClicked)
             {
             if ((s.getX() + s.getWidth() > sprite.getX())
@@ -308,7 +302,6 @@ public class EditorView extends Game {
     
     public void editEnemy(Enemy s)
     {
-        System.out.println("editing enemy!");
         EditEnemyDialogue myView = new EditEnemyDialogue(myModel, s, this.getMouseX(), this.getMouseY());
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
@@ -331,7 +324,6 @@ public class EditorView extends Game {
 
     public void addButton(Button newButton)
     {
-        System.out.println("button added:" + newButton);
         infoBox.add(newButton);
         allButtons.add(newButton);
         
