@@ -53,8 +53,9 @@ public class Enemy extends AnimatedGameSprite
                     for (int i = 0; i < m.getGenericParameterTypes().length; i++)
                     {
                         Class<?> t = m.getParameterTypes()[i];
-                        if (!t.isInstance(o[i]))
+                        if (!t.equals(o[i]))
                         {
+                            
                             continue;
                         }
 

@@ -7,7 +7,7 @@ import platforms.*;
 
 import sidescrolling.*;
 
-import attributes.Location;
+import attributes.*;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
@@ -15,6 +15,7 @@ import com.golden.gamedev.object.background.ImageBackground;
 import enemies.Enemy;
 import enemies.movement.OneDirectionMovement;
 import enemies.movement.SideToSideMovement;
+import enemies.movement.UpDownMovement;
 import fighter.Fighter;
 
 
@@ -32,7 +33,10 @@ public class TestGame extends Game {
         a.add("resources/Bowser.jpg");
          bob = new Enemy(b, 500, 300, a);
         bob.addAttribute(new SideToSideMovement(1,100));
-        bob.addAttribute(new OneDirectionMovement("down",1));
+        bob.addAttribute(new UpDownMovement(0,50));
+        bob.addAttribute(new Flying());
+        bob.addAttribute(new Gravity(1));
+       
         counter=0;
         
         
@@ -53,6 +57,12 @@ public class TestGame extends Game {
         myBackground.update(arg0);
         counter++;
         bob.update(arg0);
+        if(counter==100){
+            bob.addAttribute(new Flying());
+        }
+        if(counter==400){
+            bob.updateAttribute("Flying", false);
+        }
         
         
         
