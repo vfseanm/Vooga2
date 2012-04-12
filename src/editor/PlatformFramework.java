@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import platforms.AbstractPlatform;
+import platforms.DecoratedPlatform;
 import platforms.Platform;
 import platforms.SimplePlatform;
 
@@ -22,10 +23,10 @@ public class PlatformFramework implements Framework {
     @SuppressWarnings("unused")
     private BufferedImage[] myImages;
     @SuppressWarnings("unused")
-    private ArrayList<String> imageNames;
+    private List<String> imageNames;
     private List<Class> myPlatformWrappers;
 
-    public PlatformFramework(BufferedImage[] im, ArrayList<String> images, List<Class> platformWrappers) {
+    public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers) {
         myImages = im;
         imageNames = images;
         myPlatformWrappers = platformWrappers;
@@ -35,14 +36,14 @@ public class PlatformFramework implements Framework {
     public AnimatedGameSprite getSprite(int x, int y) {
         
         SimplePlatform platform = new SimplePlatform(myImages, x, y, imageNames, null);
-        AbstractPlatform myPlatform = null;
+        DecoratedPlatform myPlatform = null;
         Object[] list = new Object[1];
         list[0] = platform;
         for(Class c: myPlatformWrappers)
         {
             Constructor constructor=  c.getConstructors()[0];
             try {
-                myPlatform = (AbstractPlatform) constructor.newInstance(list);
+                myPlatform = (DecoratedPlatform) constructor.newInstance(list);
             } catch (IllegalArgumentException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
