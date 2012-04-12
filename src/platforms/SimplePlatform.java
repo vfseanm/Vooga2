@@ -21,5 +21,10 @@ public class SimplePlatform extends AbstractPlatform {
     public void update(long elapsedTime) {
         //do nothing....yay again!! 
     }
+    
+    public String toString()
+    {
+        return "platform";
+    }
 
 }

@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import sprite.AnimatedGameSprite;
+import sprite.AnimatedGameSprite;   
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -56,8 +56,10 @@ public  class PlatformGame extends Game {
     {
         loadLevel("level2");
         
-        System.out.println(((Enemy)sprites.get(0)));
-        
+        for(AnimatedGameSprite s: sprites)
+        {
+            System.out.println(s);
+        }
        
     }
 

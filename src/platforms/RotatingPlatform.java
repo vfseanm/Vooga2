@@ -104,4 +104,8 @@ public class RotatingPlatform extends DecoratedPlatform {
         rotateCenterAxis(50); //test
     }
 
+    public String toString()
+    {
+        return "rotating " + myDecoratorComponent.toString();
+    }
 }
