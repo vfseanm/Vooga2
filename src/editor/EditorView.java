@@ -328,7 +328,7 @@ public class EditorView extends Game {
 
     public void addEnemy()
     {
-        DialogueBox myView = new DialogueBox(myModel, "enemy");
+        EnemyDialogueBox myView = new EnemyDialogueBox(myModel, "enemy");
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -340,7 +340,7 @@ public class EditorView extends Game {
     }
     public void addPlatform()
     {
-        DialogueBox myView = new DialogueBox(myModel, "platform");
+        EnemyDialogueBox myView = new EnemyDialogueBox(myModel, "platform");
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
