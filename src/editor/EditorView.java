@@ -130,13 +130,10 @@ public class EditorView extends Game {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
 
-        
         for (AnimatedGameSprite s : myModel.getAllSprites())
         {
-
             s.render(pen);
         }
-        
         framework.render(pen);
 
     }
@@ -234,6 +231,18 @@ public class EditorView extends Game {
         {
             myModel.moveVertically(VERTICAL_MOVE);
         }
+        if (bsInput.isMouseDown(MouseEvent.BUTTON3))
+        {
+            System.out.println("right clicking!!");
+            for (AnimatedGameSprite s : myModel.getAllSprites())
+            {
+                if (this.checkPosMouse(s, true))
+                {
+                    if(s.getClass().isInstance(Enemy.class))
+                    editEnemy( (Enemy) s);
+                }
+            }
+        }
 
     }
 
@@ -276,6 +285,19 @@ public class EditorView extends Game {
 
         //this.start();
     }
+    
+    public void editEnemy(Enemy s)
+    {
+        EditEnemyDialogue myView = new EditEnemyDialogue(myModel, s);
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
     
     public void setFramework(Framework f)
     {

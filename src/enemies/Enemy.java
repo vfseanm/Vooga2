@@ -24,6 +24,15 @@ public class Enemy extends AnimatedGameSprite
         myAttributes = new ArrayList<Attribute>();
     }
 
+    public boolean hasAttribute(String name)
+    {
+        for(Attribute a: myAttributes)
+        {
+            if(a.getName().equalsIgnoreCase(name));
+                return true;
+        }
+        return false;
+    }
 
     public void addAttribute (Attribute attribute)
     {
@@ -43,7 +52,7 @@ public class Enemy extends AnimatedGameSprite
 
         for (Attribute attribute : myAttributes)
         {
-            if (attribute.getName().equalsIgnoreCase(name))
+            if (hasAttribute(attribute.getName()))
             {
                 Class<?> c = attribute.getClass();
                 for (Method m : c.getMethods())
