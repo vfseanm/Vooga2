@@ -1,5 +1,6 @@
 package enemies.movement;
 
+import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
@@ -11,7 +12,7 @@ public class SideToSideMovement extends Attribute implements Updateable
     private int time;
     private boolean left = false;
 
-
+    @editorConstructor(parameterNames = { "distance" , "time"})
     public SideToSideMovement (int distance, int time)
     {
         myDistance = distance;

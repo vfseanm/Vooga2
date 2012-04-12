@@ -1,11 +1,15 @@
-package attributes;
+package enemies.movement;
+
+import editor.editorConstructor;
+import attributes.Attribute;
+import attributes.Updateable;
 
 public class Gravity extends Attribute implements Updateable
 {
     private int myDistance;
     private int gravity;
 
-
+    @editorConstructor(parameterNames = { "distance" })
     public Gravity (int distance)
     {
         myDistance = distance;

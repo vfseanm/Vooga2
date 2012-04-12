@@ -13,6 +13,8 @@ import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import enemies.Enemy;
+import enemies.movement.Flying;
+import enemies.movement.Gravity;
 import enemies.movement.OneDirectionMovement;
 import enemies.movement.SideToSideMovement;
 import enemies.movement.UpDownMovement;
