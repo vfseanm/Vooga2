@@ -7,8 +7,8 @@ import com.golden.gamedev.object.Sprite;
 
 public class UpSidescroller extends DecoratedSidescroller { 
 
-    private Game myGame;
     private double upSpeed;
+    private Game myGame;
     
     public UpSidescroller(Game game, Sidescroller scroller, double speed) {
         super(scroller);

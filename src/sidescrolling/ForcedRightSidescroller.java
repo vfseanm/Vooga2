@@ -4,12 +4,18 @@ import com.golden.gamedev.object.Sprite;
 
 public class ForcedRightSidescroller extends DecoratedSidescroller {
 
-    public ForcedRightSidescroller(Sidescroller scroller) {
+    private double forcedRightSpeed;
+    
+    public ForcedRightSidescroller(Sidescroller scroller, double speed) {
         super(scroller);
+        if (speed > 0) {
+            speed = 0;
+        }
+        forcedRightSpeed = speed;
     }
 
     public void move(Sprite sprite) {
-        sprite.moveX(-1.0);
+        sprite.moveX(forcedRightSpeed);
         super.move(sprite);
     }
     
