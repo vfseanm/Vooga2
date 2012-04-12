@@ -7,6 +7,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
@@ -33,7 +34,7 @@ public class DialogueBox extends JPanel {
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> attributeMap;
     
-    private HashMap<JCheckBox, Attribute> attributeInstanceMap;
+    private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
     private BufferedImage myImage;
     private String myImagePath;
     private String myType;
@@ -43,7 +44,7 @@ public class DialogueBox extends JPanel {
     {
         myType = type;
         attributeMap = new HashMap<JCheckBox, Class>();
-        attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
+        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;
         reflection = new Reflection();
         setLayout(new BorderLayout());
@@ -153,7 +154,7 @@ public class DialogueBox extends JPanel {
         
         public void actionPerformed(ActionEvent e)
         {
-            ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+            ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
             for (JCheckBox box : attributeMap.keySet())
             {
                 if (box.isSelected())
@@ -207,28 +208,13 @@ public class DialogueBox extends JPanel {
                     argList[i]=Integer.parseInt(selectedValue);
                 }
             }
-             try
-                {
-                    Attribute att = (Attribute) constructor.newInstance(argList);
-                    attributeInstanceMap.put(box, att);
-                } catch (IllegalArgumentException e1)
-                {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InstantiationException e1)
-                {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1)
-                {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InvocationTargetException e1)
-                {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-            
+             
+                   // Attribute att = (Attribute) constructor.newInstance(argList);
+                    List<Object> attribute = new ArrayList<Object>();
+                    attribute.add(constructor);
+                    attribute.add(argList);
+                    attributeInstanceMap.put(box, attribute);
+                
             
             
             
