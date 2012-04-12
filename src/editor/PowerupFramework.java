@@ -34,7 +34,7 @@ public class PowerupFramework implements Framework {
         attributes.add(b);
     }
 
-    @Override
+
     public AnimatedGameSprite getSprite(int x, int y) {
         Enemy e = new Enemy(myImages, x,
                 y - myImages[0].getHeight(),

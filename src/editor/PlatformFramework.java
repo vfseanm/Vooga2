@@ -33,6 +33,7 @@ public class PlatformFramework implements Framework {
     }
 
 
+
     public AnimatedGameSprite getSprite(int x, int y) {
         System.out.println("framework- imageArray:" + myImages);
         SimplePlatform platform = new SimplePlatform(myImages, x, y - myImages[0].getHeight(), imageNames, null);

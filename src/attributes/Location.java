@@ -3,7 +3,7 @@ package attributes;
 /**
  * Experimenting with building a layer ontop of the GTGE methods to consolidate
  * all functions into attributes
- * 
+ * Failed Experiment
  * @author Alex
  */
 
