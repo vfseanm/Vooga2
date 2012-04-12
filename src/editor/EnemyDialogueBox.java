@@ -55,7 +55,7 @@ public class EnemyDialogueBox extends JPanel {
 
     public BufferedImage getImage()
     {
-        JFileChooser fc = new JFileChooser(System.getProperty("resources"));
+        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
         File file = null;
         int returnVal = fc.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION)
