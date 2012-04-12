@@ -43,10 +43,14 @@ public class EditEnemyDialogue extends JPanel {
     private String myImagePath;
     private String myType;
     private Enemy mySprite;
+    private int myX;
+    private int myY;
     
     @SuppressWarnings("rawtypes")
-    public EditEnemyDialogue(EditorModel m, Enemy sprite)
+    public EditEnemyDialogue(EditorModel m, Enemy sprite, int x, int y)
     {
+        myX = x;
+        myY = y;
         mySprite = sprite;
         myImage = mySprite.getImage();
         
@@ -130,7 +134,6 @@ public class EditEnemyDialogue extends JPanel {
                 JCheckBox box = new JCheckBox();
                 if(mySprite.hasAttributeByName(c.getName()))
                 {
-                    System.out.println("setting to true");
                     box.setSelected(true);
                 }
                 panel.add(box);
@@ -169,6 +172,7 @@ public class EditEnemyDialogue extends JPanel {
             {
                 if (box.isSelected())
                 {
+                    System.out.println("this attribute is selected:" + box);
                     attributes.add( attributeInstanceMap.get(box));
                 }
                     
@@ -177,8 +181,36 @@ public class EditEnemyDialogue extends JPanel {
             s[0] = myImage;
             ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
-            EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            myModel.addButton(myName.getText(), framework, myType);
+            //EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
+            
+            Enemy enemy = new Enemy(s, myX,
+                    myY - s[0].getHeight(),
+                    imagePaths);
+            for(List<Object> list: attributes)
+            {
+                Constructor c = (Constructor) list.get(0);
+                Object[] parameterList = (Object[]) list.get(1);
+                Attribute attribute = null;
+                try {
+                    attribute = (Attribute) c.newInstance(parameterList);
+                } catch (IllegalArgumentException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                } catch (InstantiationException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                } catch (IllegalAccessException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                } catch (InvocationTargetException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                enemy.addAttribute(attribute);
+            }  
+            myModel.replaceSprite(mySprite, enemy);
+            
+            
             setVisible(false);
         }
     }

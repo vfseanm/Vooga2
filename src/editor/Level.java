@@ -38,6 +38,12 @@ public class Level implements Serializable{
         sprites = new ArrayList<AnimatedGameSprite>();
     }
     
+    public void replaceSprite(AnimatedGameSprite oldSprite, AnimatedGameSprite newSprite)
+    {
+        sprites.remove(oldSprite);
+        sprites.add(newSprite);
+    }
+    
     public void addSprite(AnimatedGameSprite s)
     {
         sprites.add(s);
