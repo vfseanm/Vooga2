@@ -7,11 +7,11 @@ import com.golden.gamedev.object.Sprite;
 
 public class RightSidescroller extends DecoratedSidescroller {
     
-    private Game myGame;
     private double rightSpeed;
+    private Game myGame;
     
     public RightSidescroller(Game game, Sidescroller scroller, double speed) {
-        super(game, scroller);
+        super(scroller);
         myGame = game;
         if (speed > 0) {
             speed = 0;

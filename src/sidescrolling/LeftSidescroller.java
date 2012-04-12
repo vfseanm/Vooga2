@@ -8,9 +8,11 @@ import com.golden.gamedev.object.Sprite;
 public class LeftSidescroller extends DecoratedSidescroller {
 
     private double leftSpeed;
+    private Game myGame;
     
     public LeftSidescroller(Game game, Sidescroller scroller, double speed) {
-        super(game, scroller);
+        super(scroller);
+        myGame = game;
         //can't move right...
         if (speed < 0) {
             speed = 0;
