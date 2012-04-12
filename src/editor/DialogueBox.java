@@ -163,7 +163,12 @@ public class DialogueBox extends JPanel {
                 }
                     
             }
-            myModel.addButton(myImage, myImagePath, myName.getText(), attributes, myType);
+            BufferedImage[] s = new BufferedImage[1];
+            s[0] = myImage;
+            ArrayList<String> imagePaths = new ArrayList<String>();
+            imagePaths.add(myImagePath);
+            EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
+            myModel.addButton(myName.getText(), framework, myType);
             setVisible(false);
         }
     }
