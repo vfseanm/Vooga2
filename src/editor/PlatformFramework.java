@@ -7,7 +7,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import enemies.Enemy;
+import platforms.AbstractPlatform;
+import platforms.Platform;
+import platforms.SimplePlatform;
+
 
 import sprite.AnimatedGameSprite;
 
@@ -21,46 +24,49 @@ public class PlatformFramework implements Framework {
     private BufferedImage[] myImages;
     @SuppressWarnings("unused")
     private ArrayList<String> imageNames;
-    private List<List<Object>> myAttributes;
+    private List<Class> myPlatformWrappers;
 
-    public PlatformFramework(BufferedImage[] im, ArrayList<String> images, List<List<Object>> attributes) {
+    public PlatformFramework(BufferedImage[] im, ArrayList<String> images, List<Class> platformWrappers) {
         myImages = im;
         System.out.println("attributes:" + attributes);
         imageNames = images;
-        myAttributes = attributes;
+        myPlatformWrappers = platformWrappers;
     }
 
     public void addBehavior(Attribute b) {
         attributes.add(b);
     }
 
-    @Override
+
     public AnimatedGameSprite getSprite(int x, int y) {
-        Enemy e = new Enemy(myImages, x,
-                y - myImages[0].getHeight(),
-                imageNames);
-        for(List<Object> list: myAttributes)
+        
+        SimplePlatform platform = new SimplePlatform(myImages, x, y, imageNames, null);
+        AbstractPlatform myPlatform = null;
+        Object[] list = new Object[1];
+        list[0] = platform;
+        for(Class c: myPlatformWrappers)
         {
-            Constructor c = (Constructor) list.get(0);
-            Object[] parameterList = (Object[]) list.get(1);
-            Attribute attribute = null;
+            Constructor constructor=  c.getConstructors()[0];
             try {
-                attribute = (Attribute) c.newInstance(parameterList);
-            } catch (IllegalArgumentException e1) {
+                myPlatform = (AbstractPlatform) constructor.newInstance(list);
+            } catch (IllegalArgumentException e) {
                 // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (InstantiationException e1) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
                 // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (IllegalAccessException e1) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
                 // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (InvocationTargetException e1) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
                 // TODO Auto-generated catch block
-                e1.printStackTrace();
+                e.printStackTrace();
             }
-            e.addAttribute(attribute);
-        }  
-        return e;
+            list[0] = myPlatform;
+            
+        }
+        
+        
+        return myPlatform;
     }
 }

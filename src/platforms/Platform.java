@@ -2,6 +2,7 @@ package platforms;
 
 import java.awt.image.BufferedImage;
 
+import java.util.ArrayList;
 import java.util.List;
 import sprite.AnimatedGameSprite;
 
@@ -10,7 +11,7 @@ import sprite.AnimatedGameSprite;
 @SuppressWarnings("serial")
 public class Platform extends AnimatedGameSprite {
     
-    public Platform (BufferedImage[] im, double x, double y, List<String> image) {
+    public Platform (ArrayList<AbstractPlatform> platformWrappers, BufferedImage[] im, double x, double y, List<String> image) {
         super(im, x, y, image);
     }
 
