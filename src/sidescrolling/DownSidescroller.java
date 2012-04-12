@@ -6,11 +6,9 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
 public class DownSidescroller extends DecoratedSidescroller {
-
-    private Game myGame;
     
     public DownSidescroller(Game game, Sidescroller scroller) {
-        super(scroller);
+        super(game, scroller);
         myGame = game;
     }
     
