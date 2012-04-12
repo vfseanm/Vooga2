@@ -2,9 +2,13 @@ package collisions;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import platforms.SimplePlatform;
 import sprite.*;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
+
+import enemies.Enemy;
 
 
 
