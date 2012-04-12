@@ -59,4 +59,9 @@ public class SideToSidePlatform extends DecoratedPlatform
             myDecoratorComponent.update(elapsedTime);
         }
     }
+    
+    public String toString()
+    {
+        return "side to side " + myDecoratorComponent.toString();
+    }
 }
