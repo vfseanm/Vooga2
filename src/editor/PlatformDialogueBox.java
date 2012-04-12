@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import platforms.AbstractPlatform;
+import platforms.DecoratedPlatform;
 
 import attributes.Attribute;
 
@@ -106,7 +107,7 @@ public class PlatformDialogueBox extends JPanel {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
         // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("platforms", AbstractPlatform.class))
+        for (Class c : reflection.getInstancesOf("platforms", DecoratedPlatform.class))
         {
 
             
@@ -156,7 +157,7 @@ public class PlatformDialogueBox extends JPanel {
             s[0] = myImage;
             List<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
-            EnemyFramework framework = new PlatformFramework(s, imagePaths, platformTypes);
+            PlatformFramework framework = new PlatformFramework(s, imagePaths, platformTypes);
             myModel.addButton(myName.getText(), framework, myType);
             setVisible(false);
         }
