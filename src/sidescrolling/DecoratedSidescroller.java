@@ -19,4 +19,12 @@ public abstract class DecoratedSidescroller extends Sidescroller {
         return wrappedScroller.getSpriteGroups();
     }
     
+    public boolean isPositiveSpeed(double speed) {
+        return speed > 0;
+    }
+    
+    public boolean isNegativeSpeed(double speed) {
+        return speed < 0;
+    }
+        
 }

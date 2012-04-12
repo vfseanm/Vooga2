@@ -124,7 +124,10 @@ public class Enemy extends AnimatedGameSprite
             toReturn.append(attribute.toString());
             toReturn.append("\n");
         }
-        toReturn.append(myState.toString());
+        if(myState!=null)
+        {
+            toReturn.append(myState.toString());
+        }
         return toReturn.toString();
     }
 }
