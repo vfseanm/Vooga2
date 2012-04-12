@@ -7,13 +7,14 @@ import platforms.AbstractPlatform;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
+import enemies.Enemy;
 import fighter.Fighter;
 import sprite.AnimatedGameSprite;
 
 
 public class PlatformAction extends ActionPerformer{
 	
-	public void standardaction (Fighter sprite1, AbstractPlatform sprite2, int collisionType){ 
+	public void standardaction (Enemy sprite1, AbstractPlatform sprite2, int collisionType){ 
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
 			if ( (sprite1.getX()+(sprite1.getWidth()/2) >= sprite2.getX())
 					&& (sprite1.getX()+(sprite1.getWidth()/2) <= sprite2.getX()+ sprite2.getWidth()) ){
@@ -22,13 +23,13 @@ public class PlatformAction extends ActionPerformer{
 			}
 		}
 	}
-	public void action (Fighter sprite1, DecoratedPlatform sprite2, int collisionType){ }
+	public void action (Enemy sprite1, DecoratedPlatform sprite2, int collisionType){ }
 	
-	public void action (Fighter sprite1, SimplePlatform sprite2, int collisionType){
+	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
 	}
 	
-	public void action (Fighter sprite1, BreakablePlatform sprite2, int collisionType){
+	public void action (Enemy sprite1, BreakablePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
 		if (collisionType ==  CollisionGroup.BOTTOM_TOP_COLLISION ){
 			for (int i=0; i<=2; i++){
