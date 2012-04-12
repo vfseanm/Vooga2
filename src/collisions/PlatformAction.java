@@ -14,11 +14,11 @@ import sprite.AnimatedGameSprite;
 
 public class PlatformAction implements ActionPerformer{
 
-	public void standardaction (Enemy sprite1, AbstractPlatform sprite2, int collisionType){ 
-		if (collisionType == CollisionGroup.RIGHT_LEFT_COLLISION){
+	public void standardaction (AnimatedGameSprite sprite1, AbstractPlatform sprite2, int collisionType){ 
+		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
 			if ( (sprite1.getX()+(sprite1.getWidth()/2) >= sprite2.getX())
 					&& (sprite1.getX()+(sprite1.getWidth()/2) <= sprite2.getX()+ sprite2.getWidth()) ){
-				sprite2.setY(sprite1.getY() + sprite1.getHeight());
+				sprite1.setY(sprite2.getY() - sprite1.getHeight());
 				//Gravity is 0? Because you should be able to jump when you're on platform...
 			}
 		}
@@ -27,6 +27,10 @@ public class PlatformAction implements ActionPerformer{
 
 	}
 
+	public void action (Fighter sprite1, SimplePlatform sprite2, int collisionType){
+		standardaction (sprite1, sprite2, collisionType);
+	}
+	
 	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
 	}
@@ -48,7 +52,9 @@ public class PlatformAction implements ActionPerformer{
 		else if ((sprite1 instanceof Enemy) && (sprite2 instanceof BreakablePlatform)){
 			action ((Enemy)sprite1, (BreakablePlatform) sprite2, collisionType);
 		}
-
+		else if ((sprite1 instanceof Fighter) && (sprite2 instanceof BreakablePlatform)){
+			action ((Fighter)sprite1, (BreakablePlatform) sprite2, collisionType);
+		}
 	}
 
 }
