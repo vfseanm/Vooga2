@@ -19,7 +19,9 @@ import attributes.Attribute;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
+import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.background.ImageBackground;
 
 import enemies.Enemy;
 
@@ -34,13 +36,15 @@ public class EditorView extends Game {
     private static final double VERTICAL_MOVE = 5;
 
     private LevelEditor myEditor;
-    private EditorModel myModel;
+    private EditorController myModel;
     private TPanel infoBox;
 
     private AnimatedGameSprite spriteClicked;
     private double[] origPosition;
     private double[] clickedSpriteOffset;
     private Framework myFramework;
+    
+    private Background myBackground;
 
   //  private double horizontalOffset;
    // private double verticalOffset;
@@ -53,7 +57,7 @@ public class EditorView extends Game {
     {
      //   horizontalOffset = 0;
        // verticalOffset = 0;
-        myModel = new EditorModel(this);
+        myModel = new EditorController(this);
         allButtons = new ArrayList<Button>();
         
         framework = new FrameWork(bsInput, 1300, 800);
@@ -64,9 +68,13 @@ public class EditorView extends Game {
         infoBox.UIResource().put("Background Color", Color.LIGHT_GRAY);
         TLabel l = new TLabel("Menu", 2, 0, 396, 20);
         
-        PlayerButton playerButton = new PlayerButton("Configure Player", 125, 30, 150, 40, this);
+        PlayerButton playerButton = new PlayerButton("Configure Player", 25, 30, 150, 40, this);
 
         infoBox.add(playerButton);
+        
+        GameButton gameButton = new GameButton("Configure Game", 200, 30, 150, 40, this);
+
+        infoBox.add(gameButton);
         
         l.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
         l.UIResource().put("Text Horizontal Alignment Integer",
@@ -129,18 +137,26 @@ public class EditorView extends Game {
     {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
-
+        if(myBackground!=null)
+        {
+            myBackground.render(pen);
+        }
         for (AnimatedGameSprite s : myModel.getAllSprites())
         {
             s.render(pen);
         }
         framework.render(pen);
+        
 
     }
 
     @Override
     public void update(long elapsedTime)
     {
+        if(myBackground!=null)
+        {
+            myBackground.update(elapsedTime);
+        }
         framework.update();
         if (click())
         {
@@ -148,12 +164,10 @@ public class EditorView extends Game {
             {
                 if (button.getClicked())
                 {
-                    System.out.println("a button is clicked");
                     AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
                     //System.out.println(s.getClass());
                     if (checkInterference(s))
                     {
-                        System.out.println("in if statement");
                         myModel.addSprite(s);
                         
                     }
@@ -233,15 +247,12 @@ public class EditorView extends Game {
         }
         if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
-            System.out.println("right clicking!!");
             for (AnimatedGameSprite s : myModel.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
                 {
-                    System.out.println("selected");
                     if(s.getClass().equals(Enemy.class))
                     {
-                        System.out.println("in if statement");
                         editEnemy( (Enemy) s);
                     }
                 }
@@ -255,7 +266,6 @@ public class EditorView extends Game {
         boolean t = true;
         for (Sprite sprite : myModel.getAllSprites())
         {
-            // System.out.println("checking");
             if(sprite!=spriteClicked)
             {
             if ((s.getX() + s.getWidth() > sprite.getX())
@@ -292,7 +302,6 @@ public class EditorView extends Game {
     
     public void editEnemy(Enemy s)
     {
-        System.out.println("editing enemy!");
         EditEnemyDialogue myView = new EditEnemyDialogue(myModel, s, this.getMouseX(), this.getMouseY());
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
@@ -315,7 +324,6 @@ public class EditorView extends Game {
 
     public void addButton(Button newButton)
     {
-        System.out.println("button added:" + newButton);
         infoBox.add(newButton);
         allButtons.add(newButton);
         
@@ -364,6 +372,32 @@ public class EditorView extends Game {
         frame.getContentPane().add(myView);
         frame.pack();
         frame.setVisible(true);
+    }
+    public void configurePlayer()
+    {
+        PlayerDialogue myView = new PlayerDialogue(myModel);
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    public void configureGame()
+    {
+        GameDialogue myView = new GameDialogue(myModel);
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    public void setBackground(BufferedImage image)
+    {
+        myBackground = new ImageBackground(image);
     }
 
 }

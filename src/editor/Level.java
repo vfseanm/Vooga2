@@ -29,6 +29,7 @@ public class Level implements Serializable{
     
     
     private List<AnimatedGameSprite> sprites;
+    private String backgroundImagePath;
 
   
     
@@ -109,6 +110,11 @@ public class Level implements Serializable{
             }
             s.setImages(images);
         }
+    }
+    
+    public void setBackground(BufferedImage image, String imagePath)
+    {
+        backgroundImagePath = imagePath;
     }
     
 /*    public static void main(String[] args)

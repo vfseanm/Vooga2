@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import com.golden.gamedev.gui.TButton;
 
 
-public class PlayerButton extends TButton
+public class GameButton extends TButton
 {
     private boolean pressed;
     private BufferedImage myImage;
@@ -14,7 +14,7 @@ public class PlayerButton extends TButton
     private String myType;
     private EditorView myView;
 
-    public PlayerButton(String name,
+    public GameButton(String name,
                     int x,
                     int y,
                     int width,
@@ -42,12 +42,10 @@ public class PlayerButton extends TButton
     public void doAction ()
     {
         
-        myView.configurePlayer();
+        myView.configureGame();
            
     }
     
-
-
     public String getType ()
     {
         return myType;
