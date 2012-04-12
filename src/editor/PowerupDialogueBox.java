@@ -30,7 +30,7 @@ public class PowerupDialogueBox extends JPanel {
     private JTextField myName;
 
     private Reflection reflection;
-    private EditorModel myModel;
+    private EditorController myModel;
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> attributeMap;
     
@@ -40,7 +40,7 @@ public class PowerupDialogueBox extends JPanel {
     private String myType;
 
     @SuppressWarnings("rawtypes")
-    public PowerupDialogueBox(EditorModel m, String type)
+    public PowerupDialogueBox(EditorController m, String type)
     {
         myType = type;
         attributeMap = new HashMap<JCheckBox, Class>();

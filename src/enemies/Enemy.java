@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import attributes.Attribute;
 import attributes.Updateable;
@@ -34,6 +35,11 @@ public class Enemy extends AnimatedGameSprite
         return false;
     }
 
+    public List<Attribute> getAttributes()
+    {
+        return Collections.unmodifiableList(myAttributes);
+    }
+    
     public void addAttribute (Attribute attribute)
     {
         myAttributes.add(attribute);
