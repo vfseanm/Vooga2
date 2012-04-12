@@ -6,8 +6,10 @@ import java.util.List;
 import platforms.*;
 
 import sidescrolling.*;
+import sprite.AnimatedGameSprite;
 
 import attributes.*;
+import collisions.GameCollisionManager;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
@@ -26,6 +28,9 @@ public class TestGame extends Game {
     private Background myBackground;
     private int counter;
     private SimplePlatform p;
+    private PlayField myPF;
+    private GameCollisionManager gc;
+    private ArrayList<AnimatedGameSprite> list;
     @Override
     public void initResources ()
     {
@@ -42,10 +47,16 @@ public class TestGame extends Game {
        
         counter=0;
         a.clear(); 
-        b[0]= getImage("resources/platform1.png"); 
-        p = new SimplePlatform (b, 500,500, a, null);
+        BufferedImage[] b1 = new BufferedImage[1];
         
         List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
+        b1[0]= getImage("resources/platform1.png"); 
+        p = new SimplePlatform (b1, 500,500, a, null);
+         list = new ArrayList<AnimatedGameSprite>();
+        
+        list.add(p);
+         gc = new GameCollisionManager();
+                
     }
 
     @Override
@@ -70,6 +81,7 @@ public class TestGame extends Game {
             bob.updateAttribute("Flying", false);
         }
         p.update(arg0);
+        gc.GameCollision(bob, list);
         
         
         
