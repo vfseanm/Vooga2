@@ -41,7 +41,7 @@ public ArrayList<Attribute> getAttributes(){
 }
     public boolean getClicked ()
     {
-        System.out.println("clicked?" + pressed);
+       // System.out.println("clicked?" + pressed);
         boolean t = pressed;
         pressed = false;
         return t;

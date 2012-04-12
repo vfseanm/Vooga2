@@ -70,7 +70,7 @@ public class DialogueBox extends JPanel {
         {
             e1.printStackTrace();
         }
-        System.out.println(myImagePath);
+        //System.out.println(myImagePath);
         BufferedImage img = null;
         try
         {
@@ -201,8 +201,8 @@ public class DialogueBox extends JPanel {
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
             Object[] argList = null;
-            System.out.println(paramNames.length);
-            System.out.println("got here");
+            //System.out.println(paramNames.length);
+            //System.out.println("got here");
             if(!paramNames[0].equals(""))
             {
                 argList = new Object[paramNames.length];

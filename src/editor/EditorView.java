@@ -35,7 +35,6 @@ public class EditorView extends Game {
     private static final double HORIZONTAL_MOVE = 5;
     private static final double VERTICAL_MOVE = 5;
 
-    private LevelEditor myEditor;
     private EditorController myModel;
     private TPanel infoBox;
 

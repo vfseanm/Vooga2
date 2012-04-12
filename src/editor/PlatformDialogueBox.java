@@ -71,7 +71,7 @@ public class PlatformDialogueBox extends JPanel {
         {
             e1.printStackTrace();
         }
-        System.out.println(myImagePath);
+        //System.out.println(myImagePath);
         BufferedImage img = null;
         try
         {

@@ -25,7 +25,7 @@ public class EnemyFramework implements Framework {
 
     public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<List<Object>> attributes) {
         myImages = im;
-        System.out.println("attributes:" + attributes);
+       // System.out.println("attributes:" + attributes);
         imageNames = images;
         myAttributes = attributes;
     }

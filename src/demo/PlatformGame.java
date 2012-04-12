@@ -18,10 +18,10 @@ import com.golden.gamedev.GameLoader;
 import editor.Level;
 import enemies.Enemy;
 
-public  class PlatformGame extends Game {
+public abstract  class PlatformGame extends Game {
     
-    List<AnimatedGameSprite> sprites;
-    Level level;
+    protected List<AnimatedGameSprite> sprites;
+    private Level level;
     
     PlatformGame()
     {
@@ -51,37 +51,8 @@ public  class PlatformGame extends Game {
         sprites = level.getSprites();
     }
 
-    @Override
-    public void initResources()
-    {
-        loadLevel("level2");
-        
-        for(AnimatedGameSprite s: sprites)
-        {
-            System.out.println(s);
-        }
-       
-    }
 
-    @Override
-    public void render(Graphics2D arg0)
-    {
-        // TODO Auto-generated method stub
-        
-    }
 
-    @Override
-    public void update(long arg0)
-    {
-        // TODO Auto-generated method stub
-        
-    }
-    public static void main(String[] args)
-    {
-        PlatformGame g = new PlatformGame();
-        GameLoader game = new GameLoader();
-        game.setup(new PlatformGame(), new Dimension(600, 600), false);
-        game.start();
-    }
+
 
 }

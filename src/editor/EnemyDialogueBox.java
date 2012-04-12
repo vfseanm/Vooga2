@@ -70,7 +70,7 @@ public class EnemyDialogueBox extends JPanel {
         {
             e1.printStackTrace();
         }
-        System.out.println(myImagePath);
+        //System.out.println(myImagePath);
         BufferedImage img = null;
         try
         {
@@ -203,8 +203,8 @@ public class EnemyDialogueBox extends JPanel {
             String[] paramNames = ((editorConstructor) a).parameterNames();
             Class[] paramTypes =constructor.getParameterTypes();
             Object[] argList = null;
-            System.out.println(paramNames.length);
-            System.out.println("got here");
+            //System.out.println(paramNames.length);
+            //System.out.println("got here");
             if(!paramNames[0].equals(""))
             {
                 argList = new Object[paramNames.length];
