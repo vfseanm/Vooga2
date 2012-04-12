@@ -1,5 +1,6 @@
 package platforms;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import fighter.*;
@@ -10,15 +11,25 @@ public class SideToSidePlatform extends DecoratedPlatform
 {
 
     FrameTimer myTimer = new FrameTimer();
+    double mySpeed = 10;
+    double myDistance = 10;
 
 
     public SideToSidePlatform (AbstractPlatform decoratorComponent)
     {
         super(decoratorComponent);
     }
+    
+    public void setSpeed(double speed) {
+    	mySpeed = speed;
+    }
+    
+    public void setDistance(double distance) {
+    	myDistance = distance;
+    }
 
 
-    public void doBehavior (double speed, double distance)
+    protected void doBehavior (double speed, double distance)
     {
         if (myDecoratorComponent != null)
         {
@@ -33,17 +44,25 @@ public class SideToSidePlatform extends DecoratedPlatform
         {
             setHorizontalSpeed(-speed / 25);
         }
-        myTimer.update();
     }
 
 
     public void update (long elapsedTime)
     {
 
-        if (myDecoratorComponent != null)
-        {
+        if (myDecoratorComponent != null) {
             myDecoratorComponent.update(elapsedTime);
         }
+        doBehavior(mySpeed, myDistance);
+        myTimer.update(elapsedTime);
+        update(elapsedTime);
+    }
+    
+    public void render(Graphics2D graphics) {
+    	if (myDecoratorComponent != null) {
+    		myDecoratorComponent.render(graphics);
+    	}
+    	render(graphics);
     }
     
     public String toString()

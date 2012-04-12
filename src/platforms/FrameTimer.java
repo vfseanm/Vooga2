@@ -18,7 +18,7 @@ public class FrameTimer implements Serializable {
 		myFPS = fps;
 	}
 	
-	public void update() {
+	public void update(long time) {
 		numFrames++;
 		elapsedTime = numFrames;
 	}

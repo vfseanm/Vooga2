@@ -35,6 +35,7 @@ public class RotatingPlatform extends DecoratedPlatform {
         setAnimate(true);
 
     }
+ 
 
     public void rotateLeftAxisClockwise(int delay) {
         myTimer.update();
@@ -90,8 +91,8 @@ public class RotatingPlatform extends DecoratedPlatform {
     public void update(long elapsedTime) {
         
     	if (myDecoratorComponent != null) {
-            		myDecoratorComponent.update(elapsedTime);
-        	}
+            	myDecoratorComponent.update(elapsedTime);
+        }
         myTimer.update();
         rotateCenterAxis(50); //test
     }
