@@ -29,6 +29,7 @@ public class Level implements Serializable{
     
     
     private List<AnimatedGameSprite> sprites;
+    private String backgroundImagePath;
 
   
     
@@ -36,6 +37,12 @@ public class Level implements Serializable{
     {
         
         sprites = new ArrayList<AnimatedGameSprite>();
+    }
+    
+    public void replaceSprite(AnimatedGameSprite oldSprite, AnimatedGameSprite newSprite)
+    {
+        sprites.remove(oldSprite);
+        sprites.add(newSprite);
     }
     
     public void addSprite(AnimatedGameSprite s)
@@ -69,6 +76,11 @@ public class Level implements Serializable{
         return Collections.unmodifiableList(sprites);
     }
     
+    public List<AnimatedGameSprite> getSprites()
+    {
+        return sprites;
+    }
+    
     public void removeSprite(AnimatedGameSprite sprite)
     {
         sprites.remove(sprite);
@@ -98,6 +110,11 @@ public class Level implements Serializable{
             }
             s.setImages(images);
         }
+    }
+    
+    public void setBackground(BufferedImage image, String imagePath)
+    {
+        backgroundImagePath = imagePath;
     }
     
 /*    public static void main(String[] args)

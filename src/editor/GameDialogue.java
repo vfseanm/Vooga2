@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class DialogueBox extends JPanel {
+public class GameDialogue extends JPanel {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -37,19 +37,16 @@ public class DialogueBox extends JPanel {
     private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
     private BufferedImage myImage;
     private String myImagePath;
-    private String myType;
 
     @SuppressWarnings("rawtypes")
-    public DialogueBox(EditorController m, String type)
+    public GameDialogue(EditorController m)
     {
-        myType = type;
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;
         reflection = new Reflection();
         setLayout(new BorderLayout());
         
-
         add(makeInputPanel(), BorderLayout.NORTH);
     }
 
@@ -70,7 +67,7 @@ public class DialogueBox extends JPanel {
         {
             e1.printStackTrace();
         }
-        //System.out.println(myImagePath);
+        System.out.println(myImagePath);
         BufferedImage img = null;
         try
         {
@@ -105,43 +102,15 @@ public class DialogueBox extends JPanel {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("attributes", Attribute.class))
-        {
-            boolean isAnnotated = false;
-            for(Constructor constructor : c.getConstructors())
-            {
-                if(constructor.isAnnotationPresent(editorConstructor.class))
-                {
-                    isAnnotated = true;
-                }
-            }
-            if(isAnnotated)
-            {
-                JLabel label1 = new JLabel(c.getName());
-                panel.add(label1);
-                JCheckBox box = new JCheckBox();
-                panel.add(box);
-                box.addActionListener(new CheckBoxListener(box, c));
-                attributeMap.put(box, c);
-            }
-        }
-
-        JLabel label1 = new JLabel("Enemy Name");
-        panel.add(label1);
-
-        myName = new JTextField(10);
-
-        panel.add(myName);
+        
+       
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create Enemy";
-        if(myType.contentEquals("platform"))
-            buttonPhrase = "Create Platform";
-        		
+        String buttonPhrase = "Configure Game";
+                
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
@@ -154,21 +123,8 @@ public class DialogueBox extends JPanel {
         
         public void actionPerformed(ActionEvent e)
         {
-            ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
-            for (JCheckBox box : attributeMap.keySet())
-            {
-                if (box.isSelected())
-                {
-                    attributes.add( attributeInstanceMap.get(box));
-                }
-                    
-            }
-            BufferedImage[] s = new BufferedImage[1];
-            s[0] = myImage;
-            ArrayList<String> imagePaths = new ArrayList<String>();
-            imagePaths.add(myImagePath);
-            EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            myModel.addButton(myName.getText(), framework, myType);
+            myModel.setBackground(myImage, myImagePath);
+            
             setVisible(false);
         }
     }
@@ -201,7 +157,7 @@ public class DialogueBox extends JPanel {
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
             Object[] argList = null;
-            //System.out.println(paramNames.length);
+           // System.out.println(paramNames.length);
             //System.out.println("got here");
             if(!paramNames[0].equals(""))
             {

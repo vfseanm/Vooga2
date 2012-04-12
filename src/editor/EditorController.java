@@ -23,7 +23,7 @@ import sprite.AnimatedGameSprite;
 
 
 
-public class EditorModel {
+public class EditorController {
 
 
     private EditorView myView;
@@ -35,7 +35,7 @@ public class EditorModel {
     
     private double verticalOffset;
     
-    public EditorModel(EditorView view)
+    public EditorController(EditorView view)
     {
         myView = view;
         horizontalOffset = 0;
@@ -187,6 +187,12 @@ public void addButton( String name, Framework framework, String type)
             myView.addButton(newButton);
         }
     myView.closeFrame();
+}
+public void setBackground(BufferedImage image, String imagePath)
+{
+    myLevel.setBackground(image, imagePath);
+    myView.closeFrame();
+    myView.setBackground(image);
 }
 
 

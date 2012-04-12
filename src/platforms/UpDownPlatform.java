@@ -47,4 +47,9 @@ public class UpDownPlatform extends DecoratedPlatform
             myDecoratorComponent.update(elapsedTime);
         }
     }
+    
+    public String toString()
+    {
+        return "up and down " + myDecoratorComponent.toString();
+    }
 }

@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class DialogueBox extends JPanel {
+public class PowerupDialogueBox extends JPanel {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -40,7 +40,7 @@ public class DialogueBox extends JPanel {
     private String myType;
 
     @SuppressWarnings("rawtypes")
-    public DialogueBox(EditorController m, String type)
+    public PowerupDialogueBox(EditorController m, String type)
     {
         myType = type;
         attributeMap = new HashMap<JCheckBox, Class>();
@@ -70,7 +70,7 @@ public class DialogueBox extends JPanel {
         {
             e1.printStackTrace();
         }
-        //System.out.println(myImagePath);
+        System.out.println(myImagePath);
         BufferedImage img = null;
         try
         {
@@ -141,7 +141,7 @@ public class DialogueBox extends JPanel {
         String buttonPhrase = "Create Enemy";
         if(myType.contentEquals("platform"))
             buttonPhrase = "Create Platform";
-        		
+                
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
@@ -201,8 +201,8 @@ public class DialogueBox extends JPanel {
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
             Object[] argList = null;
-            //System.out.println(paramNames.length);
-            //System.out.println("got here");
+            System.out.println(paramNames.length);
+            System.out.println("got here");
             if(!paramNames[0].equals(""))
             {
                 argList = new Object[paramNames.length];

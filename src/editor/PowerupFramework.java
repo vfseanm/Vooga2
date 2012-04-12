@@ -14,7 +14,7 @@ import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 
 
-public class EnemyFramework implements Framework {
+public class PowerupFramework implements Framework {
 
     protected ArrayList<Attribute> attributes;
     @SuppressWarnings("unused")
@@ -23,9 +23,9 @@ public class EnemyFramework implements Framework {
     private ArrayList<String> imageNames;
     private List<List<Object>> myAttributes;
 
-    public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<List<Object>> attributes) {
+    public PowerupFramework(BufferedImage[] im, ArrayList<String> images, List<List<Object>> attributes) {
         myImages = im;
-       // System.out.println("attributes:" + attributes);
+        System.out.println("attributes:" + attributes);
         imageNames = images;
         myAttributes = attributes;
     }
@@ -34,7 +34,7 @@ public class EnemyFramework implements Framework {
         attributes.add(b);
     }
 
- 
+
     public AnimatedGameSprite getSprite(int x, int y) {
         Enemy e = new Enemy(myImages, x,
                 y - myImages[0].getHeight(),

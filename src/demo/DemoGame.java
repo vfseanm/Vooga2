@@ -23,7 +23,7 @@ import editor.LevelEditor;
 
 
 @SuppressWarnings("unused")
-public class DemoGame extends Game
+public class DemoGame extends PlatformGame
 {
 
     private CollisionManager myGroundManager;

@@ -19,7 +19,9 @@ import attributes.Attribute;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
+import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.background.ImageBackground;
 
 import enemies.Enemy;
 
@@ -29,47 +31,55 @@ import sprite.GameSprite;
 public class EditorView extends Game {
     private FrameWork framework;
     private ArrayList<Button> allButtons;
-    private static final int MENU_START = 800;
+    private static final int MENU_START = 900;
     private static final double HORIZONTAL_MOVE = 5;
     private static final double VERTICAL_MOVE = 5;
 
-    private LevelEditor myEditor;
-    private EditorModel myModel;
+    private EditorController myModel;
     private TPanel infoBox;
 
     private AnimatedGameSprite spriteClicked;
     private double[] origPosition;
     private double[] clickedSpriteOffset;
+    private Framework myFramework;
+    
+    private Background myBackground;
 
   //  private double horizontalOffset;
    // private double verticalOffset;
 
     @SuppressWarnings("unchecked")
     @Override
+    
+    
     public void initResources()
     {
      //   horizontalOffset = 0;
        // verticalOffset = 0;
-        myModel = new EditorModel(this);
+        myModel = new EditorController(this);
         allButtons = new ArrayList<Button>();
-
-        framework = new FrameWork(bsInput, 1000, 600);
+        
+        framework = new FrameWork(bsInput, 1300, 800);
         framework.getTheme().getUIRenderer("Label")
                 .put("Background Border Color", Color.BLACK);
 
-        infoBox = new TPanel(MENU_START, 0, 200, 600);
+        infoBox = new TPanel(MENU_START, 0, 400, 800);
         infoBox.UIResource().put("Background Color", Color.LIGHT_GRAY);
-        TLabel l = new TLabel("Menu", 2, 0, 196, 20);
+        TLabel l = new TLabel("Menu", 2, 0, 396, 20);
         
         PlayerButton playerButton = new PlayerButton("Configure Player", 25, 30, 150, 40, this);
 
         infoBox.add(playerButton);
         
+        GameButton gameButton = new GameButton("Configure Game", 200, 30, 150, 40, this);
+
+        infoBox.add(gameButton);
+        
         l.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
         l.UIResource().put("Text Horizontal Alignment Integer",
                 UIConstants.CENTER);
 
-        TLabel l2 = new TLabel("Enemies", 2, 70, 196, 40);
+        TLabel l2 = new TLabel("Enemies", 2, 70, 396, 40);
         l2.UIResource().put("Text Horizontal Alignment Integer",
                 UIConstants.CENTER);
         l2.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
@@ -78,47 +88,45 @@ public class EditorView extends Game {
         infoBox.add(l);
         infoBox.add(l2);
         
-        BlankButton newEnemyButton = new BlankButton("Create Enemy", 25, 110, 150, 40, this, "enemy");
+        BlankButton newEnemyButton = new BlankButton("Create Enemy", 125, 110, 150, 40, this, "enemy");
 
         infoBox.add(newEnemyButton);
         
         
 
-        TLabel l3 = new TLabel("Platforms", 2, 300, 196, 40);
+        TLabel l3 = new TLabel("Platforms", 2, 270, 396, 40);
         l3.UIResource().put("Text Horizontal Alignment Integer",
                 UIConstants.CENTER);
         l3.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
         
-        BlankButton newPlatformButton = new BlankButton("Create Platform", 25, 340, 150, 40, this, "platform");
+        BlankButton newPlatformButton = new BlankButton("Create Platform", 125, 310, 150, 40, this, "platform");
 
         infoBox.add(newPlatformButton);
 
-        /*
-         * Button platformbutton1 = new Button("Platform1", 10, 240, 60, 40,
-         * getImage("resources/platform1.png"), "resources/platform1.png",
-         * "platform", null); Button platformbutton2 = new Button("Platform2",
-         * 100, 240, 60, 40, getImage("resources/platform2.png"),
-         * "resources/platform2.png", "platform", null);
-         */
+        
+        TLabel l4 = new TLabel("Powerups", 2, 470, 396, 40);
+        l4.UIResource().put("Text Horizontal Alignment Integer",
+                UIConstants.CENTER);
+        l4.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
+        
+        infoBox.add(l4);
+        
+        
+        BlankButton newpowerUpButton = new BlankButton("Create Power-Up", 125, 510, 150, 40, this, "Power-Up");
 
-        TButton openButton = new OpenButton("Open", 20, 540, 60, 40, this);
+        infoBox.add(newpowerUpButton);
+        
+  
+        TButton openButton = new OpenButton("Open", 100, 660, 60, 40, this);
 
-        SaveButton saveButton = new SaveButton("Save", 120, 540, 60, 40, this);
+        SaveButton saveButton = new SaveButton("Save", 200, 660, 60, 40, this);
 
         
         infoBox.add(l3);
 
-        /*
-         * infoBox.add(button); infoBox.add(bowserbutton);
-         * infoBox.add(platformbutton1); infoBox.add(platformbutton2);
-         */
         infoBox.add(openButton);
         infoBox.add(saveButton);
 
-        /*
-         * allButtons.add(button); allButtons.add(bowserbutton);
-         * allButtons.add(platformbutton1); allButtons.add(platformbutton2);
-         */
         framework.add(infoBox);
 
     }
@@ -128,21 +136,26 @@ public class EditorView extends Game {
     {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
-
-        
+        if(myBackground!=null)
+        {
+            myBackground.render(pen);
+        }
         for (AnimatedGameSprite s : myModel.getAllSprites())
         {
-
             s.render(pen);
         }
-        
         framework.render(pen);
+        
 
     }
 
     @Override
     public void update(long elapsedTime)
     {
+        if(myBackground!=null)
+        {
+            myBackground.update(elapsedTime);
+        }
         framework.update();
         if (click())
         {
@@ -150,38 +163,13 @@ public class EditorView extends Game {
             {
                 if (button.getClicked())
                 {
-                    System.out.println(button.getType());
-                    AnimatedGameSprite s = null;
-                    if (button.getType().equals("platform"))
+                    AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
+                    //System.out.println(s.getClass());
+                    if (checkInterference(s))
                     {
-                        BufferedImage[] im = new BufferedImage[1];
-                        im[0] = button.getImage();
-                        ArrayList<String> imageNames = new ArrayList<String>();
-                        imageNames.add(button.getImageName());
-                        Platform e = new Platform(im, getMouseX(),
-                                getMouseY() - button.getImage().getHeight(),
-                                imageNames);
-                        s= e;
-                    }
-                    else if (button.getType().equals("enemy"))
-                    {
-                        BufferedImage[] im = new BufferedImage[1];
-                        im[0] = button.getImage();
-                        ArrayList<String> imageNames = new ArrayList<String>();
-                        imageNames.add(button.getImageName());
-                        Enemy e = new Enemy(im, getMouseX(),
-                                getMouseY() - button.getImage().getHeight(),
-                                imageNames);
-                        for(Attribute a: button.getAttributes())
-                        {
-                            e.addAttribute(a);
-                        }          
-                        s = e;
+                        myModel.addSprite(s);
                         
                     }
-
-                    if (checkInterference(s))
-                        myModel.addSprite(s);
                 }
             }
 
@@ -256,6 +244,19 @@ public class EditorView extends Game {
         {
             myModel.moveVertically(VERTICAL_MOVE);
         }
+        if (bsInput.isMousePressed(MouseEvent.BUTTON3))
+        {
+            for (AnimatedGameSprite s : myModel.getAllSprites())
+            {
+                if (this.checkPosMouse(s, true))
+                {
+                    if(s.getClass().equals(Enemy.class))
+                    {
+                        editEnemy( (Enemy) s);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -264,7 +265,6 @@ public class EditorView extends Game {
         boolean t = true;
         for (Sprite sprite : myModel.getAllSprites())
         {
-            // System.out.println("checking");
             if(sprite!=spriteClicked)
             {
             if ((s.getX() + s.getWidth() > sprite.getX())
@@ -298,12 +298,34 @@ public class EditorView extends Game {
 
         //this.start();
     }
+    
+    public void editEnemy(Enemy s)
+    {
+        EditEnemyDialogue myView = new EditEnemyDialogue(myModel, s, this.getMouseX(), this.getMouseY());
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+    public void closeFrame()
+    {
+        frame.setVisible(false);
+    }
+    
+    public void setFramework(Framework f)
+    {
+        myFramework = f;
+    }
 
     public void addButton(Button newButton)
     {
         infoBox.add(newButton);
         allButtons.add(newButton);
-        frame.setVisible(false);
+        
     }
 
     public void saveFile()
@@ -319,7 +341,7 @@ public class EditorView extends Game {
 
     public void addEnemy()
     {
-        DialogueBox myView = new DialogueBox(myModel, "enemy");
+        EnemyDialogueBox myView = new EnemyDialogueBox(myModel, "enemy");
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -327,11 +349,10 @@ public class EditorView extends Game {
         frame.getContentPane().add(myView);
         frame.pack();
         frame.setVisible(true);
-
     }
     public void addPlatform()
     {
-        DialogueBox myView = new DialogueBox(myModel, "platform");
+        PlatformDialogueBox myView = new PlatformDialogueBox(myModel, "platform");
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -339,7 +360,43 @@ public class EditorView extends Game {
         frame.getContentPane().add(myView);
         frame.pack();
         frame.setVisible(true);
-
+    }
+    public void addPowerUp()
+    {
+        PowerupDialogueBox myView = new PowerupDialogueBox(myModel, "platform");
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    public void configurePlayer()
+    {
+        PlayerDialogue myView = new PlayerDialogue(myModel);
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    public void configureGame()
+    {
+        GameDialogue myView = new GameDialogue(myModel);
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    public void setBackground(BufferedImage image)
+    {
+        myBackground = new ImageBackground(image);
     }
 
 }

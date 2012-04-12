@@ -1,5 +1,7 @@
 package attributes;
 
+import java.io.Serializable;
+
 import enemies.Enemy;
 /**
  * This class is used to allow for dynamic attribute allocation to enemies
@@ -9,7 +11,7 @@ import enemies.Enemy;
  * @author Alex
  *
  */
-public abstract class  Attribute
+public abstract class  Attribute implements Serializable
 {
     protected Enemy myEnemy;
     public abstract String getName();

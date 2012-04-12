@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class DialogueBox extends JPanel {
+public class EnemyDialogueBox extends JPanel {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -40,7 +40,7 @@ public class DialogueBox extends JPanel {
     private String myType;
 
     @SuppressWarnings("rawtypes")
-    public DialogueBox(EditorController m, String type)
+    public EnemyDialogueBox(EditorController m, String type)
     {
         myType = type;
         attributeMap = new HashMap<JCheckBox, Class>();
@@ -105,8 +105,9 @@ public class DialogueBox extends JPanel {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("attributes", Attribute.class))
+        List<Class> list = reflection.getInstancesOf("enemies.movement", Attribute.class);
+        list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
+        for (Class c : list)
         {
             boolean isAnnotated = false;
             for(Constructor constructor : c.getConstructors())
@@ -200,6 +201,7 @@ public class DialogueBox extends JPanel {
             
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
+            Class[] paramTypes =constructor.getParameterTypes();
             Object[] argList = null;
             //System.out.println(paramNames.length);
             //System.out.println("got here");
@@ -210,7 +212,24 @@ public class DialogueBox extends JPanel {
                 {
                     String selectedValue = JOptionPane
                         .showInputDialog("What would you like the "+ paramNames[i]+ " to be?");
-                    argList[i]=Integer.parseInt(selectedValue);
+                    
+
+                    if(paramTypes[i].equals(int.class))
+                    {
+                        argList[i]=Integer.parseInt(selectedValue);
+                    }
+                    if(paramTypes[i].equals(String.class))
+                    {
+                        argList[i] = selectedValue;
+                    }
+                    if(paramTypes[i].equals(double.class))
+                    {
+                        argList[i] = Double.parseDouble(selectedValue);
+                    }
+                    if(paramTypes[i].toString().equals("boolean"))
+                    {
+                        argList[i] = Boolean.parseBoolean(selectedValue);
+                    }
                 }
             }
              
@@ -220,10 +239,6 @@ public class DialogueBox extends JPanel {
                     attribute.add(argList);
                     attributeInstanceMap.put(box, attribute);
                 
-            
-            
-            
-            
             }
     }
 
