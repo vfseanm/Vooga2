@@ -52,7 +52,7 @@ public class Hitpoints extends Attribute
 
     public String toString ()
     {
-        return "Attribut Hitpoints is currently " + myHitpoints + " MaxHP is " +
+        return "Attribute Hitpoints is currently " + myHitpoints + " MaxHP is " +
                maxHP;
     }
 

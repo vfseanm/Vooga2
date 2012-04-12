@@ -88,8 +88,8 @@ public class EditorModel {
     public void writeFile(String filename)
     {
         
-        myLevel.moveHorizontally(horizontalOffset);
-        myLevel.moveVertically(verticalOffset);
+        myLevel.moveHorizontally(-horizontalOffset);
+        myLevel.moveVertically(-verticalOffset);
        
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
@@ -104,8 +104,8 @@ public class EditorModel {
         {
           ex.printStackTrace();
         }
-        myLevel.moveHorizontally(-horizontalOffset);
-        myLevel.moveVertically(-verticalOffset);
+        myLevel.moveHorizontally(horizontalOffset);
+        myLevel.moveVertically(verticalOffset);
     }
     public void loadFile(File file)
     {
@@ -117,6 +117,7 @@ public class EditorModel {
           fis = new FileInputStream(file);
           in = new ObjectInputStream(fis);
           myLevel = (Level)in.readObject();
+          //System.out.println(myLevel.getAllSprites().get(0).toString());
           in.close();
         }
         catch(IOException ex)
