@@ -33,10 +33,7 @@ public class PlatformFramework implements Framework {
     }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 38a73278714665023fcfa4577e0ab230a149baa1
     public AnimatedGameSprite getSprite(int x, int y) {
         
         SimplePlatform platform = new SimplePlatform(myImages, x, y, imageNames, null);
