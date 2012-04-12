@@ -40,12 +40,13 @@ public class TestGame extends Game {
         b[0]=getImage("resources/Bowser.jpg");
         ArrayList<String> a = new ArrayList<String>();
         a.add("resources/Bowser.jpg");
-         bob = new Enemy(b, 300, 300, a);
+         bob = new Enemy(b, 500, 300, a);
         
         
-       // bob.addAttribute(new Gravity(1));
+        bob.addAttribute(new Gravity(1));
+        bob.addAttribute(new Flying());
         
-       
+        bob.addAttribute(new SideToSideMovement(1,100));
         
         counter=0;
         a.clear(); 
@@ -79,9 +80,9 @@ public class TestGame extends Game {
 //        if(counter%200==0){
 //            bob.updateAttribute("JumpingMovement");
 //        }
-//        if(counter==400){
-//            bob.updateAttribute("Flying", false);
-//        }
+        if(counter==400){
+            bob.updateAttribute("Flying", false);
+        }
         p.update(arg0);
         gc.GameCollision(bob, list);
         
