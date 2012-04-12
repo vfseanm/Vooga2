@@ -15,9 +15,9 @@ public class PlatformAction extends ActionPerformer{
 	
 	public void standardaction (Fighter sprite1, AbstractPlatform sprite2, int collisionType){ 
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
-			if ( (sprite1.getX()+(sprite1.getWidth/2) >= sprite2.getX())
-					&& (sprite1.getX()+(sprite1.getWidth/2) <= sprite2.getX()+ sprite2.getWidth()) ){
-				sprite1.setY() = sprite2.getY() + sprite1.getHeight();
+			if ( (sprite1.getX()+(sprite1.getWidth()/2) >= sprite2.getX())
+					&& (sprite1.getX()+(sprite1.getWidth()/2) <= sprite2.getX()+ sprite2.getWidth()) ){
+				 sprite2.setY(sprite1.getY() + sprite1.getHeight());
 				//Gravity is 0? Because you should be able to jump when you're on platform...
 			}
 		}
@@ -34,7 +34,7 @@ public class PlatformAction extends ActionPerformer{
 			for (int i=0; i<=2; i++){
 				//Nothing happens...set delay
 			}
-			sprite2.set(false);
+			sprite2.setActive(false);
 		}
 	}
 

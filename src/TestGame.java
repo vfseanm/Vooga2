@@ -25,6 +25,7 @@ public class TestGame extends Game {
     private Enemy bob;
     private Background myBackground;
     private int counter;
+    private SimplePlatform p;
     @Override
     public void initResources ()
     {
@@ -40,6 +41,9 @@ public class TestGame extends Game {
         bob.addAttribute(new Gravity(1));
        
         counter=0;
+        a.clear(); 
+        b[0]= getImage("resources/platform1.png"); 
+        p = new SimplePlatform (b, 500,500, a, null);
         
         
     }
@@ -49,7 +53,7 @@ public class TestGame extends Game {
     {
         myBackground.render(arg0);
        bob.render(arg0);
-       
+       p.render(arg0);
         
     }
 
@@ -65,6 +69,7 @@ public class TestGame extends Game {
         if(counter==400){
             bob.updateAttribute("Flying", false);
         }
+        p.update(arg0);
         
         
         

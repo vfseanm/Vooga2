@@ -13,22 +13,22 @@ public class RepelBackAction extends ActionPerformer{
 	public void action (Fighter sprite1, Enemy sprite2, int collisionType){
 		if (collisionType == CollisionGroup.RIGHT_LEFT_COLLISION){
 			for (int i=0; i<=40; i++){
-				sprite1.getX() = sprite1.setX()-i;
+				sprite1.setX(sprite1.getX()-1);
 			}
 		}
 		else if (collisionType == CollisionGroup.LEFT_RIGHT_COLLISION){
 			for (int i=0; i<=40; i++){
-				sprite1.getX() = sprite1.setX()+i;
+				 sprite1.setX(sprite1.getX() + 1);
 			}
 		}
 		else if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
 			for (int i=0; i<=40; i++){
-				sprite1.getY() = sprite1.setY()+i;
+				 sprite1.setY(sprite1.getY()+1);
 			}
 		}
 		else if (collisionType== CollisionGroup.BOTTOM_TOP_COLLISION){
 			for (int i=0; i<=40; i++){
-				sprite1.getY() = sprite1.setY()-i;
+				sprite1.setY(sprite1.getY()-1);
 			}
 		}
 	}
@@ -36,7 +36,7 @@ public class RepelBackAction extends ActionPerformer{
 	public void action (Fighter sprite1, Fighter sprite2, int collisionType){
 		if (collisionType== CollisionGroup.RIGHT_LEFT_COLLISION ){
 			for (int i=0; i<=40; i++){
-				sprite1.getX() = sprite1.setX()-i;
+				sprite1.setX(sprite1.getX()-1);
 			}
 		}
 	}
