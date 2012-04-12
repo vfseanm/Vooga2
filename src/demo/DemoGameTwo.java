@@ -1,5 +1,6 @@
 package demo;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import sprite.AnimatedGameSprite;
@@ -12,16 +13,15 @@ public class DemoGameTwo extends PlatformGame{
     {
         loadLevel("level2");
         
-        for(AnimatedGameSprite s: sprites)
-        {
-            System.out.println(s);
-        }
+
        
     }
 
     @Override
     public void render(Graphics2D pen)
     {
+        pen.setColor(Color.WHITE);
+        pen.fillRect(0, 0, getWidth(), getHeight());
         for(AnimatedGameSprite s: sprites)
         {
             s.render(pen);
