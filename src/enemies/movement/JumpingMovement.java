@@ -6,6 +6,7 @@ import attributes.Updateable;
 
 //ground movement
 //reset attributes called from collision
+@SuppressWarnings("serial")
 public class JumpingMovement extends Attribute implements Updateable
 {
     private int myDistance;
@@ -65,7 +66,7 @@ public class JumpingMovement extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute JumpingMovemet my jump distance is "+myDistance +" my jump time is " +myTime;
+        return "Attribute JumpingMovement my jump distance is "+myDistance +" my jump time is " +myTime;
 
     }
 
