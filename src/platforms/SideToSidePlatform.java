@@ -61,8 +61,8 @@ public class SideToSidePlatform extends DecoratedPlatform
     public void render(Graphics2D graphics) {
     	if (myDecoratorComponent != null) {
     		myDecoratorComponent.render(graphics);
+    	
     	}
-    	render(graphics);
     }
     
     public String toString()
