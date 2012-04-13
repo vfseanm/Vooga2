@@ -75,7 +75,7 @@ public class Enemy extends AnimatedGameSprite
     }
 
 
-    public void updateAttribute (String name, Object ... o)
+    private void accessAttributeMethod(String methodStart,String name, Object ... o)
     {
 
         for (Attribute attribute : myAttributes)
@@ -85,7 +85,7 @@ public class Enemy extends AnimatedGameSprite
                 Class<?> c = attribute.getClass();
                 for (Method m : c.getMethods())
                 {
-                    if (!m.getName().startsWith("modify")) continue;
+                    if (!m.getName().startsWith(methodStart)) continue;
                     if (m.getGenericParameterTypes().length != o.length) continue;
                     for (int i = 0; i < m.getGenericParameterTypes().length; i++)
                     {
@@ -119,6 +119,14 @@ public class Enemy extends AnimatedGameSprite
             }
         }
 
+    }
+    
+    public void updateAttribute(String name,Object...o){
+        accessAttributeMethod("modify",name,o);
+    }
+    
+    public void resetAttribute(String name,Object...o){
+        accessAttributeMethod("reset",name,o);
     }
 
 
