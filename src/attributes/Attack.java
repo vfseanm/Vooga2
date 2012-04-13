@@ -1,5 +1,6 @@
 package attributes;
 
+@SuppressWarnings("serial")
 public class Attack extends Attribute implements Updateable
 {
     public Attack(){

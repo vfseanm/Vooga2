@@ -26,6 +26,7 @@ public class Fighter extends AnimatedGameSprite {
 	
 	public Fighter(BufferedImage[] image, double x, double y, List<String> images) {
 		super(image, x, y, images);
+		myAttributes = new ArrayList<Attribute>();
 		myCarryables = new ArrayList<Carryable>();
 	}
 

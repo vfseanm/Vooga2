@@ -1,7 +1,5 @@
 package attributes;
 
-import com.golden.gamedev.Game;
-import fighter.*;
 
 public class Shoot extends Attribute {
 

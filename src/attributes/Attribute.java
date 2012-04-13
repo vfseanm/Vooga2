@@ -13,6 +13,7 @@ import fighter.*;
  * @author Alex
  *
  */
+@SuppressWarnings("serial")
 public abstract class  Attribute implements Serializable
 {
     protected Enemy 		myEnemy;
