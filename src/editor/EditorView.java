@@ -13,9 +13,13 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+<<<<<<< HEAD
 import javax.swing.JPanel;
 
 import attributes.Attribute;
+=======
+
+>>>>>>> b33305758c0eeb219ca93633bd88ab71a7ad9479
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;

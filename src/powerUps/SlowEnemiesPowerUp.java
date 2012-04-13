@@ -2,9 +2,6 @@ package powerups;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
-
-import characters.fighter.*;
-
 import attributes.Attribute;
 
 
