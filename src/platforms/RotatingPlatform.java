@@ -2,6 +2,7 @@ package platforms;
 
 public class RotatingPlatform extends DecoratedPlatform {
 	
+	private static final long serialVersionUID = 7537483544825845415L;
 	int myFrames = 0;
 	int myWidth;
 	int myHeight;

@@ -1,8 +1,8 @@
 
 package platforms;
 
+
 public class SideToSidePlatform extends DecoratedPlatform {
-	
 
 	public SideToSidePlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);

@@ -7,6 +7,8 @@ import fighter.Fighter;
 import sprite.AnimatedGameSprite;
 
 public abstract class AbstractPlatform extends AnimatedGameSprite {
+
+	private static final long serialVersionUID = 1483938382856783084L;
 	Fighter myFighter;
 	
 	protected AbstractPlatform(BufferedImage[] images, double x, double y, List<String> imageSources, Fighter fighter) {
