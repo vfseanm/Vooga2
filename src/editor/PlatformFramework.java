@@ -40,7 +40,9 @@ public class PlatformFramework implements Framework {
 
 
     public AnimatedGameSprite getSprite(int x, int y) {
-        System.out.println("framework- imageArray:" + myImages);
+        //System.out.println("framework- imageArray:" + myImages);
+        //System.out.println("image names: "+imageNames);
+        
         SimplePlatform platform = new SimplePlatform(myImages, x, y - myImages[0].getHeight(), imageNames, null);
         DecoratedPlatform myPlatform = null;
         Object[] list = new Object[1];
@@ -73,7 +75,7 @@ public class PlatformFramework implements Framework {
         return myPlatform;
     }
 
-
+    
 
     @Override
     public void updateSprites(List<Object> parameters) {
@@ -82,5 +84,10 @@ public class PlatformFramework implements Framework {
         myPlatformWrappers = (List<Class>) parameters.get(2);
         
         
+    }
+    
+    public String getType()
+    {
+        return "platform";
     }
 }

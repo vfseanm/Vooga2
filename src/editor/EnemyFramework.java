@@ -108,5 +108,10 @@ public class EnemyFramework implements Framework {
         }
         
     }
+    
+    public String getType()
+    {
+        return "enemy";
+    }
 
 }
