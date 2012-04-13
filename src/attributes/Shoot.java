@@ -5,16 +5,23 @@ import fighter.*;
 
 public class Shoot extends Attribute {
 
-	public Shoot(Game game, Fighter fighter) {
-		super(game, fighter);
-		myName = "shoot";
-		// TODO Auto-generated constructor stub
-	}
+    @Override
+    public String getName ()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public void doFunction() {
-		// TODO Auto-generated method stub
-		
-	}
+//	public Shoot(Game game, Fighter fighter) {
+//		super(game, fighter);
+//		myName = "shoot";
+//		// TODO Auto-generated constructor stub
+//	}
+//
+//	@Override
+//	public void doFunction() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }
