@@ -20,8 +20,9 @@ public class SideToSidePlatform extends DecoratedPlatform {
 			setHorizontalSpeed(-speed/25);
 		}
 		myTimer.update();
-		//System.out.println("side2sidebehavior");
-		//System.out.println(getHorizontalSpeed());
+		System.out.println("side2sidebehavior");
+		System.out.println(getHorizontalSpeed());
+		System.out.println(getVerticalSpeed());
 	}
 	
 	public String toString() {
