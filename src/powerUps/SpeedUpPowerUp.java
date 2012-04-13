@@ -1,6 +1,7 @@
-package powerUps;
+package powerups;
 
 import java.awt.image.BufferedImage;
+
 import java.util.List;
 
 
@@ -8,29 +9,28 @@ import attributes.Attribute;
 
 import com.golden.gamedev.Game;
 
-import fighter.attributes.*;
+import characters.fighter.*;
 
 import platforms.BreakablePlatformItemFactory;
 
-import fighter.Fighter;
 
 @SuppressWarnings("serial")
 public class SpeedUpPowerUp extends PowerUp {
 
-    public SpeedUpPowerUp(BufferedImage[] im, double x, double y, List<String> image, Fighter fighter, Game game) {
-        super(im, x, y, image, fighter, game);
+    public SpeedUpPowerUp(BufferedImage[] im, double x, double y, List<String> image) {
+        super(im, x, y, image);
     }
     
-    private SpeedUpPowerUp(BufferedImage[] im, List<String> image, Fighter fighter, Game game) {
-        super(im, 0, 0, image, fighter, game);
+    private SpeedUpPowerUp(BufferedImage[] im, List<String> image) {
+        super(im, 0, 0, image);
     }
     
-    public static BreakablePlatformItemFactory getFactory(BufferedImage[] im, List<String> image, Fighter fighter, Game game) {
-        return new BreakablePlatformItemFactory(new SpeedUpPowerUp(im, image, fighter, game));
+    public static BreakablePlatformItemFactory getFactory(BufferedImage[] im, List<String> image) {
+        return new BreakablePlatformItemFactory(new SpeedUpPowerUp(im, image));
     }
     
     public PowerUp makeItem(double x, double y) {
-        return new SpeedUpPowerUp(getImages(), x, y, getImageNames(), getFighter(), myGame);
+        return new SpeedUpPowerUp(getImages(), x, y, getImageNames());
     }
     
     public Attribute getAttribute() {

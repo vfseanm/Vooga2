@@ -1,10 +1,10 @@
-package powerUps;
+package powerups;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import attributes.Attribute;
 import com.golden.gamedev.Game;
 import platforms.BreakablePlatformItemFactory;
-import fighter.Fighter;
+import characters.fighter.*;
 
 @SuppressWarnings("serial")
 public class FireBallPowerUp extends PowerUp {
@@ -17,7 +17,7 @@ public class FireBallPowerUp extends PowerUp {
         super(im, 0, 0, image);
     }
     
-    public static BreakablePlatformItemFactory getFactory(BufferedImage[] im, List<String> image, Fighter fighter, Game game) {
+    public static BreakablePlatformItemFactory getFactory(BufferedImage[] im, List<String> image) {
         return new BreakablePlatformItemFactory(new FireBallPowerUp(im, image));
     }
     

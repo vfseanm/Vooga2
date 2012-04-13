@@ -26,7 +26,7 @@ public class Enemy extends AnimatedGameSprite
     }
 
     /**
-     * Secret relfection method for sean's uses
+     * Secret reflection method for sean's uses
      * @author Alex
      * @param name
      * @return
@@ -42,7 +42,7 @@ public class Enemy extends AnimatedGameSprite
     }
     
     /**
-     * Secret relfection method for sean's uses
+     * Secret reflection method for sean's uses
      * @author Alex
      * @param name
      * @return
