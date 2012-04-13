@@ -3,7 +3,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import characters.fighter.Fighter;
+import fighter.Fighter;
+
+
 
 
 public class SimplePlatform extends AbstractPlatform {
