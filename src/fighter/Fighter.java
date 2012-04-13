@@ -1,53 +1,107 @@
 package fighter;
 
 import java.awt.image.BufferedImage;
-
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.TreeMap;
-
-import com.golden.gamedev.Game;
 
 import attributes.Attribute;
+import attributes.Updateable;
 import sprite.*;
-import fighter.attributes.*;
-import fighter.attributes.attributeremover.AttributeRemover;
 
 
 @SuppressWarnings("serial")
 public class Fighter extends AnimatedGameSprite {
 
-	private Game							myGame;
-	// map of key = attributes -> value = boolean representing inherency
-	private TreeMap<String, Attribute>		myAttributes; 			
-	private AttributeRemover				myAttributeRemover;	
+	private List<Attribute>					myAttributes; 			
 	private Missile							myMissile;
 	private FighterDeath					myDeathSequence;
 	
 	
-	public Fighter(Game game, BufferedImage[] image, double x, double y, List<String> images) {
+	public Fighter(BufferedImage[] image, double x, double y, List<String> images) {
 		super(image, x, y, images);
-		myGame = game;
-		myAttributes = new TreeMap<String, Attribute>();
+		myAttributes = new ArrayList<Attribute>();
 	}
 
-	/*
+	
     public void update(long elapsedTime) {
-		
-		// if ability isn't inherent, performs appropriate function
-		for (String ability: myAttributes.keySet()) {
-			if (!myAttributes.get(ability).isInherent()) myAttributes.get(ability).doFunction();
+		for (Attribute attribute : myAttributes) {
+
+			if (attribute.getClass().getInterfaces().length != 0
+					&& attribute.getClass().getInterfaces()[0]
+							.equals(Updateable.class)) {
+				try {
+
+					((Updateable) attribute).update(elapsedTime);
+				} catch (ClassCastException e) {
+
+					e.printStackTrace();
+				}
+			}
 		}
-		
 	}
-	*/
-	
-	public void setAttributeRemover(AttributeRemover attributeRemover) {
-		myAttributeRemover = attributeRemover;
+    
+    
+	public void updateAttribute(String name, Object... o) {
+
+		for (Attribute attribute : myAttributes) {
+			if (attribute.getName().equals(name)) {
+				Class<?> c = attribute.getClass();
+				for (Method m : c.getMethods()) {
+					if (!m.getName().startsWith("modify"))
+						continue;
+					if (m.getGenericParameterTypes().length != o.length)
+						continue;
+					for (int i = 0; i < m.getGenericParameterTypes().length; i++) {
+						Class<?> t = m.getParameterTypes()[i];
+						if (!t.equals(o[i])) {
+
+							continue;
+						}
+
+					}
+
+					try {
+						m.invoke(attribute, o);
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						e.printStackTrace();
+					}
+
+				}
+			}
+		}
+
 	}
-	
-	public void changeAttributeRemover(AttributeRemover newAttributeRemover) {
-		myAttributeRemover = newAttributeRemover;
-	}
+    
+    public boolean hasAttribute(String name) {
+        for(Attribute attribute: myAttributes) {
+            if (attribute.getClass().getName().equalsIgnoreCase(name))
+                return true;
+        }
+        return false;
+    }
+    
+    public List<Attribute> getAttributes() {
+        return Collections.unmodifiableList(myAttributes);
+    }
+    
+    public void addAttribute (Attribute attribute) {
+        myAttributes.add(attribute);
+    }
+
+    public void removeAttribute(String name) {
+        for (Attribute attribute: myAttributes) {
+            if (attribute.getName().equalsIgnoreCase(name));
+                myAttributes.remove(attribute);
+        }
+        
+    }
 	
 	public void setMissile(Missile missile) {
 		myMissile = missile;
@@ -61,36 +115,19 @@ public class Fighter extends AnimatedGameSprite {
 		myDeathSequence = deathSequence;
 	}
 	
-    public Attribute searchAttributes(String attribute) {
-            if (myAttributes.containsKey(attribute)) {
-                return myAttributes.get(attribute);
-	    }
-	    return null;
-	}
-	
-	public void setAttributeFalse(Attribute attribute) {
-	    attribute.setActive(false);
-	}
-	
-	public void addExtraAttribute(Attribute extra) {
-	    myAttributes.put(extra.getName(), extra);
-	}
-	
-	public void removeExtraAttribute() {
-		myAttributeRemover.removeAttribute(myAttributes);
-	}
-
-
-	public void updateLives(int numLives) {
-		if (myAttributes.get("health").isActive())
-			myAttributes.get("health").doFunction();
-		else myAttributes.get("life").doFunction();
-		}
-
-	
 	public void dies() {
 		setActive(false);
 		myDeathSequence.setLocation(getX(), getY());
 		// 	ADD DEATH TO PLAYFIELD HERE
 	}
+	
+	public String toString () {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append("Enemy\n");
+        for (Attribute attribute : myAttributes) {
+            toReturn.append(attribute.toString());
+            toReturn.append("\n");
+        }
+        return toReturn.toString();
+    }
 }
