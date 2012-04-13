@@ -2,6 +2,7 @@ package editor;
 
 import java.awt.Color;
 
+
 import java.awt.Dimension;
 
 import java.awt.Graphics2D;
@@ -12,11 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-import platforms.Platform;
-
-import attributes.Attribute;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
