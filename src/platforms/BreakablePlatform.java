@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 import collisions.FighterBreakablePlatformCollisionManager;
-import powerUps.PowerUp;
+import powerups.PowerUp;
 import fighter.*;
 
 @SuppressWarnings("serial")
