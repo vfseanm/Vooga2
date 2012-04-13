@@ -2,15 +2,17 @@ package sidescrolling;
 
 import java.awt.event.KeyEvent;
 
-import com.golden.gamedev.Game;
+
+import Tester.Test;
+
 import com.golden.gamedev.object.Sprite;
 
 public class LeftSidescroller extends DecoratedSidescroller {
 
     private double leftSpeed;
-    private Game myGame;
+    private Test myGame;
     
-    public LeftSidescroller(Game game, Sidescroller scroller, double speed) {
+    public LeftSidescroller(Test game, Sidescroller scroller, double speed) {
         super(scroller);
         myGame = game;
         //can't move right...
