@@ -17,13 +17,11 @@ public class PlatformAction implements ActionPerformer{
 	public void standardaction (AnimatedGameSprite sprite1, AbstractPlatform sprite2, int collisionType){ 
 	    System.out.println("doing standard action");
 	    System.out.println(collisionType);
+	    
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
-			if ( (sprite1.getX()+(sprite1.getWidth()/2) >= sprite2.getX())
-					&& (sprite1.getX()+(sprite1.getWidth()/2) <= sprite2.getX()+ sprite2.getWidth()) ){
-				sprite1.setY(sprite2.getY() - sprite1.getHeight());
+			if ( (sprite1.getX()+(sprite1.getWidth()) >= sprite2.getX())
+					&& (sprite1.getX() <= sprite2.getX()+ sprite2.getWidth()) ){
 				((Enemy) sprite1).updateAttribute("JumpingMovement");
-
-				//Gravity is 0? Because you should be able to jump when you're on platform...
 			}
 		}
 	}

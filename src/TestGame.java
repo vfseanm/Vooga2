@@ -29,7 +29,7 @@ public class TestGame extends Game {
     private Background myBackground;
     private int counter;
     private SimplePlatform p;
-    private SimplePlatform p1;
+    private SimplePlatform p1, p2;
     private PlayField myPF;
     private GameCollisionManager gc;
     private ArrayList<AnimatedGameSprite> list;
@@ -45,9 +45,9 @@ public class TestGame extends Game {
         
         
         bob.addAttribute(new Gravity(1));
-        
-        
-        bob.addAttribute(new JumpingMovement(1,100));
+        bob.addAttribute(new OneDirectionMovement("left",1));        
+        bob.addAttribute(new JumpingMovement(1,80));
+        //bob.addAttribute(new JumpingMovement(1,100));
         
         counter=0;
         a.clear(); 
@@ -59,13 +59,17 @@ public class TestGame extends Game {
         
 
         b1[0]= getImage("resources/platform1.png"); 
-        p1 = new SimplePlatform (b1, 300,450, a, null);
+        p1 = new SimplePlatform (b1, 100,300, a, null);
         
+        b1[0]= getImage("resources/platform1.png"); 
+        p2 = new SimplePlatform (b1, 200,350, a, null);
+
         
          list = new ArrayList<AnimatedGameSprite>();
         
         list.add(p);
         list.add(p1);
+        list.add(p2);
          gc = new GameCollisionManager();
                 
     }
@@ -77,6 +81,7 @@ public class TestGame extends Game {
        bob.render(arg0);
        p.render(arg0);
        p1.render(arg0);
+       p2.render(arg0);
         
     }
 
@@ -88,9 +93,10 @@ public class TestGame extends Game {
         bob.update(arg0);
         p.update(arg0);
         p1.update(arg0);
+        p2.update(arg0);
         gc.GameCollision(bob, list);
         if(counter==800){
-            bob.addAttribute(new OneDirectionMovement("left",1));
+            
         }
         
         
