@@ -42,7 +42,7 @@ public class PlayerButton extends TButton
     public void doAction ()
     {
         
-        myView.configurePlayer();
+        myView.openBox("player");
            
     }
     

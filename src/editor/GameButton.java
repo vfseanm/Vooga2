@@ -42,7 +42,7 @@ public class GameButton extends TButton
     public void doAction ()
     {
         
-        myView.configureGame();
+        myView.openBox("game");
            
     }
     
