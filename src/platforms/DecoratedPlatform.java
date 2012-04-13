@@ -27,14 +27,14 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	
 	public void updateAll(long elapsedTime) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.update(elapsedTime);
+			myDecoratorComponent.updateAll(elapsedTime);
 		}
 		doBehavior(mySpeed, myDistance);
 	}
 	
 	public void renderAll(Graphics2D graphics) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.render(graphics);
+			myDecoratorComponent.renderAll(graphics);
 		}
 		render(graphics);
 	}
