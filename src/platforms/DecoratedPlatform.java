@@ -52,10 +52,11 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	}
 	
 	public void update(long elapsedTime) {
+		doBehavior(mySpeed, myDistance);
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.update(elapsedTime);
 		}
-		doBehavior(mySpeed, myDistance);
+		
 		super.update(elapsedTime);
 	}
 	
