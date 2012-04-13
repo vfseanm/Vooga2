@@ -1,8 +1,5 @@
 package demo;
 
-
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,19 +10,19 @@ import java.util.List;
 import sprite.AnimatedGameSprite;   
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.GameLoader;
 
 import editor.Level;
-import enemies.Enemy;
+import fighter.*;
 
 public abstract  class PlatformGame extends Game {
     
-    protected List<AnimatedGameSprite> sprites;
-    private Level level;
+    protected List<AnimatedGameSprite> mySprites;
+    private Level myLevel;
+    private Fighter myFighter;
     
     PlatformGame()
     {
-        sprites = new ArrayList<AnimatedGameSprite>();
+        mySprites = new ArrayList<AnimatedGameSprite>();
     }
     public void loadLevel(String filename)
     {
@@ -36,7 +33,7 @@ public abstract  class PlatformGame extends Game {
         {
           fis = new FileInputStream(file);
           in = new ObjectInputStream(fis);
-          level = (Level)in.readObject();
+          myLevel = (Level)in.readObject();
           in.close();
         }
         catch(IOException ex)
@@ -48,11 +45,11 @@ public abstract  class PlatformGame extends Game {
           ex.printStackTrace();
         }
 
-        sprites = level.getSprites();
+        mySprites = myLevel.getSprites();
     }
-
-
-
-
+    
+    public Fighter getFighter() {
+    	return myFighter;
+    }
 
 }

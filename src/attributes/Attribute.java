@@ -15,6 +15,7 @@ public abstract class  Attribute implements Serializable
 {
     protected Enemy myEnemy;
     public abstract String getName();
+    
     //associates an attribute to its enemy
     public void setEnemy(Enemy enemy){
         myEnemy = enemy;

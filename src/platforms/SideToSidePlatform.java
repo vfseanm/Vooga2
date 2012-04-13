@@ -1,3 +1,4 @@
+
 package platforms;
 
 public class SideToSidePlatform extends DecoratedPlatform {

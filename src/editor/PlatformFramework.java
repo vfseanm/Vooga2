@@ -44,7 +44,7 @@ public class PlatformFramework implements Framework {
         {
             System.out.println("class:" + c);
             System.out.println("lenght" + c.getConstructors().length);
-            Constructor constructor=  c.getConstructors()[1];
+            Constructor constructor=  c.getConstructors()[0];
             try {
                 myPlatform = (DecoratedPlatform) constructor.newInstance(list);
             } catch (IllegalArgumentException e) {

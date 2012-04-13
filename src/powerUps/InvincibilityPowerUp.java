@@ -1,4 +1,4 @@
-package powerUps;
+package powerups;
 
 import java.awt.image.BufferedImage
 
