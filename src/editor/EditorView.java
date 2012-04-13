@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import platforms.Platform;
 
@@ -357,21 +358,16 @@ public class EditorView extends Game {
 
     private JFrame frame;
 
-//    public openBox(String type)
-//    {
-//        //nemyDialogueBox myView = new EnemyDialogueBox(myModel, "enemy");
-//        myMap.get(type);
-//        frame = new JFrame("Enemy Behaviors");
-//        Dimension d = new Dimension(500, 300);
-//        frame.setPreferredSize(d);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.getContentPane().add(myView);
-//        frame.pack();
-//        frame.setVisible(true);
-//    }
-    public void addEnemy()
+    public void openBox(String type)
     {
-        EnemyDialogueBox myView = new EnemyDialogueBox(myModel);
+        DialogueBox myView = null;
+        if(type.contentEquals("enemy"))
+            myView = new EnemyDialogueBox(myModel);
+        else if (type.contentEquals("platform"))
+            myView = new PlatformDialogueBox(myModel);
+        else if (type.contentEquals("player"))
+            myView = new PlayerDialogue(myModel);
+        
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -380,39 +376,8 @@ public class EditorView extends Game {
         frame.pack();
         frame.setVisible(true);
     }
-    public void addPlatform()
-    {
-        PlatformDialogueBox myView = new PlatformDialogueBox(myModel);
-        frame = new JFrame("Enemy Behaviors");
-        Dimension d = new Dimension(500, 300);
-        frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
-    }
-    public void addPowerUp()
-    {
-        PowerupDialogueBox myView = new PowerupDialogueBox(myModel, "powerup");
-        frame = new JFrame("Enemy Behaviors");
-        Dimension d = new Dimension(500, 300);
-        frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
-    }
-    public void configurePlayer()
-    {
-        PlayerDialogue myView = new PlayerDialogue(myModel);
-        frame = new JFrame("Enemy Behaviors");
-        Dimension d = new Dimension(500, 300);
-        frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
-    }
+    
+    
     public void configureGame()
     {
         GameDialogue myView = new GameDialogue(myModel);
