@@ -1,11 +1,14 @@
 package platforms;
 
+import java.awt.image.BufferedImage;
+
 public class RotatingPlatform extends DecoratedPlatform {
 	
 	private static final long serialVersionUID = 7537483544825845415L;
 	int myFrames = 0;
 	int myWidth;
 	int myHeight;
+	double myDelay = 100;
 	
 	public RotatingPlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);
@@ -18,7 +21,9 @@ public class RotatingPlatform extends DecoratedPlatform {
 		if (!isAnimate()) {
 			setAnimate(true);
 		}
-		rotateCenterAxis(speed);
+		System.out.println(getImages().length);
+		System.out.println(getFrame());
+		rotateCenterAxis(myDelay);
 	}
 	
 	public void rotateCenterAxis(double delay) {

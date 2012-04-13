@@ -37,7 +37,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	
 	public void setVerticalSpeed(double speed) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setHorizontalSpeed(speed);
+			myDecoratorComponent.setVerticalSpeed(speed);
 		}
 		super.setVerticalSpeed(speed);
 		
@@ -52,18 +52,17 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	}
 	
 	public void update(long elapsedTime) {
-		doBehavior(mySpeed, myDistance);
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.update(elapsedTime);
 		}
-		
+		doBehavior(mySpeed, myDistance);
 		super.update(elapsedTime);
 	}
 	
-	public void renderAll(Graphics2D graphics) {
+	public void render(Graphics2D graphics) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.renderAll(graphics);
+			myDecoratorComponent.render(graphics);
 		}
-		render(graphics);
+		super.render(graphics);
 	}
 }

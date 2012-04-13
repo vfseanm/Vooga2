@@ -17,8 +17,7 @@ public class DemoGame extends PlatformGame{
         for(AnimatedGameSprite s: mySprites)
         {
             System.out.println(s);
-        }
-        
+        }  
     }
 
     @Override
@@ -28,9 +27,8 @@ public class DemoGame extends PlatformGame{
         pen.fillRect(0, 0, getWidth(), getHeight());
         for(AnimatedGameSprite s:  mySprites)
         {
-            s.render(pen);
-        }
-   
+           s.render(pen);
+        }   
     }
 
     @Override
