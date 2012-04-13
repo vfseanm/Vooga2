@@ -24,7 +24,7 @@ public class BreakablePlatform extends DecoratedPlatform {
 	protected void doBehavior(double speed, double distance) {
 		
 	
-		//do some check collision thing
+		//do some check collision thing - need Ashwin to complete
 		//releaseItem();
 		//setActive(false);
 	}
