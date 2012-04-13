@@ -25,7 +25,7 @@ public class Fighter extends AnimatedGameSprite {
 		myAttributes = new ArrayList<Attribute>();
 	}
 
-	// FIX TO UPDATE FIGHTER
+	
     public void update(long elapsedTime) {
 		for (Attribute attribute : myAttributes) {
 
