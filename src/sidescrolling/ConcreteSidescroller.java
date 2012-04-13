@@ -2,9 +2,10 @@ package sidescrolling;
 
 
 import com.golden.gamedev.object.Sprite;
+
 import com.golden.gamedev.object.SpriteGroup;
 
-import fighter.Fighter;
+import characters.fighter.Fighter;
 
 public class ConcreteSidescroller extends Sidescroller {
 

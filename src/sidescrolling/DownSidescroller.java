@@ -2,26 +2,35 @@ package sidescrolling;
 
 import java.awt.event.KeyEvent;
 
-import com.golden.gamedev.engine.BaseInput;
+
+import characters.fighter.Fighter;
+
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
 public class DownSidescroller extends DecoratedSidescroller {
     
     private double downSpeed;
-    private BaseInput inputEngine;
+    private Game myGame;
+    private double boundary;
     
-    public DownSidescroller(BaseInput input, Sidescroller scroller, double speed) {
+    public DownSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromBottom) {
         super(scroller);
-        inputEngine = input;
+        myGame = game;
         if (speed > 0) {
             throw new RuntimeException("You must choose a negative number.");
         }
         downSpeed = speed;
+        boundary = myGame.getHeight() - offsetFromBottom;
     }
     
     public void move(Sprite sprite) {
-        if (inputEngine.isKeyDown(KeyEvent.VK_DOWN)) {
-            sprite.moveY(downSpeed);
+        if (myGame.keyDown(KeyEvent.VK_DOWN)) {
+            Fighter fighter = getFighter();
+            if (fighter.getX() >= boundary) {
+                sprite.moveX(downSpeed);
+                fighter.setX(boundary);
+            }
         }
         super.move(sprite);
     }

@@ -2,7 +2,7 @@ package sidescrolling;
 
 import com.golden.gamedev.object.*;
 
-import fighter.Fighter;
+import characters.fighter.Fighter;
 
 public abstract class Sidescroller {
                  

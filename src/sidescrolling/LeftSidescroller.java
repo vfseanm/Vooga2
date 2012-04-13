@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
-import fighter.Fighter;
+import characters.fighter.Fighter;
 
 public class LeftSidescroller extends DecoratedSidescroller {
 
@@ -14,7 +14,7 @@ public class LeftSidescroller extends DecoratedSidescroller {
     private Game myGame;
     private double boundary;
     
-    public LeftSidescroller(Game game, Sidescroller scroller, double speed, double border) {
+    public LeftSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromLeft) {
         super(scroller);
         myGame = game;
         //can't move right...
@@ -22,7 +22,7 @@ public class LeftSidescroller extends DecoratedSidescroller {
             throw new RuntimeException("You must choose a positive number.");
         }
         leftSpeed = speed;
-        boundary = myGame.getWidth() + border;
+        boundary = offsetFromLeft;
     }
    
     public void move(Sprite sprite) {
