@@ -6,6 +6,7 @@ import java.util.Random;
 
 import powerups.PowerUp;
 
+
 public class BreakablePlatform extends DecoratedPlatform {
 
 	private static final long serialVersionUID = 1254073087890380273L;
