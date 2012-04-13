@@ -18,6 +18,19 @@ public class Visibility extends Attribute
     {
         isVisible = visible;
         myImage=myEnemy.getImages();
+        checkAndSetVisibility();
+    }
+
+
+    private void checkAndSetVisibility ()
+    {
+        if(!isVisible){
+            myEnemy.setImages(null);
+        }
+        else{
+            myEnemy.setImages(myImage);
+        }
+        
     }
 
 
@@ -31,9 +44,7 @@ public class Visibility extends Attribute
     public void modifyVisibility (boolean visible)
     {
         isVisible = visible;
-        if(!isVisible){
-            myEnemy.setImage(arg0);
-        }
+        checkAndSetVisibility();
     }
     
     public String toString(){

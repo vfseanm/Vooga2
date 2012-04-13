@@ -8,7 +8,6 @@ public class Attack extends Attribute implements Updateable
    
     public void update (long elaspedTime)
     {
-        // TODO Auto-generated method stub
         
     }
 
