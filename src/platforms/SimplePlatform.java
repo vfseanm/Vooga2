@@ -49,9 +49,9 @@ public class SimplePlatform extends AbstractPlatform {
 	}
 	
 	public void render(Graphics2D graphics) {
-		System.out.println("doh!");
+		//System.out.println("doh!");
 		super.render(graphics);
-		System.out.println("rendering!!");
+		//System.out.println("rendering!!");
 	}
 	
 	public void moveAll(double x, double y) {

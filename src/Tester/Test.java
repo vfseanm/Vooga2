@@ -19,13 +19,17 @@ import fighter.*;
 public class Test extends Game{
 	
 	AbstractPlatform myPlatform;
+	Fighter myFighter;
    
     public void initResources() {
-    	BufferedImage[] ims = new BufferedImage[1];
+    	BufferedImage[] ims = new BufferedImage[2];
     	ims[0] = getImage("platform1.png");
+    	ims[1] = getImage("RotatingPlatform3.png");
     	ArrayList<String> imNames = new ArrayList<String>();
     	imNames.add("platform1.png");
-    	myPlatform = new SimplePlatform(ims, 200, 200, imNames, null);  
+    	imNames.add("RotatingPlatform3.png");
+    	myPlatform = new SimplePlatform(ims, 200, 200, imNames, myFighter);  
+    	myPlatform = new RotatingPlatform(myPlatform);
     	myPlatform = new SideToSidePlatform(myPlatform);
     	myPlatform = new UpDownPlatform(myPlatform);
     }
