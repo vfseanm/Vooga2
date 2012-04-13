@@ -29,9 +29,8 @@ import sprite.AnimatedGameSprite;
     import com.golden.gamedev.object.background.ImageBackground;
 
     import enemies.Enemy;
-    import enemies.movement.Gravity;
     import enemies.movement.JumpingMovement;
-    import enemies.movement.OneDirectionMovement;
+import enemies.movement.OneDirectionMovement;
 
 
     public class DemoGame extends PlatformGame {

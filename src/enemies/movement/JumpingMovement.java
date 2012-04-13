@@ -39,7 +39,7 @@ public class JumpingMovement extends Attribute implements Updateable
     }
 
 
-    public void update (long elaspedTime)
+    public void update (long elapsedTime)
     {
 
         if (time<=myTime)

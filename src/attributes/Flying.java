@@ -1,8 +1,6 @@
-package enemies.movement;
+package attributes;
 
 import editor.editorConstructor;
-import attributes.Attribute;
-import attributes.Updateable;
 
 // knows gravity too well?
 public class Flying extends Attribute implements Updateable

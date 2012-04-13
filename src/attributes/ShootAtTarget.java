@@ -1,48 +1,53 @@
 package attributes;
 
 import java.awt.event.KeyEvent;
-
-import com.golden.gamedev.Game;
+import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.*;
-import fighter.*;
+import sprite.*;
 
-public class ShootAtTarget extends Attribute {
+@SuppressWarnings("serial")
+public class ShootAtTarget extends Attribute implements Updateable {
 
-    @Override
-    public String getName ()
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public String getName() {
+		return "ShootAtTarget";
+	}
 
-//	Sprite 		myTarget;
-//	boolean 	canFire;
-//	Timer 		refireRate;
-//	
-//	public ShootAtTarget(Game game, Fighter fighter, Sprite target) {
-//		super(game, fighter);
-//		myTarget = target;
-//		myName = "shootattarget";
-//	}
-//
-//	@Override
-//	public void doFunction() {
-//		if (isActive) {
-//			if (myGame.keyDown(KeyEvent.VK_SPACE) && canFire) {
-//				double horizDistance = myTarget.getX() - myFighter.getX();
-//				double vertDistance = myTarget.getY() - myFighter.getY();
-//				double ratio = vertDistance / horizDistance;
-//				
-//				if (horizDistance < 0)
-//					myFighter.getMissile().setSpeed(-0.7, -0.7 * ratio);
-//				else
-//					myFighter.getMissile().setSpeed(0.7, 0.7 * ratio);
-//				// ADD MISSILE TO PLAYFIELD HERE
-//			}
-//		}
-//	}
-//
-//	public void setTarget(Sprite newTarget) {
-//		myTarget = newTarget;
-//	}
+	BaseInput myUserInput;
+	Sprite myTarget;
+	boolean myCanFire;
+	Timer myRefireRate;
+
+	public ShootAtTarget(BaseInput userInput, AnimatedGameSprite target,
+			int refireRate) {
+		myUserInput = userInput;
+		myTarget = target;
+		myCanFire = true;
+		myRefireRate = new Timer(refireRate);
+	}
+
+	public void setTarget(Sprite newTarget) {
+		myTarget = newTarget;
+	}
+
+	public void update(long elapsedTime) {
+		
+		if (!myCanFire) {
+			myCanFire = myRefireRate.action(elapsedTime);
+		}
+		
+		if (myUserInput.isKeyPressed((KeyEvent.VK_SPACE)) && myCanFire) {
+			double horizDistance = myTarget.getX() - myFighter.getX();
+			double vertDistance = myTarget.getY() - myFighter.getY();
+			double ratio = vertDistance / horizDistance;
+
+			if (horizDistance < 0)
+				myFighter.getMissile().setSpeed(-0.7, -0.7 * ratio);
+			else
+				myFighter.getMissile().setSpeed(0.7, 0.7 * ratio);
+			
+			myCanFire = false;
+		}
+	}
+
 }

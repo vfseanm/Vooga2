@@ -12,15 +12,15 @@ import attributes.Updateable;
 public class Jump extends Attribute implements Updateable {
 
 	public BaseInput 	myUserInput;
-	public Timer 		myTimer;
+	public long 		myTime;
 	public double 		myJumpDistance;
 	public boolean		myCanJump;
 	public boolean 		myAtJumpPeak;
 
 	
-	public Jump(BaseInput userInput, int time, double jumpDistance) {
+	public Jump(BaseInput userInput, long time, double jumpDistance) {
 		myUserInput = userInput;
-		myTimer = new Timer(time);
+		myTime = time;
 		myJumpDistance = Math.abs(jumpDistance);
 		myCanJump = true;
 	}
@@ -28,11 +28,16 @@ public class Jump extends Attribute implements Updateable {
 	public void update(long elapsedTime) {
 		if (myActivity) {
 			if (!myCanJump) 
-				myCanJump = myTimer.action(elapsedTime);
+				myAtJumpPeak = myTimer.action(elapsedTime);
 			if (myCanJump && myUserInput.isKeyDown(KeyEvent.VK_UP)) {
 				myFighter.moveY(myJumpDistance);
+				myCanJump = false;
+			}
+			if (myAtJumpPeak) {
+				myFighter.updateAttribute("Gravity", 0);
 			}
 		}
+		myTime++;
 	}
 	
 	public changeJumpDistance() {
