@@ -48,17 +48,13 @@ import sprite.AnimatedGameSprite;
         @Override
         public void initResources ()
         {
-<<<<<<< HEAD
-            System.out.println(s);
-        }  
-    }
-=======
+
             loadLevel("level2");
             
             Fighter myFighter = new Fighter(mySprites.get(0).getImages(), 100, 100, mySprites.get(0).getImageNames());
             System.out.println("fighter" + myFighter);
-            myFighter.addAttribute(new BasicMovement(bsInput, 5, 5));
-            myFighter.addAttribute(new Gravity(1));
+            myFighter.addAttribute(new BasicMovement(bsInput, 5));
+           // myFighter.addAttribute(new Gravity(1));
             
             
             //SpriteGroup fighter = myPlayField.addGroup(new SpriteGroup("Fighter"));
@@ -113,16 +109,12 @@ import sprite.AnimatedGameSprite;
              }
                     
         }
->>>>>>> b33305758c0eeb219ca93633bd88ab71a7ad9479
+
 
         @Override
         public void render (Graphics2D arg0)
         {
-<<<<<<< HEAD
-           s.render(pen);
-        }   
-    }
-=======
+
             myBackground.render(arg0);
             //myPlayField.render(arg0);
             allSprites.render(arg0);
@@ -133,7 +125,7 @@ import sprite.AnimatedGameSprite;
            
             
         }
->>>>>>> b33305758c0eeb219ca93633bd88ab71a7ad9479
+
 
         @Override
         public void update (long arg0)

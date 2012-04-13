@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.golden.gamedev.util.ImageUtil;
 
-import characters.fighter.*;
+import fighter.Fighter;
 import sprite.AnimatedGameSprite;
 
 public abstract class AbstractPlatform extends AnimatedGameSprite {
