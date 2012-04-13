@@ -1,6 +1,7 @@
 package Tester;
 
 import java.awt.*;
+
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import sidescrolling.*;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
-import characters.fighter.Fighter;
+import fighter.*;
 
 
 public class Test extends Game{
@@ -40,6 +41,7 @@ public class Test extends Game{
         fighter.setAnimationFrame(0, 3);
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
+        fighter.addAttribute(new BasicMovement(bsInput, 1.0, 1.0));
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
         
@@ -57,12 +59,12 @@ public class Test extends Game{
         AbstractPlatform p4 = new SimplePlatform(im, 10, 15, imageName, fighter);
         group2.add(p4);
         sidescroller = new ConcreteSidescroller(fighter, group1, group2);
-        sidescroller = new LeftSidescroller(this, sidescroller, 1.0, -40);
-        sidescroller = new RightSidescroller(this, sidescroller, -1.0, 40);
+        sidescroller = new LeftSidescroller(this, sidescroller, 1.0, 100);
+        sidescroller = new RightSidescroller(this, sidescroller, -1.0, 100);
         sidescroller = new UpSidescroller(this, sidescroller, 1.0, 0);
         sidescroller = new DownSidescroller(this, sidescroller, -1.0, 0);
         //sidescroller = new ForcedDownSidescroller(sidescroller, -1.0);
-        //sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);        
+        sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);        
     }
     
     public void render (Graphics2D pen) {
