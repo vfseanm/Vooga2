@@ -11,7 +11,7 @@ public class ForcedUpSidescroller extends DecoratedSidescroller {
         if (speed < 0) {
             speed = 0;
         }
-        forcedUpSpeed = 0;
+        forcedUpSpeed = speed;
     }
 
     public void move(Sprite sprite) {

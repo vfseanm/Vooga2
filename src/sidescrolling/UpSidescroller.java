@@ -2,18 +2,17 @@ package sidescrolling;
 
 import java.awt.event.KeyEvent;
 
-import Tester.Test;
-
+import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.Sprite;
 
 public class UpSidescroller extends DecoratedSidescroller { 
 
     private double upSpeed;
-    private Test myGame;
+    private BaseInput inputEngine;
     
-    public UpSidescroller(Test game, Sidescroller scroller, double speed) {
+    public UpSidescroller(BaseInput input, Sidescroller scroller, double speed) {
         super(scroller);
-        myGame = game;
+        inputEngine = input;
         if (speed < 0) {
             speed = 0;
         }
@@ -21,7 +20,7 @@ public class UpSidescroller extends DecoratedSidescroller {
     }
     
     public void move(Sprite sprite) {
-        if (myGame.keyDown(KeyEvent.VK_UP)) {
+        if (inputEngine.isKeyDown(KeyEvent.VK_UP)) {
             sprite.moveY(upSpeed);
         }
         super.move(sprite);
