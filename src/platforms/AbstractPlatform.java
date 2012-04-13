@@ -21,6 +21,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	protected abstract void doBehavior(double speed, double distance);
 	public abstract void updateAll(long elapsedTime);
 	public abstract void renderAll(Graphics2D graphics);
-	
+	public abstract void setAllHorizontalSpeed(double speed);
+	public abstract void moveAll(double x, double y);
 
 }

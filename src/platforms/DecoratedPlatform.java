@@ -6,16 +6,17 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	 
 	private static final long serialVersionUID = -9022534130487528963L;
 	protected AbstractPlatform myDecoratorComponent;
-	protected double mySpeed = 10;
-	protected double myDistance = 10;
+	protected double mySpeed = 1;
+	protected double myDistance = 100;
 	FrameTimer myTimer = new FrameTimer();
 	
 	public DecoratedPlatform(AbstractPlatform decoratorComponent) {
+		super(decoratorComponent.getImages(), decoratorComponent.getX(), decoratorComponent.getY(), decoratorComponent.getImageNames(), null);
 		myDecoratorComponent = decoratorComponent;
-		setX(myDecoratorComponent.getX());
+		/*setX(myDecoratorComponent.getX());
 		setY(myDecoratorComponent.getY());
 		setImages(myDecoratorComponent.getImages());
-		setImageNames(myDecoratorComponent.getImageNames());
+		setImageNames(myDecoratorComponent.getImageNames());*/
 	}
 	
 	public void setSpeed(double speed) {
@@ -26,11 +27,28 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		myDistance = distance;
 	}
 	
+	public void setAllHorizontalSpeed(double speed) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.setAllHorizontalSpeed(speed);
+		}
+		setHorizontalSpeed(speed);
+		
+	}
+	
+	public void moveAll(double x, double y) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.moveAll(x, y);
+		}
+		move(x, y);
+		
+	}
+	
 	public void updateAll(long elapsedTime) {
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.updateAll(elapsedTime);
 		}
 		doBehavior(mySpeed, myDistance);
+		update(elapsedTime);
 	}
 	
 	public void renderAll(Graphics2D graphics) {

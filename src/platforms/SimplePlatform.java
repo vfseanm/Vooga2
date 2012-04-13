@@ -10,8 +10,8 @@ public class SimplePlatform extends AbstractPlatform {
 	private static final long serialVersionUID = 7514750773895804951L;
 
 	public SimplePlatform(BufferedImage[] im, double x, double y, List<String> images, Fighter fighter) {
-	        super(im, x, y, images, fighter);
-	    }
+	    super(im, x, y, images, fighter);
+	}
 
 	@Override
 	protected void doBehavior(double speed, double distance) {
@@ -30,12 +30,21 @@ public class SimplePlatform extends AbstractPlatform {
 	@Override
 	public void updateAll(long elapsedTime) {
 		update(elapsedTime);
-		
 	}
 
 	@Override
 	public void renderAll(Graphics2D graphics) {
-		render(graphics);
-		
+		render(graphics);	
+	}
+	
+	public void setAllHorizontalSpeed(double speed) {
+		setHorizontalSpeed(speed);
+		//System.out.println("simpleplatmove");
+	}
+	
+	public void moveAll(double x, double y) {
+		move(x, y);
+		System.out.println("simpleplatmove");
+		System.out.println(getX() + " " + getY());
 	}
 }
