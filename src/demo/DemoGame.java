@@ -24,7 +24,7 @@ public class DemoGame extends PlatformGame{
         {
             s.render(pen);
         }
-        
+   
     }
 
     @Override
