@@ -117,9 +117,9 @@ public class EditorView extends Game {
         infoBox.add(newpowerUpButton);
         
   
-        TButton openButton = new OpenButton("Open", 100, 660, 60, 40, this);
+        TButton openButton = new OpenButton("Open", 70, 660, 60, 40, this);
 
-        SaveButton saveButton = new SaveButton("Save", 200, 660, 60, 40, this);
+        SaveButton saveButton = new SaveButton("Save", 120, 660, 60, 40, this);
 
         
         infoBox.add(l3);
@@ -339,6 +339,18 @@ public class EditorView extends Game {
 
     private JFrame frame;
 
+//    public openBox(String type)
+//    {
+//        //nemyDialogueBox myView = new EnemyDialogueBox(myModel, "enemy");
+//        myMap.get(type);
+//        frame = new JFrame("Enemy Behaviors");
+//        Dimension d = new Dimension(500, 300);
+//        frame.setPreferredSize(d);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.getContentPane().add(myView);
+//        frame.pack();
+//        frame.setVisible(true);
+//    }
     public void addEnemy()
     {
         EnemyDialogueBox myView = new EnemyDialogueBox(myModel, "enemy");

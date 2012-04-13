@@ -37,16 +37,17 @@ public class PlayerDialogue extends JPanel {
     private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
     private BufferedImage myImage;
     private String myImagePath;
+    private String myType;
 
     @SuppressWarnings("rawtypes")
     public PlayerDialogue(EditorController m)
     {
+        myType = "player";
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;
         reflection = new Reflection();
         setLayout(new BorderLayout());
-        
         add(makeInputPanel(), BorderLayout.NORTH);
     }
 
@@ -67,7 +68,7 @@ public class PlayerDialogue extends JPanel {
         {
             e1.printStackTrace();
         }
-        System.out.println(myImagePath);
+        //System.out.println(myImagePath);
         BufferedImage img = null;
         try
         {
@@ -125,20 +126,38 @@ public class PlayerDialogue extends JPanel {
             }
         }
 
-        JLabel label1 = new JLabel("Enemy Name");
-        panel.add(label1);
-
-        myName = new JTextField(10);
-
-        panel.add(myName);
+        
+        JLabel label6 = new JLabel("Carryable Items:");
+        panel.add(label6);
+        
+        List<Class> carryableList = reflection.getInstancesOf("enemies.movement", Attribute.class);
+        carryableList.addAll(reflection.getInstancesOf("attributes", Attribute.class));
+        for (Class c : carryableList)
+        {
+            boolean isAnnotated = false;
+            for(Constructor constructor : c.getConstructors())
+            {
+                if(constructor.isAnnotationPresent(editorConstructor.class))
+                {
+                    isAnnotated = true;
+                }
+            }
+            if(isAnnotated)
+            {
+                JLabel label1 = new JLabel(c.getName());
+                panel.add(label1);
+                JCheckBox box = new JCheckBox();
+                panel.add(box);
+                box.addActionListener(new CheckBoxListener(box, c));
+                attributeMap.put(box, c);
+            }
+        }
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Configure Player";
-                
-        JButton goButton = new JButton(buttonPhrase);
+        JButton goButton = new JButton("Create Player");
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
 
@@ -157,14 +176,14 @@ public class PlayerDialogue extends JPanel {
                 {
                     attributes.add( attributeInstanceMap.get(box));
                 }
-                    
             }
             BufferedImage[] s = new BufferedImage[1];
             s[0] = myImage;
             ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
-            EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            //myModel.addButton(myName.getText(), framework, myType);
+            ArrayList<Carryable> carryables = new ArrayList<Carryable>();
+            PlayerFramework framework = new PlayerFramework(s, imagePaths, attributes, carryables);
+            myModel.addButton(myName.getText(), framework, "fighter");
             setVisible(false);
         }
     }
@@ -196,9 +215,10 @@ public class PlayerDialogue extends JPanel {
             
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
+            Class[] paramTypes =constructor.getParameterTypes();
             Object[] argList = null;
-            System.out.println(paramNames.length);
-            System.out.println("got here");
+            //System.out.println(paramNames.length);
+            //System.out.println("got here");
             if(!paramNames[0].equals(""))
             {
                 argList = new Object[paramNames.length];
@@ -206,7 +226,24 @@ public class PlayerDialogue extends JPanel {
                 {
                     String selectedValue = JOptionPane
                         .showInputDialog("What would you like the "+ paramNames[i]+ " to be?");
-                    argList[i]=Integer.parseInt(selectedValue);
+                    
+
+                    if(paramTypes[i].equals(int.class))
+                    {
+                        argList[i]=Integer.parseInt(selectedValue);
+                    }
+                    if(paramTypes[i].equals(String.class))
+                    {
+                        argList[i] = selectedValue;
+                    }
+                    if(paramTypes[i].equals(double.class))
+                    {
+                        argList[i] = Double.parseDouble(selectedValue);
+                    }
+                    if(paramTypes[i].toString().equals("boolean"))
+                    {
+                        argList[i] = Boolean.parseBoolean(selectedValue);
+                    }
                 }
             }
              
@@ -216,10 +253,6 @@ public class PlayerDialogue extends JPanel {
                     attribute.add(argList);
                     attributeInstanceMap.put(box, attribute);
                 
-            
-            
-            
-            
             }
     }
 

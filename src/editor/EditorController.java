@@ -186,6 +186,11 @@ public void addButton( String name, Framework framework, String type)
             platformButtonCounter +=2;
             myView.addButton(newButton);
         }
+    else if (type.contentEquals("fighter"))
+    {
+        Button playerButton = new Button("Place Fighter", 200, 660, 60, 40, framework, myView);
+        myView.addButton(playerButton);
+    }
     myView.closeFrame();
 }
 public void setBackground(BufferedImage image, String imagePath)

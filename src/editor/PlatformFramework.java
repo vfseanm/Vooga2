@@ -7,6 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import enemies.Enemy;
+
 import platforms.AbstractPlatform;
 import platforms.DecoratedPlatform;
 import platforms.Platform;
@@ -26,10 +28,13 @@ public class PlatformFramework implements Framework {
     private List<String> imageNames;
     private List<Class> myPlatformWrappers;
 
+    private ArrayList<DecoratedPlatform> mySprites;
+
     public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers) {
         myImages = im;
         imageNames = images;
         myPlatformWrappers = platformWrappers;
+        mySprites = new ArrayList<DecoratedPlatform>();
     }
 
 
@@ -63,8 +68,19 @@ public class PlatformFramework implements Framework {
             list[0] = myPlatform;
             
         }
-        
+        mySprites.add(myPlatform);
         
         return myPlatform;
+    }
+
+
+
+    @Override
+    public void updateSprites(List<Object> parameters) {
+        myImages = (BufferedImage[]) parameters.get(0);
+        imageNames = (ArrayList<String>) parameters.get(1);
+        myPlatformWrappers = (List<Class>) parameters.get(2);
+        
+        
     }
 }
