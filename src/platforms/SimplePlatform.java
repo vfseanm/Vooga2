@@ -17,19 +17,14 @@ public class SimplePlatform extends AbstractPlatform {
 	protected void doBehavior(double speed, double distance) {
 		return;	
 	}
-
-	@Override
-	public void update(long elapsedTime) {
-		return;
-	}
 	
 	public String toString() {
 		return "platform";
 	}
 
 	@Override
-	public void updateAll(long elapsedTime) {
-		update(elapsedTime);
+	public void update(long elapsedTime) {
+		super.update(elapsedTime);
 	}
 
 	@Override
