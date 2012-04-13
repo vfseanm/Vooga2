@@ -1,11 +1,10 @@
 package powerups;
 
 import java.awt.image.BufferedImage;
+
 import java.util.List;
 import attributes.*;
-import com.golden.gamedev.Game;
 import platforms.BreakablePlatformItemFactory;
-import characters.fighter.*;
 
 @SuppressWarnings("serial")
 public class SuperJumpPowerUp extends PowerUp {
