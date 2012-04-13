@@ -28,7 +28,10 @@ public class BasicMovement extends Attribute implements Updateable {
 	public void update(long elaspedTime) {
 		
 		if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) 
-			myFighter.moveX(-myHorizMovement);
+		{
+		    myFighter.moveX(-myHorizMovement);
+		}
+			
 		
 		if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) 
 			myFighter.moveX(myHorizMovement);
