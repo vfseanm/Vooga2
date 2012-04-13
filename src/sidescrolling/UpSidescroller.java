@@ -2,15 +2,16 @@ package sidescrolling;
 
 import java.awt.event.KeyEvent;
 
-import com.golden.gamedev.Game;
+import Tester.Test;
+
 import com.golden.gamedev.object.Sprite;
 
 public class UpSidescroller extends DecoratedSidescroller { 
 
     private double upSpeed;
-    private Game myGame;
+    private Test myGame;
     
-    public UpSidescroller(Game game, Sidescroller scroller, double speed) {
+    public UpSidescroller(Test game, Sidescroller scroller, double speed) {
         super(scroller);
         myGame = game;
         if (speed < 0) {
