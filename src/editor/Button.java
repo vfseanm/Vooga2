@@ -53,11 +53,14 @@ public ArrayList<Attribute> getAttributes(){
         return myImages;
     }
 
-
     public void doAction ()
     {
         pressed = true;
         myView.setFramework(myFramework);
+    }
+    public Framework getFramework()
+    {
+        return myFramework;
     }
 
 
