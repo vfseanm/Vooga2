@@ -25,6 +25,12 @@ public class Enemy extends AnimatedGameSprite
         myAttributes = new ArrayList<Attribute>();
     }
 
+    /**
+     * Secret relfection method for sean's uses
+     * @author Alex
+     * @param name
+     * @return
+     */
     public boolean hasAttributeByName(String name)
     {
         for(Attribute attribute: myAttributes)
@@ -34,6 +40,13 @@ public class Enemy extends AnimatedGameSprite
         }
         return false;
     }
+    
+    /**
+     * Secret relfection method for sean's uses
+     * @author Alex
+     * @param name
+     * @return
+     */
 
     public List<Attribute> getAttributes()
     {
@@ -44,6 +57,10 @@ public class Enemy extends AnimatedGameSprite
     {
         myAttributes.add(attribute);
         attribute.setEnemy(this);
+    }
+    
+    public void clearAttributes(){
+        myAttributes.clear();
     }
 
 
