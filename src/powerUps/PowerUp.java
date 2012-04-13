@@ -1,29 +1,24 @@
 package powerUps;
 
 import java.awt.image.BufferedImage;
-
 import java.util.List;
 
 
-import attributes.Attribute;
-
+import attributes.*;
+import fighter.*;
+import demo.*;
 import com.golden.gamedev.Game;
-
-import fighter.attributes.*;
-
-
-import fighter.Fighter;
 import sprite.AnimatedGameSprite;
 
 @SuppressWarnings("serial")
 public abstract class PowerUp extends AnimatedGameSprite {
 
-    protected Fighter 	myFighter;
-    protected Game 		myGame;
+    protected Fighter 			myFighter;
+    protected PlatformGame 		myGame;
 
-    public PowerUp(BufferedImage[] im, double x, double y, List<String> image, Fighter fighter, Game game) {
+    public PowerUp(BufferedImage[] im, double x, double y, List<String> image, Fighter fighter, PlatformGame game) {
         super(im, x, y, image);
-        myFighter = fighter;
+        myFighter = game.getFighter();
         myGame = game;
     }
     
