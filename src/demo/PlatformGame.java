@@ -2,6 +2,7 @@ package demo;
 
 import java.io.File;
 
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,7 +14,7 @@ import sprite.AnimatedGameSprite;
 import com.golden.gamedev.Game;
 
 import editor.Level;
-import characters.fighter.*;
+import fighter.Fighter;
 
 public abstract  class PlatformGame extends Game {
     

@@ -2,9 +2,7 @@ package powerups;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import attributes.Attribute;
-import com.golden.gamedev.Game;
 import platforms.BreakablePlatformItemFactory;
-import characters.fighter.*;
 
 @SuppressWarnings("serial")
 public class FireBallPowerUp extends PowerUp {

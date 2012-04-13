@@ -3,7 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import characters.fighter.*;
+import fighter.Fighter;
 import sprite.AnimatedGameSprite;
 
 public abstract class AbstractPlatform extends AnimatedGameSprite {
