@@ -13,8 +13,6 @@ public class DemoGame extends PlatformGame{
     {
         loadLevel("level2");
         
-
-       
     }
 
     @Override
