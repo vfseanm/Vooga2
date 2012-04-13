@@ -256,6 +256,13 @@ public class EditorView extends Game {
                     }
                 }
             }
+            for (Button button: allButtons)
+            {
+                if (button.isMouseOver())
+                {
+                    editEnemy(button);
+                }
+            }
         }
 
     }
@@ -303,6 +310,17 @@ public class EditorView extends Game {
     {
         EditEnemyDialogue myView = new EditEnemyDialogue(myModel, s, this.getMouseX(), this.getMouseY());
         frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    public void editEnemy(Button button)
+    {
+        EditEnemyDialogue myView = new EditEnemyDialogue(myModel, button.getFramework());
+        frame = new JFrame("Edit Enemies");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

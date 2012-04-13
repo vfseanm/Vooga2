@@ -162,6 +162,7 @@ public class EditorController {
 
 public void addButton( String name, Framework framework, String type)
 {
+    System.out.println("adding button");
     if (type.contentEquals("enemy"))
     {
         if(enemyButtonCounter==5)
@@ -170,6 +171,7 @@ public void addButton( String name, Framework framework, String type)
         }
         else
         {
+            System.out.println("adding enemybutton");
             Button newButton = new Button(name, enemyButtonPlacement[enemyButtonCounter], enemyButtonPlacement[enemyButtonCounter+1], 50, 40, framework, myView);
             enemyButtonCounter +=2;
             myView.addButton(newButton);

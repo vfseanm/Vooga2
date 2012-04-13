@@ -17,11 +17,10 @@ import attributes.Attribute;
 public class EnemyFramework implements Framework {
 
     protected ArrayList<Attribute> attributes;
-    @SuppressWarnings("unused")
     private BufferedImage[] myImages;
-    @SuppressWarnings("unused")
     private ArrayList<String> imageNames;
     private List<List<Object>> myAttributes;
+    private List<Attribute> allAttributes;
     private ArrayList<Enemy> mySprites;
 
     public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<List<Object>> attributes) {
@@ -29,10 +28,19 @@ public class EnemyFramework implements Framework {
         imageNames = images;
         myAttributes = attributes;
         mySprites = new ArrayList<Enemy>();
+        allAttributes = new ArrayList<Attribute>();
     }
 
     public void addBehavior(Attribute b) {
         attributes.add(b);
+    }
+    public BufferedImage[] getImages()
+    {
+        return myImages;
+    }
+    public List<Attribute> getAttributes()
+    {
+        return allAttributes;
     }
  
     public AnimatedGameSprite getSprite(int x, int y) {
@@ -59,13 +67,13 @@ public class EnemyFramework implements Framework {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
+            allAttributes.add(attribute);
             e.addAttribute(attribute);
         }  
         mySprites.add(e);
         return e;
     }
 
-    @Override
     public void updateSprites(List<Object> parameters) {
         myImages = (BufferedImage[]) parameters.get(0);
         imageNames = (ArrayList<String>) parameters.get(1);
