@@ -42,13 +42,7 @@ public class BlankButton extends TButton
 
     public void doAction ()
     {
-        //myView.openBox(myType);
-        if(myType.contentEquals("enemy"))
-            myView.addEnemy();
-        else if (myType.contentEquals("platform"))
-            myView.addPlatform();
-        //else if (myType.contentEquals("Power-Up"))
-          //  myView.addPowerUp();
+        myView.openBox(myType);
            
     }
     
