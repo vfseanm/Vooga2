@@ -1,4 +1,4 @@
-package fighter;
+package characters.fighter;
 
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
@@ -18,7 +18,6 @@ import attributes.Updateable;
 @SuppressWarnings("serial")
 public class Fighter extends GameCharacter {
 
-	private List<Attribute>					myAttributes; 
 	private List<Carryable>					myCarryables;
 	private Missile							myMissile;
 	private FighterDeath					myDeathSequence;
@@ -26,7 +25,6 @@ public class Fighter extends GameCharacter {
 	
 	public Fighter(BufferedImage[] image, double x, double y, List<String> images) {
 		super(image, x, y, images);
-		myAttributes = new ArrayList<Attribute>();
 		myCarryables = new ArrayList<Carryable>();
 	}
 

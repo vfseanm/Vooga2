@@ -19,8 +19,6 @@ public class DemoGame extends PlatformGame{
             System.out.println(s);
         }
         
-
-       
     }
 
     @Override
@@ -32,7 +30,7 @@ public class DemoGame extends PlatformGame{
         {
             s.render(pen);
         }
-        
+   
     }
 
     @Override

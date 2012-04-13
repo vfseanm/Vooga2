@@ -1,6 +1,7 @@
 package characters;
 
 import java.awt.image.BufferedImage;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ import attributes.Updateable;
 public class GameCharacter extends AnimatedGameSprite {
 	
 	
-	private String					myName;
-	private List<Attribute>			myAttributes; 
+	protected String					myName;
+	protected List<Attribute>			myAttributes; 
 	
 	
 	
@@ -27,7 +28,7 @@ public class GameCharacter extends AnimatedGameSprite {
 	}
 
 	
-    public void update(long elapsedTime) {
+    public void updateCharacter(long elapsedTime) {
 		for (Attribute attribute : myAttributes) {
 
 			if (attribute.getClass().getInterfaces().length != 0
@@ -110,6 +111,10 @@ public class GameCharacter extends AnimatedGameSprite {
                 myAttributes.remove(attribute);
         }
         
+    }
+    
+    public void clearAttributes(){
+        myAttributes.clear();
     }
     
     
