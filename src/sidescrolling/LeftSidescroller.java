@@ -3,10 +3,11 @@ package sidescrolling;
 import java.awt.event.KeyEvent;
 
 
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
-import characters.fighter.Fighter;
+import fighter.Fighter;
 
 public class LeftSidescroller extends DecoratedSidescroller {
 

@@ -1,10 +1,11 @@
 package sidescrolling;
 
-import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.Sprite
+;
 
 import com.golden.gamedev.object.SpriteGroup;
 
-import characters.fighter.Fighter;
+import fighter.Fighter;
 
 public abstract class DecoratedSidescroller extends Sidescroller {
 

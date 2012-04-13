@@ -3,7 +3,7 @@ package sidescrolling;
 import java.awt.event.KeyEvent;
 
 
-import characters.fighter.Fighter;
+import fighter.Fighter;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
