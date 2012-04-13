@@ -17,8 +17,9 @@ public class UpDownPlatform extends DecoratedPlatform {
 			setVerticalSpeed(-speed/25);
 		}
 		myTimer.update();
-		//System.out.println("updownbehavior");
+		System.out.println("updownbehavior");
 		//System.out.println(getVerticalSpeed());
+		//System.out.println(getHorizontalSpeed());
 	}
 	
 	public String toString() {

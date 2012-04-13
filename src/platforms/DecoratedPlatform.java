@@ -59,10 +59,10 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		super.update(elapsedTime);
 	}
 	
-	public void render(Graphics2D graphics) {
+	//works in tester game....something funky in level editor/demo game makes null pter exception here....
+  /* public void render(Graphics2D graphics) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.render(graphics);
+			myDecoratorComponent.render(graphics);	
 		}
-		//super.render(graphics);
-	}
+	}*/
 }
