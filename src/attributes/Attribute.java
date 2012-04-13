@@ -18,7 +18,7 @@ public abstract class  Attribute implements Serializable
 {
     protected Enemy 		myEnemy;
     protected Fighter		myFighter;
-    protected boolean 		myActivity;
+    protected boolean 		isActive;
     
     public abstract String getName();
     
@@ -32,7 +32,7 @@ public abstract class  Attribute implements Serializable
     	myFighter = fighter;
     }
     
-    public void setActivity(boolean trueFalse) {
-    	myActivity = trueFalse;
+    public void setActivity(boolean active) {
+    	isActive = active;
     }
 }
