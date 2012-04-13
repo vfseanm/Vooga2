@@ -22,16 +22,17 @@ public class DemoGame extends PlatformGame{
     {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
-        for(AnimatedGameSprite s: sprites)
+        for(AnimatedGameSprite s:  mySprites)
         {
             s.render(pen);
         }
+        
     }
 
     @Override
     public void update(long elapsedTime)
     {
-        for(AnimatedGameSprite s: sprites)
+        for(AnimatedGameSprite s: mySprites)
         {
             s.update(elapsedTime);
         }

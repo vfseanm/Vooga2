@@ -1,8 +1,10 @@
 
 package platforms;
 
+
 public class SideToSidePlatform extends DecoratedPlatform {
-	
+
+	private static final long serialVersionUID = -1092406048949643816L;
 
 	public SideToSidePlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);

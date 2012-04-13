@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 public abstract class DecoratedPlatform extends AbstractPlatform {
 	 
+	private static final long serialVersionUID = -9022534130487528963L;
 	protected AbstractPlatform myDecoratorComponent;
 	protected double mySpeed = 10;
 	protected double myDistance = 10;

@@ -8,6 +8,7 @@ import powerUps.PowerUp;
 
 public class BreakablePlatform extends DecoratedPlatform {
 
+	private static final long serialVersionUID = 1254073087890380273L;
 	ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
 	
 	
