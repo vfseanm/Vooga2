@@ -1,8 +1,5 @@
 package demo;
 
-
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,10 +10,8 @@ import java.util.List;
 import sprite.AnimatedGameSprite;   
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.GameLoader;
 
 import editor.Level;
-import enemies.Enemy;
 import fighter.*;
 
 public abstract  class PlatformGame extends Game {

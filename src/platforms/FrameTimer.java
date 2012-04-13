@@ -1,10 +1,9 @@
 package platforms;
 
+
 import java.io.Serializable;
 
 public class FrameTimer implements Serializable {
-
-
     /**
      * 
      */
@@ -12,19 +11,17 @@ public class FrameTimer implements Serializable {
     
     double myFPS = 100;
 	double numFrames = 0;
-	double elapsedTime = 0;
 	
 	public void setFPS(double fps) {
 		myFPS = fps;
 	}
 	
-	public void update(long time) {
+	public void update() {
 		numFrames++;
-		elapsedTime = numFrames;
 	}
 	
-	public double getElapsedTime() {
-		return elapsedTime;
+	public double getPassedFrames() {
+		return numFrames;
 	}
 	
 }

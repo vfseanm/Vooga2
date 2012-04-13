@@ -1,4 +1,4 @@
-package fighter;
+package characters;
 
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
@@ -7,27 +7,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import characters.GameCharacter;
-
-import carryables.Carryable;
+import sprite.AnimatedGameSprite;
 
 import attributes.Attribute;
 import attributes.Updateable;
 
-
 @SuppressWarnings("serial")
-public class Fighter extends GameCharacter {
-
-	private List<Attribute>					myAttributes; 
-	private List<Carryable>					myCarryables;
-	private Missile							myMissile;
-	private FighterDeath					myDeathSequence;
+public class GameCharacter extends AnimatedGameSprite {
 	
 	
-	public Fighter(BufferedImage[] image, double x, double y, List<String> images) {
+	private String					myName;
+	private List<Attribute>			myAttributes; 
+	
+	
+	
+	public GameCharacter(BufferedImage[] image, double x, double y, List<String> images) {
 		super(image, x, y, images);
 		myAttributes = new ArrayList<Attribute>();
-		myCarryables = new ArrayList<Carryable>();
 	}
 
 	
@@ -83,7 +79,9 @@ public class Fighter extends GameCharacter {
 		}
 
 	}
-    
+   
+	
+	
     public boolean hasAttribute(String name) {
         for(Attribute attribute: myAttributes) {
             if (attribute.getClass().getName().equalsIgnoreCase(name))
@@ -92,14 +90,20 @@ public class Fighter extends GameCharacter {
         return false;
     }
     
+    
+    
     public List<Attribute> getAttributes() {
         return Collections.unmodifiableList(myAttributes);
     }
+    
+    
     
     public void addAttribute (Attribute attribute) {
         myAttributes.add(attribute);
     }
 
+    
+    
     public void removeAttribute(String name) {
         for (Attribute attribute: myAttributes) {
             if (attribute.getName().equalsIgnoreCase(name));
@@ -107,28 +111,17 @@ public class Fighter extends GameCharacter {
         }
         
     }
+    
+    
+    public String getName() {
+    	return myName;
+    }
 	
-	public void setMissile(Missile missile) {
-		myMissile = missile;
-	}
-	
-	public Missile getMissile() {
-		return myMissile;
-	}
-	
-	public void setDeathSequence(FighterDeath deathSequence) {
-		myDeathSequence = deathSequence;
-	}
-	
-	public void dies() {
-		setActive(false);
-		myDeathSequence.setLocation(getX(), getY());
-		// 	ADD DEATH TO PLAYFIELD HERE
-	}
-	
+    
+    
 	public String toString () {
         StringBuilder toReturn = new StringBuilder();
-        toReturn.append("Enemy\n");
+        toReturn.append(getName()+"\n");
         for (Attribute attribute : myAttributes) {
             toReturn.append(attribute.toString());
             toReturn.append("\n");

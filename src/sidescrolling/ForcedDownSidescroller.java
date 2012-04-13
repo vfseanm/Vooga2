@@ -9,7 +9,7 @@ public class ForcedDownSidescroller extends DecoratedSidescroller {
     public ForcedDownSidescroller(Sidescroller scroller, double speed) {
         super(scroller);
         if (speed > 0) {
-            speed = 0;
+            throw new RuntimeException("You must choose a negative number.");
         }
         forcedDownSpeed = speed;
     }

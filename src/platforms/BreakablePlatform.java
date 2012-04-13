@@ -1,33 +1,26 @@
+
 package platforms;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
-import collisions.FighterBreakablePlatformCollisionManager;
-import powerUps.PowerUp;
-import fighter.*;
 
-@SuppressWarnings("serial")
+import powerUps.PowerUp;
+
 public class BreakablePlatform extends DecoratedPlatform {
+
+	private static final long serialVersionUID = 1254073087890380273L;
+	ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
+	
 	
 	public BreakablePlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);
-		// TODO Auto-generated constructor stub
-	}
-
-	ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
-	FighterBreakablePlatformCollisionManager myCollisionManager = new FighterBreakablePlatformCollisionManager();
-
-	public void update(long elapsedTime) {
-		
-		if (myDecoratorComponent != null) {
-            		myDecoratorComponent.update(elapsedTime);
-        	}
-	    myCollisionManager.checkCollision();
 	}
 	
-	public void addItem(BreakablePlatformItemFactory factory) {
-		myFactoryList.add(factory);
+	
+	protected void doBehavior(double speed, double distance) {
+		//do some check collision thing
+		//releaseItem();
+		//setActive(false);
 	}
 	
 	public PowerUp releaseItem() {
@@ -36,14 +29,10 @@ public class BreakablePlatform extends DecoratedPlatform {
 		return factory.getItem(getX(), getY());
 	}
 	
-	//TODO: refused bequest on parameters...will fix later...
-	public void doBehavior(double speed, double distance) {
-		if (myDecoratorComponent != null) {
-            		myDecoratorComponent.doBehavior(speed, distance);
-        	}
-		setFrame(1);
-		setActive(false);
-		
-		
+	public String toString() {
+		return "side to side" + myDecoratorComponent.toString();
 	}
+
+	
+
 }

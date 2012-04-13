@@ -1,3 +1,4 @@
+
 package platforms;
 import powerUps.PowerUp;
 
@@ -14,3 +15,4 @@ public class BreakablePlatformItemFactory {
 		return myItem.makeItem(x, y);
 	}	                                                      
 }
+
