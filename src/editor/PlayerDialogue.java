@@ -226,7 +226,6 @@ public class PlayerDialogue extends JPanel {
     private class ImageAction implements ActionListener {
         public void actionPerformed(ActionEvent e)
         {
-
             BufferedImage f = getImage();
             myImage = f;
 
