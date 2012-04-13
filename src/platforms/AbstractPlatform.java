@@ -1,33 +1,27 @@
 package platforms;
-
-
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
-
 import java.util.List;
 
-
+import characters.fighter.*;
 import sprite.AnimatedGameSprite;
-import fighter.*;
 
-@SuppressWarnings("serial")
-public abstract class AbstractPlatform extends AnimatedGameSprite{
-    
-    Fighter myFighter;
+public abstract class AbstractPlatform extends AnimatedGameSprite {
 
-	protected AbstractPlatform(BufferedImage[] im, double x, double y, List<String> images, Fighter fighter) {
-		super(im, x, y, images);
+	private static final long serialVersionUID = 1483938382856783084L;
+	Fighter myFighter;
+	
+	protected AbstractPlatform(BufferedImage[] images, double x, double y, List<String> imageSources, Fighter fighter) {
+		super(images, x, y, imageSources);
 		myFighter = fighter;
 	}
-
-	protected AbstractPlatform(){
-	    
-	}
-
+	
+	protected AbstractPlatform() {}
+	
 	protected abstract void doBehavior(double speed, double distance);
-	public abstract void update(long elapsedTime);
-	//public abstract AbstractPlatform getNextState();
-
-
+	//public abstract void updateAll(long elapsedTime);
+	public abstract void renderAll(Graphics2D graphics);
+	public abstract void setAllHorizontalSpeed(double speed);
+	public abstract void moveAll(double x, double y);
 
 }
