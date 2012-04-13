@@ -27,7 +27,6 @@ import com.golden.gamedev.object.background.ImageBackground;
 import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
-import sprite.GameSprite;
 
 public class EditorView extends Game {
     private FrameWork framework;
