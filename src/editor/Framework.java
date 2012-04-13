@@ -14,4 +14,7 @@ public interface Framework {
     //public ArrayList<AnimatedGameSprite> getSprites();
     public void updateSprites(List<Object> parameters);
     
+    public String getType();
+   
+    
 }

@@ -75,7 +75,7 @@ public class PlatformFramework implements Framework {
         return myPlatform;
     }
 
-
+    
 
     @Override
     public void updateSprites(List<Object> parameters) {
@@ -84,5 +84,10 @@ public class PlatformFramework implements Framework {
         myPlatformWrappers = (List<Class>) parameters.get(2);
         
         
+    }
+    
+    public String getType()
+    {
+        return "platform";
     }
 }

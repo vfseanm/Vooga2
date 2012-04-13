@@ -31,14 +31,14 @@ public abstract class DialogueBox extends JPanel {
     private EditorController myController;
     protected BufferedImage myImage;
     protected String myImagePath;
-    private String myType;
+    
     protected JTextField myName;
     protected Reflection reflection;
 
     @SuppressWarnings("rawtypes")
-    public DialogueBox(EditorController m, String type)
+    public DialogueBox(EditorController m)
     {
-        myType = type;
+        
         myController = m;
         reflection =  new Reflection();
         setLayout(new BorderLayout());
@@ -113,8 +113,7 @@ public abstract class DialogueBox extends JPanel {
             Framework framework = getFramework();
             System.out.println("get name "+ myName.getText());
             System.out.println("framework "+framework);
-            System.out.println("myType "+ myType);
-            myController.addButton(myName.getText(), framework, myType);
+            myController.addButton(myName.getText(), framework);
             setVisible(false);
         }
     }

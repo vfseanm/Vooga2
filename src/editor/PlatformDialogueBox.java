@@ -38,9 +38,9 @@ public class PlatformDialogueBox extends DialogueBox {
     
 
     @SuppressWarnings("rawtypes")
-    public PlatformDialogueBox(EditorController m, String type)
+    public PlatformDialogueBox(EditorController m)
     {
-        super(m, type);
+        super(m);
         
     }
     

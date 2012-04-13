@@ -35,9 +35,9 @@ public class EnemyDialogueBox extends DialogueBox {
 
 
     @SuppressWarnings("rawtypes")
-    public EnemyDialogueBox(EditorController m, String type)
+    public EnemyDialogueBox(EditorController m)
     {
-        super(m, type);
+        super(m);
         
     }
 
