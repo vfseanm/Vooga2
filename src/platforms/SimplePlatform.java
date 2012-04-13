@@ -48,6 +48,10 @@ public class SimplePlatform extends AbstractPlatform {
 		super.setHorizontalSpeed(speed);
 	}
 	
+	public void render(Graphics2D graphics) {
+		//super.render(graphics);
+	}
+	
 	public void moveAll(double x, double y) {
 		move(x, y);
 		System.out.println("simpleplatmove");
