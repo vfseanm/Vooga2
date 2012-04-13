@@ -49,7 +49,7 @@ public class SimplePlatform extends AbstractPlatform {
 	}
 	
 	public void render(Graphics2D graphics) {
-		//super.render(graphics);
+		super.render(graphics);
 	}
 	
 	public void moveAll(double x, double y) {
