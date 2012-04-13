@@ -129,7 +129,7 @@ public class Fighter extends AnimatedGameSprite {
 	
 	public String toString () {
         StringBuilder toReturn = new StringBuilder();
-        toReturn.append("Enemy\n");
+        toReturn.append("fighter\n");
         for (Attribute attribute : myAttributes) {
             toReturn.append(attribute.toString());
             toReturn.append("\n");
