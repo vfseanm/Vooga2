@@ -23,5 +23,4 @@ public class FrameTimer implements Serializable {
 	public double getPassedFrames() {
 		return numFrames;
 	}
-	
 }

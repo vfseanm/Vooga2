@@ -47,12 +47,13 @@ import enemies.movement.OneDirectionMovement;
         @Override
         public void initResources ()
         {
+
             loadLevel("level2");
             
             Fighter myFighter = new Fighter(mySprites.get(0).getImages(), 100, 100, mySprites.get(0).getImageNames());
             System.out.println("fighter" + myFighter);
-            myFighter.addAttribute(new BasicMovement(bsInput, 5, 5));
-            myFighter.addAttribute(new Gravity(1));
+            myFighter.addAttribute(new BasicMovement(bsInput, 5));
+           // myFighter.addAttribute(new Gravity(1));
             
             
             //SpriteGroup fighter = myPlayField.addGroup(new SpriteGroup("Fighter"));
@@ -108,9 +109,11 @@ import enemies.movement.OneDirectionMovement;
                     
         }
 
+
         @Override
         public void render (Graphics2D arg0)
         {
+
             myBackground.render(arg0);
             //myPlayField.render(arg0);
             allSprites.render(arg0);
@@ -121,6 +124,7 @@ import enemies.movement.OneDirectionMovement;
            
             
         }
+
 
         @Override
         public void update (long arg0)

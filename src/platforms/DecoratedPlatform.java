@@ -37,33 +37,53 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	
 	public void setVerticalSpeed(double speed) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setHorizontalSpeed(speed);
+			myDecoratorComponent.setVerticalSpeed(speed);
 		}
-		super.setVerticalSpeed(speed);
-		
+		super.setVerticalSpeed(speed);		
 	}
 	
 	public void moveAll(double x, double y) {
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.moveAll(x, y);
 		}
-		move(x, y);
-		
+		move(x, y);		
 	}
 	
 	public void update(long elapsedTime) {
-		doBehavior(mySpeed, myDistance);
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.update(elapsedTime);
 		}
-		
+		doBehavior(mySpeed, myDistance);
 		super.update(elapsedTime);
 	}
 	
-	public void renderAll(Graphics2D graphics) {
+	public void setAnimate(boolean arg) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.renderAll(graphics);
+			myDecoratorComponent.setAnimate(arg);
 		}
-		render(graphics);
+		super.setAnimate(arg);
 	}
+	
+	public void setFrame(int frame) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.setFrame(frame);
+		}
+		super.setFrame(frame);
+	}
+	
+	public void setLocation(double x, double y) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.setLocation(x, y);
+		}
+		super.setLocation(x, y);
+	}
+	
+
+	//works in tester game....something funky in level editor/demo game makes null pter exception here....
+ /* public void render(Graphics2D graphics) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.render(graphics);	
+
+		}
+	}*/
 }

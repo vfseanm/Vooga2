@@ -2,7 +2,11 @@ package platforms;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
+
 import fighter.Fighter;
+
+
+
 
 public class SimplePlatform extends AbstractPlatform {
 	
@@ -11,6 +15,7 @@ public class SimplePlatform extends AbstractPlatform {
 
 	public SimplePlatform(BufferedImage[] im, double x, double y, List<String> images, Fighter fighter) {
 	    super(im, x, y, images, fighter);
+	  
 	}
 
 	@Override
@@ -18,6 +23,7 @@ public class SimplePlatform extends AbstractPlatform {
 		return;	
 	}
 	
+	@Override
 	public String toString() {
 		return "platform";
 	}
@@ -27,17 +33,25 @@ public class SimplePlatform extends AbstractPlatform {
 		super.update(elapsedTime);
 	}
 
-	@Override
+	/*@Override
 	public void renderAll(Graphics2D graphics) {
-		render(graphics);	
-	}
+		super.render(graphics);	
+	}*/
 	
+	@Override
 	public void setVerticalSpeed(double speed) {
 		super.setVerticalSpeed(speed);
 	}
 	
+	@Override
 	public void setHorizontalSpeed(double speed) {
 		super.setHorizontalSpeed(speed);
+	}
+	
+	public void render(Graphics2D graphics) {
+		//System.out.println("doh!");
+		super.render(graphics);
+		//System.out.println("rendering!!");
 	}
 	
 	public void moveAll(double x, double y) {
