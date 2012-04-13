@@ -21,8 +21,8 @@ public class RotatingPlatform extends DecoratedPlatform {
 		if (!isAnimate()) {
 			setAnimate(true);
 		}
-		System.out.println(getImages().length);
-		System.out.println(getFrame());
+		//System.out.println(getImages().length);
+		//System.out.println(getFrame());
 		rotateCenterAxis(myDelay);
 	}
 	
