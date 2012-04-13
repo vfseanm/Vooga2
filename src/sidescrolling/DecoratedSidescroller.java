@@ -1,7 +1,10 @@
 package sidescrolling;
 
 import com.golden.gamedev.object.Sprite;
+
 import com.golden.gamedev.object.SpriteGroup;
+
+import characters.fighter.Fighter;
 
 public abstract class DecoratedSidescroller extends Sidescroller {
 
@@ -19,12 +22,10 @@ public abstract class DecoratedSidescroller extends Sidescroller {
         return wrappedScroller.getSpriteGroups();
     }
     
-    public boolean isPositiveSpeed(double speed) {
-        return speed > 0;
+    public Fighter getFighter() {
+        return wrappedScroller.getFighter();
     }
-    
-    public boolean isNegativeSpeed(double speed) {
-        return speed < 0;
-    }
+
+
         
 }

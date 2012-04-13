@@ -2,27 +2,36 @@ package sidescrolling;
 
 import java.awt.event.KeyEvent;
 
-import com.golden.gamedev.engine.BaseInput;
+
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
+
+import characters.fighter.Fighter;
 
 public class LeftSidescroller extends DecoratedSidescroller {
 
     private double leftSpeed;
-    private BaseInput inputEngine;
+    private Game myGame;
+    private double boundary;
     
-    public LeftSidescroller(BaseInput input, Sidescroller scroller, double speed) {
+    public LeftSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromLeft) {
         super(scroller);
-        inputEngine = input;
+        myGame = game;
         //can't move right...
         if (speed < 0) {
             throw new RuntimeException("You must choose a positive number.");
         }
         leftSpeed = speed;
+        boundary = offsetFromLeft;
     }
-    
+   
     public void move(Sprite sprite) {
-        if (inputEngine.isKeyDown(KeyEvent.VK_LEFT)) {
-            sprite.moveX(leftSpeed);
+        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
+            Fighter fighter = getFighter();
+            if (fighter.getX() <= boundary) {
+                sprite.moveX(leftSpeed);
+                fighter.setX(boundary);
+            }
         }
         super.move(sprite);
     }

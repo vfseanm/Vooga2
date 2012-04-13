@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class PlayerDialogue extends JPanel {
+public class PlayerDialogue extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -263,6 +263,19 @@ public class PlayerDialogue extends JPanel {
             myImage = f;
 
         }
+    }
+
+    @Override
+    public JComponent makeSelectionPanel() throws ClassNotFoundException,
+            IOException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Framework getFramework() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

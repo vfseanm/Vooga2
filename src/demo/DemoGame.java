@@ -1,9 +1,8 @@
 package demo;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 
-import platforms.AbstractPlatform;
+import java.awt.Graphics2D;
 
 import sprite.AnimatedGameSprite;
 
