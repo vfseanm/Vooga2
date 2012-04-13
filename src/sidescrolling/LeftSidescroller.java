@@ -15,7 +15,7 @@ public class LeftSidescroller extends DecoratedSidescroller {
         inputEngine = input;
         //can't move right...
         if (speed < 0) {
-            speed = 0;
+            throw new RuntimeException("You must choose a positive number.");
         }
         leftSpeed = speed;
     }
