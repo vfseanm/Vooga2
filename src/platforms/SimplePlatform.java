@@ -2,7 +2,7 @@ package platforms;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
-import fighter.Fighter;
+import characters.fighter.*;
 
 public class SimplePlatform extends AbstractPlatform {
 	
