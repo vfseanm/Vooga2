@@ -117,9 +117,9 @@ public class EditorView extends Game {
         infoBox.add(newpowerUpButton);
         
   
-        TButton openButton = new OpenButton("Open", 100, 660, 60, 40, this);
+        TButton openButton = new OpenButton("Open", 70, 660, 60, 40, this);
 
-        SaveButton saveButton = new SaveButton("Save", 200, 660, 60, 40, this);
+        SaveButton saveButton = new SaveButton("Save", 120, 660, 60, 40, this);
 
         
         infoBox.add(l3);
@@ -256,6 +256,13 @@ public class EditorView extends Game {
                     }
                 }
             }
+            for (Button button: allButtons)
+            {
+                if (button.isMouseOver())
+                {
+                    editEnemy(button);
+                }
+            }
         }
 
     }
@@ -310,6 +317,17 @@ public class EditorView extends Game {
         frame.pack();
         frame.setVisible(true);
     }
+    public void editEnemy(Button button)
+    {
+        EditEnemyDialogue myView = new EditEnemyDialogue(myModel, button.getFramework());
+        frame = new JFrame("Edit Enemies");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+    }
     
     public void closeFrame()
     {
@@ -339,9 +357,21 @@ public class EditorView extends Game {
 
     private JFrame frame;
 
+//    public openBox(String type)
+//    {
+//        //nemyDialogueBox myView = new EnemyDialogueBox(myModel, "enemy");
+//        myMap.get(type);
+//        frame = new JFrame("Enemy Behaviors");
+//        Dimension d = new Dimension(500, 300);
+//        frame.setPreferredSize(d);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.getContentPane().add(myView);
+//        frame.pack();
+//        frame.setVisible(true);
+//    }
     public void addEnemy()
     {
-        EnemyDialogueBox myView = new EnemyDialogueBox(myModel, "enemy");
+        EnemyDialogueBox myView = new EnemyDialogueBox(myModel);
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -352,7 +382,7 @@ public class EditorView extends Game {
     }
     public void addPlatform()
     {
-        PlatformDialogueBox myView = new PlatformDialogueBox(myModel, "platform");
+        PlatformDialogueBox myView = new PlatformDialogueBox(myModel);
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -363,7 +393,7 @@ public class EditorView extends Game {
     }
     public void addPowerUp()
     {
-        PowerupDialogueBox myView = new PowerupDialogueBox(myModel, "platform");
+        PowerupDialogueBox myView = new PowerupDialogueBox(myModel, "powerup");
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);

@@ -1,5 +1,7 @@
 package attributes;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Experimenting with building a layer ontop of the GTGE methods to consolidate
  * all functions into attributes
@@ -8,12 +10,27 @@ package attributes;
  */
 public class Visibility extends Attribute
 {
-    boolean isVisible;
+    private boolean isVisible;
+    private BufferedImage[] myImage;
 
 
     public Visibility (boolean visible)
     {
         isVisible = visible;
+        myImage=myEnemy.getImages();
+        checkAndSetVisibility();
+    }
+
+
+    private void checkAndSetVisibility ()
+    {
+        if(!isVisible){
+            myEnemy.setImages(null);
+        }
+        else{
+            myEnemy.setImages(myImage);
+        }
+        
     }
 
 
@@ -27,7 +44,7 @@ public class Visibility extends Attribute
     public void modifyVisibility (boolean visible)
     {
         isVisible = visible;
-        myEnemy.setActive(isVisible);
+        checkAndSetVisibility();
     }
     
     public String toString(){

@@ -13,12 +13,18 @@ public class SideToSidePlatform extends DecoratedPlatform {
 	protected void doBehavior(double speed, double distance) {
 		double time = (distance * 5) / speed;
 		if (myTimer.getPassedFrames() % (time * 2) == 0) {
-			setHorizontalSpeed(speed / 25);
+			setAllHorizontalSpeed(speed/25);
+			//moveAll(200, 200);
+			System.out.println("moveto200");
+			System.out.println(getX() + " " + getY());
 		}
 		else if (myTimer.getPassedFrames() % time == 0) {
-			setHorizontalSpeed(-speed/25);
+			setAllHorizontalSpeed(-speed/25);
+			//moveAll(100, 100);
+			System.out.println("moveto100");
 		}
 		myTimer.update();
+		//System.out.println("moving!!");
 	}
 	
 	public String toString() {

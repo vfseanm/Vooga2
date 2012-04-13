@@ -3,6 +3,8 @@ package demo;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import platforms.AbstractPlatform;
+
 import sprite.AnimatedGameSprite;
 
 public class DemoGame extends PlatformGame{
@@ -12,9 +14,11 @@ public class DemoGame extends PlatformGame{
     public void initResources()
     {
         loadLevel("level2");
+        for(AnimatedGameSprite s: mySprites)
+        {
+            System.out.println(s);
+        }
         
-
-       
     }
 
     @Override
@@ -26,7 +30,7 @@ public class DemoGame extends PlatformGame{
         {
             s.render(pen);
         }
-        
+   
     }
 
     @Override
@@ -34,6 +38,7 @@ public class DemoGame extends PlatformGame{
     {
         for(AnimatedGameSprite s: mySprites)
         {
+            
             s.update(elapsedTime);
         }
     }

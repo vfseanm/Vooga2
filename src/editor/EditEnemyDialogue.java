@@ -42,10 +42,10 @@ public class EditEnemyDialogue extends JPanel {
     private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
     private BufferedImage myImage;
     private String myImagePath;
-    private String myType;
     private Enemy mySprite;
     private int myX;
     private int myY;
+    private EnemyFramework myFramework;
     
     @SuppressWarnings("rawtypes")
     public EditEnemyDialogue(EditorController m, Enemy sprite, int x, int y)
@@ -66,6 +66,24 @@ public class EditEnemyDialogue extends JPanel {
         
         add(makeInputPanel(), BorderLayout.NORTH);
     }
+    
+    public EditEnemyDialogue(EditorController m, Framework framework)
+    {
+        myFramework = (EnemyFramework) framework;
+        myImage = myFramework.getImages()[0];
+        
+        attributeMap = new HashMap<JCheckBox, Class>();
+        myOldAttributes = new ArrayList<Attribute>();
+        myOldAttributes.addAll(myFramework.getAttributes());
+        
+        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
+        myModel = m;
+        reflection = new Reflection();
+        setLayout(new BorderLayout());
+        
+        add(makeInputPanel(), BorderLayout.NORTH);
+    }
+    
 
     public BufferedImage getImage()
     {
@@ -136,9 +154,20 @@ public class EditEnemyDialogue extends JPanel {
                 JLabel label1 = new JLabel(c.getName());
                 panel.add(label1);
                 JCheckBox box = new JCheckBox();
-                if(mySprite.hasAttributeByName(c.getName()))
+                if(mySprite!=null && mySprite.hasAttributeByName(c.getName()))
                 {
                     box.setSelected(true);
+                }
+                else if(mySprite==null)
+                {
+                    for (Attribute a: myFramework.getAttributes())
+                    {
+                        if(a.getClass().equals(c))
+                        {
+                            System.out.println("working");
+                            box.setSelected(true);
+                        }
+                    }
                 }
                 panel.add(box);
                 box.addActionListener(new CheckBoxListener(box, c));
@@ -158,6 +187,8 @@ public class EditEnemyDialogue extends JPanel {
         panel.add(imageButton);
 
         String buttonPhrase = "Save Enemy";
+        if(myFramework!=null)
+            buttonPhrase = "Change Enemies";
                 
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
@@ -205,9 +236,13 @@ public class EditEnemyDialogue extends JPanel {
             ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
             //EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            
+            if(mySprite!=null)
+            {
+                myX = (int) mySprite.getOldX();
+                myY = (int) mySprite.getOldY();
+            }
             Enemy enemy = new Enemy(s, myX,
-                    myY - s[0].getHeight(),
+                    myY,
                     imagePaths);
             for(List<Object> list: attributes)
             {
@@ -236,7 +271,14 @@ public class EditEnemyDialogue extends JPanel {
             {
                 enemy.addAttribute(oldAttribute);
             }
-            myModel.replaceSprite(mySprite, enemy);
+            if(mySprite!=null)
+                myModel.replaceSprite(mySprite, enemy);
+            List<Object> parameters = new ArrayList<Object>();
+            parameters.add(s);
+            parameters.add(imagePaths);
+            parameters.add(attributes);
+            if(myFramework!=null)
+                myFramework.updateSprites(parameters);
             
             setVisible(false);
         }
