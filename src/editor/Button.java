@@ -13,10 +13,9 @@ import com.golden.gamedev.gui.TButton;
 public class Button extends TButton
 {
     private boolean pressed;
-    private BufferedImage[] myImages;
-    private String imageName;
+
     private String myType;
-    private ArrayList<Attribute> myAttributes;
+
     private EditorView myView;
     private Framework myFramework;
 
@@ -31,14 +30,11 @@ public class Button extends TButton
         super(name, x, y, width, height);
         
         myFramework = f;
-        
-        myAttributes = new ArrayList<Attribute>();
+
         myView = view;
     }
 
-public ArrayList<Attribute> getAttributes(){
-    return myAttributes;
-}
+
     public boolean getClicked ()
     {
        // System.out.println("clicked?" + pressed);
@@ -48,10 +44,6 @@ public ArrayList<Attribute> getAttributes(){
     }
 
 
-    public BufferedImage[] getImage ()
-    {
-        return myImages;
-    }
 
     public void doAction ()
     {
@@ -70,9 +62,6 @@ public ArrayList<Attribute> getAttributes(){
     }
 
 
-    public String getImageName ()
-    {
-        return imageName;
-    }
+
 
 }

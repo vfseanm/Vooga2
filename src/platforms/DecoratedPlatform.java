@@ -60,7 +60,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	}
 	
 	public void render(Graphics2D graphics) {
-		if (myDecoratorComponent != null) {
+	    if (myDecoratorComponent != null) {
 			myDecoratorComponent.render(graphics);
 		}
 		//super.render(graphics);
