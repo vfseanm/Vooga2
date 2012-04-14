@@ -16,6 +16,7 @@ public class Visibility extends Attribute
 
     public Visibility (boolean visible)
     {
+        super(visible);
         isVisible = visible;
         myImage=myEnemy.getImages();
         checkAndSetVisibility();

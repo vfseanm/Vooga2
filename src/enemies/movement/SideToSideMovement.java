@@ -10,21 +10,18 @@ public class SideToSideMovement extends Attribute implements Updateable
     private int myDistance;
     private int myTurnTime;
     private int time;
-    private boolean left = false;
+    private boolean left;
 
     @editorConstructor(parameterNames = { "distance" , "time"})
     public SideToSideMovement (int distance, int delay)
     {
+        super(distance,delay);
         myDistance = distance;
         myTurnTime = delay;
         left = true;
-        time = time / 2;
+        time = delay / 2;
     }
-    //Allows to choose to start left or right. If not defaults left
-    public SideToSideMovement(int distance, int delay, boolean startLeft){
-        this(distance,delay);
-        left = startLeft;
-    }
+    
 
 
     public void update (long elaspedTime)

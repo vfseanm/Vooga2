@@ -11,6 +11,7 @@ public class Hitpoints extends Attribute
     @editorConstructor(parameterNames = { "number of hitpoints" })
     public Hitpoints (int hitpoints)
     {
+        super(hitpoints);
         myHitpoints = hitpoints;
         maxHP = myHitpoints;
     }

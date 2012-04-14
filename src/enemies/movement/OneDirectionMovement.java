@@ -13,6 +13,7 @@ public class OneDirectionMovement extends Attribute implements Updateable
     @editorConstructor(parameterNames = { "direction", "distance" })
     public OneDirectionMovement (String direction, int distance)
     {
+        super(direction,distance);
         myDirection = direction;
         myDistance = distance;
     }

@@ -18,6 +18,7 @@ public class UpDownMovement extends Attribute implements Updateable
     @editorConstructor(parameterNames = { "distance" , "time"})
     public UpDownMovement (int distance, int time)
     {
+        super(distance,time);
         myDistance = distance;
         myTurnTime = time;
         up = true;
