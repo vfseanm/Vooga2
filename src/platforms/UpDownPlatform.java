@@ -1,5 +1,6 @@
 package platforms;
 
+
 public class UpDownPlatform extends DecoratedPlatform {
 
 	private static final long serialVersionUID = -3578102991430723896L;
@@ -17,9 +18,6 @@ public class UpDownPlatform extends DecoratedPlatform {
 			setVerticalSpeed(-speed/25);
 		}
 		myTimer.update();
-		System.out.println("updownbehavior");
-		//System.out.println(getVerticalSpeed());
-		//System.out.println(getHorizontalSpeed());
 	}
 	
 	public String toString() {

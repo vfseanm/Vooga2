@@ -1,4 +1,5 @@
 package platforms;
+
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -26,37 +27,5 @@ public class SimplePlatform extends AbstractPlatform {
 	@Override
 	public String toString() {
 		return "platform";
-	}
-
-	@Override
-	public void update(long elapsedTime) {
-		super.update(elapsedTime);
-	}
-
-	/*@Override
-	public void renderAll(Graphics2D graphics) {
-		super.render(graphics);	
-	}*/
-	
-	@Override
-	public void setVerticalSpeed(double speed) {
-		super.setVerticalSpeed(speed);
-	}
-	
-	@Override
-	public void setHorizontalSpeed(double speed) {
-		super.setHorizontalSpeed(speed);
-	}
-	
-	public void render(Graphics2D graphics) {
-		//System.out.println("doh!");
-		super.render(graphics);
-		//System.out.println("rendering!!");
-	}
-	
-	public void moveAll(double x, double y) {
-		move(x, y);
-		System.out.println("simpleplatmove");
-		System.out.println(getX() + " " + getY());
 	}
 }

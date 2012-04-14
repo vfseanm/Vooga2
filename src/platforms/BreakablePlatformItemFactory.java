@@ -1,5 +1,6 @@
-
 package platforms;
+
+
 import powerups.PowerUp;
 
 //this class is a factory that allows the creation of power-ups/coins 

@@ -28,7 +28,7 @@ public class Test extends Game{
     	ArrayList<String> imNames = new ArrayList<String>();
     	imNames.add("platform1.png");
     	imNames.add("RotatingPlatform3.png");
-    	myPlatform = new SimplePlatform(ims, 200, 200, imNames, myFighter);  
+    	myPlatform = new SimplePlatform(ims, 200, 200, imNames, null);  
     	myPlatform = new RotatingPlatform(myPlatform);
     	myPlatform = new SideToSidePlatform(myPlatform);
     	myPlatform = new UpDownPlatform(myPlatform);
