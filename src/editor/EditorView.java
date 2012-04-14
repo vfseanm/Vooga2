@@ -359,7 +359,7 @@ public class EditorView extends Game {
             myView = new PlatformDialogueBox(myModel);
 
         else if (type.contentEquals("player"))
-            myView = new PlayerDialogue(myModel);
+            myView = new FighterDialogue(myModel);
         else if (type.contentEquals("power up"))
             myView = new PowerupDialogueBox(myModel);
         else if (type.contentEquals("game"))

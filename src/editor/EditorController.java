@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+import fighter.Fighter;
+
 import sprite.AnimatedGameSprite;
 
 public class EditorController {
@@ -206,6 +208,11 @@ public class EditorController {
         myLevel.setBackground(image, imagePath);
         myView.closeFrame();
         myView.setBackground(image);
+    }
+    
+    public void setFighter(Fighter fighter)
+    {
+        
     }
 
 }

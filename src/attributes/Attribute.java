@@ -3,7 +3,7 @@ package attributes;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import com.sun.tools.internal.xjc.model.Constructor;
+//import com.sun.tools.internal.xjc.model.Constructor;
 import enemies.Enemy;
 import enemies.movement.JumpingMovement;
 import fighter.*;
