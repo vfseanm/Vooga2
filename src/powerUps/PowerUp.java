@@ -1,4 +1,4 @@
-package powerups;
+package powerUps;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -8,12 +8,13 @@ import attributes.*;
 import sprite.AnimatedGameSprite;
 
 @SuppressWarnings("serial")
-public abstract class PowerUp extends AnimatedGameSprite {
+public class PowerUp extends AnimatedGameSprite {
 
     protected List<Attribute>		myAttributes;
     protected List<Attribute>		myAttributesToOffer;
 
-    public PowerUp(BufferedImage[] im, double x, double y, List<String> image, ArrayList<Attribute> attributes, ArrayList<Attribute> attributesToGive) {
+
+    public PowerUp(BufferedImage[] im, double x, double y, List<String> image, List<Attribute> attributes, List<Attribute> attributesToGive) {
         super(im, x, y, image);
         myAttributes = attributes;
         myAttributesToOffer = attributesToGive;
@@ -21,5 +22,5 @@ public abstract class PowerUp extends AnimatedGameSprite {
 
     //public abstract PowerUp makeItem(double x, double y);
     
-    public abstract Attribute getAttribute();
+    //public abstract Attribute getAttribute();
 }

@@ -38,7 +38,6 @@ public class EnemyDialogueBox extends DialogueBox {
     }
 
 
-
     @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
