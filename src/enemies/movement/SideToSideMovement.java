@@ -5,66 +5,39 @@ import attributes.Attribute;
 import attributes.Updateable;
 //Change location to coordinate
 
-public class SideToSideMovement extends Attribute implements Updateable
+public class SideToSideMovement extends TwoPartMovement
 {
-    private int myDistance;
-    private int myTurnTime;
-    private int time;
-    private boolean left;
+    
 
-    @editorConstructor(parameterNames = { "distance" , "time"})
-    public SideToSideMovement (int distance, int delay)
+    @editorConstructor(parameterNames = { "distance" , "duration"})
+    public SideToSideMovement (int distance, int duration)
     {
-        super(distance,delay);
-        myDistance = distance;
-        myTurnTime = delay;
-        left = true;
-        time = delay / 2;
+        super(distance,duration);
+        
     }
     
 
 
-    public void update (long elaspedTime)
-    {
-        
-        if (left)
-        {
-            moveLeft();
-        }
-        else
-        {
-            moveRight();
-        }
-
-    }
 
 
-    private void moveLeft ()
+    protected void movementPart1 ()
     {
         myEnemy.setLocation(myEnemy.getX()-myDistance, myEnemy.getY());
-        time++;
-        if(time>=myTurnTime){
-            time=0;
-            left=false;
-        }
+        
 
     }
 
 
-    private void moveRight ()
+    protected void movementPart2 ()
     {
         myEnemy.setLocation(myEnemy.getX()+myDistance, myEnemy.getY());
-        time++;
-        if(time>=myTurnTime){
-            time=0;
-            left=true;
-        }
+        
 
     }
     
-    public void modifySideToSideMovement(int distance, int time){
+    public void modifySideToSideMovement(int distance, int duration){
         myDistance+=distance;
-        myTurnTime+=time;
+        myPartDuration+=duration;
     }
 
 
@@ -77,7 +50,7 @@ public class SideToSideMovement extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute SideToSideMovement my distance is " + myDistance + " my time to turn is " + myTurnTime;
+        return "Attribute SideToSideMovement my distance is " + myDistance + " my time to turn is " + myPartDuration;
     }
 
 }

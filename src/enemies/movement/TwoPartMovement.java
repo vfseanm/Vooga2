@@ -9,7 +9,7 @@ public abstract class TwoPartMovement extends Attribute implements Updateable
     protected int myDistance;
     protected int myPartDuration;
     private int time;
-    private boolean part1;
+    private boolean isPart1;
     
     
     public TwoPartMovement(int distance,int duration){
@@ -17,11 +17,27 @@ public abstract class TwoPartMovement extends Attribute implements Updateable
         myDistance = distance;
         myPartDuration=duration;
         time=duration/2;
-        part1=true;
+        isPart1=true;
     }
     
-    public void setPart1(boolean ){
-        part1=startPart1;
+    public void setPart1(boolean part1){
+        isPart1=part1;
     }
+    
+    public void update(long elaspedTime){
+        if(isPart1){
+            movementPart1();
+        }
+        else{
+            movementPart2();
+        }
+        time++;
+        if(time>=myPartDuration){
+            isPart1= (!isPart1);
+        }
+    }
+    protected abstract void movementPart1();
+    protected abstract void movementPart2();
+    
     
 }
