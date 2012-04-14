@@ -3,8 +3,8 @@ package enemies.movement;
 import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
-// similiar to side to side
-// hmm?
+// similiar to side to side;; 2partmovement
+// Idea master config file to control attribute exlusivity
 // flying
 
 

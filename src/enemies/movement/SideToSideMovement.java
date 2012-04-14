@@ -3,7 +3,7 @@ package enemies.movement;
 import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
-
+//Change location to coordinate
 
 public class SideToSideMovement extends Attribute implements Updateable
 {
@@ -13,12 +13,17 @@ public class SideToSideMovement extends Attribute implements Updateable
     private boolean left = false;
 
     @editorConstructor(parameterNames = { "distance" , "time"})
-    public SideToSideMovement (int distance, int time)
+    public SideToSideMovement (int distance, int delay)
     {
         myDistance = distance;
-        myTurnTime = time;
+        myTurnTime = delay;
         left = true;
-        this.time = time / 2;
+        time = time / 2;
+    }
+    //Allows to choose to start left or right. If not defaults left
+    public SideToSideMovement(int distance, int delay, boolean startLeft){
+        this(distance,delay);
+        left = startLeft;
     }
 
 
