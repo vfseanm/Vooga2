@@ -46,8 +46,8 @@ public class TestGame extends Game {
         
         
         bob.addAttribute(new Gravity(1));
-       // bob.addAttribute(new OneDirectionMovement("left",1));        
-        bob.addAttribute(new JumpingMovement(1,90));
+        bob.addAttribute(new OneDirectionMovement("left",1));        
+        bob.addAttribute(new JumpingMovement(1,80));
         
         counter=0;
         a.clear(); 
@@ -67,6 +67,7 @@ public class TestGame extends Game {
         
          list = new ArrayList<AnimatedGameSprite>();
         
+        list.add(bob);
         list.add(p);
         list.add(p1);
         list.add(p2);
@@ -94,7 +95,7 @@ public class TestGame extends Game {
         p.update(arg0);
         p1.update(arg0);
         p2.update(arg0);
-        gc.GameCollision(bob, list);
+        gc.GameCollision(list);
         if(counter==800){
             
         }
