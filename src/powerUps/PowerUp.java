@@ -13,13 +13,13 @@ public abstract class PowerUp extends AnimatedGameSprite {
     protected List<Attribute>		myAttributes;
     protected List<Attribute>		myAttributesToOffer;
 
-    public PowerUp(BufferedImage[] im, double x, double y, List<String> image) {
+    public PowerUp(BufferedImage[] im, double x, double y, List<String> image, ArrayList<Attribute> attributes, ArrayList<Attribute> attributesToGive) {
         super(im, x, y, image);
-        myAttributes = new ArrayList<Attribute>();
-        myAttributesToOffer = new ArrayList<Attribute>();
+        myAttributes = attributes;
+        myAttributesToOffer = attributesToGive;
     }
 
-    public abstract PowerUp makeItem(double x, double y);
+    //public abstract PowerUp makeItem(double x, double y);
     
     public abstract Attribute getAttribute();
 }

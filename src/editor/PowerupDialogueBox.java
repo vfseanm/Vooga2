@@ -168,7 +168,7 @@ public class PowerupDialogueBox extends JPanel {
             ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
             EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            myModel.addButton(myName.getText(), framework, myType);
+            myModel.addButton(myName.getText(), framework);
             setVisible(false);
         }
     }
