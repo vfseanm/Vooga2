@@ -132,6 +132,8 @@ public class Enemy extends AnimatedGameSprite
     public void restoreOriginalAttribute(String name,Object...o){
         accessAttributeMethod("restore",name,o);
     }
+    
+    //go implement
     public void allowAttribute(String name,Object...o){
         accessAttributeMethod("allow",name,o);
     }
