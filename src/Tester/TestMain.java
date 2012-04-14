@@ -11,5 +11,4 @@ public class TestMain {
         game.setup(new Test(), new Dimension(600, 600), false);
         game.start();
     }
-    
 }

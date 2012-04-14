@@ -1,5 +1,6 @@
-
 package platforms;
+
+
 
 
 public class SideToSidePlatform extends DecoratedPlatform {
@@ -10,7 +11,6 @@ public class SideToSidePlatform extends DecoratedPlatform {
 		super(decoratorComponent);
 	}
 	
-	
 	protected void doBehavior(double speed, double distance) {
 		double time = (distance * 5) / speed;
 		if (myTimer.getPassedFrames() % (time * 2) == 0) {
@@ -20,9 +20,6 @@ public class SideToSidePlatform extends DecoratedPlatform {
 			setHorizontalSpeed(-speed/25);
 		}
 		myTimer.update();
-		System.out.println("side2sidebehavior");
-		System.out.println(getHorizontalSpeed());
-		System.out.println(getVerticalSpeed());
 	}
 	
 	public String toString() {

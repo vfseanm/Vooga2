@@ -18,6 +18,7 @@ import sprite.AnimatedGameSprite;
     import java.util.List;
 
     import platforms.*;
+import powerups.InvincibilityPowerUp;
 
     import sidescrolling.*;
     import sprite.AnimatedGameSprite;
@@ -31,7 +32,7 @@ import sprite.AnimatedGameSprite;
     import enemies.Enemy;
     import enemies.movement.Gravity;
     import enemies.movement.JumpingMovement;
-    import enemies.movement.OneDirectionMovement;
+import enemies.movement.OneDirectionMovement;
 
 
     public class DemoGame extends PlatformGame {
@@ -50,6 +51,12 @@ import sprite.AnimatedGameSprite;
         {
 
             loadLevel("level2");
+            BufferedImage[] images = new BufferedImage[4];
+            images = mySprites.get(0).getImages();
+            ArrayList<Attribute> toGive = new ArrayList<Attribute>();
+            InvincibilityPowerUp powerup = new InvincibilityPowerUp(images, 0, 0, mySprites.get(0).getImageNames(), toGive, toGive);
+                
+            
             
             Fighter myFighter = new Fighter(mySprites.get(0).getImages(), 100, 100, mySprites.get(0).getImageNames());
             System.out.println("fighter" + myFighter);
@@ -61,6 +68,7 @@ import sprite.AnimatedGameSprite;
             
             allSprites = new SpriteGroup("sprites");
             allSprites.add(myFighter);
+            allSprites.add(powerup);
             for (Sprite s: mySprites)
             {
                 allSprites.add(s);
