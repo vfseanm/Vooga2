@@ -4,9 +4,7 @@ import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
-//reset attributes called from collision
-//reset in all attributes
-//check if the super class knows the subclass with reflection?
+//go do isActive and use thate
 @SuppressWarnings("serial")
 public class JumpingMovement extends Attribute implements Updateable
 {
@@ -19,6 +17,8 @@ public class JumpingMovement extends Attribute implements Updateable
     @editorConstructor(parameterNames = { "distance", "time" })
     public JumpingMovement (int distance, int delay)
     {
+        
+        super(distance,delay);
         myDistance = distance;
         myTime = delay;
         time=0;

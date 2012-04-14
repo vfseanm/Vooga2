@@ -1,6 +1,5 @@
 package collisions;
 
-import java.awt.Desktop.Action;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +15,7 @@ import enemies.Enemy;
 
 public class GameCollisionManager{
 	List<ActionPerformer> actionList = new ArrayList<ActionPerformer>(); 
-	HashMap<ArrayList<String>, Action> actionMap = new HashMap <ArrayList<String>, Action>();
+	HashMap<ArrayList<String>, ActionPerformer> actionMap = new HashMap <ArrayList<String>, ActionPerformer>();
 	
 	public GameCollisionManager (){
 		actionList.add(new InstantDeathAction()); 
@@ -25,23 +24,25 @@ public class GameCollisionManager{
 	}
 
 	public void GameCollision (ArrayList<AnimatedGameSprite> spriteList){
-		for (AnimatedGameSprite gs1: spriteList){
-			for(AnimatedGameSprite sprite1: spriteList){
-				if (gs1==sprite1)
+		for (AnimatedGameSprite sprite1: spriteList){
+			for(AnimatedGameSprite sprite2: spriteList){
+				if (sprite1==sprite2)
 					continue;
 				else{
-					if ( CollisionChecker(sprite1, gs1) ){
-						int side = SideChecker (sprite1, gs1);
-
-						for (ActionPerformer ap: actionList)
-							ap.action(sprite1, gs1, side);
+					if ( CollisionChecker(sprite1, sprite2) ){
+						int side = SideChecker (sprite1, sprite2);
+						
+						ArrayList<String> spriteName = new ArrayList<String>() ;
+						spriteName.add(sprite1.getName); spriteName.add(sprite2.getName);
+						ActionPerformer act = actionMap.get(spriteName);
+						act.action(sprite1, sprite2, side);
 					}
 				}
 			}
 		}
 	}
 	
-	public void addMap (ArrayList<String> name, Action act){
+	public void addMap (ArrayList<String> name, ActionPerformer act){
 		actionMap.put(name, act);
 	}
 
@@ -60,31 +61,31 @@ public class GameCollisionManager{
 		}
 		return 0;
 	}
-	private boolean leftRightChecker (Sprite sprite1, Sprite gs1){
+	private boolean leftRightChecker (Sprite sprite1, Sprite sprite2){
 		if  (
-				((gs1.getX() + gs1.getWidth()==sprite1.getX())
-				&& (gs1.getX()<=sprite1.getX()) && (gs1.getY()<=sprite1.getY()) 
-				&& (gs1.getY()+gs1.getHeight() >= sprite1.getY()+sprite1.getHeight())) 
+				((sprite2.getX() + sprite2.getWidth()==sprite1.getX())
+				&& (sprite2.getX()<=sprite1.getX()) && (sprite2.getY()<=sprite1.getY()) 
+				&& (sprite2.getY()+sprite2.getHeight() >= sprite1.getY()+sprite1.getHeight())) 
 				|| 
-				((gs1.getX() + gs1.getWidth()==sprite1.getX())
-				&& (gs1.getX()<=sprite1.getX()) && (gs1.getY()>=sprite1.getY()) 
-				&& (gs1.getY()+gs1.getHeight() <= sprite1.getY()+sprite1.getHeight())) 
+				((sprite2.getX() + sprite2.getWidth()==sprite1.getX())
+				&& (sprite2.getX()<=sprite1.getX()) && (sprite2.getY()>=sprite1.getY()) 
+				&& (sprite2.getY()+sprite2.getHeight() <= sprite1.getY()+sprite1.getHeight())) 
 				||
-				(gs1.getX() + gs1.getWidth()==sprite1.getX())
-				&& (gs1.getX()<=sprite1.getX()) && (gs1.getY()<=sprite1.getY()) 
-				&& (gs1.getY()+ gs1.getHeight() >= sprite1.getY()) && (gs1.getY()+gs1.getHeight() <= sprite1.getY()+sprite1.getHeight()) 
+				(sprite2.getX() + sprite2.getWidth()==sprite1.getX())
+				&& (sprite2.getX()<=sprite1.getX()) && (sprite2.getY()<=sprite1.getY()) 
+				&& (sprite2.getY()+ sprite2.getHeight() >= sprite1.getY()) && (sprite2.getY()+sprite2.getHeight() <= sprite1.getY()+sprite1.getHeight()) 
 				||
-				((gs1.getX() + gs1.getWidth()==sprite1.getX())
-				&& (gs1.getX()<=sprite1.getX()) && (gs1.getY()>=sprite1.getY()) 
-				&& (gs1.getY()+ gs1.getHeight() <= sprite1.getY()) && (gs1.getY()+gs1.getHeight() >= sprite1.getY()+sprite1.getHeight()) ) ){
+				((sprite2.getX() + sprite2.getWidth()==sprite1.getX())
+				&& (sprite2.getX()<=sprite1.getX()) && (sprite2.getY()>=sprite1.getY()) 
+				&& (sprite2.getY()+ sprite2.getHeight() <= sprite1.getY()) && (sprite2.getY()+sprite2.getHeight() >= sprite1.getY()+sprite1.getHeight()) ) ){
 			return true;
 		}
 		return false;
 	}
-	private boolean topBottomChecker (Sprite sprite1, Sprite gs1){
-		if  ((sprite1.getY() + sprite1.getHeight() == gs1.getY()) 
-				&& ( (gs1.getX()-sprite1.getX()/2 <= sprite1.getX() && (gs1.getX()+gs1.getWidth()+sprite1.getX()/2 >= sprite1.getX()) ) 
-						|| (sprite1.getX() >= gs1.getX() && sprite1.getX()+sprite1.getWidth() <= gs1.getX()+gs1.getWidth()) )){
+	private boolean topBottomChecker (Sprite sprite1, Sprite sprite2){
+		if  ((sprite1.getY() + sprite1.getHeight() == sprite2.getY()) 
+				&& ( (sprite2.getX()-sprite1.getX()/2 <= sprite1.getX() && (sprite2.getX()+sprite2.getWidth()+sprite1.getX()/2 >= sprite1.getX()) ) 
+						|| (sprite1.getX() >= sprite2.getX() && sprite1.getX()+sprite1.getWidth() <= sprite2.getX()+sprite2.getWidth()) )){
 			return true;
 		}
 		return false; 

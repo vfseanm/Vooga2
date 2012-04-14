@@ -103,7 +103,7 @@ public class EditorView extends Game {
         infoBox.add(l4);
         
         
-        BlankButton newpowerUpButton = new BlankButton("Create Power-Up", 125, 510, 150, 40, this, "Power-Up");
+        BlankButton newpowerUpButton = new BlankButton("Create Power-Up", 125, 510, 150, 40, this, "power up");
 
         infoBox.add(newpowerUpButton);
         
@@ -357,6 +357,10 @@ public class EditorView extends Game {
             myView = new PlatformDialogueBox(myModel);
         else if (type.contentEquals("player"))
             myView = new PlayerDialogue(myModel);
+        else if (type.contentEquals("power up"))
+            myView = new PowerupDialogueBox(myModel);
+        else if (type.contentEquals("game"))
+            myView = new GameDialogue(myModel);
         
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);

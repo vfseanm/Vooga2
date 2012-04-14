@@ -41,9 +41,6 @@ public class RepelBackAction implements ActionPerformer{
 	
 
 	public void action(Sprite sprite1, Sprite sprite2, int collisionType) {
-		if ((sprite1 instanceof Fighter) && (sprite2 instanceof Enemy)){
-			action ((Fighter)sprite1, (Enemy) sprite2, collisionType);
-		}
 
 	}
 }

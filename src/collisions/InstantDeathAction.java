@@ -11,9 +11,6 @@ public class InstantDeathAction implements ActionPerformer{
 	}
 
 	public void action(Sprite sprite1, Sprite sprite2, int collisionType) {
-		if ((sprite1 instanceof Enemy) && (sprite2 instanceof Fighter)){
-			action ((Enemy)sprite1, (Fighter) sprite2, collisionType);
-		}
 
 	}
 
