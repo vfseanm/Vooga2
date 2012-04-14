@@ -139,6 +139,14 @@ public class EditorController {
         int[] setUp = { 15, 400, 75, 400, 135, 400, 15, 460, 75, 460, 135, 460, };
         platformButtonPlacement = setUp;
     }
+    private static int[] powerUpButtonPlacement;
+    private static int powerUpButtonCounter;
+    static
+    {
+        powerUpButtonCounter = 0;
+        int[] setUp = { 15, 630, 75, 630, 135, 630, 15, 690, 75, 690, 135, 690, };
+        powerUpButtonPlacement = setUp;
+    }
 
     public void addButton(String name, Framework framework)
     {
@@ -169,6 +177,19 @@ public class EditorController {
                         platformButtonPlacement[platformButtonCounter + 1], 50,
                         40, framework, myView);
                 platformButtonCounter += 2;
+                myView.addButton(newButton);
+            }
+        else if (framework.getType().equals("Power-Up"))
+            if (platformButtonCounter == 5)
+            {
+                // make a + button that lets you look at your other ones
+            } else
+            {
+                Button newButton = new Button(name,
+                        powerUpButtonPlacement[powerUpButtonCounter],
+                        powerUpButtonPlacement[powerUpButtonCounter + 1], 50,
+                        40, framework, myView);
+                powerUpButtonCounter += 2;
                 myView.addButton(newButton);
             }
 /*        else if (type.contentEquals("fighter"))
