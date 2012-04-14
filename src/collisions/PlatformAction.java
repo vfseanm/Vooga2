@@ -14,7 +14,7 @@ import sprite.AnimatedGameSprite;
 
 public class PlatformAction implements ActionPerformer{
 
-	public void standardaction (AnimatedGameSprite sprite1, AbstractPlatform sprite2, int collisionType){ 
+	private void standardaction (AnimatedGameSprite sprite1, AbstractPlatform sprite2, int collisionType){ 
 	    System.out.println("doing standard action");
 	    System.out.println(collisionType);
 	    
@@ -22,23 +22,24 @@ public class PlatformAction implements ActionPerformer{
 			if ( (sprite1.getX()+(sprite1.getWidth()) >= sprite2.getX())
 					&& (sprite1.getX() <= sprite2.getX()+ sprite2.getWidth()) ){
 				((Enemy) sprite1).updateAttribute("JumpingMovement");
+				
 			}
 		}
 	}
-	public void action (Enemy sprite1, DecoratedPlatform sprite2, int collisionType){ 
+	private void action (Enemy sprite1, DecoratedPlatform sprite2, int collisionType){ 
 
 	}
 
-	public void action (Fighter sprite1, SimplePlatform sprite2, int collisionType){
+	private void action (Fighter sprite1, SimplePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
 	}
 	
-	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
+	private void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
 	    System.out.println("doing correct action");
 		standardaction (sprite1, sprite2, collisionType);
 	}
 
-	public void action (Enemy sprite1, BreakablePlatform sprite2, int collisionType){
+	private void action (Enemy sprite1, BreakablePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
 		if (collisionType ==  CollisionGroup.BOTTOM_TOP_COLLISION ){
 			for (int i=0; i<=2; i++){

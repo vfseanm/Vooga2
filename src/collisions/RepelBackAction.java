@@ -12,7 +12,7 @@ import fighter.Fighter;
 
 public class RepelBackAction implements ActionPerformer{
 	
-	public void action (Fighter sprite1, Enemy sprite2, int collisionType){
+	private void action (Fighter sprite1, Enemy sprite2, int collisionType){
 		if (collisionType == CollisionGroup.RIGHT_LEFT_COLLISION){
 			for (int i=0; i<=40; i++){
 				sprite1.setX(sprite1.getX()-1);
@@ -35,7 +35,7 @@ public class RepelBackAction implements ActionPerformer{
 		}
 	}
 	
-	public void action (Fighter sprite1, AbstractPlatform sprite2, int collisionType){
+	private void action (Fighter sprite1, AbstractPlatform sprite2, int collisionType){
 		
 	}
 	

@@ -6,7 +6,7 @@ import enemies.Enemy;
 
 public class InstantDeathAction implements ActionPerformer{
 	
-	public void action(Enemy sprite1, Fighter sprite2, int collisionType) {
+	private void action(Enemy sprite1, Fighter sprite2, int collisionType) {
 		sprite2.dies();
 	}
 

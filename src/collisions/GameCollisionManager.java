@@ -76,10 +76,8 @@ public class GameCollisionManager{
 	}
 	private boolean topBottomChecker (Sprite sprite1, Sprite gs1){
 		if  ((sprite1.getY() + sprite1.getHeight() == gs1.getY()) 
-				&& ( ( sprite1.getX() > gs1.getX() && sprite1.getX()+sprite1.getWidth() > gs1.getX()+gs1.getWidth() )  
-						 || (sprite1.getX() < gs1.getX() && sprite1.getX()+sprite1.getWidth() < gs1.getX()+gs1.getWidth()) 
-						|| (sprite1.getX() > gs1.getX() && sprite1.getX()+sprite1.getWidth() < gs1.getX()+gs1.getWidth()) 
-						|| (sprite1.getX() < gs1.getX() && sprite1.getX()+sprite1.getWidth() > gs1.getX()+gs1.getWidth())) ){
+				&& ( (gs1.getX()-sprite1.getX()/2 <= sprite1.getX() && (gs1.getX()+sprite1.getX()/2 >= sprite1.getX()) ) 
+						|| (sprite1.getX() >= gs1.getX() && sprite1.getX()+sprite1.getWidth() <= gs1.getX()+gs1.getWidth()) )){
 			//Top_to_Bottom
 			return true;
 		}
