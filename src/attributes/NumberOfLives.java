@@ -8,6 +8,7 @@ public class NumberOfLives extends Attribute
     @editorConstructor(parameterNames = { "number of lives" })
     public NumberOfLives (int lives)
     {
+        super(lives);
         myLives = lives;
     }
 

@@ -137,6 +137,10 @@ public class Enemy extends AnimatedGameSprite
     public void allowAttribute(String name,Object...o){
         accessAttributeMethod("allow",name,o);
     }
+    //go implement
+    public void setAttribute(String name, Object...o){
+        accessAttributeMethod("change",name,o);
+    }
 
 
     public void update (long elapsedTime)

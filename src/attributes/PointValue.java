@@ -9,6 +9,7 @@ public class PointValue extends Attribute
     @editorConstructor(parameterNames = { "point value" }) 
     public PointValue (int value)
     {
+        super(value);
         myPointValue = value;
     }
 

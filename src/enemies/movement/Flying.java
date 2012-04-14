@@ -13,6 +13,7 @@ public class Flying extends Attribute implements Updateable
     @editorConstructor(parameterNames = { "" })
     public Flying ()
     {
+        super();
         flying = true;
     }
 

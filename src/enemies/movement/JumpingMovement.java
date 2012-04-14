@@ -4,7 +4,8 @@ import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
-//go do isActive and use thate
+//go do isActive and use that
+//setAttribute
 @SuppressWarnings("serial")
 public class JumpingMovement extends Attribute implements Updateable
 {

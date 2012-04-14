@@ -12,6 +12,7 @@ public class Gravity extends Attribute implements Updateable
     @editorConstructor(parameterNames = { "distance" })
     public Gravity (int distance)
     {
+        super(distance);
         myDistance = distance;
         gravity = distance;
     }
