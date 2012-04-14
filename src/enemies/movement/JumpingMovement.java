@@ -4,27 +4,34 @@ import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
-//ground movement
 //reset attributes called from collision
+//reset in all attributes
+//check if the super class knows the subclass with reflection?
+@SuppressWarnings("serial")
 public class JumpingMovement extends Attribute implements Updateable
 {
     private int myDistance;
     private int myTime;
     private int time;
+    
 
 
     @editorConstructor(parameterNames = { "distance", "time" })
-    public JumpingMovement (int distance, int time)
+    public JumpingMovement (int distance, int delay)
     {
-
         myDistance = distance;
-        myTime = time;
-        this.time=0;
-
+        myTime = delay;
+        time=0;
+        
+        
     }
+    
+    
+    
+   
 
 
-    public void modifyJumpingMovement ()
+    public void allowJumpingMovement ()
     {
         time = 0;
 
@@ -65,7 +72,7 @@ public class JumpingMovement extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute JumpingMovemet my jump distance is "+myDistance +" my jump time is " +myTime;
+        return "Attribute JumpingMovement my jump distance is "+myDistance +" my jump time is " +myTime;
 
     }
 

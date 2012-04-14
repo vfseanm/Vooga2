@@ -2,6 +2,7 @@ package editor;
 
 import java.awt.image.BufferedImage;
 
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ import enemies.Enemy;
 
 import platforms.AbstractPlatform;
 import platforms.DecoratedPlatform;
-import platforms.Platform;
 import platforms.SimplePlatform;
 
 
@@ -28,13 +28,13 @@ public class PlatformFramework implements Framework {
     private List<String> imageNames;
     private List<Class> myPlatformWrappers;
 
-    private ArrayList<DecoratedPlatform> mySprites;
+    private ArrayList<AbstractPlatform> mySprites;
 
     public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers) {
         myImages = im;
         imageNames = images;
         myPlatformWrappers = platformWrappers;
-        mySprites = new ArrayList<DecoratedPlatform>();
+        mySprites = new ArrayList<AbstractPlatform>();
     }
 
 
@@ -44,13 +44,13 @@ public class PlatformFramework implements Framework {
         //System.out.println("image names: "+imageNames);
         
         SimplePlatform platform = new SimplePlatform(myImages, x, y - myImages[0].getHeight(), imageNames, null);
-        DecoratedPlatform myPlatform = null;
+        AbstractPlatform myPlatform = platform;
         Object[] list = new Object[1];
         list[0] = platform;
         for(Class c: myPlatformWrappers)
         {
             System.out.println("class:" + c);
-            System.out.println("lenght" + c.getConstructors().length);
+            System.out.println("length" + c.getConstructors().length);
             Constructor constructor=  c.getConstructors()[0];
             try {
                 myPlatform = (DecoratedPlatform) constructor.newInstance(list);

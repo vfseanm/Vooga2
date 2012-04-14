@@ -9,13 +9,11 @@ public class BasicMovement extends Attribute implements Updateable {
 
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
-	public double 		myVertMovement;
 	
 	
-	public BasicMovement(BaseInput userInput, double horizMove, double vertMove) {
+	public BasicMovement(BaseInput userInput, double horizMove) {
 		myUserInput = userInput;
-		myHorizMovement = horizMove;
-		myVertMovement = vertMove;
+		myHorizMovement = Math.abs(horizMove);
 	}
 	
 	

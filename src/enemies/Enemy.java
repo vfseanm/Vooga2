@@ -125,8 +125,11 @@ public class Enemy extends AnimatedGameSprite
         accessAttributeMethod("modify",name,o);
     }
     
-    public void resetAttribute(String name,Object...o){
-        accessAttributeMethod("reset",name,o);
+    public void restoreOriginalAttribute(String name,Object...o){
+        accessAttributeMethod("restore",name,o);
+    }
+    public void allowAttribute(String name,Object...o){
+        accessAttributeMethod("allow",name,o);
     }
 
 
@@ -139,17 +142,10 @@ public class Enemy extends AnimatedGameSprite
             if (attribute.getClass().getInterfaces().length != 0 &&
                 attribute.getClass().getInterfaces()[0].equals(Updateable.class))
             {
-                try
-                {
-                    //necessary?
+
 
                     ((Updateable) attribute).update(elapsedTime);
-                }
-                catch (ClassCastException e)
-                {
 
-                    e.printStackTrace();
-                }
             }
         }
         if (myState != null) myState.excuteBehavior(this);

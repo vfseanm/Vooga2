@@ -144,6 +144,7 @@ public class PowerupDialogueBox extends DialogueBox {
             imagePaths.add(myImagePath);
             PowerupFramework framework = new PowerupFramework(s, imagePaths, attributes, attributesToGive);
             return framework;
+
         }
     
     
