@@ -12,6 +12,7 @@ import sidescrolling.*;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
+import com.golden.gamedev.util.ImageUtil;
 
 import fighter.*;
 

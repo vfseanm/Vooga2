@@ -16,7 +16,6 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		myDecoratorComponent = decoratorComponent;
 	}
 
-	
 	public void setHorizontalSpeed(double speed) {
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.setHorizontalSpeed(speed);
@@ -81,7 +80,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		return null;
 	}
 
-	//works in tester game....something funky in level editor/demo game makes null pter exception here....
+	//works in tester game....something funky in level editor broken
 	public void render(Graphics2D graphics) {
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.render(graphics);	

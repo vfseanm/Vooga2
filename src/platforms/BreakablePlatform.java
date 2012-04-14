@@ -1,12 +1,6 @@
 package platforms;
-
-
-
 import java.util.ArrayList;
 import java.util.Random;
-
-import com.golden.gamedev.object.SpriteGroup;
-
 import powerups.PowerUp;
 
 
@@ -16,15 +10,12 @@ public class BreakablePlatform extends DecoratedPlatform {
 	private static final long serialVersionUID = 1254073087890380273L;
 	ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
 	
-	
-	
 	public BreakablePlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);
 	}
 	
 	protected void doBehavior(double speed, double distance) {
 		
-	
 		//do some check collision thing - need Ashwin to complete
 		//releaseItem();
 		//setActive(false);
