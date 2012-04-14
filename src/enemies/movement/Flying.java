@@ -35,9 +35,7 @@ public class Flying extends Attribute implements Updateable
 
     }
     
-    public void resetFlyingOriginal(){
-        myOriginal.
-    }
+    
     public void resetFlying(){
         flying =false;
     }
