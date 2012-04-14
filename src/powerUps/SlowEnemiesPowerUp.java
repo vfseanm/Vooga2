@@ -1,8 +1,9 @@
 package powerups;
 
 import java.awt.image.BufferedImage;
+
 import java.util.List;
-import attributes.Attribute;
+
 
 
 import platforms.BreakablePlatformItemFactory;
@@ -27,8 +28,4 @@ public class SlowEnemiesPowerUp extends PowerUp {
         return new SlowEnemiesPowerUp(getImages(), x, y, getImageNames());
     }
     
-    public Attribute getAttribute() {
-        //to be implemented later
-        return null;
-    }
 }

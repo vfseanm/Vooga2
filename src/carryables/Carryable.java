@@ -17,11 +17,6 @@ public class Carryable extends PowerUp {
 		myAttributesToOffer = new ArrayList<Attribute>();
 	}
 
-	@Override
-	public Attribute getAttribute() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public PowerUp makeItem(double x, double y) {

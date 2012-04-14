@@ -1,8 +1,8 @@
 package powerups;
 
 import java.awt.image.BufferedImage;
+
 import java.util.List;
-import attributes.Attribute;
 import com.golden.gamedev.Game;
 import fighter.Fighter;
 import platforms.BreakablePlatformItemFactory;
@@ -27,8 +27,4 @@ public class InvincibilityPowerUp extends PowerUp{
         return new InvincibilityPowerUp(getImages(), x, y, getImageNames());
     }
     
-    public Attribute getAttribute() {
-        //to be implemented later
-        return null;
-    }
 }
