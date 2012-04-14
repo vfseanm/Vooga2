@@ -30,9 +30,9 @@ public class Test extends Game{
     	imNames.add("platform1.png");
     	imNames.add("RotatingPlatform3.png");
     	myPlatform = new SimplePlatform(ims, 200, 200, imNames, null);  
-    	myPlatform = new RotatingPlatform(myPlatform);
+    	//myPlatform = new RotatingPlatform(myPlatform);
     	myPlatform = new SideToSidePlatform(myPlatform);
-    	myPlatform = new UpDownPlatform(myPlatform);
+    	//myPlatform = new UpDownPlatform(myPlatform);
     }
     
     public void render (Graphics2D pen) {

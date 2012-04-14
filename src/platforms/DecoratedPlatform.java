@@ -80,9 +80,20 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		}
 		return null;
 	}
-/*	public List<String> getImageNames(){
-	    return myDecoratorComponent.getImageNames();
-	}*/
+	
+	public void setImages(BufferedImage[] images)
+	{
+	    if(myDecoratorComponent!= null){
+	        myDecoratorComponent.setImages(images);
+	    }
+	}
+	public List<String> getImageNames(){
+	    if(myDecoratorComponent != null)
+	    {
+	        return myDecoratorComponent.getImageNames();
+	    }
+	    return null;
+	}
 
 	//works in tester game....something funky in level editor broken
 	public void render(Graphics2D graphics) {

@@ -59,7 +59,7 @@ import enemies.movement.OneDirectionMovement;
             
             
             Fighter myFighter = new Fighter(mySprites.get(0).getImages(), 100, 100, mySprites.get(0).getImageNames());
-            System.out.println("fighter" + myFighter);
+            
             myFighter.addAttribute(new BasicMovement(bsInput, 5));
            // myFighter.addAttribute(new Gravity(1));
             
@@ -69,6 +69,7 @@ import enemies.movement.OneDirectionMovement;
             allSprites = new SpriteGroup("sprites");
             allSprites.add(myFighter);
             allSprites.add(powerup);
+            
             for (Sprite s: mySprites)
             {
                 allSprites.add(s);
@@ -110,11 +111,7 @@ import enemies.movement.OneDirectionMovement;
             list.add(p1);
             list.add(p2);
              gc = new GameCollisionManager();
-             
-             for(AnimatedGameSprite s: mySprites)
-             {
-                 System.out.println(s);
-             }
+
                     
         }
 
@@ -125,8 +122,17 @@ import enemies.movement.OneDirectionMovement;
 
             myBackground.render(arg0);
             //myPlayField.render(arg0);
-            allSprites.render(arg0);
-            bob.render(arg0);
+            //allSprites.render(arg0);
+            
+            for(Sprite s: allSprites.getSprites())
+            {
+                if(s!=null)
+                {
+                    System.out.println("image names to render "+ ((AnimatedGameSprite)s).getImages());
+                    s.render(arg0);
+                }
+            }
+           bob.render(arg0);
            p.render(arg0);
            p1.render(arg0);
            p2.render(arg0);
@@ -148,7 +154,7 @@ import enemies.movement.OneDirectionMovement;
             gc.GameCollision(bob, list);
             if(counter==800){
                 
-            }
+        }
             
             
             
