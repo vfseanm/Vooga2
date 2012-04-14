@@ -355,8 +355,8 @@ public class EditorView extends Game {
             myView = new EnemyDialogueBox(myModel);
         else if (type.contentEquals("platform"))
             myView = new PlatformDialogueBox(myModel);
-        else if (type.contentEquals("player"))
-            myView = new PlayerDialogue(myModel);
+        /*else if (type.contentEquals("player"))
+            myView = new PlayerDialogue(myModel);*/
         
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);

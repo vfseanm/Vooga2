@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import carryables.Carryable;
+import fighter.Fighter;
 
 import attributes.Attribute;
 
@@ -24,74 +25,51 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class PlayerDialogue extends DialogueBox {
+public class PlayerDialogue extends JPanel{
+
+
+
+    private EditorController myController;
+    protected BufferedImage myImage;
+    protected String myImagePath;
+    
+    protected JTextField myName;
+    protected Reflection reflection;
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
 
-    private JTextField myName;
-
-    private Reflection reflection;
-    private EditorController myModel;
     @SuppressWarnings("rawtypes")
-    private HashMap<JCheckBox, Class> attributeMap;
     
-    private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
-    private BufferedImage myImage;
-    private String myImagePath;
+    private HashMap<JCheckBox, Class> checkBoxAttributeMap;
+    private HashMap<JCheckBox, Class> checkBoxCarryableMap;
+    private HashMap<JCheckBox, Attribute> attributeInstanceMap;
+    private HashMap<JCheckBox, Attribute> carryableAttributeMap;
+
     private String myType;
 
     @SuppressWarnings("rawtypes")
     public PlayerDialogue(EditorController m)
     {
-        super(m);
-        myType = "player";
-        attributeMap = new HashMap<JCheckBox, Class>();
-        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
-        myModel = m;
-        reflection = new Reflection();
+        myController = m;
+        reflection =  new Reflection();
         setLayout(new BorderLayout());
+        checkBoxAttributeMap = new HashMap<JCheckBox, Class>();
+        checkBoxCarryableMap = new HashMap<JCheckBox, Class>();
+        attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
+        carryableAttributeMap = new HashMap<JCheckBox, Attribute>();
         add(makeInputPanel(), BorderLayout.NORTH);
+        
     }
-
-    public BufferedImage getImage()
-    {
-        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
-        File file = null;
-        int returnVal = fc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
-        {
-            file = fc.getSelectedFile();
-        }
-        myImagePath = null;
-        try
-        {
-            myImagePath = file.getCanonicalPath();
-        } catch (IOException e1)
-        {
-            e1.printStackTrace();
-        }
-        //System.out.println(myImagePath);
-        BufferedImage img = null;
-        try
-        {
-            img = ImageIO.read(new File(myImagePath));
-        } catch (IOException e)
-        {
-            System.out.println("There has been a problem importing your image");
-            // throw something!
-        }
-        return img;
-
-    }
-
+    
     private JComponent makeInputPanel()
     {
         JPanel panel = new JPanel(new BorderLayout());
 
         try
         {
-            panel.add(makeDestinationPanel(), BorderLayout.NORTH);
+            panel.add(makeSelectionPanel(), BorderLayout.NORTH);
+            
         } catch (Exception e)
         {
             System.out.println("Problem with Reflection!");
@@ -100,14 +78,18 @@ public class PlayerDialogue extends DialogueBox {
         return panel;
     }
 
+   
+
     @SuppressWarnings("rawtypes")
-    private JComponent makeDestinationPanel() throws ClassNotFoundException,
+    public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
         JPanel panel = new JPanel();
+        JLabel label = new JLabel("Attribute Choices: ");
+        panel.add(label);
+        
         panel.setPreferredSize(new Dimension(600,800));
-        List<Class> list = reflection.getInstancesOf("enemies.movement", Attribute.class);
-        list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
+        List<Class> list = reflection.getInstancesOf("attributes", Attribute.class);
         for (Class c : list)
         {
             boolean isAnnotated = false;
@@ -125,17 +107,15 @@ public class PlayerDialogue extends DialogueBox {
                 JCheckBox box = new JCheckBox();
                 panel.add(box);
                 box.addActionListener(new CheckBoxListener(box, c));
-                attributeMap.put(box, c);
+                checkBoxAttributeMap.put(box, c);
             }
         }
+        
+        JLabel label2 = new JLabel("Carryable Choices: ");
+        panel.add(label2);
+        
 
-        
-        JLabel label6 = new JLabel("Carryable Items:");
-        panel.add(label6);
-        
-        List<Class> carryableList = reflection.getInstancesOf("enemies.movement", Attribute.class);
-        carryableList.addAll(reflection.getInstancesOf("attributes", Attribute.class));
-        for (Class c : carryableList)
+        for (Class c : list)
         {
             boolean isAnnotated = false;
             for(Constructor constructor : c.getConstructors())
@@ -149,13 +129,14 @@ public class PlayerDialogue extends DialogueBox {
             {
                 JLabel label1 = new JLabel(c.getName());
                 panel.add(label1);
-                JCheckBox box = new JCheckBox();
-                panel.add(box);
-                box.addActionListener(new CheckBoxListener(box, c));
-                attributeMap.put(box, c);
+                JCheckBox box2 = new JCheckBox();
+                panel.add(box2);
+                box2.addActionListener(new CheckBoxListener(box2, c));
+                checkBoxCarryableMap. put(box2, c);
             }
         }
 
+        
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
@@ -167,29 +148,6 @@ public class PlayerDialogue extends DialogueBox {
         return panel;
     }
 
-    private class GoAction implements ActionListener {
-       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
-            for (JCheckBox box : attributeMap.keySet())
-            {
-                if (box.isSelected())
-                {
-                    attributes.add( attributeInstanceMap.get(box));
-                }
-            }
-            BufferedImage[] s = new BufferedImage[1];
-            s[0] = myImage;
-            ArrayList<String> imagePaths = new ArrayList<String>();
-            imagePaths.add(myImagePath);
-            ArrayList<Carryable> carryables = new ArrayList<Carryable>();
-            PlayerFramework framework = new PlayerFramework(s, imagePaths, attributes, carryables);
-            myModel.addButton(myName.getText(), framework);
-            setVisible(false);
-        }
-    }
     
     private class CheckBoxListener implements ActionListener {
         Class associatedClass;
@@ -250,35 +208,119 @@ public class PlayerDialogue extends DialogueBox {
                 }
             }
              
-                   // Attribute att = (Attribute) constructor.newInstance(argList);
-                    List<Object> attribute = new ArrayList<Object>();
+                    
+                    try
+                    {
+                        Attribute att;
+                        att = (Attribute) constructor.newInstance(argList);
+                        if(checkBoxAttributeMap.keySet().contains(box))
+                        {
+                            attributeInstanceMap.put(box, att);
+                        }
+                        if(checkBoxCarryableMap.keySet().contains(box))
+                        {
+                            carryableAttributeMap.put(box, att);
+                        }
+                    } catch (IllegalArgumentException e1)
+                    {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    } catch (InstantiationException e1)
+                    {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    } catch (IllegalAccessException e1)
+                    {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    } catch (InvocationTargetException e1)
+                    {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    /*List<Object> attribute = new ArrayList<Object>();
                     attribute.add(constructor);
-                    attribute.add(argList);
-                    attributeInstanceMap.put(box, attribute);
+                    attribute.add(argList);*/
+                    
                 
             }
     }
-
-    private class ImageAction implements ActionListener {
+    
+    private class GoAction implements ActionListener {
+       
+        
         public void actionPerformed(ActionEvent e)
         {
+            ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+            ArrayList<Attribute> carryableAttributes = new ArrayList<Attribute>();
+            for (JCheckBox box : checkBoxAttributeMap.keySet())
+            {
+                if (box.isSelected())
+                {
+                    attributes.add( attributeInstanceMap.get(box));
+                }
+            }
+            for(JCheckBox box: checkBoxCarryableMap.keySet())
+            {
+                if(box.isSelected())
+                {
+                    carryableAttributes.add(carryableAttributeMap.get(box));
+                }
+            }
+            BufferedImage[] s = new BufferedImage[1];
+            s[0] = myImage;
+            ArrayList<String> imagePaths = new ArrayList<String>();
+            imagePaths.add(myImagePath);
+            //ArrayList<> carryables = new ArrayList<Carryable>();
+            //PlayerFramework framework = new PlayerFramework(s, imagePaths, attributes, carryables);
+            myController.addSprite(new Fighter(s, 0, 0, imagePaths));
+            setVisible(false);
+        }
+    }
+   
+
+    public BufferedImage getImage()
+    {
+        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
+        File file = null;
+        int returnVal = fc.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+        {
+            file = fc.getSelectedFile();
+        }
+        myImagePath = null;
+        try
+        {
+            myImagePath = file.getCanonicalPath();
+        } catch (IOException e1)
+        {
+            e1.printStackTrace();
+        }
+        //System.out.println(myImagePath);
+        BufferedImage img = null;
+        try
+        {
+            img = ImageIO.read(new File(myImagePath));
+        } catch (IOException e)
+        {
+            System.out.println("There has been a problem importing your image");
+            // throw something!
+        }
+        return img;
+
+    }
+
+
+
+    protected class ImageAction implements ActionListener {
+        public void actionPerformed(ActionEvent e)
+        {
+
             BufferedImage f = getImage();
             myImage = f;
 
         }
     }
 
-    @Override
-    public JComponent makeSelectionPanel() throws ClassNotFoundException,
-            IOException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Framework getFramework() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
 }
