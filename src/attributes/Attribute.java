@@ -100,8 +100,11 @@ public abstract class Attribute implements Serializable
         {
             try
             {
-                System.out.println(myFields[i].get("Hey"+this));
-                System.out.println("cs"+myOriginalFields[i].get(myOriginal));
+                
+                myFields[i].setAccessible(true);
+                myOriginalFields[i].setAccessible(true);
+                myFields[i].set(this, myOriginalFields[i].get(myOriginal));
+                
             }
             catch (IllegalArgumentException e)
             {
