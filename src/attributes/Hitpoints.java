@@ -34,7 +34,7 @@ public class Hitpoints extends Attribute
                 myEnemy.updateAttribute("NumberOfLives", -1);
                 resetHP();
             }
-            //Will add better error handling
+            //Fix this
             catch (Exception e)
             {
                 myEnemy.setActive(false);
