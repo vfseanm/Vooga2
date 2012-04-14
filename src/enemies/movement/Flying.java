@@ -34,6 +34,11 @@ public class Flying extends Attribute implements Updateable
         }
 
     }
+    
+    
+    public void resetFlying(){
+        flying =false;
+    }
 
 
     @Override

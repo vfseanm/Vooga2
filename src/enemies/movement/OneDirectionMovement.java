@@ -24,7 +24,7 @@ public class OneDirectionMovement extends Attribute implements Updateable
         myDistance += distance;
     }
 
-    //ifs??
+    
     public void update (long elaspedTime)
     {
         if (myEnemy.isOnScreen())
@@ -33,22 +33,22 @@ public class OneDirectionMovement extends Attribute implements Updateable
             {
                 myEnemy.setLocation(myEnemy.getX() - myDistance, myEnemy.getY());
             }
-            if (myDirection.equalsIgnoreCase("right"))
+            else if (myDirection.equalsIgnoreCase("right"))
             {
                 myEnemy.setLocation(myEnemy.getX() + myDistance, myEnemy.getY());
             }
-            if (myDirection.equalsIgnoreCase("up"))
+            else if (myDirection.equalsIgnoreCase("up"))
             {
                 myEnemy.setLocation(myEnemy.getX(), myEnemy.getY() - myDistance);
             }
-            if (myDirection.equalsIgnoreCase("down"))
+            else if (myDirection.equalsIgnoreCase("down"))
             {
                 myEnemy.setLocation(myEnemy.getX(), myEnemy.getY() + myDistance);
             }
 
         }
-
     }
+    
 
 
     @Override

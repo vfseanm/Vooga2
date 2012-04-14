@@ -1,6 +1,9 @@
 package platforms;
 
+
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.util.List;
 
 public abstract class DecoratedPlatform extends AbstractPlatform {
 	 
@@ -11,59 +14,91 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	FrameTimer myTimer = new FrameTimer();
 	
 	public DecoratedPlatform(AbstractPlatform decoratorComponent) {
-		super(decoratorComponent.getImages(), decoratorComponent.getX(), decoratorComponent.getY(), decoratorComponent.getImageNames(), null);
 		myDecoratorComponent = decoratorComponent;
-		/*setX(myDecoratorComponent.getX());
-		setY(myDecoratorComponent.getY());
-		setImages(myDecoratorComponent.getImages());
-		setImageNames(myDecoratorComponent.getImageNames());*/
 	}
-	
-	public void setSpeed(double speed) {
-		mySpeed = speed;
-	}
-	
-	public void setDistance(double distance) {
-		myDistance = distance;
-	}
-	
+
 	public void setHorizontalSpeed(double speed) {
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.setHorizontalSpeed(speed);
 		}
-		super.setHorizontalSpeed(speed);
-		
+		super.setHorizontalSpeed(speed);	
 	}
 	
 	public void setVerticalSpeed(double speed) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setHorizontalSpeed(speed);
+			myDecoratorComponent.setVerticalSpeed(speed);
 		}
-		super.setVerticalSpeed(speed);
-		
-	}
-	
-	public void moveAll(double x, double y) {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.moveAll(x, y);
-		}
-		move(x, y);
-		
+		super.setVerticalSpeed(speed);		
 	}
 	
 	public void update(long elapsedTime) {
-		doBehavior(mySpeed, myDistance);
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.update(elapsedTime);
 		}
-		
+		doBehavior(mySpeed, myDistance);
 		super.update(elapsedTime);
 	}
 	
-	public void renderAll(Graphics2D graphics) {
+	public void setAnimate(boolean arg) {
 		if (myDecoratorComponent != null) {
-			myDecoratorComponent.renderAll(graphics);
+			myDecoratorComponent.setAnimate(arg);
 		}
-		render(graphics);
+		super.setAnimate(arg);
+	}
+	
+	public void setFrame(int frame) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.setFrame(frame);
+		}
+		super.setFrame(frame);
+	}
+	
+	public void setLocation(double x, double y) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.setLocation(x, y);
+		}
+		super.setLocation(x, y);
+	}
+	
+	public double getX() {
+		if (myDecoratorComponent != null) {
+			return myDecoratorComponent.getX();
+		}
+		return 0;
+	}
+	
+	public double getY() {
+		if (myDecoratorComponent != null) {
+			return myDecoratorComponent.getY();
+		}
+		return 0;
+	}
+	
+	public BufferedImage[] getImages() {
+		if (myDecoratorComponent != null) {
+			return myDecoratorComponent.getImages();
+		}
+		return null;
+	}
+	
+	public void setImages(BufferedImage[] images)
+	{
+	    if(myDecoratorComponent!= null){
+	        myDecoratorComponent.setImages(images);
+	    }
+	}
+	public List<String> getImageNames(){
+	    if(myDecoratorComponent != null)
+	    {
+	        return myDecoratorComponent.getImageNames();
+	    }
+	    return null;
+	}
+
+	//works in tester game....something funky in level editor broken
+	public void render(Graphics2D graphics) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.render(graphics);	
+		}
 	}
 }

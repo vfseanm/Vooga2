@@ -1,5 +1,6 @@
 package platforms;
 
+
 public class UpDownPlatform extends DecoratedPlatform {
 
 	private static final long serialVersionUID = -3578102991430723896L;
