@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class PowerupDialogueBox extends DialogueBox {
+public class PowerupDialogueBox extends ButtonDialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";

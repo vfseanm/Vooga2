@@ -40,6 +40,7 @@ public class GameDialogue extends DialogueBox {
 
     public GameDialogue(EditorController m)
     {
+        
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;

@@ -53,7 +53,10 @@ public class EnemyFramework implements Framework {
             Object[] parameterList = (Object[]) list.get(1);
             Attribute attribute = null;
             try {
+                System.out.println("parameters:" + parameterList);
+                System.out.println("constructors:" + c);
                 attribute = (Attribute) c.newInstance(parameterList);
+                
             } catch (IllegalArgumentException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();

@@ -18,7 +18,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class EnemyDialogueBox extends DialogueBox {
+public class EnemyDialogueBox extends ButtonDialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -178,6 +178,7 @@ public class EnemyDialogueBox extends DialogueBox {
         ArrayList<String> imagePaths = new ArrayList<String>();
         imagePaths.add(myImagePath);
         EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
+        System.out.println("framework's attributes" + attributes);
         return framework;
     }
 
