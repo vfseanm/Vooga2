@@ -3,6 +3,7 @@ package platforms;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 public abstract class DecoratedPlatform extends AbstractPlatform {
 	 
@@ -78,6 +79,20 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 			return myDecoratorComponent.getImages();
 		}
 		return null;
+	}
+	
+	public void setImages(BufferedImage[] images)
+	{
+	    if(myDecoratorComponent!= null){
+	        myDecoratorComponent.setImages(images);
+	    }
+	}
+	public List<String> getImageNames(){
+	    if(myDecoratorComponent != null)
+	    {
+	        return myDecoratorComponent.getImageNames();
+	    }
+	    return null;
 	}
 
 	//works in tester game....something funky in level editor broken

@@ -106,9 +106,11 @@ public class Level implements Serializable{
             BufferedImage[] images = new BufferedImage[s.getImageNames().size()];
             for(int i=0; i<images.length; i++)
             {
+                //System.out.println("image names: "+s.getImageNames());
                 images[i] = loader.getImage(s.getImageNames().get(i));
             }
             s.setImages(images);
+            System.out.println(s.getImages());
         }
     }
     
