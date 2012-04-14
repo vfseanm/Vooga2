@@ -23,6 +23,7 @@ public class Enemy extends AnimatedGameSprite
     {
         super(im, x, y, image);
         myAttributes = new ArrayList<Attribute>();
+        setGroup("ENEMY");
     }
 
     /**
@@ -85,6 +86,7 @@ public class Enemy extends AnimatedGameSprite
                 Class<?> c = attribute.getClass();
                 for (Method m : c.getMethods())
                 {
+                    
                     if (!m.getName().startsWith(methodStart)) continue;
                     if (m.getGenericParameterTypes().length != o.length) continue;
                     for (int i = 0; i < m.getGenericParameterTypes().length; i++)
@@ -100,6 +102,8 @@ public class Enemy extends AnimatedGameSprite
 
                     try
                     {
+//                        if(m.getName()!="modifyGravity"&&m.getName()!="modifyGravityDistance")
+//                        System.out.println(m.getName());
                         m.invoke(attribute, o);
                     }
                     catch (IllegalArgumentException e)

@@ -19,6 +19,8 @@ public class JumpingMovement extends Attribute implements Updateable
     @editorConstructor(parameterNames = { "distance", "time" })
     public JumpingMovement (int distance, int delay)
     {
+        
+        super(distance,delay);
         myDistance = distance;
         myTime = delay;
         time=0;
