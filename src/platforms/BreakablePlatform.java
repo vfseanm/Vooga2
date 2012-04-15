@@ -1,8 +1,9 @@
 package platforms;
 import java.util.ArrayList;
+
 import java.util.Random;
 
-import powerUps.PowerUp;
+import powerups.PowerUp;
 
 
 

@@ -2,6 +2,7 @@ package demo;
 
 import java.awt.Color;
 
+
 import java.awt.Graphics2D;
 
 import com.golden.gamedev.object.PlayField;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import platforms.*;
-import powerUps.InvincibilityPowerUp;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;

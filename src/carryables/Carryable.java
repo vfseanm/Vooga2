@@ -1,11 +1,12 @@
 package carryables;
 
 import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import attributes.Attribute;
-import powerUps.*;
+import powerups.*;
 
 @SuppressWarnings("serial")
 public class Carryable extends PowerUp {
