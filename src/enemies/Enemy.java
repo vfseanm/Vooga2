@@ -102,8 +102,7 @@ public class Enemy extends AnimatedGameSprite
 
                     try
                     {
-//                        if(m.getName()!="modifyGravity"&&m.getName()!="modifyGravityDistance")
-//                        System.out.println(m.getName());
+
                         m.invoke(attribute, o);
                     }
                     catch (IllegalArgumentException e)
