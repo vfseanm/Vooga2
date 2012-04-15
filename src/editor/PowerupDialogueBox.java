@@ -94,8 +94,8 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
     
     public Framework getFramework() {
 
-            ArrayList<List<Object>> attributes = powerupAttributePanel.getSelectedAttributes();
-            ArrayList<List<Object>> attributesToGive = attributesToGivePanel.getSelectedAttributes();
+            ArrayList<AttributeCreator> attributes = powerupAttributePanel.getSelectedAttributes();
+            ArrayList<AttributeCreator> attributesToGive = attributesToGivePanel.getSelectedAttributes();
             BufferedImage[] s = new BufferedImage[1];
             s[0] = myImage;
             ArrayList<String> imagePaths = new ArrayList<String>();

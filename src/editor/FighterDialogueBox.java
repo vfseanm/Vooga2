@@ -17,6 +17,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import carryables.Carryable;
+import editor.ButtonDialogueBox.GoAction;
+import editor.DialogueBox.ImageAction;
 import fighter.Fighter;
 
 import attributes.Attribute;
@@ -37,12 +39,14 @@ public class FighterDialogueBox extends DialogueBox{
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
 
-    @SuppressWarnings("rawtypes")
+/*    @SuppressWarnings("rawtypes")
     
     private HashMap<JCheckBox, Class> checkBoxAttributeMap;
     private HashMap<JCheckBox, Class> checkBoxCarryableMap;
-    private HashMap<JCheckBox, Attribute> attributeInstanceMap;
-    private HashMap<JCheckBox, Attribute> carryableAttributeMap;
+    private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
+    private HashMap<JCheckBox, AttributeCreator> carryableAttributeMap;*/
+    AttributeSelectionPanel attributePanel;
+    AttributeSelectionPanel carryablePanel;
 
     private String myType;
 
@@ -63,12 +67,55 @@ public class FighterDialogueBox extends DialogueBox{
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
-        checkBoxAttributeMap = new HashMap<JCheckBox, Class>();
-        checkBoxCarryableMap = new HashMap<JCheckBox, Class>();
-        attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
-        carryableAttributeMap = new HashMap<JCheckBox, Attribute>();
+
+
+        ArrayList<String> packagesToSearch = new ArrayList<String>();
+        packagesToSearch.add("attributes");
         
         JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.setPreferredSize(new Dimension(800,325));
+        attributePanel = new AttributeSelectionPanel(packagesToSearch);
+        JPanel panel2 = new JPanel();
+        JLabel title1 = new JLabel("Attributes for the Fighter to have:");
+        panel2.add(title1);
+        panel2.add(attributePanel);
+        panel.add(panel2, BorderLayout.PAGE_START);
+        JLabel title2 = new JLabel("Carryable attributes for the Power-Up to Give:");
+        carryablePanel = new AttributeSelectionPanel(packagesToSearch);
+        JPanel panel3 = new JPanel();
+        panel3.add(title2);
+        panel3.add(carryablePanel);
+        panel.add(panel3, BorderLayout.CENTER);
+
+        JPanel subPanel = new JPanel();
+        subPanel.setPreferredSize(new Dimension(600, 100));
+
+        /*JLabel label1 = new JLabel("Power-Up Name");
+        subPanel.add(label1);
+
+        myName = new JTextField(10);
+
+        subPanel.add(myName);
+*/
+        JButton imageButton = new JButton("Select Image");
+        imageButton.addActionListener(new ImageAction());
+        subPanel.add(imageButton);
+                
+        JButton goButton = new JButton("Create Fighter");
+        goButton.addActionListener(new FighterAction());
+        subPanel.add(goButton);
+        
+
+        panel.add(subPanel, BorderLayout.PAGE_END);
+
+        return panel;
+        /*checkBoxAttributeMap = new HashMap<JCheckBox, Class>();
+        checkBoxCarryableMap = new HashMap<JCheckBox, Class>();
+        attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
+        carryableAttributeMap = new HashMap<JCheckBox, Attribute>();*/
+        
+        /*JPanel panel = new JPanel();
         JLabel label = new JLabel("Attribute Choices: ");
         panel.add(label);
         
@@ -129,10 +176,10 @@ public class FighterDialogueBox extends DialogueBox{
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
 
-        return panel;
+        return panel;*/
     }
 
-    
+   /* 
     private class CheckBoxListener implements ActionListener {
         Class associatedClass;
         JCheckBox box;
@@ -222,22 +269,22 @@ public class FighterDialogueBox extends DialogueBox{
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
-                    /*List<Object> attribute = new ArrayList<Object>();
+                    List<Object> attribute = new ArrayList<Object>();
                     attribute.add(constructor);
-                    attribute.add(argList);*/
+                    attribute.add(argList);
                     
                 
             }
     }
-    
-    private class GoAction implements ActionListener {
+*/    
+    private class FighterAction implements ActionListener {
        
         
         public void actionPerformed(ActionEvent e)
         {
-            ArrayList<Attribute> attributes = new ArrayList<Attribute>();
-            ArrayList<Attribute> carryableAttributes = new ArrayList<Attribute>();
-            for (JCheckBox box : checkBoxAttributeMap.keySet())
+            ArrayList<AttributeCreator> attributes = attributePanel.getSelectedAttributes();
+            ArrayList<AttributeCreator> carryableAttributes = carryablePanel.getSelectedAttributes();
+            /*for (JCheckBox box : checkBoxAttributeMap.keySet())
             {
                 if (box.isSelected())
                 {
@@ -250,7 +297,7 @@ public class FighterDialogueBox extends DialogueBox{
                 {
                     carryableAttributes.add(carryableAttributeMap.get(box));
                 }
-            }
+            }*/
             BufferedImage[] s = new BufferedImage[1];
             s[0] = myImage;
             ArrayList<String> imagePaths = new ArrayList<String>();
@@ -262,7 +309,7 @@ public class FighterDialogueBox extends DialogueBox{
         }
     }
    
-class FighterAction implements ActionListener {       
+/*class FighterAction implements ActionListener {       
         
         public void actionPerformed(ActionEvent e)
         {
@@ -271,7 +318,7 @@ class FighterAction implements ActionListener {
             myController.setFighter(fighter); 
             setVisible(false);
         }
-    }
+    }*/
 
 
 

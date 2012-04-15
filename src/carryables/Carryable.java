@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import attributes.Attribute;
-import powerups.*;
+import powerUps.*;
 
 @SuppressWarnings("serial")
 public class Carryable extends PowerUp {

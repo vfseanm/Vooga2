@@ -10,6 +10,7 @@ import java.util.List;
 import powerUps.PowerUp;
 
 
+
 import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
@@ -23,12 +24,12 @@ public class PowerupFramework implements Framework {
     private BufferedImage[] myImages;
     @SuppressWarnings("unused")
     private ArrayList<String> imageNames;
-    private List<List<Object>> myAttributes;
-    private List<List<Object>> myAttributesToGive;
+    private List<AttributeCreator> myAttributes;
+    private List<AttributeCreator> myAttributesToGive;
     private List<Attribute> attributes;
     private List<Attribute> attributesToGive;
 
-    public PowerupFramework(BufferedImage[] im, ArrayList<String> images, List<List<Object>> attributes, List<List<Object>> attributesToGive) {
+    public PowerupFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, List<AttributeCreator> attributesToGive) {
         myImages = im;
         imageNames = images;
         myAttributes = attributes;
@@ -42,9 +43,10 @@ public class PowerupFramework implements Framework {
 
     public AnimatedGameSprite getSprite(int x, int y) {
         attributes = new ArrayList<Attribute>();
-        for(List<Object> list: myAttributes)
+        for(AttributeCreator a: myAttributes)
         {
-            Constructor c = (Constructor) list.get(0);
+            Attribute attribute = a.createAttribute();
+            /*Constructor c = (Constructor) list.get(0);
             Object[] parameterList = (Object[]) list.get(1);
             Attribute attribute = null;
             try {
@@ -61,13 +63,13 @@ public class PowerupFramework implements Framework {
             } catch (InvocationTargetException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-            }
+            }*/
             attributes.add(attribute);
         }  
         
-        for(List<Object> list: myAttributesToGive)
+        for(AttributeCreator a: myAttributesToGive)
         {
-            Constructor c = (Constructor) list.get(0);
+            /*Constructor c = (Constructor) list.get(0);
             Object[] parameterList = (Object[]) list.get(1);
             Attribute attribute = null;
             try {
@@ -84,7 +86,8 @@ public class PowerupFramework implements Framework {
             } catch (InvocationTargetException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-            }
+            }*/
+            Attribute attribute = a.createAttribute();
             attributesToGive.add(attribute);
         }  
         

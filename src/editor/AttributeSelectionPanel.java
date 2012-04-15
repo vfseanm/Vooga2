@@ -142,11 +142,7 @@ public class AttributeSelectionPanel extends JPanel {
                         }
                     }
                 }
-/*
-                // Attribute att = (Attribute) constructor.newInstance(argList);
-                List<Object> attribute = new ArrayList<Object>();
-                attribute.add(constructor);
-                attribute.add(argList);*/
+
                 attributeInstanceMap.put(box, new AttributeCreator(constructor, argList));
             }
 
