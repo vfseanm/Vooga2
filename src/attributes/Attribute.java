@@ -89,6 +89,8 @@ public abstract class Attribute implements Serializable
     {
         isActive = active;
     }
+    
+    
 
 
     public void restoreOriginalAttribute ()

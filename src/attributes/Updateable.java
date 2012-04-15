@@ -8,6 +8,8 @@ package attributes;
  */
 public interface Updateable
 {
+    
     public void update(long elaspedTime);
+    public void invert();
 
 }

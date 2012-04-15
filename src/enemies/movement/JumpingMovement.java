@@ -4,37 +4,24 @@ import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
-//go do isActive and use that
-//setAttribute
-//turnaround
+
+// go do isActive and use that
+// turnaround
 @SuppressWarnings("serial")
 public class JumpingMovement extends Attribute implements Updateable
 {
     private int myDistance;
     private int myTime;
     private int time;
-    
 
 
     @editorConstructor(parameterNames = { "distance", "time" })
     public JumpingMovement (int distance, int delay)
     {
-        
-        super(distance,delay);
+
+        super(distance, delay);
         myDistance = distance;
         myTime = delay;
-        time=0;
-        
-        
-    }
-    
-    
-    
-   
-
-
-    public void allowJumpingMovement ()
-    {
         time = 0;
 
     }
@@ -49,21 +36,28 @@ public class JumpingMovement extends Attribute implements Updateable
 
     public void update (long elaspedTime)
     {
+        if (isActive)
+        {
+            if (time <= myTime)
+            {
 
-        if (time<=myTime)
+                myEnemy.setY(myEnemy.getY() - myDistance);
+                myEnemy.allowAttribute("Gravity", false);
+            }
+
+        }
+        else
         {
 
-            myEnemy.setY(myEnemy.getY() - myDistance);
-            myEnemy.updateAttribute("Gravity", 0);
-        }
-        else{
-            
-            myEnemy.updateAttribute("Gravity");
+            myEnemy.restoreOriginalAttribute("Gravity");
         }
         time++;
 
     }
-
+    //Repeated Code Andrew Help
+    public void invert(){
+        myDistance=-myDistance;
+    }
 
     @Override
     public String getName ()
@@ -74,7 +68,8 @@ public class JumpingMovement extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute JumpingMovement my jump distance is "+myDistance +" my jump time is " +myTime;
+        return "Attribute JumpingMovement my jump distance is " + myDistance +
+               " my jump time is " + myTime;
 
     }
 

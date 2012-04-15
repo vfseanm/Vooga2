@@ -10,12 +10,14 @@ public class OneDirectionMovement extends Attribute implements Updateable
     private String myDirection;
     private int myDistance;
 
+
     @editorConstructor(parameterNames = { "direction", "distance" })
     public OneDirectionMovement (String direction, int distance)
     {
-        super(direction,distance);
+        super(direction, distance);
         myDirection = direction;
         myDistance = distance;
+        isActive = false;
     }
 
 
@@ -25,10 +27,10 @@ public class OneDirectionMovement extends Attribute implements Updateable
         myDistance += distance;
     }
 
-    
+
     public void update (long elaspedTime)
     {
-        if (myEnemy.isOnScreen())
+        if (myEnemy.isOnScreen() || isActive)
         {
             if (myDirection.equalsIgnoreCase("left"))
             {
@@ -49,7 +51,12 @@ public class OneDirectionMovement extends Attribute implements Updateable
 
         }
     }
-    
+
+
+    public void invert ()
+    {
+        myDistance = -myDistance;
+    }
 
 
     @Override
@@ -57,12 +64,12 @@ public class OneDirectionMovement extends Attribute implements Updateable
     {
         return "OneDirectionMovement";
     }
-    
 
 
     public String toString ()
     {
-        return "Attribute OneDirectionMovement My Direction is "+myDirection+" my distance is "+myDistance;
+        return "Attribute OneDirectionMovement My Direction is " + myDirection +
+               " my distance is " + myDistance;
     }
 
 }

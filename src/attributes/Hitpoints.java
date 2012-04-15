@@ -52,4 +52,7 @@ public class Hitpoints extends Attribute
         return "Attribute Hitpoints is currently " + myHitpoints;
     }
 
+
+
+
 }

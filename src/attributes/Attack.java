@@ -23,4 +23,12 @@ public class Attack extends Attribute implements Updateable
         return "Attribute Attack";
     }
 
+    public void invert ()
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+
 }
