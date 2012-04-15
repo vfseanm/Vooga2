@@ -359,7 +359,7 @@ public class EditorView extends Game {
             myView = new PlatformDialogueBox(myModel);
 
         else if (type.contentEquals("player"))
-            myView = new FighterDialogue(myModel);
+            myView = new FighterDialogueBox(myModel);
         else if (type.contentEquals("power up"))
             myView = new PowerupDialogueBox(myModel);
         else if (type.contentEquals("game"))
@@ -367,7 +367,7 @@ public class EditorView extends Game {
 
         
         frame = new JFrame("Enemy Behaviors");
-        Dimension d = new Dimension(500, 300);
+        Dimension d = new Dimension(600, 300);
         frame.setPreferredSize(d);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(myView);

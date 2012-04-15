@@ -29,12 +29,10 @@ public class FighterDialogueBox extends DialogueBox{
 
 
 
-    private EditorController myController;
-    protected BufferedImage myImage;
-    protected String myImagePath;
+
+
     
-    protected JTextField myName;
-    protected Reflection reflection;
+
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -51,32 +49,13 @@ public class FighterDialogueBox extends DialogueBox{
     @SuppressWarnings("rawtypes")
     public FighterDialogueBox(EditorController m)
     {
-        myController = m;
-        reflection =  new Reflection();
-        setLayout(new BorderLayout());
-        checkBoxAttributeMap = new HashMap<JCheckBox, Class>();
-        checkBoxCarryableMap = new HashMap<JCheckBox, Class>();
-        attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
-        carryableAttributeMap = new HashMap<JCheckBox, Attribute>();
-        add(makeInputPanel(), BorderLayout.NORTH);
+       
+        super(m);
+        
         
     }
     
-    private JComponent makeInputPanel()
-    {
-        JPanel panel = new JPanel(new BorderLayout());
 
-        try
-        {
-            panel.add(makeSelectionPanel(), BorderLayout.NORTH);
-            
-        } catch (Exception e)
-        {
-            System.out.println("Problem with Reflection!");
-            e.printStackTrace();
-        }
-        return panel;
-    }
 
    
 
@@ -84,6 +63,11 @@ public class FighterDialogueBox extends DialogueBox{
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
+        checkBoxAttributeMap = new HashMap<JCheckBox, Class>();
+        checkBoxCarryableMap = new HashMap<JCheckBox, Class>();
+        attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
+        carryableAttributeMap = new HashMap<JCheckBox, Attribute>();
+        
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Attribute Choices: ");
         panel.add(label);
