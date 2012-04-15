@@ -28,13 +28,9 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
     public static final String BLANK = " ";
 
 
-    @SuppressWarnings("rawtypes")
-    private HashMap<JCheckBox, Class> attributeMap;
-    private HashMap<JCheckBox, Class> attributeToGiveMap;
     
-    private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
-    private HashMap<JCheckBox, List<Object>> attributetoGiveInstanceMap;
-    private String myImagePath;
+    private AttributeSelectionPanel powerupAttributePanel;
+    private AttributeSelectionPanel attributesToGivePanel;
 
     @SuppressWarnings("rawtypes")
     public PowerupDialogueBox(EditorController m)
@@ -51,93 +47,55 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
             IOException
     {
 
-        attributeMap = new HashMap<JCheckBox, Class>();
-        attributeToGiveMap = new HashMap<JCheckBox, Class>();
-        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
-        attributetoGiveInstanceMap = new HashMap<JCheckBox, List<Object>>();
+
+        ArrayList<String> packagesToSearch = new ArrayList<String>();
+        packagesToSearch.add("attributes");
         
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(600,800));
-        
-        JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
-        panel.add(title1);
+        panel.setLayout(new BorderLayout());
+        panel.setPreferredSize(new Dimension(800,325));
+        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch);
         JPanel panel2 = new JPanel();
-        panel2.setPreferredSize(new Dimension(300, 400));
+        JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
+        panel2.add(title1);
+        panel2.add(powerupAttributePanel);
+        panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Attributes for the Power-Up to Give:");
-        panel.add(title2);
-        
-        List<Class> list = new ArrayList<Class>();
-        list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
-        
-        for (Class c : list)
-        {
-            boolean isAnnotated = false;
-            for(Constructor constructor : c.getConstructors())
-            {
-                if(constructor.isAnnotationPresent(editorConstructor.class))
-                {
-                    isAnnotated = true;
-                }
-            }
-            if(isAnnotated)
-            {
-                JLabel label1 = new JLabel(c.getName());
-                panel.add(label1);
-                JCheckBox box = new JCheckBox();
-                panel.add(box);
-                box.addActionListener(new CheckBoxListener(box, c));
-                attributeMap.put(box, c);
-                
-                JLabel label2 = new JLabel(c.getName());
-                panel2.add(label2);
-                JCheckBox box2 = new JCheckBox();
-                panel2.add(box2);
-                box2.addActionListener(new CheckBoxListener(box2, c));
-                attributeToGiveMap.put(box2, c);
-            }
-        }
-        
-        
+        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch);
+        JPanel panel3 = new JPanel();
+        panel3.add(title2);
+        panel3.add(attributesToGivePanel);
+        panel.add(panel3, BorderLayout.CENTER);
+
+        JPanel subPanel = new JPanel();
+        subPanel.setPreferredSize(new Dimension(600, 100));
 
         JLabel label1 = new JLabel("Power-Up Name");
-        panel.add(label1);
+        subPanel.add(label1);
 
         myName = new JTextField(10);
 
-        panel.add(myName);
+        subPanel.add(myName);
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
-        panel.add(imageButton);
+        subPanel.add(imageButton);
                 
         JButton goButton = new JButton("Create Power-Up");
         goButton.addActionListener(new GoAction());
-        panel.add(goButton);
+        subPanel.add(goButton);
         
-        panel.add(panel2);
+
+        panel.add(subPanel, BorderLayout.PAGE_END);
 
         return panel;
     }
+    
+    
     public Framework getFramework() {
 
-            ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
-            ArrayList<List<Object>> attributesToGive = new ArrayList<List<Object>>();
-            for (JCheckBox box : attributeMap.keySet())
-            {
-                if (box.isSelected())
-                {
-                    attributes.add( attributeInstanceMap.get(box));
-                }
-                    
-            }
-            for (JCheckBox box : attributeToGiveMap.keySet())
-            {
-                if (box.isSelected())
-                {
-                    attributesToGive.add( attributetoGiveInstanceMap.get(box));
-                }
-                    
-            }
+            ArrayList<List<Object>> attributes = powerupAttributePanel.getSelectedAttributes();
+            ArrayList<List<Object>> attributesToGive = attributesToGivePanel.getSelectedAttributes();
             BufferedImage[] s = new BufferedImage[1];
             s[0] = myImage;
             ArrayList<String> imagePaths = new ArrayList<String>();
@@ -148,78 +106,7 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
         }
     
     
-private class CheckBoxListener implements ActionListener {
-    Class associatedClass;
-    JCheckBox box;
-    
-    public CheckBoxListener(JCheckBox b, Class c)
-    {
-        associatedClass= c;
-        box = b;
-    }
-    public void actionPerformed(ActionEvent e)
-    {
-        Constructor[] constructors = associatedClass.getConstructors();
-        Constructor constructor = null;
-        for(Constructor c: constructors)
-        {
-            if(c.isAnnotationPresent(editorConstructor.class))
-            {
-                constructor = c;
-            }
-        }
-        if(constructor == null)
-        {
-            throw new RuntimeException();
-        }
-        
-        Annotation a = constructor.getAnnotation(editorConstructor.class);
-        String[] paramNames = ((editorConstructor) a).parameterNames();
-        Class[] paramTypes =constructor.getParameterTypes();
-        Object[] argList = null;
-        //System.out.println(paramNames.length);
-        //System.out.println("got here");
-        if(!paramNames[0].equals(""))
-        {
-            argList = new Object[paramNames.length];
-            for(int i=0; i< paramNames.length; i++)
-            {
-                String selectedValue = JOptionPane
-                    .showInputDialog("What would you like the "+ paramNames[i]+ " to be?");
-                
 
-                if(paramTypes[i].equals(int.class))
-                {
-                    argList[i]=Integer.parseInt(selectedValue);
-                }
-                if(paramTypes[i].equals(String.class))
-                {
-                    argList[i] = selectedValue;
-                }
-                if(paramTypes[i].equals(double.class))
-                {
-                    argList[i] = Double.parseDouble(selectedValue);
-                }
-                if(paramTypes[i].toString().equals("boolean"))
-                {
-                    argList[i] = Boolean.parseBoolean(selectedValue);
-                }
-            }
-        }
-         
-               // Attribute att = (Attribute) constructor.newInstance(argList);
-                List<Object> attribute = new ArrayList<Object>();
-                attribute.add(constructor);
-                attribute.add(argList);
-                if(attributeMap.keySet().contains(box))
-                {
-                    attributeInstanceMap.put(box, attribute);   
-                }
-                else
-                    attributetoGiveInstanceMap.put(box, attribute);  
-            
-        }
-}
 
 
 }

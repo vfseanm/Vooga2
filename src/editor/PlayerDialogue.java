@@ -223,19 +223,15 @@ public class PlayerDialogue extends JPanel{
                         }
                     } catch (IllegalArgumentException e1)
                     {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     } catch (InstantiationException e1)
                     {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     } catch (IllegalAccessException e1)
                     {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     } catch (InvocationTargetException e1)
                     {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
                     /*List<Object> attribute = new ArrayList<Object>();
