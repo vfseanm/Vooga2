@@ -4,7 +4,7 @@ package attributes;
 public class Attack extends Attribute implements Updateable
 {
     public Attack(){
-        
+        super();
     }
    
     public void update (long elaspedTime)

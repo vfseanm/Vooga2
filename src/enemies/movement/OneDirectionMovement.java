@@ -57,6 +57,7 @@ public class OneDirectionMovement extends Attribute implements Updateable
     {
         return "OneDirectionMovement";
     }
+    
 
 
     public String toString ()
