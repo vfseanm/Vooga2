@@ -19,13 +19,13 @@ import attributes.Attribute;
 
 public class AttributeSelectionPanel extends JPanel {
     private HashMap<JCheckBox, Class> attributeMap;
-    private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
+    private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
     private List<String> packageNames;
 
     public AttributeSelectionPanel(List<String> packagesToSearch)
     {
         attributeMap = new HashMap<JCheckBox, Class>();
-        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
+        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         packageNames = packagesToSearch;
         this.add(makePanel());
     }
@@ -35,7 +35,7 @@ public class AttributeSelectionPanel extends JPanel {
 
         Reflection reflection = new Reflection();
         attributeMap = new HashMap<JCheckBox, Class>();
-        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
+        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 100));
 
@@ -142,20 +142,20 @@ public class AttributeSelectionPanel extends JPanel {
                         }
                     }
                 }
-
+/*
                 // Attribute att = (Attribute) constructor.newInstance(argList);
                 List<Object> attribute = new ArrayList<Object>();
                 attribute.add(constructor);
-                attribute.add(argList);
-                attributeInstanceMap.put(box, attribute);
+                attribute.add(argList);*/
+                attributeInstanceMap.put(box, new AttributeCreator(constructor, argList));
             }
 
         }
     }
     
-    public  ArrayList<List<Object>> getSelectedAttributes()
+    public  ArrayList<AttributeCreator> getSelectedAttributes()
     {
-        ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
+        ArrayList<AttributeCreator> attributes = new ArrayList<AttributeCreator>();
         for (JCheckBox box : attributeMap.keySet())
         {
             if (box.isSelected())

@@ -79,7 +79,7 @@ public class EnemyDialogueBox extends ButtonDialogueBox {
     public Framework getFramework()
     {
         
-        ArrayList<List<Object>> attributes = attributePanel.getSelectedAttributes();
+        ArrayList<AttributeCreator> attributes = attributePanel.getSelectedAttributes();
         BufferedImage[] s = new BufferedImage[1];
         s[0] = myImage;
         ArrayList<String> imagePaths = new ArrayList<String>();
