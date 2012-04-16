@@ -27,7 +27,10 @@ public class JumpingMovement extends Attribute implements Updateable
         
     }
  
-
+    public void allowJumpingMovement ()
+    {
+        time = 0;
+    }
 
     public void modifyJumpingMovement (int distance, int time)
     {
@@ -36,22 +39,21 @@ public class JumpingMovement extends Attribute implements Updateable
     }
 
 
-    public void update (long elaspedTime)
+    public void update (long elapsedTime)
     {
         if (isActive)
         {
             if (time <= myTime)
             {
 
-                myEnemy.setY(myEnemy.getY() - myDistance);
-                myEnemy.allowAttribute("Gravity", false);
+                myGameCharacter.setY(myGameCharacter.getY() - myDistance);
+                myGameCharacter.allowAttribute("Gravity", false);
             }
             else
             {
-
-                myEnemy.restoreOriginalAttribute("Gravity");
+                myGameCharacter.restoreOriginalAttribute("Gravity");
             }
-
+            myGameCharacter.restoreOriginalAttribute("Gravity");
         }
         
         time++;

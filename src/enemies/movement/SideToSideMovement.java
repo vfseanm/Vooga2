@@ -17,12 +17,9 @@ public class SideToSideMovement extends TwoPartMovement
     }
     
 
-
-
-
     protected void movementPart1 ()
     {
-        myEnemy.setLocation(myEnemy.getX()-myDistance, myEnemy.getY());
+        myGameCharacter.setLocation(myGameCharacter.getX()-myDistance, myGameCharacter.getY());
         
 
     }
@@ -30,9 +27,7 @@ public class SideToSideMovement extends TwoPartMovement
 
     protected void movementPart2 ()
     {
-        myEnemy.setLocation(myEnemy.getX()+myDistance, myEnemy.getY());
-        
-
+       myGameCharacter.setLocation(myGameCharacter.getX()+myDistance,myGameCharacter.getY());
     }
     
     public void modifySideToSideMovement(int distance, int duration){

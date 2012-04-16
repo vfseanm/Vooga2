@@ -31,23 +31,23 @@ public class OneDirectionMovement extends Attribute implements Updateable
 
     public void update (long elaspedTime)
     {
-        if (myEnemy.isOnScreen() || isActive)
+        if (myGameCharacter.isOnScreen() || isActive)
         {
             if (myDirection.equalsIgnoreCase("left"))
             {
-                myEnemy.setLocation(myEnemy.getX() - myDistance, myEnemy.getY());
+                myGameCharacter.setLocation(myGameCharacter.getX() - myDistance, myGameCharacter.getY());
             }
             else if (myDirection.equalsIgnoreCase("right"))
             {
-                myEnemy.setLocation(myEnemy.getX() + myDistance, myEnemy.getY());
+                myGameCharacter.setLocation(myGameCharacter.getX() + myDistance, myGameCharacter.getY());
             }
             else if (myDirection.equalsIgnoreCase("up"))
             {
-                myEnemy.setLocation(myEnemy.getX(), myEnemy.getY() - myDistance);
+                myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() - myDistance);
             }
             else if (myDirection.equalsIgnoreCase("down"))
             {
-                myEnemy.setLocation(myEnemy.getX(), myEnemy.getY() + myDistance);
+                myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() + myDistance);
             }
 
         }

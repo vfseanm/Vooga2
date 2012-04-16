@@ -1,19 +1,17 @@
 package enemies;
 
 import java.awt.image.BufferedImage;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import character.GameCharacter;
 import attributes.Attribute;
 import attributes.Updateable;
 import enemies.state.EnemyState;
-import sprite.AnimatedGameSprite;
 
 
 @SuppressWarnings("serial")
-public class Enemy extends AnimatedGameSprite
+public class Enemy extends GameCharacter
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;
@@ -27,6 +25,8 @@ public class Enemy extends AnimatedGameSprite
     }
 
 
+<<<<<<< HEAD
+=======
     /**
      * Secret reflection method for sean's uses
      * 
@@ -177,6 +177,7 @@ public class Enemy extends AnimatedGameSprite
     }
 
 
+>>>>>>> b215649e7912b4fa6a503744010277aa98e976ef
     public void update (long elapsedTime)
     {
 
@@ -200,16 +201,13 @@ public class Enemy extends AnimatedGameSprite
         myState = state;
     }
 
-
-    public String toString ()
-    {
+    public String getName() {
+    	return "Enemy";
+    }
+    
+    public String toString() {
         StringBuilder toReturn = new StringBuilder();
-        toReturn.append("Enemy\n");
-        for (Attribute attribute : myAttributes)
-        {
-            toReturn.append(attribute.toString());
-            toReturn.append("\n");
-        }
+        toReturn.append(nameAndAttributesToString());
         if (myState != null)
         {
             toReturn.append(myState.toString());

@@ -1,8 +1,6 @@
-package enemies.movement;
+package attributes;
 
 import editor.editorConstructor;
-import attributes.Attribute;
-import attributes.Updateable;
 
 // knows gravity too well?
 @SuppressWarnings("serial")
@@ -19,20 +17,20 @@ public class Flying extends Attribute implements Updateable
     }
 
 
-    public void modifyFlying (boolean isFlying)
-    {
-        isActive = isFlying;
-    }
-
-
     public void update (long elaspedTime)
     {
         if (isActive) {
-            myEnemy.allowAttribute("Gravity", false);
+            myGameCharacter.updateAttribute("Gravity", 0);
         }
         else
         {
-            myEnemy.restoreOriginalAttribute("Gravity");
+            myGameCharacter.updateAttribute("Gravity");
+        if (isActive) {
+            myGameCharacter.allowAttribute("Gravity", false);
+        }
+        else
+        {
+            myGameCharacter.restoreOriginalAttribute("Gravity");
         }
 
     }
@@ -56,7 +54,7 @@ public class Flying extends Attribute implements Updateable
     public void invert ()
     {
         //Maybe Andrew!
-       myEnemy.invertAttribute("Gravity");
+       myGameCharacter.invertAttribute("Gravity");
         
     }
 
