@@ -7,12 +7,16 @@ import com.golden.gamedev.object.SpriteGroup;
 
 import fighter.Fighter;
 
-public abstract class DecoratedSidescroller extends Sidescroller {
+public abstract class DecoratedSidescroller implements Sidescroller {
 
     private Sidescroller wrappedScroller;
     
     public DecoratedSidescroller(Sidescroller scroller) {
         wrappedScroller = scroller;
+    }
+    
+    public void update(long elapsedTime) {
+        wrappedScroller.update(elapsedTime);
     }
     
     public void move(Sprite sprite) {

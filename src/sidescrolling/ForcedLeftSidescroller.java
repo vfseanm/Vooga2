@@ -15,7 +15,6 @@ public class ForcedLeftSidescroller extends DecoratedSidescroller {
 
     public void move(Sprite sprite) {
         sprite.moveX(forcedLeftSpeed);
-        super.move(sprite);
     }
     
 }
