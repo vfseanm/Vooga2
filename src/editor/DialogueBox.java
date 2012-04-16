@@ -39,8 +39,8 @@ public abstract class DialogueBox extends JPanel {
     @SuppressWarnings("rawtypes")
     public DialogueBox(EditorController m)
     {
-        ArrayList<String> myImagePaths = new ArrayList<String>();
         myImages = new ArrayList<BufferedImage>();
+        myImagePaths = new ArrayList<String>();
         myController = m;
         reflection =  new Reflection();
         setLayout(new BorderLayout());
@@ -71,7 +71,7 @@ public abstract class DialogueBox extends JPanel {
         BufferedImage img = null;
         try
         {
-            img = ImageIO.read(new File(myImagePaths.get(myImagePaths.size())));
+            img = ImageIO.read(new File(myImagePaths.get(myImagePaths.size()-1)));
         } catch (IOException e)
         {
             System.out.println("There has been a problem importing your image");
