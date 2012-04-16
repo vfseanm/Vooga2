@@ -21,12 +21,15 @@ public class AttributeSelectionPanel extends JPanel {
     private HashMap<JCheckBox, Class> attributeMap;
     private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
     private List<String> packageNames;
+    private List<Class> originallyCheckedOff;
+   
 
-    public AttributeSelectionPanel(List<String> packagesToSearch)
+    public AttributeSelectionPanel(List<String> packagesToSearch, List<Class> checkedOff)
     {
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         packageNames = packagesToSearch;
+        originallyCheckedOff = checkedOff;
         this.add(makePanel());
     }
 
@@ -66,6 +69,12 @@ public class AttributeSelectionPanel extends JPanel {
                     panel.add(box);
                     box.addActionListener(new CheckBoxListener(box, c));
                     attributeMap.put(box, c);
+                    if(originallyCheckedOff.contains(c))
+                    {
+                        box.setSelected(true);
+                        Constructor constructor = getAnnotatedConstructor(c);
+                        attributeInstanceMap.put(box, new AttributeCreator(constructor, null));
+                    }
                 }
             }
         } catch (ClassNotFoundException e)
@@ -94,20 +103,8 @@ public class AttributeSelectionPanel extends JPanel {
         {
             if (box.isSelected())
             {
-                Constructor[] constructors = associatedClass.getConstructors();
-                Constructor constructor = null;
-                for (Constructor c : constructors)
-                {
-                    if (c.isAnnotationPresent(editorConstructor.class))
-                    {
-                        constructor = c;
-                    }
-                }
-                if (constructor == null)
-                {
-                    throw new RuntimeException();
-                }
-
+                
+                Constructor constructor = getAnnotatedConstructor(associatedClass);
                 Annotation a = constructor
                         .getAnnotation(editorConstructor.class);
                 String[] paramNames = ((editorConstructor) a).parameterNames();
@@ -161,6 +158,24 @@ public class AttributeSelectionPanel extends JPanel {
                 
         }
         return attributes;
+    }
+    
+    public Constructor getAnnotatedConstructor(Class c)
+    {
+        Constructor[] constructors = c.getConstructors();
+        Constructor constructor = null;
+        for (Constructor co : constructors)
+        {
+            if (c.isAnnotationPresent(editorConstructor.class))
+            {
+                constructor = co;
+            }
+        }
+        if (constructor == null)
+        {
+            throw new RuntimeException();
+        }
+        return constructor;
     }
 
 }

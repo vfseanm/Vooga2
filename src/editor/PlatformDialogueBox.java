@@ -1,6 +1,8 @@
+
 package editor;
 
 import java.io.File;
+
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -16,8 +18,7 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import platforms.AbstractPlatform;
-import platforms.DecoratedPlatform;
+import platforms.platformtypes.*;
 
 import attributes.Attribute;
 
@@ -25,7 +26,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class PlatformDialogueBox extends ButtonDialogueBox {
+public class PlatformDialogueBox extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -52,6 +53,7 @@ public class PlatformDialogueBox extends ButtonDialogueBox {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
         // ArrayList<Class> list = reflection.getBehaviors();
+        Reflection reflection = new Reflection();
         for (Class c : reflection.getInstancesOf("platforms", DecoratedPlatform.class))
         {
 

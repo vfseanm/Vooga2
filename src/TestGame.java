@@ -1,3 +1,4 @@
+import platforms.platformtypes.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

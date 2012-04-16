@@ -19,12 +19,14 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class EnemyDialogueBox extends ButtonDialogueBox {
+public class EnemyDialogueBox extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
     
-    AttributeSelectionPanel attributePanel;
+    private AttributeSelectionPanel attributePanel;
+    private JTextField myName;
+    private JTextField myGroup;
 
 
     /*private HashMap<JCheckBox, Class> attributeMap;
@@ -36,6 +38,8 @@ public class EnemyDialogueBox extends ButtonDialogueBox {
     public EnemyDialogueBox(EditorController m)
     {
         super(m);
+        setLayout(new BorderLayout());
+        add(makeInputPanel(), BorderLayout.NORTH);
         
     }
 
@@ -92,7 +96,18 @@ public class EnemyDialogueBox extends ButtonDialogueBox {
         System.out.println("framework's attributes" + attributes);
         return framework;
     }
-
-
-
+    
+    class GoAction implements ActionListener {       
+        
+        public void actionPerformed(ActionEvent e)
+        {
+            Framework framework = getFramework();
+            System.out.println("framework "+framework);
+            myController.addButton(myName.getText(), framework);
+            setVisible(false);
+        }
+    }
 }
+
+
+

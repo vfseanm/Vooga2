@@ -32,22 +32,17 @@ public abstract class DialogueBox extends JPanel {
     protected ArrayList<BufferedImage> myImages;
     protected ArrayList<String> myImagePaths;
     
-    protected JTextField myName;
-    protected JTextField myGroup;
-    protected Reflection reflection;
 
     @SuppressWarnings("rawtypes")
     public DialogueBox(EditorController m)
     {
         myImages = new ArrayList<BufferedImage>();
         myImagePaths = new ArrayList<String>();
-        myController = m;
-        reflection =  new Reflection();
-        setLayout(new BorderLayout());
-        add(makeInputPanel(), BorderLayout.NORTH);
-        
-        //System.out.println("got here");
+
+        myController = m;        
     }
+    
+    
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
 
     public BufferedImage getImage()
@@ -80,7 +75,7 @@ public abstract class DialogueBox extends JPanel {
 
     }
 
-    private JComponent makeInputPanel()
+    protected JComponent makeInputPanel()
     {
         JPanel panel = new JPanel(new BorderLayout());
 

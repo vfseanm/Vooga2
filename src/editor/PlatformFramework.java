@@ -10,9 +10,7 @@ import java.util.List;
 
 import enemies.Enemy;
 
-import platforms.AbstractPlatform;
-import platforms.DecoratedPlatform;
-import platforms.SimplePlatform;
+import platforms.platformtypes.*;
 
 
 import sprite.AnimatedGameSprite;

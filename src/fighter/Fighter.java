@@ -1,144 +1,68 @@
 package fighter;
 
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import com.golden.gamedev.engine.BaseInput;
+
 import character.GameCharacter;
-
-import sprite.*;
-import carryables.Carryable;
-
+import fighter.movement.BasicMovement;
 import attributes.Attribute;
-import attributes.Updateable;
 
 
 @SuppressWarnings("serial")
 public class Fighter extends GameCharacter {
 
 	private List<Attribute>					myCarryableAttributes;
-	private Missile							myMissile;
-	private FighterDeath					myDeathSequence;
+	private BasicMovement					myBasicMovement;
+	private BaseInput						myUserInput;
 	
-	
-	public Fighter(BufferedImage[] image, double x, double y, List<String> images) {
+	public Fighter(BufferedImage[] image, double x, double y, List<String> images, BaseInput userInput) {
 		super(image, x, y, images);
 		myCarryableAttributes = new ArrayList<Attribute>();
+		myUserInput = userInput;
 		setGroup("FIGHTER");
 	}
-
 	
     public void update(long elapsedTime) {
-		for (Attribute attribute : myAttributes) {
-
-			if (attribute.getClass().getInterfaces().length != 0
-					&& attribute.getClass().getInterfaces()[0]
-							.equals(Updateable.class)) {
-				try {
-
-					((Updateable) attribute).update(elapsedTime);
-				} catch (ClassCastException e) {
-
-					e.printStackTrace();
-				}
-			}
+    	myBasicMovement.update(elapsedTime);
+    	
+		performAttributeActions(elapsedTime);
+		
+		if (myUserInput.isKeyDown(KeyEvent.VK_C)) 
+		{
+		    // POP UP DIALOG ALLOWING YOU TO CHOOSE CARRYABLE OBJECT? CAN WE ACTUALLY PAUSE THE GAME?
+			// OTHERWISE, SIMPLY HAVE KEYSTROKES = INDEX OF CARRYABLE ITEMS IN LIST? MAX = 6?
 		}
 	}
     
-    
-	public void updateAttribute(String name, Object... o) {
-
-		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equals(name)) {
-				Class<?> c = attribute.getClass();
-				for (Method m : c.getMethods()) {
-					if (!m.getName().startsWith("modify"))
-						continue;
-					if (m.getGenericParameterTypes().length != o.length)
-						continue;
-					for (int i = 0; i < m.getGenericParameterTypes().length; i++) {
-						Class<?> t = m.getParameterTypes()[i];
-						if (!t.equals(o[i])) {
-
-							continue;
-						}
-
-					}
-
-					try {
-						m.invoke(attribute, o);
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						e.printStackTrace();
-					}
-
-				}
-			}
-		}
-
-	}
-    
-    public boolean hasAttribute(String name) {
-        for(Attribute attribute: myAttributes) {
-            if (attribute.getClass().getName().equalsIgnoreCase(name))
-                return true;
-        }
-        return false;
+    public void addCarryableAttribute(ArrayList<Attribute> carryables) {
+    	myCarryableAttributes.addAll(carryables);
+    	
+    	// method for adding attributes to inventory of limited length = myMaxNumCarryables
+/*    	for (int i = myCarryableAttributes.size(); i < myMaxNumCarryables; i++) {
+    		myCarryableAttributes.add(i, carryables.get(i-myCarryableAttributes.size()));
+    	}*/
     }
     
-    public List<Attribute> getAttributes() {
-        return Collections.unmodifiableList(myAttributes);
+    public void useCarryableAttribute(int indexCarryableAttribute)  {
+    	try {
+    		myAttributes.add(myCarryableAttributes.get(indexCarryableAttribute));
+    		myCarryableAttributes.remove(indexCarryableAttribute);
+    	}
+    	catch (IndexOutOfBoundsException e) {
+    		System.out.println("This Carryable Attribute is not in your inventory.");
+    	}
     }
-    
-    public void addAttribute (Attribute attribute) {
-        myAttributes.add(attribute);
-        attribute.setGameCharacter(this);
-    }
-
-    public void removeAttribute(String name) {
-        for (Attribute attribute: myAttributes) {
-            if (attribute.getName().equalsIgnoreCase(name));
-                myAttributes.remove(attribute);
-        }
-        
-    }
-	
-	public void setMissile(Missile missile) {
-		myMissile = missile;
-	}
-	
-	public Missile getMissile() {
-		return myMissile;
-	}
-	
-	public void setDeathSequence(FighterDeath deathSequence) {
-		myDeathSequence = deathSequence;
-	}
-	
-	public void dies() {
-		setActive(false);
-		myDeathSequence.setLocation(getX(), getY());
-		// 	ADD DEATH TO PLAYFIELD HERE
-	}
 	
 	public String getName() {
 		return "Fighter";
 	}
-
-
-	public void accessAttributeMethod(String methodStart, String name,
-			Object... o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void restoreOriginalAttribute(String name, Object... o) {
-		// TODO Auto-generated method stub
-		
+	
+	// Dustin's method for getting speed to check side scrolling
+	public double getHorizMovement() {
+		return myBasicMovement.getHorizMovement();
 	}
 }

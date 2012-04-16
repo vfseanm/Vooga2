@@ -1,9 +1,11 @@
-package platforms;
+package platforms.platformtypes;
 
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
+
+import platforms.FrameTimer;
 
 public abstract class DecoratedPlatform extends AbstractPlatform {
 	 
@@ -99,6 +101,26 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	public void render(Graphics2D graphics) {
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.render(graphics);	
+		}
+	}
+	
+	protected void releaseItem() {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.releaseItem();
+		}
+		return;
+	}
+	
+	protected void doBreak() {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.doBreak();
+		}
+		return;
+	}
+	
+	public void setActive(boolean arg) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.setActive(arg);
 		}
 	}
 }

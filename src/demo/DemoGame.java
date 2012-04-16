@@ -3,6 +3,7 @@ package demo;
 import java.awt.Color;
 
 
+
 import java.awt.Graphics2D;
 
 import com.golden.gamedev.object.PlayField;
@@ -22,6 +23,7 @@ import java.util.List;
     import sidescrolling.*;
     import sprite.AnimatedGameSprite;
 import platforms.*;
+import platforms.platformtypes.*;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;
@@ -32,14 +34,8 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
 
-<<<<<<< HEAD
     import enemies.Enemy;
     import enemies.movement.JumpingMovement;
-=======
-import enemies.Enemy;
-import enemies.movement.Gravity;
-import enemies.movement.JumpingMovement;
->>>>>>> 0111d1b62830aea26709450422f9b562140c72e1
 import enemies.movement.OneDirectionMovement;
 
 public class DemoGame extends PlatformGame {
@@ -57,6 +53,10 @@ public class DemoGame extends PlatformGame {
     public void initResources()
     {
 
+        //gc.setMap("koopa", "mushroom", RepelBackAction.class);
+        //gc.setMap("ENEMY", "ENEMY", act);
+        
+        
         loadLevel("level2");
         BufferedImage[] images = new BufferedImage[4];
         images = mySprites.get(0).getImages();

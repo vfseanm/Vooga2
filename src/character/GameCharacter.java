@@ -45,11 +45,9 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 
 	public void removeAttributeByName(String name) {
 		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equalsIgnoreCase(name))
-				;
+			if (attribute.getName().equalsIgnoreCase(name));
 			myAttributes.remove(attribute);
 		}
-
 	}
 
 	private void accessAttributeMethod(String methodStart, String name,
@@ -90,6 +88,19 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 
 	}
 
+	
+	public void performAttributeActions(long elapsedTime){
+		for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getClass().getInterfaces().length != 0 &&
+                attribute.getClass().getInterfaces()[0].equals(Updateable.class))
+            {
+                ((Updateable) attribute).update(elapsedTime);
+            }
+        }
+	}
+	
+	
 	public void updateAttribute(String name, Object... o) {
 		accessAttributeMethod("modify", name, o);
 	}
