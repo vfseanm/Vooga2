@@ -18,16 +18,13 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
     import platforms.*;
     import sidescrolling.*;
     import sprite.AnimatedGameSprite;
-=======
 import platforms.*;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;
->>>>>>> 253371ac01ae4cbcfa771cb15b96babb3667a5aa
 
 import attributes.*;
 import collisions.GameCollisionManager;
@@ -78,7 +75,6 @@ public class DemoGame extends PlatformGame {
 
         for (Sprite s : mySprites)
         {
-<<<<<<< HEAD
 
             loadLevel("level2");
             BufferedImage[] images = new BufferedImage[4];
@@ -142,11 +138,8 @@ public class DemoGame extends PlatformGame {
             list.add(p2);
             list.add(bob);
              gc = new GameCollisionManager();
-
                     
-=======
             allSprites.add(s);
->>>>>>> 253371ac01ae4cbcfa771cb15b96babb3667a5aa
         }
         // myPlayField.addGroup(allSprites);
 
@@ -195,7 +188,6 @@ public class DemoGame extends PlatformGame {
 
         for (Sprite s : allSprites.getSprites())
         {
-<<<<<<< HEAD
             allSprites.update(arg0);
             myBackground.update(arg0);
             counter++;
@@ -206,14 +198,13 @@ public class DemoGame extends PlatformGame {
             gc.GameCollision(list);
             if(counter==800){
                 
-=======
+
             if (s != null)
             {
                 System.out.println("image names to render "
                         + ((AnimatedGameSprite) s).getImages());
                 s.render(arg0);
             }
->>>>>>> 253371ac01ae4cbcfa771cb15b96babb3667a5aa
         }
         bob.render(arg0);
         p.render(arg0);
@@ -232,7 +223,7 @@ public class DemoGame extends PlatformGame {
         p.update(arg0);
         p1.update(arg0);
         p2.update(arg0);
-        gc.GameCollision(bob, list);
+        gc.GameCollision(list);
         if (counter == 800)
         {
 

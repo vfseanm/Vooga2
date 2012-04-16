@@ -32,17 +32,12 @@ public class PlatformAction implements ActionPerformer{
 		standardaction (sprite1, sprite2, collisionType);
 	}
 	
-<<<<<<< HEAD
-
-=======
 	public void action (Fighter sprite1, BreakablePlatform sprite2, int collisionType){
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION) {
-			sprite2.doBreak();
 		}
 		return;
 	}
 	
->>>>>>> 253371ac01ae4cbcfa771cb15b96babb3667a5aa
 	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
 	}
