@@ -1,7 +1,7 @@
 package platforms.platformtypes;
 import java.awt.image.BufferedImage;
 import java.util.List;
-import powerups.PowerUp;
+import bonusobjects.PowerUp;
 
 public class SimplePlatform extends AbstractPlatform {
 	
