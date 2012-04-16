@@ -12,6 +12,7 @@ public class BasicMovement extends Attribute implements Updateable {
 	
 	
 	public BasicMovement(BaseInput userInput, double horizMove) {
+	    super(userInput,horizMove);
 		myUserInput = userInput;
 		myHorizMovement = Math.abs(horizMove);
 	}
