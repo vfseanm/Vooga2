@@ -47,6 +47,7 @@ public abstract class Attribute implements Serializable
 
     public Attribute (Object...o)
     {
+        isActive=true;
         if (makeOriginal == false)
         {
             makeOriginal = true;
