@@ -2,6 +2,7 @@ package attributes;
 
 import editor.editorConstructor;
 
+@SuppressWarnings("serial")
 public class PointValue extends Attribute
 {
     private int myPointValue;

@@ -1,10 +1,10 @@
 package enemies.movement;
 
 import editor.editorConstructor;
-import attributes.Attribute;
-import attributes.Updateable;
+
 //Change location to coordinate
 
+@SuppressWarnings("serial")
 public class SideToSideMovement extends TwoPartMovement
 {
     

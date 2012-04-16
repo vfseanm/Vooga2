@@ -75,20 +75,21 @@ public class Reflection {
     {
         ArrayList<Class> behaviors = new ArrayList<Class>();
         List<Class> list = getClasses(packageName);
+        
         for(Class c: list)
         {
-            
-            while(c.getSuperclass()!=null)
+            Class myClass = c;
+            while(myClass.getSuperclass()!=null)
             {
             
-            
-                if(c.getSuperclass().equals(superClass))
+                System.out.println(myClass.getSuperclass()+superClass.toString());
+                if(myClass.getSuperclass().equals(superClass))
                 {
                     behaviors.add(c);
                     break;
                    
                 }
-                c= c.getSuperclass();
+                myClass= myClass.getSuperclass();
                     
             
             }

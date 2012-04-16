@@ -1,13 +1,13 @@
 package enemies.movement;
 
 import editor.editorConstructor;
-import attributes.Attribute;
-import attributes.Updateable;
+
 
 // Idea master config file to control attribute exlusivity
 // flying
 
 
+@SuppressWarnings("serial")
 public class UpDownMovement extends TwoPartMovement
 {
 

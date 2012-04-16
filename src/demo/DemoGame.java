@@ -2,6 +2,7 @@ package demo;
 
 import java.awt.Color;
 
+
 import java.awt.Graphics2D;
 
 import com.golden.gamedev.object.PlayField;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import platforms.*;
-import powerups.InvincibilityPowerUp;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;
@@ -94,13 +94,13 @@ public class DemoGame extends PlatformGame {
 
         List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>();
         b1[0] = getImage("resources/platform1.png");
-        p = new SimplePlatform(b1, 500, 500, a, null);
+        p = new SimplePlatform(b1, 500, 500, a);
 
         b1[0] = getImage("resources/platform1.png");
-        p1 = new SimplePlatform(b1, 100, 300, a, null);
+        p1 = new SimplePlatform(b1, 100, 300, a);
 
         b1[0] = getImage("resources/platform1.png");
-        p2 = new SimplePlatform(b1, 200, 350, a, null);
+        p2 = new SimplePlatform(b1, 200, 350, a);
 
         list = new ArrayList<AnimatedGameSprite>();
 

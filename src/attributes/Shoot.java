@@ -1,6 +1,7 @@
 package attributes;
 
 
+@SuppressWarnings("serial")
 public class Shoot extends Attribute {
 
     @Override
