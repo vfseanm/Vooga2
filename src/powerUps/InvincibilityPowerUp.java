@@ -11,8 +11,8 @@ import platforms.BreakablePlatformItemFactory;
 @SuppressWarnings("serial")
 public class InvincibilityPowerUp extends PowerUp{
 
-    public InvincibilityPowerUp(BufferedImage[] im, double x, double y, List<String> image, ArrayList<Attribute> attributes, ArrayList<Attribute> attributesToGive) {
-        super(im, x, y, image, attributes, attributesToGive);
+    public InvincibilityPowerUp(BufferedImage[] im, double x, double y, List<String> image) {
+        super(im, x, y, image);
     }
 
 	@Override
