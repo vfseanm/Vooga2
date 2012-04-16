@@ -35,19 +35,19 @@ public class OneDirectionMovement extends Attribute implements Updateable
         {
             if (myDirection.equalsIgnoreCase("left"))
             {
-                myGameCharacter.setLocation(myGameCharacter.getX() - myDistance, myGameCharacter.getY());
+                myGameCharacter.setX(myGameCharacter.getX() - myDistance);
             }
             else if (myDirection.equalsIgnoreCase("right"))
             {
-                myGameCharacter.setLocation(myGameCharacter.getX() + myDistance, myGameCharacter.getY());
+                myGameCharacter.setX(myGameCharacter.getX() + myDistance);
             }
             else if (myDirection.equalsIgnoreCase("up"))
             {
-                myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() - myDistance);
+                myGameCharacter.setY( myGameCharacter.getY() - myDistance);
             }
             else if (myDirection.equalsIgnoreCase("down"))
             {
-                myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() + myDistance);
+                myGameCharacter.setY(myGameCharacter.getY() + myDistance);
             }
 
         }

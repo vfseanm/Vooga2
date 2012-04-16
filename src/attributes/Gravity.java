@@ -24,7 +24,7 @@ public class Gravity extends Attribute implements Updateable
 
     public void update (long elaspedTime)
     {
-        myGameCharacter.setY(myGameCharacter.getY() + myDistance);
+        
         
         if (isActive) {
         	myGameCharacter.setY(myGameCharacter.getY() + myDistance);

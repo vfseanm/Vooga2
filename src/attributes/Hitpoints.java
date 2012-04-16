@@ -6,7 +6,7 @@ import editor.editorConstructor;
 public class Hitpoints extends Attribute
 {
     private int myHitpoints;
-    private int myMaxHP;
+ 
     
 
     @editorConstructor(parameterNames = { "number of hitpoints" })
@@ -24,16 +24,7 @@ public class Hitpoints extends Attribute
 
     public void modifyHitpoints (int hpChange) {
         myHitpoints += hpChange;
-        if (myHitpoints <= 0) {
-            try {
-            	myGameCharacter.updateAttribute("NumberOfLives", -1);
-                resetHP();
-            }
-            //Will add better error handling
-            catch (Exception e) {
-            	myGameCharacter.setActive(false);
-            }
-        }
+        
         if (myHitpoints <= 0)
         {
             if(myGameCharacter.hasAttributeByName("NumberOfLives"))
@@ -50,9 +41,7 @@ public class Hitpoints extends Attribute
 
     }
 
-    public void resetHP () {
-        myHitpoints = myMaxHP;
-    }
+
  
 
     public String toString ()

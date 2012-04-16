@@ -46,6 +46,7 @@ public class EditEnemyDialogue extends DialogueBox {
     private int myX;
     private int myY;
     private EnemyFramework myFramework;
+
     
     @SuppressWarnings("rawtypes")
     public EditEnemyDialogue(EditorController m, Enemy sprite, int x, int y)
@@ -65,76 +66,27 @@ public class EditEnemyDialogue extends DialogueBox {
         reflection = new Reflection();
         setLayout(new BorderLayout());
         
-        add(makeInputPanel(), BorderLayout.NORTH);
     }
     
-    public EditEnemyDialogue(EditorController m, Framework framework)
-    {
-        super(m);
-        myFramework = (EnemyFramework) framework;
-        myImage = myFramework.getImages()[0];
-        
-        attributeMap = new HashMap<JCheckBox, Class>();
-        myOldAttributes = new ArrayList<Attribute>();
-        myOldAttributes.addAll(myFramework.getAttributes());
-        
-        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
-        myModel = m;
-        reflection = new Reflection();
-        setLayout(new BorderLayout());
-        
-        add(makeInputPanel(), BorderLayout.NORTH);
-    }
-    
-
-    public BufferedImage getImage()
-    {
-        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
-        File file = null;
-        int returnVal = fc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
-        {
-            file = fc.getSelectedFile();
-        }
-        myImagePath = null;
-        try
-        {
-            myImagePath = file.getCanonicalPath();
-        } catch (IOException e1)
-        {
-            e1.printStackTrace();
-        }
-        System.out.println(myImagePath);
-        BufferedImage img = null;
-        try
-        {
-            img = ImageIO.read(new File(myImagePath));
-        } catch (IOException e)
-        {
-            System.out.println("There has been a problem importing your image");
-            // throw something!
-        }
-        return img;
-
-    }
-
-    private JComponent makeInputPanel()
-    {
-        JPanel panel = new JPanel(new BorderLayout());
-
-        try
-        {
-            panel.add(makeDestinationPanel(), BorderLayout.NORTH);
-        } catch (Exception e)
-        {
-            System.out.println("Problem with Reflection!");
-            e.printStackTrace();
-        }
-        return panel;
-    }
-
+//    public EditEnemyDialogue(EditorController m, Framework framework)
+//    {
+//        super(m);
+//        myFramework = (EnemyFramework) framework;
+//        myImage = myFramework.getImages()[0];
+//        
+//        attributeMap = new HashMap<JCheckBox, Class>();
+//        myOldAttributes = new ArrayList<Attribute>();
+//        myOldAttributes.addAll(myFramework.getAttributes());
+//        
+//        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
+//        myModel = m;
+//        reflection = new Reflection();
+//        setLayout(new BorderLayout());
+//        
+//    }
+//    
     @SuppressWarnings("rawtypes")
-    private JComponent makeSelectionPanel() throws ClassNotFoundException,
+    public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
         JPanel panel = new JPanel();
@@ -156,21 +108,22 @@ public class EditEnemyDialogue extends DialogueBox {
                 JLabel label1 = new JLabel(c.getName());
                 panel.add(label1);
                 JCheckBox box = new JCheckBox();
-                if(mySprite!=null && mySprite.hasAttributeByName(c.getName()))
+                if(mySprite.hasAttributeByName(c.getName()))
                 {
                     box.setSelected(true);
                 }
-                else if(mySprite==null)
-                {
-                    for (Attribute a: myFramework.getAttributes())
-                    {
-                        if(a.getClass().equals(c))
-                        {
-                            System.out.println("working");
-                            box.setSelected(true);
-                        }
-                    }
-                }
+//                else if(mySprite==null)
+//                {
+//                    for (Attribute a: myFramework.getAttributes())
+//                    {
+//                        if(a.getClass().equals(c))
+//                        {
+//                            System.out.println("working");
+//                            box.setSelected(true);
+//                        }
+//                    }
+//                }
+                
                 panel.add(box);
                 box.addActionListener(new CheckBoxListener(box, c));
                 attributeMap.put(box, c);
@@ -189,8 +142,8 @@ public class EditEnemyDialogue extends DialogueBox {
         panel.add(imageButton);
 
         String buttonPhrase = "Save Enemy";
-        if(myFramework!=null)
-            buttonPhrase = "Change Enemies";
+        //if(myFramework!=null)
+            //buttonPhrase = "Change Enemies";
                 
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
@@ -200,7 +153,6 @@ public class EditEnemyDialogue extends DialogueBox {
     }
 
     private class GoAction implements ActionListener {
-       
         
         public void actionPerformed(ActionEvent e)
         {
@@ -249,7 +201,25 @@ public class EditEnemyDialogue extends DialogueBox {
             for(AttributeCreator a: attributes)
             {
                 Attribute attribute = a.createAttribute();
-                
+                /*System.out.println("list:" + list);
+                Constructor c = (Constructor) list.get(0);
+                Object[] parameterList = (Object[]) list.get(1);
+                Attribute attribute = null;
+                try {
+                    attribute = (Attribute) c.newInstance(parameterList);
+                } catch (IllegalArgumentException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                } catch (InstantiationException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                } catch (IllegalAccessException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                } catch (InvocationTargetException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }*/
                 enemy.addAttribute(attribute);
             }  
             for (Attribute oldAttribute: oldAttributes)
@@ -318,21 +288,6 @@ public class EditEnemyDialogue extends DialogueBox {
             }
     }
 
-    private class ImageAction implements ActionListener {
-        public void actionPerformed(ActionEvent e)
-        {
 
-            BufferedImage f = getImage();
-            myImage = f;
-
-        }
-    }
-
-    @Override
-    public JComponent makeSelectionPanel() throws ClassNotFoundException,
-            IOException {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
 }
