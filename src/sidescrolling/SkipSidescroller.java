@@ -1,14 +1,18 @@
 package sidescrolling;
 
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.SpriteGroup;
 
-public class SkipSidescroller extends DecoratedSidescroller {
+public abstract class SkipSidescroller extends DecoratedSidescroller {
     
-    public SkipSidescroller(Sidescroller scroller) {
+    protected Game myGame;
+    
+    public SkipSidescroller(Game game, Sidescroller scroller) {
         super(scroller);
+        myGame = game;
     }
-    
+        
     public void update(long elapsedTime) {
         for (SpriteGroup group: getSpriteGroups()) {
             for (Sprite object: group.getSprites()) {
@@ -17,6 +21,7 @@ public class SkipSidescroller extends DecoratedSidescroller {
                 }
             }      
         }
+        move(getFighter());
         super.update(elapsedTime);
     }
     

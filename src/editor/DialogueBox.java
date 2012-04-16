@@ -99,7 +99,6 @@ public abstract class DialogueBox extends JPanel {
     protected class ImageAction implements ActionListener {
         public void actionPerformed(ActionEvent e)
         {
-
             BufferedImage f = getImage();
             myImages.add(f);
 

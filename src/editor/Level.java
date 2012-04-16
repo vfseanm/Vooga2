@@ -18,6 +18,8 @@ import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 
+import fighter.Fighter;
+
 
 import sprite.AnimatedGameSprite;
 
@@ -91,6 +93,10 @@ public class Level implements Serializable{
     public void setSpriteLocation(AnimatedGameSprite sprite, double x, double y)
     {
         sprite.setLocation(x, y);
+    }
+    public void setFighter(Fighter fighter)
+    {
+        sprites.add(fighter);
     }
     
     private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException
