@@ -6,13 +6,13 @@ import editor.editorConstructor;
 public class Hitpoints extends Attribute
 {
     private int myHitpoints;
-    private int maxHP;
+    
 
     @editorConstructor(parameterNames = { "number of hitpoints" })
     public Hitpoints (int hitpoints)
     {
+        super(hitpoints);
         myHitpoints = hitpoints;
-        maxHP = myHitpoints;
     }
 
 
@@ -29,13 +29,13 @@ public class Hitpoints extends Attribute
         myHitpoints += hpChange;
         if (myHitpoints <= 0)
         {
-            try
+            if(myEnemy.hasAttributeByName("NumberOfLives"))
             {
                 myEnemy.updateAttribute("NumberOfLives", -1);
-                resetHP();
+                myEnemy.restoreOriginalAttribute("Hitpoints");
             }
-            //Fix this
-            catch (Exception e)
+            
+            else 
             {
                 myEnemy.setActive(false);
             }
@@ -44,17 +44,15 @@ public class Hitpoints extends Attribute
     }
 
 
-    public void resetHP ()
-    {
-        myHitpoints = maxHP;
-
-    }
+ 
 
 
     public String toString ()
     {
-        return "Attribute Hitpoints is currently " + myHitpoints + " MaxHP is " +
-               maxHP;
+        return "Attribute Hitpoints is currently " + myHitpoints;
     }
+
+
+
 
 }

@@ -1,6 +1,7 @@
 package attributes;
 
 import java.awt.image.BufferedImage;
+import editor.editorConstructor;
 
 /**
  * Experimenting with building a layer ontop of the GTGE methods to consolidate
@@ -8,14 +9,16 @@ import java.awt.image.BufferedImage;
  * Here I'm thinking cloaked or ghosts
  * @author Alex
  */
+@SuppressWarnings("serial")
 public class Visibility extends Attribute
 {
     private boolean isVisible;
     private BufferedImage[] myImage;
 
-
+    @editorConstructor(parameterNames = { "visibility (ghosts)" })
     public Visibility (boolean visible)
     {
+        super(visible);
         isVisible = visible;
         myImage=myEnemy.getImages();
         checkAndSetVisibility();

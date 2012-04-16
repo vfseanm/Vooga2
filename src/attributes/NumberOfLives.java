@@ -1,6 +1,7 @@
 package attributes;
 
 import editor.editorConstructor;
+@SuppressWarnings("serial")
 public class NumberOfLives extends Attribute
 {
     private int myLives;
@@ -8,6 +9,7 @@ public class NumberOfLives extends Attribute
     @editorConstructor(parameterNames = { "number of lives" })
     public NumberOfLives (int lives)
     {
+        super(lives);
         myLives = lives;
     }
 

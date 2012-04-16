@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
@@ -350,20 +352,22 @@ public class EditorView extends Game {
 
     public void openBox(String type)
     {
-        DialogueBox myView = null;
+        JPanel myView = null;
         if(type.contentEquals("enemy"))
             myView = new EnemyDialogueBox(myModel);
         else if (type.contentEquals("platform"))
             myView = new PlatformDialogueBox(myModel);
+
         else if (type.contentEquals("player"))
-            myView = new PlayerDialogue(myModel);
+            myView = new FighterDialogueBox(myModel);
         else if (type.contentEquals("power up"))
             myView = new PowerupDialogueBox(myModel);
         else if (type.contentEquals("game"))
             myView = new GameDialogue(myModel);
+
         
         frame = new JFrame("Enemy Behaviors");
-        Dimension d = new Dimension(500, 300);
+        Dimension d = new Dimension(600, 300);
         frame.setPreferredSize(d);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(myView);

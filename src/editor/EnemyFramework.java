@@ -19,11 +19,11 @@ public class EnemyFramework implements Framework {
     protected ArrayList<Attribute> attributes;
     private BufferedImage[] myImages;
     private ArrayList<String> imageNames;
-    private List<List<Object>> myAttributes;
+    private List<AttributeCreator> myAttributes;
     private List<Attribute> allAttributes;
     private ArrayList<Enemy> mySprites;
 
-    public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<List<Object>> attributes) {
+    public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes) {
         myImages = im;
         imageNames = images;
         myAttributes = attributes;
@@ -47,13 +47,18 @@ public class EnemyFramework implements Framework {
         Enemy e = new Enemy(myImages, x,
                 y - myImages[0].getHeight(),
                 imageNames);
-        for(List<Object> list: myAttributes)
+        for(AttributeCreator a: myAttributes)
         {
-            Constructor c = (Constructor) list.get(0);
-            Object[] parameterList = (Object[]) list.get(1);
+            /*Constructor c = (Constructor) list.get(0);
+            Object[] parameterList = (Object[]) list.get(1);*/
             Attribute attribute = null;
-            try {
+            attribute = a.createAttribute();
+            
+            /*try {
+                System.out.println("parameters:" + parameterList);
+                System.out.println("constructors:" + c);
                 attribute = (Attribute) c.newInstance(parameterList);
+                
             } catch (IllegalArgumentException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
@@ -66,7 +71,7 @@ public class EnemyFramework implements Framework {
             } catch (InvocationTargetException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-            }
+            }*/
             allAttributes.add(attribute);
             e.addAttribute(attribute);
         }  
@@ -77,14 +82,14 @@ public class EnemyFramework implements Framework {
     public void updateSprites(List<Object> parameters) {
         myImages = (BufferedImage[]) parameters.get(0);
         imageNames = (ArrayList<String>) parameters.get(1);
-        myAttributes = (List<List<Object>>) parameters.get(2);
+        myAttributes = (List<AttributeCreator>) parameters.get(2);
         for(Enemy e: mySprites)
         {
             e.setImages(myImages);
             e.setImageNames(imageNames);
-            for(List<Object> list: myAttributes)
+            for(AttributeCreator a: myAttributes)
             {
-                Constructor c = (Constructor) list.get(0);
+                /*Constructor c = (Constructor) list.get(0);
                 Object[] parameterList = (Object[]) list.get(1);
                 Attribute attribute = null;
                 try {
@@ -101,9 +106,11 @@ public class EnemyFramework implements Framework {
                 } catch (InvocationTargetException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
-                }
+                }*/
+                Attribute attribute = a.createAttribute();
                 e.clearAttributes();
                 e.addAttribute(attribute);
+                
             }  
         }
         
