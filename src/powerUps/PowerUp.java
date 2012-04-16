@@ -11,7 +11,7 @@ import attributes.*;
 import sprite.AnimatedGameSprite;
 
 @SuppressWarnings("serial")
-public abstract class PowerUp extends AnimatedGameSprite {
+public class PowerUp extends AnimatedGameSprite {
 
     protected List<Attribute>		myAttributes;
     protected List<Attribute>		myAttributesToOffer;
@@ -24,7 +24,9 @@ public abstract class PowerUp extends AnimatedGameSprite {
         myAttributesToOffer = new ArrayList<Attribute>();
     }
 
-    public abstract PowerUp makeItem(double x, double y);
+    public PowerUp makeItem(double x, double y) {
+    	
+    }
    
     public List<Attribute> getAttributesToOffer() {
     	return Collections.unmodifiableList(myAttributesToOffer);
@@ -33,6 +35,4 @@ public abstract class PowerUp extends AnimatedGameSprite {
     public void setOwner(GameCharacter owner) {
     	myOwner = owner;
     }
-
-    //public abstract Attribute getAttribute();
 }
