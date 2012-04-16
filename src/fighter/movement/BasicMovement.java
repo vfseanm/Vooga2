@@ -24,7 +24,7 @@ public class BasicMovement extends Attribute implements Updateable {
 	}
 
 
-	public void update(long elaspedTime) {
+	public void update(long elapsedTime) {
 		
 		if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) 
 		{

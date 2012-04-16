@@ -1,13 +1,9 @@
 package bonusobjects;
 
 import java.awt.image.BufferedImage;
-
 import java.util.List;
 
-
-
-import platforms.BreakablePlatformItemFactory;
-
+// Do we still want to do this? Implementation?
 
 @SuppressWarnings("serial")
 public class SlowEnemiesPowerUp extends PowerUp {
@@ -19,13 +15,4 @@ public class SlowEnemiesPowerUp extends PowerUp {
     private SlowEnemiesPowerUp(BufferedImage[] im, List<String> image) {
         super(im, 0, 0, image);
     }
-    
-    public static BreakablePlatformItemFactory getFactory(BufferedImage[] im, List<String> image) {
-        return new BreakablePlatformItemFactory(new SlowEnemiesPowerUp(im, image));
-    }
-    
-    public PowerUp makeItem(double x, double y) {
-        return new SlowEnemiesPowerUp(getImages(), x, y, getImageNames());
-    }
-    
 }

@@ -20,6 +20,7 @@ public class BonusObject extends AnimatedGameSprite {
         myAttributesToOffer = new ArrayList<Attribute>();
     }
    
+    // returns attributes to be added to sprite that collects this bonus object
     public List<Attribute> getAttributesToOffer() {
     	return Collections.unmodifiableList(myAttributesToOffer);
     }
