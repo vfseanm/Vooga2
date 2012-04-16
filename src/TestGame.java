@@ -47,12 +47,7 @@ public class TestGame extends Game {
 
         bob.addAttribute(new Gravity(1));
         //bob.addAttribute(new OneDirectionMovement("left",1));        
-        bob.addAttribute(new JumpingMovement(1,80));
-        //bob.addAttribute(new JumpingMovement(1,100));
-
-        //bob.addAttribute(new Gravity(1));
-       // bob.addAttribute(new OneDirectionMovement("left",1));        
-       // bob.addAttribute(new JumpingMovement(1,90));
+        bob.addAttribute(new JumpingMovement(1,90));
 
         
         counter=0;
@@ -72,11 +67,12 @@ public class TestGame extends Game {
 
         
          list = new ArrayList<AnimatedGameSprite>();
+         p1.setGroup("PLATFORM");
         bob.setGroup("ENEMY");
         p.setGroup("PLATFORM");
-        p1.setGroup("PLATFORM");
         p2.setGroup("PLATFORM");
         
+        list.add(bob);
         list.add(p);
         list.add(p1);
         list.add(p2);

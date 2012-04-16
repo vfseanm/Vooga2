@@ -4,6 +4,8 @@ import platforms.BreakablePlatform;
 import platforms.DecoratedPlatform;
 import platforms.SimplePlatform;
 import platforms.AbstractPlatform;
+import platforms.UpDownPlatform;
+
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
@@ -25,7 +27,13 @@ public class PlatformAction implements ActionPerformer{
 		}
 	}
 	public void action (Enemy sprite1, DecoratedPlatform sprite2, int collisionType){ 
+		// get sprite2.xxx  decor attri
+		// call commo()
 
+	}
+	
+	public void action (Enemy sprite1, UpDownPlatform sprite2, int collisionType){
+		// get sprite2.xxx updown attr
 	}
 
 	public void action (Fighter sprite1, SimplePlatform sprite2, int collisionType){
