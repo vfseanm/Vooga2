@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class PowerupDialogueBox extends ButtonDialogueBox {
+public class PowerupDialogueBox extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -31,11 +31,15 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
     
     private AttributeSelectionPanel powerupAttributePanel;
     private AttributeSelectionPanel attributesToGivePanel;
+    private JTextField myName;
+    private JTextField myGroup;
 
     @SuppressWarnings("rawtypes")
     public PowerupDialogueBox(EditorController m)
     {
         super(m);
+        setLayout(new BorderLayout());
+        add(makeInputPanel(), BorderLayout.NORTH);
         
     }
 
@@ -54,14 +58,14 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800,325));
-        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch);
+        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
         panel2.add(title1);
         panel2.add(powerupAttributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Attributes for the Power-Up to Give:");
-        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch);
+        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(attributesToGivePanel);
@@ -113,6 +117,16 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
             return framework;
 
         }
+class GoAction implements ActionListener {       
+        
+        public void actionPerformed(ActionEvent e)
+        {
+            Framework framework = getFramework();
+            System.out.println("framework "+framework);
+            myController.addButton(myName.getText(), framework);
+            setVisible(false);
+        }
+    }
     
     
 
