@@ -36,7 +36,11 @@ public class BasicMovement extends Attribute implements Updateable {
 			myGameCharacter.moveX(myHorizMovement);
 		
 	}
-
+	
+	// for use in side scrolling 
+	public double getHorizMovement() {
+		return myHorizMovement;
+	}
 
 	public void invert() {
 		// TODO Auto-generated method stub
