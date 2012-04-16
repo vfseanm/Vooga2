@@ -34,4 +34,12 @@ public class SimplePlatform extends AbstractPlatform {
 	public String toString() {
 		return "platform";
 	}
+	
+	public void doBreak() {
+		return;
+	}
+
+
+
+
 }

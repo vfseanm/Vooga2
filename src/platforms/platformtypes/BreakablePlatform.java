@@ -1,11 +1,4 @@
 package platforms.platformtypes;
-import java.util.ArrayList;
-
-
-import java.util.Random;
-
-import powerups.PowerUp;
-
 
 
 public class BreakablePlatform extends DecoratedPlatform {
@@ -23,6 +16,9 @@ public class BreakablePlatform extends DecoratedPlatform {
 	
 	public void doBreak() {
 		//only called if colliding top/bottom with fighter
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.doBreak();
+		}
 		releaseItem();
 		setActive(false);
 	}
