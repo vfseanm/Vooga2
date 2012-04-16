@@ -12,6 +12,7 @@ import java.util.List;
 import sprite.AnimatedGameSprite;   
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.Level;
 import fighter.Fighter;
@@ -21,6 +22,7 @@ public abstract  class PlatformGame extends Game {
     protected List<AnimatedGameSprite> mySprites;
     private Level myLevel;
     private Fighter myFighter;
+    private ImageBackground myBackground;
     
     PlatformGame()
     {
@@ -48,6 +50,7 @@ public abstract  class PlatformGame extends Game {
         }
 
         mySprites = myLevel.getSprites();
+        myBackground = myLevel.getBackground();
     }
     
     public Fighter getFighter() {

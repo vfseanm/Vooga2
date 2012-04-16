@@ -1,11 +1,15 @@
 package sidescrolling;
 
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
 public class NormalSidescroller extends DecoratedSidescroller {
 
-    public NormalSidescroller(Sidescroller scroller) {
+    protected Game myGame;
+    
+    public NormalSidescroller(Game game, Sidescroller scroller) {
         super(scroller);
+        myGame = game;
     }
     
     public void update(long elapsedTime) {

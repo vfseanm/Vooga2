@@ -22,6 +22,17 @@ public class JumpingMovement extends Attribute implements Updateable
         super(distance, delay);
         myDistance = distance;
         myTime = delay;
+<<<<<<< HEAD
+        time=0;
+        
+        
+    }
+ 
+
+    public void allowJumpingMovement ()
+    {
+=======
+>>>>>>> 253371ac01ae4cbcfa771cb15b96babb3667a5aa
         time = 0;
 
     }
@@ -44,13 +55,14 @@ public class JumpingMovement extends Attribute implements Updateable
                 myEnemy.setY(myEnemy.getY() - myDistance);
                 myEnemy.allowAttribute("Gravity", false);
             }
+            else
+            {
+
+                myEnemy.restoreOriginalAttribute("Gravity");
+            }
 
         }
-        else
-        {
-
-            myEnemy.restoreOriginalAttribute("Gravity");
-        }
+        
         time++;
 
     }
