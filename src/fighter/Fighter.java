@@ -131,15 +131,12 @@ public class Fighter extends GameCharacter {
 	}
 
 
-	@Override
 	public void accessAttributeMethod(String methodStart, String name,
 			Object... o) {
 		// TODO Auto-generated method stub
 		
 	}
 
-
-	@Override
 	public void restoreOriginalAttribute(String name, Object... o) {
 		// TODO Auto-generated method stub
 		
