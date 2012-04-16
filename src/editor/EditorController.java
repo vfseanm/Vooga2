@@ -132,7 +132,7 @@ public class EditorController {
     static
     {
         enemyButtonCounter = 0;
-        int[] setUp = { 15, 170, 75, 170, 135, 170, 15, 230, 75, 230, 135, 230, };
+        int[] setUp = { 15, 120, 75, 120, 135, 120, 15, 180, 75, 180, 135, 180, };
         enemyButtonPlacement = setUp;
     }
     private static int[] platformButtonPlacement;
@@ -140,7 +140,7 @@ public class EditorController {
     static
     {
         platformButtonCounter = 0;
-        int[] setUp = { 15, 400, 75, 400, 135, 400, 15, 460, 75, 460, 135, 460, };
+        int[] setUp = { 15, 300, 75, 300, 135, 300, 15, 360, 75, 360, 135, 360, };
         platformButtonPlacement = setUp;
     }
     private static int[] powerUpButtonPlacement;
@@ -148,7 +148,7 @@ public class EditorController {
     static
     {
         powerUpButtonCounter = 0;
-        int[] setUp = { 15, 630, 75, 630, 135, 630, 15, 690, 75, 690, 135, 690, };
+        int[] setUp = { 15, 530, 75, 530, 135, 530, 15, 590, 75, 590, 135, 590, };
         powerUpButtonPlacement = setUp;
     }
 
