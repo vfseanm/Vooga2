@@ -4,6 +4,8 @@ import java.io.Serializable;
 import character.GameCharacter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+//import com.sun.tools.internal.xjc.model.Constructor;
+import java.lang.reflect.*;
 
 
 
@@ -23,7 +25,7 @@ public abstract class Attribute implements Serializable
     protected GameCharacter		myGameCharacter;	
     protected Object 			myOriginal;
     protected boolean 			isActive;
-    public static boolean 		makeOriginal = false;
+    public static boolean 		makeOriginal = true;   //Note, this is not thread-safe...Sorry multi-threaded programers
     
     public abstract String getName();
     
@@ -41,11 +43,11 @@ public abstract class Attribute implements Serializable
     public Attribute (Object...o)
     {
         isActive=true;
-        if (makeOriginal == false)
+        if (makeOriginal == true)
         {
-            makeOriginal = true;
+            makeOriginal = false;
            
-            java.lang.reflect.Constructor<?>[] c = this.getClass().getConstructors();
+            Constructor<?>[] c = this.getClass().getConstructors();
            
             try
             {
@@ -75,7 +77,7 @@ public abstract class Attribute implements Serializable
         }
         else
         {
-            makeOriginal = false;
+            makeOriginal = true;
         }
     }
 
