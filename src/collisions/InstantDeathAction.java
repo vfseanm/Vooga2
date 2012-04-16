@@ -2,9 +2,8 @@ package collisions;
 
 import java.lang.reflect.Method;
 
-import platforms.BreakablePlatform;
-import platforms.DecoratedPlatform;
-import platforms.SimplePlatform;
+import platforms.*;
+import platforms.platformtypes.DecoratedPlatform;
 
 import sprite.AnimatedGameSprite;
 

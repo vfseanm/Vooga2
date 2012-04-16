@@ -1,3 +1,4 @@
+import platforms.platformtypes.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,6 +12,7 @@ import sprite.AnimatedGameSprite;
 
 import attributes.*;
 import collisions.GameCollisionManager;
+import collisions.PlatformAction;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
@@ -71,11 +73,16 @@ public class TestGame extends Game {
 
         
          list = new ArrayList<AnimatedGameSprite>();
+        bob.setGroup("ENEMY");
+        p.setGroup("PLATFORM");
+        p1.setGroup("PLATFORM");
+        p2.setGroup("PLATFORM");
         
         list.add(p);
         list.add(p1);
         list.add(p2);
          gc = new GameCollisionManager();
+         gc.setMap("ENEMY", "PLATFORM", new PlatformAction());
                 
     }
 
@@ -101,7 +108,7 @@ public class TestGame extends Game {
         p.update(arg0);
         p1.update(arg0);
         p2.update(arg0);
-        gc.GameCollision(bob, list);
+        gc.GameCollision(list);
         if(counter==800){
             bob.updateAttribute("JumpingMovement", 2,100);
            System.out.println(bob.getAttributes());

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import character.GameCharacter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-//import com.sun.tools.internal.xjc.model.Constructor;
+
 
 
 /**
@@ -40,6 +40,7 @@ public abstract class Attribute implements Serializable
 
     public Attribute (Object...o)
     {
+        isActive=true;
         if (makeOriginal == false)
         {
             makeOriginal = true;

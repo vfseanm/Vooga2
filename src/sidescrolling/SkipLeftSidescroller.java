@@ -9,8 +9,12 @@ public class SkipLeftSidescroller extends SkipSidescroller {
         super(game, scroller);
     }
     
+    public boolean fighterOffCorrectSide() {
+        return getFighter().getX() <= 0;
+    }
+    
     public void move(Sprite sprite) {
-        sprite.setX(sprite.getX() - myGame.getWidth());
+        sprite.setX(sprite.getX() + myGame.getWidth());
     }
     
 }
