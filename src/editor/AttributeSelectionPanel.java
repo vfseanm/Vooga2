@@ -72,6 +72,10 @@ public class AttributeSelectionPanel extends JPanel {
                     if(originallyCheckedOff.contains(c))
                     {
                         box.setSelected(true);
+                        Constructor constructor = getAnnotatedConstructor(c);
+                        Object[] list = new Object[1];
+                        list[0] = null;
+                        attributeInstanceMap.put(box, new AttributeCreator(constructor, list));
                     }
                 }
             }
@@ -101,22 +105,9 @@ public class AttributeSelectionPanel extends JPanel {
         {
             if (box.isSelected())
             {
-                Constructor[] constructors = associatedClass.getConstructors();
-                Constructor constructor = null;
-                for (Constructor c : constructors)
-                {
-                    if (c.isAnnotationPresent(editorConstructor.class))
-                    {
-                        constructor = c;
-                    }
-                }
-                if (constructor == null)
-                {
-                    throw new RuntimeException();
-                }
-
-                Annotation a = constructor
-                        .getAnnotation(editorConstructor.class);
+                
+                Constructor constructor = getAnnotatedConstructor(associatedClass);
+                Annotation a = constructor.getAnnotation(editorConstructor.class);
                 String[] paramNames = ((editorConstructor) a).parameterNames();
                 Class[] paramTypes = constructor.getParameterTypes();
                 Object[] argList = null;
@@ -168,6 +159,24 @@ public class AttributeSelectionPanel extends JPanel {
                 
         }
         return attributes;
+    }
+    
+    public Constructor getAnnotatedConstructor(Class c)
+    {
+        Constructor[] constructors = c.getConstructors();
+        Constructor constructor = null;
+        for (Constructor co : constructors)
+        {
+            if (co.isAnnotationPresent(editorConstructor.class))
+            {
+                constructor = co;
+            }
+        }
+        if (constructor == null)
+        {
+            throw new RuntimeException();
+        }
+        return constructor;
     }
 
 }

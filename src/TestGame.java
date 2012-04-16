@@ -48,12 +48,7 @@ public class TestGame extends Game {
 
         bob.addAttribute(new Gravity(1));
         //bob.addAttribute(new OneDirectionMovement("left",1));        
-        bob.addAttribute(new JumpingMovement(1,80));
-        //bob.addAttribute(new JumpingMovement(1,100));
-
-        //bob.addAttribute(new Gravity(1));
-       // bob.addAttribute(new OneDirectionMovement("left",1));        
-       // bob.addAttribute(new JumpingMovement(1,90));
+        bob.addAttribute(new JumpingMovement(1,90));
 
         
         counter=0;
@@ -73,15 +68,16 @@ public class TestGame extends Game {
 
         
          list = new ArrayList<AnimatedGameSprite>();
+         p1.setGroup("PLATFORM");
         bob.setGroup("ENEMY");
         p.setGroup("PLATFORM");
-        p1.setGroup("PLATFORM");
         p2.setGroup("PLATFORM");
         
+        list.add(bob);
         list.add(p);
         list.add(p1);
         list.add(p2);
-         gc = new GameCollisionManager();
+        gc = new GameCollisionManager();
          gc.setMap("ENEMY", "PLATFORM", new PlatformAction());
                 
     }
@@ -100,8 +96,8 @@ public class TestGame extends Game {
     @Override
     public void update (long arg0)
     {
-        if(counter==1)
-            System.out.println(bob.getAttributes());
+//        if(counter==1)
+//            System.out.println(bob.getAttributes());
         myBackground.update(arg0);
         counter++;
         bob.update(arg0);
@@ -109,14 +105,14 @@ public class TestGame extends Game {
         p1.update(arg0);
         p2.update(arg0);
         gc.GameCollision(list);
-        if(counter==800){
-            bob.updateAttribute("JumpingMovement", 2,100);
-           System.out.println(bob.getAttributes());
-        }
-        if(counter==1000){
-            bob.restoreOriginalAttribute("JumpingMovement");
-        System.out.println(bob.getAttributes());
-        }
+//        if(counter==800){
+//            bob.updateAttribute("JumpingMovement", 2,100);
+//           System.out.println(bob.getAttributes());
+//        }
+//        if(counter==1000){
+//            bob.restoreOriginalAttribute("JumpingMovement");
+//        System.out.println(bob.getAttributes());
+//        }
         
         
         

@@ -35,12 +35,13 @@ public class EditEnemyDialogue extends DialogueBox {
     public static final String BLANK = " ";
 
     private JTextField myName;
+    private JTextField myGroup;
 
     @SuppressWarnings("rawtypes")
-    private HashMap<JCheckBox, Class> attributeMap;
-    private List<Attribute> myOldAttributes;
+    //private HashMap<JCheckBox, Class> attributeMap;
+   // private List<Attribute> myOldAttributes;
     
-    private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
+   // private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
     private Enemy mySprite;
     private int myX;
     private int myY;
@@ -61,14 +62,13 @@ public class EditEnemyDialogue extends DialogueBox {
         //add(makeInputPanel(), BorderLayout.NORTH);
         
         mySprite = sprite;
-        myImages = new ArrayList<BufferedImage>();
        
         
-        attributeMap = new HashMap<JCheckBox, Class>();
-        myOldAttributes = new ArrayList<Attribute>();
-        myOldAttributes.addAll(mySprite.getAttributes());
+       // attributeMap = new HashMap<JCheckBox, Class>();
+      //  myOldAttributes = new ArrayList<Attribute>();
+       // myOldAttributes.addAll(mySprite.getAttributes());
         
-        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
+        //attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
         
@@ -117,9 +117,9 @@ public class EditEnemyDialogue extends DialogueBox {
         JLabel groupLabel = new JLabel("Group:");
         panel.add(groupLabel);
 
-      /*  myGroup = new JTextField(10);
+        myGroup = new JTextField(10);
 
-        panel.add(myGroup, BorderLayout.SOUTH);*/
+        panel.add(myGroup, BorderLayout.SOUTH);
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
@@ -228,7 +228,33 @@ public class EditEnemyDialogue extends DialogueBox {
                 }
                     
             }*/
+            
             ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+            
+            for(AttributeCreator a: attributePanel.getSelectedAttributes())
+            {
+                if(a.getArguments()!=null)
+                {
+                    if(a.getArguments()[0]==null)
+                    {
+                        
+                        for(Attribute currentAttribute: mySprite.getAttributes())
+                        {
+                            
+                            if(currentAttribute.getClass().equals(a.getCreatingClass()))
+                            {
+                                attributes.add(currentAttribute);
+                                break;
+                            }
+                        }
+                        continue;
+                    }
+                }
+                attributes.add(a.createAttribute());
+                
+            }
+            
+            
             
 
             
@@ -256,33 +282,19 @@ public class EditEnemyDialogue extends DialogueBox {
             Enemy enemy = new Enemy(s, myX,
                     myY,
                     myImagePaths);
-            for(AttributeCreator a: attributes)
+            for(Attribute a: attributes)
             {
-                Attribute attribute = a.createAttribute();
-                /*System.out.println("list:" + list);
-                Constructor c = (Constructor) list.get(0);
-                Object[] parameterList = (Object[]) list.get(1);
-                Attribute attribute = null;
-                try {
-                    attribute = (Attribute) c.newInstance(parameterList);
-                } catch (IllegalArgumentException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InvocationTargetException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }*/
-                enemy.addAttribute(attribute);
-            }  
+                
+                
+                enemy.addAttribute(a);
+            }/*  
             for (Attribute oldAttribute: oldAttributes)
             {
                 enemy.addAttribute(oldAttribute);
+            }*/
+            if(!myGroup.getText().equals(""))
+            {
+                mySprite.setGroup(myGroup.getText());
             }
             if(mySprite!=null)
                 myController.replaceSprite(mySprite, enemy);
@@ -297,54 +309,7 @@ public class EditEnemyDialogue extends DialogueBox {
         }
     }
     
-    
-    private class CheckBoxListener implements ActionListener {
-        Class associatedClass;
-        JCheckBox box;
-        
-        public CheckBoxListener(JCheckBox b, Class c)
-        {
-            associatedClass= c;
-            box = b;
-        }
-        public void actionPerformed(ActionEvent e)
-        {
-            Constructor[] constructors = associatedClass.getConstructors();
-            Constructor constructor = null;
-            for(Constructor c: constructors)
-            {
-                if(c.isAnnotationPresent(editorConstructor.class))
-                {
-                    constructor = c;
-                }
-            }
-            if(constructor == null)
-            {
-                throw new RuntimeException();
-            }
-            
-            Annotation a = constructor.getAnnotation(editorConstructor.class);
-            String[] paramNames = ((editorConstructor) a).parameterNames();
-            Object[] argList = null;
-            if(!paramNames[0].equals(""))
-            {
-                argList = new Object[paramNames.length];
-                for(int i=0; i< paramNames.length; i++)
-                {
-                    String selectedValue = JOptionPane
-                        .showInputDialog("What would you like the "+ paramNames[i]+ " to be?");
-                    argList[i]=Integer.parseInt(selectedValue);
-                }
-            }
-                   // Attribute att = (Attribute) constructor.newInstance(argList);
-                    AttributeCreator attribute = new AttributeCreator(constructor, argList);
-                    /*attribute.add(constructor);
-                    attribute.add(argList);
-                    System.out.println("ADDING AN ATTRIBUTE" + attribute);*/
-                    attributeInstanceMap.put(box, attribute);
-                
-            }
-    }
+
 
 
 

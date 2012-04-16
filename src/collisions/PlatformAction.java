@@ -1,7 +1,11 @@
 package collisions;
 
+ 
+import platforms.platformtypes.*;
+ 
 import platforms.platformtypes.*;
 
+ 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
@@ -17,13 +21,20 @@ public class PlatformAction implements ActionPerformer{
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
 			if ( (sprite1.getX()+(sprite1.getWidth()) >= sprite2.getX())
 					&& (sprite1.getX() <= sprite2.getX()+ sprite2.getWidth()) ){
-				((Enemy) sprite1).updateAttribute("JumpingMovement");
+				 //System.out.println("hgjvj");
+				((Enemy) sprite1).restoreOriginalAttribute("JumpingMovement");
 				
 			}
 		}
 	}
 	public void action (Enemy sprite1, DecoratedPlatform sprite2, int collisionType){ 
+		// get sprite2.xxx  decor attri
+		// call commo()
 
+	}
+	
+	public void action (Enemy sprite1, UpDownPlatform sprite2, int collisionType){
+		// get sprite2.xxx updown attr
 	}
 
 	public void action (Fighter sprite1, SimplePlatform sprite2, int collisionType){

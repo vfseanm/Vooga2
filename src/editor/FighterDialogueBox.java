@@ -41,11 +41,6 @@ public class FighterDialogueBox extends DialogueBox{
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
 
-/* @SuppressWarnings("rawtypes")
-private HashMap<JCheckBox, Class> checkBoxAttributeMap;
-private HashMap<JCheckBox, Class> checkBoxCarryableMap;
-private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
-private HashMap<JCheckBox, AttributeCreator> carryableAttributeMap;*/
     AttributeSelectionPanel attributePanel;
     AttributeSelectionPanel carryablePanel;
 
@@ -56,6 +51,8 @@ private HashMap<JCheckBox, AttributeCreator> carryableAttributeMap;*/
     {
        
         super(m);
+        setLayout(new BorderLayout());
+        add(makeInputPanel(), BorderLayout.NORTH);
     }
     
     @SuppressWarnings("rawtypes")
@@ -70,14 +67,14 @@ private HashMap<JCheckBox, AttributeCreator> carryableAttributeMap;*/
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800,325));
-        attributePanel = new AttributeSelectionPanel(packagesToSearch);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Fighter to have:");
         panel2.add(title1);
         panel2.add(attributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Carryable attributes for the Power-Up to Give:");
-        carryablePanel = new AttributeSelectionPanel(packagesToSearch);
+        carryablePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(carryablePanel);
@@ -115,7 +112,7 @@ private HashMap<JCheckBox, AttributeCreator> carryableAttributeMap;*/
                 s[x] = myImages.get(x);
             }
             ArrayList<String> imagePaths = new ArrayList<String>();
-            Fighter fighter = new Fighter(s, 50, 50, myImagePaths);
+            Fighter fighter = new Fighter(s, 50, 50, myImagePaths, null);
             
             for(AttributeCreator attribute: attributes)
             {
@@ -125,7 +122,7 @@ private HashMap<JCheckBox, AttributeCreator> carryableAttributeMap;*/
             {
             //fighter.addCarryableAttribute(attribute.createAttribute());
             }
-            myController.addSprite(new Fighter(s, 50, 50, myImagePaths));
+            myController.addSprite(new Fighter(s, 50, 50, myImagePaths, null));
             setVisible(false);
         }
     }
