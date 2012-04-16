@@ -11,6 +11,7 @@ import sprite.AnimatedGameSprite;
 
 import attributes.*;
 import collisions.GameCollisionManager;
+import collisions.PlatformAction;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
@@ -71,11 +72,16 @@ public class TestGame extends Game {
 
         
          list = new ArrayList<AnimatedGameSprite>();
+        bob.setGroup("ENEMY");
+        p.setGroup("PLATFORM");
+        p1.setGroup("PLATFORM");
+        p2.setGroup("PLATFORM");
         
         list.add(p);
         list.add(p1);
         list.add(p2);
          gc = new GameCollisionManager();
+         gc.setMap("ENEMY", "PLATFORM", new PlatformAction());
                 
     }
 
