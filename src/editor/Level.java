@@ -16,6 +16,7 @@ import java.util.List;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.background.ImageBackground;
 
 
 import sprite.AnimatedGameSprite;
@@ -30,6 +31,7 @@ public class Level implements Serializable{
     
     private List<AnimatedGameSprite> sprites;
     private String backgroundImagePath;
+    private ImageBackground myBackground;
 
   
     
@@ -100,9 +102,10 @@ public class Level implements Serializable{
     
     private void updateImages()
     {
+        BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
         for(AnimatedGameSprite s: sprites)
         {
-            BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
+            
             BufferedImage[] images = new BufferedImage[s.getImageNames().size()];
             for(int i=0; i<images.length; i++)
             {
@@ -110,68 +113,20 @@ public class Level implements Serializable{
                 images[i] = loader.getImage(s.getImageNames().get(i));
             }
             s.setImages(images);
-            
-        }
+         }
+        myBackground.setImage(loader.getImage(backgroundImagePath));
     }
     
     public void setBackground(BufferedImage image, String imagePath)
     {
         backgroundImagePath = imagePath;
+        myBackground = new ImageBackground(image);
     }
     
-/*    public static void main(String[] args)
+    public ImageBackground getBackground()
     {
-        String filename = "level.ser";
-        Level lev = new Level();
-        BaseLoader loader = new BaseLoader(new BaseIO(AbstractPlatform.class), Color.PINK);
-        BufferedImage[] image = new BufferedImage[1];
-        image[0] = loader.getImage("resources/block3.png");
-        ArrayList<String> imageNames = new ArrayList<String>();
-        imageNames.add("resources/block3.png");
-        RotatingPlatform b = new RotatingPlatform(image,5 ,6,imageNames,  null );
-        RotatingPlatform c = new RotatingPlatform(image, 7, 9, imageNames, null);
-        lev.addPlatform(b);
-        lev.addPlatform(c);
-        
-        FileOutputStream fos = null;
-        ObjectOutputStream out = null;
-        try
-        {
-            fos = new FileOutputStream(filename);
-            out = new ObjectOutputStream(fos);
-            out.writeObject(lev);
-            out.close();
-        }
-        catch(IOException ex)
-        {
-            ex.printStackTrace();
-        }
-        Level lev2;
-        FileInputStream fis = null;
-        ObjectInputStream in = null;
-        try
-        {
-            fis = new FileInputStream(filename);
-            in = new ObjectInputStream(fis);
-            lev2 = (Level)in.readObject();
-            in.close();
-            List<AbstractPlatform> platList = lev2.getPlatforms();
-            System.out.println(lev2);
-            for(AbstractPlatform x: platList)
-            {
-                System.out.println(x.getX());
-            }
-            
-        }
-        catch(IOException ex)
-        {
-            ex.printStackTrace();
-        }
-        catch(ClassNotFoundException ex)
-        {
-            ex.printStackTrace();
-        }
-    }*/
+        return myBackground;
+    }
    
 }
 
