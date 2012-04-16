@@ -110,4 +110,17 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		}
 		return;
 	}
+	
+	protected void doBreak() {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.doBreak();
+		}
+		return;
+	}
+	
+	public void setActive(boolean arg) {
+		if (myDecoratorComponent != null) {
+			myDecoratorComponent.setActive(arg);
+		}
+	}
 }
