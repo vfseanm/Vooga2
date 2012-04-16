@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+import editor.buttons.Button;
+import editor.frameworks.Framework;
 import fighter.Fighter;
 
 import sprite.AnimatedGameSprite;

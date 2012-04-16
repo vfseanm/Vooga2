@@ -27,7 +27,8 @@ import attributes.Attribute;
 import com.golden.gamedev.object.Sprite;
 
 import editor.ButtonDialogueBox.GoAction;
-import editor.DialogueBox.ImageAction;
+import editor.dialogues.DialogueBox;
+import editor.dialogues.DialogueBox.ImageAction;
 import enemies.Enemy;
 
 public class EditPlatformDialogue extends DialogueBox{
@@ -46,8 +47,6 @@ public class EditPlatformDialogue extends DialogueBox{
         myY = y;
         myImage = mySprite.getImage();
         classMap = new HashMap<JCheckBox, Class>();
-        
-        
         
     }
 

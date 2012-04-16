@@ -1,4 +1,4 @@
-package editor;
+package editor.dialogues;
 
 import java.io.File;
 
@@ -16,7 +16,7 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import editor.frameworks.Framework;
+import editor.EditorController;
 
 import attributes.Attribute;
 
@@ -24,7 +24,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public abstract class EditDialogueBox extends JPanel {
+public abstract class DialogueBox extends JPanel {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -34,34 +34,17 @@ public abstract class EditDialogueBox extends JPanel {
     protected ArrayList<BufferedImage> myImages;
     protected ArrayList<String> myImagePaths;
     
-    protected JTextField myName;
-    protected JTextField myGroup;
-    protected Reflection reflection;
-    protected AnimatedGameSprite mySprite;
-    
+
     @SuppressWarnings("rawtypes")
-    public EditDialogueBox(EditorController m, Sprite s)
+    public DialogueBox(EditorController m)
     {
         myImages = new ArrayList<BufferedImage>();
         myImagePaths = new ArrayList<String>();
-        myController = m;
-        reflection =  new Reflection();
-        setLayout(new BorderLayout());
-        add(makeInputPanel(), BorderLayout.NORTH);
-        
-        //System.out.println("got here");
+
+        myController = m;        
     }
-    public EditDialogueBox(EditorController m, Framework, framework)
-    {
-        myImages = new ArrayList<BufferedImage>();
-        myImagePaths = new ArrayList<String>();
-        myController = m;
-        reflection =  new Reflection();
-        setLayout(new BorderLayout());
-        add(makeInputPanel(), BorderLayout.NORTH);
-        
-        //System.out.println("got here");
-    }
+    
+    
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
 
     public BufferedImage getImage()
@@ -94,7 +77,7 @@ public abstract class EditDialogueBox extends JPanel {
 
     }
 
-    private JComponent makeInputPanel()
+    protected JComponent makeInputPanel()
     {
         JPanel panel = new JPanel(new BorderLayout());
 

@@ -18,6 +18,21 @@ import com.golden.gamedev.gui.toolkit.*;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
+
+
+import editor.buttons.Button;
+import editor.buttons.ButtonMakingButton;
+import editor.buttons.OpenButton;
+import editor.buttons.PlayerButton;
+import editor.buttons.SaveButton;
+import editor.dialogues.EditEnemyButtonDialogueBox;
+import editor.dialogues.EditEnemyDialogue;
+import editor.dialogues.EnemyDialogueBox;
+import editor.dialogues.FighterDialogueBox;
+import editor.dialogues.GameDialogue;
+import editor.dialogues.PlatformDialogueBox;
+import editor.dialogues.PowerupDialogueBox;
+import editor.frameworks.Framework;
 import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
@@ -81,7 +96,7 @@ public class EditorView extends Game {
         infoBox.add(l);
         infoBox.add(l2);
         
-        BlankButton newEnemyButton = new BlankButton("Create Enemy", 125, 110, 150, 40, this, "enemy");
+        ButtonMakingButton newEnemyButton = new ButtonMakingButton("Create Enemy", 125, 110, 150, 40, this, "enemy");
 
         infoBox.add(newEnemyButton);
         
@@ -92,7 +107,7 @@ public class EditorView extends Game {
                 UIConstants.CENTER);
         l3.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
         
-        BlankButton newPlatformButton = new BlankButton("Create Platform", 125, 310, 150, 40, this, "platform");
+        ButtonMakingButton newPlatformButton = new ButtonMakingButton("Create Platform", 125, 310, 150, 40, this, "platform");
 
         infoBox.add(newPlatformButton);
 
@@ -105,7 +120,7 @@ public class EditorView extends Game {
         infoBox.add(l4);
         
         
-        BlankButton newpowerUpButton = new BlankButton("Create Power-Up", 125, 510, 150, 40, this, "power up");
+        ButtonMakingButton newpowerUpButton = new ButtonMakingButton("Create Power-Up", 125, 510, 150, 40, this, "power up");
 
         infoBox.add(newpowerUpButton);
         
