@@ -41,16 +41,4 @@ public class Fighter extends GameCharacter {
 	public String getName() {
 		return "Fighter";
 	}
-
-
-	public void accessAttributeMethod(String methodStart, String name,
-			Object... o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void restoreOriginalAttribute(String name, Object... o) {
-		// TODO Auto-generated method stub
-		
-	}
 }
