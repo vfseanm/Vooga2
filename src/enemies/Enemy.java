@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import sprite.AnimatedGameSprite;
 
 import character.GameCharacter;
 import attributes.Attribute;
@@ -182,7 +183,16 @@ public class Enemy extends GameCharacter
 
     public void update (long elapsedTime)
     {
-    	performAttributeActions(elapsedTime);
+        
+        for (Attribute attribute : myAttributes)
+        {
+            
+            if (attribute.getClass().getInterfaces().length != 0 &&
+                attribute.getClass().getInterfaces()[0].equals(Updateable.class))
+            {
+                ((Updateable) attribute).update(elapsedTime);
+            }
+        }
         if (myState != null) myState.excuteBehavior(this);
     }
 

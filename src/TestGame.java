@@ -77,8 +77,8 @@ public class TestGame extends Game {
         list.add(p);
         list.add(p1);
         list.add(p2);
-         gc = new GameCollisionManager();
-         gc.setMap("ENEMY", "PLATFORM", new PlatformAction());
+//         gc = new GameCollisionManager();
+//         gc.setMap("ENEMY", "PLATFORM", new PlatformAction());
                 
     }
 
@@ -104,7 +104,7 @@ public class TestGame extends Game {
         p.update(arg0);
         p1.update(arg0);
         p2.update(arg0);
-        gc.GameCollision(list);
+        //gc.GameCollision(list);
         if(counter==800){
             bob.updateAttribute("JumpingMovement", 2,100);
            System.out.println(bob.getAttributes());

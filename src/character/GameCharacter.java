@@ -92,6 +92,7 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 	public void performAttributeActions(long elapsedTime){
 		for (Attribute attribute : myAttributes)
         {
+		    
             if (attribute.getClass().getInterfaces().length != 0 &&
                 attribute.getClass().getInterfaces()[0].equals(Updateable.class))
             {
