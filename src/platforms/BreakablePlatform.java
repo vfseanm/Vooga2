@@ -16,11 +16,14 @@ public class BreakablePlatform extends DecoratedPlatform {
 		super(decoratorComponent);
 	}
 	
-	protected void doBehavior(double speed, double distance) {
-		
-		//do some check collision thing - need Ashwin to complete
-		//releaseItem();
-		//setActive(false);
+	public void doBehavior(double speed, double distance) {
+		return;
+	}
+	
+	public void doBreak() {
+		//only called if colliding top/bottom with fighter
+		releaseItem();
+		setActive(false);
 	}
 	
 	public PowerUp releaseItem() {
