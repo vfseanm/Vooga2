@@ -47,8 +47,6 @@ public class ButtonMakingButton extends TButton
         myView.openBox(myType);
            
     }
-    
-
 
     public String getType ()
     {

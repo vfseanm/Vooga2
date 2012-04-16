@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -52,6 +54,7 @@ public abstract class EditorView extends Game {
     protected double[] clickedSpriteOffset;
     protected Framework myFramework;
     protected Background myBackground;
+    private HashMap<String, Class> boxMap;
 
     @SuppressWarnings("unchecked")
     
