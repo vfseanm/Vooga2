@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
  * Here I'm thinking cloaked or ghosts
  * @author Alex
  */
+@SuppressWarnings("serial")
 public class Visibility extends Attribute
 {
     private boolean isVisible;

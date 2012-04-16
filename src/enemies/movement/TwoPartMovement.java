@@ -1,10 +1,10 @@
 package enemies.movement;
 
-import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
 
+@SuppressWarnings("serial")
 public abstract class TwoPartMovement extends Attribute implements Updateable
 {
     protected int myDistance;

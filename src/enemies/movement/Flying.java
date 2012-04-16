@@ -5,6 +5,7 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 // knows gravity too well?
+@SuppressWarnings("serial")
 public class Flying extends Attribute implements Updateable
 {
 

@@ -5,6 +5,7 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 
+@SuppressWarnings("serial")
 public class OneDirectionMovement extends Attribute implements Updateable
 {
     private String myDirection;

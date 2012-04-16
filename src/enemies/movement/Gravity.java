@@ -4,6 +4,7 @@ import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
+@SuppressWarnings("serial")
 public class Gravity extends Attribute implements Updateable
 {
     private int myDistance;
