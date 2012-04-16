@@ -119,25 +119,6 @@ public class EditPlatformDialogue extends DialogueBox{
             for(AttributeCreator a: attributes)
             {
                 Attribute attribute = a.createAttribute();
-                /*System.out.println("list:" + list);
-                Constructor c = (Constructor) list.get(0);
-                Object[] parameterList = (Object[]) list.get(1);
-                Attribute attribute = null;
-                try {
-                    attribute = (Attribute) c.newInstance(parameterList);
-                } catch (IllegalArgumentException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InvocationTargetException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }*/
                 enemy.addAttribute(attribute);
             }  
             for (Attribute oldAttribute: oldAttributes)
