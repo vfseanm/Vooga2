@@ -95,15 +95,16 @@ public class GameCollisionManager{
 		return false;
 	}
 	private boolean topBottomChecker (Sprite sprite1, Sprite sprite2){
-		if  ((sprite1.getY() + sprite1.getHeight() == sprite2.getY()) 
-				&& (sprite1.getX() >= sprite2.getX()-sprite1.getWidth()/2 && sprite1.getX()+sprite1.getWidth() <= sprite2.getX()+sprite2.getWidth()+sprite1.getWidth()/2) ){
+		if  ((sprite1.getY() + sprite1.getHeight() == sprite2.getY()) &&
+				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth()/2)) && 
+				((sprite1.getX()+sprite1.getWidth()) <= (sprite2.getX()+sprite2.getWidth()+sprite1.getWidth()/2)) ) {
 			return true;
 		}
 		return false; 
 	}
 
 	private boolean CollisionChecker (Sprite sp1, Sprite sp2){
-		if ( (leftRightChecker(sp1, sp2)) || ( topBottomChecker (sp1, sp2) )){
+		if ( (leftRightChecker(sp1, sp2)) || (leftRightChecker(sp2, sp1)) || ( topBottomChecker (sp1, sp2) || (topBottomChecker(sp2, sp1)))){
 			return true;
 		}
 		else 
