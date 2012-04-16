@@ -7,8 +7,8 @@ public class SimplePlatform extends AbstractPlatform {
 	
 	private static final long serialVersionUID = 7514750773895804951L;
 
-	public SimplePlatform(BufferedImage[] im, double x, double y, List<String> images, Fighter fighter) {
-	    super(im, x, y, images, fighter);
+	public SimplePlatform(BufferedImage[] im, double x, double y, List<String> images) {
+	    super(im, x, y, images);
 	}
 
 	@Override
