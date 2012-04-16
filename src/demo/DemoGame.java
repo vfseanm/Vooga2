@@ -22,6 +22,7 @@ import java.util.List;
     import sidescrolling.*;
     import sprite.AnimatedGameSprite;
 import platforms.*;
+import platformtypes.SimplePlatform;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;

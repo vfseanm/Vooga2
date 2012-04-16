@@ -1,8 +1,7 @@
 package collisions;
 
-import platforms.BreakablePlatform;
-import platforms.DecoratedPlatform;
-import platforms.SimplePlatform;
+import platforms.*;
+
 
 import com.golden.gamedev.object.Sprite;
 

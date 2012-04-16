@@ -36,8 +36,7 @@ public class Enemy extends AnimatedGameSprite
      */
     public boolean hasAttributeByName (String name)
     {
-        for (Attribute attribute : myAttributes)
-        {
+        for (Attribute attribute : myAttributes) {
             if (attribute.getClass().getName().equalsIgnoreCase(name)) return true;
         }
         return false;

@@ -16,8 +16,8 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import platforms.AbstractPlatform;
-import platforms.DecoratedPlatform;
+import platformtypes.AbstractPlatform;
+import platformtypes.DecoratedPlatform;
 
 import attributes.Attribute;
 
