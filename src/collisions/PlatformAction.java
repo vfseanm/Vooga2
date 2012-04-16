@@ -1,7 +1,13 @@
 package collisions;
 
+<<<<<<< HEAD
 
 import platforms.platformtypes.*;
+=======
+
+import platforms.platformtypes.*;
+
+>>>>>>> 74a82c4d20de52ac19e7c2d7190f3e2d6d25b683
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;

@@ -82,7 +82,7 @@ public class Reflection {
             while(myClass.getSuperclass()!=null)
             {
             
-                System.out.println(myClass.getSuperclass()+superClass.toString());
+                
                 if(myClass.getSuperclass().equals(superClass))
                 {
                     behaviors.add(c);
