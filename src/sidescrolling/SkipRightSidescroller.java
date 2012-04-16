@@ -1,7 +1,7 @@
 package sidescrolling;
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.*;
 
 public class SkipRightSidescroller extends SkipSidescroller {
 
@@ -10,7 +10,11 @@ public class SkipRightSidescroller extends SkipSidescroller {
     }
     
     public void move(Sprite sprite) {
-        sprite.setX(sprite.getX() + myGame.getWidth());
+        sprite.setX(sprite.getX() - myGame.getWidth());
+    }
+    
+    public boolean fighterOffCorrectSide() {
+        return getFighter().getX() >= myGame.getWidth();
     }
     
 }

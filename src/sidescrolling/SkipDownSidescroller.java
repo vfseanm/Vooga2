@@ -13,4 +13,8 @@ public class SkipDownSidescroller extends SkipSidescroller {
         sprite.setY(sprite.getY() - myGame.getHeight());
     }
     
+    public boolean fighterOffCorrectSide() {
+        return getFighter().getY() >= myGame.getHeight();
+    }
+    
 }
