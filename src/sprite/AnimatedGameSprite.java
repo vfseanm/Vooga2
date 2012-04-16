@@ -14,6 +14,7 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable
 
     String myType;
     List<String> myImageNames;
+    private String myGroup;
 
 
     public AnimatedGameSprite (BufferedImage[] im,
@@ -52,6 +53,14 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable
     public void setImageNames(List<String> names)
     {
         myImageNames = names;
+    }
+    
+    public void setGroup(String group){
+        myGroup=group;
+    }
+    
+    public String getGroup(){
+        return myGroup;
     }
     
 

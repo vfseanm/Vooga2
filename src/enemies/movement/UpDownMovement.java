@@ -1,76 +1,43 @@
 package enemies.movement;
 
 import editor.editorConstructor;
-import attributes.Attribute;
-import attributes.Updateable;
-// similiar to side to side
-// hmm?
+
+
+// Idea master config file to control attribute exlusivity
 // flying
 
 
-public class UpDownMovement extends Attribute implements Updateable
+@SuppressWarnings("serial")
+public class UpDownMovement extends TwoPartMovement
 {
-    private int myDistance;
-    private int myTurnTime;
-    private int time;
-    private boolean up = false;
 
-    @editorConstructor(parameterNames = { "distance" , "time"})
-    public UpDownMovement (int distance, int time)
+    @editorConstructor(parameterNames = { "distance" , "duration"})
+    public UpDownMovement (int distance, int duration)
     {
-        myDistance = distance;
-        myTurnTime = time;
-        up = true;
-        this.time = time / 2;
+        super(distance,duration);
+        
     }
 
 
-    public void modifyUpDownMovement (int distance, int time)
+    public void modifyUpDownMovement (int distance, int duration)
     {
         myDistance += distance;
-        myTurnTime += time;
+        myPartDuration += duration;
     }
 
 
-    public void update (long elaspedTime)
+    protected void movementPart1 ()
     {
-        if (up)
-        {
-            moveUp();
-        }
-        else
-        {
-            moveDown();
-
-        }
-        
+        myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() + myDistance);
         
 
     }
+ 
 
-
-    private void moveDown ()
+    protected void movementPart2 ()
     {
-        myEnemy.setLocation(myEnemy.getX(), myEnemy.getY() + myDistance);
-        time++;
-        if (time >= myTurnTime)
-        {
-            time = 0;
-            up = true;
-        }
-
-    }
-
-
-    private void moveUp ()
-    {
-        myEnemy.setLocation(myEnemy.getX(), myEnemy.getY() - myDistance);
-        time++;
-        if (time >= myTurnTime)
-        {
-            time = 0;
-            up = false;
-        }
+        myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() - myDistance);
+        
     }
 
 
@@ -84,7 +51,7 @@ public class UpDownMovement extends Attribute implements Updateable
     public String toString ()
     {
         return "Attribute UpDownMovement my distance is " + myDistance +
-               " my time to turn is " + myTurnTime;
+               " my time to turn is " + myPartDuration;
     }
 
 }

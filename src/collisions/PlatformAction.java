@@ -15,8 +15,8 @@ import sprite.AnimatedGameSprite;
 public class PlatformAction implements ActionPerformer{
 
 	public void standardaction (AnimatedGameSprite sprite1, AbstractPlatform sprite2, int collisionType){ 
-	    System.out.println("doing standard action");
-	    System.out.println(collisionType);
+	    //System.out.println("doing standard action");
+	    //System.out.println(collisionType);
 	    
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
 			if ( (sprite1.getX()+(sprite1.getWidth()) >= sprite2.getX())
@@ -33,8 +33,15 @@ public class PlatformAction implements ActionPerformer{
 		standardaction (sprite1, sprite2, collisionType);
 	}
 	
+	public void action (Fighter sprite1, BreakablePlatform sprite2, int collisionType){
+		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION) {
+			sprite2.doBreak();
+		}
+		return;
+	}
+	
 	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
-	    System.out.println("doing correct action");
+	    //System.out.println("doing correct action");
 		standardaction (sprite1, sprite2, collisionType);
 	}
 
@@ -50,7 +57,7 @@ public class PlatformAction implements ActionPerformer{
 
 	public void action(Sprite sprite1, Sprite sprite2, int collisionType) { 
 		if ((sprite1 instanceof Enemy) && (sprite2 instanceof SimplePlatform)){
-		    System.out.println("DOING ACTION1");
+		    //System.out.println("DOING ACTION1");
 			action ((Enemy)sprite1, (SimplePlatform) sprite2, collisionType);
 		}
 		else if ((sprite1 instanceof Enemy) && (sprite2 instanceof BreakablePlatform)){

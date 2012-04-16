@@ -2,16 +2,17 @@ package attributes;
 
 import editor.editorConstructor;
 
+@SuppressWarnings("serial")
 public class Gravity extends Attribute implements Updateable
 {
     private int myDistance;
-    private int gravity;
+
 
     @editorConstructor(parameterNames = { "distance" })
     public Gravity (int distance)
     {
-        myDistance = distance;
-        gravity = distance;
+        super(distance);
+        myDistance = distance;   
     }
 
 
@@ -21,24 +22,18 @@ public class Gravity extends Attribute implements Updateable
 
     }
 
-
-    // to reset gravity
-    public void modifyGravity ()
-    {
-        resetGravity();
-    }
-
-
     public void update (long elaspedTime)
     {
         myGameCharacter.setY(myGameCharacter.getY() + myDistance);
-
+        
+        if (isActive) {
+        	myGameCharacter.setY(myGameCharacter.getY() + myDistance);
+        }
     }
 
 
-    private void resetGravity ()
-    {
-        myDistance = gravity;
+    public void invert(){
+        myDistance=-myDistance;
     }
 
 

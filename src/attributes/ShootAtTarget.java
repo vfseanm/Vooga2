@@ -1,6 +1,7 @@
 package attributes;
 
 import java.awt.event.KeyEvent;
+
 import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.*;
 import sprite.*;
@@ -37,17 +38,21 @@ public class ShootAtTarget extends Attribute implements Updateable {
 		}
 		
 		if (myUserInput.isKeyPressed((KeyEvent.VK_SPACE)) && myCanFire) {
-			double horizDistance = myTarget.getX() - myFighter.getX();
-			double vertDistance = myTarget.getY() - myFighter.getY();
+			double horizDistance = myTarget.getX() - myGameCharacter.getX();
+			double vertDistance = myTarget.getY() - myGameCharacter.getY();
 			double ratio = vertDistance / horizDistance;
 
 			if (horizDistance < 0)
-				myFighter.getMissile().setSpeed(-0.7, -0.7 * ratio);
+				myGameCharacter.getMissile().setSpeed(-0.7, -0.7 * ratio);
 			else
-				myFighter.getMissile().setSpeed(0.7, 0.7 * ratio);
+				myGameCharacter.getMissile().setSpeed(0.7, 0.7 * ratio);
 			
 			myCanFire = false;
 		}
 	}
 
+	public void invert() {
+		// TODO Auto-generated method stub
+		
+	}
 }

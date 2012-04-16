@@ -1,68 +1,38 @@
 package enemies.movement;
 
 import editor.editorConstructor;
-import attributes.Attribute;
-import attributes.Updateable;
 
+//Change location to coordinate
 
-public class SideToSideMovement extends Attribute implements Updateable
+@SuppressWarnings("serial")
+public class SideToSideMovement extends TwoPartMovement
 {
-    private int myDistance;
-    private int myTurnTime;
-    private int time;
-    private boolean left = false;
+    
 
-    @editorConstructor(parameterNames = { "distance" , "time"})
-    public SideToSideMovement (int distance, int time)
+    @editorConstructor(parameterNames = { "distance" , "duration"})
+    public SideToSideMovement (int distance, int duration)
     {
-        myDistance = distance;
-        myTurnTime = time;
-        left = true;
-        this.time = time / 2;
-    }
-
-
-    public void update (long elaspedTime)
-    {
+        super(distance,duration);
         
-        if (left)
-        {
-            moveLeft();
-        }
-        else
-        {
-            moveRight();
-        }
-
-    }
-
-
-    private void moveLeft ()
-    {
-        myEnemy.setLocation(myEnemy.getX()-myDistance, myEnemy.getY());
-        time++;
-        if(time>=myTurnTime){
-            time=0;
-            left=false;
-        }
-
-    }
-
-
-    private void moveRight ()
-    {
-        myEnemy.setLocation(myEnemy.getX()+myDistance, myEnemy.getY());
-        time++;
-        if(time>=myTurnTime){
-            time=0;
-            left=true;
-        }
-
     }
     
-    public void modifySideToSideMovement(int distance, int time){
+
+    protected void movementPart1 ()
+    {
+        myGameCharacter.setLocation(myGameCharacter.getX()-myDistance, myGameCharacter.getY());
+        
+
+    }
+
+
+    protected void movementPart2 ()
+    {
+       myGameCharacter.setLocation(myGameCharacter.getX()+myDistance,myGameCharacter.getY());
+    }
+    
+    public void modifySideToSideMovement(int distance, int duration){
         myDistance+=distance;
-        myTurnTime+=time;
+        myPartDuration+=duration;
     }
 
 
@@ -75,7 +45,7 @@ public class SideToSideMovement extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute SideToSideMovement my distance is " + myDistance + " my time to turn is " + myTurnTime;
+        return "Attribute SideToSideMovement my distance is " + myDistance + " my time to turn is " + myPartDuration;
     }
 
 }

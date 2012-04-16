@@ -4,7 +4,7 @@ package attributes;
 public class Attack extends Attribute implements Updateable
 {
     public Attack(){
-        
+        super();
     }
    
     public void update (long elaspedTime)
@@ -22,5 +22,13 @@ public class Attack extends Attribute implements Updateable
     public String toString(){
         return "Attribute Attack";
     }
+
+    public void invert ()
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+
 
 }

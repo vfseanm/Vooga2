@@ -1,6 +1,7 @@
 package attributes;
 
 import editor.editorConstructor;
+@SuppressWarnings("serial")
 public class NumberOfLives extends Attribute
 {
     private int myLives;
@@ -8,6 +9,7 @@ public class NumberOfLives extends Attribute
     @editorConstructor(parameterNames = { "number of lives" })
     public NumberOfLives (int lives)
     {
+        super(lives);
         myLives = lives;
     }
 
@@ -23,10 +25,8 @@ public class NumberOfLives extends Attribute
     {
         myLives += change;
         if (myLives <= 0) {
-        	if (myEnemy != null)
-        		myEnemy.setActive(false);
-        	if (myFighter != null)
-        		myFighter.setActive(false);
+        	if (myGameCharacter != null)
+        		myGameCharacter.setActive(false);
         }
     }
     

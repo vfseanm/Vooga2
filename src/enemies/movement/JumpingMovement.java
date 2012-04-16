@@ -4,8 +4,9 @@ import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
 
-//ground movement
-//reset attributes called from collision
+
+// go do isActive and use that
+// turnaround
 @SuppressWarnings("serial")
 public class JumpingMovement extends Attribute implements Updateable
 {
@@ -15,18 +16,12 @@ public class JumpingMovement extends Attribute implements Updateable
 
 
     @editorConstructor(parameterNames = { "distance", "time" })
-    public JumpingMovement (int distance, int time)
+    public JumpingMovement (int distance, int delay)
     {
 
+        super(distance, delay);
         myDistance = distance;
-        myTime = time;
-        this.time=0;
-
-    }
-
-
-    public void modifyJumpingMovement ()
-    {
+        myTime = delay;
         time = 0;
 
     }
@@ -41,21 +36,28 @@ public class JumpingMovement extends Attribute implements Updateable
 
     public void update (long elapsedTime)
     {
+        if (isActive)
+        {
+            if (time <= myTime)
+            {
 
-        if (time<=myTime)
+                myGameCharacter.setY(myGameCharacter.getY() - myDistance);
+                myGameCharacter.allowAttribute("Gravity", false);
+            }
+
+        }
+        else
         {
 
-            myEnemy.setY(myEnemy.getY() - myDistance);
-            myEnemy.updateAttribute("Gravity", 0);
-        }
-        else{
-            
-            myEnemy.updateAttribute("Gravity");
+            myGameCharacter.restoreOriginalAttribute("Gravity");
         }
         time++;
 
     }
-
+    //Repeated Code Andrew Help
+    public void invert(){
+        myDistance=-myDistance;
+    }
 
     @Override
     public String getName ()
@@ -66,7 +68,8 @@ public class JumpingMovement extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute JumpingMovement my jump distance is "+myDistance +" my jump time is " +myTime;
+        return "Attribute JumpingMovement my jump distance is " + myDistance +
+               " my jump time is " + myTime;
 
     }
 

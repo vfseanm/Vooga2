@@ -14,6 +14,12 @@ public class InvincibilityPowerUp extends PowerUp{
     public InvincibilityPowerUp(BufferedImage[] im, double x, double y, List<String> image, ArrayList<Attribute> attributes, ArrayList<Attribute> attributesToGive) {
         super(im, x, y, image, attributes, attributesToGive);
     }
+
+	@Override
+	public PowerUp makeItem(double x, double y) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 //    private InvincibilityPowerUp(BufferedImage[] im, List<String> image) {
 //        super(im, 0, 0, image);

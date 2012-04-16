@@ -5,16 +5,20 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 
+@SuppressWarnings("serial")
 public class OneDirectionMovement extends Attribute implements Updateable
 {
     private String myDirection;
     private int myDistance;
 
+
     @editorConstructor(parameterNames = { "direction", "distance" })
     public OneDirectionMovement (String direction, int distance)
     {
+        super(direction, distance);
         myDirection = direction;
         myDistance = distance;
+        isActive = false;
     }
 
 
@@ -24,30 +28,35 @@ public class OneDirectionMovement extends Attribute implements Updateable
         myDistance += distance;
     }
 
-    //ifs??
+
     public void update (long elaspedTime)
     {
-        if (myEnemy.isOnScreen())
+        if (myGameCharacter.isOnScreen() || isActive)
         {
             if (myDirection.equalsIgnoreCase("left"))
             {
-                myEnemy.setLocation(myEnemy.getX() - myDistance, myEnemy.getY());
+                myGameCharacter.setLocation(myGameCharacter.getX() - myDistance, myGameCharacter.getY());
             }
-            if (myDirection.equalsIgnoreCase("right"))
+            else if (myDirection.equalsIgnoreCase("right"))
             {
-                myEnemy.setLocation(myEnemy.getX() + myDistance, myEnemy.getY());
+                myGameCharacter.setLocation(myGameCharacter.getX() + myDistance, myGameCharacter.getY());
             }
-            if (myDirection.equalsIgnoreCase("up"))
+            else if (myDirection.equalsIgnoreCase("up"))
             {
-                myEnemy.setLocation(myEnemy.getX(), myEnemy.getY() - myDistance);
+                myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() - myDistance);
             }
-            if (myDirection.equalsIgnoreCase("down"))
+            else if (myDirection.equalsIgnoreCase("down"))
             {
-                myEnemy.setLocation(myEnemy.getX(), myEnemy.getY() + myDistance);
+                myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() + myDistance);
             }
 
         }
+    }
 
+
+    public void invert ()
+    {
+        myDistance = -myDistance;
     }
 
 
@@ -60,7 +69,8 @@ public class OneDirectionMovement extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute OneDirectionMovement My Direction is "+myDirection+" my distance is "+myDistance;
+        return "Attribute OneDirectionMovement My Direction is " + myDirection +
+               " my distance is " + myDistance;
     }
 
 }

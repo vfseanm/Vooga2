@@ -18,16 +18,15 @@ import attributes.Updateable;
 @SuppressWarnings("serial")
 public class Fighter extends GameCharacter {
 
-	private List<Attribute>					myAttributes;
-	private List<Carryable>					myCarryables;
+	private List<Attribute>					myCarryableAttributes;
 	private Missile							myMissile;
 	private FighterDeath					myDeathSequence;
 	
 	
 	public Fighter(BufferedImage[] image, double x, double y, List<String> images) {
 		super(image, x, y, images);
-		myAttributes = new ArrayList<Attribute>();
-		myCarryables = new ArrayList<Carryable>();
+		myCarryableAttributes = new ArrayList<Attribute>();
+		setGroup("FIGHTER");
 	}
 
 	
@@ -98,7 +97,7 @@ public class Fighter extends GameCharacter {
     
     public void addAttribute (Attribute attribute) {
         myAttributes.add(attribute);
-        attribute.setFighter(this);
+        attribute.setGameCharacter(this);
     }
 
     public void removeAttribute(String name) {

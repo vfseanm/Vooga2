@@ -39,7 +39,7 @@ public class EditEnemyDialogue extends JPanel {
     private HashMap<JCheckBox, Class> attributeMap;
     private List<Attribute> myOldAttributes;
     
-    private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
+    private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
     private BufferedImage myImage;
     private String myImagePath;
     private Enemy mySprite;
@@ -59,7 +59,7 @@ public class EditEnemyDialogue extends JPanel {
         myOldAttributes = new ArrayList<Attribute>();
         myOldAttributes.addAll(mySprite.getAttributes());
         
-        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
+        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         myModel = m;
         reflection = new Reflection();
         setLayout(new BorderLayout());
@@ -76,7 +76,7 @@ public class EditEnemyDialogue extends JPanel {
         myOldAttributes = new ArrayList<Attribute>();
         myOldAttributes.addAll(myFramework.getAttributes());
         
-        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
+        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         myModel = m;
         reflection = new Reflection();
         setLayout(new BorderLayout());
@@ -202,7 +202,7 @@ public class EditEnemyDialogue extends JPanel {
         
         public void actionPerformed(ActionEvent e)
         {
-            ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
+            ArrayList<AttributeCreator> attributes = new ArrayList<AttributeCreator>();
             ArrayList<Attribute> oldAttributes = new ArrayList<Attribute>();
             for (JCheckBox box : attributeMap.keySet())
             {
@@ -244,9 +244,10 @@ public class EditEnemyDialogue extends JPanel {
             Enemy enemy = new Enemy(s, myX,
                     myY,
                     imagePaths);
-            for(List<Object> list: attributes)
+            for(AttributeCreator a: attributes)
             {
-                System.out.println("list:" + list);
+                Attribute attribute = a.createAttribute();
+                /*System.out.println("list:" + list);
                 Constructor c = (Constructor) list.get(0);
                 Object[] parameterList = (Object[]) list.get(1);
                 Attribute attribute = null;
@@ -264,7 +265,7 @@ public class EditEnemyDialogue extends JPanel {
                 } catch (InvocationTargetException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
-                }
+                }*/
                 enemy.addAttribute(attribute);
             }  
             for (Attribute oldAttribute: oldAttributes)
@@ -324,10 +325,10 @@ public class EditEnemyDialogue extends JPanel {
                 }
             }
                    // Attribute att = (Attribute) constructor.newInstance(argList);
-                    List<Object> attribute = new ArrayList<Object>();
-                    attribute.add(constructor);
+                    AttributeCreator attribute = new AttributeCreator(constructor, argList);
+                    /*attribute.add(constructor);
                     attribute.add(argList);
-                    System.out.println("ADDING AN ATTRIBUTE" + attribute);
+                    System.out.println("ADDING AN ATTRIBUTE" + attribute);*/
                     attributeInstanceMap.put(box, attribute);
                 
             }

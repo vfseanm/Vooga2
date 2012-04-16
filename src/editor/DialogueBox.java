@@ -28,7 +28,7 @@ public abstract class DialogueBox extends JPanel {
     public static final String BLANK = " ";
 
 
-    private EditorController myController;
+    protected EditorController myController;
     protected BufferedImage myImage;
     protected String myImagePath;
     
@@ -47,7 +47,6 @@ public abstract class DialogueBox extends JPanel {
         //System.out.println("got here");
     }
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
-    public abstract Framework getFramework();
 
     public BufferedImage getImage()
     {
@@ -106,16 +105,4 @@ public abstract class DialogueBox extends JPanel {
         }
     }
     
-    class GoAction implements ActionListener {       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            Framework framework = getFramework();
-            System.out.println("get name "+ myName.getText());
-            System.out.println("framework "+framework);
-            myController.addButton(myName.getText(), framework);
-            setVisible(false);
-        }
-    }
-
 }
