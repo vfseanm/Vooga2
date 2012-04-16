@@ -37,110 +37,71 @@ import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
 
-public class EditorView extends Game {
-    private FrameWork framework;
-    private ArrayList<Button> allButtons;
-    private static final int MENU_START = 900;
-    private static final double HORIZONTAL_MOVE = 5;
-    private static final double VERTICAL_MOVE = 5;
+public abstract class EditorView extends Game {
+    protected FrameWork framework;
+    protected ArrayList<Button> allButtons;
+    protected static final int MENU_START = 900;
+    protected static final double HORIZONTAL_MOVE = 5;
+    protected static final double VERTICAL_MOVE = 5;
 
-    private EditorController myModel;
-    private TPanel infoBox;
+    protected EditorController myController;
+    protected TPanel infoBox;
 
-    private AnimatedGameSprite spriteClicked;           
-    private double[] origPosition;
-    private double[] clickedSpriteOffset;
-    private Framework myFramework;
-    private Background myBackground;
-
-  //  private double horizontalOffset;
-   // private double verticalOffset;
+    protected AnimatedGameSprite spriteClicked;           
+    protected double[] origPosition;
+    protected double[] clickedSpriteOffset;
+    protected Framework myFramework;
+    protected Background myBackground;
 
     @SuppressWarnings("unchecked")
-    @Override
     
-    
-    public void initResources()
+    public void initialize()
     {
-     //   horizontalOffset = 0;
-       // verticalOffset = 0;
-        myModel = new EditorController(this);
+        myController = new EditorController(this);
         allButtons = new ArrayList<Button>();
+        setFrameworkTop();
+       
+        infoBox = new TPanel(MENU_START, 70, 400, 800);
         
-        framework = new FrameWork(bsInput, 1300, 800);
-        framework.getTheme().getUIRenderer("Label")
-                .put("Background Border Color", Color.BLACK);
-
-        infoBox = new TPanel(MENU_START, 0, 400, 800);
-        infoBox.UIResource().put("Background Color", Color.LIGHT_GRAY);
-        TLabel l = new TLabel("Menu", 2, 0, 396, 20);
-        
-        PlayerButton playerButton = new PlayerButton("Configure Player", 25, 30, 150, 40, this);
-
-        infoBox.add(playerButton);
-        
-        GameButton gameButton = new GameButton("Configure Game", 200, 30, 150, 40, this);
-
-        infoBox.add(gameButton);
-        
-        l.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
-        l.UIResource().put("Text Horizontal Alignment Integer",
-                UIConstants.CENTER);
-
-        TLabel l2 = new TLabel("Enemies", 2, 70, 396, 40);
-        l2.UIResource().put("Text Horizontal Alignment Integer",
-                UIConstants.CENTER);
-        l2.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
-
-        
-        infoBox.add(l);
-        infoBox.add(l2);
-        
-        ButtonMakingButton newEnemyButton = new ButtonMakingButton("Create Enemy", 125, 110, 150, 40, this, "enemy");
-
-        infoBox.add(newEnemyButton);
-        
-        
-
-        TLabel l3 = new TLabel("Platforms", 2, 270, 396, 40);
-        l3.UIResource().put("Text Horizontal Alignment Integer",
-                UIConstants.CENTER);
-        l3.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
-        
-        ButtonMakingButton newPlatformButton = new ButtonMakingButton("Create Platform", 125, 310, 150, 40, this, "platform");
-
-        infoBox.add(newPlatformButton);
-
-        
-        TLabel l4 = new TLabel("Powerups", 2, 470, 396, 40);
-        l4.UIResource().put("Text Horizontal Alignment Integer",
-                UIConstants.CENTER);
-        l4.UIResource().put("Background Border Color", Color.LIGHT_GRAY);
-        
-        infoBox.add(l4);
-        
-        
-        ButtonMakingButton newpowerUpButton = new ButtonMakingButton("Create Power-Up", 125, 510, 150, 40, this, "power up");
-
-        infoBox.add(newpowerUpButton);
-        
-  
-        TButton openButton = new OpenButton("Open", 70, 660, 60, 40, this);
-
-        SaveButton saveButton = new SaveButton("Save", 120, 660, 60, 40, this);
-
-        
-        infoBox.add(l3);
-
-        infoBox.add(openButton);
-        infoBox.add(saveButton);
-
         framework.add(infoBox);
 
     }
+    
+    public void setFrameworkBottom()
+    {
+        TPanel bottomBox = new TPanel(MENU_START, 680, 400, 100);
+        
+        TButton openButton = new OpenButton("Open", 70, 10, 60, 40, this);
 
-    @Override
-    public void render(Graphics2D pen)
+        SaveButton saveButton = new SaveButton("Save", 180, 10, 60, 40, this);
+
+        bottomBox.add(openButton);
+        bottomBox.add(saveButton);
+
+        framework.add(bottomBox);
+    }
+
+    public void setFrameworkTop()
+    {
+        framework = new FrameWork(bsInput, 1300, 800);
+
+        TPanel MenuBox = new TPanel(MENU_START, 0, 400, 100);
+        TLabel l = new TLabel("Menu", 2, 0, 396, 20);
+        l.UIResource().put("Text Horizontal Alignment Integer",
+                UIConstants.CENTER);
+
+        MenuBox.add(l);
+        
+        PlayerButton playerButton = new PlayerButton("Configure Player", 25, 30, 150, 40, this);
+        MenuBox.add(playerButton);
+        
+        GameButton gameButton = new GameButton("Configure Game", 200, 30, 150, 40, this);
+        MenuBox.add(gameButton);
+
+        framework.add(MenuBox);
+    }
+    
+    public void renderEditor(Graphics2D pen)
     {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
@@ -148,7 +109,7 @@ public class EditorView extends Game {
         {
             myBackground.render(pen);
         }
-        for (AnimatedGameSprite s : myModel.getAllSprites())
+        for (AnimatedGameSprite s : myController.getAllSprites())
         {
             s.render(pen);
         }
@@ -157,8 +118,7 @@ public class EditorView extends Game {
 
     }
 
-    @Override
-    public void update(long elapsedTime)
+    public void updateEditor(long elapsedTime)
     {
         if(myBackground!=null)
         {
@@ -175,7 +135,7 @@ public class EditorView extends Game {
                     //System.out.println(s.getClass());
                     if (checkInterference(s))
                     {
-                        myModel.addSprite(s);
+                        myController.addSprite(s);
                         
                     }
                 }
@@ -184,7 +144,7 @@ public class EditorView extends Game {
         }
         if (bsInput.isMouseDown(MouseEvent.BUTTON1) && spriteClicked == null)
         {
-            for (AnimatedGameSprite s : myModel.getAllSprites())
+            for (AnimatedGameSprite s : myController.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
 
@@ -203,58 +163,48 @@ public class EditorView extends Game {
         if (spriteClicked != null && bsInput.isMouseDown(MouseEvent.BUTTON1))
         {
 
-            myModel.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0], this.getMouseY()- clickedSpriteOffset[1]);
+            myController.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0], this.getMouseY()- clickedSpriteOffset[1]);
             
-           // spriteClicked.setX(this.getMouseX() - clickedSpriteOffset[0]);
-            //spriteClicked.setY(this.getMouseY() - clickedSpriteOffset[1]);
 
         }
 
         if (spriteClicked != null
                 && bsInput.isMouseReleased(MouseEvent.BUTTON1))
         {
-
-           // myModel.getAllSprites().remove(spriteClicked);
-
-           // spriteClicked.setX(this.getMouseX() - clickedSpriteOffset[0]);
-           // spriteClicked.setY(this.getMouseY() - clickedSpriteOffset[1]);
-            myModel.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0],this.getMouseY() - clickedSpriteOffset[1]); 
+            myController.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0],this.getMouseY() - clickedSpriteOffset[1]); 
             if (!checkInterference(spriteClicked))
             {
-                myModel.setSpriteLocation(spriteClicked, origPosition[0], origPosition[1]);
-               // spriteClicked.setX(origPosition[0]);
-               // spriteClicked.setY(origPosition[1]);
+                myController.setSpriteLocation(spriteClicked, origPosition[0], origPosition[1]);
             }
 
-            //myModel.getAllSprites().add(spriteClicked);
             spriteClicked = null;
         }
         if (spriteClicked != null
                 && bsInput.isKeyReleased(java.awt.event.KeyEvent.VK_DELETE))
         {
-            myModel.removeSprite(spriteClicked);
+            myController.removeSprite(spriteClicked);
             spriteClicked = null;
         }
 
         if (bsInput.isKeyDown(java.awt.event.KeyEvent.VK_RIGHT))
         {
-            myModel.moveHorizonally(-HORIZONTAL_MOVE); 
+            myController.moveHorizonally(-HORIZONTAL_MOVE); 
         }
         if (bsInput.isKeyDown(java.awt.event.KeyEvent.VK_LEFT))
         {
-            myModel.moveHorizonally(HORIZONTAL_MOVE);
+            myController.moveHorizonally(HORIZONTAL_MOVE);
         }
         if (bsInput.isKeyDown(java.awt.event.KeyEvent.VK_DOWN))
         {
-            myModel.moveVertically(-VERTICAL_MOVE);
+            myController.moveVertically(-VERTICAL_MOVE);
         }
         if (bsInput.isKeyDown(java.awt.event.KeyEvent.VK_UP))
         {
-            myModel.moveVertically(VERTICAL_MOVE);
+            myController.moveVertically(VERTICAL_MOVE);
         }
         if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
-            for (AnimatedGameSprite s : myModel.getAllSprites())
+            for (AnimatedGameSprite s : myController.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
                 {
@@ -278,7 +228,7 @@ public class EditorView extends Game {
     public boolean checkInterference(Sprite s)
     {
         boolean t = true;
-        for (Sprite sprite : myModel.getAllSprites())
+        for (Sprite sprite : myController.getAllSprites())
         {
             if(sprite!=spriteClicked)
             {
@@ -301,22 +251,19 @@ public class EditorView extends Game {
 
     public void openFile()
     {
-        //this.stop();
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
         int returnVal = fc.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION)
         {
             File file = fc.getSelectedFile();
-            myModel.loadFile(file);
+            myController.loadFile(file);
 
         }
-
-        //this.start();
     }
     
     public void editEnemy(Enemy s)
     {
-        EditEnemyDialogue myView = new EditEnemyDialogue(myModel, s, this.getMouseX(), this.getMouseY());
+        EditEnemyDialogue myView = new EditEnemyDialogue(myController, s, this.getMouseX(), this.getMouseY());
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -327,7 +274,7 @@ public class EditorView extends Game {
     }
     public void editEnemy(Button button)
     {
-        EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myModel, button.getFramework());
+        EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, button.getFramework());
         frame = new JFrame("Edit Enemies");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -359,7 +306,7 @@ public class EditorView extends Game {
         
         String selectedValue = JOptionPane
                 .showInputDialog("Where would you like to save the level?");
-        myModel.writeFile(selectedValue);
+        myController.writeFile(selectedValue);
         
     }
 
@@ -369,16 +316,16 @@ public class EditorView extends Game {
     {
         JPanel myView = null;
         if(type.contentEquals("enemy"))
-            myView = new EnemyDialogueBox(myModel);
+            myView = new EnemyDialogueBox(myController);
         else if (type.contentEquals("platform"))
-            myView = new PlatformDialogueBox(myModel);
+            myView = new PlatformDialogueBox(myController);
 
         else if (type.contentEquals("player"))
-            myView = new FighterDialogueBox(myModel);
+            myView = new FighterDialogueBox(myController);
         else if (type.contentEquals("power up"))
-            myView = new PowerupDialogueBox(myModel);
+            myView = new PowerupDialogueBox(myController);
         else if (type.contentEquals("game"))
-            myView = new GameDialogue(myModel);
+            myView = new GameDialogue(myController);
 
         
         frame = new JFrame("Enemy Behaviors");
@@ -393,7 +340,7 @@ public class EditorView extends Game {
     
     public void configureGame()
     {
-        GameDialogue myView = new GameDialogue(myModel);
+        GameDialogue myView = new GameDialogue(myController);
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
