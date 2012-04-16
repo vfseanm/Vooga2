@@ -73,7 +73,9 @@ public class AttributeSelectionPanel extends JPanel {
                     {
                         box.setSelected(true);
                         Constructor constructor = getAnnotatedConstructor(c);
-                        attributeInstanceMap.put(box, new AttributeCreator(constructor, null));
+                        Object[] list = new Object[1];
+                        list[0] = null;
+                        attributeInstanceMap.put(box, new AttributeCreator(constructor, list));
                     }
                 }
             }
@@ -105,8 +107,7 @@ public class AttributeSelectionPanel extends JPanel {
             {
                 
                 Constructor constructor = getAnnotatedConstructor(associatedClass);
-                Annotation a = constructor
-                        .getAnnotation(editorConstructor.class);
+                Annotation a = constructor.getAnnotation(editorConstructor.class);
                 String[] paramNames = ((editorConstructor) a).parameterNames();
                 Class[] paramTypes = constructor.getParameterTypes();
                 Object[] argList = null;
@@ -166,7 +167,7 @@ public class AttributeSelectionPanel extends JPanel {
         Constructor constructor = null;
         for (Constructor co : constructors)
         {
-            if (c.isAnnotationPresent(editorConstructor.class))
+            if (co.isAnnotationPresent(editorConstructor.class))
             {
                 constructor = co;
             }

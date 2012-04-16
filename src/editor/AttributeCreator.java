@@ -41,5 +41,10 @@ public class AttributeCreator {
     {
         return myConstructor.getDeclaringClass();
     }
+    
+    public Object[] getArguments()
+    {
+        return myArguments;
+    }
 
 }
