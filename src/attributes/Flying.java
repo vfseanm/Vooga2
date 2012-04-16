@@ -19,13 +19,8 @@ public class Flying extends Attribute implements Updateable
 
     public void update (long elaspedTime)
     {
-        if (isActive) {
-            myGameCharacter.updateAttribute("Gravity", 0);
-        }
-        else
-        {
-            myGameCharacter.updateAttribute("Gravity");
-        }
+
+
         if (isActive) {
             myGameCharacter.allowAttribute("Gravity", false);
         }

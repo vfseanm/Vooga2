@@ -4,11 +4,10 @@ import java.io.Serializable;
 import character.GameCharacter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-//import com.sun.tools.internal.xjc.model.Constructor;
+
 
 
 /**
-<<<<<<< HEAD
  * This class is used to allow for dynamic attribute allocation to enemies and fighters.
  * In essence, this allows for flexibility in the framework while still providing
  * functionality by defining some subclasses of Attribute.
