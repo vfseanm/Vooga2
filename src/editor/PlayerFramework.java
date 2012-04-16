@@ -7,8 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bonusobjects.PowerUp;
-
+import bonusobjects.Carryable;
 
 
 
@@ -19,43 +18,34 @@ import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 
 
-public class PowerupFramework implements Framework {
+public class PlayerFramework implements Framework {
 
+    protected ArrayList<Attribute> attributes;
     @SuppressWarnings("unused")
     private BufferedImage[] myImages;
     @SuppressWarnings("unused")
     private ArrayList<String> imageNames;
-    private List<AttributeCreator> myAttributes;
-    private List<AttributeCreator> myAttributesToGive;
-    private List<Attribute> attributes;
-    private List<Attribute> attributesToGive;
-    private String myGroup;
+    private List<List<Object>> myAttributes;
 
-    public PowerupFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, List<AttributeCreator> attributesToGive, String group) {
-        myGroup = group;
+    public PlayerFramework(BufferedImage[] im, ArrayList<String> images, List<List<Object>> attributes, List<Carryable> carryables) {
         myImages = im;
+       // System.out.println("attributes:" + attributes);
         imageNames = images;
         myAttributes = attributes;
-        myAttributesToGive = attributesToGive;
     }
 
     public void addBehavior(Attribute b) {
         attributes.add(b);
     }
 
-
+ 
     public AnimatedGameSprite getSprite(int x, int y) {
-        attributes = new ArrayList<Attribute>();
-        for(AttributeCreator a: myAttributes)
+        Enemy e = new Enemy(myImages, x,
+                y - myImages[0].getHeight(),
+                imageNames);
+        for(List<Object> list: myAttributes)
         {
-            Attribute attribute = a.createAttribute();
-           
-            attributes.add(attribute);
-        }  
-        
-        for(AttributeCreator a: myAttributesToGive)
-        {
-            /*Constructor c = (Constructor) list.get(0);
+            Constructor c = (Constructor) list.get(0);
             Object[] parameterList = (Object[]) list.get(1);
             Attribute attribute = null;
             try {
@@ -72,17 +62,10 @@ public class PowerupFramework implements Framework {
             } catch (InvocationTargetException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-            }*/
-            Attribute attribute = a.createAttribute();
-            attributesToGive.add(attribute);
+            }
+            e.addAttribute(attribute);
         }  
-        
-        PowerUp powerUp = new PowerUp(myImages, x,
-                y - myImages[0].getHeight(),
-                imageNames, attributes, attributesToGive);
-        
-        powerUp.setGroup(myGroup);
-        return powerUp;
+        return e;
     }
 
     @Override
@@ -92,8 +75,11 @@ public class PowerupFramework implements Framework {
     }
 
     @Override
-    public String getType() {
-        return "Power-Up";
+    public String getType()
+    {
+        // TODO Auto-generated method stub
+        return null;
     }
 
+   
 }

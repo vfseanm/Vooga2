@@ -13,15 +13,19 @@ public abstract class SkipSidescroller extends DecoratedSidescroller {
         myGame = game;
     }
         
+    public abstract boolean fighterOffCorrectSide();
+    
     public void update(long elapsedTime) {
-        for (SpriteGroup group: getSpriteGroups()) {
-            for (Sprite object: group.getSprites()) {
-                if (object != null) {
-                    move(object);
-                }
-            }      
+        if (fighterOffCorrectSide()) {
+            move(getFighter());
+            for (SpriteGroup group: getSpriteGroups()) {
+                for (Sprite object: group.getSprites()) {
+                    if (object != null) {
+                        move(object);
+                    }
+                }      
+            }
         }
-        move(getFighter());
         super.update(elapsedTime);
     }
     

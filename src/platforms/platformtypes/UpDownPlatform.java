@@ -1,4 +1,4 @@
-package platforms;
+package platforms.platformtypes;
 
 
 public class UpDownPlatform extends DecoratedPlatform {

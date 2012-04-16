@@ -14,20 +14,19 @@ public class ShootAtTarget extends Attribute implements Updateable {
 		return "ShootAtTarget";
 	}
 
-	BaseInput myUserInput;
-	Sprite myTarget;
-	boolean myCanFire;
-	Timer myRefireRate;
+	public BaseInput 				myUserInput;
+	public AnimatedGameSprite 		myTarget;
+	public boolean 					myCanFire;
+	public Timer 					myRefireRate;
 
-	public ShootAtTarget(BaseInput userInput, AnimatedGameSprite target,
-			int refireRate) {
+	public ShootAtTarget(BaseInput userInput, AnimatedGameSprite target, int refireRate) {
 		myUserInput = userInput;
 		myTarget = target;
 		myCanFire = true;
 		myRefireRate = new Timer(refireRate);
 	}
 
-	public void setTarget(Sprite newTarget) {
+	public void setTarget(AnimatedGameSprite newTarget) {
 		myTarget = newTarget;
 	}
 
