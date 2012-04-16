@@ -182,18 +182,7 @@ public class Enemy extends GameCharacter
 
     public void update (long elapsedTime)
     {
-
-        for (Attribute attribute : myAttributes)
-        {
-
-            if (attribute.getClass().getInterfaces().length != 0 &&
-                attribute.getClass().getInterfaces()[0].equals(Updateable.class))
-            {
-
-                ((Updateable) attribute).update(elapsedTime);
-
-            }
-        }
+    	performAttributeActions(elapsedTime);
         if (myState != null) myState.excuteBehavior(this);
     }
 

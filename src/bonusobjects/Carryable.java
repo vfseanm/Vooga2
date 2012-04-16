@@ -1,15 +1,12 @@
-package carryables;
+package bonusobjects;
 
 import java.awt.image.BufferedImage;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import attributes.Attribute;
-import powerups.*;
 
 @SuppressWarnings("serial")
-public class Carryable extends PowerUp {
+public class Carryable extends BonusObject {
 	
 	public Carryable(BufferedImage[] im, double x, double y,
 			List<String> image) {
@@ -17,12 +14,4 @@ public class Carryable extends PowerUp {
 		myAttributes = new ArrayList<Attribute>();
 		myAttributesToOffer = new ArrayList<Attribute>();
 	}
-
-
-	@Override
-	public PowerUp makeItem(double x, double y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

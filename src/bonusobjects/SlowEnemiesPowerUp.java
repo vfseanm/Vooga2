@@ -1,4 +1,4 @@
-package powerups;
+package bonusobjects;
 
 import java.awt.image.BufferedImage;
 

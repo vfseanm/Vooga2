@@ -1,26 +1,16 @@
 package fighter;
 
 import java.awt.image.BufferedImage;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import character.GameCharacter;
-
-import sprite.*;
-import carryables.Carryable;
-
 import attributes.Attribute;
-import attributes.Updateable;
 
 
 @SuppressWarnings("serial")
 public class Fighter extends GameCharacter {
 
 	private List<Attribute>					myCarryableAttributes;
-	private Missile							myMissile;
-	private FighterDeath					myDeathSequence;
 	
 	
 	public Fighter(BufferedImage[] image, double x, double y, List<String> images) {
@@ -28,117 +18,27 @@ public class Fighter extends GameCharacter {
 		myCarryableAttributes = new ArrayList<Attribute>();
 		setGroup("FIGHTER");
 	}
-
 	
     public void update(long elapsedTime) {
-		for (Attribute attribute : myAttributes) {
-
-			if (attribute.getClass().getInterfaces().length != 0
-					&& attribute.getClass().getInterfaces()[0]
-							.equals(Updateable.class)) {
-				try {
-
-					((Updateable) attribute).update(elapsedTime);
-				} catch (ClassCastException e) {
-
-					e.printStackTrace();
-				}
-			}
-		}
+		performAttributeActions(elapsedTime);
+		
 	}
     
-    
-	public void updateAttribute(String name, Object... o) {
-
-		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equals(name)) {
-				Class<?> c = attribute.getClass();
-				for (Method m : c.getMethods()) {
-					if (!m.getName().startsWith("modify"))
-						continue;
-					if (m.getGenericParameterTypes().length != o.length)
-						continue;
-					for (int i = 0; i < m.getGenericParameterTypes().length; i++) {
-						Class<?> t = m.getParameterTypes()[i];
-						if (!t.equals(o[i])) {
-
-							continue;
-						}
-
-					}
-
-					try {
-						m.invoke(attribute, o);
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						e.printStackTrace();
-					}
-
-				}
-			}
-		}
-
-	}
-    
-    public boolean hasAttribute(String name) {
-        for(Attribute attribute: myAttributes) {
-            if (attribute.getClass().getName().equalsIgnoreCase(name))
-                return true;
-        }
-        return false;
+    public void addCarryableAttribute(Attribute carryable) {
+    	myCarryableAttributes.add(carryable);
     }
     
-    public List<Attribute> getAttributes() {
-        return Collections.unmodifiableList(myAttributes);
+    public void useCarryableAttribute(int indexCarryableAttribute)  {
+    	try {
+    		myAttributes.add(myCarryableAttributes.get(indexCarryableAttribute));
+    		myCarryableAttributes.remove(indexCarryableAttribute);
+    	}
+    	catch (IndexOutOfBoundsException e) {
+    		System.out.println("This Carryable Attribute is not in your inventory.");
+    	}
     }
-    
-    public void addAttribute (Attribute attribute) {
-        myAttributes.add(attribute);
-        attribute.setGameCharacter(this);
-    }
-
-    public void removeAttribute(String name) {
-        for (Attribute attribute: myAttributes) {
-            if (attribute.getName().equalsIgnoreCase(name));
-                myAttributes.remove(attribute);
-        }
-        
-    }
-	
-	public void setMissile(Missile missile) {
-		myMissile = missile;
-	}
-	
-	public Missile getMissile() {
-		return myMissile;
-	}
-	
-	public void setDeathSequence(FighterDeath deathSequence) {
-		myDeathSequence = deathSequence;
-	}
-	
-	public void dies() {
-		setActive(false);
-		myDeathSequence.setLocation(getX(), getY());
-		// 	ADD DEATH TO PLAYFIELD HERE
-	}
 	
 	public String getName() {
 		return "Fighter";
-	}
-
-
-	public void accessAttributeMethod(String methodStart, String name,
-			Object... o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void restoreOriginalAttribute(String name, Object... o) {
-		// TODO Auto-generated method stub
-		
 	}
 }
