@@ -46,7 +46,8 @@ public class JumpingMovement extends Attribute implements Updateable
             }
             else
             {
-                myGameCharacter.restoreOriginalAttribute("Gravity");
+                
+                myGameCharacter.allowAttribute("Gravity",true);
             }
         }
         

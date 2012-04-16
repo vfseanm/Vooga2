@@ -26,7 +26,7 @@ public class Flying extends Attribute implements Updateable
         }
         else
         {
-            myGameCharacter.restoreOriginalAttribute("Gravity");
+            myGameCharacter.allowAttribute("Gravity",true);
         }
     }
     
