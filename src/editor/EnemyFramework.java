@@ -88,5 +88,10 @@ public class EnemyFramework implements Framework {
     {
         return "enemy";
     }
+    
+    public List<AttributeCreator> getAttributeCreators()
+    {
+        return myAttributes;
+    }
 
 }

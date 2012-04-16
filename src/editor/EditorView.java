@@ -312,7 +312,7 @@ public class EditorView extends Game {
     }
     public void editEnemy(Button button)
     {
-        EditEnemyDialogue myView = new EditEnemyDialogue(myModel, button.getFramework());
+        EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myModel, button.getFramework());
         frame = new JFrame("Edit Enemies");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
