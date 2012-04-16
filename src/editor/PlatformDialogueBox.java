@@ -30,6 +30,8 @@ public class PlatformDialogueBox extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
+    private JTextField myName;
+    private JTextField myGroup;
 
 
 
