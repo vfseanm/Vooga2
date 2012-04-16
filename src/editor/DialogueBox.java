@@ -38,12 +38,11 @@ public abstract class DialogueBox extends JPanel {
     {
         myImages = new ArrayList<BufferedImage>();
         myImagePaths = new ArrayList<String>();
-        myController = m;
-        setLayout(new BorderLayout());
-        //add(makeInputPanel(), BorderLayout.NORTH);
-        
-        //System.out.println("got here");
+
+        myController = m;        
     }
+    
+    
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
 
     public BufferedImage getImage()
