@@ -55,13 +55,14 @@ public class JumpingMovement extends Attribute implements Updateable
                 myEnemy.setY(myEnemy.getY() - myDistance);
                 myEnemy.allowAttribute("Gravity", false);
             }
+            else
+            {
+
+                myEnemy.restoreOriginalAttribute("Gravity");
+            }
 
         }
-        else
-        {
-
-            myEnemy.restoreOriginalAttribute("Gravity");
-        }
+        
         time++;
 
     }

@@ -55,14 +55,8 @@ public class FighterDialogueBox extends DialogueBox{
     {
        
         super(m);
-        
-        
     }
     
-
-
-   
-
     @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException

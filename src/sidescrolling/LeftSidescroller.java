@@ -12,12 +12,10 @@ import fighter.Fighter;
 public class LeftSidescroller extends NormalSidescroller implements DirectionalSidescroller {
 
     private double leftSpeed;
-    private Game myGame;
     private double boundary;
     
     public LeftSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromLeft) {
-        super(scroller);
-        myGame = game;
+        super(game, scroller);
         if (speed < 0) {
             throw new RuntimeException("You must choose a positive number.");
         }
