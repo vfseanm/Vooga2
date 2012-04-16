@@ -63,6 +63,12 @@ public class Enemy extends AnimatedGameSprite
         myAttributes.add(attribute);
         attribute.setEnemy(this);
     }
+    
+    public void addAttributeList(ArrayList<Attribute> attributes){
+        for(Attribute attribute: attributes){
+            addAttribute(attribute);
+        }
+    }
 
 
     public void clearAttributes ()
