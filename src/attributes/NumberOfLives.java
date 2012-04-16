@@ -24,9 +24,12 @@ public class NumberOfLives extends Attribute
     public void modifyNumberOfLives (int change)
     {
         myLives += change;
-        if (myLives <= 0)
-        {
-            myEnemy.setActive(false);
+        if (myLives <= 0) {
+
+        	
+        		myGameCharacter.setActive(false);
+
+
         }
     }
     

@@ -6,6 +6,7 @@ import editor.editorConstructor;
 public class Hitpoints extends Attribute
 {
     private int myHitpoints;
+ 
     
 
     @editorConstructor(parameterNames = { "number of hitpoints" })
@@ -16,28 +17,25 @@ public class Hitpoints extends Attribute
     }
 
 
-    public String getName ()
-    {
-
+    public String getName () {
         return "Hitpoints";
-
     }
 
 
-    public void modifyHitpoints (int hpChange)
-    {
+    public void modifyHitpoints (int hpChange) {
         myHitpoints += hpChange;
+        
         if (myHitpoints <= 0)
         {
-            if(myEnemy.hasAttributeByName("NumberOfLives"))
+            if(myGameCharacter.hasAttributeByName("NumberOfLives"))
             {
-                myEnemy.updateAttribute("NumberOfLives", -1);
-                myEnemy.restoreOriginalAttribute("Hitpoints");
+                myGameCharacter.updateAttribute("NumberOfLives", -1);
+                myGameCharacter.restoreOriginalAttribute("Hitpoints");
             }
             
             else 
             {
-                myEnemy.setActive(false);
+                myGameCharacter.setActive(false);
             }
         }
 
@@ -46,13 +44,8 @@ public class Hitpoints extends Attribute
 
  
 
-
     public String toString ()
     {
         return "Attribute Hitpoints is currently " + myHitpoints;
     }
-
-
-
-
 }

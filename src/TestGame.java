@@ -17,8 +17,6 @@ import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import enemies.Enemy;
-import enemies.movement.Flying;
-import enemies.movement.Gravity;
 import enemies.movement.JumpingMovement;
 import enemies.movement.OneDirectionMovement;
 import enemies.movement.SideToSideMovement;
@@ -104,7 +102,7 @@ public class TestGame extends Game {
         p.update(arg0);
         p1.update(arg0);
         p2.update(arg0);
-        gc.GameCollision(bob, list);
+        gc.GameCollision(list);
         if(counter==800){
             bob.updateAttribute("JumpingMovement", 2,100);
            System.out.println(bob.getAttributes());

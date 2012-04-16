@@ -12,6 +12,7 @@ public class BasicMovement extends Attribute implements Updateable {
 	
 	
 	public BasicMovement(BaseInput userInput, double horizMove) {
+	    super(userInput,horizMove);
 		myUserInput = userInput;
 		myHorizMovement = Math.abs(horizMove);
 	}
@@ -27,12 +28,18 @@ public class BasicMovement extends Attribute implements Updateable {
 		
 		if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) 
 		{
-		    myFighter.moveX(-myHorizMovement);
+		    myGameCharacter.moveX(-myHorizMovement);
 		}
 			
 		
 		if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) 
-			myFighter.moveX(myHorizMovement);
+			myGameCharacter.moveX(myHorizMovement);
+		
+	}
+
+
+	public void invert() {
+		// TODO Auto-generated method stub
 		
 	}	
 

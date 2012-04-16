@@ -1,8 +1,6 @@
-package enemies.movement;
+package attributes;
 
 import editor.editorConstructor;
-import attributes.Attribute;
-import attributes.Updateable;
 
 @SuppressWarnings("serial")
 public class Gravity extends Attribute implements Updateable
@@ -14,8 +12,7 @@ public class Gravity extends Attribute implements Updateable
     public Gravity (int distance)
     {
         super(distance);
-        myDistance = distance;
-        
+        myDistance = distance;   
     }
 
 
@@ -25,15 +22,13 @@ public class Gravity extends Attribute implements Updateable
 
     }
 
-
-
-
-
     public void update (long elaspedTime)
     {
-        if(isActive)
-        myEnemy.setY(myEnemy.getY() + myDistance);
-
+        
+        
+        if (isActive) {
+        	myGameCharacter.setY(myGameCharacter.getY() + myDistance);
+        }
     }
 
 

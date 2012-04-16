@@ -51,29 +51,11 @@ public class EnemyFramework implements Framework {
                 imageNames);
         for(AttributeCreator a: myAttributes)
         {
-            /*Constructor c = (Constructor) list.get(0);
-            Object[] parameterList = (Object[]) list.get(1);*/
+    
             Attribute attribute = null;
             attribute = a.createAttribute();
             
-            /*try {
-                System.out.println("parameters:" + parameterList);
-                System.out.println("constructors:" + c);
-                attribute = (Attribute) c.newInstance(parameterList);
-                
-            } catch (IllegalArgumentException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (InstantiationException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (IllegalAccessException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (InvocationTargetException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }*/
+           
             allAttributes.add(attribute);
             e.addAttribute(attribute);
             e.setGroup(myGroup);
@@ -92,24 +74,7 @@ public class EnemyFramework implements Framework {
             e.setImageNames(imageNames);
             for(AttributeCreator a: myAttributes)
             {
-                /*Constructor c = (Constructor) list.get(0);
-                Object[] parameterList = (Object[]) list.get(1);
-                Attribute attribute = null;
-                try {
-                    attribute = (Attribute) c.newInstance(parameterList);
-                } catch (IllegalArgumentException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InvocationTargetException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }*/
+               
                 Attribute attribute = a.createAttribute();
                 e.clearAttributes();
                 e.addAttribute(attribute);

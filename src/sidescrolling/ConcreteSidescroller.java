@@ -1,9 +1,5 @@
 package sidescrolling;
 
-
-import com.golden.gamedev.object.Sprite;
-
-
 import com.golden.gamedev.object.SpriteGroup;
 
 import fighter.Fighter;
@@ -19,10 +15,6 @@ public class ConcreteSidescroller implements Sidescroller {
     }
 
     public void update(long elapsedTime) {
-        return;
-    }
-    
-    public void move(Sprite sprite) {
         return;
     }
     

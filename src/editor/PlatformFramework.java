@@ -10,9 +10,7 @@ import java.util.List;
 
 import enemies.Enemy;
 
-import platformtypes.AbstractPlatform;
-import platformtypes.DecoratedPlatform;
-import platformtypes.SimplePlatform;
+import platforms.platformtypes.*;
 
 
 import sprite.AnimatedGameSprite;
@@ -32,6 +30,7 @@ public class PlatformFramework implements Framework {
     private ArrayList<AbstractPlatform> mySprites;
 
     public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers, String group) {
+        System.out.println("slkdfjsdlkj");
         myGroup = group;
         myImages = im;
         imageNames = images;
