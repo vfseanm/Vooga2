@@ -77,13 +77,22 @@ public class Reflection {
         List<Class> list = getClasses(packageName);
         for(Class c: list)
         {
-            if(c.getSuperclass()!=null)
+            
+            while(c.getSuperclass()!=null)
             {
+            
+            
                 if(c.getSuperclass().equals(superClass))
                 {
                     behaviors.add(c);
+                    break;
+                   
                 }
+                c= c.getSuperclass();
+                    
+            
             }
+            
         }
         return behaviors;        
     }

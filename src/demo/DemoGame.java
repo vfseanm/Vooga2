@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import platforms.*;
-import powerUps.InvincibilityPowerUp;
+import powerups.InvincibilityPowerUp;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;
