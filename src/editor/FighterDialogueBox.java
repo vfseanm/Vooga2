@@ -39,12 +39,11 @@ public class FighterDialogueBox extends DialogueBox{
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
 
-/*    @SuppressWarnings("rawtypes")
-    
-    private HashMap<JCheckBox, Class> checkBoxAttributeMap;
-    private HashMap<JCheckBox, Class> checkBoxCarryableMap;
-    private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
-    private HashMap<JCheckBox, AttributeCreator> carryableAttributeMap;*/
+/* @SuppressWarnings("rawtypes")
+private HashMap<JCheckBox, Class> checkBoxAttributeMap;
+private HashMap<JCheckBox, Class> checkBoxCarryableMap;
+private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
+private HashMap<JCheckBox, AttributeCreator> carryableAttributeMap;*/
     AttributeSelectionPanel attributePanel;
     AttributeSelectionPanel carryablePanel;
 
@@ -128,6 +127,7 @@ public class FighterDialogueBox extends DialogueBox{
             setVisible(false);
         }
     }
+
 
 
 

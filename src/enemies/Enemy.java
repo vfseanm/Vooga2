@@ -29,6 +29,7 @@ public class Enemy extends GameCharacter
 
 
 
+
     /**
      * Secret reflection method for sean's uses
      * 
@@ -176,6 +177,7 @@ public class Enemy extends GameCharacter
             }
         }
     }
+
 
 
 
