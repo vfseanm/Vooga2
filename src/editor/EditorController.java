@@ -207,7 +207,7 @@ public class EditorController {
     
     public void setFighter(Fighter fighter)
     {
-        
+        myLevel.setFighter(fighter);
     }
 
 }
