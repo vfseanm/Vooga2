@@ -1,7 +1,5 @@
 package platforms.platformtypes;
 
-import bonusobjects.BonusObject;
-
 
 public class BreakablePlatform extends DecoratedPlatform {
 
