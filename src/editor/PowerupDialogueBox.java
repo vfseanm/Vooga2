@@ -76,6 +76,13 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
         myName = new JTextField(10);
 
         subPanel.add(myName);
+        
+        JLabel groupLabel = new JLabel("Group:");
+        subPanel.add(groupLabel);
+
+        myGroup = new JTextField(10);
+        subPanel.add(myGroup, BorderLayout.SOUTH);
+
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
@@ -96,11 +103,13 @@ public class PowerupDialogueBox extends ButtonDialogueBox {
 
             ArrayList<AttributeCreator> attributes = powerupAttributePanel.getSelectedAttributes();
             ArrayList<AttributeCreator> attributesToGive = attributesToGivePanel.getSelectedAttributes();
-            BufferedImage[] s = new BufferedImage[1];
-            s[0] = myImage;
+            BufferedImage[] s = new BufferedImage[myImages.size()];
+            for (int x = 0; x<s.length; x++)
+            {
+                s[x] = myImages.get(x);
+            }
             ArrayList<String> imagePaths = new ArrayList<String>();
-            imagePaths.add(myImagePath);
-            PowerupFramework framework = new PowerupFramework(s, imagePaths, attributes, attributesToGive);
+            PowerupFramework framework = new PowerupFramework(s, myImagePaths, attributes, attributesToGive, myGroup.getText());
             return framework;
 
         }
