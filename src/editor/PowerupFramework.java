@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import powerUps.PowerUp;
+import powerups.PowerUp;
 
 
 
@@ -28,8 +28,10 @@ public class PowerupFramework implements Framework {
     private List<AttributeCreator> myAttributesToGive;
     private List<Attribute> attributes;
     private List<Attribute> attributesToGive;
+    private String myGroup;
 
-    public PowerupFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, List<AttributeCreator> attributesToGive) {
+    public PowerupFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, List<AttributeCreator> attributesToGive, String group) {
+        myGroup = group;
         myImages = im;
         imageNames = images;
         myAttributes = attributes;
@@ -94,6 +96,8 @@ public class PowerupFramework implements Framework {
         PowerUp powerUp = new PowerUp(myImages, x,
                 y - myImages[0].getHeight(),
                 imageNames, attributes, attributesToGive);
+        
+        powerUp.setGroup(myGroup);
         return powerUp;
     }
 
