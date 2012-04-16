@@ -21,7 +21,7 @@ public class PlatformAction implements ActionPerformer{
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
 			if ( (sprite1.getX()+(sprite1.getWidth()) >= sprite2.getX())
 					&& (sprite1.getX() <= sprite2.getX()+ sprite2.getWidth()) ){
-				 //System.out.println("hgjvj");
+				 System.out.println("hgjvj");
 				((Enemy) sprite1).updateAttribute("JumpingMovement");
 				
 			}
