@@ -1,18 +1,10 @@
 package fighter;
 
 import java.awt.image.BufferedImage;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import character.GameCharacter;
-
-import sprite.*;
-import carryables.Carryable;
-
 import attributes.Attribute;
-import attributes.Updateable;
 
 
 @SuppressWarnings("serial")
@@ -26,24 +18,25 @@ public class Fighter extends GameCharacter {
 		myCarryableAttributes = new ArrayList<Attribute>();
 		setGroup("FIGHTER");
 	}
-
 	
     public void update(long elapsedTime) {
-		for (Attribute attribute : myAttributes) {
-
-			if (attribute.getClass().getInterfaces().length != 0
-					&& attribute.getClass().getInterfaces()[0]
-							.equals(Updateable.class)) {
-				try {
-
-					((Updateable) attribute).update(elapsedTime);
-				} catch (ClassCastException e) {
-
-					e.printStackTrace();
-				}
-			}
-		}
+		performAttributeActions(elapsedTime);
+		
 	}
+    
+    public void addCarryableAttribute(Attribute carryable) {
+    	myCarryableAttributes.add(carryable);
+    }
+    
+    public void useCarryableAttribute(int indexCarryableAttribute)  {
+    	try {
+    		myAttributes.add(myCarryableAttributes.get(indexCarryableAttribute));
+    		myCarryableAttributes.remove(indexCarryableAttribute);
+    	}
+    	catch (IndexOutOfBoundsException e) {
+    		System.out.println("This Carryable Attribute is not in your inventory.");
+    	}
+    }
 	
 	public String getName() {
 		return "Fighter";

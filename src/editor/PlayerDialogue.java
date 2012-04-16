@@ -16,7 +16,9 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import carryables.Carryable;
+import bonusobjects.Carryable;
+
+
 import fighter.Fighter;
 
 import attributes.Attribute;
