@@ -2,7 +2,7 @@ package sidescrolling;
 
 import com.golden.gamedev.object.Sprite;
 
-public class ForcedRightSidescroller extends DecoratedSidescroller implements DirectionalSidescroller  {
+public class ForcedRightSidescroller extends DecoratedSidescroller {
 
     private double forcedRightSpeed;
     

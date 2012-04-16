@@ -9,7 +9,7 @@ import com.golden.gamedev.object.Sprite;
 
 import fighter.Fighter;
 
-public class RightSidescroller extends NormalSidescroller implements DirectionalSidescroller  {
+public class RightSidescroller extends NormalSidescroller {
     
     private double rightSpeed;
     private double boundary;

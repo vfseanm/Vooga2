@@ -3,14 +3,14 @@ package sidescrolling;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
-public class SkipLeftSidescroller extends SkipSidescroller {
+public class SkipDownSidescroller extends SkipSidescroller {
 
-    public SkipLeftSidescroller(Game game, Sidescroller scroller) {
+    public SkipDownSidescroller(Game game, Sidescroller scroller) {
         super(game, scroller);
     }
     
     public void move(Sprite sprite) {
-        sprite.setX(sprite.getX() - myGame.getWidth());
+        sprite.setY(sprite.getY() - myGame.getHeight());
     }
     
 }
