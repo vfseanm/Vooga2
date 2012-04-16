@@ -1,6 +1,8 @@
+
 package editor;
 
 import java.io.File;
+
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -16,8 +18,7 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import platforms.AbstractPlatform;
-import platforms.DecoratedPlatform;
+import platforms.platformtypes.*;
 
 import attributes.Attribute;
 

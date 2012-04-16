@@ -16,7 +16,9 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import carryables.Carryable;
+import bonusobjects.Carryable;
+
+
 import editor.ButtonDialogueBox.GoAction;
 import editor.DialogueBox.ImageAction;
 import fighter.Fighter;

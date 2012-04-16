@@ -1,7 +1,6 @@
-package platforms;
+package platforms.platformtypes;
 import java.awt.image.BufferedImage;
 import java.util.List;
-import fighter.Fighter;
 import sprite.AnimatedGameSprite;
 
 public abstract class AbstractPlatform extends AnimatedGameSprite {
@@ -15,5 +14,9 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	protected AbstractPlatform() {}
 	
 	protected abstract void doBehavior(double speed, double distance);
+	
+	protected abstract void releaseItem();
+	
+	protected abstract void doBreak();
 
 }
