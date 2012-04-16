@@ -11,12 +11,10 @@ import com.golden.gamedev.object.Sprite;
 public class DownSidescroller extends NormalSidescroller implements DirectionalSidescroller  {
     
     private double downSpeed;
-    private Game myGame;
     private double boundary;
     
     public DownSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromBottom) {
-        super(scroller);
-        myGame = game;
+        super(game, scroller);
         if (speed > 0) {
             throw new RuntimeException("You must choose a negative number.");
         }
