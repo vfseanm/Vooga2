@@ -27,12 +27,10 @@ public class JumpingMovement extends Attribute implements Updateable
         
     }
  
-
     public void allowJumpingMovement ()
     {
         time = 0;
     }
-
 
     public void modifyJumpingMovement (int distance, int time)
     {
