@@ -1,5 +1,6 @@
 package collisions;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,14 +15,7 @@ import enemies.Enemy;
 
 
 public class GameCollisionManager{
-	List<ActionPerformer> actionList = new ArrayList<ActionPerformer>(); 
-	HashMap<ArrayList<String>, ActionPerformer> actionMap = new HashMap <ArrayList<String>, ActionPerformer>();
-	
-	public GameCollisionManager (){
-		actionList.add(new InstantDeathAction()); 
-		actionList.add(new PlatformAction());
-		actionList.add(new RepelBackAction()); 
-	}
+	HashMap<String, ActionPerformer> actionMap = new HashMap <String, ActionPerformer>();
 
 	public void GameCollision (ArrayList<AnimatedGameSprite> spriteList){
 		for (AnimatedGameSprite sprite1: spriteList){
@@ -32,18 +26,39 @@ public class GameCollisionManager{
 					if ( CollisionChecker(sprite1, sprite2) ){
 						int side = SideChecker (sprite1, sprite2);
 						
-						ArrayList<String> spriteName = new ArrayList<String>() ;
-						spriteName.add(sprite1.getName); spriteName.add(sprite2.getName);
-						ActionPerformer act = actionMap.get(spriteName);
-						act.action(sprite1, sprite2, side);
+						String combineName = stringConcatination (sprite1.getGroup(), sprite2.getGroup());
+						ActionPerformer act = actionMap.get(combineName);
+						
+						try{
+							Class <? extends Sprite> sp1c = sprite1.getClass();
+							Class <? extends Sprite> sp2c = sprite2.getClass();
+
+							Method mc = act.getClass().getMethod("action", sp1c, sp2c, Integer.class);
+							Object [] args = new Object[3];
+							args[0] = sprite1;
+							args[1] = sprite2;
+							args[2] = (Integer)side;
+							mc.invoke(act, args);
+						}
+						catch (Exception e){
+							System.out.println ("Error");
+						}
 					}
 				}
 			}
 		}
 	}
+	private String stringConcatination(String name1, String name2){
+		String combineName = null;
+		if (name1.compareToIgnoreCase(name2) == -1)
+			combineName = name2 + name1;
+		else
+			combineName = name1 + name2;
+		return combineName;
+	}
 	
-	public void addMap (ArrayList<String> name, ActionPerformer act){
-		actionMap.put(name, act);
+	public void setMap (String name1, String name2, ActionPerformer act){
+		actionMap.put(stringConcatination(name1, name2), act);
 	}
 
 	private int SideChecker(Sprite sprite1, Sprite sprite2) {

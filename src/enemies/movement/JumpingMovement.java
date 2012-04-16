@@ -25,11 +25,7 @@ public class JumpingMovement extends Attribute implements Updateable
         
         
     }
-    
-    
-    
-   
-
+ 
 
     public void allowJumpingMovement ()
     {
