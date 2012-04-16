@@ -2,10 +2,12 @@ package attributes;
 
 import java.awt.event.KeyEvent;
 
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import fighter.*;
 
+@SuppressWarnings("serial")
 public class ShootAtTarget extends Attribute {
 
     @Override

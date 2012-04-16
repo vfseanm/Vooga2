@@ -22,7 +22,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class GameDialogue extends JPanel {
+public class GameDialogue extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -38,9 +38,9 @@ public class GameDialogue extends JPanel {
     private BufferedImage myImage;
     private String myImagePath;
 
-    @SuppressWarnings("rawtypes")
     public GameDialogue(EditorController m)
     {
+        
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
         myModel = m;
@@ -50,36 +50,7 @@ public class GameDialogue extends JPanel {
         add(makeInputPanel(), BorderLayout.NORTH);
     }
 
-    public BufferedImage getImage()
-    {
-        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
-        File file = null;
-        int returnVal = fc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
-        {
-            file = fc.getSelectedFile();
-        }
-        myImagePath = null;
-        try
-        {
-            myImagePath = file.getCanonicalPath();
-        } catch (IOException e1)
-        {
-            e1.printStackTrace();
-        }
-        System.out.println(myImagePath);
-        BufferedImage img = null;
-        try
-        {
-            img = ImageIO.read(new File(myImagePath));
-        } catch (IOException e)
-        {
-            System.out.println("There has been a problem importing your image");
-            // throw something!
-        }
-        return img;
-
-    }
+    
 
     private JComponent makeInputPanel()
     {
@@ -191,6 +162,19 @@ public class GameDialogue extends JPanel {
             myImage = f;
 
         }
+    }
+
+    @Override
+    public JComponent makeSelectionPanel() throws ClassNotFoundException,
+            IOException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Framework getFramework() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

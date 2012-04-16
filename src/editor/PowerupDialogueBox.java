@@ -22,219 +22,91 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class PowerupDialogueBox extends JPanel {
+public class PowerupDialogueBox extends ButtonDialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
 
-    private JTextField myName;
 
-    private Reflection reflection;
-    private EditorController myModel;
-    @SuppressWarnings("rawtypes")
-    private HashMap<JCheckBox, Class> attributeMap;
     
-    private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
-    private BufferedImage myImage;
-    private String myImagePath;
-    private String myType;
+    private AttributeSelectionPanel powerupAttributePanel;
+    private AttributeSelectionPanel attributesToGivePanel;
 
     @SuppressWarnings("rawtypes")
-    public PowerupDialogueBox(EditorController m, String type)
+    public PowerupDialogueBox(EditorController m)
     {
-        myType = type;
-        attributeMap = new HashMap<JCheckBox, Class>();
-        attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
-        myModel = m;
-        reflection = new Reflection();
-        setLayout(new BorderLayout());
+        super(m);
         
-
-        add(makeInputPanel(), BorderLayout.NORTH);
     }
 
-    public BufferedImage getImage()
-    {
-        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
-        File file = null;
-        int returnVal = fc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
-        {
-            file = fc.getSelectedFile();
-        }
-        myImagePath = null;
-        try
-        {
-            myImagePath = file.getCanonicalPath();
-        } catch (IOException e1)
-        {
-            e1.printStackTrace();
-        }
-        System.out.println(myImagePath);
-        BufferedImage img = null;
-        try
-        {
-            img = ImageIO.read(new File(myImagePath));
-        } catch (IOException e)
-        {
-            System.out.println("There has been a problem importing your image");
-            // throw something!
-        }
-        return img;
+   
 
-    }
-
-    private JComponent makeInputPanel()
-    {
-        JPanel panel = new JPanel(new BorderLayout());
-
-        try
-        {
-            panel.add(makeDestinationPanel(), BorderLayout.NORTH);
-        } catch (Exception e)
-        {
-            System.out.println("Problem with Reflection!");
-            e.printStackTrace();
-        }
-        return panel;
-    }
-
+    
     @SuppressWarnings("rawtypes")
-    private JComponent makeDestinationPanel() throws ClassNotFoundException,
+    public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
-        JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(600,800));
-        // ArrayList<Class> list = reflection.getBehaviors();
-        for (Class c : reflection.getInstancesOf("attributes", Attribute.class))
-        {
-            boolean isAnnotated = false;
-            for(Constructor constructor : c.getConstructors())
-            {
-                if(constructor.isAnnotationPresent(editorConstructor.class))
-                {
-                    isAnnotated = true;
-                }
-            }
-            if(isAnnotated)
-            {
-                JLabel label1 = new JLabel(c.getName());
-                panel.add(label1);
-                JCheckBox box = new JCheckBox();
-                panel.add(box);
-                box.addActionListener(new CheckBoxListener(box, c));
-                attributeMap.put(box, c);
-            }
-        }
 
-        JLabel label1 = new JLabel("Enemy Name");
-        panel.add(label1);
+
+        ArrayList<String> packagesToSearch = new ArrayList<String>();
+        packagesToSearch.add("attributes");
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.setPreferredSize(new Dimension(800,325));
+        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch);
+        JPanel panel2 = new JPanel();
+        JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
+        panel2.add(title1);
+        panel2.add(powerupAttributePanel);
+        panel.add(panel2, BorderLayout.PAGE_START);
+        JLabel title2 = new JLabel("Attributes for the Power-Up to Give:");
+        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch);
+        JPanel panel3 = new JPanel();
+        panel3.add(title2);
+        panel3.add(attributesToGivePanel);
+        panel.add(panel3, BorderLayout.CENTER);
+
+        JPanel subPanel = new JPanel();
+        subPanel.setPreferredSize(new Dimension(600, 100));
+
+        JLabel label1 = new JLabel("Power-Up Name");
+        subPanel.add(label1);
 
         myName = new JTextField(10);
 
-        panel.add(myName);
+        subPanel.add(myName);
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
-        panel.add(imageButton);
-
-        String buttonPhrase = "Create Enemy";
-        if(myType.contentEquals("platform"))
-            buttonPhrase = "Create Platform";
+        subPanel.add(imageButton);
                 
-        JButton goButton = new JButton(buttonPhrase);
+        JButton goButton = new JButton("Create Power-Up");
         goButton.addActionListener(new GoAction());
-        panel.add(goButton);
+        subPanel.add(goButton);
+        
+
+        panel.add(subPanel, BorderLayout.PAGE_END);
 
         return panel;
     }
+    
+    
+    public Framework getFramework() {
 
-    private class GoAction implements ActionListener {
-       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            ArrayList<List<Object>> attributes = new ArrayList<List<Object>>();
-            for (JCheckBox box : attributeMap.keySet())
-            {
-                if (box.isSelected())
-                {
-                    attributes.add( attributeInstanceMap.get(box));
-                }
-                    
-            }
+            ArrayList<AttributeCreator> attributes = powerupAttributePanel.getSelectedAttributes();
+            ArrayList<AttributeCreator> attributesToGive = attributesToGivePanel.getSelectedAttributes();
             BufferedImage[] s = new BufferedImage[1];
             s[0] = myImage;
             ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
-            EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            myModel.addButton(myName.getText(), framework);
-            setVisible(false);
+            PowerupFramework framework = new PowerupFramework(s, imagePaths, attributes, attributesToGive);
+            return framework;
+
         }
-    }
     
-    private class CheckBoxListener implements ActionListener {
-        Class associatedClass;
-        JCheckBox box;
-        
-        public CheckBoxListener(JCheckBox b, Class c)
-        {
-            associatedClass= c;
-            box = b;
-        }
-        public void actionPerformed(ActionEvent e)
-        {
-            Constructor[] constructors = associatedClass.getConstructors();
-            Constructor constructor = null;
-            for(Constructor c: constructors)
-            {
-                if(c.isAnnotationPresent(editorConstructor.class))
-                {
-                    constructor = c;
-                }
-            }
-            if(constructor == null)
-            {
-                throw new RuntimeException();
-            }
-            
-            Annotation a = constructor.getAnnotation(editorConstructor.class);
-            String[] paramNames = ((editorConstructor) a).parameterNames();
-            Object[] argList = null;
-            System.out.println(paramNames.length);
-            System.out.println("got here");
-            if(!paramNames[0].equals(""))
-            {
-                argList = new Object[paramNames.length];
-                for(int i=0; i< paramNames.length; i++)
-                {
-                    String selectedValue = JOptionPane
-                        .showInputDialog("What would you like the "+ paramNames[i]+ " to be?");
-                    argList[i]=Integer.parseInt(selectedValue);
-                }
-            }
-             
-                   // Attribute att = (Attribute) constructor.newInstance(argList);
-                    List<Object> attribute = new ArrayList<Object>();
-                    attribute.add(constructor);
-                    attribute.add(argList);
-                    attributeInstanceMap.put(box, attribute);
-                
-            
-            
-            
-            
-            }
-    }
+    
 
-    private class ImageAction implements ActionListener {
-        public void actionPerformed(ActionEvent e)
-        {
 
-            BufferedImage f = getImage();
-            myImage = f;
-
-        }
-    }
 
 }

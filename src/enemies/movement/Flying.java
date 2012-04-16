@@ -5,40 +5,39 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 // knows gravity too well?
+@SuppressWarnings("serial")
 public class Flying extends Attribute implements Updateable
 {
 
-    private boolean flying;
+    
 
     @editorConstructor(parameterNames = { "" })
     public Flying ()
     {
-        flying = true;
+        super();
+        
     }
 
 
     public void modifyFlying (boolean isFlying)
     {
-        flying = isFlying;
+        isActive = isFlying;
     }
 
 
     public void update (long elaspedTime)
     {
-        if (flying) {
-            myEnemy.updateAttribute("Gravity", 0);
+        if (isActive) {
+            myEnemy.allowAttribute("Gravity", false);
         }
         else
         {
-            myEnemy.updateAttribute("Gravity");
+            myEnemy.restoreOriginalAttribute("Gravity");
         }
 
     }
     
     
-    public void resetFlying(){
-        flying =false;
-    }
 
 
     @Override
@@ -50,7 +49,15 @@ public class Flying extends Attribute implements Updateable
 
     public String toString ()
     {
-        return "Attribute Flying is " + flying;
+        return "Attribute Flying is " + isActive;
+    }
+
+
+    public void invert ()
+    {
+        //Maybe Andrew!
+       myEnemy.invertAttribute("Gravity");
+        
     }
 
 }

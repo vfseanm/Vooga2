@@ -2,6 +2,7 @@ package attributes;
 
 import editor.editorConstructor;
 
+@SuppressWarnings("serial")
 public class PointValue extends Attribute
 {
     private int myPointValue;
@@ -9,6 +10,7 @@ public class PointValue extends Attribute
     @editorConstructor(parameterNames = { "point value" }) 
     public PointValue (int value)
     {
+        super(value);
         myPointValue = value;
     }
 

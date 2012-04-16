@@ -23,59 +23,69 @@ public class Enemy extends AnimatedGameSprite
     {
         super(im, x, y, image);
         myAttributes = new ArrayList<Attribute>();
+        setGroup("ENEMY");
     }
+
 
     /**
      * Secret reflection method for sean's uses
+     * 
      * @author Alex
      * @param name
      * @return
      */
-    public boolean hasAttributeByName(String name)
+    public boolean hasAttributeByName (String name)
     {
-        for(Attribute attribute: myAttributes)
+        for (Attribute attribute : myAttributes)
         {
-            if(attribute.getClass().getName().equalsIgnoreCase(name))
-                return true;
+            if (attribute.getClass().getName().equalsIgnoreCase(name)) return true;
         }
         return false;
     }
-    
+
+
     /**
      * Secret reflection method for sean's uses
+     * 
      * @author Alex
      * @param name
      * @return
      */
 
-    public List<Attribute> getAttributes()
+    public List<Attribute> getAttributes ()
     {
         return Collections.unmodifiableList(myAttributes);
     }
-    
+
+
     public void addAttribute (Attribute attribute)
     {
         myAttributes.add(attribute);
         attribute.setEnemy(this);
     }
-    
-    public void clearAttributes(){
+
+
+    public void clearAttributes ()
+    {
         myAttributes.clear();
     }
 
 
     public void removeAttributeByName (String name)
     {
-        for(Attribute attribute: myAttributes)
+        for (Attribute attribute : myAttributes)
         {
-            if(attribute.getName().equalsIgnoreCase(name));
-                myAttributes.remove(attribute);
+            if (attribute.getName().equalsIgnoreCase(name))
+            ;
+            myAttributes.remove(attribute);
         }
-        
+
     }
 
 
-    private void accessAttributeMethod(String methodStart,String name, Object ... o)
+    private void accessAttributeMethod (String methodStart,
+                                        String name,
+                                        Object ... o)
     {
 
         for (Attribute attribute : myAttributes)
@@ -85,6 +95,7 @@ public class Enemy extends AnimatedGameSprite
                 Class<?> c = attribute.getClass();
                 for (Method m : c.getMethods())
                 {
+
                     if (!m.getName().startsWith(methodStart)) continue;
                     if (m.getGenericParameterTypes().length != o.length) continue;
                     for (int i = 0; i < m.getGenericParameterTypes().length; i++)
@@ -92,7 +103,7 @@ public class Enemy extends AnimatedGameSprite
                         Class<?> t = m.getParameterTypes()[i];
                         if (!t.equals(o[i]))
                         {
-                            
+
                             continue;
                         }
 
@@ -100,6 +111,7 @@ public class Enemy extends AnimatedGameSprite
 
                     try
                     {
+
                         m.invoke(attribute, o);
                     }
                     catch (IllegalArgumentException e)
@@ -120,16 +132,42 @@ public class Enemy extends AnimatedGameSprite
         }
 
     }
-    
-    public void updateAttribute(String name,Object...o){
-        accessAttributeMethod("modify",name,o);
+
+
+    public void updateAttribute (String name, Object ... o)
+    {
+        accessAttributeMethod("modify", name, o);
     }
-    
-    public void restoreOriginalAttribute(String name,Object...o){
-        accessAttributeMethod("restore",name,o);
+
+
+    public void restoreOriginalAttribute (String name)
+    {
+        accessAttributeMethod("restore", name);
     }
-    public void allowAttribute(String name,Object...o){
-        accessAttributeMethod("allow",name,o);
+
+
+    public void invertAttribute (String name)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getName().equalsIgnoreCase(name) &&
+                attribute.getClass().getInterfaces()[0].equals(Updateable.class))
+            {
+                ((Updateable) attribute).invert();
+            }
+        }
+    }
+
+
+    public void allowAttribute (String name, boolean activity)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getName().equalsIgnoreCase(name))
+            {
+                attribute.setActivity(activity);
+            }
+        }
     }
 
 
@@ -143,8 +181,7 @@ public class Enemy extends AnimatedGameSprite
                 attribute.getClass().getInterfaces()[0].equals(Updateable.class))
             {
 
-
-                    ((Updateable) attribute).update(elapsedTime);
+                ((Updateable) attribute).update(elapsedTime);
 
             }
         }
@@ -167,7 +204,7 @@ public class Enemy extends AnimatedGameSprite
             toReturn.append(attribute.toString());
             toReturn.append("\n");
         }
-        if(myState!=null)
+        if (myState != null)
         {
             toReturn.append(myState.toString());
         }

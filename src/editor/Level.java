@@ -110,7 +110,7 @@ public class Level implements Serializable{
                 images[i] = loader.getImage(s.getImageNames().get(i));
             }
             s.setImages(images);
-            System.out.println(s.getImages());
+            
         }
     }
     
