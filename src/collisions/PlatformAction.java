@@ -34,9 +34,12 @@ public class PlatformAction implements ActionPerformer{
 	}
 	
 	public void action (Fighter sprite1, BreakablePlatform sprite2, int collisionType){
-	    
-        standardaction (sprite1, sprite2, collisionType);
-    }
+
+		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION) {
+			sprite2.doBreak();
+		}
+		return;
+	}
 	
 	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
 	    //System.out.println("doing correct action");

@@ -8,7 +8,7 @@ import fighter.Fighter;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
-public class DownSidescroller extends DecoratedSidescroller {
+public class DownSidescroller extends NormalSidescroller {
     
     private double downSpeed;
     private Game myGame;
@@ -32,6 +32,6 @@ public class DownSidescroller extends DecoratedSidescroller {
                 fighter.setX(boundary);
             }
         }
-        super.move(sprite);
     }
+    
 }
