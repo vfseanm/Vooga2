@@ -32,7 +32,7 @@ public class EditorView extends Game {
     private EditorController myModel;
     private TPanel infoBox;
 
-    private AnimatedGameSprite spriteClicked;
+    private AnimatedGameSprite spriteClicked;           
     private double[] origPosition;
     private double[] clickedSpriteOffset;
     private Framework myFramework;

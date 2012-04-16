@@ -21,12 +21,15 @@ public class AttributeSelectionPanel extends JPanel {
     private HashMap<JCheckBox, Class> attributeMap;
     private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
     private List<String> packageNames;
+    private List<Class> originallyCheckedOff;
+   
 
-    public AttributeSelectionPanel(List<String> packagesToSearch)
+    public AttributeSelectionPanel(List<String> packagesToSearch, List<Class> checkedOff)
     {
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         packageNames = packagesToSearch;
+        originallyCheckedOff = checkedOff;
         this.add(makePanel());
     }
 
@@ -66,6 +69,10 @@ public class AttributeSelectionPanel extends JPanel {
                     panel.add(box);
                     box.addActionListener(new CheckBoxListener(box, c));
                     attributeMap.put(box, c);
+                    if(originallyCheckedOff.contains(c))
+                    {
+                        box.setSelected(true);
+                    }
                 }
             }
         } catch (ClassNotFoundException e)

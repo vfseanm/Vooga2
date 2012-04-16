@@ -7,6 +7,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -16,6 +17,8 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import editor.DialogueBox.ImageAction;
+import editor.EnemyDialogueBox.GoAction;
 import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
@@ -33,38 +36,38 @@ public class EditEnemyDialogue extends DialogueBox {
 
     private JTextField myName;
 
-    private Reflection reflection;
-    private EditorController myModel;
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> attributeMap;
     private List<Attribute> myOldAttributes;
     
     private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
-    private BufferedImage myImage;
-    private String myImagePath;
     private Enemy mySprite;
     private int myX;
     private int myY;
-    private EnemyFramework myFramework;
+   // private EnemyFramework myFramework;
+    private AttributeSelectionPanel attributePanel;
+
+    
 
     
     @SuppressWarnings("rawtypes")
     public EditEnemyDialogue(EditorController m, Enemy sprite, int x, int y)
     {
         super(m);
+        
         myX = x;
         myY = y;
         mySprite = sprite;
-        myImage = mySprite.getImage();
+        myImages = new ArrayList<BufferedImage>();
+       
         
         attributeMap = new HashMap<JCheckBox, Class>();
         myOldAttributes = new ArrayList<Attribute>();
         myOldAttributes.addAll(mySprite.getAttributes());
         
         attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
-        myModel = m;
-        reflection = new Reflection();
         setLayout(new BorderLayout());
+        add(makeInputPanel(), BorderLayout.NORTH);
         
     }
     
@@ -91,6 +94,43 @@ public class EditEnemyDialogue extends DialogueBox {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
+        List<Class> classList = new ArrayList<Class>();
+        for(Attribute s: mySprite.getAttributes())
+        {
+            classList.add(s.getClass());
+        }
+        List<String> packagesToSearch = new ArrayList<String>();
+        packagesToSearch.add("enemies.movement");
+        packagesToSearch.add("attributes");
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, classList);
+               
+        JLabel label1 = new JLabel("Enemy Name:");
+        panel.add(label1);
+
+        myName = new JTextField(10);
+
+        panel.add(myName, BorderLayout.SOUTH);
+        
+        JLabel groupLabel = new JLabel("Group:");
+        panel.add(groupLabel);
+
+      /*  myGroup = new JTextField(10);
+
+        panel.add(myGroup, BorderLayout.SOUTH);*/
+
+        JButton imageButton = new JButton("Select Image");
+        imageButton.addActionListener(new ImageAction());
+        panel.add(imageButton);
+
+        String buttonPhrase = "Create Enemy";
+                
+        JButton goButton = new JButton(buttonPhrase);
+        goButton.addActionListener(new GoAction());
+        panel.add(goButton);
+        panel.add(attributePanel);
+
+        return panel;
+       /* Reflection reflection = new Reflection();
         List<Class> list = reflection.getInstancesOf("enemies.movement", Attribute.class);
         list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
         for (Class c : list)
@@ -128,8 +168,8 @@ public class EditEnemyDialogue extends DialogueBox {
                 box.addActionListener(new CheckBoxListener(box, c));
                 attributeMap.put(box, c);
             }
-        }
-
+        }*/
+/*
         JLabel label1 = new JLabel("Enemy Name");
         panel.add(label1);
 
@@ -149,14 +189,14 @@ public class EditEnemyDialogue extends DialogueBox {
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
 
-        return panel;
+        return panel;*/
     }
 
     private class GoAction implements ActionListener {
         
         public void actionPerformed(ActionEvent e)
         {
-            ArrayList<AttributeCreator> attributes = new ArrayList<AttributeCreator>();
+           /* ArrayList<AttributeCreator> attributes = new ArrayList<AttributeCreator>();
             ArrayList<Attribute> oldAttributes = new ArrayList<Attribute>();
             for (JCheckBox box : attributeMap.keySet())
             {
@@ -184,11 +224,26 @@ public class EditEnemyDialogue extends DialogueBox {
                     }
                 }
                     
-            }
-            BufferedImage[] s = new BufferedImage[1];
-            s[0] = myImage;
-            ArrayList<String> imagePaths = new ArrayList<String>();
-            imagePaths.add(myImagePath);
+            }*/
+            ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+            
+
+            
+             BufferedImage[] s = new BufferedImage[myImages.size()];
+             if(myImages.size()==0)
+             {
+                 s = mySprite.getImages();
+             }
+             else
+             {
+                for (int x = 0; x<s.length; x++)
+                {
+                    s[x] = myImages.get(x);
+                }
+             }
+           
+            /*ArrayList<String> imagePaths = new ArrayList<String>();
+            imagePaths.add(myImagePaths);*/
             //EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
             if(mySprite!=null)
             {
@@ -197,7 +252,7 @@ public class EditEnemyDialogue extends DialogueBox {
             }
             Enemy enemy = new Enemy(s, myX,
                     myY,
-                    imagePaths);
+                    myImagePaths);
             for(AttributeCreator a: attributes)
             {
                 Attribute attribute = a.createAttribute();
@@ -227,14 +282,14 @@ public class EditEnemyDialogue extends DialogueBox {
                 enemy.addAttribute(oldAttribute);
             }
             if(mySprite!=null)
-                myModel.replaceSprite(mySprite, enemy);
-            List<Object> parameters = new ArrayList<Object>();
+                myController.replaceSprite(mySprite, enemy);
+           /* List<Object> parameters = new ArrayList<Object>();
             parameters.add(s);
-            parameters.add(imagePaths);
+            parameters.add(myImagePaths);
             parameters.add(attributes);
-            if(myFramework!=null)
+            //if(myFramework!=null)
                 myFramework.updateSprites(parameters);
-            
+           */ 
             setVisible(false);
         }
     }
@@ -287,6 +342,7 @@ public class EditEnemyDialogue extends DialogueBox {
                 
             }
     }
+
 
 
 
