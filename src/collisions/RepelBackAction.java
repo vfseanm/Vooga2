@@ -1,6 +1,9 @@
 package collisions;
 
 import platforms.AbstractPlatform;
+import platforms.BreakablePlatform;
+import platforms.DecoratedPlatform;
+import platforms.SimplePlatform;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
@@ -33,15 +36,11 @@ public class RepelBackAction implements ActionPerformer{
 		}
 	}
 	
-	public void action (Fighter sprite1, AbstractPlatform sprite2, int collisionType){
+	private void action (Fighter sprite1, AbstractPlatform sprite2, int collisionType){
 		
 	}
-	
 
 	public void action(Sprite sprite1, Sprite sprite2, int collisionType) {
-		if ((sprite1 instanceof Fighter) && (sprite2 instanceof Enemy)){
-			action ((Fighter)sprite1, (Enemy) sprite2, collisionType);
-		}
-
+		
 	}
 }
