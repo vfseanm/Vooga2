@@ -35,6 +35,8 @@ public class PlatformDialogueBox extends DialogueBox {
 
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> classMap;
+    private JTextField myName;
+    private JTextField myGroup;
     
     
 
@@ -42,6 +44,8 @@ public class PlatformDialogueBox extends DialogueBox {
     public PlatformDialogueBox(EditorController m)
     {
         super(m);
+        setLayout(new BorderLayout());
+        add(makeInputPanel(), BorderLayout.NORTH);
         
     }
     
@@ -113,6 +117,17 @@ public class PlatformDialogueBox extends DialogueBox {
         PlatformFramework framework = new PlatformFramework(s, myImagePaths, platformTypes, myGroup.getText());
         return framework;
         
+    }
+    
+    class GoAction implements ActionListener {       
+        
+        public void actionPerformed(ActionEvent e)
+        {
+            Framework framework = getFramework();
+            System.out.println("framework "+framework);
+            myController.addButton(myName.getText(), framework);
+            setVisible(false);
+        }
     }
    
 
