@@ -1,14 +1,7 @@
 package collisions;
 
-<<<<<<< HEAD
-import platforms.BreakablePlatform;
-import platforms.DecoratedPlatform;
-import platforms.SimplePlatform;
-import platforms.AbstractPlatform;
-import platforms.UpDownPlatform;
-=======
+
 import platforms.platformtypes.*;
->>>>>>> 58d498228e11e3a38aab0198f1a96e5614b94bd7
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
