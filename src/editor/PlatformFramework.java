@@ -32,6 +32,7 @@ public class PlatformFramework implements Framework {
     private ArrayList<AbstractPlatform> mySprites;
 
     public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers, String group) {
+        System.out.println("slkdfjsdlkj");
         myGroup = group;
         myImages = im;
         imageNames = images;
