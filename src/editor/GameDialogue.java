@@ -37,6 +37,8 @@ public class GameDialogue extends DialogueBox {
     {
         
         super(m);
+        setLayout(new BorderLayout());
+        add(makeInputPanel(), BorderLayout.NORTH);
        
     }
 
