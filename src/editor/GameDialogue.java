@@ -29,10 +29,6 @@ public class GameDialogue extends DialogueBox {
 
    
 
-      
-    
-    
-
     public GameDialogue(EditorController m)
     {
         
