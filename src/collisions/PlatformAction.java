@@ -22,7 +22,7 @@ public class PlatformAction implements ActionPerformer{
 			if ( (sprite1.getX()+(sprite1.getWidth()) >= sprite2.getX())
 					&& (sprite1.getX() <= sprite2.getX()+ sprite2.getWidth()) ){
 				 //System.out.println("hgjvj");
-				((Enemy) sprite1).updateAttribute("JumpingMovement");
+				((Enemy) sprite1).restoreOriginalAttribute("JumpingMovement");
 				
 			}
 		}

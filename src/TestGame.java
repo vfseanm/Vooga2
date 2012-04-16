@@ -96,8 +96,8 @@ public class TestGame extends Game {
     @Override
     public void update (long arg0)
     {
-        if(counter==1)
-            System.out.println(bob.getAttributes());
+//        if(counter==1)
+//            System.out.println(bob.getAttributes());
         myBackground.update(arg0);
         counter++;
         bob.update(arg0);
@@ -105,14 +105,14 @@ public class TestGame extends Game {
         p1.update(arg0);
         p2.update(arg0);
         gc.GameCollision(list);
-        if(counter==800){
-            bob.updateAttribute("JumpingMovement", 2,100);
-           System.out.println(bob.getAttributes());
-        }
-        if(counter==1000){
-            bob.restoreOriginalAttribute("JumpingMovement");
-        System.out.println(bob.getAttributes());
-        }
+//        if(counter==800){
+//            bob.updateAttribute("JumpingMovement", 2,100);
+//           System.out.println(bob.getAttributes());
+//        }
+//        if(counter==1000){
+//            bob.restoreOriginalAttribute("JumpingMovement");
+//        System.out.println(bob.getAttributes());
+//        }
         
         
         
