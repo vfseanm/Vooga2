@@ -22,8 +22,10 @@ public class EnemyFramework implements Framework {
     private List<AttributeCreator> myAttributes;
     private List<Attribute> allAttributes;
     private ArrayList<Enemy> mySprites;
+    private String myGroup;
 
-    public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes) {
+    public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, String group) {
+        myGroup = group;
         myImages = im;
         imageNames = images;
         myAttributes = attributes;
@@ -74,6 +76,7 @@ public class EnemyFramework implements Framework {
             }*/
             allAttributes.add(attribute);
             e.addAttribute(attribute);
+            e.setGroup(myGroup);
         }  
         mySprites.add(e);
         return e;

@@ -69,6 +69,12 @@ public class PlatformDialogueBox extends ButtonDialogueBox {
         myName = new JTextField(10);
 
         panel.add(myName);
+        
+        JLabel groupLabel = new JLabel("Group:");
+        panel.add(groupLabel);
+
+        myGroup = new JTextField(10);
+        panel.add(myGroup, BorderLayout.SOUTH);
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
@@ -96,12 +102,13 @@ public class PlatformDialogueBox extends ButtonDialogueBox {
             }
                 
         }
-        BufferedImage[] s = new BufferedImage[1];
-        s[0] = myImage;
-        List<String> imagePaths = new ArrayList<String>();
-        imagePaths.add(myImagePath);
+        BufferedImage[] s = new BufferedImage[myImages.size()];
+        for (int x = 0; x<s.length; x++)
+        {
+            s[x] = myImages.get(x);
+        }
         
-        PlatformFramework framework = new PlatformFramework(s, imagePaths, platformTypes);
+        PlatformFramework framework = new PlatformFramework(s, myImagePaths, platformTypes, myGroup.getText());
         return framework;
         
     }

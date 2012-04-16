@@ -8,7 +8,7 @@ import fighter.Fighter;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
-public class DownSidescroller extends NormalSidescroller {
+public class DownSidescroller extends NormalSidescroller implements DirectionalSidescroller  {
     
     private double downSpeed;
     private Game myGame;

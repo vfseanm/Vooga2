@@ -27,10 +27,12 @@ public class PlatformFramework implements Framework {
     @SuppressWarnings("unused")
     private List<String> imageNames;
     private List<Class> myPlatformWrappers;
+    private String myGroup;
 
     private ArrayList<AbstractPlatform> mySprites;
 
-    public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers) {
+    public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers, String group) {
+        myGroup = group;
         myImages = im;
         imageNames = images;
         myPlatformWrappers = platformWrappers;
@@ -43,7 +45,7 @@ public class PlatformFramework implements Framework {
         //System.out.println("framework- imageArray:" + myImages);
         //System.out.println("image names: "+imageNames);
         
-        SimplePlatform platform = new SimplePlatform(myImages, x, y - myImages[0].getHeight(), imageNames, null);
+        SimplePlatform platform = new SimplePlatform(myImages, x, y - myImages[0].getHeight(), imageNames);
         AbstractPlatform myPlatform = platform;
         Object[] list = new Object[1];
         list[0] = platform;
@@ -68,6 +70,7 @@ public class PlatformFramework implements Framework {
                 e.printStackTrace();
             }
             list[0] = myPlatform;
+            myPlatform.setGroup(myGroup);
             
         }
         mySprites.add(myPlatform);
