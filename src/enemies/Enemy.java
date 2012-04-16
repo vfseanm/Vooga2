@@ -1,7 +1,10 @@
 package enemies;
 
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import character.GameCharacter;
@@ -25,8 +28,8 @@ public class Enemy extends GameCharacter
     }
 
 
-<<<<<<< HEAD
-=======
+
+
     /**
      * Secret reflection method for sean's uses
      * 
@@ -61,7 +64,7 @@ public class Enemy extends GameCharacter
     public void addAttribute (Attribute attribute)
     {
         myAttributes.add(attribute);
-        attribute.setEnemy(this);
+        attribute.setGameCharacter(this);
     }
     
     public void addAttributeList(ArrayList<Attribute> attributes){
@@ -82,7 +85,6 @@ public class Enemy extends GameCharacter
         for (Attribute attribute : myAttributes)
         {
             if (attribute.getName().equalsIgnoreCase(name))
-            ;
             myAttributes.remove(attribute);
         }
 
@@ -177,7 +179,8 @@ public class Enemy extends GameCharacter
     }
 
 
->>>>>>> b215649e7912b4fa6a503744010277aa98e976ef
+
+
     public void update (long elapsedTime)
     {
 

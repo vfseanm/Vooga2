@@ -28,7 +28,7 @@ public class UpDownMovement extends TwoPartMovement
 
     protected void movementPart1 ()
     {
-        myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() + myDistance);
+        myGameCharacter.setY( myGameCharacter.getY() + myDistance);
         
 
     }
@@ -36,7 +36,7 @@ public class UpDownMovement extends TwoPartMovement
 
     protected void movementPart2 ()
     {
-        myGameCharacter.setLocation(myGameCharacter.getX(), myGameCharacter.getY() - myDistance);
+        myGameCharacter.setY( myGameCharacter.getY() - myDistance);
         
     }
 

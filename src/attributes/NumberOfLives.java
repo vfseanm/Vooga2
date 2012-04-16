@@ -25,8 +25,11 @@ public class NumberOfLives extends Attribute
     {
         myLives += change;
         if (myLives <= 0) {
-        	if (myGameCharacter != null)
+
+        	
         		myGameCharacter.setActive(false);
+
+
         }
     }
     
