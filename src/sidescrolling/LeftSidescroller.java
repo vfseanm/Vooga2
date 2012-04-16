@@ -9,16 +9,13 @@ import com.golden.gamedev.object.Sprite;
 
 import fighter.Fighter;
 
-public class LeftSidescroller extends DecoratedSidescroller {
+public class LeftSidescroller extends NormalSidescroller {
 
     private double leftSpeed;
-    private Game myGame;
     private double boundary;
     
     public LeftSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromLeft) {
-        super(scroller);
-        myGame = game;
-        //can't move right...
+        super(game, scroller);
         if (speed < 0) {
             throw new RuntimeException("You must choose a positive number.");
         }
@@ -34,8 +31,6 @@ public class LeftSidescroller extends DecoratedSidescroller {
                 fighter.setX(boundary);
             }
         }
-        super.move(sprite);
     }
-    
-    
+        
 }

@@ -22,8 +22,15 @@ public class JumpingMovement extends Attribute implements Updateable
         super(distance, delay);
         myDistance = distance;
         myTime = delay;
-        time = 0;
+        time=0;
+        
+        
+    }
+ 
 
+    public void allowJumpingMovement ()
+    {
+        time = 0;
     }
 
 
@@ -44,13 +51,13 @@ public class JumpingMovement extends Attribute implements Updateable
                 myGameCharacter.setY(myGameCharacter.getY() - myDistance);
                 myGameCharacter.allowAttribute("Gravity", false);
             }
-
-        }
-        else
-        {
-
+            else
+            {
+                myGameCharacter.restoreOriginalAttribute("Gravity");
+            }
             myGameCharacter.restoreOriginalAttribute("Gravity");
         }
+        
         time++;
 
     }

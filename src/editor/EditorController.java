@@ -194,12 +194,7 @@ public class EditorController {
                 powerUpButtonCounter += 2;
                 myView.addButton(newButton);
             }
-/*        else if (type.contentEquals("fighter"))
-        {
-            Button playerButton = new Button("Place Fighter", 200, 660, 60, 40,
-                    framework, myView);
-            myView.addButton(playerButton);
-        }*/
+
         myView.closeFrame();
     }
 
@@ -212,7 +207,7 @@ public class EditorController {
     
     public void setFighter(Fighter fighter)
     {
-        
+        myLevel.setFighter(fighter);
     }
 
 }

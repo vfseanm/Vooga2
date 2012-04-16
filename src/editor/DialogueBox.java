@@ -29,16 +29,18 @@ public abstract class DialogueBox extends JPanel {
 
 
     protected EditorController myController;
-    protected BufferedImage myImage;
-    protected String myImagePath;
+    protected ArrayList<BufferedImage> myImages;
+    protected ArrayList<String> myImagePaths;
     
     protected JTextField myName;
+    protected JTextField myGroup;
     protected Reflection reflection;
 
     @SuppressWarnings("rawtypes")
     public DialogueBox(EditorController m)
     {
-        
+        myImages = new ArrayList<BufferedImage>();
+        myImagePaths = new ArrayList<String>();
         myController = m;
         reflection =  new Reflection();
         setLayout(new BorderLayout());
@@ -50,6 +52,8 @@ public abstract class DialogueBox extends JPanel {
 
     public BufferedImage getImage()
     {
+        
+        
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
         File file = null;
         int returnVal = fc.showOpenDialog(null);
@@ -57,23 +61,20 @@ public abstract class DialogueBox extends JPanel {
         {
             file = fc.getSelectedFile();
         }
-        myImagePath = null;
         try
         {
-            myImagePath = file.getCanonicalPath();
+            myImagePaths.add(file.getCanonicalPath());
         } catch (IOException e1)
         {
             e1.printStackTrace();
         }
-        //System.out.println(myImagePath);
         BufferedImage img = null;
         try
         {
-            img = ImageIO.read(new File(myImagePath));
+            img = ImageIO.read(new File(myImagePaths.get(myImagePaths.size()-1)));
         } catch (IOException e)
         {
             System.out.println("There has been a problem importing your image");
-            // throw something!
         }
         return img;
 
@@ -98,9 +99,8 @@ public abstract class DialogueBox extends JPanel {
     protected class ImageAction implements ActionListener {
         public void actionPerformed(ActionEvent e)
         {
-
             BufferedImage f = getImage();
-            myImage = f;
+            myImages.add(f);
 
         }
     }

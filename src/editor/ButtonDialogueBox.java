@@ -20,7 +20,6 @@ class GoAction implements ActionListener {
         public void actionPerformed(ActionEvent e)
         {
             Framework framework = getFramework();
-            System.out.println("get name "+ myName.getText());
             System.out.println("framework "+framework);
             myController.addButton(myName.getText(), framework);
             setVisible(false);

@@ -51,12 +51,19 @@ public class EnemyDialogueBox extends ButtonDialogueBox {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
        
-        JLabel label1 = new JLabel("Enemy Name");
+        JLabel label1 = new JLabel("Enemy Name:");
         panel.add(label1);
 
         myName = new JTextField(10);
 
         panel.add(myName, BorderLayout.SOUTH);
+        
+        JLabel groupLabel = new JLabel("Group:");
+        panel.add(groupLabel);
+
+        myGroup = new JTextField(10);
+
+        panel.add(myGroup, BorderLayout.SOUTH);
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
@@ -72,19 +79,16 @@ public class EnemyDialogueBox extends ButtonDialogueBox {
         return panel;
     }
 
-
-    
-  
-    
     public Framework getFramework()
     {
         
         ArrayList<AttributeCreator> attributes = attributePanel.getSelectedAttributes();
-        BufferedImage[] s = new BufferedImage[1];
-        s[0] = myImage;
-        ArrayList<String> imagePaths = new ArrayList<String>();
-        imagePaths.add(myImagePath);
-        EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
+        BufferedImage[] s = new BufferedImage[myImages.size()];
+        for (int x = 0; x<s.length; x++)
+        {
+            s[x] = myImages.get(x);
+        }
+        EnemyFramework framework = new EnemyFramework(s, myImagePaths, attributes, myGroup.getText());
         System.out.println("framework's attributes" + attributes);
         return framework;
     }

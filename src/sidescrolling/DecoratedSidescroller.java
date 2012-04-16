@@ -1,13 +1,10 @@
 package sidescrolling;
 
-import com.golden.gamedev.object.Sprite
-;
-
-import com.golden.gamedev.object.SpriteGroup;
+import com.golden.gamedev.object.*;
 
 import fighter.Fighter;
 
-public abstract class DecoratedSidescroller extends Sidescroller {
+public abstract class DecoratedSidescroller implements Sidescroller {
 
     private Sidescroller wrappedScroller;
     
@@ -15,8 +12,8 @@ public abstract class DecoratedSidescroller extends Sidescroller {
         wrappedScroller = scroller;
     }
     
-    public void move(Sprite sprite) {
-        wrappedScroller.move(sprite);
+    public void update(long elapsedTime) {
+        wrappedScroller.update(elapsedTime);
     }
     
     public SpriteGroup[] getSpriteGroups() {
@@ -27,6 +24,6 @@ public abstract class DecoratedSidescroller extends Sidescroller {
         return wrappedScroller.getFighter();
     }
 
-
+    public abstract void move(Sprite sprite);
         
 }
