@@ -63,4 +63,18 @@ public class PowerupFramework implements Framework {
         }  
         return e;
     }
+
+    @Override
+    public void updateSprites(List<Object> parameters)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public String getType()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

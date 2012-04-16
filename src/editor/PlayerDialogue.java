@@ -16,6 +16,8 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import carryables.Carryable;
+
 import attributes.Attribute;
 
 
@@ -42,6 +44,7 @@ public class PlayerDialogue extends DialogueBox {
     @SuppressWarnings("rawtypes")
     public PlayerDialogue(EditorController m)
     {
+        super(m);
         myType = "player";
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, List<Object>>();
@@ -183,7 +186,7 @@ public class PlayerDialogue extends DialogueBox {
             imagePaths.add(myImagePath);
             ArrayList<Carryable> carryables = new ArrayList<Carryable>();
             PlayerFramework framework = new PlayerFramework(s, imagePaths, attributes, carryables);
-            myModel.addButton(myName.getText(), framework, "fighter");
+            myModel.addButton(myName.getText(), framework);
             setVisible(false);
         }
     }

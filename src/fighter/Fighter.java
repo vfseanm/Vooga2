@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+import character.GameCharacter;
 
 import sprite.*;
 import carryables.Carryable;
@@ -16,7 +16,7 @@ import attributes.Updateable;
 
 
 @SuppressWarnings("serial")
-public class Fighter extends AnimatedGameSprite {
+public class Fighter extends GameCharacter {
 
 	private List<Attribute>					myAttributes;
 	private List<Carryable>					myCarryables;
@@ -127,13 +127,22 @@ public class Fighter extends AnimatedGameSprite {
 		// 	ADD DEATH TO PLAYFIELD HERE
 	}
 	
-	public String toString () {
-        StringBuilder toReturn = new StringBuilder();
-        toReturn.append("fighter\n");
-        for (Attribute attribute : myAttributes) {
-            toReturn.append(attribute.toString());
-            toReturn.append("\n");
-        }
-        return toReturn.toString();
-    }
+	public String getName() {
+		return "Fighter";
+	}
+
+
+	@Override
+	public void accessAttributeMethod(String methodStart, String name,
+			Object... o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void restoreOriginalAttribute(String name, Object... o) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -56,7 +56,7 @@ public class Enemy extends AnimatedGameSprite
     public void addAttribute (Attribute attribute)
     {
         myAttributes.add(attribute);
-        attribute.setEnemy(this);
+        attribute.setGameCharacter(this);
     }
     
     public void clearAttributes(){
@@ -161,20 +161,8 @@ public class Enemy extends AnimatedGameSprite
         myState = state;
     }
 
-
-    public String toString ()
+    public String getName()
     {
-        StringBuilder toReturn = new StringBuilder();
-        toReturn.append("Enemy\n");
-        for (Attribute attribute : myAttributes)
-        {
-            toReturn.append(attribute.toString());
-            toReturn.append("\n");
-        }
-        if(myState!=null)
-        {
-            toReturn.append(myState.toString());
-        }
-        return toReturn.toString();
+    	return "Enemy";
     }
 }

@@ -26,7 +26,7 @@ public class Jump extends Attribute implements Updateable {
 	}
 	
 	public void update(long elapsedTime) {
-		if (myActivity) {
+		if (isActive) {
 			if (!myCanJump) 
 				myAtJumpPeak = myTimer.action(elapsedTime);
 			if (myCanJump && myUserInput.isKeyDown(KeyEvent.VK_UP)) {
@@ -38,14 +38,6 @@ public class Jump extends Attribute implements Updateable {
 			}
 		}
 		myTime++;
-	}
-	
-	public changeJumpDistance() {
-		
-	}
-	
-	public changeGravityEffect() {
-		
 	}
 
 	@Override

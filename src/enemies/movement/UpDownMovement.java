@@ -43,6 +43,8 @@ public class UpDownMovement extends Attribute implements Updateable
             moveDown();
 
         }
+        
+        
 
     }
 
