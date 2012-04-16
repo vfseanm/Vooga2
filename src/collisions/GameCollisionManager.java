@@ -28,13 +28,13 @@ public class GameCollisionManager{
 						
 						try{
 							Class <? extends Sprite> sp1c = sprite1.getClass();
-							Class <? extends Sprite> sp2c = sprite2.getClass();
+							Class <? extends Sprite> sp2c = sprite2.getClass(); 
 
-							Method mc = act.getClass().getMethod("action", sp1c, sp2c, Integer.class);
+							Method mc = act.getClass().getMethod("action", sp1c, sp2c, int.class);
 							Object [] args = new Object[3];
 							args[0] = sprite1;
 							args[1] = sprite2;
-							args[2] = (Integer)side;
+							args[2] = (int)side;
 							mc.invoke(act, args);
 						}
 						catch (Exception e){
@@ -96,8 +96,7 @@ public class GameCollisionManager{
 	}
 	private boolean topBottomChecker (Sprite sprite1, Sprite sprite2){
 		if  ((sprite1.getY() + sprite1.getHeight() == sprite2.getY()) 
-				&& ( (sprite2.getX()-sprite1.getX()/2 <= sprite1.getX() && (sprite2.getX()+sprite2.getWidth()+sprite1.getX()/2 >= sprite1.getX()) ) 
-						|| (sprite1.getX() >= sprite2.getX() && sprite1.getX()+sprite1.getWidth() <= sprite2.getX()+sprite2.getWidth()) )){
+				&& (sprite1.getX() >= sprite2.getX()-sprite1.getWidth()/2 && sprite1.getX()+sprite1.getWidth() <= sprite2.getX()+sprite2.getWidth()+sprite1.getWidth()/2) ){
 			return true;
 		}
 		return false; 
