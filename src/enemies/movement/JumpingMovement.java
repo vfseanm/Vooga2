@@ -22,20 +22,11 @@ public class JumpingMovement extends Attribute implements Updateable
         super(distance, delay);
         myDistance = distance;
         myTime = delay;
-<<<<<<< HEAD
         time=0;
         
         
     }
  
-
-    public void allowJumpingMovement ()
-    {
-=======
->>>>>>> 253371ac01ae4cbcfa771cb15b96babb3667a5aa
-        time = 0;
-
-    }
 
 
     public void modifyJumpingMovement (int distance, int time)
