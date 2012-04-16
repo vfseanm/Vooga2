@@ -38,8 +38,8 @@ public abstract class DialogueBox extends JPanel {
     {
         myImages = new ArrayList<BufferedImage>();
         myImagePaths = new ArrayList<String>();
+
         myController = m;        
-        //System.out.println("got here");
     }
     
     

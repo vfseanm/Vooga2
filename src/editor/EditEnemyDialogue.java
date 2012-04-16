@@ -57,6 +57,9 @@ public class EditEnemyDialogue extends DialogueBox {
         
         myX = x;
         myY = y;
+        //setLayout(new BorderLayout());
+        //add(makeInputPanel(), BorderLayout.NORTH);
+        
         mySprite = sprite;
         myImages = new ArrayList<BufferedImage>();
        
@@ -245,11 +248,11 @@ public class EditEnemyDialogue extends DialogueBox {
             /*ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePaths);*/
             //EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            if(mySprite!=null)
-            {
+            //if(mySprite!=null)
+            //{
                 myX = (int) mySprite.getOldX();
                 myY = (int) mySprite.getOldY();
-            }
+            //}
             Enemy enemy = new Enemy(s, myX,
                     myY,
                     myImagePaths);

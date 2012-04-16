@@ -26,7 +26,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class PlatformDialogueBox extends ButtonDialogueBox {
+public class PlatformDialogueBox extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -53,6 +53,7 @@ public class PlatformDialogueBox extends ButtonDialogueBox {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
         // ArrayList<Class> list = reflection.getBehaviors();
+        Reflection reflection = new Reflection();
         for (Class c : reflection.getInstancesOf("platforms", DecoratedPlatform.class))
         {
 

@@ -53,6 +53,10 @@ public class DemoGame extends PlatformGame {
     public void initResources()
     {
 
+        //gc.setMap("koopa", "mushroom", RepelBackAction.class);
+        //gc.setMap("ENEMY", "ENEMY", act);
+        
+        
         loadLevel("level2");
         BufferedImage[] images = new BufferedImage[4];
         images = mySprites.get(0).getImages();
