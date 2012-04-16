@@ -22,7 +22,7 @@ public abstract  class PlatformGame extends Game {
     protected List<AnimatedGameSprite> mySprites;
     private Level myLevel;
     private Fighter myFighter;
-    private ImageBackground myBackground;
+    protected ImageBackground myBackground;
     
     PlatformGame()
     {
@@ -51,6 +51,7 @@ public abstract  class PlatformGame extends Game {
 
         mySprites = myLevel.getSprites();
         myBackground = myLevel.getBackground();
+        
     }
     
     public Fighter getFighter() {

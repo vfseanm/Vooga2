@@ -36,7 +36,6 @@ import enemies.movement.OneDirectionMovement;
 
 public class DemoGame extends PlatformGame {
     private Enemy bob;
-    private Background myBackground;
     private int counter;
     private SimplePlatform p;
     private SimplePlatform p1, p2;
@@ -76,7 +75,6 @@ public class DemoGame extends PlatformGame {
         }
         // myPlayField.addGroup(allSprites);
 
-        myBackground = new ImageBackground(getImage("resources/city.jpg"));
         BufferedImage[] b = new BufferedImage[1];
         b[0] = getImage("resources/Bowser.jpg");
         ArrayList<String> a = new ArrayList<String>();
@@ -123,8 +121,7 @@ public class DemoGame extends PlatformGame {
         {
             if (s != null)
             {
-                System.out.println("image names to render "
-                        + ((AnimatedGameSprite) s).getImages());
+ 
                 s.render(arg0);
             }
         }
