@@ -37,5 +37,9 @@ public class AttributeCreator {
         }
         return null;
     }
+    public Class getCreatingClass()
+    {
+        return myConstructor.getDeclaringClass();
+    }
 
 }
