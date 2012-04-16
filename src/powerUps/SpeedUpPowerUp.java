@@ -2,9 +2,9 @@ package powerups;
 
 import java.awt.image.BufferedImage;
 
+
 import java.util.List;
 
-import attributes.Attribute;
 import platforms.BreakablePlatformItemFactory;
 
 
@@ -27,8 +27,4 @@ public class SpeedUpPowerUp extends PowerUp {
         return new SpeedUpPowerUp(getImages(), x, y, getImageNames());
     }
     
-    public Attribute getAttribute() {
-        //to be implemented later
-        return null;
-    }
 }

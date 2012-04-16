@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import editor.editorConstructor;
 
 /**
- * Experimenting with building a layer ontop of the GTGE methods to consolidate
+ * Experimenting with building a layer on top of the GTGE methods to consolidate
  * all functions into attributes
  * Here I'm thinking cloaked or ghosts
  * @author Alex
@@ -20,7 +20,7 @@ public class Visibility extends Attribute
     {
         super(visible);
         isVisible = visible;
-        myImage=myEnemy.getImages();
+        myImage = myGameCharacter.getImages();
         checkAndSetVisibility();
     }
 
@@ -28,10 +28,10 @@ public class Visibility extends Attribute
     private void checkAndSetVisibility ()
     {
         if(!isVisible){
-            myEnemy.setImages(null);
+            myGameCharacter.setImages(null);
         }
         else{
-            myEnemy.setImages(myImage);
+            myGameCharacter.setImages(myImage);
         }
         
     }

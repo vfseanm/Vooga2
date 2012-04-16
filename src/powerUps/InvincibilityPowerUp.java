@@ -3,7 +3,6 @@ package powerups;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import attributes.Attribute;
 import com.golden.gamedev.Game;
 import fighter.Fighter;
 import platforms.BreakablePlatformItemFactory;
@@ -15,6 +14,12 @@ public class InvincibilityPowerUp extends PowerUp{
     public InvincibilityPowerUp(BufferedImage[] im, double x, double y, List<String> image, ArrayList<Attribute> attributes, ArrayList<Attribute> attributesToGive) {
         super(im, x, y, image, attributes, attributesToGive);
     }
+
+	@Override
+	public PowerUp makeItem(double x, double y) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 //    private InvincibilityPowerUp(BufferedImage[] im, List<String> image) {
 //        super(im, 0, 0, image);
@@ -28,8 +33,4 @@ public class InvincibilityPowerUp extends PowerUp{
 //        return new InvincibilityPowerUp(getImages(), x, y, getImageNames());
 //    }
     
-    public Attribute getAttribute() {
-        //to be implemented later
-        return null;
-    }
 }

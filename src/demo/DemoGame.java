@@ -32,14 +32,18 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
 
+<<<<<<< HEAD
+    import enemies.Enemy;
+    import enemies.movement.JumpingMovement;
+=======
 import enemies.Enemy;
 import enemies.movement.Gravity;
 import enemies.movement.JumpingMovement;
+>>>>>>> 0111d1b62830aea26709450422f9b562140c72e1
 import enemies.movement.OneDirectionMovement;
 
 public class DemoGame extends PlatformGame {
     private Enemy bob;
-    private Background myBackground;
     private int counter;
     private SimplePlatform p;
     private SimplePlatform p1, p2;
@@ -143,7 +147,6 @@ public class DemoGame extends PlatformGame {
         }
         // myPlayField.addGroup(allSprites);
 
-        myBackground = new ImageBackground(getImage("resources/city.jpg"));
         BufferedImage[] b = new BufferedImage[1];
         b[0] = getImage("resources/Bowser.jpg");
         ArrayList<String> a = new ArrayList<String>();
@@ -201,8 +204,7 @@ public class DemoGame extends PlatformGame {
 
             if (s != null)
             {
-                System.out.println("image names to render "
-                        + ((AnimatedGameSprite) s).getImages());
+ 
                 s.render(arg0);
             }
         }
@@ -231,4 +233,12 @@ public class DemoGame extends PlatformGame {
 
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    }
+=======
 }
+>>>>>>> 0111d1b62830aea26709450422f9b562140c72e1
+=======
+}
+>>>>>>> b215649e7912b4fa6a503744010277aa98e976ef

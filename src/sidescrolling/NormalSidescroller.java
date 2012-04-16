@@ -3,7 +3,7 @@ package sidescrolling;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
-public class NormalSidescroller extends DecoratedSidescroller {
+public abstract class NormalSidescroller extends DecoratedSidescroller {
 
     protected Game myGame;
     
@@ -11,7 +11,7 @@ public class NormalSidescroller extends DecoratedSidescroller {
         super(scroller);
         myGame = game;
     }
-    
+        
     public void update(long elapsedTime) {
         for (SpriteGroup group: getSpriteGroups()) {
             for (Sprite object: group.getSprites()) {
