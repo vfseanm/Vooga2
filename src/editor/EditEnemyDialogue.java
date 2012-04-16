@@ -190,11 +190,11 @@ public class EditEnemyDialogue extends DialogueBox {
             ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePath);
             //EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            if(mySprite!=null)
-            {
+            //if(mySprite!=null)
+            //{
                 myX = (int) mySprite.getOldX();
                 myY = (int) mySprite.getOldY();
-            }
+            //}
             Enemy enemy = new Enemy(s, myX,
                     myY,
                     imagePaths);

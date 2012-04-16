@@ -33,7 +33,7 @@ public abstract class DialogueBox extends JPanel {
     protected ArrayList<String> myImagePaths;
     
     protected JTextField myName;
-    protected JTextField myGroup;
+    //protected JTextField myGroup;
     protected Reflection reflection;
 
     @SuppressWarnings("rawtypes")
