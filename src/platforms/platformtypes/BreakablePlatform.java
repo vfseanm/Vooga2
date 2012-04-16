@@ -1,10 +1,11 @@
 package platforms.platformtypes;
 
+import bonusobjects.BonusObject;
+
 
 public class BreakablePlatform extends DecoratedPlatform {
 
 	private static final long serialVersionUID = 1254073087890380273L;
-	//ArrayList<BreakablePlatformItemFactory> myFactoryList = new ArrayList<BreakablePlatformItemFactory>();
 	
 	public BreakablePlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);
@@ -21,8 +22,7 @@ public class BreakablePlatform extends DecoratedPlatform {
 		}
 		releaseItem();
 		setActive(false);
-	}
-	
+	}	
 	
 	public String toString() {
 		return "side to side" + myDecoratorComponent.toString();
