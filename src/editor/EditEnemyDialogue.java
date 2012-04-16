@@ -26,7 +26,7 @@ import attributes.Attribute;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class EditEnemyDialogue extends JPanel {
+public class EditEnemyDialogue extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -50,6 +50,7 @@ public class EditEnemyDialogue extends JPanel {
     @SuppressWarnings("rawtypes")
     public EditEnemyDialogue(EditorController m, Enemy sprite, int x, int y)
     {
+        super(m);
         myX = x;
         myY = y;
         mySprite = sprite;
@@ -69,6 +70,7 @@ public class EditEnemyDialogue extends JPanel {
     
     public EditEnemyDialogue(EditorController m, Framework framework)
     {
+        super(m);
         myFramework = (EnemyFramework) framework;
         myImage = myFramework.getImages()[0];
         
@@ -132,7 +134,7 @@ public class EditEnemyDialogue extends JPanel {
     }
 
     @SuppressWarnings("rawtypes")
-    private JComponent makeDestinationPanel() throws ClassNotFoundException,
+    private JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
         JPanel panel = new JPanel();
@@ -247,25 +249,7 @@ public class EditEnemyDialogue extends JPanel {
             for(AttributeCreator a: attributes)
             {
                 Attribute attribute = a.createAttribute();
-                /*System.out.println("list:" + list);
-                Constructor c = (Constructor) list.get(0);
-                Object[] parameterList = (Object[]) list.get(1);
-                Attribute attribute = null;
-                try {
-                    attribute = (Attribute) c.newInstance(parameterList);
-                } catch (IllegalArgumentException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InvocationTargetException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }*/
+                
                 enemy.addAttribute(attribute);
             }  
             for (Attribute oldAttribute: oldAttributes)
@@ -342,6 +326,13 @@ public class EditEnemyDialogue extends JPanel {
             myImage = f;
 
         }
+    }
+
+    @Override
+    public JComponent makeSelectionPanel() throws ClassNotFoundException,
+            IOException {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
