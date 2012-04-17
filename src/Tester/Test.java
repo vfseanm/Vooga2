@@ -44,7 +44,7 @@ public class Test extends Game{
         fighter.setAnimationFrame(0, 3);
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
-        fighter.addAttribute(new BasicMovement(bsInput, 1.0));
+        fighter.addAttribute(new BasicMovement(bsInput, 1.5));
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
         
@@ -62,12 +62,14 @@ public class Test extends Game{
         AbstractPlatform p4 = new SimplePlatform(im, 10, 15, imageName);
         group2.add(p4);
         sidescroller = new ConcreteSidescroller(fighter, group1, group2);
-        sidescroller = new LeftSidescroller(this, sidescroller, 1.0, 100);
-        sidescroller = new RightSidescroller(this, sidescroller, -1.0, 100);
-        sidescroller = new UpSidescroller(this, sidescroller, 1.0, 0);
-        sidescroller = new DownSidescroller(this, sidescroller, -1.0, 0);
+        //sidescroller = new LeftSidescroller(this, sidescroller, 1.0, 100);
+        //sidescroller = new RightSidescroller(this, sidescroller, -1.5, 100);
+        //sidescroller = new UpSidescroller(this, sidescroller, 1.0, 0);
+        //sidescroller = new DownSidescroller(this, sidescroller, -1.0, 0);
         //sidescroller = new ForcedDownSidescroller(sidescroller, -1.0);
-        //sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);        
+        //sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
+        sidescroller = new SkipRightSidescroller(this, sidescroller);
+        sidescroller = new SkipLeftSidescroller(this, sidescroller);
     }
     
     public void render (Graphics2D pen) {

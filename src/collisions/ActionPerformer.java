@@ -1,12 +1,6 @@
 package collisions;
 
-import platforms.*;
-
-
 import com.golden.gamedev.object.Sprite;
-
-import enemies.Enemy;
-import fighter.Fighter;
 
 
 public interface ActionPerformer{

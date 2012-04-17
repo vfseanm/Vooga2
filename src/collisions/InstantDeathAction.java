@@ -1,11 +1,6 @@
 package collisions;
 
-import java.lang.reflect.Method;
-
-import platforms.*;
 import platforms.platformtypes.DecoratedPlatform;
-
-import sprite.AnimatedGameSprite;
 
 import com.golden.gamedev.object.Sprite;
 import fighter.Fighter;
