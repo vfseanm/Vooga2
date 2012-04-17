@@ -47,8 +47,8 @@ public class TestGame extends Game {
         
 
         bob.addAttribute(new Gravity(1));
-        //bob.addAttribute(new OneDirectionMovement("left",1));        
-        bob.addAttribute(new JumpingMovement(1,90));
+        bob.addAttribute(new OneDirectionMovement("left",1));        
+        bob.addAttribute(new JumpingMovement(1,105));
 
         
         counter=0;

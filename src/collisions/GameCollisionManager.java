@@ -38,7 +38,7 @@ public class GameCollisionManager{
 							mc.invoke(act, args);
 						}
 						catch (Exception e){
-							System.out.println ("Error");
+							System.out.println ("collision!");
 						}
 					}
 				}
@@ -74,30 +74,17 @@ public class GameCollisionManager{
 		return 0;
 	}
 	private boolean leftRightChecker (Sprite sprite1, Sprite sprite2){
-		if  (
-				((sprite2.getX() + sprite2.getWidth()==sprite1.getX())
-				&& (sprite2.getX()<=sprite1.getX()) && (sprite2.getY()<=sprite1.getY()) 
-				&& (sprite2.getY()+sprite2.getHeight() >= sprite1.getY()+sprite1.getHeight())) 
-				|| 
-				((sprite2.getX() + sprite2.getWidth()==sprite1.getX())
-				&& (sprite2.getX()<=sprite1.getX()) && (sprite2.getY()>=sprite1.getY()) 
-				&& (sprite2.getY()+sprite2.getHeight() <= sprite1.getY()+sprite1.getHeight())) 
-				||
-				(sprite2.getX() + sprite2.getWidth()==sprite1.getX())
-				&& (sprite2.getX()<=sprite1.getX()) && (sprite2.getY()<=sprite1.getY()) 
-				&& (sprite2.getY()+ sprite2.getHeight() >= sprite1.getY()) && (sprite2.getY()+sprite2.getHeight() <= sprite1.getY()+sprite1.getHeight()) 
-				||
-				((sprite2.getX() + sprite2.getWidth()==sprite1.getX())
-				&& (sprite2.getX()<=sprite1.getX()) && (sprite2.getY()>=sprite1.getY()) 
-				&& (sprite2.getY()+ sprite2.getHeight() <= sprite1.getY()) && (sprite2.getY()+sprite2.getHeight() >= sprite1.getY()+sprite1.getHeight()) ) ){
+		if  ((sprite1.getX() + sprite1.getWidth() == sprite2.getX()) &&
+				(sprite1.getY() >= (sprite2.getY()-sprite1.getHeight())) && 
+				((sprite1.getY()+sprite1.getHeight()) <= (sprite2.getY()+sprite2.getHeight()+sprite1.getHeight())) ){
 			return true;
 		}
 		return false;
 	}
 	private boolean topBottomChecker (Sprite sprite1, Sprite sprite2){
 		if  ((sprite1.getY() + sprite1.getHeight() == sprite2.getY()) &&
-				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth()/2)) && 
-				((sprite1.getX()+sprite1.getWidth()) <= (sprite2.getX()+sprite2.getWidth()+sprite1.getWidth()/2)) ) {
+				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth())) && 
+				((sprite1.getX()+sprite1.getWidth()) <= (sprite2.getX()+sprite2.getWidth()+sprite1.getWidth())) ) {
 			return true;
 		}
 		return false; 
