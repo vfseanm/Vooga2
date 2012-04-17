@@ -160,6 +160,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
             parameters.add(myImagePaths);
             parameters.add(attributes);
             myFramework.updateSprites(parameters);
+            myController.closeDialogue();
             
             setVisible(false);
         }

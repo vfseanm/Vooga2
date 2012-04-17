@@ -8,7 +8,7 @@ import com.golden.gamedev.gui.TButton;
 import editor.EditorView;
 
 
-public class PlayerButton extends TButton
+public class CustomButton extends TButton
 {
     private boolean pressed;
     private BufferedImage myImage;
@@ -16,7 +16,7 @@ public class PlayerButton extends TButton
     private String myType;
     private EditorView myView;
 
-    public PlayerButton(String name,
+    public CustomButton(String name,
                     int x,
                     int y,
                     int width,
@@ -40,14 +40,12 @@ public class PlayerButton extends TButton
         return myImage;
     }
 
-
-    public void doAction ()
+    public void doAction()
     {
-        
-        myView.openBox("player");
-           
+        myView.openDialogue("sean");
     }
-   
+
+
     public String getType ()
     {
         return myType;

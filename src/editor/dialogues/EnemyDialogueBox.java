@@ -37,18 +37,12 @@ public class EnemyDialogueBox extends DialogueBox {
     private JTextField myGroup;
 
 
-    /*private HashMap<JCheckBox, Class> attributeMap;
-    
-    private HashMap<JCheckBox, List<Object>> attributeInstanceMap;
-*/
-
     @SuppressWarnings("rawtypes")
     public EnemyDialogueBox(EditorController m)
     {
         super(m);
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
-        
     }
 
 

@@ -3,11 +3,7 @@ package editor.dialogues;
 import java.io.File;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
@@ -18,10 +14,6 @@ import javax.swing.*;
 
 import editor.EditorController;
 
-import attributes.Attribute;
-
-
-import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public abstract class DialogueBox extends JPanel {
@@ -34,23 +26,20 @@ public abstract class DialogueBox extends JPanel {
     protected ArrayList<BufferedImage> myImages;
     protected ArrayList<String> myImagePaths;
     
-
-    @SuppressWarnings("rawtypes")
+    
     public DialogueBox(EditorController m)
     {
         myImages = new ArrayList<BufferedImage>();
         myImagePaths = new ArrayList<String>();
-
         myController = m;        
     }
+    
     
     
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
 
     public BufferedImage getImage()
     {
-        
-        
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
         File file = null;
         int returnVal = fc.showOpenDialog(null);

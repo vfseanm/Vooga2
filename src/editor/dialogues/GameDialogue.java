@@ -29,11 +29,6 @@ public class GameDialogue extends DialogueBox {
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
 
-   
-
-      
-    
-    
 
     public GameDialogue(EditorController m)
     {

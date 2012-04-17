@@ -82,6 +82,11 @@ public class EditorController {
     {
         return myLevel.getAllSprites();
     }
+    
+    public void closeDialogue()
+    {
+        myView.closeFrame();
+    }
 
     public void writeFile(String filename)
     {

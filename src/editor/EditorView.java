@@ -27,9 +27,12 @@ import editor.buttons.ButtonMakingButton;
 import editor.buttons.OpenButton;
 import editor.buttons.PlayerButton;
 import editor.buttons.SaveButton;
+import editor.dialogues.DialogueBox;
+import editor.dialogues.DynamicBox;
 import editor.dialogues.EditEnemyButtonDialogueBox;
 import editor.dialogues.EditEnemyDialogue;
 import editor.dialogues.EnemyDialogueBox;
+import editor.dialogues.ExtendedDialogueBox;
 import editor.dialogues.FighterDialogueBox;
 import editor.dialogues.GameDialogue;
 import editor.dialogues.PlatformDialogueBox;
@@ -55,11 +58,13 @@ public abstract class EditorView extends Game {
     protected Framework myFramework;
     protected Background myBackground;
     private HashMap<String, Class> boxMap;
+    protected DynamicBox currentDialogueBox;
 
     @SuppressWarnings("unchecked")
     
     public void initialize()
     {
+        currentDialogueBox = null;
         myController = new EditorController(this);
         allButtons = new ArrayList<Button>();
         setFrameworkTop();
@@ -339,6 +344,35 @@ public abstract class EditorView extends Game {
         frame.getContentPane().add(myView);
         frame.pack();
         frame.setVisible(true);
+    }
+    
+    public void openDialogue(String type)
+    {
+        DialogueBox myView = null;
+        if(type.contentEquals("enemy"))
+            myView = new EnemyDialogueBox(myController);
+        else if (type.contentEquals("platform"))
+            myView = new PlatformDialogueBox(myController);
+
+        else if (type.contentEquals("player"))
+            myView = new FighterDialogueBox(myController);
+        else if (type.contentEquals("power up"))
+            myView = new PowerupDialogueBox(myController);
+        else if (type.contentEquals("game"))
+            myView = new GameDialogue(myController);
+        else if (type.contentEquals("sean"))
+            myView = new ExtendedDialogueBox(myController);
+
+        frame = new JFrame("Enemy Behaviors");
+        Dimension d = new Dimension(600, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(myView);
+        frame.pack();
+        frame.setVisible(true);
+        
+        if(myView instanceof DynamicBox)
+            currentDialogueBox = (DynamicBox) myView;
     }
     
     
