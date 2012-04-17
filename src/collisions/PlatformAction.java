@@ -21,48 +21,38 @@ public class PlatformAction implements ActionPerformer{
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
 			if ( (sprite1.getX()+(sprite1.getWidth()) >= sprite2.getX())
 					&& (sprite1.getX() <= sprite2.getX()+ sprite2.getWidth()) ){
-<<<<<<< HEAD
-				 System.out.println("hgjvj");
-				((Enemy) sprite1).updateAttribute("JumpingMovement");
-=======
-				 //System.out.println("hgjvj");
 				((Enemy) sprite1).restoreOriginalAttribute("JumpingMovement");
->>>>>>> f485a78aa8438729286a2106117d1f9ca8d5c256
-				
 			}
 		}
+		
 	}
-	public void action (Enemy sprite1, DecoratedPlatform sprite2, int collisionType){ 
-		// get sprite2.xxx  decor attri
-		// call commo()
+	public void action (Enemy sprite1, RotatingPlatform sprite2, int collisionType){ 
+		standardaction (sprite1, sprite2, collisionType);
+
+		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
+			sprite2.doBehavior(1, 100);
+ 		}
 
 	}
 	
 	public void action (Enemy sprite1, UpDownPlatform sprite2, int collisionType){
-		// get sprite2.xxx updown attr
-	}
-
-	public void action (Fighter sprite1, SimplePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
-	}
-	
-	public void action (Fighter sprite1, BreakablePlatform sprite2, int collisionType){
-		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION) {
+
+		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
+			
 		}
-		return;
 	}
 	
 	public void action (Enemy sprite1, SimplePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
+		if (collisionType!=CollisionGroup.TOP_BOTTOM_COLLISION)
+			sprite1.invertAttribute("OneDirectionMovement");
 	}
 
 	public void action (Enemy sprite1, BreakablePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
 		if (collisionType ==  CollisionGroup.BOTTOM_TOP_COLLISION ){
-			for (int i=0; i<=2; i++){
-				//Nothing happens...set delay
-			}
-			sprite2.setActive(false);
+			sprite2.doBreak();
 		}
 	}
 

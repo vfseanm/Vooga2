@@ -15,7 +15,7 @@ public class RotatingPlatform extends DecoratedPlatform {
 		myWidth = getImages()[0].getWidth();
 	}
 	
-	protected void doBehavior(double speed, double distance) {
+	public void doBehavior(double speed, double distance) {
 		rotateLeftAxisClockwise(myDelay);
 	}
 

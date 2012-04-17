@@ -9,7 +9,7 @@ public class UpDownPlatform extends DecoratedPlatform {
 		super(decoratorComponent);
 	}
 	
-	protected void doBehavior(double speed, double distance) {
+	public void doBehavior(double speed, double distance) {
 		double time = (distance * 5) / speed;
 		if (myTimer.getPassedFrames() % (time * 2) == 0) {
 			setVerticalSpeed(speed / 25);
