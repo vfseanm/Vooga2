@@ -23,8 +23,6 @@ import attributes.Attribute;
 
 public class PowerupFramework extends Framework {
 
-    private BufferedImage[] myImages;
-    private ArrayList<String> imageNames;
     private List<AttributeCreator> myAttributes;
     private List<AttributeCreator> myAttributesToGive;
     private String myGroup;

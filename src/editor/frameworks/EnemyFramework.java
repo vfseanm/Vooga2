@@ -18,8 +18,7 @@ import attributes.Attribute;
 public class EnemyFramework extends Framework {
 
     protected ArrayList<Attribute> attributes;
-    private BufferedImage[] myImages;
-    private ArrayList<String> imageNames;
+
     private List<AttributeCreator> myAttributes;
     private List<Attribute> allAttributes;
     private String myGroup;

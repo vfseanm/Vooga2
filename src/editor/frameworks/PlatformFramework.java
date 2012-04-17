@@ -22,16 +22,13 @@ import attributes.Attribute;
 
 public class PlatformFramework extends Framework {
 
-    @SuppressWarnings("unused")
-    private BufferedImage[] myImages;
-    @SuppressWarnings("unused")
-    private List<String> imageNames;
+
     private List<Class> myPlatformWrappers;
     private String myGroup;
 
 
     public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers, String group) {
-        System.out.println("slkdfjsdlkj");
+        
         myGroup = group;
         myImages = im;
         imageNames = images;

@@ -2,6 +2,8 @@ package editor.frameworks;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,8 +17,10 @@ import bonusobjects.PowerUp;
 
 import sprite.AnimatedGameSprite;
 
-public abstract class Framework {
+public abstract class Framework implements Serializable {
     protected List<AnimatedGameSprite> mySprites;
+    transient protected BufferedImage[] myImages;
+    protected List<String> imageNames;
    
     public abstract AnimatedGameSprite getSprite(int x, int y);
     
@@ -79,6 +83,15 @@ public abstract class Framework {
             }
             s.setImages(images);
          }
+        
+        myImages = new BufferedImage[imageNames.size()];
+        for(int i=0; i<myImages.length; i++)
+        {
+            //System.out.println("image names: "+s.getImageNames());
+            myImages[i] = loader.getImage(imageNames.get(i));
+        }
+        
+        
     }
    
     
