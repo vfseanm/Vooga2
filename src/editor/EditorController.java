@@ -50,9 +50,10 @@ public class EditorController {
         verticalOffset += y;
     }
 
-    public void addSprite(AnimatedGameSprite s)
+    public void addSprite(AnimatedGameSprite s, Framework f)
     {
-        myLevel.addSprite(s);
+        
+        myLevel.addSprite(s,f);
     }
 
     public void clearLevel()
@@ -209,6 +210,7 @@ public class EditorController {
     
     public void setFighter(Fighter fighter)
     {
+        
         myLevel.setFighter(fighter);
     }
 

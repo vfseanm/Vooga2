@@ -8,6 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bonusobjects.PowerUp;
+
 import enemies.Enemy;
 
 import platforms.platformtypes.*;
@@ -18,24 +20,20 @@ import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 
 
-public class PlatformFramework implements Framework {
+public class PlatformFramework extends Framework {
 
-    @SuppressWarnings("unused")
-    private BufferedImage[] myImages;
-    @SuppressWarnings("unused")
-    private List<String> imageNames;
+
     private List<Class> myPlatformWrappers;
     private String myGroup;
 
-    private ArrayList<AbstractPlatform> mySprites;
 
     public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers, String group) {
-        System.out.println("slkdfjsdlkj");
+        
         myGroup = group;
         myImages = im;
         imageNames = images;
         myPlatformWrappers = platformWrappers;
-        mySprites = new ArrayList<AbstractPlatform>();
+        mySprites = new ArrayList<AnimatedGameSprite>();
     }
 
 
@@ -92,13 +90,7 @@ public class PlatformFramework implements Framework {
     {
         return "platform";
     }
-    public boolean containsSprite(AnimatedGameSprite s)
-    {
-        return mySprites.contains(s);
-    }
-    public void removeSprite(AnimatedGameSprite s)
-    {
-        mySprites.remove(s);
-    }
+
+
 
 }

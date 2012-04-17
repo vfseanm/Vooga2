@@ -15,14 +15,12 @@ import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 
 
-public class EnemyFramework implements Framework {
+public class EnemyFramework extends Framework {
 
     protected ArrayList<Attribute> attributes;
-    private BufferedImage[] myImages;
-    private ArrayList<String> imageNames;
+
     private List<AttributeCreator> myAttributes;
     private List<Attribute> allAttributes;
-    private ArrayList<Enemy> mySprites;
     private String myGroup;
 
     public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, String group) {
@@ -30,7 +28,7 @@ public class EnemyFramework implements Framework {
         myImages = im;
         imageNames = images;
         myAttributes = attributes;
-        mySprites = new ArrayList<Enemy>();
+        mySprites = new ArrayList<AnimatedGameSprite>();
         allAttributes = new ArrayList<Attribute>();
     }
 
@@ -69,7 +67,7 @@ public class EnemyFramework implements Framework {
         myImages = (BufferedImage[]) parameters.get(0);
         imageNames = (ArrayList<String>) parameters.get(1);
         myAttributes = (List<AttributeCreator>) parameters.get(2);
-        for(Enemy e: mySprites)
+        for(AnimatedGameSprite e: mySprites)
         {
             e.setImages(myImages);
             e.setImageNames(imageNames);
@@ -77,8 +75,8 @@ public class EnemyFramework implements Framework {
             {
                
                 Attribute attribute = a.createAttribute();
-                e.clearAttributes();
-                e.addAttribute(attribute);
+                ((Enemy)e).clearAttributes();
+                ((Enemy)e).addAttribute(attribute);
                 
             }  
         }
@@ -95,13 +93,6 @@ public class EnemyFramework implements Framework {
         return myAttributes;
     }
     
-    public boolean containsSprite(AnimatedGameSprite s)
-    {
-        return mySprites.contains(s);
-    }
-    public void removeSprite(AnimatedGameSprite s)
-    {
-        mySprites.remove(s);
-    }
+
 
 }
