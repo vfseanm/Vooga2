@@ -52,6 +52,7 @@ public class EditorController {
 
     public void addSprite(AnimatedGameSprite s, Framework f)
     {
+        
         myLevel.addSprite(s,f);
     }
 

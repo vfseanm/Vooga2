@@ -63,10 +63,13 @@ public class Level implements Serializable{
     
     public void addSprite(AnimatedGameSprite s, Framework f)
     {
-        if(frameworks.contains(f))
+        
+        if(!frameworks.contains(f))
         {
-            f.addSprite(s);
+            frameworks.add(f);
         }
+        f.addSprite(s);
+        
     }
    
     public void moveHorizontally(double x)
