@@ -107,6 +107,10 @@ public class Level implements Serializable{
         {
             sprites.addAll(f.getSprites());
         }
+        if(myFighter!=null)
+        {
+            sprites.add(myFighter);
+        }
         return sprites;
     }
     
