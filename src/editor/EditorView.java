@@ -138,7 +138,8 @@ public abstract class EditorView extends Game {
                     //System.out.println(s.getClass());
                     if (checkInterference(s))
                     {
-                        myController.addSprite(s);
+                        
+                        myController.addSprite(s, myFramework);
                         
                     }
                 }

@@ -116,7 +116,7 @@ public class FighterDialogueBox extends DialogueBox{
             {
             //fighter.addCarryableAttribute(attribute.createAttribute());
             }
-            myController.addSprite(new Fighter(s, 50, 50, myImagePaths, null));
+            myController.setFighter(new Fighter(s, 50, 50, myImagePaths, null));
             setVisible(false);
         }
     }

@@ -36,6 +36,7 @@ public class Level implements Serializable{
     private List<Framework> frameworks;
     private String backgroundImagePath;
     private ImageBackground myBackground;
+    private Fighter myFighter;
 
   
     
@@ -47,49 +48,74 @@ public class Level implements Serializable{
     
     public void replaceSprite(AnimatedGameSprite oldSprite, AnimatedGameSprite newSprite)
     {
-        sprites.remove(oldSprite);
-        sprites.add(newSprite);
+        for(Framework f: frameworks)
+        {
+            if(f.containsSprite(oldSprite))
+            {
+                f.removeSprite(oldSprite);
+                f.addSprite(newSprite);
+            }
+        }
+        
+        //sprites.remove(oldSprite);
+        //sprites.add(newSprite);
     }
     
-    public void addSprite(AnimatedGameSprite s)
+    public void addSprite(AnimatedGameSprite s, Framework f)
     {
-        sprites.add(s);
+        if(frameworks.contains(f))
+        {
+            f.addSprite(s);
+        }
     }
    
     public void moveHorizontally(double x)
     {
-        for (Sprite s : sprites)
+        for (Framework f : frameworks)
         {
-            s.setX(s.getX() + x);
+            f.moveHorizontally(x);
         }
     }
     
     public void moveVertically(double y)
     {
-        for(Sprite s: sprites)
+        for(Framework f: frameworks)
         {
-            s.setY(s.getY()+y);
+            f.moveVertically(y);
         }
     }
     
     public void clear()
     {
-        sprites.clear();
+        frameworks.clear();
+        myFighter = null;
     }
     
     public List<AnimatedGameSprite> getAllSprites()
     {
-        return Collections.unmodifiableList(sprites);
+        
+        return Collections.unmodifiableList(getSprites());
     }
     
     public List<AnimatedGameSprite> getSprites()
     {
+        List<AnimatedGameSprite> sprites = new ArrayList<AnimatedGameSprite>();
+        for(Framework f: frameworks)
+        {
+            sprites.addAll(f.getSprites());
+        }
         return sprites;
     }
     
     public void removeSprite(AnimatedGameSprite sprite)
     {
-        sprites.remove(sprite);
+        for(Framework f: frameworks)
+        {
+            if(f.containsSprite(sprite))
+            {
+                f.removeSprite(sprite);
+            }
+        }
     }
     
     public void setSpriteLocation(AnimatedGameSprite sprite, double x, double y)
@@ -98,7 +124,8 @@ public class Level implements Serializable{
     }
     public void setFighter(Fighter fighter)
     {
-        sprites.add(fighter);
+        //sprites.add(fighter);
+        myFighter = fighter;
     }
     
     private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException
@@ -111,18 +138,18 @@ public class Level implements Serializable{
     private void updateImages()
     {
         BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
-        for(AnimatedGameSprite s: sprites)
+        for(Framework f: frameworks)
         {
-            
-            BufferedImage[] images = new BufferedImage[s.getImageNames().size()];
-            for(int i=0; i<images.length; i++)
-            {
-                //System.out.println("image names: "+s.getImageNames());
-                images[i] = loader.getImage(s.getImageNames().get(i));
-            }
-            s.setImages(images);
-         }
+            f.updateImages();
+        }
         myBackground.setImage(loader.getImage(backgroundImagePath));
+        BufferedImage[] images = new BufferedImage[myFighter.getImageNames().size()];
+        for(int i=0; i<images.length; i++)
+        {
+            //System.out.println("image names: "+s.getImageNames());
+            images[i] = loader.getImage(myFighter.getImageNames().get(i));
+        }
+        myFighter.setImages(images);
     }
     
     public void setBackground(BufferedImage image, String imagePath)
@@ -135,6 +162,7 @@ public class Level implements Serializable{
     {
         return myBackground;
     }
+
    
 }
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import editor.AttributeCreator;
+import enemies.Enemy;
 
 import bonusobjects.PowerUp;
 
@@ -20,13 +21,12 @@ import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 
 
-public class PowerupFramework implements Framework {
+public class PowerupFramework extends Framework {
 
     private BufferedImage[] myImages;
     private ArrayList<String> imageNames;
     private List<AttributeCreator> myAttributes;
     private List<AttributeCreator> myAttributesToGive;
-    private List<PowerUp> mySprites;
     private String myGroup;
 
     public PowerupFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, List<AttributeCreator> attributesToGive, String group) {
@@ -35,7 +35,7 @@ public class PowerupFramework implements Framework {
         imageNames = images;
         myAttributes = attributes;
         myAttributesToGive = attributesToGive;
-        mySprites = new ArrayList<PowerUp>();
+        mySprites = new ArrayList<AnimatedGameSprite>();
     }
 
  /*   public void addBehavior(Attribute b) {
@@ -89,14 +89,7 @@ public class PowerupFramework implements Framework {
     public String getType() {
         return "Power-Up";
     }
-    public boolean containsSprite(AnimatedGameSprite s)
-    {
-        return mySprites.contains(s);
-    }
-    public void removeSprite(AnimatedGameSprite s)
-    {
-        mySprites.remove(s);
-    }
+
 
 
 }
