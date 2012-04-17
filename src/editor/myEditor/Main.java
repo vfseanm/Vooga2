@@ -2,8 +2,8 @@ package editor.myEditor;
 
 import java.awt.Dimension;
 
+
 import com.golden.gamedev.GameLoader;
-import editor.EditorView;
 
 public class Main
 {

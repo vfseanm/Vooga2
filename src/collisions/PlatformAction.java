@@ -29,7 +29,7 @@ public class PlatformAction implements ActionPerformer{
 	public void action (Enemy sprite1, RotatingPlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
-			sprite2.doBehavior(1, 100);
+			//sprite2.doBehavior(1, 100);
  		}
 
 	}

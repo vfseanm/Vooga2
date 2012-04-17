@@ -1,9 +1,9 @@
 package editor.frameworks;
 
 import java.awt.Color;
+
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +13,6 @@ import com.golden.gamedev.object.Sprite;
 
 import enemies.Enemy;
 
-import bonusobjects.PowerUp;
 
 import sprite.AnimatedGameSprite;
 

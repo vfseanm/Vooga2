@@ -48,7 +48,7 @@ public class TestGame extends Game {
 
         bob.addAttribute(new Gravity(1));
         bob.addAttribute(new OneDirectionMovement("left",1));        
-        bob.addAttribute(new JumpingMovement(1,105));
+        bob.addAttribute(new JumpingMovement(1,100));
 
         
         counter=0;
@@ -57,7 +57,7 @@ public class TestGame extends Game {
         
         List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
         b1[0]= getImage("resources/platform1.png"); 
-        p = new SimplePlatform (b1, 500,500, a);
+        p = new SimplePlatform (b1, 280,290, a);
         
 
         b1[0]= getImage("resources/platform1.png"); 
