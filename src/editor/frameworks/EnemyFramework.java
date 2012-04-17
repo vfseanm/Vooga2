@@ -1,4 +1,4 @@
-package editor;
+package editor.frameworks;
 
 import java.awt.image.BufferedImage;
 
@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import editor.AttributeCreator;
 import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
@@ -87,6 +88,20 @@ public class EnemyFramework implements Framework {
     public String getType()
     {
         return "enemy";
+    }
+    
+    public List<AttributeCreator> getAttributeCreators()
+    {
+        return myAttributes;
+    }
+    
+    public boolean containsSprite(AnimatedGameSprite s)
+    {
+        return mySprites.contains(s);
+    }
+    public void removeSprite(AnimatedGameSprite s)
+    {
+        mySprites.remove(s);
     }
 
 }

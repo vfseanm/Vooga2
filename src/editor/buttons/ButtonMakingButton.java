@@ -1,12 +1,14 @@
-package editor;
+package editor.buttons;
 
 
 import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.gui.TButton;
 
+import editor.EditorView;
 
-public class BlankButton extends TButton
+
+public class ButtonMakingButton extends TButton
 {
     private boolean pressed;
     private BufferedImage myImage;
@@ -14,7 +16,7 @@ public class BlankButton extends TButton
     private String myType;
     private EditorView myView;
 
-    public BlankButton(String name,
+    public ButtonMakingButton(String name,
                     int x,
                     int y,
                     int width,
@@ -45,8 +47,6 @@ public class BlankButton extends TButton
         myView.openBox(myType);
            
     }
-    
-
 
     public String getType ()
     {

@@ -1,4 +1,4 @@
-package editor;
+package editor.dialogues;
 
 
 import java.io.IOException;
@@ -12,6 +12,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.*;
+
+import editor.AttributeCreator;
+import editor.AttributeSelectionPanel;
+import editor.EditorController;
+import editor.dialogues.DialogueBox.ImageAction;
+import editor.frameworks.EnemyFramework;
+import editor.frameworks.Framework;
+
 
 import attributes.Attribute;
 

@@ -1,4 +1,4 @@
-package editor;
+package editor.dialogues;
 
 import java.io.File;
 
@@ -16,6 +16,8 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import editor.EditorController;
+
 import attributes.Attribute;
 
 
@@ -28,6 +30,10 @@ public class GameDialogue extends DialogueBox {
     public static final String BLANK = " ";
 
    
+
+      
+    
+    
 
     public GameDialogue(EditorController m)
     {

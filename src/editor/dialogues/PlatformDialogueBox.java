@@ -1,5 +1,5 @@
 
-package editor;
+package editor.dialogues;
 
 import java.io.File;
 
@@ -18,6 +18,11 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import editor.EditorController;
+import editor.Reflection;
+import editor.frameworks.Framework;
+import editor.frameworks.PlatformFramework;
+
 import platforms.platformtypes.*;
 
 import attributes.Attribute;
@@ -30,13 +35,13 @@ public class PlatformDialogueBox extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
+    private JTextField myName;
+    private JTextField myGroup;
 
 
 
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> classMap;
-    private JTextField myName;
-    private JTextField myGroup;
     
     
 

@@ -1,4 +1,4 @@
-package editor;
+package editor.frameworks;
 
 import java.util.List;
 
@@ -13,6 +13,10 @@ public interface Framework {
     public void updateSprites(List<Object> parameters);
     
     public String getType();
+    
+    public boolean containsSprite(AnimatedGameSprite s);
+    
+    public void removeSprite(AnimatedGameSprite s);
    
     
 }

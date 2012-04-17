@@ -1,4 +1,4 @@
-package editor;
+package editor.dialogues;
 
 import java.io.File;
 
@@ -15,6 +15,12 @@ import java.awt.Dimension;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import editor.AttributeCreator;
+import editor.AttributeSelectionPanel;
+import editor.EditorController;
+import editor.frameworks.Framework;
+import editor.frameworks.PowerupFramework;
 
 import attributes.Attribute;
 

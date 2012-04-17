@@ -1,4 +1,4 @@
-package editor;
+package editor.dialogues;
 
 import java.io.File;
 
@@ -17,8 +17,11 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import editor.DialogueBox.ImageAction;
-import editor.EnemyDialogueBox.GoAction;
+
+
+import editor.AttributeCreator;
+import editor.AttributeSelectionPanel;
+import editor.EditorController;
 import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
@@ -35,12 +38,13 @@ public class EditEnemyDialogue extends DialogueBox {
     public static final String BLANK = " ";
 
     private JTextField myName;
+    private JTextField myGroup;
 
     @SuppressWarnings("rawtypes")
-    private HashMap<JCheckBox, Class> attributeMap;
+    //private HashMap<JCheckBox, Class> attributeMap;
    // private List<Attribute> myOldAttributes;
     
-    private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
+   // private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
     private Enemy mySprite;
     private int myX;
     private int myY;
@@ -61,14 +65,13 @@ public class EditEnemyDialogue extends DialogueBox {
         //add(makeInputPanel(), BorderLayout.NORTH);
         
         mySprite = sprite;
-        myImages = new ArrayList<BufferedImage>();
        
         
-        attributeMap = new HashMap<JCheckBox, Class>();
+       // attributeMap = new HashMap<JCheckBox, Class>();
       //  myOldAttributes = new ArrayList<Attribute>();
        // myOldAttributes.addAll(mySprite.getAttributes());
         
-        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
+        //attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
         
@@ -117,9 +120,9 @@ public class EditEnemyDialogue extends DialogueBox {
         JLabel groupLabel = new JLabel("Group:");
         panel.add(groupLabel);
 
-      /*  myGroup = new JTextField(10);
+        myGroup = new JTextField(10);
 
-        panel.add(myGroup, BorderLayout.SOUTH);*/
+        panel.add(myGroup, BorderLayout.SOUTH);
 
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
@@ -292,6 +295,10 @@ public class EditEnemyDialogue extends DialogueBox {
             {
                 enemy.addAttribute(oldAttribute);
             }*/
+            if(!myGroup.getText().equals(""))
+            {
+                mySprite.setGroup(myGroup.getText());
+            }
             if(mySprite!=null)
                 myController.replaceSprite(mySprite, enemy);
            /* List<Object> parameters = new ArrayList<Object>();

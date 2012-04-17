@@ -1,7 +1,9 @@
-package editor;
+package editor.buttons;
 
 
 import com.golden.gamedev.gui.TButton;
+
+import editor.EditorView;
 
 
 public class OpenButton extends TButton

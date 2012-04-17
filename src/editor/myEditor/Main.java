@@ -1,4 +1,4 @@
-package editor;
+package editor.myEditor;
 
 import java.awt.Dimension;
 
@@ -10,7 +10,7 @@ public class Main
     public static void main (String[] args)
     {
         GameLoader loader = new GameLoader();
-        loader.setup(new EditorView(), new Dimension(1300, 750), false);
+        loader.setup(new CustomizedEditor(), new Dimension(1300, 750), false);
         loader.start();
     }
 }

@@ -1,4 +1,4 @@
-package editor;
+package editor.dialogues;
 
 import java.io.File;
 
@@ -19,8 +19,9 @@ import javax.swing.*;
 import bonusobjects.Carryable;
 
 
-import editor.ButtonDialogueBox.GoAction;
-import editor.DialogueBox.ImageAction;
+import editor.AttributeCreator;
+import editor.AttributeSelectionPanel;
+import editor.EditorController;
 import fighter.Fighter;
 
 import attributes.Attribute;
@@ -30,13 +31,6 @@ import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class FighterDialogueBox extends DialogueBox{
-
-
-
-
-
-    
-
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -73,7 +67,7 @@ public class FighterDialogueBox extends DialogueBox{
         panel2.add(title1);
         panel2.add(attributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
-        JLabel title2 = new JLabel("Carryable attributes for the Power-Up to Give:");
+        JLabel title2 = new JLabel("Carryable attributes for the Fighter to Have:");
         carryablePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
         JPanel panel3 = new JPanel();
         panel3.add(title2);

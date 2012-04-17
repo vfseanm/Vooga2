@@ -1,9 +1,11 @@
-package editor;
+package editor.buttons;
 
 
 import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.gui.TButton;
+
+import editor.EditorView;
 
 
 public class PlayerButton extends TButton

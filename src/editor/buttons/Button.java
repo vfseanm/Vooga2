@@ -1,4 +1,4 @@
-package editor;
+package editor.buttons;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import attributes.Attribute;
 
 import com.golden.gamedev.gui.TButton;
+
+import editor.EditorView;
+import editor.frameworks.Framework;
 
 
 

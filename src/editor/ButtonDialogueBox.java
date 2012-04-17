@@ -6,6 +6,9 @@ import java.io.IOException;
 
 import javax.swing.JComponent;
 
+import editor.dialogues.DialogueBox;
+import editor.frameworks.Framework;
+
 public abstract class ButtonDialogueBox extends DialogueBox {
 
     public ButtonDialogueBox(EditorController m) {
