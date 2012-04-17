@@ -26,7 +26,7 @@ public class PowerupFramework implements Framework {
     private ArrayList<String> imageNames;
     private List<AttributeCreator> myAttributes;
     private List<AttributeCreator> myAttributesToGive;
-    
+    private List<PowerUp> mySprites;
     private String myGroup;
 
     public PowerupFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, List<AttributeCreator> attributesToGive, String group) {
@@ -35,6 +35,7 @@ public class PowerupFramework implements Framework {
         imageNames = images;
         myAttributes = attributes;
         myAttributesToGive = attributesToGive;
+        mySprites = new ArrayList<PowerUp>();
     }
 
  /*   public void addBehavior(Attribute b) {
@@ -74,6 +75,7 @@ public class PowerupFramework implements Framework {
         }
         
         powerUp.setGroup(myGroup);
+        mySprites.add(powerUp);
         return powerUp;
     }
 
@@ -87,5 +89,14 @@ public class PowerupFramework implements Framework {
     public String getType() {
         return "Power-Up";
     }
+    public boolean containsSprite(AnimatedGameSprite s)
+    {
+        return mySprites.contains(s);
+    }
+    public void removeSprite(AnimatedGameSprite s)
+    {
+        mySprites.remove(s);
+    }
+
 
 }

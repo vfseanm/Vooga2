@@ -18,6 +18,7 @@ import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 
+import editor.frameworks.Framework;
 import fighter.Fighter;
 
 
@@ -31,7 +32,8 @@ public class Level implements Serializable{
     private static final long serialVersionUID = -7585264855447840739L;
     
     
-    private List<AnimatedGameSprite> sprites;
+    //private List<AnimatedGameSprite> sprites;
+    private List<Framework> frameworks;
     private String backgroundImagePath;
     private ImageBackground myBackground;
 
@@ -39,8 +41,8 @@ public class Level implements Serializable{
     
     public Level()
     {
-        
-        sprites = new ArrayList<AnimatedGameSprite>();
+        frameworks = new ArrayList<Framework>();
+       // sprites = new ArrayList<AnimatedGameSprite>();
     }
     
     public void replaceSprite(AnimatedGameSprite oldSprite, AnimatedGameSprite newSprite)

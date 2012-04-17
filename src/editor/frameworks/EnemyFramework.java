@@ -94,5 +94,14 @@ public class EnemyFramework implements Framework {
     {
         return myAttributes;
     }
+    
+    public boolean containsSprite(AnimatedGameSprite s)
+    {
+        return mySprites.contains(s);
+    }
+    public void removeSprite(AnimatedGameSprite s)
+    {
+        mySprites.remove(s);
+    }
 
 }
