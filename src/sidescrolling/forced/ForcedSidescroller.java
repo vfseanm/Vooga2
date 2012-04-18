@@ -1,10 +1,8 @@
 package sidescrolling.forced;
 
 import sidescrolling.DecoratedSidescroller;
-import sidescrolling.Sidescroller;
 
-import com.golden.gamedev.object.Sprite;
-import com.golden.gamedev.object.SpriteGroup;
+import sidescrolling.Sidescroller;
 
 public abstract class ForcedSidescroller extends DecoratedSidescroller {
     
@@ -13,13 +11,7 @@ public abstract class ForcedSidescroller extends DecoratedSidescroller {
     }
         
     public void update(long elapsedTime) {
-        for (SpriteGroup group: getSpriteGroups()) {
-            for (Sprite object: group.getSprites()) {
-                if (object != null) {
-                    move(object);
-                }
-            }      
-        }
+        updateGroups();
         move(getFighter());
         super.update(elapsedTime);
     }

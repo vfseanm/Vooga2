@@ -1,10 +1,10 @@
 package sidescrolling.border;
 
 import sidescrolling.DecoratedSidescroller;
+
 import sidescrolling.Sidescroller;
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.object.*;
 
 public abstract class BorderSidescroller extends DecoratedSidescroller {
 
@@ -16,13 +16,7 @@ public abstract class BorderSidescroller extends DecoratedSidescroller {
     }
         
     public void update(long elapsedTime) {
-        for (SpriteGroup group: getSpriteGroups()) {
-            for (Sprite object: group.getSprites()) {
-                if (object != null) {
-                    move(object);
-                }
-            }      
-        }
+        updateGroups();
         super.update(elapsedTime);
     }
     

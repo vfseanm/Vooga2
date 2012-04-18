@@ -23,6 +23,16 @@ public abstract class DecoratedSidescroller implements Sidescroller {
     public Fighter getFighter() {
         return wrappedScroller.getFighter();
     }
+    
+    public void updateGroups() {
+        for (SpriteGroup group: getSpriteGroups()) {
+            for (Sprite object: group.getSprites()) {
+                if (object != null) {
+                    move(object);
+                }
+            }      
+        }
+    }
 
     public abstract void move(Sprite sprite);
         

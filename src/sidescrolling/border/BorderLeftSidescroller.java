@@ -19,7 +19,6 @@ public class BorderLeftSidescroller extends BorderSidescroller {
     public BorderLeftSidescroller(Game game, Sidescroller scroller, double offsetFromLeft) {
         super(game, scroller);
         leftSpeed = -getFighter().getHorizMovement();
-
         boundary = offsetFromLeft;
     }
    
