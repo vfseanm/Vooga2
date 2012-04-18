@@ -19,7 +19,7 @@ public class BorderRightSidescroller extends BorderSidescroller {
     public BorderRightSidescroller(Game game, Sidescroller scroller, double offsetFromRight) {
         super(game, scroller);
         rightSpeed = getFighter().getHorizMovement();
-        boundary = myGame.getWidth() - offsetFromRight;
+        boundary = myGame.getWidth() - offsetFromRight - getFighter().getWidth();
     }
     
     public void move(Sprite sprite) {
