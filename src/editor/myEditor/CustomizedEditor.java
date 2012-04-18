@@ -44,7 +44,7 @@ public class CustomizedEditor extends EditorView{
         l4.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l4);
         
-        CustomButton custom = new CustomButton("Custom dialogue", 125, 350, 150, 40, this);
+        CustomButton custom = new CustomButton("Customized dialogue", 125, 350, 150, 40, this);
         infoBox.add(custom);
         
         ButtonMakingButton newpowerUpButton = new ButtonMakingButton("Create Power-Up", 125, 450, 150, 40, this, new PowerupDialogueBox(myController));
