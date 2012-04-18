@@ -2,6 +2,7 @@ package Tester;
 
 import java.awt.*;
 
+
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,10 +10,11 @@ import java.util.ArrayList;
 import platforms.platformtypes.*;
 
 import sidescrolling.*;
+import sidescrolling.border.BorderLeftSidescroller;
+import sidescrolling.border.BorderRightSidescroller;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
-import com.golden.gamedev.util.ImageUtil;
 
 import fighter.*;
 import fighter.movement.BasicMovement;
@@ -39,7 +41,7 @@ public class Test extends Game{
             fighterIm[i] = getImage(fightNames[i]);
             names.add(fightNames[i]);
         }
-        fighter = new Fighter(fighterIm, 300.0, 300.0, names);
+        fighter = new Fighter(fighterIm, 300.0, 300.0, names, bsInput);
         fighter.getAnimationTimer().setDelay(300);
         fighter.setAnimationFrame(0, 3);
         fighter.setAnimate(true);
@@ -62,14 +64,14 @@ public class Test extends Game{
         AbstractPlatform p4 = new SimplePlatform(im, 10, 15, imageName);
         group2.add(p4);
         sidescroller = new ConcreteSidescroller(fighter, group1, group2);
-        //sidescroller = new LeftSidescroller(this, sidescroller, 1.0, 100);
-        //sidescroller = new RightSidescroller(this, sidescroller, -1.5, 100);
-        //sidescroller = new UpSidescroller(this, sidescroller, 1.0, 0);
-        //sidescroller = new DownSidescroller(this, sidescroller, -1.0, 0);
+        sidescroller = new BorderLeftSidescroller(this, sidescroller, 100);
+        sidescroller = new BorderRightSidescroller(this, sidescroller, 100);
+        //sidescroller = new BorderUpSidescroller(this, sidescroller, 1.0, 0);
+        //sidescroller = new BorderDownSidescroller(this, sidescroller, -1.0, 0);
         //sidescroller = new ForcedDownSidescroller(sidescroller, -1.0);
         //sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
-        sidescroller = new SkipRightSidescroller(this, sidescroller);
-        sidescroller = new SkipLeftSidescroller(this, sidescroller);
+        //sidescroller = new SkipRightSidescroller(this, sidescroller);
+        //sidescroller = new SkipLeftSidescroller(this, sidescroller);
     }
     
     public void render (Graphics2D pen) {
