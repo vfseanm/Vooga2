@@ -21,7 +21,7 @@ public class BorderDownSidescroller extends BorderSidescroller {
             throw new RuntimeException("You must choose a negative number.");
         }
         downSpeed = speed;
-        boundary = myGame.getHeight() - offsetFromBottom;
+        boundary = myGame.getHeight() - offsetFromBottom - getFighter().getHeight();
     }
     
     public void move(Sprite sprite) {
