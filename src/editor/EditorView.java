@@ -213,16 +213,6 @@ public abstract class EditorView extends Game {
         }
         if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
-            for (AnimatedGameSprite s : myController.getAllSprites())
-            {
-                if (this.checkPosMouse(s, true))
-                {
-                    if(s.getClass().equals(Enemy.class))
-                    {
-                        editEnemy( (Enemy) s);
-                    }
-                }
-            }
             for (Button button: allButtons)
             {
                 if (button.isMouseOver())
@@ -270,17 +260,17 @@ public abstract class EditorView extends Game {
         }
     }
     
-    public void editEnemy(Enemy s)
-    {
-        EditEnemyDialogue myView = new EditEnemyDialogue(myController, s, this.getMouseX(), this.getMouseY());
-        frame = new JFrame("Enemy Behaviors");
-        Dimension d = new Dimension(500, 300);
-        frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
-    }
+//    public void editEnemy(Enemy s)
+//    {
+//        EditEnemyDialogue myView = new EditEnemyDialogue(myController, s, this.getMouseX(), this.getMouseY());
+//        frame = new JFrame("Enemy Behaviors");
+//        Dimension d = new Dimension(500, 300);
+//        frame.setPreferredSize(d);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.getContentPane().add(myView);
+//        frame.pack();
+//        frame.setVisible(true);
+//    }
     public void editEnemy(Button button)
     {
         EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, button.getFramework());
@@ -293,9 +283,56 @@ public abstract class EditorView extends Game {
         frame.setVisible(true);
     }
     
+    public void openDialogue(DialogueBox box)
+    {
+        frame = new JFrame("");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(box);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
     public void closeFrame()
     {
         frame.setVisible(false);
+    }
+    
+    public AnimatedGameSprite getClickedSprite()
+    {
+        AnimatedGameSprite selected = null;
+                
+        if (bsInput.isMouseDown(MouseEvent.BUTTON1))
+        {
+            for (AnimatedGameSprite s : myController.getAllSprites())
+            {
+                if (this.checkPosMouse(s, true))
+
+                {
+                    selected = s;
+                }
+            }
+        }
+        return selected;
+    }
+    
+    public AnimatedGameSprite getRightClickedSprite()
+    {
+        AnimatedGameSprite selected = null;
+        
+        if (bsInput.isMouseDown(MouseEvent.BUTTON3))
+        {
+            for (AnimatedGameSprite s : myController.getAllSprites())
+            {
+                if (this.checkPosMouse(s, true))
+
+                {
+                    selected = s;
+                }
+            }
+        }
+        return selected;
     }
     
     public void setFramework(Framework f)
@@ -307,7 +344,6 @@ public abstract class EditorView extends Game {
     {
         infoBox.add(newButton);
         allButtons.add(newButton);
-        
     }
 
     public void saveFile()

@@ -4,13 +4,19 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
+import sprite.AnimatedGameSprite;
+
 import com.golden.gamedev.gui.TLabel;
 import com.golden.gamedev.gui.toolkit.UIConstants;
 
 import editor.EditorView;
+import editor.buttons.Button;
 import editor.buttons.ButtonMakingButton;
 import editor.buttons.CustomButton;
+import editor.dialogues.EditEnemyButtonDialogueBox;
+import editor.dialogues.EditEnemyDialogue;
 import editor.dialogues.ExtendedDialogueBox;
+import enemies.Enemy;
 
 public class CustomizedEditor extends EditorView{
 
@@ -35,7 +41,7 @@ public class CustomizedEditor extends EditorView{
         l4.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l4);
         
-        CustomButton custom = new CustomButton("open dialogue", 125, 350, 150, 40, this);
+        CustomButton custom = new CustomButton("Custom dialogue", 125, 350, 150, 40, this);
         infoBox.add(custom);
         
         ButtonMakingButton newpowerUpButton = new ButtonMakingButton("Create Power-Up", 125, 450, 150, 40, this, "power up");
@@ -54,13 +60,26 @@ public class CustomizedEditor extends EditorView{
         updateEditor(time);
         if(currentDialogueBox!=null)
         {
-            //if (bsInput.isMousePressed(MouseEvent.BUTTON1))
-                //currentDialogueBox.setXY(this.getMouseX(), this.getMouseY());
             if (bsInput.isMouseDown(MouseEvent.BUTTON1))
                 currentDialogueBox.setXY(this.getMouseX(), this.getMouseY());
             
+            System.out.println("left click:" + getClickedSprite());
+            System.out.println("right click:" + getRightClickedSprite());
+        }
+        if(getRightClickedSprite()!=null)
+        {
+            if(getRightClickedSprite() instanceof Enemy)
+            {
+                Enemy e = (Enemy) getRightClickedSprite();
+                EditEnemyDialogue editEnemyBox = new EditEnemyDialogue(myController, e, this.getMouseX(), this.getMouseY());
+                this.openDialogue(editEnemyBox);
+            }
         }
         
+        
+        
     }
+    
+    
 
 }
