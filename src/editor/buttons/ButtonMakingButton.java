@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import com.golden.gamedev.gui.TButton;
 
 import editor.EditorView;
+import editor.dialogues.DialogueBox;
 
 
 public class ButtonMakingButton extends TButton
@@ -15,16 +16,17 @@ public class ButtonMakingButton extends TButton
     private String imageName;
     private String myType;
     private EditorView myView;
+    private DialogueBox myDialogueBox;
 
     public ButtonMakingButton(String name,
                     int x,
                     int y,
                     int width,
-                    int height, EditorView view, String type)
+                    int height, EditorView view, DialogueBox box)
     {
         super(name, x, y, width, height);
         myView = view;
-        myType = type;
+        myDialogueBox = box;
     }
 
 
@@ -44,7 +46,7 @@ public class ButtonMakingButton extends TButton
 
     public void doAction ()
     {
-        myView.openBox(myType);
+        myView.openDialogue(myDialogueBox);
            
     }
 

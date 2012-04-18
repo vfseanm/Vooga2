@@ -15,7 +15,10 @@ import editor.buttons.ButtonMakingButton;
 import editor.buttons.CustomButton;
 import editor.dialogues.EditEnemyButtonDialogueBox;
 import editor.dialogues.EditEnemyDialogue;
+import editor.dialogues.EnemyDialogueBox;
 import editor.dialogues.ExtendedDialogueBox;
+import editor.dialogues.PlatformDialogueBox;
+import editor.dialogues.PowerupDialogueBox;
 import enemies.Enemy;
 
 public class CustomizedEditor extends EditorView{
@@ -27,14 +30,14 @@ public class CustomizedEditor extends EditorView{
         l2.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l2);
         
-        ButtonMakingButton newEnemyButton = new ButtonMakingButton("Create Enemy", 125, 50, 150, 40, this, "enemy");
+        ButtonMakingButton newEnemyButton = new ButtonMakingButton("Create Enemy", 125, 50, 150, 40, this, new EnemyDialogueBox(myController));
         infoBox.add(newEnemyButton);
         
         TLabel l3 = new TLabel("Platforms", 0, 210, 400, 40);
         l3.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l3);
         
-        ButtonMakingButton newPlatformButton = new ButtonMakingButton("Create Platform", 125, 250, 150, 40, this, "platform");
+        ButtonMakingButton newPlatformButton = new ButtonMakingButton("Create Platform", 125, 250, 150, 40, this, new PlatformDialogueBox(myController));
         infoBox.add(newPlatformButton);
         
         TLabel l4 = new TLabel("Powerups", 0, 410, 400, 40);
@@ -44,7 +47,7 @@ public class CustomizedEditor extends EditorView{
         CustomButton custom = new CustomButton("Custom dialogue", 125, 350, 150, 40, this);
         infoBox.add(custom);
         
-        ButtonMakingButton newpowerUpButton = new ButtonMakingButton("Create Power-Up", 125, 450, 150, 40, this, "power up");
+        ButtonMakingButton newpowerUpButton = new ButtonMakingButton("Create Power-Up", 125, 450, 150, 40, this, new PowerupDialogueBox(myController));
         infoBox.add(newpowerUpButton);
         
         setFrameworkBottom();

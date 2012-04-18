@@ -25,7 +25,6 @@ import com.golden.gamedev.object.background.ImageBackground;
 import editor.buttons.Button;
 import editor.buttons.ButtonMakingButton;
 import editor.buttons.OpenButton;
-import editor.buttons.PlayerButton;
 import editor.buttons.SaveButton;
 import editor.dialogues.DialogueBox;
 import editor.dialogues.DynamicBox;
@@ -100,10 +99,10 @@ public abstract class EditorView extends Game {
 
         MenuBox.add(l);
         
-        PlayerButton playerButton = new PlayerButton("Configure Player", 25, 30, 150, 40, this);
+        ButtonMakingButton playerButton = new ButtonMakingButton("Configure Player", 25, 30, 150, 40, this, new FighterDialogueBox(myController));
         MenuBox.add(playerButton);
         
-        GameButton gameButton = new GameButton("Configure Game", 200, 30, 150, 40, this);
+        ButtonMakingButton gameButton = new ButtonMakingButton("Configure Game", 200, 30, 150, 40, this, new GameDialogue(myController));
         MenuBox.add(gameButton);
 
         framework.add(MenuBox);
@@ -248,57 +247,7 @@ public abstract class EditorView extends Game {
         return t;
     }
 
-    public void openFile()
-    {
-        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
-        int returnVal = fc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
-        {
-            File file = fc.getSelectedFile();
-            myController.loadFile(file);
-
-        }
-    }
-    
-//    public void editEnemy(Enemy s)
-//    {
-//        EditEnemyDialogue myView = new EditEnemyDialogue(myController, s, this.getMouseX(), this.getMouseY());
-//        frame = new JFrame("Enemy Behaviors");
-//        Dimension d = new Dimension(500, 300);
-//        frame.setPreferredSize(d);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.getContentPane().add(myView);
-//        frame.pack();
-//        frame.setVisible(true);
-//    }
-    public void editEnemy(Button button)
-    {
-        EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, button.getFramework());
-        frame = new JFrame("Edit Enemies");
-        Dimension d = new Dimension(500, 300);
-        frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
-    }
-    
-    public void openDialogue(DialogueBox box)
-    {
-        frame = new JFrame("");
-        Dimension d = new Dimension(500, 300);
-        frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(box);
-        frame.pack();
-        frame.setVisible(true);
-    }
-    
-    public void closeFrame()
-    {
-        frame.setVisible(false);
-    }
-    
+ 
     public AnimatedGameSprite getClickedSprite()
     {
         AnimatedGameSprite selected = null;
@@ -355,50 +304,23 @@ public abstract class EditorView extends Game {
         
     }
 
-    private JFrame frame;
-
-    public void openBox(String type)
+    public void openFile()
     {
-        JPanel myView = null;
-        if(type.contentEquals("enemy"))
-            myView = new EnemyDialogueBox(myController);
-        else if (type.contentEquals("platform"))
-            myView = new PlatformDialogueBox(myController);
-
-        else if (type.contentEquals("player"))
-            myView = new FighterDialogueBox(myController);
-        else if (type.contentEquals("power up"))
-            myView = new PowerupDialogueBox(myController);
-        else if (type.contentEquals("game"))
-            myView = new GameDialogue(myController);
-
-        
-        frame = new JFrame("Enemy Behaviors");
-        Dimension d = new Dimension(600, 300);
-        frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
+        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
+        int returnVal = fc.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+        {
+            File file = fc.getSelectedFile();
+            myController.loadFile(file);
+        }
     }
+
+    private JFrame frame;
     
-    public void openDialogue(String type)
+    public void openDialogue(String type) // this needs to be refactored out
     {
         DialogueBox myView = null;
-        if(type.contentEquals("enemy"))
-            myView = new EnemyDialogueBox(myController);
-        else if (type.contentEquals("platform"))
-            myView = new PlatformDialogueBox(myController);
-
-        else if (type.contentEquals("player"))
-            myView = new FighterDialogueBox(myController);
-        else if (type.contentEquals("power up"))
-            myView = new PowerupDialogueBox(myController);
-        else if (type.contentEquals("game"))
-            myView = new GameDialogue(myController);
-        else if (type.contentEquals("sean"))
-            myView = new ExtendedDialogueBox(myController);
-
+        
         frame = new JFrame("Enemy Behaviors");
         Dimension d = new Dimension(600, 300);
         frame.setPreferredSize(d);
@@ -410,12 +332,10 @@ public abstract class EditorView extends Game {
         if(myView instanceof DynamicBox)
             currentDialogueBox = (DynamicBox) myView;
     }
-    
-    
-    public void configureGame()
+    public void editEnemy(Button button)
     {
-        GameDialogue myView = new GameDialogue(myController);
-        frame = new JFrame("Enemy Behaviors");
+        EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, button.getFramework());
+        frame = new JFrame("Edit Enemies");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -423,6 +343,23 @@ public abstract class EditorView extends Game {
         frame.pack();
         frame.setVisible(true);
     }
+    
+    public void openDialogue(DialogueBox box)
+    {
+        frame = new JFrame("");
+        Dimension d = new Dimension(500, 300);
+        frame.setPreferredSize(d);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(box);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+    public void closeFrame()
+    {
+        frame.setVisible(false);
+    }
+
     public void setBackground(BufferedImage image)
     {
         myBackground = new ImageBackground(image);
