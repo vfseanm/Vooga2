@@ -24,7 +24,6 @@ public class SaveButton extends TButton
         myGame = s;
     }
 
-
     public void doAction ()
     {
         myGame.saveFile();

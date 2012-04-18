@@ -22,8 +22,8 @@ import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 
 
-import editor.buttons.Button;
-import editor.buttons.ButtonMakingButton;
+import editor.buttons.ObjectPlacingButton;
+import editor.buttons.DialogueMakingButton;
 import editor.buttons.OpenButton;
 import editor.buttons.SaveButton;
 import editor.dialogues.DialogueBox;
@@ -43,7 +43,7 @@ import sprite.AnimatedGameSprite;
 
 public abstract class EditorView extends Game {
     protected FrameWork framework;
-    protected ArrayList<Button> allButtons;
+    protected ArrayList<ObjectPlacingButton> allButtons;
     protected static final int MENU_START = 900;
     protected static final double HORIZONTAL_MOVE = 5;
     protected static final double VERTICAL_MOVE = 5;
@@ -65,7 +65,7 @@ public abstract class EditorView extends Game {
     {
         currentDialogueBox = null;
         myController = new EditorController(this);
-        allButtons = new ArrayList<Button>();
+        allButtons = new ArrayList<ObjectPlacingButton>();
         setFrameworkTop();
        
         infoBox = new TPanel(MENU_START, 70, 400, 800);
@@ -99,10 +99,10 @@ public abstract class EditorView extends Game {
 
         MenuBox.add(l);
         
-        ButtonMakingButton playerButton = new ButtonMakingButton("Configure Player", 25, 30, 150, 40, this, new FighterDialogueBox(myController));
+        DialogueMakingButton playerButton = new DialogueMakingButton("Configure Player", 25, 30, 150, 40, this, new FighterDialogueBox(myController));
         MenuBox.add(playerButton);
         
-        ButtonMakingButton gameButton = new ButtonMakingButton("Configure Game", 200, 30, 150, 40, this, new GameDialogue(myController));
+        DialogueMakingButton gameButton = new DialogueMakingButton("Configure Game", 200, 30, 150, 40, this, new GameDialogue(myController));
         MenuBox.add(gameButton);
 
         framework.add(MenuBox);
@@ -134,7 +134,7 @@ public abstract class EditorView extends Game {
         framework.update();
         if (click())
         {
-            for (Button button : allButtons)
+            for (ObjectPlacingButton button : allButtons)
             {
                 if (button.getClicked())
                 {
@@ -212,7 +212,7 @@ public abstract class EditorView extends Game {
         }
         if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
-            for (Button button: allButtons)
+            for (ObjectPlacingButton button: allButtons)
             {
                 if (button.isMouseOver())
                 {
@@ -289,7 +289,7 @@ public abstract class EditorView extends Game {
         myFramework = f;
     }
 
-    public void addButton(Button newButton)
+    public void addButton(ObjectPlacingButton newButton)
     {
         infoBox.add(newButton);
         allButtons.add(newButton);
@@ -332,7 +332,7 @@ public abstract class EditorView extends Game {
         if(myView instanceof DynamicBox)
             currentDialogueBox = (DynamicBox) myView;
     }
-    public void editEnemy(Button button)
+    public void editEnemy(ObjectPlacingButton button)
     {
         EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, button.getFramework());
         frame = new JFrame("Edit Enemies");
