@@ -1,5 +1,7 @@
 package attributes;
 
+import java.util.List;
+
 import editor.editorConstructor;
 
 // knows gravity too well?
@@ -56,5 +58,11 @@ public class Flying extends Attribute implements Updateable
     {
         return new Flying();
     }
+    
+    public static Flying getFromJson(List<Object> args) 
+    {
+        return new Flying();
+    }
+    
 
 }
