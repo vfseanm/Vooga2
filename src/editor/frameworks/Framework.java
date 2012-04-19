@@ -48,7 +48,6 @@ public class Framework implements Serializable {
         System.out.println(prototypeSprite.getImageNames());
         for(AnimatedGameSprite s: mySprites)
         {
-            System.out.println("got here");
             
             AnimatedGameSprite toAdd =(AnimatedGameSprite) prototypeSprite.clone();
             toAdd.setX(s.getX());
@@ -96,7 +95,7 @@ public class Framework implements Serializable {
     }
     public void addSprite(AnimatedGameSprite s)
     {
-        mySprites.add((Enemy) s);
+        mySprites.add( s);
     }
     
     public List<AnimatedGameSprite> getSprites()
