@@ -143,7 +143,7 @@ public class PlatformDialogueBox extends DialogueBox {
             }
 
         }
-        prototype.setGroup(myGroup.toString());
+        prototype.setGroup(myGroup.getText());
         
         
 /*        BufferedImage[] s = new BufferedImage[myImages.size()];

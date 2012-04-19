@@ -78,6 +78,20 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 //		return 0;
 	}
 	
+	   public void setX(double x) {
+	        if (myDecoratorComponent != null) {
+	            myDecoratorComponent.setX(x);
+	        }
+	        
+	    }
+	    
+	    public void setY(double y) {
+
+	            
+	            myDecoratorComponent.setY(y);
+
+	    }
+	
 	public BufferedImage[] getImages() {
 		if (myDecoratorComponent != null) {
 			return myDecoratorComponent.getImages();
