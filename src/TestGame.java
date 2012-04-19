@@ -42,13 +42,13 @@ public class TestGame extends Game {
 		b[0]=getImage("resources/Bowser.jpg");
 		ArrayList<String> a = new ArrayList<String>();
 		a.add("resources/Bowser.jpg");
-		bob = new Enemy(b, 500, 300, a);
+		bob = new Enemy(b, 380, 100, a);
 
 
 
 		bob.addAttribute(new Gravity(1));
 		bob.addAttribute(new OneDirectionMovement("left",1));        
-		bob.addAttribute(new JumpingMovement(1,100));
+		bob.addAttribute(new JumpingMovement(1,70));
 
 
 		counter=0;
@@ -57,20 +57,20 @@ public class TestGame extends Game {
 
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
-		//p = new BreakablePlatform (new SimplePlatform (b1, 290,550, a));
-		p = new BreakablePlatform (new SimplePlatform (b1, 320,390, a));
+		p = new UpDownPlatform (new SimplePlatform (b1, 380,190, a));
+		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
 
 
 
 		b1[0]= getImage("resources/platform1.png"); 
-		p1 = new SimplePlatform (b1, 100,300, a);
+		p1 = new SimplePlatform (b1, 100, 200, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
-		p2 = new SimplePlatform (b1, 200,350, a);
+		p2 = new SimplePlatform (b1, 10, 140, a);
 		
 		b1[0]= getImage("resources/platform1.png"); 
 		//p3 = new SimplePlatform (b1, 360,220, a);
-		p3 = new SimplePlatform (b1, 290,550, a);
+		p3 = new SimplePlatform (b1, 100, 30, a);
 
 
 		list = new ArrayList<AnimatedGameSprite>();
@@ -107,8 +107,6 @@ public class TestGame extends Game {
 	@Override
 	public void update (long arg0)
 	{
-		//        if(counter==1)
-		//            System.out.println(bob.getAttributes());
 		myBackground.update(arg0);
 		counter++;
 		bob.update(arg0);
@@ -116,19 +114,6 @@ public class TestGame extends Game {
 		p1.update(arg0);
 		p2.update(arg0);
 		gc.GameCollision(list);
-		//        if(counter==800){
-		//            bob.updateAttribute("JumpingMovement", 2,100);
-		//           System.out.println(bob.getAttributes());
-		//        }
-		//        if(counter==1000){
-		//            bob.restoreOriginalAttribute("JumpingMovement");
-		//        System.out.println(bob.getAttributes());
-		//        }
-
-
-
-
-
 	}
 
 }

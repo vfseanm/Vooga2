@@ -64,7 +64,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	
 	public double getX() {
 		if (myDecoratorComponent != null) {
-			return myDecoratorComponent.getX();
+			return (int) myDecoratorComponent.getX();
 		}
 		return 0;
 	}
@@ -72,7 +72,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	public double getY() {
 //		if (myDecoratorComponent != null) {
 			
-			return myDecoratorComponent.getY();
+			return (int) myDecoratorComponent.getY();
 //		}
 //		
 //		return 0;

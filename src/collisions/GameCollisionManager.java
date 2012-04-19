@@ -25,11 +25,13 @@ public class GameCollisionManager{
 				if (sprite1==sprite2)
 					continue;
 				else{
+					if (sprite1.getClass().equals(Enemy.class)){
+						System.out.println(sprite1.getY() + " " + sprite2.getY());
+					}
 					if ( CollisionChecker(sprite1, sprite2) ){
+						
 						int side = SideChecker (sprite1, sprite2);
-						
 						String combineName = stringConcatination (sprite1.getGroup(), sprite2.getGroup());
-						
 						ActionPerformer act = actionMap.get(combineName);
 						
 						try{
@@ -68,19 +70,15 @@ public class GameCollisionManager{
 
 	private int SideChecker(Sprite sprite1, Sprite sprite2) {
 		if (leftRightChecker(sprite1, sprite2)) {
-			
 			return CollisionGroup.LEFT_RIGHT_COLLISION;
 		}
 		else if (leftRightChecker(sprite2, sprite1)){
-			
 			return CollisionGroup.RIGHT_LEFT_COLLISION;
 		}
 		else if (topBottomChecker(sprite1, sprite2)){
-			
 			return CollisionGroup.TOP_BOTTOM_COLLISION;
 		}
 		else if (topBottomChecker(sprite2, sprite1)){
-			System.out.println(sprite2.getClass()+""+sprite1.getClass());
 			return CollisionGroup.BOTTOM_TOP_COLLISION;
 		}
 		return 0;
@@ -95,9 +93,9 @@ public class GameCollisionManager{
 		return false;
 	}
 	private boolean topBottomChecker (Sprite sprite1, Sprite sprite2){
-		if  ((sprite1.getY() + sprite1.getHeight() == sprite2.getY()) &&
+		if  ( ((sprite1.getY() + sprite1.getHeight() >= sprite2.getY()) && (sprite1.getY() + sprite1.getHeight() <= sprite2.getY()+sprite2.getHeight()) ) &&
 				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth())) &&
-				((sprite1.getX()+sprite1.getWidth()) <= (sprite2.getX()+sprite2.getWidth()+sprite1.getWidth())) ) {
+				((sprite1.getX()+sprite1.getWidth()) <= (sprite2.getX()+sprite2.getWidth()+sprite1.getWidth())) ){
 			return true;
 		}
 		return false; 
