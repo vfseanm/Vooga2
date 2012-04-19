@@ -8,6 +8,7 @@ import sprite.AnimatedGameSprite;
 
 import editor.EditorController;
 
+@SuppressWarnings("serial")
 public abstract class DynamicBox extends DialogueBox{
 
     protected int currentX;

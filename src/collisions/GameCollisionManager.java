@@ -2,17 +2,14 @@ package collisions;
 
 import java.lang.reflect.Method;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import platforms.platformtypes.BreakablePlatform;
-import platforms.platformtypes.SimplePlatform;
 
 import sprite.*;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
-
-import enemies.Enemy;
 
 
 

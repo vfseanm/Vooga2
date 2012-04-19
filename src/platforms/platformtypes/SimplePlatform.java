@@ -1,12 +1,7 @@
 package platforms.platformtypes;
-import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import enemies.Enemy;
-
-import attributes.Attribute;
-import bonusobjects.BonusObject;
 
 public class SimplePlatform extends AbstractPlatform {
 	

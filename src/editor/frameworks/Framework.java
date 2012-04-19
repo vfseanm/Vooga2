@@ -2,9 +2,14 @@ package editor.frameworks;
 
 import java.awt.Color;
 
+
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,14 +17,11 @@ import java.util.List;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import enemies.Enemy;
 
 
 import sprite.AnimatedGameSprite;
 
+@SuppressWarnings("serial")
 public class Framework implements Serializable {
     protected List<AnimatedGameSprite> mySprites;
     //transient protected BufferedImage[] myImages;
@@ -148,9 +150,9 @@ public class Framework implements Serializable {
         List<String> spriteList = new ArrayList<String>();
         for(AnimatedGameSprite s: mySprites)
         {
-            List<String> position = new ArrayList<String>();
-            position.add(s.getX()+"");
-            position.add(s.getY()+"");
+            List<Double> position = new ArrayList<Double>();
+            position.add(s.getX());
+            position.add(s.getY());
             spriteList.add(gson.toJson(position));
         }
         list.add(gson.toJson(spriteList));
@@ -158,6 +160,61 @@ public class Framework implements Serializable {
         return gson.toJson(list);
         
         
+    }
+    
+    public static Framework fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        Type collectionType2 = new TypeToken<List<Double>>(){}.getType();
+        List<String> list = gson.fromJson(json, collectionType);
+        try
+        {
+            Class prototypeClass = Class.forName(list.get(0).substring(6));
+            String prototypeJson = list.get(1);
+            List<String> instanceList = gson.fromJson(list.get(2), collectionType);
+            Class typeList[] = new Class[1];
+            typeList[0] = String.class;
+            Method method = prototypeClass.getMethod("fromJson", typeList);
+            AnimatedGameSprite prototype = (AnimatedGameSprite) method.invoke(prototypeJson);
+            Framework framework = new Framework("blah", prototype);
+            for(String s: instanceList)
+            {
+                List<Double> coordinates = gson.fromJson(s, collectionType2);
+                framework.getSprite( (int) ((double)coordinates.get(0)), (int)((double)coordinates.get(1)));
+            }
+            return framework;
+            
+        } catch (ClassNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SecurityException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchMethodException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        
+        
+        
+        return null;
     }*/
    
     

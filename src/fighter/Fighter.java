@@ -73,7 +73,7 @@ public class Fighter extends GameCharacter {
 	// method for getting speed to enable accurate side scrolling 
 	public double getHorizMovement() {
 			for (Attribute attribute : myAttributes) {
-				if (attribute.getClass().getName().equalsIgnoreCase("BasicMovement")) {
+				if (attribute.getClass().getName().equalsIgnoreCase("fighter.movement.BasicMovement")) {
 					BasicMovement myMovement = (BasicMovement) attribute;
 					return myMovement.getHorizMovement();
 				}

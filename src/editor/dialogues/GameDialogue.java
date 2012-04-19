@@ -2,12 +2,8 @@ package editor.dialogues;
 
 import java.io.File;
 
+
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
@@ -18,10 +14,6 @@ import javax.swing.*;
 
 import editor.EditorController;
 
-import attributes.Attribute;
-
-
-import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class GameDialogue extends DialogueBox {
@@ -40,7 +32,6 @@ public class GameDialogue extends DialogueBox {
     }
 
 
-    @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {

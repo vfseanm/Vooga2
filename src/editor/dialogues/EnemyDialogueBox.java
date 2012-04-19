@@ -2,30 +2,23 @@ package editor.dialogues;
 
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.*;
 
-import editor.AttributeCreator;
 import editor.AttributeSelectionPanel;
 import editor.EditorController;
-import editor.dialogues.DialogueBox.ImageAction;
-import editor.frameworks.EnemyFramework;
 import editor.frameworks.Framework;
 import enemies.Enemy;
 
 
 import attributes.Attribute;
 
-
-import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class EnemyDialogueBox extends DialogueBox {
@@ -38,7 +31,6 @@ public class EnemyDialogueBox extends DialogueBox {
     private JTextField myGroup;
 
 
-    @SuppressWarnings("rawtypes")
     public EnemyDialogueBox(EditorController m)
     {
         super(m);
@@ -47,7 +39,6 @@ public class EnemyDialogueBox extends DialogueBox {
     }
 
 
-    @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {

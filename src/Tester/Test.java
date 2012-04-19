@@ -3,6 +3,7 @@ package Tester;
 import java.awt.*;
 
 
+
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
 import fighter.*;
-import fighter.movement.BasicMovement;
+import fighter.movement.*;
 
 
 public class Test extends Game{
@@ -41,12 +42,13 @@ public class Test extends Game{
             fighterIm[i] = getImage(fightNames[i]);
             names.add(fightNames[i]);
         }
-        fighter = new Fighter(fighterIm, 300.0, 300.0, names, bsInput);
+        fighter = new Fighter(300.0, 300.0, names, bsInput);
         fighter.getAnimationTimer().setDelay(300);
         fighter.setAnimationFrame(0, 3);
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
         fighter.addAttribute(new BasicMovement(bsInput, 1.5));
+        fighter.addAttribute(new Jump(bsInput, 1, 300));
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
         
@@ -55,13 +57,13 @@ public class Test extends Game{
         BufferedImage[] im = {getImage("Resources/block3.png")};
         ArrayList<String> imageName = new ArrayList<String>();
         imageName.add("Resources/block3.png");
-        AbstractPlatform p1 = new SimplePlatform(im, 400, 400, imageName);
-        AbstractPlatform p2 = new SimplePlatform(im, 200, 250, imageName);
-        AbstractPlatform p3 = new SimplePlatform(im, 500, 500, imageName);
+        AbstractPlatform p1 = new SimplePlatform(400, 400, imageName);
+        AbstractPlatform p2 = new SimplePlatform(200, 250, imageName);
+        AbstractPlatform p3 = new SimplePlatform(500, 500, imageName);
         group1.add(p1);
         group1.add(p2);
         group1.add(p3);
-        AbstractPlatform p4 = new SimplePlatform(im, 10, 15, imageName);
+        AbstractPlatform p4 = new SimplePlatform(10, 15, imageName);
         group2.add(p4);
         sidescroller = new ConcreteSidescroller(fighter, group1, group2);
         sidescroller = new BorderLeftSidescroller(this, sidescroller, 100);
