@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 
 import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.*;
+
+import editor.editorConstructor;
 import sprite.*;
 
 @SuppressWarnings("serial")
@@ -19,7 +21,9 @@ public class ShootAtTarget extends Attribute implements Updateable {
 	public boolean 					myCanFire;
 	public Timer 					myRefireRate;
 
+	@editorConstructor(parameterNames = { "user input", "target", "refire rate" })
 	public ShootAtTarget(BaseInput userInput, AnimatedGameSprite target, int refireRate) {
+		super(userInput, target, refireRate);
 		myUserInput = userInput;
 		myTarget = target;
 		myCanFire = true;
