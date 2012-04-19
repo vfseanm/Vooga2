@@ -7,6 +7,7 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 
+@SuppressWarnings("serial")
 public class PathFollowingMovement extends Attribute
     implements Updateable, Cloneable
 {
