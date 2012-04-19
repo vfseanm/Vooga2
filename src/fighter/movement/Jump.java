@@ -20,24 +20,36 @@ public class Jump extends Attribute implements Updateable
     private int 			time;
 
 
-    @editorConstructor(parameterNames = { "user input", "distance", "time" })
+    @editorConstructor(parameterNames = { "user input", "jump height", "time" })
     public Jump (BaseInput userInput, int jumpHeight, int delay)
     {
         super(userInput, jumpHeight, delay);
         myUserInput = userInput;
-        myJumpHeight = jumpHeight;
+        myJumpHeight = Math.abs(jumpHeight);
         myTime = delay;
         isJumping = false;
         time = 0;     
     }
 
-    public void modifyJumpingMovement (int distance, int time)
+    
+    public void modifyJump (int jumpHeight, int time)
     {
-        myJumpHeight += distance;
+        myJumpHeight += jumpHeight;
         myTime += time;
     }
+    
+    
+    public void setActivity(boolean active){
+    	if (!active) {
+    		myGameCharacter.allowAttribute("Gravity", true);
+    	}
+    	else {
+    		myGameCharacter.allowAttribute("Gravity", false);
+    	}
+    	isActive=active;
+    }
 
-
+    
     public void update (long elapsedTime)
     {
         if (isActive)
@@ -45,17 +57,17 @@ public class Jump extends Attribute implements Updateable
         	if (myUserInput.isKeyDown(KeyEvent.VK_UP)) 
     		{
     		    isJumping = true;
+    		    myGameCharacter.allowAttribute("Gravity", false);
     		}
         	
             if (time <= myTime)
             {
                 myGameCharacter.moveY(-myJumpHeight);
-                myGameCharacter.allowAttribute("Gravity", false);
             }
             else
-            {            
-                myGameCharacter.allowAttribute("Gravity",true);
-                isJumping = false;
+            {    
+            	isJumping = false;
+                myGameCharacter.allowAttribute("Gravity",true);               
             }
         }
         
@@ -63,6 +75,16 @@ public class Jump extends Attribute implements Updateable
     }
 
 
+	public void invert() {
+		myJumpHeight = -myJumpHeight;
+	}
+
+	@Override
+	public Object clone() {
+		return new Jump(myUserInput, myJumpHeight, myTime);
+	}
+	
+	
     @Override
     public String getName ()
     {
@@ -75,10 +97,5 @@ public class Jump extends Attribute implements Updateable
         return "Attribute = Jump. My jump height = " + myJumpHeight +
                " ; my jump time = " + myTime;
     }
-
-	public void invert() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
