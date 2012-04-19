@@ -103,8 +103,9 @@ public class PlatformDialogueBox extends DialogueBox {
 
     public Framework getFramework()
     {
-        
+/*        
        List<Class> platformTypes = new ArrayList<Class>();
+       
         for (JCheckBox box : classMap.keySet())
         {
             if (box.isSelected())
@@ -112,15 +113,47 @@ public class PlatformDialogueBox extends DialogueBox {
                 platformTypes.add(classMap.get(box));
             }
                 
+        }*/
+        
+        AbstractPlatform prototype = new SimplePlatform(0,0,myImagePaths);
+        Object[] list = new Object[1];
+        list[0] = prototype;
+        for(JCheckBox box: classMap.keySet())
+        {
+            if(box.isSelected())
+            {
+                Class wrappingClass = classMap.get(box);
+                Constructor constructor=  wrappingClass.getConstructors()[0];
+                try {
+                    prototype = (DecoratedPlatform) constructor.newInstance(list);
+                } catch (IllegalArgumentException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                list[0] = prototype;
+            }
+
         }
+        prototype.setGroup(myGroup.toString());
+        
+        
 /*        BufferedImage[] s = new BufferedImage[myImages.size()];
         for (int x = 0; x<s.length; x++)
         {
             s[x] = myImages.get(x);
         }*/
         
-        PlatformFramework framework = new PlatformFramework(myImagePaths, platformTypes, myGroup.getText());
-        return framework;
+        //PlatformFramework framework = new PlatformFramework(myImagePaths, platformTypes, myGroup.getText());
+        return new Framework("Platform", prototype);
         
     }
     
