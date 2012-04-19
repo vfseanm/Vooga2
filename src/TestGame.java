@@ -29,8 +29,8 @@ public class TestGame extends Game {
 	private Enemy bob;
 	private Background myBackground;
 	private int counter;
-	private AbstractPlatform p;
-	private SimplePlatform p1, p2, p3;
+	private AbstractPlatform p, p3;
+	private SimplePlatform p1, p2;
 	private PlayField myPF;
 	private GameCollisionManager gc;
 	private ArrayList<AnimatedGameSprite> list;
@@ -42,7 +42,7 @@ public class TestGame extends Game {
 		b[0]=getImage("resources/Bowser.jpg");
 		ArrayList<String> a = new ArrayList<String>();
 		a.add("resources/Bowser.jpg");
-		bob = new Enemy(b, 380, 100, a);
+		bob = new Enemy(b, 380, 160, a);
 
 
 
@@ -57,20 +57,20 @@ public class TestGame extends Game {
 
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
-		p = new UpDownPlatform (new SimplePlatform (b1, 380,190, a));
+		p = new RotatingPlatform (new SimplePlatform (b1, 290,170, a));
 		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
 
 
 
 		b1[0]= getImage("resources/platform1.png"); 
-		p1 = new SimplePlatform (b1, 100, 200, a);
+		p1 = new SimplePlatform (b1, 160, 200, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
-		p2 = new SimplePlatform (b1, 10, 140, a);
+		p2 = new SimplePlatform (b1, 5, 130, a);
 		
 		b1[0]= getImage("resources/platform1.png"); 
 		//p3 = new SimplePlatform (b1, 360,220, a);
-		p3 = new SimplePlatform (b1, 100, 30, a);
+		p3 = new BreakablePlatform (new SimplePlatform (b1, 120, 30, a));
 
 
 		list = new ArrayList<AnimatedGameSprite>();

@@ -25,9 +25,6 @@ public class GameCollisionManager{
 				if (sprite1==sprite2)
 					continue;
 				else{
-					if (sprite1.getClass().equals(Enemy.class)){
-						System.out.println(sprite1.getY() + " " + sprite2.getY());
-					}
 					if ( CollisionChecker(sprite1, sprite2) ){
 						
 						int side = SideChecker (sprite1, sprite2);
