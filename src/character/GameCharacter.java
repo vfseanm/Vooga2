@@ -16,9 +16,9 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 
 	protected List<Attribute> myAttributes;
 
-	public GameCharacter(BufferedImage[] im, double x, double y,
+	public GameCharacter(double x, double y,
 			List<String> images) {
-		super(im, x, y, images);
+		super(x, y, images);
 		myAttributes = new ArrayList<Attribute>();
 	}
 

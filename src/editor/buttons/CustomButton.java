@@ -11,7 +11,7 @@ import editor.EditorView;
 public class CustomButton extends TButton
 {
     private boolean pressed;
-    private BufferedImage myImage;
+    //private BufferedImage myImage;
     private String imageName;
     private EditorView myView;
 
@@ -33,10 +33,10 @@ public class CustomButton extends TButton
         return t;
     }
 
-    public BufferedImage getImage ()
+/*    public BufferedImage getImage ()
     {
         return myImage;
-    }
+    }*/
 
     public void doAction()
     {

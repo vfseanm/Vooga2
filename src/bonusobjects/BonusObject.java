@@ -14,8 +14,8 @@ public class BonusObject extends AnimatedGameSprite {
     protected List<Attribute>		myAttributes;
     protected List<Attribute>		myAttributesToOffer;
 
-    public BonusObject(BufferedImage[] im, double x, double y, List<String> image) {
-        super(im, x, y, image);
+    public BonusObject(double x, double y, List<String> image) {
+        super(x, y, image);
         myAttributes = new ArrayList<Attribute>();
         myAttributesToOffer = new ArrayList<Attribute>();
     }

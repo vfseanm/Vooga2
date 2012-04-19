@@ -12,8 +12,8 @@ public class PowerUp extends BonusObject {
 	
 	protected GameCharacter			myGameCharacter;
 	
-	public PowerUp(BufferedImage[] im, double x, double y, List<String> image) {
-		super(im, x, y, image);
+	public PowerUp(double x, double y, List<String> image) {
+		super(x, y, image);
 	}
 
 	public List<Attribute> getAttributesToOffer() {

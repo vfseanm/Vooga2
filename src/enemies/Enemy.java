@@ -21,9 +21,9 @@ public class Enemy extends GameCharacter
     private EnemyState myState;
 
 
-    public Enemy (BufferedImage[] im, double x, double y, List<String> image)
+    public Enemy (double x, double y, List<String> image)
     {
-        super(im, x, y, image);
+        super(x, y, image);
         myAttributes = new ArrayList<Attribute>();
         setGroup("ENEMY");
     }

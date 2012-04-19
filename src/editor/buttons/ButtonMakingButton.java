@@ -12,7 +12,7 @@ import editor.dialogues.DialogueBox;
 public class ButtonMakingButton extends TButton
 {
     private boolean pressed;
-    private BufferedImage myImage;
+    //private BufferedImage myImage;
     private String imageName;
     private String myType;
     private EditorView myView;
@@ -38,10 +38,10 @@ public class ButtonMakingButton extends TButton
     }
 
 
-    public BufferedImage getImage ()
+/*    public BufferedImage getImage ()
     {
         return myImage;
-    }
+    }*/
 
 
     public void doAction ()

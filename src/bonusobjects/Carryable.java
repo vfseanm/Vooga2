@@ -9,9 +9,9 @@ public class Carryable extends BonusObject {
 	
 	protected Fighter		myFighter;
 	
-	public Carryable(BufferedImage[] im, double x, double y,
+	public Carryable(double x, double y,
 			List<String> image) {
-		super(im, x, y, image);
+		super(x, y, image);
 	}
 	
 	public void setFighter(Fighter fighter) {

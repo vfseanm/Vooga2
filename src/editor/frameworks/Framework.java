@@ -24,7 +24,7 @@ public abstract class Framework implements Serializable {
     public abstract AnimatedGameSprite getSprite(int x, int y);
     
     //public ArrayList<AnimatedGameSprite> getSprites();
-    public abstract void updateSprites(List<Object> parameters);
+    public abstract void updateSprites(AnimatedGameSprite sprite);
     
     public abstract String getType();
 

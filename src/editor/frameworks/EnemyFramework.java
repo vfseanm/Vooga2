@@ -20,7 +20,7 @@ public class EnemyFramework extends Framework {
     protected ArrayList<Attribute> attributes;
 
     private List<AttributeCreator> myAttributes;
-    private List<Attribute> allAttributes;
+    //private List<Attribute> allAttributes;
     private String myGroup;
 
     public EnemyFramework(BufferedImage[] im, ArrayList<String> images, List<AttributeCreator> attributes, String group) {
@@ -29,7 +29,7 @@ public class EnemyFramework extends Framework {
         imageNames = images;
         myAttributes = attributes;
         mySprites = new ArrayList<AnimatedGameSprite>();
-        allAttributes = new ArrayList<Attribute>();
+        //allAttributes = new ArrayList<Attribute>();
     }
 
 
@@ -37,11 +37,7 @@ public class EnemyFramework extends Framework {
     {
         return myImages;
     }
-    public List<Attribute> getAttributes()
-    {
-        return allAttributes;
-    }
- 
+
     public AnimatedGameSprite getSprite(int x, int y) {
         Enemy e = new Enemy(myImages, x,
                 y - myImages[0].getHeight(),
@@ -53,7 +49,7 @@ public class EnemyFramework extends Framework {
             attribute = a.createAttribute();
             
            
-            allAttributes.add(attribute);
+            //allAttributes.add(attribute);
             e.addAttribute(attribute);
             e.setGroup(myGroup);
         }  
@@ -61,19 +57,20 @@ public class EnemyFramework extends Framework {
         return e;
     }
 
-    public void updateSprites(List<Object> parameters) {
-        myImages = (BufferedImage[]) parameters.get(0);
-        imageNames = (ArrayList<String>) parameters.get(1);
-        myAttributes = (List<AttributeCreator>) parameters.get(2);
+    public void updateSprites(AnimatedGameSprite enemy) {
+        Enemy e = (Enemy) enemy;
+        myImages = e.getImages(); //(BufferedImage[]) parameters.get(0);
+        imageNames = e.getImageNames(); //(ArrayList<String>) parameters.get(1);
+        myAttributes = e.getAttributes(); //(List<AttributeCreator>) parameters.get(2);
         for(AnimatedGameSprite e: mySprites)
         {
             e.setImages(myImages);
             e.setImageNames(imageNames);
+            ((Enemy)e).clearAttributes();
             for(AttributeCreator a: myAttributes)
             {
                
                 Attribute attribute = a.createAttribute();
-                ((Enemy)e).clearAttributes();
                 ((Enemy)e).addAttribute(attribute);
                 
             }  
