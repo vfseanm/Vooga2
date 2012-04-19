@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-import editor.buttons.Button;
+import editor.buttons.ObjectPlacingButton;
 import editor.frameworks.Framework;
 import fighter.Fighter;
 
@@ -169,7 +169,7 @@ public class EditorController {
             } else
             {
                 // System.out.println("adding enemybutton");
-                Button newButton = new Button(name,
+                ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         enemyButtonPlacement[enemyButtonCounter],
                         enemyButtonPlacement[enemyButtonCounter + 1], 50, 40,
                         framework, myView);
@@ -182,7 +182,7 @@ public class EditorController {
                 // make a + button that lets you look at your other ones
             } else
             {
-                Button newButton = new Button(name,
+                ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         platformButtonPlacement[platformButtonCounter],
                         platformButtonPlacement[platformButtonCounter + 1], 50,
                         40, framework, myView);
@@ -195,7 +195,7 @@ public class EditorController {
                 // make a + button that lets you look at your other ones
             } else
             {
-                Button newButton = new Button(name,
+                ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         powerUpButtonPlacement[powerUpButtonCounter],
                         powerUpButtonPlacement[powerUpButtonCounter + 1], 50,
                         40, framework, myView);

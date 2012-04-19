@@ -48,5 +48,10 @@ public class Gravity extends Attribute implements Updateable
     {
         return "Attribute Gravity my distance is " + myDistance;
     }
+    
+    public Object clone()
+    {
+        return new Gravity(myDistance);
+    }
 
 }

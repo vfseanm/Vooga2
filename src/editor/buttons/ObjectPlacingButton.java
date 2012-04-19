@@ -1,27 +1,29 @@
 package editor.buttons;
 
 
-import java.awt.image.BufferedImage;
-
 import com.golden.gamedev.gui.TButton;
 
 import editor.EditorView;
+import editor.frameworks.Framework;
 
 
-public class CustomButton extends TButton
+
+public class ObjectPlacingButton extends TButton
 {
     private boolean pressed;
-    //private BufferedImage myImage;
-    private String imageName;
     private EditorView myView;
+    private Framework myFramework;
 
-    public CustomButton(String name,
+
+    public ObjectPlacingButton (String name,
                     int x,
                     int y,
                     int width,
-                    int height, EditorView view)
+                    int height,
+                    Framework f, EditorView view)
     {
         super(name, x, y, width, height);
+        myFramework = f;
         myView = view;
     }
 
@@ -33,19 +35,15 @@ public class CustomButton extends TButton
         return t;
     }
 
-/*    public BufferedImage getImage ()
+    public void doAction ()
     {
-        return myImage;
-    }*/
-
-    public void doAction()
-    {
-        myView.openDialogue("sean");
+        pressed = true;
+        myView.setFramework(myFramework);
     }
-
-    public String getImageName ()
+    
+    public Framework getFramework()
     {
-        return imageName;
+        return myFramework;
     }
 
 }

@@ -1,7 +1,11 @@
 package platforms.platformtypes;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
+import enemies.Enemy;
+
+import attributes.Attribute;
 import bonusobjects.BonusObject;
 
 public class SimplePlatform extends AbstractPlatform {
@@ -9,8 +13,8 @@ public class SimplePlatform extends AbstractPlatform {
 	private static final long serialVersionUID = 7514750773895804951L;
 	private BonusObject myBonusObject;
 
-	public SimplePlatform(BufferedImage[] im, double x, double y, List<String> images) {
-	    super(im, x, y, images);
+	public SimplePlatform(double x, double y, List<String> images) {
+	    super(x, y, images);
 	}
 
 	@Override
@@ -40,6 +44,16 @@ public class SimplePlatform extends AbstractPlatform {
 		return;
 	}
 
+	 public Object clone()
+	    {
+	        List<String> imageNames = new ArrayList<String>();
+	        imageNames.addAll(this.getImageNames());
+	        SimplePlatform e = new SimplePlatform(this.getX(), this.getY(),imageNames);
+
+	        return e;
+	        
+	        
+	    }
 
 
 

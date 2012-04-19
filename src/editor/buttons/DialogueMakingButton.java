@@ -9,16 +9,12 @@ import editor.EditorView;
 import editor.dialogues.DialogueBox;
 
 
-public class ButtonMakingButton extends TButton
+public class DialogueMakingButton extends TButton
 {
-    private boolean pressed;
-    //private BufferedImage myImage;
-    private String imageName;
-    private String myType;
     private EditorView myView;
     private DialogueBox myDialogueBox;
 
-    public ButtonMakingButton(String name,
+    public DialogueMakingButton(String name,
                     int x,
                     int y,
                     int width,
@@ -29,36 +25,9 @@ public class ButtonMakingButton extends TButton
         myDialogueBox = box;
     }
 
-
-    public boolean getClicked ()
-    {
-        boolean t = pressed;
-        pressed = false;
-        return t;
-    }
-
-
-/*    public BufferedImage getImage ()
-    {
-        return myImage;
-    }*/
-
-
     public void doAction ()
     {
         myView.openDialogue(myDialogueBox);
            
     }
-
-    public String getType ()
-    {
-        return myType;
-    }
-
-
-    public String getImageName ()
-    {
-        return imageName;
-    }
-
 }

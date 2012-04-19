@@ -64,17 +64,33 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	
 	public double getX() {
 		if (myDecoratorComponent != null) {
-			return myDecoratorComponent.getX();
+			return (int) myDecoratorComponent.getX();
 		}
 		return 0;
 	}
 	
 	public double getY() {
-		if (myDecoratorComponent != null) {
-			return myDecoratorComponent.getY();
-		}
-		return 0;
+//		if (myDecoratorComponent != null) {
+			
+			return (int) myDecoratorComponent.getY();
+//		}
+//		
+//		return 0;
 	}
+	
+	   public void setX(double x) {
+	        if (myDecoratorComponent != null) {
+	            myDecoratorComponent.setX(x);
+	        }
+	        
+	    }
+	    
+	    public void setY(double y) {
+
+	            
+	            myDecoratorComponent.setY(y);
+
+	    }
 	
 	public BufferedImage[] getImages() {
 		if (myDecoratorComponent != null) {
@@ -123,4 +139,18 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 			myDecoratorComponent.setActive(arg);
 		}
 	}
+	public int getHeight(){
+		if(myDecoratorComponent!=null){
+			return myDecoratorComponent.getHeight();
+		}
+		return 0;
+	}
+	
+	public int getWidth(){
+		if(myDecoratorComponent!=null){
+			return myDecoratorComponent.getWidth();
+		}
+		return 0;
+	}
+	
 }

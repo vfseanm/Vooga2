@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
@@ -23,13 +24,13 @@ public abstract class DialogueBox extends JPanel {
 
 
     protected EditorController myController;
-    protected ArrayList<BufferedImage> myImages;
-    protected ArrayList<String> myImagePaths;
+    //protected ArrayList<BufferedImage> myImages;
+    protected List<String> myImagePaths;
     
     
     public DialogueBox(EditorController m)
     {
-        myImages = new ArrayList<BufferedImage>();
+        //myImages = new ArrayList<BufferedImage>();
         myImagePaths = new ArrayList<String>();
         myController = m;        
     }
@@ -38,7 +39,7 @@ public abstract class DialogueBox extends JPanel {
     
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
 
-    public BufferedImage getImage()
+    public void getImage()
     {
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
         File file = null;
@@ -54,7 +55,7 @@ public abstract class DialogueBox extends JPanel {
         {
             e1.printStackTrace();
         }
-        BufferedImage img = null;
+        /*BufferedImage img = null;
         try
         {
             img = ImageIO.read(new File(myImagePaths.get(myImagePaths.size()-1)));
@@ -62,7 +63,7 @@ public abstract class DialogueBox extends JPanel {
         {
             System.out.println("There has been a problem importing your image");
         }
-        return img;
+        return img;*/
 
     }
 
@@ -85,8 +86,8 @@ public abstract class DialogueBox extends JPanel {
     protected class ImageAction implements ActionListener {
         public void actionPerformed(ActionEvent e)
         {
-            BufferedImage f = getImage();
-            myImages.add(f);
+            getImage();
+            
 
         }
     }

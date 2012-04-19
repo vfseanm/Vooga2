@@ -14,8 +14,8 @@ public class BonusObject extends AnimatedGameSprite {
     protected List<Attribute>		myAttributes;
     protected List<Attribute>		myAttributesToOffer;
 
-    public BonusObject(BufferedImage[] im, double x, double y, List<String> image) {
-        super(im, x, y, image);
+    public BonusObject(double x, double y, List<String> image) {
+        super(x, y, image);
         myAttributes = new ArrayList<Attribute>();
         myAttributesToOffer = new ArrayList<Attribute>();
     }
@@ -31,5 +31,21 @@ public class BonusObject extends AnimatedGameSprite {
     
     public void addAttributeToOffer(Attribute attributeToAdd) {
     	myAttributesToOffer.add(attributeToAdd);
+    }
+    
+    public Object clone()
+    {
+        List<String> imageNames = new ArrayList<String>();
+        imageNames.addAll(this.getImageNames());
+        BonusObject c = new BonusObject(this.getX(), this.getY(),imageNames);
+        for(Attribute a: myAttributes)
+        {
+            c.addAttribute(a);
+        }
+        for(Attribute a: myAttributesToOffer)
+        {
+            c.addAttributeToOffer(a);
+        }
+        return c;
     }
 }

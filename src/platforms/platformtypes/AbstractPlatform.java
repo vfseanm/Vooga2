@@ -7,8 +7,8 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 
 	private static final long serialVersionUID = 1483938382856783084L;
 	
-	protected AbstractPlatform(BufferedImage[] images, double x, double y, List<String> imageSources) {
-		super(images, x, y, imageSources);
+	protected AbstractPlatform(double x, double y, List<String> imageSources) {
+		super( x, y, imageSources);
 	}
 	
 	protected AbstractPlatform() {}
@@ -18,5 +18,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	protected abstract void releaseItem();
 	
 	protected abstract void doBreak();
+	
+	public abstract Object clone();
 
 }

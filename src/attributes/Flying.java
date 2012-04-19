@@ -26,7 +26,7 @@ public class Flying extends Attribute implements Updateable
         }
         else
         {
-            myGameCharacter.allowAttribute("Gravity",true);
+            myGameCharacter.restoreOriginalAttribute("Gravity");
         }
     }
     
@@ -48,9 +48,13 @@ public class Flying extends Attribute implements Updateable
 
     public void invert ()
     {
-        //Maybe Andrew!
-       myGameCharacter.invertAttribute("Gravity");
         
+        
+    }
+    
+    public Object clone()
+    {
+        return new Flying();
     }
 
 }

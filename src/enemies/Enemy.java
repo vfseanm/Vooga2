@@ -15,15 +15,15 @@ import enemies.state.EnemyState;
 
 
 @SuppressWarnings("serial")
-public class Enemy extends GameCharacter
+public class Enemy extends GameCharacter 
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;
 
 
-    public Enemy (BufferedImage[] im, double x, double y, List<String> image)
+    public Enemy (double x, double y, List<String> image)
     {
-        super(im, x, y, image);
+        super(x, y, image);
         myAttributes = new ArrayList<Attribute>();
         setGroup("ENEMY");
     }
@@ -215,4 +215,22 @@ public class Enemy extends GameCharacter
         }
         return toReturn.toString();
     }
+    
+    public Object clone()
+    {
+        List<String> imageNames = new ArrayList<String>();
+        imageNames.addAll(this.getImageNames());
+        Enemy e = new Enemy(this.getX(), this.getY(),imageNames);
+        for(Attribute a: myAttributes)
+        {
+            e.addAttribute((Attribute) a.clone());
+        }
+        if(myState!=null)
+        {
+            e.setState(myState);
+        }
+        return e;
+    }
+    
+    
 }

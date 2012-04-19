@@ -20,7 +20,7 @@ import java.lang.reflect.*;
  *
  */
 @SuppressWarnings("serial")
-public abstract class Attribute implements Serializable
+public abstract class Attribute implements Serializable, Cloneable
 {
     protected GameCharacter		myGameCharacter;	
     protected Object 			myOriginal;
@@ -38,6 +38,8 @@ public abstract class Attribute implements Serializable
     public void setActivity(boolean active) {
     	isActive = active;
     }
+    
+    public abstract Object clone();
 
 
     public Attribute (Object...o)
@@ -84,6 +86,7 @@ public abstract class Attribute implements Serializable
 
     public void restoreOriginalAttribute ()
     {
+        isActive=true;
         Field[] myFields = this.getClass().getDeclaredFields();
         Field[] myOriginalFields =  myOriginal.getClass().getDeclaredFields();
         for (int i = 0; i < myOriginalFields.length; i++)

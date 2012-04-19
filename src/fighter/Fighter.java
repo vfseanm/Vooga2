@@ -19,8 +19,8 @@ public class Fighter extends GameCharacter {
 	private BasicMovement					myBasicMovement;
 	private BaseInput						myUserInput;
 	
-	public Fighter(BufferedImage[] image, double x, double y, List<String> images, BaseInput userInput) {
-		super(image, x, y, images);
+	public Fighter(double x, double y, List<String> images, BaseInput userInput) {
+		super(x, y, images);
 		myCarryableAttributes = new ArrayList<Attribute>();
 		myUserInput = userInput;
 		setGroup("FIGHTER");
