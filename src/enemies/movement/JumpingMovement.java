@@ -33,7 +33,11 @@ public class JumpingMovement extends Attribute implements Updateable
         myTime += time;
     }
 
-
+    public void setActivity(boolean active){
+    	myGameCharacter.allowAttribute("Gravity", true);
+    	isActive=active;
+    }
+    
     public void update (long elapsedTime)
     {
         
@@ -48,7 +52,7 @@ public class JumpingMovement extends Attribute implements Updateable
             else
             {
                 
-                myGameCharacter.allowAttribute("Gravity",true);
+                myGameCharacter.restoreOriginalAttribute("Gravity");
             }
         }
         
