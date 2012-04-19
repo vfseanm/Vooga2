@@ -47,5 +47,10 @@ public class SideToSideMovement extends TwoPartMovement
     {
         return "Attribute SideToSideMovement my distance is " + myDistance + " my time to turn is " + myPartDuration;
     }
+    
+    public Object clone()
+    {
+        return new SideToSideMovement(myDistance, myPartDuration);
+    }
 
 }

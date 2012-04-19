@@ -34,4 +34,9 @@ public class Shoot extends Attribute implements Updateable {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public Object clone()
+	{
+	    return new Shoot();
+	}
 }

@@ -23,4 +23,5 @@ public class PowerUp extends BonusObject {
 	public void setGameCharacter(GameCharacter gameCharacter) {
 		myGameCharacter = gameCharacter;
 	}
+	
 }

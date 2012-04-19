@@ -51,5 +51,10 @@ public class Flying extends Attribute implements Updateable
         
         
     }
+    
+    public Object clone()
+    {
+        return new Flying();
+    }
 
 }

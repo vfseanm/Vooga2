@@ -53,5 +53,10 @@ public class Visibility extends Attribute
     public String toString(){
         return "Attribute Visibility is currently" + isVisible;
     }
+    
+    public Object clone()
+    {
+        return new Visibility(isVisible);
+    }
 
 }

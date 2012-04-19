@@ -36,5 +36,10 @@ public class NumberOfLives extends Attribute
     public String toString(){
         return "Attribute NumberOfLives is currently" + myLives;
     }
+    
+    public Object clone()
+    {
+        return new NumberOfLives(myLives);
+    }
 
 }

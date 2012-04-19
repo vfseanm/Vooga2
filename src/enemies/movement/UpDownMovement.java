@@ -53,5 +53,10 @@ public class UpDownMovement extends TwoPartMovement
         return "Attribute UpDownMovement my distance is " + myDistance +
                " my time to turn is " + myPartDuration;
     }
+    
+    public Object clone()
+    {
+        return new UpDownMovement(myDistance, myPartDuration);
+    }
 
 }

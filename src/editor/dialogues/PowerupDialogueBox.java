@@ -16,6 +16,8 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import bonusobjects.PowerUp;
+
 import editor.AttributeCreator;
 import editor.AttributeSelectionPanel;
 import editor.EditorController;
@@ -64,14 +66,14 @@ public class PowerupDialogueBox extends DialogueBox {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800,325));
-        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
+        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
         panel2.add(title1);
         panel2.add(powerupAttributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Attributes for the Power-Up to Give:");
-        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
+        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(attributesToGivePanel);
@@ -111,16 +113,26 @@ public class PowerupDialogueBox extends DialogueBox {
     
     public Framework getFramework() {
 
-            ArrayList<AttributeCreator> attributes = powerupAttributePanel.getSelectedAttributes();
-            ArrayList<AttributeCreator> attributesToGive = attributesToGivePanel.getSelectedAttributes();
+/*            ArrayList<Attribute> attributes = powerupAttributePanel.getSelectedAttributes();
+            ArrayList<Attribute> attributesToGive = attributesToGivePanel.getSelectedAttributes();
             BufferedImage[] s = new BufferedImage[myImages.size()];
             for (int x = 0; x<s.length; x++)
             {
                 s[x] = myImages.get(x);
-            }
-            ArrayList<String> imagePaths = new ArrayList<String>();
-            PowerupFramework framework = new PowerupFramework(s, myImagePaths, attributes, attributesToGive, myGroup.getText());
-            return framework;
+            }*/
+            PowerUp prototype = new PowerUp(0,0,myImagePaths);
+           for(Attribute attribute: powerupAttributePanel.getSelectedAttributes())
+           {
+               prototype.addAttribute(attribute);
+           }
+           for(Attribute attributeToGive: attributesToGivePanel.getSelectedAttributes())
+           {
+               prototype.addAttributeToOffer(attributeToGive);
+           }
+            //ArrayList<String> imagePaths = new ArrayList<String>();
+            //PowerupFramework framework = new PowerupFramework(myImagePaths, attributes, attributesToGive, myGroup.getText());
+           Framework framework = new Framework("Power-Up", prototype); 
+           return framework;
 
         }
 class GoAction implements ActionListener {       

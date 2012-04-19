@@ -44,7 +44,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
 
 
 
-    private EnemyFramework myFramework;
+    private Framework myFramework;
     private AttributeSelectionPanel attributePanel;
 
     
@@ -54,7 +54,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
     public EditEnemyButtonDialogueBox(EditorController m, Framework f )
     {
         super(m);
-        myFramework = (EnemyFramework)f;
+        myFramework = f;
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
         
@@ -67,15 +67,16 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        List<Class> classList = new ArrayList<Class>();
+/*        List<Class> classList = new ArrayList<Class>();
         for(AttributeCreator s: myFramework.getAttributeCreators())
         {
             classList.add(s.getCreatingClass());
-        }
+        }*/
+        Enemy e = (Enemy) myFramework.getPrototype();
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, classList);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, e.getAttributes());
                
         JLabel label1 = new JLabel("Enemy Name:");
         panel.add(label1);
@@ -112,10 +113,10 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         public void actionPerformed(ActionEvent e)
         {
            
-            
+            /*
             ArrayList<AttributeCreator> attributes = new ArrayList<AttributeCreator>();
             
-            for(AttributeCreator a: attributePanel.getSelectedAttributes())
+            for(Attribute a: attributePanel.getSelectedAttributes())
             {
                 if(a.getArguments()!=null)
                 {
@@ -137,10 +138,14 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
                 attributes.add(a);
                 
             }          
-            
+            */
 
-            
-             BufferedImage[] s = new BufferedImage[myImages.size()];
+            Enemy newPrototype = new Enemy(0,0, myImagePaths);
+            for(Attribute attribute: attributePanel.getSelectedAttributes())
+            {
+                newPrototype.addAttribute(attribute);
+            }
+             /*BufferedImage[] s = new BufferedImage[myImages.size()];
              if(myImages.size()==0)
              {
                  s = myFramework.getImages();
@@ -151,15 +156,17 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
                 {
                     s[x] = myImages.get(x);
                 }
-             }
+             }*/
            
             
            
-            List<Object> parameters = new ArrayList<Object>();
-            parameters.add(s);
+/*            List<Object> parameters = new ArrayList<Object>();
+            //parameters.add(s);
             parameters.add(myImagePaths);
             parameters.add(attributes);
-            myFramework.updateSprites(parameters);
+            */
+            
+            myFramework.updateSprites(newPrototype);
             myController.closeDialogue();
             
             setVisible(false);

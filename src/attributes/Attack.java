@@ -28,6 +28,11 @@ public class Attack extends Attribute implements Updateable
         // TODO Auto-generated method stub
         
     }
+    
+    public Object clone()
+    {
+        return new Attack();
+    }
 
 
 

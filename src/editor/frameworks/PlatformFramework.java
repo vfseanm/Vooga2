@@ -27,10 +27,10 @@ public class PlatformFramework extends Framework {
     private String myGroup;
 
 
-    public PlatformFramework(BufferedImage[] im, List<String> images, List<Class> platformWrappers, String group) {
+    public PlatformFramework(List<String> images, List<Class> platformWrappers, String group) {
         
         myGroup = group;
-        myImages = im;
+        //myImages = im;
         imageNames = images;
         myPlatformWrappers = platformWrappers;
         mySprites = new ArrayList<AnimatedGameSprite>();
@@ -76,7 +76,7 @@ public class PlatformFramework extends Framework {
     }
 
     
-
+/*
     @Override
     public void updateSprites(List<Object> parameters) {
         myImages = (BufferedImage[]) parameters.get(0);
@@ -84,7 +84,7 @@ public class PlatformFramework extends Framework {
         myPlatformWrappers = (List<Class>) parameters.get(2);
         
         
-    }
+    }*/
     
     public String getType()
     {

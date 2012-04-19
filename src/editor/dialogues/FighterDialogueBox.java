@@ -61,14 +61,14 @@ public class FighterDialogueBox extends DialogueBox{
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800,325));
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Fighter to have:");
         panel2.add(title1);
         panel2.add(attributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Carryable attributes for the Fighter to Have:");
-        carryablePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
+        carryablePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(carryablePanel);
@@ -97,26 +97,26 @@ public class FighterDialogueBox extends DialogueBox{
         
         public void actionPerformed(ActionEvent e)
         {
-            ArrayList<AttributeCreator> attributes = attributePanel.getSelectedAttributes();
-            ArrayList<AttributeCreator> carryableAttributes = carryablePanel.getSelectedAttributes();
+            ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
+            ArrayList<Attribute> carryableAttributes = carryablePanel.getSelectedAttributes();
 
-            BufferedImage[] s = new BufferedImage[myImages.size()];
+            /*BufferedImage[] s = new BufferedImage[myImages.size()];
             for (int x = 0; x<s.length; x++)
             {
                 s[x] = myImages.get(x);
-            }
+            }*/
             ArrayList<String> imagePaths = new ArrayList<String>();
-            Fighter fighter = new Fighter(s, 50, 50, myImagePaths, null);
+            Fighter fighter = new Fighter(50, 50, myImagePaths, null);
             
-            for(AttributeCreator attribute: attributes)
+            for(Attribute attribute: attributes)
             {
-            fighter.addAttribute(attribute.createAttribute());
+            fighter.addAttribute(attribute);
             }
-            for(AttributeCreator attribute: carryableAttributes)
-            {
-            //fighter.addCarryableAttribute(attribute.createAttribute());
-            }
-            myController.setFighter(new Fighter(s, 50, 50, myImagePaths, null));
+            //for(Attribute attribute: carryableAttributes)
+            //{
+                fighter.addCarryableAttribute(carryableAttributes);
+            //}
+            myController.setFighter(new Fighter(50, 50, myImagePaths, null));
             setVisible(false);
         }
     }

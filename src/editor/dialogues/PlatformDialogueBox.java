@@ -113,13 +113,13 @@ public class PlatformDialogueBox extends DialogueBox {
             }
                 
         }
-        BufferedImage[] s = new BufferedImage[myImages.size()];
+/*        BufferedImage[] s = new BufferedImage[myImages.size()];
         for (int x = 0; x<s.length; x++)
         {
             s[x] = myImages.get(x);
-        }
+        }*/
         
-        PlatformFramework framework = new PlatformFramework(s, myImagePaths, platformTypes, myGroup.getText());
+        PlatformFramework framework = new PlatformFramework(myImagePaths, platformTypes, myGroup.getText());
         return framework;
         
     }

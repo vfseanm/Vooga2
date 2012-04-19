@@ -18,12 +18,14 @@ public class ShootAtTarget extends Attribute implements Updateable {
 	public AnimatedGameSprite 		myTarget;
 	public boolean 					myCanFire;
 	public Timer 					myRefireRate;
+	public int                     myRate;
 
 	public ShootAtTarget(BaseInput userInput, AnimatedGameSprite target, int refireRate) {
 		myUserInput = userInput;
 		myTarget = target;
 		myCanFire = true;
 		myRefireRate = new Timer(refireRate);
+		myRate = refireRate;
 	}
 
 	public void setTarget(AnimatedGameSprite newTarget) {
@@ -53,5 +55,10 @@ public class ShootAtTarget extends Attribute implements Updateable {
 	public void invert() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Object clone()
+	{
+	    return new ShootAtTarget(myUserInput, myTarget, myRate);
 	}
 }

@@ -13,7 +13,7 @@ import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 
 @SuppressWarnings("serial")
-public class AnimatedGameSprite extends AdvanceSprite implements Serializable
+public class AnimatedGameSprite extends AdvanceSprite implements Serializable, Cloneable
 {
 
     String myType;
@@ -82,6 +82,12 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable
     
     public String getGroup(){
         return myGroup;
+    }
+    
+    public Object clone()
+    {
+        
+        return new AnimatedGameSprite(this.getX(), this.getY(),myImageNames);
     }
     
 

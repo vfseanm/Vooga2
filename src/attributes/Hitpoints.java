@@ -48,4 +48,9 @@ public class Hitpoints extends Attribute
     {
         return "Attribute Hitpoints is currently " + myHitpoints;
     }
+    
+    public Object clone()
+    {
+        return new Hitpoints(myHitpoints);
+    }
 }

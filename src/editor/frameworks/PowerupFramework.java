@@ -77,15 +77,18 @@ public class PowerupFramework extends Framework {
         return powerUp;
     }
 
-    @Override
-    public void updateSprites(List<Object> parameters) {
-        // TODO Auto-generated method stub
-        
-    }
+
 
     @Override
     public String getType() {
         return "Power-Up";
+    }
+
+    @Override
+    public void updateSprites(AnimatedGameSprite sprite)
+    {
+        // TODO Auto-generated method stub
+        
     }
 
 
