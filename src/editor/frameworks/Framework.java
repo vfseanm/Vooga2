@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import enemies.Enemy;
 
@@ -132,6 +135,30 @@ public class Framework implements Serializable {
     {
         return prototypeSprite;
     }
+    
+/*    public String toJson()
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        
+        List<String> list = new ArrayList<String>();
+        list.add(prototypeSprite.getClass().toString());
+        list.add(prototypeSprite.toJson());
+        
+        List<String> spriteList = new ArrayList<String>();
+        for(AnimatedGameSprite s: mySprites)
+        {
+            List<String> position = new ArrayList<String>();
+            position.add(s.getX()+"");
+            position.add(s.getY()+"");
+            spriteList.add(gson.toJson(position));
+        }
+        list.add(gson.toJson(spriteList));
+        
+        return gson.toJson(list);
+        
+        
+    }*/
    
     
 }
