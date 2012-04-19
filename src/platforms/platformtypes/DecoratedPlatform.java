@@ -10,12 +10,28 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 
 	private static final long serialVersionUID = -9022534130487528963L;
 	protected AbstractPlatform myDecoratorComponent;
-	protected double mySpeed = 1;
-	protected double myDistance = 100;
+	protected double mySpeed;
+	protected double myDistance;
+	protected int myDelay = Integer.parseInt(myPlatformResources.getString("RotateDelay"));
+	protected int mySpeedOffset = Integer.parseInt(myPlatformResources.getString("SpeedOffset"));
+	protected int myDistanceOffset = Integer.parseInt(myPlatformResources.getString("DistanceOffset"));
+
 	FrameTimer myTimer = new FrameTimer();
 
 	public DecoratedPlatform(AbstractPlatform decoratorComponent) {
 		myDecoratorComponent = decoratorComponent;
+	}
+	
+	public void setDelay(int delay) {
+		myDelay = delay;
+	}
+	
+	public void setSpeed(double speed) {
+		mySpeed = speed;
+	}
+	
+	public void setDistance(double distance) {
+		myDistance = distance;
 	}
 
 	public void setHorizontalSpeed(double speed) {
@@ -79,14 +95,14 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	public void render(Graphics2D graphics) {
 		myDecoratorComponent.render(graphics);
 	}
-
+/*
 	protected void releaseItem() {
 		myDecoratorComponent.releaseItem();
 	}
 
 	protected void doBreak() {
 		myDecoratorComponent.doBreak();
-	}
+	}*/
 
 	public void setActive(boolean arg) {
 		myDecoratorComponent.setActive(arg);

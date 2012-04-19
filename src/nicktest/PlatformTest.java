@@ -27,6 +27,7 @@ public class PlatformTest extends Game {
 		myPlatform = new RotatingPlatform(myPlatform);	
 		myPlatform = new SideToSidePlatform(myPlatform);
 		myPlatform = new UpDownPlatform(myPlatform);
+		System.out.println(myPlatform.toString());
 ;	}
 
 	@Override
