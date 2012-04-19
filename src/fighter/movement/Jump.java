@@ -54,7 +54,7 @@ public class Jump extends Attribute implements Updateable
     {
         if (isActive)
         {
-        	if (myUserInput.isKeyDown(KeyEvent.VK_UP)) 
+        	if (myUserInput.isKeyPressed(KeyEvent.VK_UP)) 
     		{
     		    isJumping = true;
     		    myGameCharacter.allowAttribute("Gravity", false);
