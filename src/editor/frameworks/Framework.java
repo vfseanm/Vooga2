@@ -17,6 +17,8 @@ import java.util.List;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 import sprite.AnimatedGameSprite;
@@ -138,7 +140,7 @@ public class Framework implements Serializable {
         return prototypeSprite;
     }
     
-/*    public String toJson()
+    public String toJson()
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>(){}.getType();
@@ -215,7 +217,7 @@ public class Framework implements Serializable {
         
         
         return null;
-    }*/
+    }
    
     
 }
