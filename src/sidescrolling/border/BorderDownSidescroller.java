@@ -10,11 +10,23 @@ import fighter.Fighter;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
+/**
+ * 
+ * @author dmadust
+ *
+ */
 public class BorderDownSidescroller extends BorderSidescroller {
     
     private double downSpeed;
     private double boundary;
     
+    /**
+     * 
+     * @param game
+     * @param scroller
+     * @param speed
+     * @param offsetFromBottom
+     */
     public BorderDownSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromBottom) {
         super(game, scroller);
         if (speed > 0) {
