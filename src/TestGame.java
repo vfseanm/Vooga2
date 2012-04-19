@@ -29,8 +29,8 @@ public class TestGame extends Game {
 	private Enemy bob;
 	private Background myBackground;
 	private int counter;
-	private AbstractPlatform p;
-	private SimplePlatform p1, p2, p3;
+	private AbstractPlatform p, p3;
+	private SimplePlatform p1, p2;
 	private PlayField myPF;
 	private GameCollisionManager gc;
 	private ArrayList<AnimatedGameSprite> list;
@@ -46,6 +46,7 @@ public class TestGame extends Game {
 
 
 
+
 		bob.addAttribute(new Gravity(1));
 		bob.addAttribute(new OneDirectionMovement("left",1));        
 		bob.addAttribute(new JumpingMovement(1,70));
@@ -58,11 +59,13 @@ public class TestGame extends Game {
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
 		p = new UpDownPlatform (new SimplePlatform ( 380,190, a));
+
 		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
 
 
 
 		b1[0]= getImage("resources/platform1.png"); 
+
 		p1 = new SimplePlatform ( 100, 200, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
@@ -71,6 +74,7 @@ public class TestGame extends Game {
 		b1[0]= getImage("resources/platform1.png"); 
 		//p3 = new SimplePlatform (b1, 360,220, a);
 		p3 = new SimplePlatform ( 100, 30, a);
+
 
 
 		list = new ArrayList<AnimatedGameSprite>();
