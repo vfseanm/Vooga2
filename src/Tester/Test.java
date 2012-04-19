@@ -4,6 +4,7 @@ import java.awt.*;
 
 
 
+
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 import platforms.platformtypes.*;
 
 import sidescrolling.*;
-import sidescrolling.border.BorderLeftSidescroller;
-import sidescrolling.border.BorderRightSidescroller;
+import sidescrolling.border.*;
+import sidescrolling.forced.*;
+import sidescrolling.skip.*;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
@@ -54,7 +56,6 @@ public class Test extends Game{
         
         group1 = new SpriteGroup("1");
         group2 = new SpriteGroup("2");
-        BufferedImage[] im = {getImage("Resources/block3.png")};
         ArrayList<String> imageName = new ArrayList<String>();
         imageName.add("Resources/block3.png");
         AbstractPlatform p1 = new SimplePlatform(400, 400, imageName);
@@ -66,12 +67,12 @@ public class Test extends Game{
         AbstractPlatform p4 = new SimplePlatform(10, 15, imageName);
         group2.add(p4);
         sidescroller = new ConcreteSidescroller(fighter, group1, group2);
-        sidescroller = new BorderLeftSidescroller(this, sidescroller, 100);
-        sidescroller = new BorderRightSidescroller(this, sidescroller, 100);
+        //sidescroller = new BorderLeftSidescroller(this, sidescroller, 100);
+        //sidescroller = new BorderRightSidescroller(this, sidescroller, 100);
         //sidescroller = new BorderUpSidescroller(this, sidescroller, 1.0, 0);
         //sidescroller = new BorderDownSidescroller(this, sidescroller, -1.0, 0);
         //sidescroller = new ForcedDownSidescroller(sidescroller, -1.0);
-        //sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
+        sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
         //sidescroller = new SkipRightSidescroller(this, sidescroller);
         //sidescroller = new SkipLeftSidescroller(this, sidescroller);
     }
