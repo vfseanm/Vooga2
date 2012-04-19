@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
@@ -24,7 +25,7 @@ public abstract class DialogueBox extends JPanel {
 
     protected EditorController myController;
     //protected ArrayList<BufferedImage> myImages;
-    protected ArrayList<String> myImagePaths;
+    protected List<String> myImagePaths;
     
     
     public DialogueBox(EditorController m)

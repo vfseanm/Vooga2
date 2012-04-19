@@ -56,6 +56,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         super(m);
         myFramework = f;
         setLayout(new BorderLayout());
+        
         add(makeInputPanel(), BorderLayout.NORTH);
         
     }
@@ -139,6 +140,10 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
                 
             }          
             */
+            if(myImagePaths.size()==0)
+            {
+                myImagePaths = myFramework.getPrototype().getImageNames();
+            }
 
             Enemy newPrototype = new Enemy(0,0, myImagePaths);
             for(Attribute attribute: attributePanel.getSelectedAttributes())
