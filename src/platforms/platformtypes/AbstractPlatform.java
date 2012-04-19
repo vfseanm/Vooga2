@@ -18,5 +18,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	protected abstract void releaseItem();
 	
 	protected abstract void doBreak();
+	
+	public abstract Object clone();
 
 }

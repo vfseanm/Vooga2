@@ -25,6 +25,18 @@ public class SideToSidePlatform extends DecoratedPlatform {
 	public String toString() {
 		return "side to side" + myDecoratorComponent.toString();
 	}
+	
+	   public Object clone()
+       {
+           AbstractPlatform toWrap = null;
+           if(myDecoratorComponent!=null)
+           {
+               toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+               
+           }
+           return new SideToSidePlatform(toWrap);
+           
+       }
 
 	
 	
