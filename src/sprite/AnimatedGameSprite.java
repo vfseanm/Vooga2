@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -13,6 +15,8 @@ import javax.imageio.ImageIO;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 @SuppressWarnings("serial")
@@ -96,6 +100,21 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         
         return new AnimatedGameSprite(this.getX(), this.getY(),myImageNames);
     }
+    
+    public String toJson()
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        List<String> paramList = new ArrayList<String>();
+        paramList.add(gson.toJson(myImageNames));
+        paramList.add(myGroup);
+        paramList.add(this.getX()+"");
+        paramList.add(this.getY()+"");
+        return "";
+        
+    }
+    
+    
     
 
 }
