@@ -17,6 +17,7 @@ public class RotatingPlatform extends DecoratedPlatform {
 	
 	public void doBehavior(double speed, double distance) {
 		rotateLeftAxisClockwise(myDelay);
+		
 	}
 
 	public void rotateCenterAxis(int delay) {

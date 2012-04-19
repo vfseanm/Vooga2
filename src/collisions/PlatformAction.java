@@ -38,7 +38,8 @@ public class PlatformAction implements ActionPerformer{
 		standardaction (sprite1, sprite2, collisionType);
 
 		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
-			
+			double sprite1height = sprite1.getHeight();
+			sprite1.setY(sprite2.getY()-sprite1height);
 		}
 	}
 	
@@ -46,11 +47,20 @@ public class PlatformAction implements ActionPerformer{
 		standardaction (sprite1, sprite2, collisionType);
 		if (collisionType!=CollisionGroup.TOP_BOTTOM_COLLISION)
 			sprite1.invertAttribute("OneDirectionMovement");
+		if(collisionType == CollisionGroup.BOTTOM_TOP_COLLISION){
+			sprite1.allowAttribute("JumpingMovement", false);
+		}
 	}
+	
+	
 
 	public void action (Enemy sprite1, BreakablePlatform sprite2, int collisionType){
 		standardaction (sprite1, sprite2, collisionType);
-		if (collisionType ==  CollisionGroup.BOTTOM_TOP_COLLISION ){
+
+		if ((collisionType!=CollisionGroup.TOP_BOTTOM_COLLISION) &&(collisionType!=CollisionGroup.BOTTOM_TOP_COLLISION) )
+			sprite1.invertAttribute("OneDirectionMovement");
+		if(collisionType == CollisionGroup.BOTTOM_TOP_COLLISION){
+			sprite1.allowAttribute("JumpingMovement", false);
 			sprite2.doBreak();
 		}
 	}

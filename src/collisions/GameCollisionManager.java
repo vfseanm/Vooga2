@@ -5,9 +5,14 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import platforms.platformtypes.BreakablePlatform;
+import platforms.platformtypes.SimplePlatform;
+
 import sprite.*;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
+
+import enemies.Enemy;
 
 
 
@@ -24,6 +29,7 @@ public class GameCollisionManager{
 						int side = SideChecker (sprite1, sprite2);
 						
 						String combineName = stringConcatination (sprite1.getGroup(), sprite2.getGroup());
+						
 						ActionPerformer act = actionMap.get(combineName);
 						
 						try{
@@ -35,10 +41,12 @@ public class GameCollisionManager{
 							args[0] = sprite1;
 							args[1] = sprite2;
 							args[2] = (int)side;
+							
 							mc.invoke(act, args);
+							
 						}
 						catch (Exception e){
-							System.out.println ("collision!");
+							System.out.println ("");
 						}
 					}
 				}
@@ -60,18 +68,23 @@ public class GameCollisionManager{
 
 	private int SideChecker(Sprite sprite1, Sprite sprite2) {
 		if (leftRightChecker(sprite1, sprite2)) {
+			
 			return CollisionGroup.LEFT_RIGHT_COLLISION;
 		}
 		else if (leftRightChecker(sprite2, sprite1)){
+			
 			return CollisionGroup.RIGHT_LEFT_COLLISION;
 		}
 		else if (topBottomChecker(sprite1, sprite2)){
+			
 			return CollisionGroup.TOP_BOTTOM_COLLISION;
 		}
 		else if (topBottomChecker(sprite2, sprite1)){
+			System.out.println(sprite2.getClass()+""+sprite1.getClass());
 			return CollisionGroup.BOTTOM_TOP_COLLISION;
 		}
 		return 0;
+		
 	}
 	private boolean leftRightChecker (Sprite sprite1, Sprite sprite2){
 		if  ((sprite1.getX() + sprite1.getWidth() == sprite2.getX()) &&
@@ -83,12 +96,13 @@ public class GameCollisionManager{
 	}
 	private boolean topBottomChecker (Sprite sprite1, Sprite sprite2){
 		if  ((sprite1.getY() + sprite1.getHeight() == sprite2.getY()) &&
-				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth())) && 
+				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth())) &&
 				((sprite1.getX()+sprite1.getWidth()) <= (sprite2.getX()+sprite2.getWidth()+sprite1.getWidth())) ) {
 			return true;
 		}
 		return false; 
 	}
+	
 
 	private boolean CollisionChecker (Sprite sp1, Sprite sp2){
 		if ( (leftRightChecker(sp1, sp2)) || (leftRightChecker(sp2, sp1)) || ( topBottomChecker (sp1, sp2) || (topBottomChecker(sp2, sp1)))){
