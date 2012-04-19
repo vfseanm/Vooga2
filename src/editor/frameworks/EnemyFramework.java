@@ -32,9 +32,7 @@ public class EnemyFramework extends Framework {
         allAttributes = new ArrayList<Attribute>();
     }
 
-    public void addBehavior(Attribute b) {
-        attributes.add(b);
-    }
+
     public BufferedImage[] getImages()
     {
         return myImages;
