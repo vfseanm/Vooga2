@@ -14,14 +14,14 @@ import attributes.Updateable;
 public class Jump extends Attribute implements Updateable
 {
 	private BaseInput 		myUserInput;
-    private int 			myJumpHeight;
+    private double 			myJumpHeight;
     private int 			myTime;
     private boolean 		isJumping;
     private int 			time;
 
 
     @editorConstructor(parameterNames = { "user input", "jump height", "time" })
-    public Jump (BaseInput userInput, int jumpHeight, int delay)
+    public Jump (BaseInput userInput, double jumpHeight, int delay)
     {
         super(userInput, jumpHeight, delay);
         myUserInput = userInput;
@@ -32,7 +32,7 @@ public class Jump extends Attribute implements Updateable
     }
 
     
-    public void modifyJump (int jumpHeight, int time)
+    public void modifyJump (double jumpHeight, int time)
     {
         myJumpHeight += jumpHeight;
         myTime += time;
@@ -60,7 +60,7 @@ public class Jump extends Attribute implements Updateable
     		    myGameCharacter.allowAttribute("Gravity", false);
     		}
         	
-            if (time <= myTime)
+            if (isJumping && time <= myTime)
             {
                 myGameCharacter.moveY(-myJumpHeight);
             }

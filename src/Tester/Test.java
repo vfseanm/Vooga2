@@ -16,6 +16,8 @@ import sidescrolling.border.*;
 import sidescrolling.forced.*;
 import sidescrolling.skip.*;
 
+import attributes.Gravity;
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
@@ -50,7 +52,8 @@ public class Test extends Game{
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
         fighter.addAttribute(new BasicMovement(bsInput, 1.5));
-        fighter.addAttribute(new Jump(bsInput, 1, 300));
+        fighter.addAttribute(new Jump(bsInput, 1.5, 300));
+        fighter.addAttribute(new Gravity(1.0));
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
         
@@ -72,7 +75,7 @@ public class Test extends Game{
         //sidescroller = new BorderUpSidescroller(this, sidescroller, 1.0, 0);
         //sidescroller = new BorderDownSidescroller(this, sidescroller, -1.0, 0);
         //sidescroller = new ForcedDownSidescroller(sidescroller, -1.0);
-        sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
+        //sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
         //sidescroller = new SkipRightSidescroller(this, sidescroller);
         //sidescroller = new SkipLeftSidescroller(this, sidescroller);
     }
