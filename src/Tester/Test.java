@@ -3,6 +3,7 @@ package Tester;
 import java.awt.*;
 
 
+
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
 import fighter.*;
-import fighter.movement.BasicMovement;
+import fighter.movement.*;
 
 
 public class Test extends Game{
@@ -47,6 +48,7 @@ public class Test extends Game{
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
         fighter.addAttribute(new BasicMovement(bsInput, 1.5));
+        fighter.addAttribute(new Jump(bsInput, 1, 300));
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
         

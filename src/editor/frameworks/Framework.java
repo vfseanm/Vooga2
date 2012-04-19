@@ -2,9 +2,9 @@ package editor.frameworks;
 
 import java.awt.Color;
 
+
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,14 +12,11 @@ import java.util.List;
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import enemies.Enemy;
 
 
 import sprite.AnimatedGameSprite;
 
+@SuppressWarnings("serial")
 public class Framework implements Serializable {
     protected List<AnimatedGameSprite> mySprites;
     //transient protected BufferedImage[] myImages;
