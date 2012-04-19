@@ -25,6 +25,17 @@ public class BreakablePlatform extends DecoratedPlatform {
 	public String toString() {
 		return "side to side" + myDecoratorComponent.toString();
 	}
+	public Object clone()
+	{
+	    AbstractPlatform toWrap = null;
+	    if(myDecoratorComponent!=null)
+	    {
+	        toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+	        
+	    }
+	    return new BreakablePlatform(toWrap);
+	    
+	}
 
 	
 

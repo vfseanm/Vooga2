@@ -62,5 +62,16 @@ public class RotatingPlatform extends DecoratedPlatform {
 	public String toString() {
 		return "rotating" + myDecoratorComponent.toString();
 	}
+	   public Object clone()
+	    {
+	        AbstractPlatform toWrap = null;
+	        if(myDecoratorComponent!=null)
+	        {
+	            toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+	            
+	        }
+	        return new RotatingPlatform(toWrap);
+	        
+	    }
 	
 }

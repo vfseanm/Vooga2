@@ -23,5 +23,17 @@ public class UpDownPlatform extends DecoratedPlatform {
 	public String toString() {
 		return "up and down" + myDecoratorComponent.toString();
 	}
+	
+    public Object clone()
+    {
+        AbstractPlatform toWrap = null;
+        if(myDecoratorComponent!=null)
+        {
+            toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+            
+        }
+        return new UpDownPlatform(toWrap);
+        
+    }
 
 }
