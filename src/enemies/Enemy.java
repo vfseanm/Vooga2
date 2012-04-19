@@ -230,8 +230,6 @@ public class Enemy extends GameCharacter
             e.setState(myState);
         }
         return e;
-        
-        
     }
     
     
