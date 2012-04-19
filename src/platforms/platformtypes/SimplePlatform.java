@@ -13,8 +13,8 @@ public class SimplePlatform extends AbstractPlatform {
 	private static final long serialVersionUID = 7514750773895804951L;
 	private BonusObject myBonusObject;
 
-	public SimplePlatform(double x, double y, List<String> images) {
-	    super(x, y, images);
+	public SimplePlatform(double x, double y, List<String> imageNames) {
+	    super(x, y, imageNames);
 	}
 
 	@Override
@@ -44,16 +44,12 @@ public class SimplePlatform extends AbstractPlatform {
 		return;
 	}
 
-	 public Object clone()
-	    {
+	 public Object clone() {
 	        List<String> imageNames = new ArrayList<String>();
 	        imageNames.addAll(this.getImageNames());
 	        SimplePlatform e = new SimplePlatform(this.getX(), this.getY(),imageNames);
-
 	        return e;
-	        
-	        
-	    }
+	}
 
 
 

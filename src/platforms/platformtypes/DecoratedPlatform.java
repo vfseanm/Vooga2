@@ -1,6 +1,5 @@
 package platforms.platformtypes;
 
-
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -8,31 +7,25 @@ import java.util.List;
 import platforms.FrameTimer;
 
 public abstract class DecoratedPlatform extends AbstractPlatform {
-	 
+
 	private static final long serialVersionUID = -9022534130487528963L;
 	protected AbstractPlatform myDecoratorComponent;
 	protected double mySpeed = 1;
 	protected double myDistance = 100;
 	FrameTimer myTimer = new FrameTimer();
-	
+
 	public DecoratedPlatform(AbstractPlatform decoratorComponent) {
 		myDecoratorComponent = decoratorComponent;
 	}
 
 	public void setHorizontalSpeed(double speed) {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setHorizontalSpeed(speed);
-		}
-		super.setHorizontalSpeed(speed);	
+		myDecoratorComponent.setHorizontalSpeed(speed);
 	}
-	
+
 	public void setVerticalSpeed(double speed) {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setVerticalSpeed(speed);
-		}
-		super.setVerticalSpeed(speed);		
+		myDecoratorComponent.setVerticalSpeed(speed);
 	}
-	
+
 	public void update(long elapsedTime) {
 		if (myDecoratorComponent != null) {
 			myDecoratorComponent.update(elapsedTime);
@@ -40,117 +33,71 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		doBehavior(mySpeed, myDistance);
 		super.update(elapsedTime);
 	}
-	
+
 	public void setAnimate(boolean arg) {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setAnimate(arg);
-		}
-		super.setAnimate(arg);
+		myDecoratorComponent.setAnimate(arg);
 	}
-	
+
 	public void setFrame(int frame) {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setFrame(frame);
-		}
-		super.setFrame(frame);
+		myDecoratorComponent.setFrame(frame);
 	}
-	
+
 	public void setLocation(double x, double y) {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setLocation(x, y);
-		}
-		super.setLocation(x, y);
+		myDecoratorComponent.setLocation(x, y);
 	}
-	
+
 	public double getX() {
-		if (myDecoratorComponent != null) {
-			return (int) myDecoratorComponent.getX();
-		}
-		return 0;
+		return myDecoratorComponent.getX();
 	}
-	
+
 	public double getY() {
-//		if (myDecoratorComponent != null) {
-			
-			return (int) myDecoratorComponent.getY();
-//		}
-//		
-//		return 0;
+		return myDecoratorComponent.getY();
 	}
-	
-	   public void setX(double x) {
-	        if (myDecoratorComponent != null) {
-	            myDecoratorComponent.setX(x);
-	        }
-	        
-	    }
-	    
-	    public void setY(double y) {
 
-	            
-	            myDecoratorComponent.setY(y);
+	public void setX(double x) {
+		myDecoratorComponent.setX(x);
 
-	    }
-	
+	}
+
+	public void setY(double y) {
+		myDecoratorComponent.setY(y);
+
+	}
+
 	public BufferedImage[] getImages() {
-		if (myDecoratorComponent != null) {
-			return myDecoratorComponent.getImages();
-		}
-		return null;
-	}
-	
-	public void setImages(BufferedImage[] images)
-	{
-	    if(myDecoratorComponent!= null){
-	        myDecoratorComponent.setImages(images);
-	    }
-	}
-	public List<String> getImageNames(){
-	    if(myDecoratorComponent != null)
-	    {
-	        return myDecoratorComponent.getImageNames();
-	    }
-	    return null;
+		return myDecoratorComponent.getImages();
 	}
 
-	//works in tester game....something funky in level editor broken
+	public void setImages(BufferedImage[] images) {
+		myDecoratorComponent.setImages(images);
+	}
+
+	public List<String> getImageNames() {
+		return myDecoratorComponent.getImageNames();
+	}
+
 	public void render(Graphics2D graphics) {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.render(graphics);	
-		}
+		myDecoratorComponent.render(graphics);
 	}
-	
+
 	protected void releaseItem() {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.releaseItem();
-		}
-		return;
+		myDecoratorComponent.releaseItem();
 	}
-	
+
 	protected void doBreak() {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.doBreak();
-		}
-		return;
+		myDecoratorComponent.doBreak();
 	}
-	
+
 	public void setActive(boolean arg) {
-		if (myDecoratorComponent != null) {
-			myDecoratorComponent.setActive(arg);
-		}
+		myDecoratorComponent.setActive(arg);
 	}
-	public int getHeight(){
-		if(myDecoratorComponent!=null){
-			return myDecoratorComponent.getHeight();
-		}
-		return 0;
+
+	public int getHeight() {
+		return myDecoratorComponent.getHeight();
 	}
-	
-	public int getWidth(){
-		if(myDecoratorComponent!=null){
-			return myDecoratorComponent.getWidth();
-		}
-		return 0;
+
+	public int getWidth() {
+		return myDecoratorComponent.getWidth();
 	}
-	
+
 }

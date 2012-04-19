@@ -23,9 +23,11 @@ public class PlatformTest extends Game {
 		List<String> imNames = new ArrayList<String>();
 		imNames.add("resources/platform1.png");
 		imNames.add("resources/RotatingPlatform1.png");
-		myPlatform = new SimplePlatform(im, 200, 200,imNames);
+		myPlatform = new SimplePlatform(200, 200,imNames);
 		myPlatform = new RotatingPlatform(myPlatform);	
-	}
+		myPlatform = new SideToSidePlatform(myPlatform);
+		myPlatform = new UpDownPlatform(myPlatform);
+;	}
 
 	@Override
 	public void render(Graphics2D arg0) {
