@@ -84,6 +84,7 @@ public abstract class Attribute implements Serializable
 
     public void restoreOriginalAttribute ()
     {
+        isActive=true;
         Field[] myFields = this.getClass().getDeclaredFields();
         Field[] myOriginalFields =  myOriginal.getClass().getDeclaredFields();
         for (int i = 0; i < myOriginalFields.length; i++)
