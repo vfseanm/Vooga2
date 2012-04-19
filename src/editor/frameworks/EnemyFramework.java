@@ -39,7 +39,7 @@ public class EnemyFramework extends Framework {
     }
 
     public AnimatedGameSprite getSprite(int x, int y) {
-        Enemy e = new Enemy(myImages, x,
+        Enemy e = new Enemy(x,
                 y - myImages[0].getHeight(),
                 imageNames);
         for(AttributeCreator a: myAttributes)

@@ -6,9 +6,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.util.List;
 
@@ -17,6 +20,8 @@ import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import editor.frameworks.Framework;
 import fighter.Fighter;
@@ -180,7 +185,54 @@ public class Level implements Serializable{
     {
         return myFighter;
     }
+    
+    public void addFramework(Framework f)
+    {
+        frameworks.add(f);
+    }
+    
+ /*   public String toJson()
+    {
+        Gson gson = new Gson();
+        List<String> myList = new ArrayList<String>();
+        myList.add(backgroundImagePath);
+        myList.add(myFighter.makeJson());
+        
+        List<String> frameworkList = new ArrayList<String>();
+        for(Framework f: frameworks)
+        {
+           frameworkList.add(f.makeJson());
+        }
+        
+        myList.add(gson.toJson(frameworkList));
+        
+    }
+    
+    public void fromJson(String json)
+    {
+        Gson gson = new Gson();
 
+        Type collectionType = new TypeToken<ArrayList<String>>(){}.getType();
+
+        ArrayList<String> myList = gson.fromJson(json, collectionType); 
+        String backgroundImageName = myList.get(0);
+        BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
+        setBackground(loader.getImage(backgroundImageName),backgroundImageName);
+        
+        String fighterJson = myList.get(1);
+        setFighter(Fighter.fromJson(fighterJson));
+        
+        ArrayList<String> frameworkList = gson.fromJson(json, collectionType);
+        for(String f: frameworkList)
+        {
+            addFramework(Framework.fromJson(f));
+        }
+        
+        
+        
+        
+    }
+*/
    
 }
 

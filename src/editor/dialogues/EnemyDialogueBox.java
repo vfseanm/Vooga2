@@ -19,6 +19,7 @@ import editor.EditorController;
 import editor.dialogues.DialogueBox.ImageAction;
 import editor.frameworks.EnemyFramework;
 import editor.frameworks.Framework;
+import enemies.Enemy;
 
 
 import attributes.Attribute;
@@ -53,7 +54,7 @@ public class EnemyDialogueBox extends DialogueBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Class>());
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
        
@@ -88,13 +89,22 @@ public class EnemyDialogueBox extends DialogueBox {
     public Framework getFramework()
     {
         
-        ArrayList<AttributeCreator> attributes = attributePanel.getSelectedAttributes();
-        BufferedImage[] s = new BufferedImage[myImages.size()];
+        
+       /* BufferedImage[] s = new BufferedImage[myImages.size()];
         for (int x = 0; x<s.length; x++)
         {
             s[x] = myImages.get(x);
+        }*/
+        
+        Enemy prototype = new Enemy(0,0, myImagePaths);
+        ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
+        for(Attribute a: attributes)
+        {
+            prototype.addAttribute(a);
         }
-        EnemyFramework framework = new EnemyFramework(s, myImagePaths, attributes, myGroup.getText());
+        prototype.setGroup(myGroup.getText());
+        
+        Framework framework = new Framework("enemy", prototype);
         System.out.println("framework's attributes" + attributes);
         return framework;
     }

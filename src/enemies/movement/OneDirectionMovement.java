@@ -72,5 +72,9 @@ public class OneDirectionMovement extends Attribute implements Updateable
         return "Attribute OneDirectionMovement My Direction is " + myDirection +
                " my distance is " + myDistance;
     }
-
+    
+    public Object clone()
+    {
+        return new OneDirectionMovement(myDirection, myDistance);
+    }
 }

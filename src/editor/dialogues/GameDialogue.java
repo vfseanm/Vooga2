@@ -67,9 +67,18 @@ public class GameDialogue extends DialogueBox {
         
         public void actionPerformed(ActionEvent e)
         {
-            System.out.println(myImages.get(0));
-            System.out.println(myImagePaths.get(0));
-            myController.setBackground(myImages.get(0), myImagePaths.get(0));
+            //System.out.println(myImages.get(0));
+            BufferedImage image;
+            try
+            {
+                image = ImageIO.read(new File(myImagePaths.get(myImagePaths.size()-1)));
+                System.out.println(myImagePaths.get(0));
+                myController.setBackground(image, myImagePaths.get(0));
+            } catch (IOException exc)
+            {
+                System.out.println("There has been a problem importing your image");
+            }
+          
             
             setVisible(false);
         }

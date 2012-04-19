@@ -100,15 +100,15 @@ public class EditEnemyDialogue extends DialogueBox {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        List<Class> classList = new ArrayList<Class>();
+        /*List<Class> classList = new ArrayList<Class>();
         for(Attribute s: mySprite.getAttributes())
         {
             classList.add(s.getClass());
-        }
+        }*/
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, classList);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, mySprite.getAttributes());
                
         JLabel label1 = new JLabel("Enemy Name:");
         panel.add(label1);
@@ -232,7 +232,7 @@ public class EditEnemyDialogue extends DialogueBox {
                     
             }*/
             
-            ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+/*            ArrayList<Attribute> attributes = new ArrayList<Attribute>();
             
             for(AttributeCreator a: attributePanel.getSelectedAttributes())
             {
@@ -256,12 +256,12 @@ public class EditEnemyDialogue extends DialogueBox {
                 attributes.add(a.createAttribute());
                 
             }
-            
+            */
             
             
 
             
-             BufferedImage[] s = new BufferedImage[myImages.size()];
+      /*       BufferedImage[] s = new BufferedImage[myImages.size()];
              if(myImages.size()==0)
              {
                  s = mySprite.getImages();
@@ -273,16 +273,18 @@ public class EditEnemyDialogue extends DialogueBox {
                     s[x] = myImages.get(x);
                 }
              }
-           
+           */
             /*ArrayList<String> imagePaths = new ArrayList<String>();
             imagePaths.add(myImagePaths);*/
             //EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
             //if(mySprite!=null)
             //{
+            
+            ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
                 myX = (int) mySprite.getOldX();
                 myY = (int) mySprite.getOldY();
             //}
-            Enemy enemy = new Enemy(s, myX,
+            Enemy enemy = new Enemy(myX,
                     myY,
                     myImagePaths);
             for(Attribute a: attributes)
@@ -290,7 +292,8 @@ public class EditEnemyDialogue extends DialogueBox {
                 
                 
                 enemy.addAttribute(a);
-            }/*  
+            }
+            /*  
             for (Attribute oldAttribute: oldAttributes)
             {
                 enemy.addAttribute(oldAttribute);

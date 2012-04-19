@@ -55,16 +55,16 @@ public class DemoGame extends PlatformGame {
 		 * InvincibilityPowerUp powerup = new InvincibilityPowerUp(images, 0, 0,
 		 * mySprites.get(0).getImageNames(), toGive, toGive);
 		 */
-		Fighter myFighter = new Fighter(mySprites.get(0).getImages(), 100, 100, mySprites.get(0).getImageNames(), bsInput);
+		//Fighter myFighter = new Fighter(100, 100, mySprites.get(0).getImageNames(), bsInput);
 
-		myFighter.addAttribute(new BasicMovement(bsInput, 5));
+		//myFighter.addAttribute(new BasicMovement(bsInput, 5));
 		// myFighter.addAttribute(new Gravity(1));
 
 		// SpriteGroup fighter = myPlayField.addGroup(new
 		// SpriteGroup("Fighter"));
 
 		allSprites = new SpriteGroup("sprites");
-		allSprites.add(myFighter);
+		//allSprites.add(myFighter);
 		// allSprites.add(powerup);
 
 		for (Sprite s : mySprites) {
@@ -77,7 +77,7 @@ public class DemoGame extends PlatformGame {
 		b[0] = getImage("resources/Bowser.jpg");
 		ArrayList<String> a = new ArrayList<String>();
 		a.add("resources/Bowser.jpg");
-		bob = new Enemy(b, 500, 300, a);
+		bob = new Enemy( 500, 300, a);
 
 		bob.addAttribute(new Gravity(1));
 		bob.addAttribute(new OneDirectionMovement("left", 1));
@@ -87,16 +87,16 @@ public class DemoGame extends PlatformGame {
 		counter = 0;
 		a.clear();
 		BufferedImage[] b1 = new BufferedImage[1];
-
+		a.add("resources/platform1.png");
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>();
 		b1[0] = getImage("resources/platform1.png");
-		p = new SimplePlatform(b1, 500, 500, a);
+		p = new SimplePlatform(500, 500, a);
 
 		b1[0] = getImage("resources/platform1.png");
-		p1 = new SimplePlatform(b1, 100, 300, a);
+		p1 = new SimplePlatform( 100, 300, a);
 
 		b1[0] = getImage("resources/platform1.png");
-		p2 = new SimplePlatform(b1, 200, 350, a);
+		p2 = new SimplePlatform( 200, 350, a);
 
 		list = new ArrayList<AnimatedGameSprite>();
 

@@ -166,7 +166,6 @@ public abstract class EditorView extends Game {
                     origPosition[1] = s.getY();
                 }
             }
-
         }
         if (spriteClicked != null && bsInput.isMouseDown(MouseEvent.BUTTON1))
         {

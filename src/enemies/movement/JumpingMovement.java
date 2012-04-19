@@ -77,5 +77,10 @@ public class JumpingMovement extends Attribute implements Updateable
                " my jump time is " + myTime;
 
     }
+    
+    public Object clone()
+    {
+        return new JumpingMovement(myDistance, myTime);
+    }
 
 }

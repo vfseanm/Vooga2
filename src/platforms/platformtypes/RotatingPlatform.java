@@ -3,10 +3,11 @@ package platforms.platformtypes;
 public class RotatingPlatform extends DecoratedPlatform {
 	
 	private static final long serialVersionUID = 7537483544825845415L;
-	int myFrames = 0;
-	int myWidth;
-	int myHeight;
-	int myDelay = 50;
+	private int myFrames = 0;
+	private int myWidth;
+	private int myHeight;
+	private int numFrames = Integer.parseInt(myPlatformResources.getString("RotateFrames")); //number of rotations for 1 complete cycle
+	
 	
 	public RotatingPlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);
@@ -16,20 +17,20 @@ public class RotatingPlatform extends DecoratedPlatform {
 	}
 	
 	public void doBehavior(double speed, double distance) {
-		rotateLeftAxisClockwise(myDelay);
-		
+		rotateLeftAxisClockwise(myDelay);	
 	}
+	
 
 	public void rotateCenterAxis(int delay) {
 		myTimer.update();
 		System.out.println(myTimer.getPassedFrames() % delay == 0);
 		if (myTimer.getPassedFrames() % delay == 0) {
 			myFrames++;
-			if (myFrames % 2 == 0) {
+			if (myFrames % (numFrames/2) == 0) {
 				setLocation(getX() - myWidth / 2.0 + myHeight / 2.0, getY() + myWidth / 2.0 - myHeight / 2.0);
 				setFrame(0);
 			}
-			else if (myFrames % 2 == 1) {
+			else if (myFrames % (numFrames/2) == 1) {
 				setLocation(getX() + myWidth / 2.0 - myHeight / 2.0, getY() - myWidth/ 2.0 + myHeight / 2.0);
 				setFrame(1);
 			}
@@ -41,18 +42,18 @@ public class RotatingPlatform extends DecoratedPlatform {
 
 		if (myTimer.getPassedFrames() % delay == 0) {
 			myFrames++;
-			if (myFrames % 4 == 0) {
+			if (myFrames % numFrames == 0) {
 				setLocation(getX(), getY() + myWidth - myHeight);
 				setFrame(0);
 			}
-			else if (myFrames % 4 == 1) {
+			else if (myFrames % numFrames == 1) {
 				setFrame(1);
 			}
-			else if (myFrames % 4 == 2) {
+			else if (myFrames % numFrames == 2) {
 				setFrame(0);
 				setLocation(getX() - myWidth + myHeight, getY());
 			}
-			else if (myFrames % 4 == 3) {
+			else if (myFrames % numFrames == 3) {
 				setFrame(1);
 				setLocation(getX() + myWidth - myHeight, getY() - myWidth + myHeight);
 			}
@@ -60,7 +61,16 @@ public class RotatingPlatform extends DecoratedPlatform {
 	}
 
 	public String toString() {
-		return "rotating" + myDecoratorComponent.toString();
+		return myPlatformResources.getString("Rotating") + myDecoratorComponent.toString();
 	}
-	
+
+	public Object clone() {
+		AbstractPlatform toWrap = null;
+		if (myDecoratorComponent != null) {
+			toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+		}
+		return new RotatingPlatform(toWrap);
+
+	}
+
 }

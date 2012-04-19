@@ -30,5 +30,10 @@ public class PointValue extends Attribute
     public String toString(){
         return "Attribute PointValue is" + myPointValue;
     }
+    
+    public Object clone()
+    {
+        return new PointValue(myPointValue);
+    }
 
 }

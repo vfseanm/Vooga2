@@ -46,5 +46,9 @@ public class BasicMovement extends Attribute implements Updateable {
 		// TODO Auto-generated method stub
 		
 	}	
+	public Object clone()
+	{
+	    return new BasicMovement(myUserInput, myHorizMovement);
+	}
 
 }

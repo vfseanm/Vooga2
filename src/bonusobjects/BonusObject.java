@@ -32,4 +32,20 @@ public class BonusObject extends AnimatedGameSprite {
     public void addAttributeToOffer(Attribute attributeToAdd) {
     	myAttributesToOffer.add(attributeToAdd);
     }
+    
+    public Object clone()
+    {
+        List<String> imageNames = new ArrayList<String>();
+        imageNames.addAll(this.getImageNames());
+        BonusObject c = new BonusObject(this.getX(), this.getY(),imageNames);
+        for(Attribute a: myAttributes)
+        {
+            c.addAttribute(a);
+        }
+        for(Attribute a: myAttributesToOffer)
+        {
+            c.addAttributeToOffer(a);
+        }
+        return c;
+    }
 }
