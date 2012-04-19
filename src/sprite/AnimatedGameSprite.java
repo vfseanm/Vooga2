@@ -1,5 +1,6 @@
 package sprite;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import java.io.File;
@@ -9,6 +10,8 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import com.golden.gamedev.engine.BaseIO;
+import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 
@@ -36,15 +39,19 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
     private static BufferedImage[] getImagesFromNames(List<String> imageNames)
     {
         BufferedImage[] images = new BufferedImage[imageNames.size()];
+        BaseLoader loader = new BaseLoader(new BaseIO(AnimatedGameSprite.class), Color.PINK);
         for(int i=0; i<images.length; i++)
         {
-            try
+            images[i] = loader.getImage(imageNames.get(i));
+            /*try
             {
-                images[i] = ImageIO.read(new File(imageNames.get(imageNames.size()-1)));
+                File f = new File(imageNames.get(i));
+                System.out.println(f);
+                images[i] = ImageIO.read(f);
             } catch (IOException e)
             {
                 System.out.println("There has been a problem importing your image");
-            }
+            }*/
             
         }
         return images;

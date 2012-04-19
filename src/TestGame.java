@@ -42,7 +42,7 @@ public class TestGame extends Game {
 		b[0]=getImage("resources/Bowser.jpg");
 		ArrayList<String> a = new ArrayList<String>();
 		a.add("resources/Bowser.jpg");
-		bob = new Enemy(b, 380, 100, a);
+		bob = new Enemy( 380, 100, a);
 
 
 
@@ -54,23 +54,23 @@ public class TestGame extends Game {
 		counter=0;
 		a.clear(); 
 		BufferedImage[] b1 = new BufferedImage[1];
-
+		a.add("resources/platform1.png");
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
-		p = new UpDownPlatform (new SimplePlatform (b1, 380,190, a));
+		p = new UpDownPlatform (new SimplePlatform ( 380,190, a));
 		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
 
 
 
 		b1[0]= getImage("resources/platform1.png"); 
-		p1 = new SimplePlatform (b1, 100, 200, a);
+		p1 = new SimplePlatform ( 100, 200, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
-		p2 = new SimplePlatform (b1, 10, 140, a);
+		p2 = new SimplePlatform ( 10, 140, a);
 		
 		b1[0]= getImage("resources/platform1.png"); 
 		//p3 = new SimplePlatform (b1, 360,220, a);
-		p3 = new SimplePlatform (b1, 100, 30, a);
+		p3 = new SimplePlatform ( 100, 30, a);
 
 
 		list = new ArrayList<AnimatedGameSprite>();
