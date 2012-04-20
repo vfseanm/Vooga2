@@ -3,6 +3,8 @@ package editor;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import java.util.List;
 
@@ -195,11 +198,17 @@ public class Level implements Serializable{
     public String toJson()
     {
         Gson gson = new Gson();
-        List<String> myList = new ArrayList<String>();
+        ArrayList<String> myList = new ArrayList<String>();
         myList.add(backgroundImagePath);
+        if(myFighter!=null)
+        {
         myList.add(myFighter.toJson());
-        
-        List<String> frameworkList = new ArrayList<String>();
+        }
+        else
+        {
+            myList.add("");
+        }
+        ArrayList<String> frameworkList = new ArrayList<String>();
         for(Framework f: frameworks)
         {
            frameworkList.add(f.toJson());
@@ -214,7 +223,7 @@ public class Level implements Serializable{
     {
         Gson gson = new Gson();
 
-        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        Type collectionType = new TypeToken<ArrayList<String>>(){}.getType();
 
         ArrayList<String> myList = gson.fromJson(json, collectionType); 
         String backgroundImageName = myList.get(0);
@@ -224,16 +233,41 @@ public class Level implements Serializable{
             setBackground(loader.getImage(backgroundImageName),backgroundImageName);
         }
         
-       /* String fighterJson = myList.get(1);
-        setFighter(Fighter.fromJson(fighterJson));*/
+       String fighterJson = myList.get(1);
+       if(!fighterJson.equals(""))
+        {
+           //setFighter(Fighter.fromJson(fighterJson));
+        }
+       
         
-        ArrayList<String> frameworkList = gson.fromJson(json, collectionType);
+        ArrayList<String> frameworkList = gson.fromJson(myList.get(2), collectionType);
+        //System.out.println("framework LIst: "+frameworkList);
+        
         for(String f: frameworkList)
         {
             addFramework(Framework.fromJson(f));
         }
         
         
+        
+        
+    }
+    
+    public static void main(String[] args)
+    {
+        Level level = new Level();
+        Scanner scanner;
+        try
+        {
+            scanner = new Scanner(new File("Becky"));
+            String wholeFile = scanner.useDelimiter("\\A").next();
+            //System.out.println(wholeFile);
+            level.fromJson(wholeFile);
+        } catch (FileNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
         
     }

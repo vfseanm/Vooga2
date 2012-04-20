@@ -170,6 +170,7 @@ public class Framework implements Serializable {
         Type collectionType = new TypeToken<List<String>>(){}.getType();
         Type collectionType2 = new TypeToken<List<Double>>(){}.getType();
         List<String> list = gson.fromJson(json, collectionType);
+       // System.out.println(list);
         try
         {
             Class prototypeClass = Class.forName(list.get(0).substring(6));
@@ -178,7 +179,8 @@ public class Framework implements Serializable {
             Class typeList[] = new Class[1];
             typeList[0] = String.class;
             Method method = prototypeClass.getMethod("fromJson", typeList);
-            AnimatedGameSprite prototype = (AnimatedGameSprite) method.invoke(prototypeJson);
+            System.out.println(method);
+            AnimatedGameSprite prototype = (AnimatedGameSprite) method.invoke(null,prototypeJson);
             Framework framework = new Framework("blah", prototype);
             for(String s: instanceList)
             {
