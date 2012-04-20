@@ -39,4 +39,9 @@ public class Shoot extends Attribute implements Updateable {
 	{
 	    return new Shoot();
 	}
+
+    public static Shoot fromJson(String json)
+    {
+        return new Shoot();
+    }
 }

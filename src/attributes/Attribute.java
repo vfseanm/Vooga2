@@ -40,6 +40,10 @@ public abstract class Attribute implements Serializable, Cloneable
     }
     
     public abstract Object clone();
+    public String toJson()
+    {
+        return "";
+    }
 
 
     public Attribute (Object...o)

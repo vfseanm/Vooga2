@@ -2,9 +2,11 @@ package editor;
 
 import java.awt.image.BufferedImage;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -106,6 +108,19 @@ public class EditorController {
         {
             ex.printStackTrace();
         }
+        
+/*        FileWriter fileOut;
+        try
+        {
+            fileOut = new FileWriter("Becky");
+            BufferedWriter out2 = new BufferedWriter(fileOut);
+            out2.write(myLevel.toJson());
+            out2.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }*/
         myLevel.moveHorizontally(horizontalOffset);
         myLevel.moveVertically(verticalOffset);
     }

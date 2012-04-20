@@ -1,8 +1,6 @@
 package bonusobjects;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import character.GameCharacter;
@@ -15,10 +13,6 @@ public class PowerUp extends BonusObject {
 	
 	public PowerUp(double x, double y, List<String> image) {
 		super(x, y, image);
-	}
-
-	public List<Attribute> getAttributesToOffer() {
-		return Collections.unmodifiableList(myAttributesToOffer);
 	}
 	
 	public void setGameCharacter(GameCharacter gameCharacter) {

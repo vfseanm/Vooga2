@@ -2,6 +2,7 @@ package demo;
 
 import java.awt.Color;
 
+
 import java.awt.Graphics2D;
 
 import com.golden.gamedev.object.PlayField;
@@ -9,6 +10,7 @@ import com.golden.gamedev.object.SpriteGroup;
 
 import fighter.Fighter;
 import fighter.movement.BasicMovement;
+import fighter.movement.Jump;
 
 import sprite.AnimatedGameSprite;
 
@@ -55,10 +57,11 @@ public class DemoGame extends PlatformGame {
 		 * InvincibilityPowerUp powerup = new InvincibilityPowerUp(images, 0, 0,
 		 * mySprites.get(0).getImageNames(), toGive, toGive);
 		 */
-		//Fighter myFighter = new Fighter(100, 100, mySprites.get(0).getImageNames(), bsInput);
-
-		//myFighter.addAttribute(new BasicMovement(bsInput, 5));
-		// myFighter.addAttribute(new Gravity(1));
+		
+		Fighter myFighter = new Fighter(100, 100, mySprites.get(0).getImageNames(), bsInput);
+		myFighter.addAttribute(new BasicMovement(bsInput, 5));
+		myFighter.addAttribute(new Gravity(1));
+		myFighter.addAttribute(new Jump(bsInput, 1.5, 3));
 
 		// SpriteGroup fighter = myPlayField.addGroup(new
 		// SpriteGroup("Fighter"));

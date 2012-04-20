@@ -1,5 +1,12 @@
 package enemies.movement;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
@@ -76,5 +83,24 @@ public class OneDirectionMovement extends Attribute implements Updateable
     public Object clone()
     {
         return new OneDirectionMovement(myDirection, myDistance);
+    }
+    
+    
+    public String toJson()
+    {
+        Gson gson = new Gson();
+        List<String> argList = new ArrayList<String>();
+        argList.add(myDirection);
+        argList.add(myDistance+"");
+        
+        return gson.toJson(argList);
+    }
+    
+    public static OneDirectionMovement fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        List<String> argList = gson.fromJson(json, collectionType);
+        return new OneDirectionMovement(argList.get(0), Integer.parseInt((argList.get(1))));
     }
 }

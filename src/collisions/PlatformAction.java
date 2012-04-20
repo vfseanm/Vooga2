@@ -2,16 +2,12 @@ package collisions;
 
  
 import platforms.platformtypes.*;
- 
-import platforms.platformtypes.*;
 
  
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 import enemies.Enemy;
-import fighter.Fighter;
-import sprite.AnimatedGameSprite;
 
 
 public class PlatformAction implements ActionPerformer{

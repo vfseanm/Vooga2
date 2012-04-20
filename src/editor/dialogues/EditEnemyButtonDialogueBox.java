@@ -1,6 +1,6 @@
 package editor.dialogues;
 
-import java.io.File;
+
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
