@@ -218,7 +218,7 @@ public class Enemy extends GameCharacter
     public String toString ()
     {
         StringBuilder toReturn = new StringBuilder();
-        toReturn.append(nameAndAttributesToString());
+        toReturn.append(super.toString());
         if (myState != null)
         {
             toReturn.append(myState.toString());
