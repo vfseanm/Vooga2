@@ -1,5 +1,11 @@
 package platforms.platformtypes;
 
+import collisions.CustomActionPerformer;
+
+import com.golden.gamedev.object.collision.CollisionGroup;
+
+import enemies.Enemy;
+
 
 public class BreakablePlatform extends DecoratedPlatform {
 
@@ -36,7 +42,13 @@ public class BreakablePlatform extends DecoratedPlatform {
 	    return new BreakablePlatform(toWrap);
 	    
 	}
-
 	
+	public void action (Enemy sprite1, int collisionType, CustomActionPerformer act){
+		standardAction (sprite1, collisionType, act);
+		if (collisionType == CollisionGroup.BOTTOM_TOP_COLLISION){
+			this.doBreak();
+		}
+		customAction (sprite1, this, collisionType, act); 
+	}
 
 }

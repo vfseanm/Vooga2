@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import platforms.platformtypes.AbstractPlatform;
+
+import collisions.CustomActionPerformer;
+
+import com.golden.gamedev.object.collision.CollisionGroup;
+
 
 import character.GameCharacter;
 import attributes.Attribute;
@@ -233,6 +239,5 @@ public class Enemy extends GameCharacter
         
         
     }
-    
     
 }

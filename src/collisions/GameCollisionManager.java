@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import platforms.platformtypes.BreakablePlatform;
 import platforms.platformtypes.SimplePlatform;
@@ -17,7 +18,7 @@ import enemies.Enemy;
 
 
 public class GameCollisionManager{
-	HashMap<String, ActionPerformer> actionMap = new HashMap <String, ActionPerformer>();
+	HashMap<ArrayList<Class>, CustomActionPerformer> actionMap = new HashMap <ArrayList<Class>, CustomActionPerformer>();
 
 	public void GameCollision (ArrayList<AnimatedGameSprite> spriteList){
 		for (AnimatedGameSprite sprite1: spriteList){
@@ -28,41 +29,28 @@ public class GameCollisionManager{
 					if ( CollisionChecker(sprite1, sprite2) ){
 						
 						int side = SideChecker (sprite1, sprite2);
-						String combineName = stringConcatination (sprite1.getGroup(), sprite2.getGroup());
-						ActionPerformer act = actionMap.get(combineName);
-						
-						try{
-							Class <? extends Sprite> sp1c = sprite1.getClass();
-							Class <? extends Sprite> sp2c = sprite2.getClass(); 
-
-							Method mc = act.getClass().getMethod("action", sp1c, sp2c, int.class);
-							Object [] args = new Object[3];
-							args[0] = sprite1;
-							args[1] = sprite2;
-							args[2] = (int)side;
-							
-							mc.invoke(act, args);
-							
-						}
-						catch (Exception e){
-							System.out.println ("");
-						}
+						CustomActionPerformer act = null;
+						for (ArrayList<Class> c: actionMap.keySet()){
+							if (c.contains(sprite1.getClass()) && c.contains(sprite2.getClass()) ){
+								act = actionMap.get(c);
+							}
+						}	
+						sprite2.action(sprite1, side, act);
 					}
 				}
 			}
 		}
 	}
-	private String stringConcatination(String name1, String name2){
-		String combineName = null;
-		if (name1.compareToIgnoreCase(name2) == -1)
-			combineName = name2 + name1;
-		else
-			combineName = name1 + name2;
-		return combineName;
+
+	public ArrayList<Class> getKey (Class spc1, Class spc2){
+		ArrayList<Class> keyClass = new ArrayList<Class>();
+		keyClass.add(spc1); keyClass.add(spc2);
+		return keyClass;
 	}
 	
-	public void setMap (String name1, String name2, ActionPerformer act){
-		actionMap.put(stringConcatination(name1, name2), act);
+	public void setMap (Class spc1, Class spc2, CustomActionPerformer act){
+
+		actionMap.put(getKey(spc1, spc2), act);
 	}
 
 	private int SideChecker(Sprite sprite1, Sprite sprite2) {
@@ -79,11 +67,12 @@ public class GameCollisionManager{
 			return CollisionGroup.BOTTOM_TOP_COLLISION;
 		}
 		return 0;
-		
 	}
+	
 	private boolean leftRightChecker (Sprite sprite1, Sprite sprite2){
 		if  ((sprite1.getX() + sprite1.getWidth() == sprite2.getX()) &&
 				(sprite1.getY() >= (sprite2.getY()-sprite1.getHeight())) && 
+				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth())) &&
 				((sprite1.getY()+sprite1.getHeight()) <= (sprite2.getY()+sprite2.getHeight()+sprite1.getHeight())) ){
 			return true;
 		}
@@ -91,7 +80,6 @@ public class GameCollisionManager{
 	}
 	private boolean topBottomChecker (Sprite sprite1, Sprite sprite2){
 		if  ( ((sprite1.getY() + sprite1.getHeight() >= sprite2.getY()) && (sprite1.getY() + sprite1.getHeight() <= sprite2.getY()+sprite2.getHeight()) ) &&
-				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth())) &&
 				((sprite1.getX()+sprite1.getWidth()) <= (sprite2.getX()+sprite2.getWidth()+sprite1.getWidth())) ){
 			return true;
 		}

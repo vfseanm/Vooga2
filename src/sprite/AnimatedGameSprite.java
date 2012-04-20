@@ -6,12 +6,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import collisions.CustomActionPerformer;
+
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
+import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 
@@ -97,5 +101,14 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         return new AnimatedGameSprite(this.getX(), this.getY(),myImageNames);
     }
     
+	protected void customAction (AnimatedGameSprite sprite1, AnimatedGameSprite sprite2, int collisionType, CustomActionPerformer act){
+		if (act!=null){
+			act.customAction(sprite1, sprite2, collisionType);
+		}
+	}
+	
+	public void action (AnimatedGameSprite otherSprite, int collisionType, CustomActionPerformer act){
+		
+	}
 
 }
