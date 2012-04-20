@@ -48,6 +48,7 @@ public class Level implements Serializable{
     public Level()
     {
         frameworks = new ArrayList<Framework>();
+        backgroundImagePath = "";
        // sprites = new ArrayList<AnimatedGameSprite>();
     }
     
@@ -154,7 +155,7 @@ public class Level implements Serializable{
         {
             f.updateImages();
         }
-        if(backgroundImagePath!=null)
+        if(!backgroundImagePath.equals(""))
         {
         myBackground.setImage(loader.getImage(backgroundImagePath));
         }
@@ -191,20 +192,21 @@ public class Level implements Serializable{
         frameworks.add(f);
     }
     
- /*   public String toJson()
+    public String toJson()
     {
         Gson gson = new Gson();
         List<String> myList = new ArrayList<String>();
         myList.add(backgroundImagePath);
-        myList.add(myFighter.makeJson());
+        myList.add(myFighter.toJson());
         
         List<String> frameworkList = new ArrayList<String>();
         for(Framework f: frameworks)
         {
-           frameworkList.add(f.makeJson());
+           frameworkList.add(f.toJson());
         }
         
         myList.add(gson.toJson(frameworkList));
+        return gson.toJson(myList);
         
     }
     
@@ -212,15 +214,18 @@ public class Level implements Serializable{
     {
         Gson gson = new Gson();
 
-        Type collectionType = new TypeToken<ArrayList<String>>(){}.getType();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
 
         ArrayList<String> myList = gson.fromJson(json, collectionType); 
         String backgroundImageName = myList.get(0);
         BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
-        setBackground(loader.getImage(backgroundImageName),backgroundImageName);
+        if(!backgroundImageName.equals(""))
+        {
+            setBackground(loader.getImage(backgroundImageName),backgroundImageName);
+        }
         
-        String fighterJson = myList.get(1);
-        setFighter(Fighter.fromJson(fighterJson));
+       /* String fighterJson = myList.get(1);
+        setFighter(Fighter.fromJson(fighterJson));*/
         
         ArrayList<String> frameworkList = gson.fromJson(json, collectionType);
         for(String f: frameworkList)
@@ -232,7 +237,7 @@ public class Level implements Serializable{
         
         
     }
-*/
+
    
 }
 
