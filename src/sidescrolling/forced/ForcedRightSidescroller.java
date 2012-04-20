@@ -34,7 +34,7 @@ public class ForcedRightSidescroller extends ForcedSidescroller {
     }
 
     /**
-     * Moves a sprite to the right.
+     * Moves a sprite to the right and prevents the fighter from moving off the left side of the screen.
      */
     public void move(Sprite sprite) {
         sprite.moveX(forcedRightSpeed);

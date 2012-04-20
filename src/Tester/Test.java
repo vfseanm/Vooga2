@@ -76,10 +76,10 @@ public class Test extends Game{
         //sidescroller = new BorderDownSidescroller(sidescroller, -1.0, 100);
         //sidescroller = new ForcedDownSidescroller(sidescroller, 0.2);
         //sidescroller = new ForcedUpSidescroller(sidescroller, -1.0);
-        sidescroller = new ForcedRightSidescroller(sidescroller, 1.0);
+        //sidescroller = new ForcedRightSidescroller(sidescroller, 1.0);
         //sidescroller = new ForcedLeftSidescroller(sidescroller, -1.0);
-        //sidescroller = new SkipRightSidescroller(this, sidescroller);
-        //sidescroller = new SkipLeftSidescroller(this, sidescroller);
+        sidescroller = new ShiftRightSidescroller(sidescroller);
+        sidescroller = new ShiftLeftSidescroller(sidescroller);
     }
     
     public void render (Graphics2D pen) {

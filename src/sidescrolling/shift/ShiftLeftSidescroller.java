@@ -4,18 +4,33 @@ import sidescrolling.Sidescroller;
 
 import com.golden.gamedev.object.Sprite;
 
+/**
+ * This object allows for shifted sidescrolling in the left direction.
+ * @author Dustin
+ *
+ */
 public class ShiftLeftSidescroller extends ShiftSidescroller {
 
+    /**
+     * Creates a new ShiftLeftSidescroller.
+     * @param scroller - an already created sidescroller
+     */
     public ShiftLeftSidescroller(Sidescroller scroller) {
         super(scroller);
     }
     
-    public boolean fighterOffCorrectSide() {
-        return getFighter().getX() <= 0;
-    }
-    
+    /**
+     * moves a sprite to the right by the width of the screen.
+     */
     public void move(Sprite sprite) {
         sprite.setX(sprite.getX() + getGame().getWidth());
+    }
+    
+    /**
+     * @returns true if the fighter moves off the left side of the screen
+     */
+    public boolean fighterOffCorrectSide() {
+        return getFighter().getX() <= 0;
     }
     
 }
