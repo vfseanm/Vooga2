@@ -27,7 +27,7 @@ public class Jump extends Attribute implements Updateable, Movement
         myUserInput = userInput;
         if (jumpHeight < 0) 
         	throw new RuntimeException("You must enter a positive number for the jump height");
-        myJumpHeight = Math.abs(jumpHeight);
+        myJumpHeight = jumpHeight;
         myTime = delay;
         isJumping = false;
         time = 0;     
@@ -106,7 +106,8 @@ public class Jump extends Attribute implements Updateable, Movement
 
 
 	public double getVertMovement() {
-		return -myJumpHeight;
+		if (isActive && isJumping) return -myJumpHeight;
+		return 0;
 	}
 
 }
