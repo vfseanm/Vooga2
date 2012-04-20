@@ -71,16 +71,16 @@ public class Level implements Serializable{
         //sprites.add(newSprite);
     }
     
-    public void addSprite(AnimatedGameSprite s, Framework f)
-    {
-        
-        if(!frameworks.contains(f))
-        {
-            frameworks.add(f);
-        }
-        f.addSprite(s);
-        
-    }
+//    public void addSprite(AnimatedGameSprite s, Framework f)
+//    {
+//        
+//        if(!frameworks.contains(f))
+//        {
+//            frameworks.add(f);
+//        }
+//        f.addSprite(s);
+//        
+//    }
     public List<Framework> getFrameworks()
     {
         return Collections.unmodifiableList(frameworks);

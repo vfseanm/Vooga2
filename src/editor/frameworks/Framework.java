@@ -40,13 +40,23 @@ public class Framework implements Serializable {
         mySprites = new ArrayList<AnimatedGameSprite>();
     }
    
-    public AnimatedGameSprite getSprite(int x, int y)
+    public AnimatedGameSprite getPotentialSprite(int x, int y)
     {
         AnimatedGameSprite s = (AnimatedGameSprite) prototypeSprite.clone();
         s.setX(x);
-        s.setY(y);
-        mySprites.add(s);
+        s.setY(y-s.getHeight());
         return s;
+    }
+    public void createSprite(int x, int y)
+    {
+        AnimatedGameSprite s = (AnimatedGameSprite) prototypeSprite.clone();
+        s.setX(x);
+        s.setY(y-s.getHeight());
+        mySprites.add(s);
+    }
+    public void addSprite(AnimatedGameSprite s)
+    {
+        mySprites.add( s);
     }
     public String getName()
     {
@@ -106,10 +116,7 @@ public class Framework implements Serializable {
     {
         mySprites.remove(s);
     }
-    public void addSprite(AnimatedGameSprite s)
-    {
-        mySprites.add( s);
-    }
+    
     
     public List<AnimatedGameSprite> getSprites()
     {
@@ -192,7 +199,7 @@ public class Framework implements Serializable {
             for(String s: instanceList)
             {
                 List<Double> coordinates = gson.fromJson(s, collectionType2);
-                framework.getSprite( (int) ((double)coordinates.get(0)), (int)((double)coordinates.get(1)));
+                framework.createSprite( (int) ((double)coordinates.get(0)), (int)((double)coordinates.get(1)));
             }
             return framework;
             
