@@ -59,10 +59,10 @@ public class Flying extends Attribute implements Updateable
         return new Flying();
     }
     
-    public static Flying getFromJson(String json) 
+    public static Flying fromJson(String json) 
     {
         return new Flying();
     }
-    
+   
 
 }

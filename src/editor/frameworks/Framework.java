@@ -40,13 +40,23 @@ public class Framework implements Serializable {
         mySprites = new ArrayList<AnimatedGameSprite>();
     }
    
-    public AnimatedGameSprite getSprite(int x, int y)
+    public AnimatedGameSprite getPotentialSprite(int x, int y)
     {
         AnimatedGameSprite s = (AnimatedGameSprite) prototypeSprite.clone();
         s.setX(x);
-        s.setY(y);
-        mySprites.add(s);
+        s.setY(y-s.getHeight());
         return s;
+    }
+    public void createSprite(int x, int y)
+    {
+        AnimatedGameSprite s = (AnimatedGameSprite) prototypeSprite.clone();
+        s.setX(x);
+        s.setY(y-s.getHeight());
+        mySprites.add(s);
+    }
+    public void addSprite(AnimatedGameSprite s)
+    {
+        mySprites.add( s);
     }
     public String getName()
     {
@@ -106,10 +116,7 @@ public class Framework implements Serializable {
     {
         mySprites.remove(s);
     }
-    public void addSprite(AnimatedGameSprite s)
-    {
-        mySprites.add( s);
-    }
+    
     
     public List<AnimatedGameSprite> getSprites()
     {
@@ -152,6 +159,8 @@ public class Framework implements Serializable {
         Type collectionType = new TypeToken<List<String>>(){}.getType();
         
         List<String> list = new ArrayList<String>();
+        list.add(myType);
+        list.add(myName);
         list.add(prototypeSprite.getClass().toString());
         System.out.println("proto:   "+prototypeSprite.toJson());
         list.add(prototypeSprite.toJson());
@@ -180,19 +189,22 @@ public class Framework implements Serializable {
        // System.out.println(list);
         try
         {
-            Class prototypeClass = Class.forName(list.get(0).substring(6));
-            String prototypeJson = list.get(1);
-            List<String> instanceList = gson.fromJson(list.get(2), collectionType);
+            String type = list.get(0);
+            String name = list.get(1);
+            Class prototypeClass = Class.forName(list.get(2).substring(6));
+            String prototypeJson = list.get(3);
+            List<String> instanceList = gson.fromJson(list.get(4), collectionType);
             Class typeList[] = new Class[1];
             typeList[0] = String.class;
             Method method = prototypeClass.getMethod("fromJson", typeList);
             System.out.println(method);
             AnimatedGameSprite prototype = (AnimatedGameSprite) method.invoke(null,prototypeJson);
-            Framework framework = new Framework("testName", "blah", prototype);
+            Framework framework = new Framework(name, type, prototype);
+            System.out.println("type: "+framework.getType()+"  name: "+framework.getName());
             for(String s: instanceList)
             {
                 List<Double> coordinates = gson.fromJson(s, collectionType2);
-                framework.getSprite( (int) ((double)coordinates.get(0)), (int)((double)coordinates.get(1)));
+                framework.createSprite( (int) ((double)coordinates.get(0)), (int)((double)coordinates.get(1)));
             }
             return framework;
             
@@ -200,6 +212,7 @@ public class Framework implements Serializable {
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            
         } catch (SecurityException e)
         {
             // TODO Auto-generated catch block
