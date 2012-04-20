@@ -52,7 +52,7 @@ public class Test extends Game{
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
         fighter.addAttribute(new BasicMovement(bsInput, 6));
-        fighter.addAttribute(new Jump(bsInput, 4, 300));
+        fighter.addAttribute(new Jump(bsInput, 1.5, 300));
         Gravity g = new Gravity(1.0);
         g.setActivity(true);
         fighter.addAttribute(g);
@@ -74,13 +74,13 @@ public class Test extends Game{
         sidescroller = new ConcreteSidescroller(this, fighter, group1, group2);
         sidescroller = new BorderLeftSidescroller(sidescroller, 100);
         sidescroller = new BorderRightSidescroller(sidescroller, 100);
-        //sidescroller = new BorderUpSidescroller(sidescroller, 1.5, 100);
-        //sidescroller = new BorderDownSidescroller(sidescroller, -1.0, 100);
+        sidescroller = new BorderUpSidescroller(sidescroller, 100);
+        sidescroller = new BorderDownSidescroller(sidescroller, 100);
         //sidescroller = new ForcedDownSidescroller(sidescroller, 0.2);
         //sidescroller = new ForcedUpSidescroller(sidescroller, -1.0);
         //sidescroller = new ForcedRightSidescroller(sidescroller, 1.0);
         //sidescroller = new ForcedLeftSidescroller(sidescroller, -1.0);
-        // = new ShiftRightSidescroller(sidescroller);
+        //sidescroller = new ShiftRightSidescroller(sidescroller);
         //sidescroller = new ShiftLeftSidescroller(sidescroller);
     }
     

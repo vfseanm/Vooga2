@@ -38,7 +38,7 @@ public class BorderDownSidescroller extends BorderSidescroller {
     public void move(Sprite sprite) {
         Fighter fighter = getFighter();
         if (fighter.getY() >= boundary) {
-            sprite.moveY(getFighter().getMovement()[1]);
+            sprite.moveY(-getFighter().getMovement()[1]);
             fighter.setY(boundary);
         }
     }
