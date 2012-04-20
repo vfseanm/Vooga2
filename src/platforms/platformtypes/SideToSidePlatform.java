@@ -1,8 +1,5 @@
 package platforms.platformtypes;
 
-import com.golden.gamedev.object.collision.CollisionGroup;
-
-import enemies.Enemy;
 
 
 
@@ -77,15 +74,4 @@ public class SideToSidePlatform extends DecoratedPlatform {
            
        }
 
-	@Override
-	protected void releaseItem() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void doBreak() {
-		// TODO Auto-generated method stub
-		
-	}
 }

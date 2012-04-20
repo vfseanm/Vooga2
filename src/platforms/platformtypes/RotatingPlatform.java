@@ -99,15 +99,4 @@ public class RotatingPlatform extends DecoratedPlatform {
 		return new RotatingPlatform(toWrap);
 	}
 
-	@Override
-	protected void releaseItem() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void doBreak() {
-		// TODO Auto-generated method stub
-		
-	}
 }

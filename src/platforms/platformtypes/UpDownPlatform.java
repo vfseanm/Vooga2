@@ -1,12 +1,10 @@
 package platforms.platformtypes;
 
  import sprite.AnimatedGameSprite;
+
 import collisions.CustomActionPerformer;
 
-import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
-
-import enemies.Enemy;
 
 
  /**
@@ -89,15 +87,4 @@ import enemies.Enemy;
 		customAction (sprite1, this, collisionType, act); 
 	}
 
-	@Override
-	protected void releaseItem() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void doBreak() {
-		// TODO Auto-generated method stub
-		
-	}
 }
