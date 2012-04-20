@@ -281,6 +281,7 @@ public class Enemy extends GameCharacter
         double x = Double.parseDouble(paramList.get(2));
         double y = Double.parseDouble(paramList.get(3));
         Enemy sprite = new Enemy(x, y, imageNames);
+        sprite.setGroup(groupName);
         System.out.println("gets here");
 
         try
@@ -302,7 +303,9 @@ public class Enemy extends GameCharacter
             Attribute attribute = (Attribute) method.invoke(null, attributeJson);
             sprite.addAttribute(attribute);
 
-        }}
+        }
+            return sprite;
+        }
         
         catch (ClassNotFoundException e)
         {
