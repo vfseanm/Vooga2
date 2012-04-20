@@ -1,41 +1,48 @@
 package platforms.fsmframework;
 
+
+import java.awt.Graphics2D;
 import java.util.List;
+
 import platforms.FrameTimer;
-import platforms.platformtypes.AbstractPlatform;
+import platforms.platformtypes.SimplePlatform;
 import sprite.AnimatedGameSprite;
 
-public class PlatformSwitch extends AnimatedGameSprite implements IContext {
 
-	private static final long serialVersionUID = 1L;
+public class PlatformSwitch extends AnimatedGameSprite {
 	
-	private FrameTimer myTimer = new FrameTimer();
-	private int myButtonDelay = 500;
+	private SimplePlatform myPlatform;
 	private PlatformState myState;
+	private FrameTimer myTimer = new FrameTimer();
 	private boolean SwitchOn = false;
-	private AbstractPlatform myPlatform;
-	
-	
-	public PlatformSwitch(AbstractPlatform controlledPlatform, double x, double y, List<String> imSources) {
+
+	public PlatformSwitch(SimplePlatform controlledPlatform, double x, double y, List<String> imSources) {
 		super(x, y, imSources);
 		myPlatform = controlledPlatform;
-		myState = new SwitchOffState(myPlatform);
+		myState = new OffState(myPlatform);
 	}
-	
+
 	public void pushed() {
 		setFrame(1);
 		myTimer.clear();
 		SwitchOn = true;
-		myState = new SwitchOnState(myPlatform);
+		myState = new OnState(myPlatform);
 	}
 	
 	public void update(long elapsedTime) {
-		if (myTimer.getPassedFrames() >= myButtonDelay && SwitchOn) {
+		if (myTimer.getPassedFrames() >= 1000 && SwitchOn) {
 			setFrame(0);
 			SwitchOn = false;
-			myState = new SwitchOffState(myPlatform);
+			myState = new OffState(myPlatform);
 		}
 		myTimer.update();
-		myPlatform = myState.handle();
+		myState.handle(elapsedTime);
+		super.update(elapsedTime);
+	}
+	
+	public void render(Graphics2D graphics) {
+		myPlatform.render(graphics);
+		super.render(graphics);
 	}
 }
+
