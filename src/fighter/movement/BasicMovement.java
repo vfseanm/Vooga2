@@ -1,6 +1,11 @@
 package fighter.movement;
 
+import character.GameCharacter;
+
 import com.golden.gamedev.engine.BaseInput;
+
+import editor.editorConstructor;
+
 import java.awt.event.KeyEvent;
 import attributes.*;
 
@@ -12,10 +17,9 @@ public class BasicMovement extends Attribute implements Updateable, Movement {
 	public boolean		facingRight;
 	public boolean 		facingLeft;
 	
-	
-	public BasicMovement(BaseInput userInput, double horizMove) {
-	    super(userInput,horizMove);
-		myUserInput = userInput;
+	@editorConstructor(parameterNames = { "horizontal movement" })
+	public BasicMovement(double horizMove) {
+	    super(horizMove);
 		 if (horizMove < 0) 
 	        	throw new RuntimeException("You must enter a positive number for the horizontal movement");
 		myHorizMovement = horizMove;
@@ -29,24 +33,29 @@ public class BasicMovement extends Attribute implements Updateable, Movement {
 
 
 	public void update(long elapsedTime) {
-		if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) {
-		    myGameCharacter.moveX(-myHorizMovement);
-		}
-		
-		if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) {
-			myGameCharacter.moveX(myHorizMovement);
+		if (isActive) {
+			if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) {
+				myGameCharacter.moveX(-myHorizMovement);
+			}
+
+			if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) {
+				myGameCharacter.moveX(myHorizMovement);
+			}
 		}
 	}
 
+	
 	public void invert() {
 		myHorizMovement = -myHorizMovement;
 	}	
 	
+	
 	public Object clone()
 	{
-	    return new BasicMovement(myUserInput, myHorizMovement);
+	    return new BasicMovement(myHorizMovement);
 	}
 
+	
 	public double getHorizMovement() {
 		if (isActive) return myHorizMovement;
 		return 0;
@@ -54,6 +63,10 @@ public class BasicMovement extends Attribute implements Updateable, Movement {
 	
 	public double getVertMovement() {
 		return 0;
+	}
+	
+	public void setGameCharacter(GameCharacter gameCharacter) {
+		myGameCharacter = gameCharacter;
 	}
 
 }

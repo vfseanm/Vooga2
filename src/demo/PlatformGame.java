@@ -52,7 +52,7 @@ public abstract  class PlatformGame extends Game {
         mySprites = myLevel.getSprites();
         myBackground = myLevel.getBackground();
         myFighter = myLevel.getFighter();
-        
+        myFighter.setUserInput(bsInput);
     }
     
     public Fighter getFighter() {

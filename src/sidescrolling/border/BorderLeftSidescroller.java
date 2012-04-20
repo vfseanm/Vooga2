@@ -18,7 +18,6 @@ import fighter.Fighter;
  */
 public class BorderLeftSidescroller extends BorderSidescroller {
 
-    private double leftSpeed;
     private double boundary;
     
     /**
@@ -28,7 +27,6 @@ public class BorderLeftSidescroller extends BorderSidescroller {
      */
     public BorderLeftSidescroller(Sidescroller scroller, double offsetFromLeft) {
         super(scroller);
-        leftSpeed = getFighter().getHorizMovement();
         boundary = offsetFromLeft;
     }
    
@@ -40,7 +38,7 @@ public class BorderLeftSidescroller extends BorderSidescroller {
         if (getGame().keyDown(KeyEvent.VK_LEFT)) {
             Fighter fighter = getFighter();
             if (fighter.getX() <= boundary) {
-                sprite.moveX(leftSpeed);
+                sprite.moveX(getFighter().getMovement()[0]);
                 fighter.setX(boundary);
             }
         }

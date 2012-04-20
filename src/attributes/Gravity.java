@@ -4,7 +4,7 @@ import editor.editorConstructor;
 import fighter.movement.Movement;
 
 @SuppressWarnings("serial")
-public class Gravity extends Attribute implements Movement, Updateable
+public class Gravity extends Attribute implements Updateable, Movement
 {
     private double myDistance;
 
@@ -13,7 +13,10 @@ public class Gravity extends Attribute implements Movement, Updateable
     public Gravity (double distance)
     {
         super(distance);
+        if (distance < 0) 
+        	throw new RuntimeException("You must enter a positive number for the jump height");
         myDistance = distance;   
+        isActive = true;
     }
 
 
@@ -24,10 +27,8 @@ public class Gravity extends Attribute implements Movement, Updateable
 
     public void update (long elapsedTime)
     {
-        
-        
         if (isActive) {
-        	myGameCharacter.setY(myGameCharacter.getY() + myDistance);
+        	myGameCharacter.moveY(myDistance);
         }
     }
 

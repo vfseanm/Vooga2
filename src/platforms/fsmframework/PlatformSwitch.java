@@ -1,22 +1,19 @@
 package platforms.fsmframework;
-
-
 import java.awt.Graphics2D;
 import java.util.List;
-
 import platforms.FrameTimer;
-import platforms.platformtypes.SimplePlatform;
+import platforms.platformtypes.AbstractPlatform;
 import sprite.AnimatedGameSprite;
 
 
 public class PlatformSwitch extends AnimatedGameSprite {
 	
-	private SimplePlatform myPlatform;
+	private AbstractPlatform myPlatform;
 	private PlatformState myState;
 	private FrameTimer myTimer = new FrameTimer();
 	private boolean SwitchOn = false;
 
-	public PlatformSwitch(SimplePlatform controlledPlatform, double x, double y, List<String> imSources) {
+	public PlatformSwitch(AbstractPlatform controlledPlatform, double x, double y, List<String> imSources) {
 		super(x, y, imSources);
 		myPlatform = controlledPlatform;
 		myState = new OffState(myPlatform);
