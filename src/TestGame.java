@@ -14,12 +14,14 @@ import attributes.*;
 import collisions.GameCollisionManager;
 import collisions.PlatformAction;
 import com.golden.gamedev.Game;
+import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import enemies.Enemy;
 import enemies.movement.JumpingMovement;
 import enemies.movement.OneDirectionMovement;
+import enemies.movement.PathFollowingMovement;
 import enemies.movement.SideToSideMovement;
 import enemies.movement.UpDownMovement;
 import fighter.Fighter;
@@ -43,12 +45,13 @@ public class TestGame extends Game {
 		ArrayList<String> a = new ArrayList<String>();
 		a.add("resources/Bowser.jpg");
 		bob = new Enemy( 380, 100, a);
-
-
+		a.clear();
+		a.add("resources/RunningChikapu1.png");
+		
 
 
 		bob.addAttribute(new Gravity(1));
-		bob.addAttribute(new OneDirectionMovement("left",1));        
+//		bob.addAttribute(new OneDirectionMovement("left",1));        
 		bob.addAttribute(new JumpingMovement(1,70));
 
 
@@ -59,11 +62,17 @@ public class TestGame extends Game {
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
 		p = new UpDownPlatform (new SimplePlatform ( 380,190, a));
+		
 
 		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
 
 
-
+//		ArrayList<Point> points = new ArrayList<Point>();
+//		for(int i=1;i<100;i++){
+//		    for(int j=0;j<i;j++)
+//		    points.add(new Point(i,j));
+//		}
+//		bob.addAttribute(new PathFollowingMovement(points));
 		b1[0]= getImage("resources/platform1.png"); 
 
 		p1 = new SimplePlatform ( 100, 200, a);
@@ -92,7 +101,7 @@ public class TestGame extends Game {
 		list.add(p3);
 		gc = new GameCollisionManager();
 		gc.setMap("ENEMY", "PLATFORM", new PlatformAction());
-		//System.out.println(p.getY());
+		System.out.println(p.getY());
 
 	}
 
@@ -111,7 +120,7 @@ public class TestGame extends Game {
 	@Override
 	public void update (long arg0)
 	{
-		myBackground.update(arg0);
+	myBackground.update(arg0);
 		counter++;
 		bob.update(arg0);
 		p.update(arg0);

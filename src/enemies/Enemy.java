@@ -8,13 +8,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import sprite.AnimatedGameSprite;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-
 import character.GameCharacter;
 import attributes.Attribute;
 import attributes.Updateable;
@@ -22,7 +18,7 @@ import enemies.state.EnemyState;
 
 
 @SuppressWarnings("serial")
-public class Enemy extends GameCharacter 
+public class Enemy extends GameCharacter
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;
@@ -36,8 +32,6 @@ public class Enemy extends GameCharacter
     }
 
 
-
-
     /**
      * Secret reflection method for sean's uses
      * 
@@ -47,7 +41,8 @@ public class Enemy extends GameCharacter
      */
     public boolean hasAttributeByName (String name)
     {
-        for (Attribute attribute : myAttributes) {
+        for (Attribute attribute : myAttributes)
+        {
             if (attribute.getClass().getName().equalsIgnoreCase(name)) return true;
         }
         return false;
@@ -73,9 +68,12 @@ public class Enemy extends GameCharacter
         myAttributes.add(attribute);
         attribute.setGameCharacter(this);
     }
-    
-    public void addAttributeList(ArrayList<Attribute> attributes){
-        for(Attribute attribute: attributes){
+
+
+    public void addAttributeList (ArrayList<Attribute> attributes)
+    {
+        for (Attribute attribute : attributes)
+        {
             addAttribute(attribute);
         }
     }
@@ -91,8 +89,7 @@ public class Enemy extends GameCharacter
     {
         for (Attribute attribute : myAttributes)
         {
-            if (attribute.getName().equalsIgnoreCase(name))
-            myAttributes.remove(attribute);
+            if (attribute.getName().equalsIgnoreCase(name)) myAttributes.remove(attribute);
         }
 
     }
@@ -186,21 +183,23 @@ public class Enemy extends GameCharacter
     }
 
 
-
-
     public void update (long elapsedTime)
     {
-        
-        for (Attribute attribute : myAttributes)
+
+        if (myState != null) myState.excuteBehavior(this);
+        else
         {
-            
-            if (attribute.getClass().getInterfaces().length != 0 &&
-                attribute.getClass().getInterfaces()[0].equals(Updateable.class))
+            for (Attribute attribute : myAttributes)
             {
-                ((Updateable) attribute).update(elapsedTime);
+
+                if (attribute.getClass().getInterfaces().length != 0 &&
+                    attribute.getClass().getInterfaces()[0].equals(Updateable.class))
+                {
+                    ((Updateable) attribute).update(elapsedTime);
+                }
             }
         }
-        if (myState != null) myState.excuteBehavior(this);
+
     }
 
 
@@ -209,73 +208,87 @@ public class Enemy extends GameCharacter
         myState = state;
     }
 
-    public String getName() {
-    	return "Enemy";
+
+    public String getName ()
+    {
+        return "Enemy";
     }
-    
-    public String toString() {
+
+
+    public String toString ()
+    {
         StringBuilder toReturn = new StringBuilder();
-        toReturn.append(nameAndAttributesToString());
+        toReturn.append(super.toString());
         if (myState != null)
         {
             toReturn.append(myState.toString());
         }
         return toReturn.toString();
     }
-    
-    public Object clone()
+
+
+    public Object clone ()
     {
         List<String> imageNames = new ArrayList<String>();
         imageNames.addAll(this.getImageNames());
-        Enemy e = new Enemy(this.getX(), this.getY(),imageNames);
-        for(Attribute a: myAttributes)
+        Enemy e = new Enemy(this.getX(), this.getY(), imageNames);
+        for (Attribute a : myAttributes)
         {
             e.addAttribute((Attribute) a.clone());
         }
-        if(myState!=null)
+        if (myState != null)
         {
             e.setState(myState);
         }
         return e;
     }
-    
-    public String toJson()
+
+
+    public String toJson ()
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        Type collectionType = new TypeToken<List<String>>()
+        {}.getType();
         List<String> paramList = new ArrayList<String>();
         paramList.add(gson.toJson(this.getImageNames()));
         paramList.add(this.getGroup());
-        paramList.add(this.getX()+"");
-        paramList.add(this.getY()+"");
-        
+        paramList.add(this.getX() + "");
+        paramList.add(this.getY() + "");
+
         Map<String, String> attributeList = new HashMap<String, String>();
-        for(Attribute a: myAttributes)
+        for (Attribute a : myAttributes)
         {
-            //attributeList.put(a.getClass().toString(), a.toJson());
+            attributeList.put(a.getClass().toString(), a.toJson());
         }
         paramList.add(gson.toJson(attributeList));
         return gson.toJson(paramList);
-        
+
     }
-    
-    public static Enemy fromJson(String json)
+
+
+    public static Enemy fromJson (String json)
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>(){}.getType();
-        Type collectionType2 = new TypeToken<Map<String, String>>(){}.getType();
-        
+        Type collectionType = new TypeToken<List<String>>()
+        {}.getType();
+        Type collectionType2 = new TypeToken<Map<String, String>>()
+        {}.getType();
+
         List<String> paramList = gson.fromJson(json, collectionType);
-        List<String> imageNames = gson.fromJson(paramList.get(0), collectionType);
+        List<String> imageNames =
+            gson.fromJson(paramList.get(0), collectionType);
         String groupName = paramList.get(1);
         double x = Double.parseDouble(paramList.get(2));
         double y = Double.parseDouble(paramList.get(3));
-        Enemy sprite = new Enemy(x, y,imageNames );
+        Enemy sprite = new Enemy(x, y, imageNames);
+        sprite.setGroup(groupName);
         System.out.println("gets here");
-        
+
         try
         {
+
         Map<String, String> attributeMap = gson.fromJson(paramList.get(4), collectionType2);
+        System.out.println("attribute map: "+attributeMap);
         for(String attributeClassName: attributeMap.keySet())
         {
             
@@ -287,42 +300,45 @@ public class Enemy extends GameCharacter
             Class typeList[] = new Class[1];
             typeList[0] = String.class;
             Method method = attributeClass.getMethod("fromJson", typeList);
-            Attribute attribute = (Attribute) method.invoke(attributeJson);
+            Attribute attribute = (Attribute) method.invoke(null, attributeJson);
             sprite.addAttribute(attribute);
+
+        }
+            return sprite;
         }
         
-        
-        sprite.setGroup(groupName);
-        return sprite;
-        } catch (ClassNotFoundException e)
+        catch (ClassNotFoundException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (SecurityException e)
+        }
+        catch (SecurityException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (NoSuchMethodException e)
+        }
+        catch (NoSuchMethodException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IllegalArgumentException e)
+        }
+        catch (IllegalArgumentException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IllegalAccessException e)
+        }
+        catch (IllegalAccessException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (InvocationTargetException e)
+        }
+        catch (InvocationTargetException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;
-        
+
     }
 
-    
-    
 }

@@ -145,9 +145,8 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 			}
 		}
 	}
-
 	
-	public String nameAndAttributesToString() {
+	public String toString() {
 		StringBuilder toReturn = new StringBuilder();
 		toReturn.append(getName() + "\n");
 		for (Attribute attribute : getAttributes()) {

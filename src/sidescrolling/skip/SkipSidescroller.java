@@ -7,7 +7,7 @@ import sidescrolling.Sidescroller;
 import com.golden.gamedev.Game;
 
 public abstract class SkipSidescroller extends DecoratedSidescroller {
-    
+        
     protected Game myGame;
     
     public SkipSidescroller(Game game, Sidescroller scroller) {

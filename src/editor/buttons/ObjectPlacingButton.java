@@ -3,6 +3,7 @@ package editor.buttons;
 
 import com.golden.gamedev.gui.TButton;
 
+import editor.EditorController;
 import editor.EditorView;
 import editor.frameworks.Framework;
 
@@ -11,7 +12,7 @@ import editor.frameworks.Framework;
 public class ObjectPlacingButton extends TButton
 {
     private boolean pressed;
-    private EditorView myView;
+    private EditorController myController;
     private Framework myFramework;
 
 
@@ -20,13 +21,12 @@ public class ObjectPlacingButton extends TButton
                     int y,
                     int width,
                     int height,
-                    Framework f, EditorView view)
+                    Framework f, EditorController controller)
     {
         super(name, x, y, width, height);
         myFramework = f;
-        myView = view;
+        myController = controller;
     }
-
 
     public boolean getClicked ()
     {
@@ -38,7 +38,7 @@ public class ObjectPlacingButton extends TButton
     public void doAction ()
     {
         pressed = true;
-        myView.setFramework(myFramework);
+        myController.setFramework(myFramework);
     }
     
     public Framework getFramework()
