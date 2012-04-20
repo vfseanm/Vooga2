@@ -1,12 +1,12 @@
 package platforms.fsmframework;
 
-import platforms.platformtypes.SimplePlatform;
+import platforms.platformtypes.AbstractPlatform;
 
 public class OffState extends PlatformState {
 	
-	private SimplePlatform myDecorator;
+	private AbstractPlatform myDecorator;
 	
-	public OffState(SimplePlatform platform) {
+	public OffState(AbstractPlatform platform) {
 		myDecorator = platform;
 		platform.setVerticalSpeed(0);
 		platform.setHorizontalSpeed(0);
