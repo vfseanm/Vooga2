@@ -258,7 +258,7 @@ public class Enemy extends GameCharacter
         Map<String, String> attributeList = new HashMap<String, String>();
         for (Attribute a : myAttributes)
         {
-            //attributeList.put(a.getClass().toString(), a.toJson());
+            attributeList.put(a.getClass().toString(), a.toJson());
         }
         paramList.add(gson.toJson(attributeList));
         return gson.toJson(paramList);
@@ -285,26 +285,25 @@ public class Enemy extends GameCharacter
 
         try
         {
-            Map<String, String> attributeMap =
-                gson.fromJson(paramList.get(4), collectionType2);
-            for (String attributeClassName : attributeMap.keySet())
-            {
 
-                Class attributeClass;
-
+        Map<String, String> attributeMap = gson.fromJson(paramList.get(4), collectionType2);
+        System.out.println("attribute map: "+attributeMap);
+        for(String attributeClassName: attributeMap.keySet())
+        {
+            
+            Class attributeClass;
+            
                 attributeClass = Class.forName(attributeClassName.substring(6));
+            
+            String attributeJson = attributeMap.get(attributeClassName);
+            Class typeList[] = new Class[1];
+            typeList[0] = String.class;
+            Method method = attributeClass.getMethod("fromJson", typeList);
+            Attribute attribute = (Attribute) method.invoke(null, attributeJson);
+            sprite.addAttribute(attribute);
 
-                String attributeJson = attributeMap.get(attributeClassName);
-                Class typeList[] = new Class[1];
-                typeList[0] = String.class;
-                Method method = attributeClass.getMethod("fromJson", typeList);
-                Attribute attribute = (Attribute) method.invoke(attributeJson);
-                sprite.addAttribute(attribute);
-            }
-
-            sprite.setGroup(groupName);
-            return sprite;
-        }
+        }}
+        
         catch (ClassNotFoundException e)
         {
             // TODO Auto-generated catch block

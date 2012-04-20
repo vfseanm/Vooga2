@@ -269,8 +269,13 @@ public class Level implements Serializable{
             String wholeFile = scanner.useDelimiter("\\A").next();
             System.out.println(wholeFile);
             level.fromJson(wholeFile);
+            
             System.out.println(level.getAllSprites().size());
-            System.out.println(((Enemy)level.getAllSprites().get(1)).getAttributes());
+            for(AnimatedGameSprite s : level.getAllSprites())
+            {
+            System.out.println(((Enemy)s).getAttributes());
+            System.out.println(s.getX());
+            }
         } catch (FileNotFoundException e)
         {
             // TODO Auto-generated catch block
