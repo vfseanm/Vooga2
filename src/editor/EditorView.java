@@ -25,7 +25,9 @@ import com.golden.gamedev.object.background.ImageBackground;
 import editor.buttons.ObjectPlacingButton;
 import editor.buttons.DialogueMakingButton;
 import editor.buttons.OpenButton;
+import editor.buttons.OpenJsonButton;
 import editor.buttons.SaveButton;
+import editor.buttons.SaveJsonButton;
 import editor.dialogues.DialogueBox;
 import editor.dialogues.DynamicBox;
 import editor.dialogues.EditEnemyButtonDialogueBox;
@@ -78,12 +80,18 @@ public abstract class EditorView extends Game {
     {
         TPanel bottomBox = new TPanel(MENU_START, 680, 400, 100);
         
-        TButton openButton = new OpenButton("Open", 70, 10, 60, 40, this);
+        TButton openButton = new OpenButton("Open", 100, 10, 60, 40, this);
 
         SaveButton saveButton = new SaveButton("Save", 180, 10, 60, 40, this);
+        
+        TButton openJsonButton = new OpenJsonButton("OpenJSON", 10, 10, 80, 40, this);
+        
+        TButton saveJsonButton = new SaveJsonButton("SaveJSON", 245, 10, 80, 40, this);
 
         bottomBox.add(openButton);
         bottomBox.add(saveButton);
+        bottomBox.add(openJsonButton);
+        bottomBox.add(saveJsonButton);
 
         framework.add(bottomBox);
     }
@@ -308,6 +316,25 @@ public abstract class EditorView extends Game {
             File file = fc.getSelectedFile();
             myController.loadFile(file);
         }
+    }
+    
+    public void openJsonFile()
+    {
+        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
+        int returnVal = fc.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+        {
+            File file = fc.getSelectedFile();
+            myController.loadJsonFile(file);
+        }
+    }
+    public void saveJsonFile()
+    {
+        
+        String selectedValue = JOptionPane
+                .showInputDialog("Where would you like to save the level?");
+        myController.writeJsonFile(selectedValue);
+        
     }
 
     private JFrame frame;

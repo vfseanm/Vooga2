@@ -6,17 +6,20 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.Scanner;
 
 import com.golden.gamedev.object.Sprite;
 
 import editor.buttons.ObjectPlacingButton;
 import editor.frameworks.Framework;
+import enemies.Enemy;
 import fighter.Fighter;
 
 import sprite.AnimatedGameSprite;
@@ -286,6 +289,53 @@ public class EditorController {
     {
         
         myLevel.setFighter(fighter);
+    }
+    
+    public void loadJsonFile(File f)
+    {
+        Scanner scanner;
+        try
+        {
+            scanner = new Scanner(f);
+            String wholeFile = scanner.useDelimiter("\\A").next();
+            System.out.println(wholeFile);
+            myLevel.fromJson(wholeFile);
+            System.out.println(myLevel.getAllSprites().size());
+            for(AnimatedGameSprite s : myLevel.getAllSprites())
+            {
+                System.out.println(((Enemy)s).getAttributes());
+                System.out.println(s.getX());
+            }
+        } catch (FileNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    } 
+    
+    
+    public void writeJsonFile(String f)
+    {
+        myLevel.moveHorizontally(-horizontalOffset);
+        myLevel.moveVertically(-verticalOffset);
+
+        
+        
+        FileWriter fileOut;
+        try
+        {
+            fileOut = new FileWriter(f);
+            BufferedWriter out2 = new BufferedWriter(fileOut);
+            out2.write(myLevel.toJson());
+            out2.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        myLevel.moveHorizontally(horizontalOffset);
+        myLevel.moveVertically(verticalOffset);
     }
 
 }

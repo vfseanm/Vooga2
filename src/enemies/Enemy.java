@@ -1,6 +1,7 @@
 package enemies;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import sprite.AnimatedGameSprite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
@@ -295,6 +295,7 @@ public class Enemy extends GameCharacter
         double x = Double.parseDouble(paramList.get(2));
         double y = Double.parseDouble(paramList.get(3));
         Enemy sprite = new Enemy(x, y, imageNames);
+        sprite.setGroup(groupName);
         System.out.println("gets here");
 
         try
@@ -316,7 +317,9 @@ public class Enemy extends GameCharacter
             Attribute attribute = (Attribute) method.invoke(null, attributeJson);
             sprite.addAttribute(attribute);
 
-        }}
+        }
+            return sprite;
+        }
         
         catch (ClassNotFoundException e)
         {

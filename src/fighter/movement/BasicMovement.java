@@ -5,16 +5,20 @@ import java.awt.event.KeyEvent;
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class BasicMovement extends Attribute implements Updateable {
+public class BasicMovement extends Attribute implements Updateable, Movement {
 
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
+	public boolean		facingRight;
+	public boolean 		facingLeft;
 	
 	
 	public BasicMovement(BaseInput userInput, double horizMove) {
 	    super(userInput,horizMove);
 		myUserInput = userInput;
-		myHorizMovement = Math.abs(horizMove);
+		 if (horizMove < 0) 
+	        	throw new RuntimeException("You must enter a positive number for the horizontal movement");
+		myHorizMovement = horizMove;
 	}
 	
 	
@@ -25,30 +29,31 @@ public class BasicMovement extends Attribute implements Updateable {
 
 
 	public void update(long elapsedTime) {
-		
-		if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) 
-		{
+		if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) {
 		    myGameCharacter.moveX(-myHorizMovement);
 		}
-			
 		
-		if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) 
+		if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) {
 			myGameCharacter.moveX(myHorizMovement);
-		
-	}
-	
-	// for use in side scrolling 
-	public double getHorizMovement() {
-		return myHorizMovement;
+		}
 	}
 
 	public void invert() {
-		// TODO Auto-generated method stub
-		
+		myHorizMovement = -myHorizMovement;
 	}	
+	
 	public Object clone()
 	{
 	    return new BasicMovement(myUserInput, myHorizMovement);
+	}
+
+	public double getHorizMovement() {
+		if (isActive) return myHorizMovement;
+		return 0;
+	}
+	
+	public double getVertMovement() {
+		return 0;
 	}
 
 }
