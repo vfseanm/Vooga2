@@ -3,9 +3,9 @@ package sidescrolling.border;
 import sidescrolling.DecoratedSidescroller;
 
 
+
 import sidescrolling.Sidescroller;
 
-import com.golden.gamedev.Game;
 
 /**
  * A BorderSidescroller allows for normal sidescrolling. There are four subclasses, one for each direction -
@@ -17,17 +17,13 @@ import com.golden.gamedev.Game;
  *
  */
 public abstract class BorderSidescroller extends DecoratedSidescroller {
-
-    protected Game myGame;
     
     /**
      * Creates a new BorderSidescroller.
-     * @param game - the main game
      * @param scroller - an already created sidescroller
      */
-    public BorderSidescroller(Game game, Sidescroller scroller) {
+    public BorderSidescroller(Sidescroller scroller) {
         super(scroller);
-        myGame = game;
     }
      
     /**

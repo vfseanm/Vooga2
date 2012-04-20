@@ -2,13 +2,12 @@ package sidescrolling.shift;
 
 import sidescrolling.Sidescroller;
 
-import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
 public class ShiftLeftSidescroller extends ShiftSidescroller {
 
-    public ShiftLeftSidescroller(Game game, Sidescroller scroller) {
-        super(game, scroller);
+    public ShiftLeftSidescroller(Sidescroller scroller) {
+        super(scroller);
     }
     
     public boolean fighterOffCorrectSide() {
@@ -16,7 +15,7 @@ public class ShiftLeftSidescroller extends ShiftSidescroller {
     }
     
     public void move(Sprite sprite) {
-        sprite.setX(sprite.getX() + myGame.getWidth());
+        sprite.setX(sprite.getX() + getGame().getWidth());
     }
     
 }

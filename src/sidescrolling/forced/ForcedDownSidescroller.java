@@ -4,6 +4,7 @@ import sidescrolling.Sidescroller;
 
 import com.golden.gamedev.object.Sprite;
 
+
 /**
  * This object allows for forced sidescrolling in the downward direction. The level, along with the fighter
  * will move at a constant speed downward.
@@ -21,8 +22,8 @@ public class ForcedDownSidescroller extends ForcedSidescroller {
      */
     public ForcedDownSidescroller(Sidescroller scroller, double speed) {
         super(scroller);
-        if (speed > 0) {
-            throw new RuntimeException("You must choose a negative number.");
+        if (speed < 0) {
+            throw new RuntimeException("You must choose a positive number.");
         }
         forcedDownSpeed = speed;
     }

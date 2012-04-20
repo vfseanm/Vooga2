@@ -1,8 +1,12 @@
 package sidescrolling.forced;
 
+import java.awt.event.KeyEvent;
+
 import sidescrolling.Sidescroller;
 
 import com.golden.gamedev.object.Sprite;
+
+import fighter.Fighter;
 
 /**
  * This object allows for forced sidescrolling in the right direction. The level, along with the fighter
@@ -13,6 +17,7 @@ import com.golden.gamedev.object.Sprite;
 public class ForcedRightSidescroller extends ForcedSidescroller {
 
     private double forcedRightSpeed;
+    private double leftBorder;
     
     /**
      * Creates a new ForcedRightSidescroller.
@@ -21,10 +26,11 @@ public class ForcedRightSidescroller extends ForcedSidescroller {
      */
     public ForcedRightSidescroller(Sidescroller scroller, double speed) {
         super(scroller);
-        if (speed > 0) {
-            throw new RuntimeException("You must choose a negative number.");
+        if (speed < 0) {
+            throw new RuntimeException("You must choose a positive number.");
         }
         forcedRightSpeed = speed;
+        leftBorder = 0;
     }
 
     /**
@@ -32,6 +38,10 @@ public class ForcedRightSidescroller extends ForcedSidescroller {
      */
     public void move(Sprite sprite) {
         sprite.moveX(forcedRightSpeed);
+        Fighter fighter = getFighter();
+        if (getGame().keyDown(KeyEvent.VK_LEFT) && fighter.getX() <= leftBorder) {
+            fighter.setX(leftBorder);
+        }
     }
     
 }

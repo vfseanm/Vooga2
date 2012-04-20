@@ -1,5 +1,6 @@
 package sidescrolling;
 
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
 
@@ -30,4 +31,10 @@ public interface Sidescroller {
      * @return the Fighter in the ConcreteSidescroller
      */
     public Fighter getFighter();
+    
+    /**
+     * 
+     * @return the Game in the ConcreteSidescroller
+     */
+    public Game getGame();
 }

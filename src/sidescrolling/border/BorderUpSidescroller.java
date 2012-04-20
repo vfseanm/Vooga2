@@ -4,7 +4,6 @@ import sidescrolling.Sidescroller;
 
 import fighter.Fighter;
 
-import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
 /**
@@ -21,13 +20,12 @@ public class BorderUpSidescroller extends BorderSidescroller {
 
     /**
      * Creates a new BorderUpSidescroller.
-     * @param game - the main game
      * @param scroller - an already created sidescroller
      * @param speed
      * @param offsetFromTop - how far from the top of the screen a border will be created
      */
-    public BorderUpSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromTop) {
-        super(game, scroller);
+    public BorderUpSidescroller(Sidescroller scroller, double speed, double offsetFromTop) {
+        super(scroller);
         if (speed < 0) {
             throw new RuntimeException("You must choose a positive number.");
         }

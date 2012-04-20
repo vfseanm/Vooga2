@@ -1,5 +1,6 @@
 package sidescrolling;
 
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.SpriteGroup;
 
 import fighter.Fighter;
@@ -12,16 +13,19 @@ import fighter.Fighter;
  */
 public class ConcreteSidescroller implements Sidescroller {
 
-    private Fighter fighter;
+    private Fighter myFighter;
     private SpriteGroup[] myGroups;
+    private Game myGame;
     
     /**
      * Creates a new ConcreteSidescroller.
+     * @param game - the main game.
      * @param character - the Fighter that the sidescroller uses.
      * @param groups - an array of SpriteGroups containing sprites that the sidescroller must move.
      */
-    public ConcreteSidescroller(Fighter character, SpriteGroup...groups) {
-        fighter = character;
+    public ConcreteSidescroller(Game game, Fighter character, SpriteGroup...groups) {
+        myGame = game;
+        myFighter = character;
         myGroups = groups;
     }
 
@@ -43,7 +47,14 @@ public class ConcreteSidescroller implements Sidescroller {
      * returns the Fighter the ConcreteSidescroller holds.
      */
     public Fighter getFighter() {
-        return fighter;
+        return myFighter;
+    }
+    
+    /**
+     * returns the Game the ConcreteSidescroller holds.
+     */
+    public Game getGame() {
+        return myGame;
     }
     
 }

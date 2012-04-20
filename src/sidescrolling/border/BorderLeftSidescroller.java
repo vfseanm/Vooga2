@@ -2,11 +2,9 @@ package sidescrolling.border;
 
 import java.awt.event.KeyEvent;
 
+
 import sidescrolling.Sidescroller;
 
-
-
-import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
 import fighter.Fighter;
@@ -25,12 +23,11 @@ public class BorderLeftSidescroller extends BorderSidescroller {
     
     /**
      * Creates a new BorderLeftSidescroller.
-     * @param game - the main game
      * @param scroller - an already created sidescroller
      * @param offsetFromLeft - how far from the left of the screen a border will be created
      */
-    public BorderLeftSidescroller(Game game, Sidescroller scroller, double offsetFromLeft) {
-        super(game, scroller);
+    public BorderLeftSidescroller(Sidescroller scroller, double offsetFromLeft) {
+        super(scroller);
         leftSpeed = getFighter().getHorizMovement();
         boundary = offsetFromLeft;
     }
@@ -40,7 +37,7 @@ public class BorderLeftSidescroller extends BorderSidescroller {
      * left border and the left key is being held down.
      */
     public void move(Sprite sprite) {
-        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
+        if (getGame().keyDown(KeyEvent.VK_LEFT)) {
             Fighter fighter = getFighter();
             if (fighter.getX() <= boundary) {
                 sprite.moveX(leftSpeed);

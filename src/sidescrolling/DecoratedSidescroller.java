@@ -1,5 +1,6 @@
 package sidescrolling;
 
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
 import fighter.Fighter;
@@ -44,6 +45,13 @@ public abstract class DecoratedSidescroller implements Sidescroller {
      */
     public Fighter getFighter() {
         return wrappedScroller.getFighter();
+    }
+    
+    /**
+     * Gets the Game from the ConcreteSidescroller
+     */
+    public Game getGame() {
+        return wrappedScroller.getGame();
     }
     
     /**

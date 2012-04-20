@@ -2,17 +2,14 @@ package sidescrolling.shift;
 
 import sidescrolling.DecoratedSidescroller;
 
+
 import sidescrolling.Sidescroller;
 
-import com.golden.gamedev.Game;
 
 public abstract class ShiftSidescroller extends DecoratedSidescroller {
-        
-    protected Game myGame;
-    
-    public ShiftSidescroller(Game game, Sidescroller scroller) {
+            
+    public ShiftSidescroller(Sidescroller scroller) {
         super(scroller);
-        myGame = game;
     }
         
     public abstract boolean fighterOffCorrectSide();

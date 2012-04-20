@@ -21,8 +21,8 @@ public class ForcedUpSidescroller extends ForcedSidescroller {
      */
     public ForcedUpSidescroller(Sidescroller scroller, double speed) {
         super(scroller);
-        if (speed < 0) {
-            throw new RuntimeException("You must choose a positive number.");
+        if (speed > 0) {
+            throw new RuntimeException("You must choose a negative number.");
         }
         forcedUpSpeed = speed;
     }
