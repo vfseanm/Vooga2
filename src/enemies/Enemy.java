@@ -285,7 +285,7 @@ public class Enemy extends GameCharacter
 
         try
         {
-<<<<<<< HEAD
+
         Map<String, String> attributeMap = gson.fromJson(paramList.get(4), collectionType2);
         System.out.println("attribute map: "+attributeMap);
         for(String attributeClassName: attributeMap.keySet())
@@ -301,28 +301,9 @@ public class Enemy extends GameCharacter
             Method method = attributeClass.getMethod("fromJson", typeList);
             Attribute attribute = (Attribute) method.invoke(null, attributeJson);
             sprite.addAttribute(attribute);
-=======
-            Map<String, String> attributeMap =
-                gson.fromJson(paramList.get(4), collectionType2);
-            for (String attributeClassName : attributeMap.keySet())
-            {
 
-                Class attributeClass;
-
-                attributeClass = Class.forName(attributeClassName.substring(6));
-
-                String attributeJson = attributeMap.get(attributeClassName);
-                Class typeList[] = new Class[1];
-                typeList[0] = String.class;
-                Method method = attributeClass.getMethod("fromJson", typeList);
-                Attribute attribute = (Attribute) method.invoke(attributeJson);
-                sprite.addAttribute(attribute);
-            }
-
-            sprite.setGroup(groupName);
-            return sprite;
->>>>>>> 528349f848cd21c5ee6c6e15401aa50a267f93ef
-        }
+        }}
+        
         catch (ClassNotFoundException e)
         {
             // TODO Auto-generated catch block
