@@ -1,6 +1,13 @@
 package platforms.platformtypes;
-
 import java.util.List;
+
+import collisions.CustomActionPerformer;
+
+import com.golden.gamedev.object.collision.CollisionGroup;
+
+import enemies.Enemy;
+
+
 import java.util.ResourceBundle;
 import sprite.AnimatedGameSprite;
 
@@ -50,14 +57,36 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	 *            move back and forth across
 	 */
 	protected abstract void doBehavior(double speed, double distance);
-
-	/**
-	 * Used in saving platforms in the level editor this method creates a string
-	 * representing this platform class as well as the platforms that it may
-	 * decorate.
-	 */
-	@Override
-	public abstract String toString();
-
+	
+	protected abstract void releaseItem();
+	
+	protected abstract void doBreak();
+	
 	public abstract Object clone();
+	
+	
+	public void standardAction (AnimatedGameSprite sprite1, int collisionType){ 	
+		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
+			if ( (sprite1.getX() >= (this.getX() - sprite1.getWidth() ))
+					&& ((sprite1.getX() + sprite1.getWidth()) <= this.getX()+ this.getWidth() + sprite1.getWidth()) ){
+				sprite1.setY(this.getY()-sprite1.getHeight()-1);
+				if (sprite1 instanceof Enemy){
+					((Enemy)sprite1).restoreOriginalAttribute("JumpingMovement");	
+				}
+			}
+		}
+		
+		if (sprite1 instanceof Enemy){
+			if ((collisionType!=CollisionGroup.TOP_BOTTOM_COLLISION) && (collisionType!=CollisionGroup.BOTTOM_TOP_COLLISION))
+				((Enemy)sprite1).invertAttribute("OneDirectionMovement");
+			if(collisionType == CollisionGroup.BOTTOM_TOP_COLLISION){
+				((Enemy)sprite1).allowAttribute("JumpingMovement", false);
+			}
+		}
+	}
+	
+	public void action (AnimatedGameSprite sprite1, int collisionType, CustomActionPerformer act){
+		this.standardAction (sprite1, collisionType);
+		customAction (sprite1, this, collisionType, act); 
+	}
 }

@@ -28,6 +28,9 @@ public class DefensiveState implements EnemyState
     {
         Fighter fighter = enemy.getFighter();
         if(!changeState(enemy, fighter)){
+            if(enemy.getY()>fighter.getY()){
+                enemy.setY(enemy.getY()-1);
+            }else enemy.setY(enemy.getY()+1);
             
         }
 

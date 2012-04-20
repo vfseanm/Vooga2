@@ -11,7 +11,7 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
-import attributes.Attribute;
+import attributes.*;
 import attributes.Updateable;
 import enemies.state.EnemyState;
 import fighter.Fighter;
@@ -50,6 +50,19 @@ public class Enemy extends GameCharacter
             if (attribute.getClass().getName().equalsIgnoreCase(name)) return true;
         }
         return false;
+    }
+
+
+    public void attack (long elapsedTime)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getClass().getSuperclass().equals(Attack.class))
+                ((Attack) attribute).update(elapsedTime);
+            
+                
+        }
+        
     }
 
 
@@ -284,6 +297,7 @@ public class Enemy extends GameCharacter
     {
         try
         {
+
             Enemy toCompare = ((Enemy) o);
             return toString().equals(toCompare.toString());
         }

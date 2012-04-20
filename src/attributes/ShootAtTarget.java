@@ -22,7 +22,7 @@ public class ShootAtTarget extends Attribute implements Updateable {
 	public Timer 					myRefireRate;
 	public int                      myRate;
 
-	@editorConstructor(parameterNames = { "user input", "target", "refire rate" })
+	@editorConstructor(parameterNames = {"target", "refire rate" })
 	public ShootAtTarget(BaseInput userInput, AnimatedGameSprite target, int refireRate) {
 		super(userInput, target, refireRate);
 		myUserInput = userInput;

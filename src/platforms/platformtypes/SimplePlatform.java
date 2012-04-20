@@ -64,4 +64,16 @@ public class SimplePlatform extends AbstractPlatform {
 				imageNames);
 		return e;
 	}
+
+	@Override
+	protected void releaseItem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void doBreak() {
+		// TODO Auto-generated method stub
+		
+	}
 }

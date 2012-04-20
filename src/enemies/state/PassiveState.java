@@ -24,25 +24,25 @@ public class PassiveState implements EnemyState
     }
 
 
-    public void excuteBehavior (Enemy enemy,long elapsedTime)
+    public void excuteBehavior (Enemy enemy, long elapsedTime)
     {
         Fighter opponent = enemy.getFighter();
-        if(!changeState(enemy,opponent));
+        if (!changeState(enemy, opponent))
+        ;
         enemy.updateUpdateableAttributes(elapsedTime);
-        
 
     }
 
 
-    public boolean changeState (Enemy enemy,Fighter opponent)
+    public boolean changeState (Enemy enemy, Fighter opponent)
     {
-        
-        if(enemy.getX()-opponent.getX()<300||enemy.getX()-opponent.getX()<-300){
+
+        if (enemy.getDistance(opponent) < 300)
+        {
             enemy.setState(DefensiveState.getInstance());
             return true;
         }
         return false;
-       
 
     }
 

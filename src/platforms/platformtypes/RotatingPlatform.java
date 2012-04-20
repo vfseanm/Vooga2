@@ -98,4 +98,16 @@ public class RotatingPlatform extends DecoratedPlatform {
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new RotatingPlatform(toWrap);
 	}
+
+	@Override
+	protected void releaseItem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void doBreak() {
+		// TODO Auto-generated method stub
+		
+	}
 }
