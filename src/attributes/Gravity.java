@@ -1,9 +1,10 @@
 package attributes;
 
 import editor.editorConstructor;
+import fighter.movement.Movement;
 
 @SuppressWarnings("serial")
-public class Gravity extends Attribute implements Updateable
+public class Gravity extends Attribute implements Movement, Updateable
 {
     private double myDistance;
 
@@ -19,10 +20,9 @@ public class Gravity extends Attribute implements Updateable
     public void modifyGravityDistance (double distance)
     {
         myDistance = distance;
-
     }
 
-    public void update (long elaspedTime)
+    public void update (long elapsedTime)
     {
         
         
@@ -64,5 +64,15 @@ public class Gravity extends Attribute implements Updateable
         double distance = Double.parseDouble(json);
         return new Gravity(distance);
     }
+
+
+	public double getHorizMovement() {
+		return 0;
+	}
+
+
+	public double getVertMovement() {
+		return myDistance;
+	}
 
 }

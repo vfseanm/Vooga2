@@ -11,7 +11,7 @@ import attributes.Updateable;
 
 
 @SuppressWarnings("serial")
-public class Jump extends Attribute implements Updateable
+public class Jump extends Attribute implements Updateable, Movement
 {
 	private BaseInput 		myUserInput;
     private double 			myJumpHeight;
@@ -25,6 +25,8 @@ public class Jump extends Attribute implements Updateable
     {
         super(userInput, jumpHeight, delay);
         myUserInput = userInput;
+        if (jumpHeight < 0) 
+        	throw new RuntimeException("You must enter a positive number for the jump height");
         myJumpHeight = Math.abs(jumpHeight);
         myTime = delay;
         isJumping = false;
@@ -51,7 +53,7 @@ public class Jump extends Attribute implements Updateable
 
     
     public void update (long elapsedTime)
-    {
+    {  	
         if (isActive)
         {
         	if (myUserInput.isKeyPressed(KeyEvent.VK_UP)) 
@@ -67,10 +69,9 @@ public class Jump extends Attribute implements Updateable
             else
             {    
             	isJumping = false;
-                myGameCharacter.allowAttribute("Gravity",true);               
+                myGameCharacter.allowAttribute("Gravity", true);               
             }
-        }
-        
+        }     
         time++;
     }
 
@@ -97,5 +98,15 @@ public class Jump extends Attribute implements Updateable
         return "Attribute = Jump. My jump height = " + myJumpHeight +
                " ; my jump time = " + myTime;
     }
+
+
+	public double getHorizMovement() {
+		return 0;
+	}
+
+
+	public double getVertMovement() {
+		return -myJumpHeight;
+	}
 
 }
