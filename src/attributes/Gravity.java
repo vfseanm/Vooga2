@@ -4,7 +4,7 @@ import editor.editorConstructor;
 import fighter.movement.Movement;
 
 @SuppressWarnings("serial")
-public class Gravity extends Attribute implements Movement, Updateable
+public class Gravity extends Attribute implements Updateable, Movement
 {
     private double myDistance;
 
