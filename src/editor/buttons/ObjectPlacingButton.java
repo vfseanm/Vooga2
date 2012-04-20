@@ -27,7 +27,6 @@ public class ObjectPlacingButton extends TButton
         myView = view;
     }
 
-
     public boolean getClicked ()
     {
         boolean t = pressed;

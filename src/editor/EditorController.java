@@ -131,6 +131,7 @@ public class EditorController {
         }
         horizontalOffset = 0;
         verticalOffset = 0;
+        // put in generating buttons. This should have a list of buttons or something.
     }
 
     private static int[] enemyButtonPlacement;
