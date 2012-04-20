@@ -15,7 +15,6 @@ import com.golden.gamedev.object.Sprite;
  */
 public class BorderUpSidescroller extends BorderSidescroller {
 
-    private double upSpeed;
     private double boundary;
 
     /**
@@ -24,12 +23,8 @@ public class BorderUpSidescroller extends BorderSidescroller {
      * @param speed
      * @param offsetFromTop - how far from the top of the screen a border will be created
      */
-    public BorderUpSidescroller(Sidescroller scroller, double speed, double offsetFromTop) {
+    public BorderUpSidescroller(Sidescroller scroller, double offsetFromTop) {
         super(scroller);
-        if (speed < 0) {
-            throw new RuntimeException("You must choose a positive number.");
-        }
-        upSpeed = speed;
         boundary = offsetFromTop;
     }
 
@@ -40,7 +35,7 @@ public class BorderUpSidescroller extends BorderSidescroller {
     public void move(Sprite sprite) {
         Fighter fighter = getFighter();
         if (fighter.getY() <= boundary) {
-            sprite.moveY(upSpeed);
+            sprite.moveY(-getFighter().getMovement()[1]);
             fighter.setY(boundary);
         }
     }

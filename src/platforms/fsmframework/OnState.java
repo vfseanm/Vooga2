@@ -1,14 +1,13 @@
 package platforms.fsmframework;
 
-import platforms.platformtypes.SimplePlatform;
+import platforms.platformtypes.AbstractPlatform;
 import platforms.platformtypes.UpDownPlatform;
 
 public class OnState extends PlatformState {
 
+	private AbstractPlatform myDecorator;
 	
-	private UpDownPlatform myDecorator;
-	
-	public OnState(SimplePlatform platform) {
+	public OnState(AbstractPlatform platform) {
 		myDecorator = new UpDownPlatform(platform);
 	}
 	
