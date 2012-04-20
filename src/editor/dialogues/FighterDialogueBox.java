@@ -113,7 +113,7 @@ public class FighterDialogueBox extends DialogueBox{
             }
             //for(Attribute attribute: carryableAttributes)
             //{
-                fighter.addCarryableAttribute(carryableAttributes);
+                fighter.addCarryableAttributes(carryableAttributes);
             //}
             myController.setFighter(new Fighter(50, 50, myImagePaths, null));
             setVisible(false);

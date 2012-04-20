@@ -57,4 +57,9 @@ public class Shoot extends Attack {
     {
         return new Shoot();
     }
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		
+	}
 }

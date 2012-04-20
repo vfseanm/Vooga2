@@ -1,5 +1,6 @@
 package attributes;
 
+
 import editor.editorConstructor;
 import fighter.movement.Movement;
 

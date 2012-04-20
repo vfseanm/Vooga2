@@ -63,7 +63,7 @@ public class DemoGame extends PlatformGame {
 		
 		Fighter myFighter = new Fighter(100, 100, mySprites.get(0).getImageNames());
 		myFighter.setUserInput(bsInput);
-		myFighter.addAttribute(new BasicMovement(bsInput, 5));
+		myFighter.addAttribute(new BasicMovement(5));
 		// myFighter.addAttribute(new Gravity(1));
 		myFighter.addAttribute(new Jump(1.5, 3));
 
