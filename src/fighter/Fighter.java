@@ -91,14 +91,14 @@ public class Fighter extends GameCharacter {
 	 *         
 	 * @return array with [0] = horizontal movement & [1] = vertical movement
 	 */
-	public double[] getHorizMovement() {
+	public double[] getMovement() {
 		double[] horizVertMovement = new double[2];
 		for (Attribute attribute : myAttributes) {
 			if (attribute.getClass().getInterfaces().length != 0 &&
 	                attribute.getClass().getInterfaces()[1].equals(Movement.class)) {
 				Movement scrollSpeed = (Movement) attribute;
-				horizVertMovement[0] = scrollSpeed.getHorizMovement();
-				horizVertMovement[1] = scrollSpeed.getVertMovement();
+				horizVertMovement[0] += scrollSpeed.getHorizMovement();
+				horizVertMovement[1] += scrollSpeed.getVertMovement();
 			}
 		}
 		return horizVertMovement;

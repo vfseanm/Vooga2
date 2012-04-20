@@ -72,7 +72,8 @@ public class Gravity extends Attribute implements Movement, Updateable
 
 
 	public double getVertMovement() {
-		return myDistance;
+		if (isActive) return myDistance;
+		return 0;
 	}
 
 }

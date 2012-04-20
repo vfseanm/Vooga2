@@ -1,7 +1,4 @@
 package attributes;
-
-import java.util.List;
-
 import editor.editorConstructor;
 
 // knows gravity too well?
