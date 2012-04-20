@@ -30,9 +30,11 @@ public class Framework implements Serializable {
     //protected List<String> imageNames;
     private AnimatedGameSprite prototypeSprite;
     private String myType;
+    private String myName;
     
-    public Framework(String type, AnimatedGameSprite s)
+    public Framework(String name, String type, AnimatedGameSprite s)
     {
+        myName = name;
         prototypeSprite = s;
         myType = type;
         mySprites = new ArrayList<AnimatedGameSprite>();
@@ -45,6 +47,10 @@ public class Framework implements Serializable {
         s.setY(y);
         mySprites.add(s);
         return s;
+    }
+    public String getName()
+    {
+        return myName;
     }
     
     //public ArrayList<AnimatedGameSprite> getSprites();
@@ -181,7 +187,7 @@ public class Framework implements Serializable {
             Method method = prototypeClass.getMethod("fromJson", typeList);
             System.out.println(method);
             AnimatedGameSprite prototype = (AnimatedGameSprite) method.invoke(null,prototypeJson);
-            Framework framework = new Framework("blah", prototype);
+            Framework framework = new Framework("testName", "blah", prototype);
             for(String s: instanceList)
             {
                 List<Double> coordinates = gson.fromJson(s, collectionType2);

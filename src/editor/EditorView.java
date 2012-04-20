@@ -54,7 +54,7 @@ public abstract class EditorView extends Game {
     protected AnimatedGameSprite spriteClicked;           
     protected double[] origPosition;
     protected double[] clickedSpriteOffset;
-    protected Framework myFramework;
+    //protected Framework myFramework;
     protected Background myBackground;
     private HashMap<String, Class> boxMap;
     protected DynamicBox currentDialogueBox;
@@ -136,17 +136,18 @@ public abstract class EditorView extends Game {
         {
             for (ObjectPlacingButton button : allButtons)
             {
-                if (button.getClicked())
-                {
-                    AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
-                    //System.out.println(s.getClass());
-                    if (checkInterference(s))
-                    {
-                        
-                        myController.addSprite(s, myFramework);
-                        
-                    }
-                }
+                myController.checkAndPlaceSprite(button, getMouseX(), getMouseY());
+//                if (button.getClicked())
+//                {
+//                    AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
+//                    //System.out.println(s.getClass());
+//                    if (checkInterference(s))
+//                    {
+//                        
+//                        myController.addSprite(s, myFramework);
+//                        
+//                    }
+//                }
             }
 
         }
@@ -179,7 +180,7 @@ public abstract class EditorView extends Game {
                 && bsInput.isMouseReleased(MouseEvent.BUTTON1))
         {
             myController.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0],this.getMouseY() - clickedSpriteOffset[1]); 
-            if (!checkInterference(spriteClicked))
+            if (!myController.checkInterference(spriteClicked))
             {
                 myController.setSpriteLocation(spriteClicked, origPosition[0], origPosition[1]);
             }
@@ -222,29 +223,29 @@ public abstract class EditorView extends Game {
 
     }
 
-    public boolean checkInterference(Sprite s)
-    {
-        boolean t = true;
-        for (Sprite sprite : myController.getAllSprites())
-        {
-            if(sprite!=spriteClicked)
-            {
-            if ((s.getX() + s.getWidth() > sprite.getX())
-                    && (s.getX() < sprite.getX() + sprite.getWidth()))
-            {
-                if ((s.getY() + s.getHeight() > sprite.getY())
-                        && (s.getY() < sprite.getY() + sprite.getHeight()))
-                {
-                    t = false;
-                }
-            }
-            }
-
-        }
-        if (s.getX() + s.getWidth() > MENU_START)
-            t = false;
-        return t;
-    }
+//    public boolean checkInterference(Sprite s)
+//    {
+//        boolean t = true;
+//        for (Sprite sprite : myController.getAllSprites())
+//        {
+//            if(sprite!=spriteClicked)
+//            {
+//            if ((s.getX() + s.getWidth() > sprite.getX())
+//                    && (s.getX() < sprite.getX() + sprite.getWidth()))
+//            {
+//                if ((s.getY() + s.getHeight() > sprite.getY())
+//                        && (s.getY() < sprite.getY() + sprite.getHeight()))
+//                {
+//                    t = false;
+//                }
+//            }
+//            }
+//
+//        }
+//        if (s.getX() + s.getWidth() > MENU_START)
+//            t = false;
+//        return t;
+//    }
 
  
     public AnimatedGameSprite getClickedSprite()
@@ -283,11 +284,6 @@ public abstract class EditorView extends Game {
         return selected;
     }
     
-    public void setFramework(Framework f)
-    {
-        myFramework = f;
-    }
-
     public void addButton(ObjectPlacingButton newButton)
     {
         infoBox.add(newButton);

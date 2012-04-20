@@ -80,6 +80,10 @@ public class Level implements Serializable{
         f.addSprite(s);
         
     }
+    public List<Framework> getFrameworks()
+    {
+        return Collections.unmodifiableList(frameworks);
+    }
    
     public void moveHorizontally(double x)
     {
