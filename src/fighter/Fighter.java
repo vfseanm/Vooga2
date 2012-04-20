@@ -49,7 +49,6 @@ public class Fighter extends GameCharacter {
     		myAttributes.remove(currentVersion);
     	}
     	super.addAttribute(toAdd);
-    	toAdd.setGameCharacter(this);
 	}
     
     

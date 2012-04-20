@@ -48,7 +48,7 @@ public class Jump extends Attribute implements Updateable, Movement
     	else {
     		myGameCharacter.allowAttribute("Gravity", false);
     	}
-    	isActive=active;
+    	isActive = active;
     }
 
     

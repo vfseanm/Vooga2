@@ -1,6 +1,9 @@
 package fighter.movement;
 
 import com.golden.gamedev.engine.BaseInput;
+
+import editor.editorConstructor;
+
 import java.awt.event.KeyEvent;
 import attributes.*;
 
@@ -12,7 +15,7 @@ public class BasicMovement extends Attribute implements Updateable, Movement {
 	public boolean		facingRight;
 	public boolean 		facingLeft;
 	
-	
+	@editorConstructor(parameterNames = { "user input", "horizontal movement" })
 	public BasicMovement(BaseInput userInput, double horizMove) {
 	    super(userInput,horizMove);
 		myUserInput = userInput;
@@ -38,15 +41,18 @@ public class BasicMovement extends Attribute implements Updateable, Movement {
 		}
 	}
 
+	
 	public void invert() {
 		myHorizMovement = -myHorizMovement;
 	}	
+	
 	
 	public Object clone()
 	{
 	    return new BasicMovement(myUserInput, myHorizMovement);
 	}
 
+	
 	public double getHorizMovement() {
 		if (isActive) return myHorizMovement;
 		return 0;
