@@ -21,10 +21,9 @@ public class Fighter extends GameCharacter {
 	private BaseInput						myUserInput;
 	
 	
-	public Fighter(double x, double y, List<String> images, BaseInput userInput) {
+	public Fighter(double x, double y, List<String> images) {
 		super(x, y, images);
 		myCarryableAttributes = new ArrayList<Attribute>();
-		myUserInput = userInput;
 		setGroup("FIGHTER");
 	}
 	
@@ -104,6 +103,13 @@ public class Fighter extends GameCharacter {
 	}
 	
 	
+	public void setUserInput(BaseInput userInput) {
+		myUserInput = userInput;
+	}
+	
+	public BaseInput getUserInput() {
+		return myUserInput;
+	}
 	
 	public String getName() {
 		return "Fighter";

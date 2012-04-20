@@ -1,8 +1,13 @@
 package fighter.movement;
 
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.golden.gamedev.engine.BaseInput;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import attributes.Attribute;
 import attributes.Updateable;
@@ -15,9 +20,9 @@ public class Fly extends Attribute implements Updateable, Movement
 	private double		myFlightMovement;
 	
     @editorConstructor(parameterNames = {"flight movement"})
-    public Fly(BaseInput userInput, double flightMovement)
+    public Fly(double flightMovement)
     {
-        super(userInput, flightMovement);   
+        super(flightMovement);   
         if (flightMovement < 0) 
         	throw new RuntimeException("You must enter a positive number for the flight movement");
         myFlightMovement = flightMovement;
@@ -26,13 +31,15 @@ public class Fly extends Attribute implements Updateable, Movement
 
     public void update (long elapsedTime)
     {
-    	if (myUserInput.isKeyDown(KeyEvent.VK_UP)) {
-		    myGameCharacter.moveY(-myFlightMovement);
-		}
-		
-		if (myUserInput.isKeyDown(KeyEvent.VK_DOWN)) {
-			myGameCharacter.moveY(myFlightMovement);
-		}
+    	if (isActive) {
+			if (myUserInput.isKeyDown(KeyEvent.VK_UP)) {
+				myGameCharacter.moveY(-myFlightMovement);
+			}
+
+			if (myUserInput.isKeyDown(KeyEvent.VK_DOWN)) {
+				myGameCharacter.moveY(myFlightMovement);
+			}
+    	}
     } 
 
 
@@ -56,25 +63,32 @@ public class Fly extends Attribute implements Updateable, Movement
     
     public Object clone()
     {
-        return new Fly(myUserInput, myFlightMovement);
+        return new Fly(myFlightMovement);
     }
-    
-    public String toJson()
-    {
-        return myFlightMovement + "";
-    }
-
 
 	public double getHorizMovement() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
 	public double getVertMovement() {
-		// TODO Auto-generated method stub
+		if (isActive) return myFlightMovement;
 		return 0;
 	}
-   
-
+	
+	public String toJson()
+    {
+        Gson gson = new Gson();
+        List<Double> argList = new ArrayList<Double>();
+        argList.add(myFlightMovement);
+        return gson.toJson(argList);
+    }
+    
+    public static Fly fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<Double>>(){}.getType();
+        List<Double> argList = gson.fromJson(json, collectionType);
+        return new Fly(argList.get(0));
+    }
 }

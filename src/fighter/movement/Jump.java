@@ -1,30 +1,32 @@
 package fighter.movement;
 
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.golden.gamedev.engine.BaseInput;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
-
-
 
 @SuppressWarnings("serial")
 public class Jump extends Attribute implements Updateable, Movement
 {
 	private BaseInput 		myUserInput;
     private double 			myJumpHeight;
-    private int 			myTime;
+    private double			myTime;
     private boolean 		isJumping;
     private int 			time;
 
 
     @editorConstructor(parameterNames = { "user input", "jump height", "time" })
-    public Jump (BaseInput userInput, double jumpHeight, int delay)
+    public Jump (double jumpHeight, double delay)
     {
-        super(userInput, jumpHeight, delay);
-        myUserInput = userInput;
+        super(jumpHeight, delay);
         if (jumpHeight < 0) 
         	throw new RuntimeException("You must enter a positive number for the jump height");
         myJumpHeight = jumpHeight;
@@ -82,7 +84,7 @@ public class Jump extends Attribute implements Updateable, Movement
 
 	@Override
 	public Object clone() {
-		return new Jump(myUserInput, myJumpHeight, myTime);
+		return new Jump(myJumpHeight, myTime);
 	}
 	
 	
@@ -109,5 +111,21 @@ public class Jump extends Attribute implements Updateable, Movement
 		if (isActive && isJumping) return -myJumpHeight;
 		return 0;
 	}
-
+	
+	public String toJson()
+    {
+        Gson gson = new Gson();
+        List<Double> argList = new ArrayList<Double>();
+        argList.add(myJumpHeight);
+        argList.add(myTime);
+        return gson.toJson(argList);
+    }
+    
+    public static Jump fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<Double>>(){}.getType();
+        List<Double> argList = gson.fromJson(json, collectionType);
+        return new Jump(argList.get(0), argList.get(1));
+    }
 }
