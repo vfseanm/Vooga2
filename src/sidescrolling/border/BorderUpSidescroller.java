@@ -1,7 +1,5 @@
 package sidescrolling.border;
 
-import java.awt.event.KeyEvent;
-
 import sidescrolling.Sidescroller;
 
 import fighter.Fighter;
@@ -9,12 +7,13 @@ import fighter.Fighter;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
-public class BorderUpSidescroller extends BorderSidescroller { 
+public class BorderUpSidescroller extends BorderSidescroller {
 
     private double upSpeed;
     private double boundary;
-    
-    public BorderUpSidescroller(Game game, Sidescroller scroller, double speed, double offsetFromTop) {
+
+    public BorderUpSidescroller(Game game, Sidescroller scroller, double speed,
+            double offsetFromTop) {
         super(game, scroller);
         if (speed < 0) {
             throw new RuntimeException("You must choose a positive number.");
@@ -22,15 +21,13 @@ public class BorderUpSidescroller extends BorderSidescroller {
         upSpeed = speed;
         boundary = offsetFromTop;
     }
-    
+
     public void move(Sprite sprite) {
-        if (myGame.keyDown(KeyEvent.VK_UP)) {
-            Fighter fighter = getFighter();
-            if (fighter.getX() <= boundary) {
-                sprite.moveX(upSpeed);
-                fighter.setX(boundary);
-            }
+        Fighter fighter = getFighter();
+        if (fighter.getY() <= boundary) {
+            sprite.moveY(upSpeed);
+            fighter.setY(boundary);
         }
     }
-    
+
 }
