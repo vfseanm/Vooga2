@@ -1,7 +1,5 @@
 package sidescrolling.border;
 
-import java.awt.event.KeyEvent;
-
 import sidescrolling.Sidescroller;
 
 import fighter.Fighter;
@@ -10,8 +8,11 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
 /**
- * 
- * @author dmadust
+ * This object allows for normal sidescrolling in the downward direction. A border will be created that when the 
+ * Fighter crosses it from above and is moving in the downward direction, all objects in the level will move up
+ * to make it appear as if the Fighter is moving down throguth the level. The sidescroller is functinonal
+ * mainly when the Fighter is falling.
+ * @author Dustin
  * 
  */
 public class BorderDownSidescroller extends BorderSidescroller {
@@ -20,11 +21,11 @@ public class BorderDownSidescroller extends BorderSidescroller {
     private double boundary;
 
     /**
-     * 
-     * @param game
-     * @param scroller
+     * Creates a new BorderDownSidescroller.
+     * @param game - the main game
+     * @param scroller - an already create sidescroller
      * @param speed
-     * @param offsetFromBottom
+     * @param offsetFromBottom - how far from the bottom of the screen a border will be created
      */
     public BorderDownSidescroller(Game game, Sidescroller scroller,
             double speed, double offsetFromBottom) {
@@ -33,10 +34,13 @@ public class BorderDownSidescroller extends BorderSidescroller {
             throw new RuntimeException("You must choose a negative number.");
         }
         downSpeed = speed;
-        boundary = myGame.getHeight() - offsetFromBottom
-                - getFighter().getHeight();
+        boundary = myGame.getHeight() - offsetFromBottom - getFighter().getHeight();
     }
 
+    /**
+     * Moves a sprite up to make it appear as if the fighter is moving down when the fighter is on the bottom
+     * border.
+     */
     public void move(Sprite sprite) {
         Fighter fighter = getFighter();
         if (fighter.getY() >= boundary) {

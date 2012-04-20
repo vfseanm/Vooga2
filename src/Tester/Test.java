@@ -53,7 +53,7 @@ public class Test extends Game{
         fighter.setLoopAnim(true);
         fighter.addAttribute(new BasicMovement(bsInput, 1.5));
         fighter.addAttribute(new Jump(bsInput, 1.5, 300));
-        fighter.addAttribute(new Gravity(1.0));
+        //fighter.addAttribute(new Gravity(1.0));
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
         
@@ -71,11 +71,11 @@ public class Test extends Game{
         group2.add(p4);
         sidescroller = new ConcreteSidescroller(fighter, group1, group2);
         //sidescroller = new BorderLeftSidescroller(this, sidescroller, 100);
-        sidescroller = new BorderRightSidescroller(this, sidescroller, 100);
-        sidescroller = new BorderUpSidescroller(this, sidescroller, 1.5, 100);
-        sidescroller = new BorderDownSidescroller(this, sidescroller, -1.0, 0);
+        //sidescroller = new BorderRightSidescroller(this, sidescroller, 100);
+        //sidescroller = new BorderUpSidescroller(this, sidescroller, 1.5, 100);
+        //sidescroller = new BorderDownSidescroller(this, sidescroller, -1.0, 100);
         //sidescroller = new ForcedDownSidescroller(sidescroller, -1.0);
-        //sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
+        sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
         //sidescroller = new SkipRightSidescroller(this, sidescroller);
         //sidescroller = new SkipLeftSidescroller(this, sidescroller);
     }
