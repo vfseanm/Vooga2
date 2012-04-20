@@ -12,7 +12,7 @@ public class RotatingPlatform extends DecoratedPlatform {
 	private int myFrames = 0;
 	private int myWidth;
 	private int myHeight;
-	private int numFrames ; //number of rotations for 1 complete cycle
+	private int numFrames = Integer.parseInt(myPlatformResources.getString("RotateFrames")); ; //number of rotations for 1 complete cycle
 	
 	/**
 	 * Constructor to create a rotating platform
@@ -23,7 +23,6 @@ public class RotatingPlatform extends DecoratedPlatform {
 		setLoopAnim(true);
 		myHeight = getImages()[0].getHeight();
 		myWidth = getImages()[0].getWidth();
-		numFrames = Integer.parseInt(myPlatformResources.getString("RotateFrames"));
 	}
 	
 	/**

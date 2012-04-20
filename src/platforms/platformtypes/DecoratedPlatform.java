@@ -26,9 +26,12 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	protected AbstractPlatform myDecoratorComponent;
 	protected double mySpeed;
 	protected double myDistance;
-	protected int myDelay ;
-	protected int mySpeedOffset;
-	protected int myDistanceOffset;
+	protected int myDelay =Integer.parseInt(myPlatformResources
+            .getString("RotateDelay")); ;
+	protected int mySpeedOffset = Integer.parseInt(myPlatformResources
+            .getString("SpeedOffset"));;
+	protected int myDistanceOffset = Integer.parseInt(myPlatformResources
+            .getString("DistanceOffset"));;
 
 	FrameTimer myTimer = new FrameTimer();
 
@@ -40,12 +43,12 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	 */
 	public DecoratedPlatform(AbstractPlatform decoratorComponent) {
 		myDecoratorComponent = decoratorComponent;
-		myDelay = Integer.parseInt(myPlatformResources
+/*		myDelay = Integer.parseInt(myPlatformResources
 	            .getString("RotateDelay"));
 		mySpeedOffset = Integer.parseInt(myPlatformResources
 	            .getString("SpeedOffset"));
 		myDistanceOffset = Integer.parseInt(myPlatformResources
-	            .getString("DistanceOffset"));
+	            .getString("DistanceOffset"));*/
 		
 	}
 
