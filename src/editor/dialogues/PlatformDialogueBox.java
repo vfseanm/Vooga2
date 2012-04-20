@@ -153,7 +153,7 @@ public class PlatformDialogueBox extends DialogueBox {
         }*/
         
         //PlatformFramework framework = new PlatformFramework(myImagePaths, platformTypes, myGroup.getText());
-        return new Framework("platform", prototype);
+        return new Framework(myName.getText(), "platform", prototype);
         
     }
     

@@ -65,4 +65,6 @@ public class ShootAtTarget extends Attribute implements Updateable {
 	{
 	    return new ShootAtTarget(myUserInput, myTarget, myRate);
 	}
+	
+
 }

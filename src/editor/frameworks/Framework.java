@@ -30,9 +30,11 @@ public class Framework implements Serializable {
     //protected List<String> imageNames;
     private AnimatedGameSprite prototypeSprite;
     private String myType;
+    private String myName;
     
-    public Framework(String type, AnimatedGameSprite s)
+    public Framework(String name, String type, AnimatedGameSprite s)
     {
+        myName = name;
         prototypeSprite = s;
         myType = type;
         mySprites = new ArrayList<AnimatedGameSprite>();
@@ -45,6 +47,10 @@ public class Framework implements Serializable {
         s.setY(y);
         mySprites.add(s);
         return s;
+    }
+    public String getName()
+    {
+        return myName;
     }
     
     //public ArrayList<AnimatedGameSprite> getSprites();
@@ -147,6 +153,7 @@ public class Framework implements Serializable {
         
         List<String> list = new ArrayList<String>();
         list.add(prototypeSprite.getClass().toString());
+        System.out.println("proto:   "+prototypeSprite.toJson());
         list.add(prototypeSprite.toJson());
         
         List<String> spriteList = new ArrayList<String>();
@@ -170,6 +177,7 @@ public class Framework implements Serializable {
         Type collectionType = new TypeToken<List<String>>(){}.getType();
         Type collectionType2 = new TypeToken<List<Double>>(){}.getType();
         List<String> list = gson.fromJson(json, collectionType);
+       // System.out.println(list);
         try
         {
             Class prototypeClass = Class.forName(list.get(0).substring(6));
@@ -178,8 +186,9 @@ public class Framework implements Serializable {
             Class typeList[] = new Class[1];
             typeList[0] = String.class;
             Method method = prototypeClass.getMethod("fromJson", typeList);
-            AnimatedGameSprite prototype = (AnimatedGameSprite) method.invoke(prototypeJson);
-            Framework framework = new Framework("blah", prototype);
+            System.out.println(method);
+            AnimatedGameSprite prototype = (AnimatedGameSprite) method.invoke(null,prototypeJson);
+            Framework framework = new Framework("testName", "blah", prototype);
             for(String s: instanceList)
             {
                 List<Double> coordinates = gson.fromJson(s, collectionType2);

@@ -53,5 +53,16 @@ public class Gravity extends Attribute implements Updateable
     {
         return new Gravity(myDistance);
     }
+    
+    public String toJson()
+    {
+        return myDistance+"";
+    }
+    
+    public static Gravity fromJson(String json)
+    {
+        double distance = Double.parseDouble(json);
+        return new Gravity(distance);
+    }
 
 }

@@ -1,5 +1,9 @@
 package platforms.fsmframework;
 
-public class PlatformState {
+import platforms.platformtypes.AbstractPlatform;
+
+public abstract class PlatformState {
+	
+	public abstract AbstractPlatform handle();
 
 }

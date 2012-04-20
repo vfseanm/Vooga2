@@ -65,7 +65,6 @@ public class CustomizedEditor extends EditorView{
         {
             if (bsInput.isMouseDown(MouseEvent.BUTTON1))
                 currentDialogueBox.setXY(this.getMouseX(), this.getMouseY());
-            
             System.out.println("left click:" + getClickedSprite());
             System.out.println("right click:" + getRightClickedSprite());
         }

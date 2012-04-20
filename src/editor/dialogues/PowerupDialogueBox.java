@@ -132,7 +132,7 @@ public class PowerupDialogueBox extends DialogueBox {
            prototype.setGroup(myGroup.getText());
             //ArrayList<String> imagePaths = new ArrayList<String>();
             //PowerupFramework framework = new PowerupFramework(myImagePaths, attributes, attributesToGive, myGroup.getText());
-           Framework framework = new Framework("Power-Up", prototype); 
+           Framework framework = new Framework(myName.getText(), "Power-Up", prototype); 
            return framework;
 
         }

@@ -95,7 +95,7 @@ public class EnemyDialogueBox extends DialogueBox {
         }
         prototype.setGroup(myGroup.getText());
         
-        Framework framework = new Framework("enemy", prototype);
+        Framework framework = new Framework(myName.getText(), "enemy", prototype);
         System.out.println("framework's attributes" + attributes);
         return framework;
     }
