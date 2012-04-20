@@ -31,8 +31,8 @@ public class FighterTester extends Game{
         return fighter;
     }
     
-    public void initResources() {
-        String[] fightNames = {"Resources/RunningChikapu1.png", "Resources/RunningChikapu2.png", 
+    public void initFighter() {
+    	String[] fightNames = {"Resources/RunningChikapu1.png", "Resources/RunningChikapu2.png", 
                 "Resources/RunningChikapu3.png", "Resources/RunningChikapu4.png"};
         List<String> names = new ArrayList<String>();
         BufferedImage[] fighterIm = new BufferedImage[fightNames.length];
@@ -52,8 +52,16 @@ public class FighterTester extends Game{
         Gravity g = new Gravity(1.0);
         g.setActivity(true);
         fighter.addAttribute(g);
+        Fly f = new Fly(1.0);
+        f.setActivity(true);
+        fighter.addAttribute(f);
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
+    }
+    
+    public void initResources() {
+        
+    	initFighter();
         
         group1 = new SpriteGroup("1");
         group2 = new SpriteGroup("2");

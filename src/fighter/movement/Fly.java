@@ -18,6 +18,8 @@ public class Fly extends Attribute implements Updateable, Movement, Input
 {
 	private BaseInput	myUserInput;
 	private double		myFlightMovement;
+	private boolean		movingUp;
+	private boolean		movingDown;
 	
     @editorConstructor(parameterNames = {"flight movement"})
     public Fly(double flightMovement)
@@ -32,14 +34,21 @@ public class Fly extends Attribute implements Updateable, Movement, Input
     public void update (long elapsedTime)
     {
     	if (isActive) {
+    		myGameCharacter.allowAttribute("Gravity", false);
+    		
 			if (myUserInput.isKeyDown(KeyEvent.VK_UP)) {
 				myGameCharacter.moveY(-myFlightMovement);
+				movingUp = true;
+				movingDown = false;
 			}
 
 			if (myUserInput.isKeyDown(KeyEvent.VK_DOWN)) {
 				myGameCharacter.moveY(myFlightMovement);
+				movingUp = false;
+				movingDown = true;
 			}
     	}
+    	else myGameCharacter.restoreOriginalAttribute("Gravity");
     } 
 
 
@@ -72,7 +81,10 @@ public class Fly extends Attribute implements Updateable, Movement, Input
 
 
 	public double getVertMovement() {
-		if (isActive) return myFlightMovement;
+		if (isActive) {
+			if (movingUp) 		return -myFlightMovement;
+			if (movingDown) 	return myFlightMovement;
+		}
 		return 0;
 	}
 	
