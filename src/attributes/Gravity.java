@@ -65,7 +65,7 @@ public class Gravity extends Attribute implements Movement, Updateable
         return new Gravity(distance);
     }
 
-
+    //why getters
 	public double getHorizMovement() {
 		return 0;
 	}

@@ -5,17 +5,9 @@ import java.awt.event.KeyEvent;
 
 // FINISH IMPLEMENTING
 @SuppressWarnings("serial")
-public class Shoot extends Attack {
+public class Shoot extends Attribute implements Updateable {
 
-    WeaponObj weapon;
     
-    public Shoot(int blam){
-        super(blam);
-    }
-    attack()
-    {
-        weapon.use();
-    }
     
     
 	@Override
