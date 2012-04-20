@@ -1,6 +1,5 @@
 package enemies.state;
 
-import weapons.Fireball;
 import enemies.Enemy;
 import fighter.Fighter;
 

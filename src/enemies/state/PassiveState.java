@@ -6,10 +6,12 @@ import fighter.Fighter;
 
 public class PassiveState implements EnemyState
 {
+    private int proximity;
     //Bill Pugh Thread Safe Lazy Initialization Singleton Solution
     private PassiveState ()
     {
-
+        //defaults to 300 pixels away before triggering another state
+        proximity = 300;
     }
 
     private static class PassiveStateHolder
@@ -37,13 +39,16 @@ public class PassiveState implements EnemyState
     public boolean changeState (Enemy enemy, Fighter opponent)
     {
 
-        if (enemy.getDistance(opponent) < 300)
+        if (enemy.getDistance(opponent) < proximity&&enemy.isOnScreen())
         {
             enemy.setState(DefensiveState.getInstance());
             return true;
         }
         return false;
 
+    }
+    public void setProximityForPassive(int range){
+        proximity = range;
     }
 
 
