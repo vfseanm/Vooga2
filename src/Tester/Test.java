@@ -14,7 +14,7 @@ import platforms.platformtypes.*;
 import sidescrolling.*;
 import sidescrolling.border.*;
 import sidescrolling.forced.*;
-import sidescrolling.skip.*;
+import sidescrolling.shift.*;
 
 import attributes.Gravity;
 
