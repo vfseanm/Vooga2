@@ -58,7 +58,7 @@ public class TestGame extends Game {
 		a.add("resources/platform1.png");
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
-		//p = new UpDownPlatform (new SimplePlatform ( 380,190, a));
+		p = new UpDownPlatform (new SimplePlatform ( 380,190, a));
 
 		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
 
@@ -66,7 +66,7 @@ public class TestGame extends Game {
 
 		b1[0]= getImage("resources/platform1.png"); 
 
-		p1 = new SimplePlatform ( 170, 220, a);
+		p1 = new SimplePlatform ( 170, 320, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
 		p2 = new SimplePlatform ( 40, 110, a);
@@ -80,16 +80,9 @@ public class TestGame extends Game {
 		
 
 		list = new ArrayList<AnimatedGameSprite>();
-		p1.setGroup("PLATFORM");
-		bob.setGroup("ENEMY");
-		//p.setGroup("PLATFORM");
-
-		p2.setGroup("PLATFORM");
-		//p3.setGroup("PLATFORM");
-		//p4.setGroup("PLATFORM");
 
 		list.add(bob);
-		//list.add(p);
+		list.add(p);
 		list.add(p1);
 		list.add(p2);
 		//list.add(p3);
@@ -107,7 +100,7 @@ public class TestGame extends Game {
 	{
 		myBackground.render(arg0);
 		bob.render(arg0);
-		//p.render(arg0);
+		p.render(arg0);
 		p1.render(arg0);
 		p2.render(arg0);
 		//p3.render(arg0);
@@ -120,7 +113,7 @@ public class TestGame extends Game {
 		myBackground.update(arg0);
 		counter++;
 		bob.update(arg0);
-		//p.update(arg0);
+		p.update(arg0);
 		p1.update(arg0);
 		p2.update(arg0);
 		//p3.update(arg0);

@@ -13,11 +13,10 @@ import java.lang.reflect.*;
  * This class is used to allow for dynamic attribute allocation to enemies and fighters.
  * In essence, this allows for flexibility in the framework while still providing
  * functionality by defining some subclasses of Attribute.
- * The enemy class has a List of attributes, and the fighter class has a Map of attributes.
- * The methods defined in the GameCharacter superclass allow us to handle attributes
- * uniformly.
+ * The enemies and fighter both have a list of Attributes, whose handling is defined in
+ * the GameCharacter superclass for uniformity.
+ * 
  * @authors Alex & Tori
- *
  */
 @SuppressWarnings("serial")
 public abstract class Attribute implements Serializable, Cloneable
@@ -25,7 +24,7 @@ public abstract class Attribute implements Serializable, Cloneable
     protected GameCharacter		myGameCharacter;	
     protected Object 			myOriginal;
     protected boolean 			isActive;
-    public static boolean 		makeOriginal = true;   //Note, this is not thread-safe...Sorry multi-threaded programers
+    public static boolean 		makeOriginal = true;   //Note, this is not thread-safe...Sorry multi-threaded programmers
     
     public abstract String getName();
     
@@ -39,7 +38,16 @@ public abstract class Attribute implements Serializable, Cloneable
     	isActive = active;
     }
     
+    public boolean getActivity() {
+    	return isActive;
+    }
+    
     public abstract Object clone();
+    
+    public String toJson()
+    {
+        return "";
+    }
 
 
     public Attribute (Object...o)

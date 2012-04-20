@@ -3,12 +3,18 @@ package editor;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 import java.util.List;
 
@@ -17,8 +23,11 @@ import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import editor.frameworks.Framework;
+import enemies.Enemy;
 import fighter.Fighter;
 
 
@@ -43,6 +52,7 @@ public class Level implements Serializable{
     public Level()
     {
         frameworks = new ArrayList<Framework>();
+        backgroundImagePath = "";
        // sprites = new ArrayList<AnimatedGameSprite>();
     }
     
@@ -61,15 +71,19 @@ public class Level implements Serializable{
         //sprites.add(newSprite);
     }
     
-    public void addSprite(AnimatedGameSprite s, Framework f)
+//    public void addSprite(AnimatedGameSprite s, Framework f)
+//    {
+//        
+//        if(!frameworks.contains(f))
+//        {
+//            frameworks.add(f);
+//        }
+//        f.addSprite(s);
+//        
+//    }
+    public List<Framework> getFrameworks()
     {
-        
-        if(!frameworks.contains(f))
-        {
-            frameworks.add(f);
-        }
-        f.addSprite(s);
-        
+        return Collections.unmodifiableList(frameworks);
     }
    
     public void moveHorizontally(double x)
@@ -149,7 +163,7 @@ public class Level implements Serializable{
         {
             f.updateImages();
         }
-        if(backgroundImagePath!=null)
+        if(!backgroundImagePath.equals(""))
         {
         myBackground.setImage(loader.getImage(backgroundImagePath));
         }
@@ -179,6 +193,96 @@ public class Level implements Serializable{
     public Fighter getFighter()
     {
         return myFighter;
+    }
+    
+    public void addFramework(Framework f)
+    {
+        frameworks.add(f);
+    }
+    
+    public String toJson()
+    {
+        Gson gson = new Gson();
+        ArrayList<String> myList = new ArrayList<String>();
+        myList.add(backgroundImagePath);
+        if(myFighter!=null)
+        {
+        myList.add(myFighter.toJson());
+        }
+        else
+        {
+            myList.add("");
+        }
+        ArrayList<String> frameworkList = new ArrayList<String>();
+        for(Framework f: frameworks)
+        {
+           frameworkList.add(f.toJson());
+           
+        }
+        
+        myList.add(gson.toJson(frameworkList));
+        return gson.toJson(myList);
+        
+    }
+    
+    public void fromJson(String json)
+    {
+        Gson gson = new Gson();
+
+        Type collectionType = new TypeToken<ArrayList<String>>(){}.getType();
+
+        ArrayList<String> myList = gson.fromJson(json, collectionType); 
+        String backgroundImageName = myList.get(0);
+        BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
+        if(!backgroundImageName.equals(""))
+        {
+            setBackground(loader.getImage(backgroundImageName),backgroundImageName);
+        }
+        
+       String fighterJson = myList.get(1);
+       if(!fighterJson.equals(""))
+        {
+           //setFighter(Fighter.fromJson(fighterJson));
+        }
+       
+        
+        ArrayList<String> frameworkList = gson.fromJson(myList.get(2), collectionType);
+        //System.out.println("framework LIst: "+frameworkList);
+        
+        for(String f: frameworkList)
+        {
+            addFramework(Framework.fromJson(f));
+        }
+        
+        
+        
+        
+    }
+    
+    public static void main(String[] args)
+    {
+        Level level = new Level();
+        Scanner scanner;
+        try
+        {
+            scanner = new Scanner(new File("Becky"));
+            String wholeFile = scanner.useDelimiter("\\A").next();
+            System.out.println(wholeFile);
+            level.fromJson(wholeFile);
+            
+            System.out.println(level.getAllSprites().size());
+            for(AnimatedGameSprite s : level.getAllSprites())
+            {
+            System.out.println(((Enemy)s).getAttributes());
+            System.out.println(s.getX());
+            }
+        } catch (FileNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        
     }
 
    

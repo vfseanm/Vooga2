@@ -1,14 +1,14 @@
 package fighter;
 
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.golden.gamedev.engine.BaseInput;
 
 import character.GameCharacter;
-import fighter.movement.BasicMovement;
+import fighter.movement.Input;
+import fighter.movement.Movement;
 import attributes.Attribute;
 
 
@@ -16,19 +16,17 @@ import attributes.Attribute;
 public class Fighter extends GameCharacter {
 
 	private List<Attribute>					myCarryableAttributes;
-	private BasicMovement					myBasicMovement;
 	private BaseInput						myUserInput;
 	
-	public Fighter(double x, double y, List<String> images, BaseInput userInput) {
+	
+	public Fighter(double x, double y, List<String> images) {
 		super(x, y, images);
 		myCarryableAttributes = new ArrayList<Attribute>();
-		myUserInput = userInput;
 		setGroup("FIGHTER");
 	}
 	
+	
     public void update(long elapsedTime) {
-    	myBasicMovement.update(elapsedTime);
-    	
 		performAttributeActions(elapsedTime);
 		
 		if (myUserInput.isKeyDown(KeyEvent.VK_C)) 
@@ -38,7 +36,26 @@ public class Fighter extends GameCharacter {
 		}
 	}
     
-    public void addCarryableAttribute(ArrayList<Attribute> carryables) {
+    
+    /**
+	 * Adds Attributes, removing older, duplicate versions; also sets user input for
+	 * the Fighter's Movement Attributes, enabling use of key strokes.                    
+	 */
+    public void addAttribute(Attribute toAdd) {	
+    	Attribute currentVersion = getAttributeByName(toAdd.getName());
+    	if (currentVersion != null) {
+    		myAttributes.remove(currentVersion);
+    	}
+    	super.addAttribute(toAdd);
+    	if (toAdd.getClass().getInterfaces().length >= 3) {
+               if (toAdd.getClass().getInterfaces()[2].equals(Input.class))
+            	   ((Input) toAdd).setUserInput(myUserInput);
+        }
+	}
+    
+ 
+    
+    public void addCarryableAttributes(List<Attribute> carryables) {
     	myCarryableAttributes.addAll(carryables);
     	
     	// method for adding attributes to inventory of limited length = myMaxNumCarryables
@@ -46,6 +63,8 @@ public class Fighter extends GameCharacter {
     		myCarryableAttributes.add(i, carryables.get(i-myCarryableAttributes.size()));
     	}*/
     }
+    
+    
     
     public void useCarryableAttribute(int indexCarryableAttribute)  {
     	try {
@@ -57,12 +76,39 @@ public class Fighter extends GameCharacter {
     	}
     }
 	
+	
+	
+	/**
+	 * Method for getting horizontal and vertical movement distances                           
+	 * to ensure accurate side scrolling.
+	 *         
+	 * @return array with [0] = horizontal movement & [1] = vertical movement
+	 */
+	public double[] getMovement() {
+		double[] horizVertMovement = new double[2];
+		for (Attribute attribute : myAttributes) {
+			if (attribute.getClass().getInterfaces().length >= 2) {
+	            if (attribute.getClass().getInterfaces()[1].equals(Movement.class)) {
+	            	Movement scrollSpeed = (Movement) attribute;
+	            	horizVertMovement[0] += scrollSpeed.getHorizMovement();
+	            	horizVertMovement[1] += scrollSpeed.getVertMovement();
+	            }
+			}
+		}
+		return horizVertMovement;
+	}
+	
+	
+	public void setUserInput(BaseInput userInput) {
+		myUserInput = userInput;
+	}
+	
+	public BaseInput getUserInput() {
+		return myUserInput;
+	}
+	
 	public String getName() {
 		return "Fighter";
 	}
 	
-	// Dustin's method for getting speed to check side scrolling
-	public double getHorizMovement() {
-		return myBasicMovement.getHorizMovement();
-	}
 }

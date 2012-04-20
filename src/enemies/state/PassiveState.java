@@ -5,9 +5,27 @@ import enemies.Enemy;
 
 public class PassiveState implements EnemyState
 {
+    //Bill Pugh Thread Safe Lazy Initialization Singleton Solution
+    private PassiveState ()
+    {
+
+    }
+
+    private static class PassiveStateHolder
+    {
+        public final static PassiveState instance = new PassiveState();
+    }
+
+
+    public static PassiveState getInstance ()
+    {
+        return PassiveStateHolder.instance;
+    }
+
 
     public void excuteBehavior (Enemy enemy)
     {
+        enemy.update(allAttributes);
         ///TODO write passive AI
 
     }

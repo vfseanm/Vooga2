@@ -1,16 +1,18 @@
 package attributes;
 
 @SuppressWarnings("serial")
-public class Attack extends Attribute implements Updateable
+public abstract class Attack extends Attribute implements Updateable
 {
-    public Attack(){
-        super();
+    public Attack(Object...o){
+        super(o);
     }
-   
+    
     public void update (long elaspedTime)
     {
-        
+        attack();
     }
+    
+    public abstract void attack();
 
     @Override
     public String getName ()
@@ -23,17 +25,11 @@ public class Attack extends Attribute implements Updateable
         return "Attribute Attack";
     }
 
-    public void invert ()
-    {
-        // TODO Auto-generated method stub
-        
-    }
+    public abstract void invert ();
     
-    public Object clone()
-    {
-        return new Attack();
-    }
-
-
-
+    public abstract Object clone();
+    
+    
+   
+    
 }

@@ -1,17 +1,25 @@
 package editor;
 
+import java.awt.Button;
 import java.awt.image.BufferedImage;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.Scanner;
+
+import com.golden.gamedev.object.Sprite;
 
 import editor.buttons.ObjectPlacingButton;
 import editor.frameworks.Framework;
+import enemies.Enemy;
 import fighter.Fighter;
 
 import sprite.AnimatedGameSprite;
@@ -25,6 +33,8 @@ public class EditorController {
     private double horizontalOffset;
 
     private double verticalOffset;
+
+    private Framework myFramework;
 
     public EditorController(EditorView view)
     {
@@ -43,6 +53,47 @@ public class EditorController {
         myLevel.moveHorizontally(x);
         horizontalOffset += x;
     }
+    
+    public void checkAndPlaceSprite(ObjectPlacingButton button, int x, int y)
+    {
+        if (button.getClicked())
+          {
+              AnimatedGameSprite s = myFramework.getPotentialSprite(x, y);
+              if (checkInterference(s))
+              {
+                 myFramework.createSprite(x, y);
+              }
+          }
+    }
+    public boolean checkInterference(Sprite s)
+    {
+        boolean t = true;
+        for (Sprite sprite : getAllSprites())
+        {
+            if(sprite!=s)
+            {
+            if ((s.getX() + s.getWidth() > sprite.getX())
+                    && (s.getX() < sprite.getX() + sprite.getWidth()))
+            {
+                if ((s.getY() + s.getHeight() > sprite.getY())
+                        && (s.getY() < sprite.getY() + sprite.getHeight()))
+                {
+                    t = false;
+                }
+            }
+            }
+
+        }
+        if (s.getX() + s.getWidth() > myView.MENU_START)
+            t = false;
+        return t;
+    }
+    
+    
+    public void setFramework(Framework f)
+    {
+        myFramework = f;
+    }
 
     public void moveVertically(double y)
     {
@@ -50,11 +101,11 @@ public class EditorController {
         verticalOffset += y;
     }
 
-    public void addSprite(AnimatedGameSprite s, Framework f)
-    {
-        
-        myLevel.addSprite(s,f);
-    }
+//    public void addSprite(AnimatedGameSprite s, Framework f)
+//    {
+//        
+//        myLevel.addSprite(s,f);
+//    }
 
     public void clearLevel()
     {
@@ -106,6 +157,19 @@ public class EditorController {
         {
             ex.printStackTrace();
         }
+        
+        FileWriter fileOut;
+        try
+        {
+            fileOut = new FileWriter("Becky");
+            BufferedWriter out2 = new BufferedWriter(fileOut);
+            out2.write(myLevel.toJson());
+            out2.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         myLevel.moveHorizontally(horizontalOffset);
         myLevel.moveVertically(verticalOffset);
     }
@@ -131,6 +195,13 @@ public class EditorController {
         }
         horizontalOffset = 0;
         verticalOffset = 0;
+        
+        for(Framework f: myLevel.getFrameworks())
+        {
+            addButton(f.getName(), f);
+        }
+        
+        // put in generating buttons. This should have a list of buttons or something.
     }
 
     private static int[] enemyButtonPlacement;
@@ -160,6 +231,7 @@ public class EditorController {
 
     public void addButton(String name, Framework framework)
     {
+        myLevel.addFramework(framework);
         System.out.println("adding button");
         if (framework.getType().equals("enemy"))
         {
@@ -172,7 +244,7 @@ public class EditorController {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         enemyButtonPlacement[enemyButtonCounter],
                         enemyButtonPlacement[enemyButtonCounter + 1], 50, 40,
-                        framework, myView);
+                        framework, this);
                 enemyButtonCounter += 2;
                 myView.addButton(newButton);
             }
@@ -185,7 +257,7 @@ public class EditorController {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         platformButtonPlacement[platformButtonCounter],
                         platformButtonPlacement[platformButtonCounter + 1], 50,
-                        40, framework, myView);
+                        40, framework, this);
                 platformButtonCounter += 2;
                 myView.addButton(newButton);
             }
@@ -198,7 +270,7 @@ public class EditorController {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         powerUpButtonPlacement[powerUpButtonCounter],
                         powerUpButtonPlacement[powerUpButtonCounter + 1], 50,
-                        40, framework, myView);
+                        40, framework, this);
                 powerUpButtonCounter += 2;
                 myView.addButton(newButton);
             }
@@ -217,6 +289,53 @@ public class EditorController {
     {
         
         myLevel.setFighter(fighter);
+    }
+    
+    public void loadJsonFile(File f)
+    {
+        Scanner scanner;
+        try
+        {
+            scanner = new Scanner(f);
+            String wholeFile = scanner.useDelimiter("\\A").next();
+            System.out.println(wholeFile);
+            myLevel.fromJson(wholeFile);
+            System.out.println(myLevel.getAllSprites().size());
+            for(AnimatedGameSprite s : myLevel.getAllSprites())
+            {
+                System.out.println(((Enemy)s).getAttributes());
+                System.out.println(s.getX());
+            }
+        } catch (FileNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    } 
+    
+    
+    public void writeJsonFile(String f)
+    {
+        myLevel.moveHorizontally(-horizontalOffset);
+        myLevel.moveVertically(-verticalOffset);
+
+        
+        
+        FileWriter fileOut;
+        try
+        {
+            fileOut = new FileWriter(f);
+            BufferedWriter out2 = new BufferedWriter(fileOut);
+            out2.write(myLevel.toJson());
+            out2.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        myLevel.moveHorizontally(horizontalOffset);
+        myLevel.moveVertically(verticalOffset);
     }
 
 }

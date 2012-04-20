@@ -1,5 +1,13 @@
 package enemies.movement;
 
+import java.lang.reflect.Type;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import editor.editorConstructor;
 import attributes.Attribute;
 import attributes.Updateable;
@@ -81,6 +89,23 @@ public class JumpingMovement extends Attribute implements Updateable
     public Object clone()
     {
         return new JumpingMovement(myDistance, myTime);
+    }
+    
+    public String toJson()
+    {
+        Gson gson = new Gson();
+        List<Integer> argList = new ArrayList<Integer>();
+        argList.add(myDistance);
+        argList.add(myTime);
+        return gson.toJson(argList);
+    }
+    
+    public static JumpingMovement fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<Integer>>(){}.getType();
+        List<Integer> argList = gson.fromJson(json, collectionType);
+        return new JumpingMovement(argList.get(0), argList.get(1));
     }
 
 }

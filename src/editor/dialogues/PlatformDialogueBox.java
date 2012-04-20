@@ -143,7 +143,7 @@ public class PlatformDialogueBox extends DialogueBox {
             }
 
         }
-        prototype.setGroup(myGroup.toString());
+        prototype.setGroup(myGroup.getText());
         
         
 /*        BufferedImage[] s = new BufferedImage[myImages.size()];
@@ -153,7 +153,7 @@ public class PlatformDialogueBox extends DialogueBox {
         }*/
         
         //PlatformFramework framework = new PlatformFramework(myImagePaths, platformTypes, myGroup.getText());
-        return new Framework("Platform", prototype);
+        return new Framework(myName.getText(), "platform", prototype);
         
     }
     

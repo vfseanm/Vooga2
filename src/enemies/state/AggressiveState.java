@@ -5,6 +5,23 @@ import enemies.Enemy;
 
 public class AggressiveState implements EnemyState
 {
+    //Bill Pugh Thread Safe Lazy Initialization Singleton Solution
+    private AggressiveState ()
+    {
+
+    }
+
+    private static class AggressiveStateHolder
+    {
+        public final static AggressiveState instance = new AggressiveState();
+    }
+
+
+    public static AggressiveState getInstance ()
+    {
+        return AggressiveStateHolder.instance;
+    }
+
 
     public void excuteBehavior (Enemy enemy)
     {
@@ -15,7 +32,10 @@ public class AggressiveState implements EnemyState
 
     public void changeState (Enemy enemy)
     {
-        // TODO write when to change and how to change
+        if (!enemy.isOnScreen())
+        {
+            enemy.setState(PassiveState.getInstance());
+        }
 
     }
 

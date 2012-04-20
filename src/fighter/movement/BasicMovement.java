@@ -1,20 +1,28 @@
 package fighter.movement;
 
+import character.GameCharacter;
+
 import com.golden.gamedev.engine.BaseInput;
+
+import editor.editorConstructor;
+
 import java.awt.event.KeyEvent;
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class BasicMovement extends Attribute implements Updateable {
+public class BasicMovement extends Attribute implements Updateable, Movement, Input {
 
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
+	public boolean		facingRight;
+	public boolean 		facingLeft;
 	
-	
-	public BasicMovement(BaseInput userInput, double horizMove) {
-	    super(userInput,horizMove);
-		myUserInput = userInput;
-		myHorizMovement = Math.abs(horizMove);
+	@editorConstructor(parameterNames = { "horizontal movement" })
+	public BasicMovement(double horizMove) {
+	    super(horizMove);
+		 if (horizMove < 0) 
+	        	throw new RuntimeException("You must enter a positive number for the horizontal movement");
+		myHorizMovement = horizMove;
 	}
 	
 	
@@ -25,30 +33,61 @@ public class BasicMovement extends Attribute implements Updateable {
 
 
 	public void update(long elapsedTime) {
-		
-		if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) 
-		{
-		    myGameCharacter.moveX(-myHorizMovement);
+		if (isActive) {
+			if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) {
+				myGameCharacter.moveX(-myHorizMovement);
+				facingRight = false;
+				facingLeft = true;
+			}
+
+			if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) {
+				myGameCharacter.moveX(myHorizMovement);
+				facingRight = true;
+				facingLeft = false;
+			}
 		}
-			
-		
-		if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) 
-			myGameCharacter.moveX(myHorizMovement);
-		
-	}
-	
-	// for use in side scrolling 
-	public double getHorizMovement() {
-		return myHorizMovement;
 	}
 
+	
 	public void invert() {
-		// TODO Auto-generated method stub
-		
+		myHorizMovement = -myHorizMovement;
 	}	
+	
+	
 	public Object clone()
 	{
-	    return new BasicMovement(myUserInput, myHorizMovement);
+	    return new BasicMovement(myHorizMovement);
+	}
+
+	
+	public double getHorizMovement() {
+		if (isActive) return myHorizMovement;
+		return 0;
+	}
+	
+	public double getVertMovement() {
+		return 0;
+	}
+	
+	/**
+	 * Method for getting the direction the GameCharacter is facing to enable                           
+	 * shooting in proper direction
+	 *         
+	 * @return array with [0] = whether the GameCharacter is facing left (true/false)
+	 * 					  [1] = whether the GameCharacter is facing right (true/false)
+	 */
+	public boolean[] getDirection() {
+		boolean[] directions = {facingLeft, facingRight};
+		return directions;
+	}
+	
+	public void setGameCharacter(GameCharacter gameCharacter) {
+		myGameCharacter = gameCharacter;
+	}
+
+
+	public void setUserInput(BaseInput userInput) {
+		myUserInput = userInput;
 	}
 
 }

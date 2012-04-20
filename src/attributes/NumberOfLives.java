@@ -41,5 +41,16 @@ public class NumberOfLives extends Attribute
     {
         return new NumberOfLives(myLives);
     }
+    
+    public String toJson()
+    {
+        return myLives+"";
+    }
+    
+    public static NumberOfLives fromJson(String json)
+    {
+        int lives = Integer.parseInt(json);
+        return new NumberOfLives(lives);
+    }
 
 }

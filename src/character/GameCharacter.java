@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import bonusobjects.PowerUp;
+
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 import attributes.Updateable;
@@ -13,14 +15,15 @@ import attributes.Updateable;
 @SuppressWarnings("serial")
 public abstract class GameCharacter extends AnimatedGameSprite {
 
-	protected List<Attribute> myAttributes;
-
+	protected List<Attribute> 		myAttributes;
+	
 	public GameCharacter(double x, double y,
 			List<String> images) {
 		super(x, y, images);
 		myAttributes = new ArrayList<Attribute>();
 	}
 
+	
 	public boolean hasAttributeByName(String name) {
 		for (Attribute attribute : myAttributes) {
 			if (attribute.getClass().getName().equalsIgnoreCase(name))
@@ -29,19 +32,39 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 		return false;
 	}
 
+	
+	public Attribute getAttributeByName(String name) {
+		for (Attribute attribute : myAttributes) {
+			if (attribute.getName().equalsIgnoreCase(name))
+				return attribute;
+		}
+		return null;
+	}
+
+	
 	public List<Attribute> getAttributes() {
 		return Collections.unmodifiableList(myAttributes);
 	}
 
+	
 	public void addAttribute(Attribute attribute) {
 		myAttributes.add(attribute);
 		attribute.setGameCharacter(this);
 	}
 
+	
+	public void addPowerUp(PowerUp bonus) {
+    	for (Attribute toAdd: bonus.getAttributesToOffer()) {
+    		addAttribute(toAdd);
+    	}
+    }
+	
+	
 	public void clearAttributes() {
 		myAttributes.clear();
 	}
 
+	
 	public void removeAttributeByName(String name) {
 		for (Attribute attribute : myAttributes) {
 			if (attribute.getName().equalsIgnoreCase(name));
@@ -49,6 +72,7 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 		}
 	}
 
+	
 	private void accessAttributeMethod(String methodStart, String name,
 			Object... o) {
 
@@ -105,10 +129,12 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 		accessAttributeMethod("modify", name, o);
 	}
 
+	
 	public void restoreOriginalAttribute(String name) {
 		accessAttributeMethod("restore", name);
 	}
 
+	
 	public void invertAttribute(String name) {
 		for (Attribute attribute : myAttributes) {
 			if (attribute.getName().equalsIgnoreCase(name)
@@ -119,6 +145,7 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 		}
 	}
 
+	
 	public void allowAttribute(String name, boolean activity) {
 		for (Attribute attribute : myAttributes) {
 			if (attribute.getName().equalsIgnoreCase(name)) {
@@ -126,8 +153,8 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 			}
 		}
 	}
-
-	public String nameAndAttributesToString() {
+	
+	public String toString() {
 		StringBuilder toReturn = new StringBuilder();
 		toReturn.append(getName() + "\n");
 		for (Attribute attribute : getAttributes()) {

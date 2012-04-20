@@ -1,33 +1,35 @@
 package attributes;
 
+
 import editor.editorConstructor;
+import fighter.movement.Movement;
 
 @SuppressWarnings("serial")
-public class Gravity extends Attribute implements Updateable
+public class Gravity extends Attribute implements Updateable, Movement
 {
-    private int myDistance;
+    private double myDistance;
 
 
     @editorConstructor(parameterNames = { "distance" })
-    public Gravity (int distance)
+    public Gravity (double distance)
     {
         super(distance);
+        if (distance < 0) 
+        	throw new RuntimeException("You must enter a positive number for the jump height");
         myDistance = distance;   
+        isActive = true;
     }
 
 
-    public void modifyGravityDistance (int distance)
+    public void modifyGravityDistance (double distance)
     {
         myDistance = distance;
-
     }
 
-    public void update (long elaspedTime)
+    public void update (long elapsedTime)
     {
-        
-        
         if (isActive) {
-        	myGameCharacter.setY(myGameCharacter.getY() + myDistance);
+        	myGameCharacter.moveY(myDistance);
         }
     }
 
@@ -53,5 +55,27 @@ public class Gravity extends Attribute implements Updateable
     {
         return new Gravity(myDistance);
     }
+    
+    public String toJson()
+    {
+        return myDistance+"";
+    }
+    
+    public static Gravity fromJson(String json)
+    {
+        double distance = Double.parseDouble(json);
+        return new Gravity(distance);
+    }
+
+    //why getters
+	public double getHorizMovement() {
+		return 0;
+	}
+
+
+	public double getVertMovement() {
+		if (isActive) return myDistance;
+		return 0;
+	}
 
 }

@@ -25,7 +25,9 @@ import com.golden.gamedev.object.background.ImageBackground;
 import editor.buttons.ObjectPlacingButton;
 import editor.buttons.DialogueMakingButton;
 import editor.buttons.OpenButton;
+import editor.buttons.OpenJsonButton;
 import editor.buttons.SaveButton;
+import editor.buttons.SaveJsonButton;
 import editor.dialogues.DialogueBox;
 import editor.dialogues.DynamicBox;
 import editor.dialogues.EditEnemyButtonDialogueBox;
@@ -54,7 +56,7 @@ public abstract class EditorView extends Game {
     protected AnimatedGameSprite spriteClicked;           
     protected double[] origPosition;
     protected double[] clickedSpriteOffset;
-    protected Framework myFramework;
+    //protected Framework myFramework;
     protected Background myBackground;
     private HashMap<String, Class> boxMap;
     protected DynamicBox currentDialogueBox;
@@ -78,12 +80,18 @@ public abstract class EditorView extends Game {
     {
         TPanel bottomBox = new TPanel(MENU_START, 680, 400, 100);
         
-        TButton openButton = new OpenButton("Open", 70, 10, 60, 40, this);
+        TButton openButton = new OpenButton("Open", 100, 10, 60, 40, this);
 
         SaveButton saveButton = new SaveButton("Save", 180, 10, 60, 40, this);
+        
+        TButton openJsonButton = new OpenJsonButton("OpenJSON", 10, 10, 80, 40, this);
+        
+        TButton saveJsonButton = new SaveJsonButton("SaveJSON", 245, 10, 80, 40, this);
 
         bottomBox.add(openButton);
         bottomBox.add(saveButton);
+        bottomBox.add(openJsonButton);
+        bottomBox.add(saveJsonButton);
 
         framework.add(bottomBox);
     }
@@ -136,17 +144,18 @@ public abstract class EditorView extends Game {
         {
             for (ObjectPlacingButton button : allButtons)
             {
-                if (button.getClicked())
-                {
-                    AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
-                    //System.out.println(s.getClass());
-                    if (checkInterference(s))
-                    {
-                        
-                        myController.addSprite(s, myFramework);
-                        
-                    }
-                }
+                myController.checkAndPlaceSprite(button, getMouseX(), getMouseY());
+//                if (button.getClicked())
+//                {
+//                    AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
+//                    //System.out.println(s.getClass());
+//                    if (checkInterference(s))
+//                    {
+//                        
+//                        myController.addSprite(s, myFramework);
+//                        
+//                    }
+//                }
             }
 
         }
@@ -166,7 +175,6 @@ public abstract class EditorView extends Game {
                     origPosition[1] = s.getY();
                 }
             }
-
         }
         if (spriteClicked != null && bsInput.isMouseDown(MouseEvent.BUTTON1))
         {
@@ -180,7 +188,7 @@ public abstract class EditorView extends Game {
                 && bsInput.isMouseReleased(MouseEvent.BUTTON1))
         {
             myController.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0],this.getMouseY() - clickedSpriteOffset[1]); 
-            if (!checkInterference(spriteClicked))
+            if (!myController.checkInterference(spriteClicked))
             {
                 myController.setSpriteLocation(spriteClicked, origPosition[0], origPosition[1]);
             }
@@ -223,29 +231,29 @@ public abstract class EditorView extends Game {
 
     }
 
-    public boolean checkInterference(Sprite s)
-    {
-        boolean t = true;
-        for (Sprite sprite : myController.getAllSprites())
-        {
-            if(sprite!=spriteClicked)
-            {
-            if ((s.getX() + s.getWidth() > sprite.getX())
-                    && (s.getX() < sprite.getX() + sprite.getWidth()))
-            {
-                if ((s.getY() + s.getHeight() > sprite.getY())
-                        && (s.getY() < sprite.getY() + sprite.getHeight()))
-                {
-                    t = false;
-                }
-            }
-            }
-
-        }
-        if (s.getX() + s.getWidth() > MENU_START)
-            t = false;
-        return t;
-    }
+//    public boolean checkInterference(Sprite s)
+//    {
+//        boolean t = true;
+//        for (Sprite sprite : myController.getAllSprites())
+//        {
+//            if(sprite!=spriteClicked)
+//            {
+//            if ((s.getX() + s.getWidth() > sprite.getX())
+//                    && (s.getX() < sprite.getX() + sprite.getWidth()))
+//            {
+//                if ((s.getY() + s.getHeight() > sprite.getY())
+//                        && (s.getY() < sprite.getY() + sprite.getHeight()))
+//                {
+//                    t = false;
+//                }
+//            }
+//            }
+//
+//        }
+//        if (s.getX() + s.getWidth() > MENU_START)
+//            t = false;
+//        return t;
+//    }
 
  
     public AnimatedGameSprite getClickedSprite()
@@ -284,11 +292,6 @@ public abstract class EditorView extends Game {
         return selected;
     }
     
-    public void setFramework(Framework f)
-    {
-        myFramework = f;
-    }
-
     public void addButton(ObjectPlacingButton newButton)
     {
         infoBox.add(newButton);
@@ -313,6 +316,25 @@ public abstract class EditorView extends Game {
             File file = fc.getSelectedFile();
             myController.loadFile(file);
         }
+    }
+    
+    public void openJsonFile()
+    {
+        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
+        int returnVal = fc.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+        {
+            File file = fc.getSelectedFile();
+            myController.loadJsonFile(file);
+        }
+    }
+    public void saveJsonFile()
+    {
+        
+        String selectedValue = JOptionPane
+                .showInputDialog("Where would you like to save the level?");
+        myController.writeJsonFile(selectedValue);
+        
     }
 
     private JFrame frame;

@@ -49,7 +49,6 @@ public class FighterDialogueBox extends DialogueBox{
         add(makeInputPanel(), BorderLayout.NORTH);
     }
     
-    @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
@@ -106,7 +105,7 @@ public class FighterDialogueBox extends DialogueBox{
                 s[x] = myImages.get(x);
             }*/
             ArrayList<String> imagePaths = new ArrayList<String>();
-            Fighter fighter = new Fighter(50, 50, myImagePaths, null);
+            Fighter fighter = new Fighter(50, 50, myImagePaths);
             
             for(Attribute attribute: attributes)
             {
@@ -114,9 +113,9 @@ public class FighterDialogueBox extends DialogueBox{
             }
             //for(Attribute attribute: carryableAttributes)
             //{
-                fighter.addCarryableAttribute(carryableAttributes);
+                fighter.addCarryableAttributes(carryableAttributes);
             //}
-            myController.setFighter(new Fighter(50, 50, myImagePaths, null));
+            myController.setFighter(new Fighter(50, 50, myImagePaths));
             setVisible(false);
         }
     }

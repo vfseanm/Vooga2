@@ -7,7 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Method;
-import java.util.List;
+ import java.lang.reflect.Type;
+import java.util.ArrayList;
+ import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -17,6 +19,8 @@ import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 @SuppressWarnings("serial")
@@ -111,4 +115,31 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
 		
 	}
 
+	public String toJson()
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        List<String> paramList = new ArrayList<String>();
+        paramList.add(gson.toJson(myImageNames));
+        paramList.add(myGroup);
+        paramList.add(this.getX()+"");
+        paramList.add(this.getY()+"");
+        return gson.toJson(paramList);
+        
+    }
+    public static AnimatedGameSprite fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        List<String> paramList = gson.fromJson(json, collectionType);
+        List<String> imageNames = gson.fromJson(paramList.get(0), collectionType);
+        String groupName = paramList.get(1);
+        double x = Double.parseDouble(paramList.get(2));
+        double y = Double.parseDouble(paramList.get(3));
+        AnimatedGameSprite sprite = new AnimatedGameSprite(x, y,imageNames );
+        sprite.setGroup(groupName);
+        return sprite;
+        
+        
+    }
 }

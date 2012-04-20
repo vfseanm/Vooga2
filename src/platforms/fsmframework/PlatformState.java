@@ -1,5 +1,10 @@
 package platforms.fsmframework;
 
-public class PlatformState {
 
-}
+public abstract class PlatformState {
+	
+	public abstract void handle(long elapsedTime);
+		
+	}
+
+
