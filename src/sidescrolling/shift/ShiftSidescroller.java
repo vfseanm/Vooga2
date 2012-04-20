@@ -1,18 +1,15 @@
-package sidescrolling.skip;
+package sidescrolling.shift;
 
 import sidescrolling.DecoratedSidescroller;
 
+
 import sidescrolling.Sidescroller;
 
-import com.golden.gamedev.Game;
 
-public abstract class SkipSidescroller extends DecoratedSidescroller {
-        
-    protected Game myGame;
-    
-    public SkipSidescroller(Game game, Sidescroller scroller) {
+public abstract class ShiftSidescroller extends DecoratedSidescroller {
+            
+    public ShiftSidescroller(Sidescroller scroller) {
         super(scroller);
-        myGame = game;
     }
         
     public abstract boolean fighterOffCorrectSide();

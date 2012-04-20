@@ -3,6 +3,7 @@ package demo;
 import java.awt.Color;
 
 
+
 import java.awt.Graphics2D;
 
 import com.golden.gamedev.object.PlayField;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import platforms.*;
 import sidescrolling.*;
+import sidescrolling.border.*;
 import platforms.platformtypes.*;
 import attributes.*;
 import collisions.GameCollisionManager;
@@ -42,6 +44,7 @@ public class DemoGame extends PlatformGame {
 	private ArrayList<AnimatedGameSprite> list;
 	// private PlayField myPlayField;
 	private SpriteGroup allSprites;
+	private Sidescroller sidescroller;
 
 	@Override
 	public void initResources() {
@@ -107,6 +110,11 @@ public class DemoGame extends PlatformGame {
 		list.add(p1);
 		list.add(p2);
 		list.add(bob);
+        sidescroller = new ConcreteSidescroller(myFighter, allSprites);
+        sidescroller = new BorderLeftSidescroller(this, sidescroller, 100);
+        sidescroller = new BorderRightSidescroller(this, sidescroller, 100);
+        sidescroller = new BorderUpSidescroller(this, sidescroller, 1.5, 100);
+        sidescroller = new BorderDownSidescroller(this, sidescroller, -1.0, 100);
 		gc = new GameCollisionManager();
 
 	}
