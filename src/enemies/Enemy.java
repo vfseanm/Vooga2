@@ -16,7 +16,11 @@ import attributes.Attribute;
 import attributes.Updateable;
 import enemies.state.EnemyState;
 
-
+/**
+ * 
+ * @author Alex
+ *
+ */
 @SuppressWarnings("serial")
 public class Enemy extends GameCharacter
 {
@@ -242,6 +246,16 @@ public class Enemy extends GameCharacter
         }
         return e;
     }
+    
+    public boolean equals(Object o){
+        try{
+            Enemy toCompare = ((Enemy) o);
+            return toString().equals(toCompare.toString());
+        }
+        catch(ClassCastException e){
+            return false;
+        }
+    }
 
 
     public String toJson ()
@@ -309,32 +323,26 @@ public class Enemy extends GameCharacter
         
         catch (ClassNotFoundException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (SecurityException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (NoSuchMethodException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (IllegalArgumentException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (IllegalAccessException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (InvocationTargetException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;

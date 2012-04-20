@@ -24,7 +24,7 @@ public abstract class Attribute implements Serializable, Cloneable
     protected GameCharacter		myGameCharacter;	
     protected Object 			myOriginal;
     protected boolean 			isActive;
-    public static boolean 		makeOriginal = true;   //Note, this is not thread-safe...Sorry multi-threaded programers
+    public static boolean 		makeOriginal = true;   //Note, this is not thread-safe...Sorry multi-threaded programmers
     
     public abstract String getName();
     
