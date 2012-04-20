@@ -5,18 +5,18 @@ import editor.editorConstructor;
 @SuppressWarnings("serial")
 public class Gravity extends Attribute implements Updateable
 {
-    private int myDistance;
+    private double myDistance;
 
 
     @editorConstructor(parameterNames = { "distance" })
-    public Gravity (int distance)
+    public Gravity (double distance)
     {
         super(distance);
         myDistance = distance;   
     }
 
 
-    public void modifyGravityDistance (int distance)
+    public void modifyGravityDistance (double distance)
     {
         myDistance = distance;
 
