@@ -21,9 +21,7 @@ import sprite.AnimatedGameSprite;
 public abstract class AbstractPlatform extends AnimatedGameSprite {
 
 	private static final long serialVersionUID = 1483938382856783084L;
-	protected ResourceBundle myPlatformResources = ResourceBundle
-			.getBundle("platforms.PlatformResourceBundle");
-
+	transient protected ResourceBundle myPlatformResources;
 	/**
 	 * Super constructor used for a simple platform
 	 * 
@@ -39,12 +37,16 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 
 	protected AbstractPlatform(double x, double y, List<String> imageSources) {
 		super(x, y, imageSources);
+		myPlatformResources = ResourceBundle
+        .getBundle("platforms.PlatformResourceBundle");
 	}
 
 	/**
 	 * Super constructor used for decorated platforms
 	 */
 	protected AbstractPlatform() {
+	    myPlatformResources = ResourceBundle
+        .getBundle("platforms.PlatformResourceBundle");
 	}
 
 	/**

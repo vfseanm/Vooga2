@@ -158,7 +158,7 @@ public class EditorController {
             ex.printStackTrace();
         }
         
-        FileWriter fileOut;
+      /*  FileWriter fileOut;
         try
         {
             fileOut = new FileWriter("Becky");
@@ -169,7 +169,7 @@ public class EditorController {
         catch (IOException e)
         {
             e.printStackTrace();
-        }
+        }*/
         myLevel.moveHorizontally(horizontalOffset);
         myLevel.moveVertically(verticalOffset);
     }
@@ -196,10 +196,10 @@ public class EditorController {
         horizontalOffset = 0;
         verticalOffset = 0;
         
-        for(Framework f: myLevel.getFrameworks())
+       /* for(Framework f: myLevel.getFrameworks())
         {
             addButton(f.getName(), f);
-        }
+        }*/
         
         // put in generating buttons. This should have a list of buttons or something.
     }
