@@ -93,7 +93,6 @@ public class Fighter extends GameCharacter {
 	public double[] getMovement() {
 		double[] horizVertMovement = new double[2];
 		for (Attribute attribute : myAttributes) {
-		    System.out.println(attribute + " " + attribute.getActivity());
 			if (attribute.getClass().getInterfaces().length != 0 &&
 	                attribute.getClass().getInterfaces()[1].equals(Movement.class)) {
 				Movement scrollSpeed = (Movement) attribute;

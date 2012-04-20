@@ -58,7 +58,6 @@ public class Test extends Game{
         fighter.addAttribute(g);
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
-        System.out.println(fighter.getMovement()[1]);
         
         group1 = new SpriteGroup("1");
         group2 = new SpriteGroup("2");
