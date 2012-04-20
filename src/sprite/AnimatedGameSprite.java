@@ -110,10 +110,27 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         paramList.add(myGroup);
         paramList.add(this.getX()+"");
         paramList.add(this.getY()+"");
-        return "";
+        return gson.toJson(paramList);
         
     }
-    
+    public static AnimatedGameSprite fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        List<String> paramList = gson.fromJson(json, collectionType);
+        List<String> imageNames = gson.fromJson(paramList.get(0), collectionType);
+        String groupName = paramList.get(1);
+        double x = Double.parseDouble(paramList.get(2));
+        double y = Double.parseDouble(paramList.get(3));
+        AnimatedGameSprite sprite = new AnimatedGameSprite(x, y,imageNames );
+        sprite.setGroup(groupName);
+        return sprite;
+        
+        
+    }
+
+
+
     
     
 
