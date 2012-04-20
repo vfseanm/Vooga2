@@ -11,7 +11,7 @@ import java.util.List;
 //import platforms.fsmframework.PlatformSwitch;
 import platforms.fsmframework.PlatformSwitch;
 import platforms.platformtypes.*;
-import playfield.GodClass;
+import playfield.SingletinPlayfield;
 import com.golden.gamedev.Game;
 
 
@@ -49,6 +49,7 @@ public class PlatformTest extends Game {
         arg0.fillRect(0, 0, getWidth(), getHeight());
 		myPlatform.render(arg0);
 		mySwitch.render(arg0);
+		if(counter>10) SingletinPlayfield.getInstance();
 	
 		
 	}
@@ -58,9 +59,7 @@ public class PlatformTest extends Game {
 		if (keyPressed(KeyEvent.VK_S)) {
 			mySwitch.pushed();
 			counter++;
-			if(counter>10){
-			GodClass.Do(arg0);
-			}
+			
 		}
 		myPlatform.update(arg0);	
 		mySwitch.update(arg0);
