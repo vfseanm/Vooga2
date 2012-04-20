@@ -1,11 +1,13 @@
 import platforms.platformtypes.*;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import platforms.*;
+import playfield.SingletinPlayfield;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;
@@ -122,7 +124,9 @@ public class TestGame extends Game {
 	{
 	myBackground.update(arg0);
 		counter++;
+		if(counter == 3000) SingletinPlayfield.getInstance();
 		bob.update(arg0);
+		if(keyPressed(KeyEvent.VK_BACK_SPACE))SingletinPlayfield.getInstance();
 		p.update(arg0);
 		p1.update(arg0);
 		p2.update(arg0);
