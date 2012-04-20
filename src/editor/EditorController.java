@@ -31,7 +31,7 @@ public class EditorController {
 
     private double verticalOffset;
 
-    protected Framework myFramework;
+    private Framework myFramework;
 
     public EditorController(EditorView view)
     {
@@ -55,11 +55,10 @@ public class EditorController {
     {
         if (button.getClicked())
           {
-              AnimatedGameSprite s = myFramework.getSprite(x, y);
-              //System.out.println(s.getClass());
+              AnimatedGameSprite s = myFramework.getPotentialSprite(x, y);
               if (checkInterference(s))
               {
-                  addSprite(s, myFramework);
+                 myFramework.createSprite(x, y);
               }
           }
     }
@@ -99,11 +98,11 @@ public class EditorController {
         verticalOffset += y;
     }
 
-    public void addSprite(AnimatedGameSprite s, Framework f)
-    {
-        
-        myLevel.addSprite(s,f);
-    }
+//    public void addSprite(AnimatedGameSprite s, Framework f)
+//    {
+//        
+//        myLevel.addSprite(s,f);
+//    }
 
     public void clearLevel()
     {
@@ -229,6 +228,7 @@ public class EditorController {
 
     public void addButton(String name, Framework framework)
     {
+        myLevel.addFramework(framework);
         System.out.println("adding button");
         if (framework.getType().equals("enemy"))
         {
