@@ -1,5 +1,12 @@
 package platforms.platformtypes;
 
+import com.golden.gamedev.object.collision.CollisionGroup;
+
+import enemies.Enemy;
+
+
+
+
 /**
  * Class used to decorate platforms in order to add side to side functionality
  * i.e. this class will allow the user to add functionality to a platform to
@@ -57,11 +64,28 @@ public class SideToSidePlatform extends DecoratedPlatform {
 		return myPlatformResources.getString("SideToSide")
 				+ myDecoratorComponent.toString();
 	}
+	
+	   public Object clone()
+       {
+           AbstractPlatform toWrap = null;
+           if(myDecoratorComponent!=null)
+           {
+               toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+               
+           }
+           return new SideToSidePlatform(toWrap);
+           
+       }
 
 	@Override
-	public Object clone() {
-		AbstractPlatform toWrap = null;
-		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
-		return new SideToSidePlatform(toWrap);
+	protected void releaseItem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void doBreak() {
+		// TODO Auto-generated method stub
+		
 	}
 }

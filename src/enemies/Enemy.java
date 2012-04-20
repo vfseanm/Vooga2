@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import character.GameCharacter;
+ import character.GameCharacter;
 import attributes.Attribute;
 import attributes.Updateable;
 import enemies.state.EnemyState;
@@ -247,7 +247,7 @@ public class Enemy extends GameCharacter
         return e;
     }
     
-    public boolean equals(Object o){
+     public boolean equals(Object o){
         try{
             Enemy toCompare = ((Enemy) o);
             return toString().equals(toCompare.toString());
@@ -349,4 +349,4 @@ public class Enemy extends GameCharacter
 
     }
 
-}
+ }

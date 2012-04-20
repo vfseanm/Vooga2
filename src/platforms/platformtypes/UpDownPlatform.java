@@ -1,6 +1,15 @@
 package platforms.platformtypes;
 
-/**
+ import sprite.AnimatedGameSprite;
+import collisions.CustomActionPerformer;
+
+import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.collision.CollisionGroup;
+
+import enemies.Enemy;
+
+
+ /**
  * Class used to decorate platforms in order to add up and down movement i.e.
  * this class will allow the user to add functionality to a platform to allow it
  * to traverse a vertical distance repeatedly.
@@ -8,7 +17,7 @@ package platforms.platformtypes;
  * @author yankeenjg
  * 
  */
-public class UpDownPlatform extends DecoratedPlatform {
+ public class UpDownPlatform extends DecoratedPlatform {
 
 	private static final long serialVersionUID = -3578102991430723896L;
 
@@ -58,11 +67,37 @@ public class UpDownPlatform extends DecoratedPlatform {
 		return myPlatformResources.getString("UpDown")
 				+ myDecoratorComponent.toString();
 	}
+ 	
+    public Object clone()
+    {
+        AbstractPlatform toWrap = null;
+        if(myDecoratorComponent!=null)
+        {
+            toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+            
+        }
+        return new UpDownPlatform(toWrap);
+        
+    }
+    
+	public void action (AnimatedGameSprite sprite1, int collisionType, CustomActionPerformer act){
+		standardAction (sprite1, collisionType);
+		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
+			sprite1.setY(this.getY()-sprite1.getHeight()-1);
+		}
+		
+		customAction (sprite1, this, collisionType, act); 
+	}
 
 	@Override
-	public Object clone() {
-		AbstractPlatform toWrap = null;
-		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
-		return new UpDownPlatform(toWrap);
+	protected void releaseItem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void doBreak() {
+		// TODO Auto-generated method stub
+		
 	}
 }

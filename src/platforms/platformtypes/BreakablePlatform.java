@@ -1,7 +1,13 @@
 package platforms.platformtypes;
 
-import bonusobjects.BonusObject;
+ import collisions.CustomActionPerformer;
 
+import com.golden.gamedev.object.collision.CollisionGroup;
+
+import enemies.Enemy;
+
+ import bonusobjects.BonusObject;
+ 
 /**
  * This class provides functionality that can be added on to simple platforms or
  * other decorated platforms to allow for platforms that "break" when the
@@ -77,7 +83,14 @@ public class BreakablePlatform extends DecoratedPlatform {
 		releaseItem();
 		setActive(false);
 	}
-
+ 	
+	public void action (Enemy sprite1, int collisionType, CustomActionPerformer act){
+		standardAction (sprite1, collisionType);
+		if (collisionType == CollisionGroup.BOTTOM_TOP_COLLISION){
+			this.doBreak();
+		}
+		customAction (sprite1, this, collisionType, act); 
+	}
 	/**
 	 * Used in saving platforms in the level editor this method creates a string
 	 * representing this platform class as well as the platforms that it
@@ -87,7 +100,7 @@ public class BreakablePlatform extends DecoratedPlatform {
 	public String toString() {
 		return myPlatformResources.getString("Breakable")
 				+ myDecoratorComponent.toString();
-	}
+ 	}
 
 	@Override
 	public Object clone() {
