@@ -8,6 +8,7 @@ import sprite.AnimatedGameSprite;
 
 public class PlatformSwitch extends AnimatedGameSprite {
 	
+	private static final long serialVersionUID = 1L;
 	private AbstractPlatform myPlatform;
 	private PlatformState myState;
 	private FrameTimer myTimer = new FrameTimer();
