@@ -14,7 +14,7 @@ import platforms.platformtypes.*;
 import sidescrolling.*;
 import sidescrolling.border.*;
 import sidescrolling.forced.*;
-import sidescrolling.skip.*;
+import sidescrolling.shift.*;
 
 import attributes.Gravity;
 
@@ -51,9 +51,9 @@ public class Test extends Game{
         fighter.setAnimationFrame(0, 3);
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
-        fighter.addAttribute(new BasicMovement(bsInput, 1.5));
-        fighter.addAttribute(new Jump(bsInput, 1.5, 300));
-        fighter.addAttribute(new Gravity(1.0));
+        fighter.addAttribute(new BasicMovement(bsInput, 6));
+        fighter.addAttribute(new Jump(bsInput, 4, 300));
+        //fighter.addAttribute(new Gravity(1.0));
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
         
@@ -69,15 +69,17 @@ public class Test extends Game{
         group1.add(p3);
         AbstractPlatform p4 = new SimplePlatform(10, 15, imageName);
         group2.add(p4);
-        sidescroller = new ConcreteSidescroller(fighter, group1, group2);
-        //sidescroller = new BorderLeftSidescroller(this, sidescroller, 100);
-        sidescroller = new BorderRightSidescroller(this, sidescroller, 100);
-        sidescroller = new BorderUpSidescroller(this, sidescroller, 1.5, 100);
-        sidescroller = new BorderDownSidescroller(this, sidescroller, -1.0, 0);
-        //sidescroller = new ForcedDownSidescroller(sidescroller, -1.0);
-        //sidescroller = new ForcedRightSidescroller(sidescroller, -1.0);
-        //sidescroller = new SkipRightSidescroller(this, sidescroller);
-        //sidescroller = new SkipLeftSidescroller(this, sidescroller);
+        sidescroller = new ConcreteSidescroller(this, fighter, group1, group2);
+        //sidescroller = new BorderLeftSidescroller(sidescroller, 100);
+        //sidescroller = new BorderRightSidescroller(sidescroller, 100);
+        //sidescroller = new BorderUpSidescroller(sidescroller, 1.5, 100);
+        //sidescroller = new BorderDownSidescroller(sidescroller, -1.0, 100);
+        //sidescroller = new ForcedDownSidescroller(sidescroller, 0.2);
+        //sidescroller = new ForcedUpSidescroller(sidescroller, -1.0);
+        //sidescroller = new ForcedRightSidescroller(sidescroller, 1.0);
+        //sidescroller = new ForcedLeftSidescroller(sidescroller, -1.0);
+        sidescroller = new ShiftRightSidescroller(sidescroller);
+        sidescroller = new ShiftLeftSidescroller(sidescroller);
     }
     
     public void render (Graphics2D pen) {

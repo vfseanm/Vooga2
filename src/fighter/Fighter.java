@@ -1,6 +1,7 @@
 package fighter;
 
 import java.awt.event.KeyEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import bonusobjects.PowerUp;
 import com.golden.gamedev.engine.BaseInput;
 
 import character.GameCharacter;
-import fighter.movement.BasicMovement;
+import fighter.movement.Movement;
 import attributes.Attribute;
 
 
@@ -19,12 +20,14 @@ public class Fighter extends GameCharacter {
 	private List<Attribute>					myCarryableAttributes;
 	private BaseInput						myUserInput;
 	
+	
 	public Fighter(double x, double y, List<String> images, BaseInput userInput) {
 		super(x, y, images);
 		myCarryableAttributes = new ArrayList<Attribute>();
 		myUserInput = userInput;
 		setGroup("FIGHTER");
 	}
+	
 	
     public void update(long elapsedTime) {
 		performAttributeActions(elapsedTime);
@@ -37,13 +40,28 @@ public class Fighter extends GameCharacter {
 	}
     
     
-    // adds PowerUp - fix implementation to modify duplicate PowerUps?
+    /**
+	 * Adds Attributes, removing older, duplicate versions                       
+	 */
+    public void addAttribute(Attribute toAdd) {	
+    	Attribute currentVersion = getAttributeByName(toAdd.getName());
+    	if (currentVersion == null) addAttribute(toAdd);
+    	else {
+    		addAttribute(toAdd);
+    		myAttributes.remove(currentVersion);
+    	}
+    	toAdd.setGameCharacter(this);
+	}
+    
+    
+    
     public void addPowerUp(PowerUp bonus) {
     	for (Attribute toAdd: bonus.getAttributesToOffer()) {
     		addAttribute(toAdd);
     	}
     }
     
+ 
     
     public void addCarryableAttribute(ArrayList<Attribute> carryables) {
     	myCarryableAttributes.addAll(carryables);
@@ -53,6 +71,8 @@ public class Fighter extends GameCharacter {
     		myCarryableAttributes.add(i, carryables.get(i-myCarryableAttributes.size()));
     	}*/
     }
+    
+    
     
     public void useCarryableAttribute(int indexCarryableAttribute)  {
     	try {
@@ -64,21 +84,31 @@ public class Fighter extends GameCharacter {
     	}
     }
 	
-    
-	public String getName() {
-		return "Fighter";
+	
+	
+	/**
+	 * Method for getting horizontal and vertical movement distances                           
+	 * to ensure accurate side scrolling.
+	 *         
+	 * @return array with [0] = horizontal movement & [1] = vertical movement
+	 */
+	public double[] getHorizMovement() {
+		double[] horizVertMovement = new double[2];
+		for (Attribute attribute : myAttributes) {
+			if (attribute.getClass().getInterfaces().length != 0 &&
+	                attribute.getClass().getInterfaces()[1].equals(Movement.class)) {
+				Movement scrollSpeed = (Movement) attribute;
+				horizVertMovement[0] = scrollSpeed.getHorizMovement();
+				horizVertMovement[1] = scrollSpeed.getVertMovement();
+			}
+		}
+		return horizVertMovement;
 	}
 	
 	
-	// method for getting speed to enable accurate side scrolling 
-	public double getHorizMovement() {
-			for (Attribute attribute : myAttributes) {
-				if (attribute.getClass().getName().equalsIgnoreCase("fighter.movement.BasicMovement")) {
-					BasicMovement myMovement = (BasicMovement) attribute;
-					return myMovement.getHorizMovement();
-				}
-			}
-		return 0;
+	
+	public String getName() {
+		return "Fighter";
 	}
 	
 }

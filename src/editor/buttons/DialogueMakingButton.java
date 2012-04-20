@@ -16,16 +16,15 @@ public class DialogueMakingButton extends TButton
                     int x,
                     int y,
                     int width,
-                    int height, EditorView view, DialogueBox box)
+                    int height, EditorView view, DialogueBox dialogueBox)
     {
         super(name, x, y, width, height);
         myView = view;
-        myDialogueBox = box;
+        myDialogueBox = dialogueBox;
     }
 
     public void doAction ()
     {
         myView.openDialogue(myDialogueBox);
-           
     }
 }
