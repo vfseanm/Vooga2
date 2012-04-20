@@ -25,6 +25,7 @@ public class PassiveState implements EnemyState
 
     public void excuteBehavior (Enemy enemy)
     {
+        enemy.update(allAttributes);
         ///TODO write passive AI
 
     }

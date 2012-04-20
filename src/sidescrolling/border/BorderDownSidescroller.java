@@ -18,27 +18,17 @@ import com.golden.gamedev.object.Sprite;
  */
 public class BorderDownSidescroller extends BorderSidescroller {
 
-    private double downSpeed;
     private double boundary;
 
     /**
      * Creates a new BorderDownSidescroller.
      * 
-     * @param scroller
-     *            - an already create sidescroller
-     * @param speed
-     * @param offsetFromBottom
-     *            - how far from the bottom of the screen a border will be
-     *            created
+     * @param scroller - an already create sidescroller
+     * @param offsetFromBottom- how far from the bottom of the screen a border will be created
      */
-    public BorderDownSidescroller(Sidescroller scroller, double speed, double offsetFromBottom) {
+    public BorderDownSidescroller(Sidescroller scroller, double offsetFromBottom) {
         super(scroller);
-        if (speed > 0) {
-            throw new RuntimeException("You must choose a negative number.");
-        }
-        downSpeed = speed;
-        boundary = getGame().getHeight() - offsetFromBottom
-                - getFighter().getHeight();
+        boundary = getGame().getHeight() - offsetFromBottom - getFighter().getHeight();
     }
 
     /**
@@ -48,7 +38,7 @@ public class BorderDownSidescroller extends BorderSidescroller {
     public void move(Sprite sprite) {
         Fighter fighter = getFighter();
         if (fighter.getY() >= boundary) {
-            sprite.moveY(downSpeed);
+            sprite.moveY(-getFighter().getMovement()[1]);
             fighter.setY(boundary);
         }
     }

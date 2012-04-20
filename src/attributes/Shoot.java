@@ -1,38 +1,51 @@
 package attributes;
 
+import java.awt.event.KeyEvent;
+
 
 // FINISH IMPLEMENTING
 @SuppressWarnings("serial")
-public class Shoot extends Attribute implements Updateable {
+public class Shoot extends Attack {
 
+    WeaponObj weapon;
+    
+    public Shoot(int blam){
+        super(blam);
+    }
+    attack()
+    {
+        weapon.use();
+    }
+    
+    
 	@Override
 	public String getName() {
 		return "Shoot";
 	}
 
-	// if (canFire == false) {
-	// canFire = refireRate.action(elapsedTime);
-	// }
-	//	
-	// if (myGame.keyDown(KeyEvent.VK_SPACE) && canFire) {
-	// Sprite missile = new Sprite(myGame.getImage("img/Missile.png"),
-	// getX()+23, getY()+23);
-	// if (!(myGame.getLevel() instanceof Level2)) myGame.addMissile(missile);
-	// else {
-	// myGame.addAntiCupidMissile(missile);
-	// }
-	// canFire = false;
-	// refireRate.refresh();
-	// }
 
 	public void invert() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void update(long elaspedTime) {
-		// TODO Auto-generated method stub
+	public void update(long elapsedTime) {	
+		if (!myCanFire) {
+			myCanFire = myRefireRate.action(elapsedTime);
+		}
+		
+		if (myUserInput.isKeyPressed((KeyEvent.VK_SPACE)) && myCanFire) {
+			double horizDistance = myTarget.getX() - myGameCharacter.getX();
+			double vertDistance = myTarget.getY() - myGameCharacter.getY();
+			double ratio = vertDistance / horizDistance;
 
+			if (horizDistance < 0)
+				myGameCharacter.getMissile().setSpeed(-0.7, -0.7 * ratio);
+			else
+				myGameCharacter.getMissile().setSpeed(0.7, 0.7 * ratio);
+			
+			myCanFire = false;
+		}
 	}
 	
 	public Object clone()
