@@ -1,6 +1,7 @@
 package enemies.state;
 
 import enemies.Enemy;
+import fighter.Fighter;
 
 
 public class PassiveState implements EnemyState
@@ -23,17 +24,25 @@ public class PassiveState implements EnemyState
     }
 
 
-    public void excuteBehavior (Enemy enemy)
+    public void excuteBehavior (Enemy enemy,long elapsedTime)
     {
-        enemy.update(allAttributes);
-        ///TODO write passive AI
+        Fighter opponent = enemy.getFighter();
+        if(!changeState(enemy,opponent));
+        enemy.updateUpdateableAttributes(elapsedTime);
+        
 
     }
 
 
-    public void changeState (Enemy enemy)
+    public boolean changeState (Enemy enemy,Fighter opponent)
     {
-        // TODO write when to change and how to change
+        
+        if(enemy.getX()-opponent.getX()<300||enemy.getX()-opponent.getX()<-300){
+            enemy.setState(DefensiveState.getInstance());
+            return true;
+        }
+        return false;
+       
 
     }
 

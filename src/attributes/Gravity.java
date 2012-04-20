@@ -14,10 +14,9 @@ public class Gravity extends Attribute implements Updateable, Movement
     public Gravity (double distance)
     {
         super(distance);
-        if (distance < 0) 
-        	throw new RuntimeException("You must enter a positive number for the jump height");
+        
         myDistance = distance;   
-        isActive = true;
+        
     }
 
 

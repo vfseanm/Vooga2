@@ -1,6 +1,7 @@
 package enemies.state;
 
 import enemies.Enemy;
+import fighter.Fighter;
 
 
 /**
@@ -12,9 +13,9 @@ import enemies.Enemy;
 public interface EnemyState
 {
 
-    public void excuteBehavior (Enemy enemy);
+    public void excuteBehavior (Enemy enemy,long elapsedTime);
 
 
-    public void changeState (Enemy enemy);
+    public boolean changeState (Enemy enemy,Fighter fighter);
 
 }
