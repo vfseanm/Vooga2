@@ -1,7 +1,5 @@
 package sidescrolling.border;
 
-import java.awt.event.KeyEvent;
-
 
 import sidescrolling.Sidescroller;
 
@@ -32,15 +30,13 @@ public class BorderLeftSidescroller extends BorderSidescroller {
    
     /**
      * Moves a sprite to the right to make it appear as if the fighter is moving left when the fighter is on the
-     * left border and the left key is being held down.
+     * left border.
      */
     public void move(Sprite sprite) {
-        if (getGame().keyDown(KeyEvent.VK_LEFT)) {
-            Fighter fighter = getFighter();
-            if (fighter.getX() <= boundary) {
-                sprite.moveX(getFighter().getMovement()[0]);
-                fighter.setX(boundary);
-            }
+        Fighter fighter = getFighter();
+        if (fighter.getX() <= boundary) {
+            sprite.moveX(getFighter().getMovement()[0]);
+            fighter.setX(boundary);
         }
     }
         
