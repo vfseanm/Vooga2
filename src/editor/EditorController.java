@@ -109,7 +109,7 @@ public class EditorController {
             ex.printStackTrace();
         }
         
-/*        FileWriter fileOut;
+        FileWriter fileOut;
         try
         {
             fileOut = new FileWriter("Becky");
@@ -120,7 +120,7 @@ public class EditorController {
         catch (IOException e)
         {
             e.printStackTrace();
-        }*/
+        }
         myLevel.moveHorizontally(horizontalOffset);
         myLevel.moveVertically(verticalOffset);
     }

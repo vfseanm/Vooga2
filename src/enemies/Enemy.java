@@ -271,6 +271,7 @@ public class Enemy extends GameCharacter
         double x = Double.parseDouble(paramList.get(2));
         double y = Double.parseDouble(paramList.get(3));
         Enemy sprite = new Enemy(x, y,imageNames );
+        System.out.println("gets here");
         
         try
         {
