@@ -153,6 +153,7 @@ public class Framework implements Serializable {
         
         List<String> list = new ArrayList<String>();
         list.add(prototypeSprite.getClass().toString());
+        System.out.println("proto:   "+prototypeSprite.toJson());
         list.add(prototypeSprite.toJson());
         
         List<String> spriteList = new ArrayList<String>();

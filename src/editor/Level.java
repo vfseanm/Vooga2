@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.frameworks.Framework;
+import enemies.Enemy;
 import fighter.Fighter;
 
 
@@ -216,6 +217,7 @@ public class Level implements Serializable{
         for(Framework f: frameworks)
         {
            frameworkList.add(f.toJson());
+           
         }
         
         myList.add(gson.toJson(frameworkList));
@@ -265,8 +267,10 @@ public class Level implements Serializable{
         {
             scanner = new Scanner(new File("Becky"));
             String wholeFile = scanner.useDelimiter("\\A").next();
-            //System.out.println(wholeFile);
+            System.out.println(wholeFile);
             level.fromJson(wholeFile);
+            System.out.println(level.getAllSprites().size());
+            System.out.println(((Enemy)level.getAllSprites().get(1)).getAttributes());
         } catch (FileNotFoundException e)
         {
             // TODO Auto-generated catch block
