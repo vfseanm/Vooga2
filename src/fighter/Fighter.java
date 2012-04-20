@@ -45,11 +45,10 @@ public class Fighter extends GameCharacter {
 	 */
     public void addAttribute(Attribute toAdd) {	
     	Attribute currentVersion = getAttributeByName(toAdd.getName());
-    	if (currentVersion == null) addAttribute(toAdd);
-    	else {
-    		addAttribute(toAdd);
+    	if (currentVersion != null) {
     		myAttributes.remove(currentVersion);
     	}
+    	super.addAttribute(toAdd);
     	toAdd.setGameCharacter(this);
 	}
     
