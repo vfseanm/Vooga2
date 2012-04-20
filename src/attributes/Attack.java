@@ -33,6 +33,11 @@ public class Attack extends Attribute implements Updateable
     {
         return new Attack();
     }
+    
+    public static Attack fromJson(String json)
+    {
+        return new Attack();
+    }
 
 
 

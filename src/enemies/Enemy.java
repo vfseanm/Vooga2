@@ -1,11 +1,18 @@
 package enemies;
 
-import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import sprite.AnimatedGameSprite;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 import character.GameCharacter;
@@ -231,6 +238,91 @@ public class Enemy extends GameCharacter
         }
         return e;
     }
+    
+    public String toJson()
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        List<String> paramList = new ArrayList<String>();
+        paramList.add(gson.toJson(this.getImageNames()));
+        paramList.add(this.getGroup());
+        paramList.add(this.getX()+"");
+        paramList.add(this.getY()+"");
+        
+        Map<String, String> attributeList = new HashMap<String, String>();
+        for(Attribute a: myAttributes)
+        {
+            //attributeList.put(a.getClass().toString(), a.toJson());
+        }
+        paramList.add(gson.toJson(attributeList));
+        return gson.toJson(paramList);
+        
+    }
+    
+    public static Enemy fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        Type collectionType2 = new TypeToken<Map<String, String>>(){}.getType();
+        
+        List<String> paramList = gson.fromJson(json, collectionType);
+        List<String> imageNames = gson.fromJson(paramList.get(0), collectionType);
+        String groupName = paramList.get(1);
+        double x = Double.parseDouble(paramList.get(2));
+        double y = Double.parseDouble(paramList.get(3));
+        Enemy sprite = new Enemy(x, y,imageNames );
+        System.out.println("gets here");
+        
+        try
+        {
+        Map<String, String> attributeMap = gson.fromJson(paramList.get(4), collectionType2);
+        for(String attributeClassName: attributeMap.keySet())
+        {
+            
+            Class attributeClass;
+            
+                attributeClass = Class.forName(attributeClassName.substring(6));
+            
+            String attributeJson = attributeMap.get(attributeClassName);
+            Class typeList[] = new Class[1];
+            typeList[0] = String.class;
+            Method method = attributeClass.getMethod("fromJson", typeList);
+            Attribute attribute = (Attribute) method.invoke(attributeJson);
+            sprite.addAttribute(attribute);
+        }
+        
+        
+        sprite.setGroup(groupName);
+        return sprite;
+        } catch (ClassNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SecurityException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchMethodException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+        
+    }
+
     
     
 }

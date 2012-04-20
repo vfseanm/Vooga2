@@ -49,7 +49,6 @@ public class FighterDialogueBox extends DialogueBox{
         add(makeInputPanel(), BorderLayout.NORTH);
     }
     
-    @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {

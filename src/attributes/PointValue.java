@@ -35,5 +35,16 @@ public class PointValue extends Attribute
     {
         return new PointValue(myPointValue);
     }
+    
+    public String toJson()
+    {
+        return myPointValue+"";
+    }
+    
+    public static PointValue fromJson(String json)
+    {
+        int points = Integer.parseInt(json);
+        return new PointValue(points);
+    }
 
 }

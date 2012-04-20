@@ -5,18 +5,18 @@ import editor.editorConstructor;
 @SuppressWarnings("serial")
 public class Gravity extends Attribute implements Updateable
 {
-    private int myDistance;
+    private double myDistance;
 
 
     @editorConstructor(parameterNames = { "distance" })
-    public Gravity (int distance)
+    public Gravity (double distance)
     {
         super(distance);
         myDistance = distance;   
     }
 
 
-    public void modifyGravityDistance (int distance)
+    public void modifyGravityDistance (double distance)
     {
         myDistance = distance;
 
@@ -52,6 +52,17 @@ public class Gravity extends Attribute implements Updateable
     public Object clone()
     {
         return new Gravity(myDistance);
+    }
+    
+    public String toJson()
+    {
+        return myDistance+"";
+    }
+    
+    public static Gravity fromJson(String json)
+    {
+        double distance = Double.parseDouble(json);
+        return new Gravity(distance);
     }
 
 }

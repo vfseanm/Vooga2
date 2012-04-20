@@ -3,6 +3,8 @@ package editor;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import java.util.List;
 
@@ -24,6 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.frameworks.Framework;
+import enemies.Enemy;
 import fighter.Fighter;
 
 
@@ -48,6 +52,7 @@ public class Level implements Serializable{
     public Level()
     {
         frameworks = new ArrayList<Framework>();
+        backgroundImagePath = "";
        // sprites = new ArrayList<AnimatedGameSprite>();
     }
     
@@ -154,7 +159,7 @@ public class Level implements Serializable{
         {
             f.updateImages();
         }
-        if(backgroundImagePath!=null)
+        if(!backgroundImagePath.equals(""))
         {
         myBackground.setImage(loader.getImage(backgroundImagePath));
         }
@@ -191,20 +196,28 @@ public class Level implements Serializable{
         frameworks.add(f);
     }
     
- /*   public String toJson()
+    public String toJson()
     {
         Gson gson = new Gson();
-        List<String> myList = new ArrayList<String>();
+        ArrayList<String> myList = new ArrayList<String>();
         myList.add(backgroundImagePath);
-        myList.add(myFighter.makeJson());
-        
-        List<String> frameworkList = new ArrayList<String>();
+        if(myFighter!=null)
+        {
+        myList.add(myFighter.toJson());
+        }
+        else
+        {
+            myList.add("");
+        }
+        ArrayList<String> frameworkList = new ArrayList<String>();
         for(Framework f: frameworks)
         {
-           frameworkList.add(f.makeJson());
+           frameworkList.add(f.toJson());
+           
         }
         
         myList.add(gson.toJson(frameworkList));
+        return gson.toJson(myList);
         
     }
     
@@ -217,12 +230,21 @@ public class Level implements Serializable{
         ArrayList<String> myList = gson.fromJson(json, collectionType); 
         String backgroundImageName = myList.get(0);
         BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
-        setBackground(loader.getImage(backgroundImageName),backgroundImageName);
+        if(!backgroundImageName.equals(""))
+        {
+            setBackground(loader.getImage(backgroundImageName),backgroundImageName);
+        }
         
-        String fighterJson = myList.get(1);
-        setFighter(Fighter.fromJson(fighterJson));
+       String fighterJson = myList.get(1);
+       if(!fighterJson.equals(""))
+        {
+           //setFighter(Fighter.fromJson(fighterJson));
+        }
+       
         
-        ArrayList<String> frameworkList = gson.fromJson(json, collectionType);
+        ArrayList<String> frameworkList = gson.fromJson(myList.get(2), collectionType);
+        //System.out.println("framework LIst: "+frameworkList);
+        
         for(String f: frameworkList)
         {
             addFramework(Framework.fromJson(f));
@@ -232,7 +254,28 @@ public class Level implements Serializable{
         
         
     }
-*/
+    
+    public static void main(String[] args)
+    {
+        Level level = new Level();
+        Scanner scanner;
+        try
+        {
+            scanner = new Scanner(new File("Becky"));
+            String wholeFile = scanner.useDelimiter("\\A").next();
+            System.out.println(wholeFile);
+            level.fromJson(wholeFile);
+            System.out.println(level.getAllSprites().size());
+            System.out.println(((Enemy)level.getAllSprites().get(1)).getAttributes());
+        } catch (FileNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        
+    }
+
    
 }
 

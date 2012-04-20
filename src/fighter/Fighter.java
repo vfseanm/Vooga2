@@ -1,9 +1,10 @@
 package fighter;
 
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+
+import bonusobjects.PowerUp;
 
 import com.golden.gamedev.engine.BaseInput;
 
@@ -16,7 +17,6 @@ import attributes.Attribute;
 public class Fighter extends GameCharacter {
 
 	private List<Attribute>					myCarryableAttributes;
-	private BasicMovement					myBasicMovement;
 	private BaseInput						myUserInput;
 	
 	public Fighter(double x, double y, List<String> images, BaseInput userInput) {
@@ -27,8 +27,6 @@ public class Fighter extends GameCharacter {
 	}
 	
     public void update(long elapsedTime) {
-    	myBasicMovement.update(elapsedTime);
-    	
 		performAttributeActions(elapsedTime);
 		
 		if (myUserInput.isKeyDown(KeyEvent.VK_C)) 
@@ -37,6 +35,15 @@ public class Fighter extends GameCharacter {
 			// OTHERWISE, SIMPLY HAVE KEYSTROKES = INDEX OF CARRYABLE ITEMS IN LIST? MAX = 6?
 		}
 	}
+    
+    
+    // adds PowerUp - fix implementation to modify duplicate PowerUps?
+    public void addPowerUp(PowerUp bonus) {
+    	for (Attribute toAdd: bonus.getAttributesToOffer()) {
+    		addAttribute(toAdd);
+    	}
+    }
+    
     
     public void addCarryableAttribute(ArrayList<Attribute> carryables) {
     	myCarryableAttributes.addAll(carryables);
@@ -57,12 +64,21 @@ public class Fighter extends GameCharacter {
     	}
     }
 	
+    
 	public String getName() {
 		return "Fighter";
 	}
 	
-	// Dustin's method for getting speed to check side scrolling
+	
+	// method for getting speed to enable accurate side scrolling 
 	public double getHorizMovement() {
-		return myBasicMovement.getHorizMovement();
+			for (Attribute attribute : myAttributes) {
+				if (attribute.getClass().getName().equalsIgnoreCase("fighter.movement.BasicMovement")) {
+					BasicMovement myMovement = (BasicMovement) attribute;
+					return myMovement.getHorizMovement();
+				}
+			}
+		return 0;
 	}
+	
 }
