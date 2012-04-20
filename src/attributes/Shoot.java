@@ -49,4 +49,9 @@ public class Shoot extends Attribute implements Updateable {
     {
         return new Shoot();
     }
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		
+	}
 }

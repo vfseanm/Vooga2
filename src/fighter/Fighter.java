@@ -1,15 +1,13 @@
 package fighter;
 
 import java.awt.event.KeyEvent;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import bonusobjects.PowerUp;
 
 import com.golden.gamedev.engine.BaseInput;
 
 import character.GameCharacter;
+import fighter.movement.Input;
 import fighter.movement.Movement;
 import attributes.Attribute;
 
@@ -40,7 +38,8 @@ public class Fighter extends GameCharacter {
     
     
     /**
-	 * Adds Attributes, removing older, duplicate versions                       
+	 * Adds Attributes, removing older, duplicate versions; also sets user input for
+	 * the Fighter's Movement Attributes, enabling use of key strokes.                    
 	 */
     public void addAttribute(Attribute toAdd) {	
     	Attribute currentVersion = getAttributeByName(toAdd.getName());
@@ -48,19 +47,15 @@ public class Fighter extends GameCharacter {
     		myAttributes.remove(currentVersion);
     	}
     	super.addAttribute(toAdd);
+    	if (toAdd.getClass().getInterfaces().length >= 3) {
+               if (toAdd.getClass().getInterfaces()[2].equals(Input.class))
+            	   ((Input) toAdd).setUserInput(myUserInput);
+        }
 	}
-    
-    
-    
-    public void addPowerUp(PowerUp bonus) {
-    	for (Attribute toAdd: bonus.getAttributesToOffer()) {
-    		addAttribute(toAdd);
-    	}
-    }
     
  
     
-    public void addCarryableAttribute(ArrayList<Attribute> carryables) {
+    public void addCarryableAttributes(List<Attribute> carryables) {
     	myCarryableAttributes.addAll(carryables);
     	
     	// method for adding attributes to inventory of limited length = myMaxNumCarryables
@@ -92,11 +87,12 @@ public class Fighter extends GameCharacter {
 	public double[] getMovement() {
 		double[] horizVertMovement = new double[2];
 		for (Attribute attribute : myAttributes) {
-			if (attribute.getClass().getInterfaces().length != 0 &&
-	                attribute.getClass().getInterfaces()[1].equals(Movement.class)) {
-				Movement scrollSpeed = (Movement) attribute;
-				horizVertMovement[0] += scrollSpeed.getHorizMovement();
-				horizVertMovement[1] += scrollSpeed.getVertMovement();
+			if (attribute.getClass().getInterfaces().length >= 2) {
+	            if (attribute.getClass().getInterfaces()[1].equals(Movement.class)) {
+	            	Movement scrollSpeed = (Movement) attribute;
+	            	horizVertMovement[0] += scrollSpeed.getHorizMovement();
+	            	horizVertMovement[1] += scrollSpeed.getVertMovement();
+	            }
 			}
 		}
 		return horizVertMovement;

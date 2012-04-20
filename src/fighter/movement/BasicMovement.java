@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class BasicMovement extends Attribute implements Updateable, Movement {
+public class BasicMovement extends Attribute implements Updateable, Movement, Input {
 
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
@@ -36,10 +36,14 @@ public class BasicMovement extends Attribute implements Updateable, Movement {
 		if (isActive) {
 			if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) {
 				myGameCharacter.moveX(-myHorizMovement);
+				facingRight = false;
+				facingLeft = true;
 			}
 
 			if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) {
 				myGameCharacter.moveX(myHorizMovement);
+				facingRight = true;
+				facingLeft = false;
 			}
 		}
 	}
@@ -65,8 +69,25 @@ public class BasicMovement extends Attribute implements Updateable, Movement {
 		return 0;
 	}
 	
+	/**
+	 * Method for getting the direction the GameCharacter is facing to enable                           
+	 * shooting in proper direction
+	 *         
+	 * @return array with [0] = whether the GameCharacter is facing left (true/false)
+	 * 					  [1] = whether the GameCharacter is facing right (true/false)
+	 */
+	public boolean[] getDirection() {
+		boolean[] directions = {facingLeft, facingRight};
+		return directions;
+	}
+	
 	public void setGameCharacter(GameCharacter gameCharacter) {
 		myGameCharacter = gameCharacter;
+	}
+
+
+	public void setUserInput(BaseInput userInput) {
+		myUserInput = userInput;
 	}
 
 }

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import bonusobjects.PowerUp;
+
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 import attributes.Updateable;
@@ -13,8 +15,7 @@ import attributes.Updateable;
 @SuppressWarnings("serial")
 public abstract class GameCharacter extends AnimatedGameSprite {
 
-	protected List<Attribute> myAttributes;
-
+	protected List<Attribute> 		myAttributes;
 	
 	public GameCharacter(double x, double y,
 			List<String> images) {
@@ -51,6 +52,13 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 		attribute.setGameCharacter(this);
 	}
 
+	
+	public void addPowerUp(PowerUp bonus) {
+    	for (Attribute toAdd: bonus.getAttributesToOffer()) {
+    		addAttribute(toAdd);
+    	}
+    }
+	
 	
 	public void clearAttributes() {
 		myAttributes.clear();

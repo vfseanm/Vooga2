@@ -14,7 +14,7 @@ import attributes.Updateable;
 import editor.editorConstructor;
 
 @SuppressWarnings("serial")
-public class Fly extends Attribute implements Updateable, Movement
+public class Fly extends Attribute implements Updateable, Movement, Input
 {
 	private BaseInput	myUserInput;
 	private double		myFlightMovement;
@@ -91,4 +91,9 @@ public class Fly extends Attribute implements Updateable, Movement
         List<Double> argList = gson.fromJson(json, collectionType);
         return new Fly(argList.get(0));
     }
+
+
+	public void setUserInput(BaseInput userInput) {
+		myUserInput = userInput;
+	}
 }

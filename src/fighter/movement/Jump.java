@@ -14,7 +14,7 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 @SuppressWarnings("serial")
-public class Jump extends Attribute implements Updateable, Movement
+public class Jump extends Attribute implements Updateable, Movement, Input
 {
 	private BaseInput 		myUserInput;
     private double 			myJumpHeight;
@@ -128,4 +128,9 @@ public class Jump extends Attribute implements Updateable, Movement
         List<Double> argList = gson.fromJson(json, collectionType);
         return new Jump(argList.get(0), argList.get(1));
     }
+
+
+	public void setUserInput(BaseInput userInput) {
+		myUserInput = userInput;
+	}
 }
