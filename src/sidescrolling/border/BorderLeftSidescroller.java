@@ -38,7 +38,7 @@ public class BorderLeftSidescroller extends BorderSidescroller {
         if (getGame().keyDown(KeyEvent.VK_LEFT)) {
             Fighter fighter = getFighter();
             if (fighter.getX() <= boundary) {
-                sprite.moveX(-getFighter().getHorizMovement()[0]);
+                sprite.moveX(getFighter().getMovement()[0]);
                 fighter.setX(boundary);
             }
         }
