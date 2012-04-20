@@ -15,7 +15,9 @@ public class AggressiveState implements EnemyState
 
     public void changeState (Enemy enemy)
     {
-        // TODO write when to change and how to change
+        if(!enemy.isOnScreen()){
+            enemy.setState(PassiveState.getInstance());
+        }
 
     }
 

@@ -15,7 +15,9 @@ public class DefensiveState implements EnemyState
 
     public void changeState (Enemy enemy)
     {
-        // TODO write when to change and how to change
+        if(!enemy.isOnScreen()){
+            enemy.setState(PassiveState.getInstance());
+        }
 
     }
   //Will update as the class changes
