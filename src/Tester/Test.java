@@ -1,4 +1,4 @@
-package Tester;
+package tester;
 
 import java.awt.*;
 

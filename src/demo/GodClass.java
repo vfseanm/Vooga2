@@ -1,5 +1,4 @@
-package playfield;
-
+package demo;
 import playfield.SingletonPlayField;
 import java.io.BufferedWriter;
 import java.io.File;
