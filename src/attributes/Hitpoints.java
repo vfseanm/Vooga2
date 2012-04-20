@@ -53,4 +53,16 @@ public class Hitpoints extends Attribute
     {
         return new Hitpoints(myHitpoints);
     }
+    
+    public String toJson()
+    {
+        return myHitpoints+"";
+    }
+    
+    public static Hitpoints fromJson(String json)
+    {
+        int points = Integer.parseInt(json);
+        return new Hitpoints(points);
+    }
+
 }

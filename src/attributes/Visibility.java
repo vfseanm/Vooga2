@@ -58,5 +58,16 @@ public class Visibility extends Attribute
     {
         return new Visibility(isVisible);
     }
+    
+    public String toJson()
+    {
+        return isVisible+"";
+    }
+    
+    public static Visibility fromJson(String json)
+    {
+        boolean visible = Boolean.parseBoolean(json);
+        return new Visibility(visible);
+    }
 
 }
