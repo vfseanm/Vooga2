@@ -52,9 +52,6 @@ public class FighterTester extends Game{
         Gravity g = new Gravity(1.0);
         g.setActivity(true);
         fighter.addAttribute(g);
-        Fly f = new Fly(1.0);
-        f.setActivity(true);
-        fighter.addAttribute(f);
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
     }
