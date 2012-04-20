@@ -196,10 +196,10 @@ public class EditorController {
         horizontalOffset = 0;
         verticalOffset = 0;
         
-       /* for(Framework f: myLevel.getFrameworks())
+        for(Framework f: myLevel.getFrameworks())
         {
             addButton(f.getName(), f);
-        }*/
+        }
         
         // put in generating buttons. This should have a list of buttons or something.
     }
@@ -231,7 +231,10 @@ public class EditorController {
 
     public void addButton(String name, Framework framework)
     {
-        myLevel.addFramework(framework);
+        if(!myLevel.getFrameworks().contains(framework))
+        {
+            myLevel.addFramework(framework);
+        }
         System.out.println("adding button");
         if (framework.getType().equals("enemy"))
         {
@@ -276,6 +279,7 @@ public class EditorController {
             }
 
         myView.closeFrame();
+        
     }
 
     public void setBackground(BufferedImage image, String imagePath)

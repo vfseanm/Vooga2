@@ -379,7 +379,10 @@ public abstract class EditorView extends Game {
     
     public void closeFrame()
     {
+        if(frame!=null)
+        {
         frame.setVisible(false);
+        }
     }
 
     public void setBackground(BufferedImage image)
