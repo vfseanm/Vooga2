@@ -1,5 +1,6 @@
 package editor;
 
+import java.awt.Button;
 import java.awt.image.BufferedImage;
 
 import java.io.BufferedWriter;
@@ -11,6 +12,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+
+import com.golden.gamedev.object.Sprite;
 
 import editor.buttons.ObjectPlacingButton;
 import editor.frameworks.Framework;
@@ -28,6 +31,8 @@ public class EditorController {
 
     private double verticalOffset;
 
+    protected Framework myFramework;
+
     public EditorController(EditorView view)
     {
         myView = view;
@@ -44,6 +49,48 @@ public class EditorController {
     {
         myLevel.moveHorizontally(x);
         horizontalOffset += x;
+    }
+    
+    public void checkAndPlaceSprite(ObjectPlacingButton button, int x, int y)
+    {
+        if (button.getClicked())
+          {
+              AnimatedGameSprite s = myFramework.getSprite(x, y);
+              //System.out.println(s.getClass());
+              if (checkInterference(s))
+              {
+                  addSprite(s, myFramework);
+              }
+          }
+    }
+    public boolean checkInterference(Sprite s)
+    {
+        boolean t = true;
+        for (Sprite sprite : getAllSprites())
+        {
+            if(sprite!=s)
+            {
+            if ((s.getX() + s.getWidth() > sprite.getX())
+                    && (s.getX() < sprite.getX() + sprite.getWidth()))
+            {
+                if ((s.getY() + s.getHeight() > sprite.getY())
+                        && (s.getY() < sprite.getY() + sprite.getHeight()))
+                {
+                    t = false;
+                }
+            }
+            }
+
+        }
+        if (s.getX() + s.getWidth() > myView.MENU_START)
+            t = false;
+        return t;
+    }
+    
+    
+    public void setFramework(Framework f)
+    {
+        myFramework = f;
     }
 
     public void moveVertically(double y)
@@ -146,6 +193,13 @@ public class EditorController {
         }
         horizontalOffset = 0;
         verticalOffset = 0;
+        
+        for(Framework f: myLevel.getFrameworks())
+        {
+            addButton(f.getName(), f);
+        }
+        
+        // put in generating buttons. This should have a list of buttons or something.
     }
 
     private static int[] enemyButtonPlacement;
@@ -187,7 +241,7 @@ public class EditorController {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         enemyButtonPlacement[enemyButtonCounter],
                         enemyButtonPlacement[enemyButtonCounter + 1], 50, 40,
-                        framework, myView);
+                        framework, this);
                 enemyButtonCounter += 2;
                 myView.addButton(newButton);
             }
@@ -200,7 +254,7 @@ public class EditorController {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         platformButtonPlacement[platformButtonCounter],
                         platformButtonPlacement[platformButtonCounter + 1], 50,
-                        40, framework, myView);
+                        40, framework, this);
                 platformButtonCounter += 2;
                 myView.addButton(newButton);
             }
@@ -213,7 +267,7 @@ public class EditorController {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         powerUpButtonPlacement[powerUpButtonCounter],
                         powerUpButtonPlacement[powerUpButtonCounter + 1], 50,
-                        40, framework, myView);
+                        40, framework, this);
                 powerUpButtonCounter += 2;
                 myView.addButton(newButton);
             }
