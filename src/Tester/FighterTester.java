@@ -47,14 +47,13 @@ public class FighterTester extends Game{
         fighter.setAnimationFrame(0, 3);
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
+        
         fighter.addAttribute(new BasicMovement(6));
         fighter.addAttribute(new Jump(1.5, 300));
         Gravity g = new Gravity(1.0);
         g.setActivity(true);
         fighter.addAttribute(g);
-        Fly f = new Fly(1.0);
-        f.setActivity(true);
-        fighter.addAttribute(f);
+
         FIGHTER_GROUP = new SpriteGroup("fight group");
         FIGHTER_GROUP.add(fighter);
     }
