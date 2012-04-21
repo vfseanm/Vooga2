@@ -97,6 +97,7 @@ public class FighterDialogueBox extends DialogueBox{
         public void actionPerformed(ActionEvent e)
         {
             ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
+            
             ArrayList<Attribute> carryableAttributes = carryablePanel.getSelectedAttributes();
 
             /*BufferedImage[] s = new BufferedImage[myImages.size()];
@@ -109,13 +110,14 @@ public class FighterDialogueBox extends DialogueBox{
             
             for(Attribute attribute: attributes)
             {
-            fighter.addAttribute(attribute);
+                System.out.println("adding attribute to fighter");
+                fighter.addAttribute(attribute);
             }
             //for(Attribute attribute: carryableAttributes)
             //{
                 fighter.addCarryableAttributes(carryableAttributes);
             //}
-            myController.setFighter(new Fighter(50, 50, myImagePaths));
+            myController.setFighter(fighter);
             setVisible(false);
         }
     }

@@ -197,10 +197,12 @@ public class Fighter extends GameCharacter {
 
                 attributeClass = Class.forName(attributeClassName.substring(6));
 
-                String attributeJson = attributeMap.get(attributeClassName);
+                String attributeJson = carryableAttributeMap.get(attributeClassName);
                 Class typeList[] = new Class[1];
                 typeList[0] = String.class;
+                System.out.println(attributeJson);
                 Method method = attributeClass.getMethod("fromJson", typeList);
+                
                 Attribute attribute =
                     (Attribute) method.invoke(null, attributeJson);
                 carryableAttributes.add(attribute);
