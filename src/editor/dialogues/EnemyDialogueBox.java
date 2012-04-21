@@ -21,7 +21,7 @@ import attributes.Attribute;
 
 
 @SuppressWarnings("serial")
-public class EnemyDialogueBox extends DialogueBox {
+public class EnemyDialogueBox extends DynamicBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -45,7 +45,7 @@ public class EnemyDialogueBox extends DialogueBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
+        attributePanel = new AttributeSelectionPanel(packagesToSearch);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
        
@@ -99,7 +99,6 @@ public class EnemyDialogueBox extends DialogueBox {
         System.out.println("framework's attributes" + attributes);
         return framework;
     }
-    
     class GoAction implements ActionListener {       
         
         public void actionPerformed(ActionEvent e)
@@ -113,6 +112,13 @@ public class EnemyDialogueBox extends DialogueBox {
 
     public DialogueBox clone() {
         return new EnemyDialogueBox(myController);
+    }
+
+    protected void BoxCompletedAction() {
+        Framework framework = getFramework();
+        myController.addButton(myName.getText(), framework);
+        setVisible(false);
+        
     }
 }
 

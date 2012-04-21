@@ -2,7 +2,17 @@ package platforms.platformtypes;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.swing.JCheckBox;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import platforms.FrameTimer;
 
@@ -300,4 +310,16 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	public int getWidth() {
 		return myDecoratorComponent.getWidth();
 	}
+	
+	public List<Class> getClassesOfDecorators()
+	{
+	    List<Class> classList = new ArrayList<Class>();
+	    classList.add(this.getClass());
+	    if(!myDecoratorComponent.getClass().equals(SimplePlatform.class))
+	    {
+	        classList.addAll(((DecoratedPlatform) myDecoratorComponent).getClassesOfDecorators());
+	    }
+	    return classList;	    
+	}
+
 }

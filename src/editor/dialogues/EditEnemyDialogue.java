@@ -38,49 +38,19 @@ public class EditEnemyDialogue extends DialogueBox {
         
         myX = x;
         myY = y;
-        //setLayout(new BorderLayout());
-        //add(makeInputPanel(), BorderLayout.NORTH);
-        
         mySprite = sprite;
-       
         
-       // attributeMap = new HashMap<JCheckBox, Class>();
-      //  myOldAttributes = new ArrayList<Attribute>();
-       // myOldAttributes.addAll(mySprite.getAttributes());
-        
-        //attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
         
     }
     
-//    public EditEnemyDialogue(EditorController m, Framework framework)
-//    {
-//        super(m);
-//        myFramework = (EnemyFramework) framework;
-//        myImage = myFramework.getImages()[0];
-//        
-//        attributeMap = new HashMap<JCheckBox, Class>();
-//        myOldAttributes = new ArrayList<Attribute>();
-//        myOldAttributes.addAll(myFramework.getAttributes());
-//        
-//        attributeInstanceMap = new HashMap<JCheckBox, AttributeCreator>();
-//        myModel = m;
-//        reflection = new Reflection();
-//        setLayout(new BorderLayout());
-//        
-//    }
-//    
+
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-        /*List<Class> classList = new ArrayList<Class>();
-        for(Attribute s: mySprite.getAttributes())
-        {
-            classList.add(s.getClass());
-        }*/
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
@@ -112,188 +82,38 @@ public class EditEnemyDialogue extends DialogueBox {
         panel.add(attributePanel);
 
         return panel;
-       /* Reflection reflection = new Reflection();
-        List<Class> list = reflection.getInstancesOf("enemies.movement", Attribute.class);
-        list.addAll(reflection.getInstancesOf("attributes", Attribute.class));
-        for (Class c : list)
-        {
-            boolean isAnnotated = false;
-            for(Constructor constructor : c.getConstructors())
-            {
-                if(constructor.isAnnotationPresent(editorConstructor.class))
-                {
-                    isAnnotated = true;
-                }
-            }
-            if(isAnnotated)
-            {
-                JLabel label1 = new JLabel(c.getName());
-                panel.add(label1);
-                JCheckBox box = new JCheckBox();
-                if(mySprite.hasAttributeByName(c.getName()))
-                {
-                    box.setSelected(true);
-                }
-//                else if(mySprite==null)
-//                {
-//                    for (Attribute a: myFramework.getAttributes())
-//                    {
-//                        if(a.getClass().equals(c))
-//                        {
-//                            System.out.println("working");
-//                            box.setSelected(true);
-//                        }
-//                    }
-//                }
-                
-                panel.add(box);
-                box.addActionListener(new CheckBoxListener(box, c));
-                attributeMap.put(box, c);
-            }
-        }*/
-/*
-        JLabel label1 = new JLabel("Enemy Name");
-        panel.add(label1);
-
-        myName = new JTextField(10);
-
-        panel.add(myName);
-
-        JButton imageButton = new JButton("Select Image");
-        imageButton.addActionListener(new ImageAction());
-        panel.add(imageButton);
-
-        String buttonPhrase = "Save Enemy";
-        //if(myFramework!=null)
-            //buttonPhrase = "Change Enemies";
-                
-        JButton goButton = new JButton(buttonPhrase);
-        goButton.addActionListener(new GoAction());
-        panel.add(goButton);
-
-        return panel;*/
     }
-
-    private class GoAction implements ActionListener {
-        
-        public void actionPerformed(ActionEvent e)
-        {
-           /* ArrayList<AttributeCreator> attributes = new ArrayList<AttributeCreator>();
-            ArrayList<Attribute> oldAttributes = new ArrayList<Attribute>();
-            for (JCheckBox box : attributeMap.keySet())
-            {
-                if (box.isSelected())
-                {
-                    boolean inOldList = false;
-                    for(Attribute a: myOldAttributes)
-                    {
-                        System.out.println("checking old attribute:" + a);
-                        if(attributeMap.get(box).equals(a.getClass())) // if you previously had an instance of this class
-                        {
-                            if (!attributeInstanceMap.keySet().contains(box)) // if you haven't put in a new instance of this class
-                            {
-                                System.out.println("adding a previous attribute:" + a);
-                                oldAttributes.add(a);
-                                inOldList = true;
-                            }
-                        }
-                    }
-                    if(!inOldList)
-                    {
-                    System.out.println("this attribute is selected:" + box);
-                    System.out.println(attributeInstanceMap.get(box));
-                    attributes.add( attributeInstanceMap.get(box));
-                    }
-                }
-                    
-            }*/
-            
-/*            ArrayList<Attribute> attributes = new ArrayList<Attribute>();
-            
-            for(AttributeCreator a: attributePanel.getSelectedAttributes())
-            {
-                if(a.getArguments()!=null)
-                {
-                    if(a.getArguments()[0]==null)
-                    {
-                        
-                        for(Attribute currentAttribute: mySprite.getAttributes())
-                        {
-                            
-                            if(currentAttribute.getClass().equals(a.getCreatingClass()))
-                            {
-                                attributes.add(currentAttribute);
-                                break;
-                            }
-                        }
-                        continue;
-                    }
-                }
-                attributes.add(a.createAttribute());
-                
-            }
-            */
-            
-            
-
-            
-      /*       BufferedImage[] s = new BufferedImage[myImages.size()];
-             if(myImages.size()==0)
-             {
-                 s = mySprite.getImages();
-             }
-             else
-             {
-                for (int x = 0; x<s.length; x++)
-                {
-                    s[x] = myImages.get(x);
-                }
-             }
-           */
-            /*ArrayList<String> imagePaths = new ArrayList<String>();
-            imagePaths.add(myImagePaths);*/
-            //EnemyFramework framework = new EnemyFramework(s, imagePaths, attributes);
-            //if(mySprite!=null)
-            //{
-            
-            ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
-                myX = (int) mySprite.getOldX();
-                myY = (int) mySprite.getOldY();
-            //}
-            Enemy enemy = new Enemy(myX,
-                    myY,
-                    myImagePaths);
-            for(Attribute a: attributes)
-            {
-                
-                
-                enemy.addAttribute(a);
-            }
-            /*  
-            for (Attribute oldAttribute: oldAttributes)
-            {
-                enemy.addAttribute(oldAttribute);
-            }*/
-            if(!myGroup.getText().equals(""))
-            {
-                mySprite.setGroup(myGroup.getText());
-            }
-            if(mySprite!=null)
-                myController.replaceSprite(mySprite, enemy);
-           /* List<Object> parameters = new ArrayList<Object>();
-            parameters.add(s);
-            parameters.add(myImagePaths);
-            parameters.add(attributes);
-            //if(myFramework!=null)
-                myFramework.updateSprites(parameters);
-           */ 
-            setVisible(false);
-        }
-    }
-
     @Override
     public DialogueBox clone() {
         return new EditEnemyDialogue(myController, mySprite, myX, myY);
+    }
+
+
+    @Override
+    protected void BoxCompletedAction() {
+        ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
+        myX = (int) mySprite.getOldX();
+        myY = (int) mySprite.getOldY();
+    
+    Enemy enemy = new Enemy(myX,
+            myY,
+            myImagePaths);
+    for(Attribute a: attributes)
+    {
+        
+        
+        enemy.addAttribute(a);
+    }
+    
+    if(!myGroup.getText().equals(""))
+    {
+        mySprite.setGroup(myGroup.getText());
+    }
+    if(mySprite!=null)
+        myController.replaceSprite(mySprite, enemy);
+
+    setVisible(false);
+        
     }
     
 }

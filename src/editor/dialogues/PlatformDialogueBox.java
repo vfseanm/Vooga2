@@ -92,17 +92,6 @@ public class PlatformDialogueBox extends DialogueBox {
 
     public Framework getFramework()
     {
-/*        
-       List<Class> platformTypes = new ArrayList<Class>();
-       
-        for (JCheckBox box : classMap.keySet())
-        {
-            if (box.isSelected())
-            {
-                platformTypes.add(classMap.get(box));
-            }
-                
-        }*/
         
         AbstractPlatform prototype = new SimplePlatform(0,0,myImagePaths);
         Object[] list = new Object[1];
@@ -134,32 +123,22 @@ public class PlatformDialogueBox extends DialogueBox {
         }
         prototype.setGroup(myGroup.getText());
         
-        
-/*        BufferedImage[] s = new BufferedImage[myImages.size()];
-        for (int x = 0; x<s.length; x++)
-        {
-            s[x] = myImages.get(x);
-        }*/
-        
-        //PlatformFramework framework = new PlatformFramework(myImagePaths, platformTypes, myGroup.getText());
         return new Framework(myName.getText(), "platform", prototype);
         
-    }
-    
-    class GoAction implements ActionListener {       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            Framework framework = getFramework();
-            System.out.println("framework "+framework);
-            myController.addButton(myName.getText(), framework);
-            setVisible(false);
-        }
     }
 
     @Override
     public DialogueBox clone() {
         return new PlatformDialogueBox(myController);
+    }
+
+    @Override
+    protected void BoxCompletedAction() {
+        Framework framework = getFramework();
+        System.out.println("framework "+framework);
+        myController.addButton(myName.getText(), framework);
+        setVisible(false);
+        
     }
    
 

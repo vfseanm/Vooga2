@@ -8,7 +8,7 @@ import com.golden.gamedev.gui.TLabel;
 import com.golden.gamedev.gui.toolkit.UIConstants;
 
 import editor.EditorView;
-import editor.buttons.DialogueMakingButton;
+import editor.buttons.DialogueOpeningButton;
 import editor.dialogues.EditEnemyDialogue;
 import editor.dialogues.EnemyDialogueBox;
 import editor.dialogues.ExtendedDialogueBox;
@@ -25,24 +25,24 @@ public class CustomizedEditor extends EditorView{
         l2.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l2);
         
-        DialogueMakingButton newEnemyButton = new DialogueMakingButton("Create Enemy", 125, 50, 150, 40, this, new EnemyDialogueBox(myController));
+        DialogueOpeningButton newEnemyButton = new DialogueOpeningButton("Create Enemy", 125, 50, 150, 40, this, new EnemyDialogueBox(myController));
         infoBox.add(newEnemyButton);
         
         TLabel l3 = new TLabel("Platforms", 0, 210, 400, 40);
         l3.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l3);
         
-        DialogueMakingButton newPlatformButton = new DialogueMakingButton("Create Platform", 125, 250, 150, 40, this, new PlatformDialogueBox(myController));
+        DialogueOpeningButton newPlatformButton = new DialogueOpeningButton("Create Platform", 125, 250, 150, 40, this, new PlatformDialogueBox(myController));
         infoBox.add(newPlatformButton);
         
         TLabel l4 = new TLabel("Powerups", 0, 410, 400, 40);
         l4.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l4);
         
-        DialogueMakingButton custom = new DialogueMakingButton("Customized dialogue", 125, 350, 150, 40, this, new ExtendedDialogueBox(myController));
+        DialogueOpeningButton custom = new DialogueOpeningButton("Customized dialogue", 125, 350, 150, 40, this, new ExtendedDialogueBox(myController));
         infoBox.add(custom);
         
-        DialogueMakingButton newpowerUpButton = new DialogueMakingButton("Create Power-Up", 125, 450, 150, 40, this, new PowerupDialogueBox(myController));
+        DialogueOpeningButton newpowerUpButton = new DialogueOpeningButton("Create Power-Up", 125, 450, 150, 40, this, new PowerupDialogueBox(myController));
         infoBox.add(newpowerUpButton);
         
         setFrameworkBottom();

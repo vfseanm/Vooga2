@@ -100,4 +100,9 @@ public class BreakablePlatform extends DecoratedPlatform {
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new BreakablePlatform(toWrap);
 	}
+	
+	public static AbstractPlatform fromJson(String json)
+	{
+	    return AbstractPlatform.fromJson(json);
+	}
 }

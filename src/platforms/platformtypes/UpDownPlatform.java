@@ -75,6 +75,4 @@ import com.golden.gamedev.object.collision.CollisionGroup;
         return new UpDownPlatform(toWrap);
         
     }
-
-
 }

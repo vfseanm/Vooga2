@@ -64,5 +64,10 @@ public class SimplePlatform extends AbstractPlatform {
 				imageNames);
 		return e;
 	}
+	
+	   public static AbstractPlatform fromJson(String json)
+	    {
+	        return AbstractPlatform.fromJson(json);
+	    }
 
 }

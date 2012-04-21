@@ -60,14 +60,14 @@ public class FighterDialogueBox extends DialogueBox{
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800,325));
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
+        attributePanel = new AttributeSelectionPanel(packagesToSearch);
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Fighter to have:");
         panel2.add(title1);
         panel2.add(attributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Carryable attributes for the Fighter to Have:");
-        carryablePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
+        carryablePanel = new AttributeSelectionPanel(packagesToSearch);
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(carryablePanel);
@@ -81,7 +81,7 @@ public class FighterDialogueBox extends DialogueBox{
         subPanel.add(imageButton);
                 
         JButton goButton = new JButton("Create Fighter");
-        goButton.addActionListener(new FighterAction());
+        goButton.addActionListener(new GoAction());
         subPanel.add(goButton);
         
 
@@ -91,38 +91,29 @@ public class FighterDialogueBox extends DialogueBox{
 
     }
 
-    private class FighterAction implements ActionListener {
-       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
-            ArrayList<Attribute> carryableAttributes = carryablePanel.getSelectedAttributes();
-
-            /*BufferedImage[] s = new BufferedImage[myImages.size()];
-            for (int x = 0; x<s.length; x++)
-            {
-                s[x] = myImages.get(x);
-            }*/
-            ArrayList<String> imagePaths = new ArrayList<String>();
-            Fighter fighter = new Fighter(50, 50, myImagePaths);
-            
-            for(Attribute attribute: attributes)
-            {
-            fighter.addAttribute(attribute);
-            }
-            //for(Attribute attribute: carryableAttributes)
-            //{
-                fighter.addCarryableAttributes(carryableAttributes);
-            //}
-            myController.setFighter(new Fighter(50, 50, myImagePaths));
-            setVisible(false);
-        }
-    }
-
     @Override
     public DialogueBox clone() {
         return new FighterDialogueBox(myController);
+    }
+
+    @Override
+    protected void BoxCompletedAction() {
+        ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
+        
+        ArrayList<Attribute> carryableAttributes = carryablePanel.getSelectedAttributes();
+
+        ArrayList<String> imagePaths = new ArrayList<String>();
+        Fighter fighter = new Fighter(50, 50, myImagePaths);
+        
+        for(Attribute attribute: attributes)
+        {
+            System.out.println("adding attribute to fighter");
+            fighter.addAttribute(attribute);
+        }
+            fighter.addCarryableAttributes(carryableAttributes);
+        myController.setFighter(fighter);
+        setVisible(false);
+        
     }
 
 

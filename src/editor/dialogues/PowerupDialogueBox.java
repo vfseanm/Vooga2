@@ -48,14 +48,14 @@ public class PowerupDialogueBox extends DialogueBox {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800,325));
-        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
+        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch);
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
         panel2.add(title1);
         panel2.add(powerupAttributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Attributes for the Power-Up to Give:");
-        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
+        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch);
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(attributesToGivePanel);
@@ -94,14 +94,6 @@ public class PowerupDialogueBox extends DialogueBox {
     
     
     public Framework getFramework() {
-
-/*            ArrayList<Attribute> attributes = powerupAttributePanel.getSelectedAttributes();
-            ArrayList<Attribute> attributesToGive = attributesToGivePanel.getSelectedAttributes();
-            BufferedImage[] s = new BufferedImage[myImages.size()];
-            for (int x = 0; x<s.length; x++)
-            {
-                s[x] = myImages.get(x);
-            }*/
             PowerUp prototype = new PowerUp(0,0,myImagePaths);
            for(Attribute attribute: powerupAttributePanel.getSelectedAttributes())
            {
@@ -112,25 +104,22 @@ public class PowerupDialogueBox extends DialogueBox {
                prototype.addAttributeToOffer(attributeToGive);
            }
            prototype.setGroup(myGroup.getText());
-            //ArrayList<String> imagePaths = new ArrayList<String>();
-            //PowerupFramework framework = new PowerupFramework(myImagePaths, attributes, attributesToGive, myGroup.getText());
            Framework framework = new Framework(myName.getText(), "Power-Up", prototype); 
            return framework;
 
         }
-class GoAction implements ActionListener {       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            Framework framework = getFramework();
-            System.out.println("framework "+framework);
-            myController.addButton(myName.getText(), framework);
-            setVisible(false);
-        }
-    }
+
 @Override
 public DialogueBox clone() {
     return new PowerupDialogueBox(myController);
+}
+
+@Override
+protected void BoxCompletedAction() {
+    Framework framework = getFramework();
+    myController.addButton(myName.getText(), framework);
+    setVisible(false);
+    
 }
     
     

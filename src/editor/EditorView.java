@@ -18,7 +18,7 @@ import com.golden.gamedev.gui.toolkit.*;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 import editor.buttons.ObjectPlacingButton;
-import editor.buttons.DialogueMakingButton;
+import editor.buttons.DialogueOpeningButton;
 import editor.buttons.OpenButton;
 import editor.buttons.OpenJsonButton;
 import editor.buttons.SaveButton;
@@ -45,7 +45,6 @@ public abstract class EditorView extends Game {
     protected double[] origPosition;
     protected double[] clickedSpriteOffset;
     //protected Framework myFramework;
-    protected Background myBackground;
     protected DynamicBox currentDialogueBox;
 
     public void initialize()
@@ -92,10 +91,10 @@ public abstract class EditorView extends Game {
 
         MenuBox.add(l);
         
-        DialogueMakingButton playerButton = new DialogueMakingButton("Configure Player", 25, 30, 150, 40, this, new FighterDialogueBox(myController));
+        DialogueOpeningButton playerButton = new DialogueOpeningButton("Configure Player", 25, 30, 150, 40, this, new FighterDialogueBox(myController));
         MenuBox.add(playerButton);
         
-        DialogueMakingButton gameButton = new DialogueMakingButton("Configure Game", 200, 30, 150, 40, this, new GameDialogue(myController));
+        DialogueOpeningButton gameButton = new DialogueOpeningButton("Configure Game", 200, 30, 150, 40, this, new GameDialogue(myController));
         MenuBox.add(gameButton);
 
         framework.add(MenuBox);
@@ -105,9 +104,9 @@ public abstract class EditorView extends Game {
     {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
-        if(myBackground!=null)
+        if(myController.getBackground()!=null)
         {
-            myBackground.render(pen);
+            myController.getBackground().render(pen);
         }
         for (AnimatedGameSprite s : myController.getAllSprites())
         {
@@ -120,9 +119,9 @@ public abstract class EditorView extends Game {
 
     public void updateEditor(long elapsedTime)
     {
-        if(myBackground!=null)
+        if(myController.getBackground()!=null)
         {
-            myBackground.update(elapsedTime);
+            myController.getBackground().update(elapsedTime);
         }
         framework.update();
         if (click())
@@ -294,7 +293,6 @@ public abstract class EditorView extends Game {
         frame = new JFrame("Edit Enemies");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(myView);
         frame.pack();
         frame.setVisible(true);
@@ -305,7 +303,6 @@ public abstract class EditorView extends Game {
         frame = new JFrame("");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(box);
         frame.pack();
         frame.setVisible(true);
@@ -319,9 +316,5 @@ public abstract class EditorView extends Game {
         }
     }
 
-    public void setBackground(BufferedImage image)
-    {
-        myBackground = new ImageBackground(image);
-    }
 
 }
