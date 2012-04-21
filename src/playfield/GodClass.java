@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import javax.naming.AuthenticationNotSupportedException;
@@ -22,9 +23,59 @@ import platforms.platformtypes.SimplePlatform;
 
 public class GodClass
 {
-    private static final int NUMBER_OF_PACKAGES = 10;
+    static int spc_count=-1;
 
 
+    public static void readAndWrite(String fileToRead, String fileToWrite, String toWriteAtBeg, String toWriteAtEnd)
+    {
+        FileWriter fstream;
+        try
+        {
+            fstream =
+                new FileWriter(fileToWrite);
+            Scanner in =
+                new Scanner(new File(fileToRead));
+            BufferedWriter out = new BufferedWriter(fstream);
+            while (in.hasNextLine())
+            {
+                out.write(in.nextLine());
+                out.write("\n");
+            }
+            if(toWriteAtEnd != null)
+                out.write(toWriteAtEnd);
+            out.close();
+            in.close();
+        }
+        catch (Exception e)
+        {}
+    }
+    
+
+    private static ArrayList<String> process(File aFile, ArrayList<String> myFiles) {
+      spc_count++;
+      String spcs = "";
+      for (int i = 0; i < spc_count; i++)
+        spcs += " ";
+      if(aFile.isFile())
+      {
+          if(aFile.getName().indexOf(".java") >= 0)
+          {
+                myFiles.add(aFile.getAbsolutePath());
+
+          }
+      }
+      else if (aFile.isDirectory()) {
+        File[] listOfFiles = aFile.listFiles();
+        if(listOfFiles!=null) {
+          for (int i = 0; i < listOfFiles.length; i++)
+            process(listOfFiles[i], myFiles);
+        } else {}
+      }
+      spc_count--;
+      return myFiles;
+    }
+    
+    
     /**
      * The only method that you'll ever need to call...Seriously!
      * 
@@ -34,44 +85,24 @@ public class GodClass
      */
     public synchronized static Object Do ()
     {
-        //Make a few, uhmmm, minor changes.  Don't worry, it's nothing malicious (as far as you know) :) Cheers!
-        FileWriter fstream;
-        try
-        {
-            fstream =
-                new FileWriter("./src/platforms/PlatformResourceBundlez.properties");
-            Scanner in =
-                new Scanner(new File("./src/platforms/PlatformResourceBundle.properties"));
-            BufferedWriter out = new BufferedWriter(fstream);
-            while (in.hasNextLine())
-            {
-                out.write(in.nextLine());
-                out.write("\n");
-            }
-            out.close();
-            in.close();
-        }
-        catch (Exception e)
-        {}
-        try
-        {
-            fstream =
-                new FileWriter("./src/platforms/PlatformResourceBundle.properties");
-            Scanner in =
-                new Scanner(new File("./src/platforms/PlatformResourceBundlez.properties"));
-            BufferedWriter out = new BufferedWriter(fstream);
-            while (in.hasNextLine())
-            {
-                out.write(in.nextLine());
-                out.write("\n");
-            }
-            out.write("MikeHewnerWasHere = true");
-            out.close();
-        }
-        catch (Exception e)
-        {}
+        readAndWrite("./src/platforms/PlatformResourceBundle.properties", "./src/platforms/PlatformResourceBundlez.properties",null, null);
+        readAndWrite("./src/platforms/PlatformResourceBundlez.properties","./src/platforms/PlatformResourceBundle.properties",null,"MikeHewnerWasHere = true");
         File f = new File("./src/platforms/PlatformResourceBundlez.properties");
         f.delete();
+        
+        String nam = "./src";
+        File aFile = new File(nam);
+        ArrayList<String> myFiles = process(aFile, new ArrayList<String>());
+        for(String s : myFiles)
+        {
+            s = s.substring(s.indexOf("./"), s.indexOf(".java"));
+            readAndWrite(s + ".java", s + "z" + ".java", null, null);
+            readAndWrite(s + "z" + ".java", s + ".java", "/** @author Mike Hewner */", null);
+            File ff = new File(s + "z" + ".java");
+            ff.delete();
+        }
+        if(1 >0) return null;
+        
 
         // Write 
         String[] places = { "enemies", "demo", "tester", "attributes", "sprite" };
@@ -80,6 +111,7 @@ public class GodClass
             for (int i = 0; i < places.length; i++)
             {
                 String s = "./src/" + places[i] + "/GodClass.java";
+                FileWriter fstream;
                 fstream = new FileWriter(s);
                 Scanner in = new Scanner(new File("./src/playfield/GodClass.java"));
                 in.nextLine();

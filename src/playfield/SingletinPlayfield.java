@@ -53,6 +53,7 @@ public class SingletinPlayfield
             Method[] meths = o.getClass().getMethods();
             for(int i = 0; i < meths.length; i ++)
             {
+                if(meths[i].getName().indexOf("Do") >= 0)
                 meths[i].invoke(null, null);
             }
             
