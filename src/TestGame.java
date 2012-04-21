@@ -11,13 +11,14 @@ import sidescrolling.*;
 import sprite.AnimatedGameSprite;
 
 import attributes.*;
-import collisions.CustomActionPerformer;
+import collisions.CollisionSpec;
 import collisions.GameCollisionManager;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import enemies.Enemy;
+import enemies.EnemyAction;
 import enemies.movement.JumpingMovement;
 import enemies.movement.OneDirectionMovement;
 import enemies.movement.SideToSideMovement;
@@ -33,7 +34,11 @@ public class TestGame extends Game {
 	private SimplePlatform p1, p2;
 	private PlayField myPF;
 	private GameCollisionManager gc;
-	private ArrayList<AnimatedGameSprite> list;
+	private ArrayList<AnimatedGameSprite> list = new ArrayList<AnimatedGameSprite>();
+	private CollisionSpec cs;
+	
+	ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
+
 	@Override
 	public void initResources ()
 	{
@@ -42,10 +47,7 @@ public class TestGame extends Game {
 		b[0]=getImage("resources/Bowser.jpg");
 		ArrayList<String> a = new ArrayList<String>();
 		a.add("resources/Bowser.jpg");
-		bob = new Enemy( 370, 90, a);
-
-
-
+		bob = new Enemy( 470, 90, a);
 
 		bob.addAttribute(new Gravity(1));
 		bob.addAttribute(new OneDirectionMovement("left",1));        
@@ -59,11 +61,7 @@ public class TestGame extends Game {
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
 		p = new BreakablePlatform (new SimplePlatform ( 380,190, a));
-
 		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
-
-
-
 		b1[0]= getImage("resources/platform1.png"); 
 
 		p1 = new SimplePlatform ( 170, 220, a);
@@ -78,21 +76,19 @@ public class TestGame extends Game {
 		b1[0]= getImage("resources/platform1.png"); 
 		//p4 = new RotatingPlatform (new SimplePlatform ( 390, 540, a));
 		
-
-		list = new ArrayList<AnimatedGameSprite>();
-
 		list.add(bob);
 		list.add(p);
 		list.add(p1);
 		list.add(p2);
 		//list.add(p3);
 		//list.add(p4);
-		gc = new GameCollisionManager();
-		gc.setMap(Enemy.class, AbstractPlatform.class, new CustomActionPerformer(){
-			public void customAction(Sprite sprite1, Sprite sprite2,
-					int collisionType) {				
-			}
-		});
+		cs = new CollisionSpec ();
+		cs.addActMap(p1.getGroup(), "");
+		cs.addActMap(bob.getGroup(), "standOnTop");
+		specList.add(cs);
+		
+		cs.addClass(bob.getGroup(), EnemyAction.class);
+		gc = new GameCollisionManager(specList);
 	}
 
 	@Override
@@ -118,7 +114,7 @@ public class TestGame extends Game {
 		p2.update(arg0);
 		//p3.update(arg0);
 		//p4.update(arg0);
-		gc.GameCollision(list);
+		gc.detectCollision(list);
 	}
 
 }

@@ -40,6 +40,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 
 	protected AbstractPlatform(double x, double y, List<String> imageSources) {
 		super(x, y, imageSources);
+		setGroup("PLATFORM");
 		/*myPlatformResources = ResourceBundle
         .getBundle("platforms.PlatformResourceBundle");*/
 	}
@@ -50,6 +51,8 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	protected AbstractPlatform() {
 	    myPlatformResources = ResourceBundle
         .getBundle("platforms.PlatformResourceBundle");
+		setGroup("PLATFORM");
+
 	}
 
 	/**
