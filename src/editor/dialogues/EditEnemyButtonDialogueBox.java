@@ -79,81 +79,30 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
 
         return panel;
 
-
-    }
-
-    private class GoAction implements ActionListener {
-        
-        public void actionPerformed(ActionEvent e)
-        {
-           
-            /*
-            ArrayList<AttributeCreator> attributes = new ArrayList<AttributeCreator>();
-            
-            for(Attribute a: attributePanel.getSelectedAttributes())
-            {
-                if(a.getArguments()!=null)
-                {
-                    if(a.getArguments()[0]==null)
-                    {
-                        
-                        for(AttributeCreator currentAttribute: myFramework.getAttributeCreators())
-                        {
-                            
-                            if(currentAttribute.getCreatingClass().equals(a.getCreatingClass()))
-                            {
-                                attributes.add(currentAttribute);
-                                break;
-                            }
-                        }
-                        continue;
-                    }
-                }
-                attributes.add(a);
-                
-            }          
-            */
-            if(myImagePaths.size()==0)
-            {
-                myImagePaths = myFramework.getPrototype().getImageNames();
-            }
-
-            Enemy newPrototype = new Enemy(0,0, myImagePaths);
-            for(Attribute attribute: attributePanel.getSelectedAttributes())
-            {
-                newPrototype.addAttribute(attribute);
-            }
-             /*BufferedImage[] s = new BufferedImage[myImages.size()];
-             if(myImages.size()==0)
-             {
-                 s = myFramework.getImages();
-             }
-             else
-             {
-                for (int x = 0; x<s.length; x++)
-                {
-                    s[x] = myImages.get(x);
-                }
-             }*/
-           
-            
-           
-/*            List<Object> parameters = new ArrayList<Object>();
-            //parameters.add(s);
-            parameters.add(myImagePaths);
-            parameters.add(attributes);
-            */
-            
-            myFramework.updateSprites(newPrototype);
-            myController.closeDialogue();
-            
-            setVisible(false);
-        }
     }
 
     @Override
     public DialogueBox clone() {
         return new EditEnemyButtonDialogueBox(myController, myFramework);
+    }
+
+    protected void BoxCompletedAction() {
+        if(myImagePaths.size()==0)
+        {
+            myImagePaths = myFramework.getPrototype().getImageNames();
+        }
+
+        Enemy newPrototype = new Enemy(0,0, myImagePaths);
+        for(Attribute attribute: attributePanel.getSelectedAttributes())
+        {
+            newPrototype.addAttribute(attribute);
+        }
+       
+        myFramework.updateSprites(newPrototype);
+        myController.closeDialogue();
+        
+        setVisible(false);
+        
     }
     
 

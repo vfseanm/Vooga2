@@ -114,7 +114,6 @@ public class EnemyDialogueBox extends DynamicBox {
         return new EnemyDialogueBox(myController);
     }
 
-
     protected void BoxCompletedAction() {
         Framework framework = getFramework();
         myController.addButton(myName.getText(), framework);

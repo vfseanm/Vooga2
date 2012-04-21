@@ -56,9 +56,6 @@ class GoAction implements ActionListener {
         
         public void actionPerformed(ActionEvent e)
         {
-            //Framework framework = getFramework();
-            //System.out.println("framework "+framework);
-            //myController.addButton(myName.getText(), framework);
             myController.closeDialogue();
             setVisible(false);
         }
@@ -67,6 +64,12 @@ class GoAction implements ActionListener {
 @Override
 public DialogueBox clone() {
     return new ExtendedDialogueBox(myController);
+}
+
+@Override
+protected void BoxCompletedAction() {
+    myController.closeDialogue();
+    setVisible(false);
 }
 
 
