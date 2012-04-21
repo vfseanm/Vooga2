@@ -146,60 +146,21 @@ public class EditorController {
         myView.closeFrame();
     }
 
-    public void writeFile(String filename)
+    public void writeFile(String filename, LevelWriter writer)
     {
 
         myLevel.moveHorizontally(-horizontalOffset);
         myLevel.moveVertically(-verticalOffset);
 
-        FileOutputStream fos = null;
-        ObjectOutputStream out = null;
-        try
-        {
-            fos = new FileOutputStream(filename);
-            out = new ObjectOutputStream(fos);
-            out.writeObject(myLevel);
-            out.close();
-        } catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
+        writer.writeLevel(filename, myLevel);
         
-      /*  FileWriter fileOut;
-        try
-        {
-            fileOut = new FileWriter("Becky");
-            BufferedWriter out2 = new BufferedWriter(fileOut);
-            out2.write(myLevel.toJson());
-            out2.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }*/
         myLevel.moveHorizontally(horizontalOffset);
         myLevel.moveVertically(verticalOffset);
     }
 
-    public void loadFile(File file)
+    public void loadFile(File file, LevelLoader loader)
     {
-        clearLevel();
-        FileInputStream fis = null;
-        ObjectInputStream in = null;
-        try
-        {
-            fis = new FileInputStream(file);
-            in = new ObjectInputStream(fis);
-            myLevel = (Level) in.readObject();
-            // System.out.println(myLevel.getAllSprites().get(0).toString());
-            in.close();
-        } catch (IOException ex)
-        {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex)
-        {
-            ex.printStackTrace();
-        }
+        myLevel = loader.readLevel(file);
         horizontalOffset = 0;
         verticalOffset = 0;
         
@@ -207,9 +168,7 @@ public class EditorController {
         {
             addButton(f.getName(), f);
         }
-        
-        // put in generating buttons. This should have a list of buttons or something.
-    }
+     }
 
     private static int[] enemyButtonPlacement;
     private static int enemyButtonCounter;
@@ -303,50 +262,8 @@ public class EditorController {
         myView.closeFrame();
     }
     
-    public void loadJsonFile(File f)
-    {
-        Scanner scanner;
-        try
-        {
-            scanner = new Scanner(f);
-            String wholeFile = scanner.useDelimiter("\\A").next();
-            System.out.println(wholeFile);
-            myLevel.fromJson(wholeFile);
-            System.out.println(myLevel.getAllSprites().size());
-            for(AnimatedGameSprite s : myLevel.getAllSprites())
-            {
-                System.out.println(s.getX());
-            }
-        } catch (FileNotFoundException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-    } 
-    
-    
-    public void writeJsonFile(String f)
-    {
-        myLevel.moveHorizontally(-horizontalOffset);
-        myLevel.moveVertically(-verticalOffset);
 
-        
-        
-        FileWriter fileOut;
-        try
-        {
-            fileOut = new FileWriter(f);
-            BufferedWriter out2 = new BufferedWriter(fileOut);
-            out2.write(myLevel.toJson());
-            out2.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        myLevel.moveHorizontally(horizontalOffset);
-        myLevel.moveVertically(verticalOffset);
-    }
+    
+
 
 }

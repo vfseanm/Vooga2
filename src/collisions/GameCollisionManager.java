@@ -1,56 +1,39 @@
 package collisions;
 
 import java.lang.reflect.Method;
-
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
+import java.util.Set;
 
 import sprite.*;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
-
-
 public class GameCollisionManager{
-	HashMap<ArrayList<Class>, CustomActionPerformer> actionMap = new HashMap <ArrayList<Class>, CustomActionPerformer>();
 
-	public void GameCollision (ArrayList<AnimatedGameSprite> spriteList){
+	private ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
+	
+	public GameCollisionManager(List<CollisionSpec> gs){
+		specList.addAll(gs);
+	}
+	
+	public void detectCollision (ArrayList<AnimatedGameSprite> spriteList){
 		for (AnimatedGameSprite sprite1: spriteList){
 			for(AnimatedGameSprite sprite2: spriteList){
 				if (sprite1==sprite2)
 					continue;
 				else{
 					if ( CollisionChecker(sprite1, sprite2) ){
-						
 						int side = SideChecker (sprite1, sprite2);
-						CustomActionPerformer act = null;
-						for (ArrayList<Class> c: actionMap.keySet()){
-							if (c.contains(sprite1.getClass()) && c.contains(sprite2.getClass()) ){
-								act = actionMap.get(c);
-							}
-						}	
-						sprite2.action(sprite1, side, act);
+						CollisionSpec cspec = traverseSpec (sprite1, sprite2); 	
+						takeAction (cspec, sprite1, sprite2, side);
 					}
 				}
 			}
 		}
 	}
 
-	public ArrayList<Class> getKey (Class spc1, Class spc2){
-		ArrayList<Class> keyClass = new ArrayList<Class>();
-		keyClass.add(spc1); keyClass.add(spc2);
-		return keyClass;
-	}
-	
-	public void setMap (Class spc1, Class spc2, CustomActionPerformer act){
-
-		actionMap.put(getKey(spc1, spc2), act);
-	}
-
-	private int SideChecker(Sprite sprite1, Sprite sprite2) {
+	private int SideChecker(AnimatedGameSprite sprite1, AnimatedGameSprite sprite2) {
 		if (leftRightChecker(sprite1, sprite2)) {
 			return CollisionGroup.LEFT_RIGHT_COLLISION;
 		}
@@ -66,17 +49,20 @@ public class GameCollisionManager{
 		return 0;
 	}
 	
-	private boolean leftRightChecker (Sprite sprite1, Sprite sprite2){
+	private boolean leftRightChecker (AnimatedGameSprite sprite1, AnimatedGameSprite sprite2){
 		if  ((sprite1.getX() + sprite1.getWidth() == sprite2.getX()) &&
-				(sprite1.getY() >= (sprite2.getY()-sprite1.getHeight())) && 
-				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth())) &&
+				(sprite1.getX() + sprite1.getWidth() <= (sprite2.getX()+sprite1.getWidth())) && 
+				(sprite1.getY() >= (sprite2.getY()-sprite1.getHeight())) &&
 				((sprite1.getY()+sprite1.getHeight()) <= (sprite2.getY()+sprite2.getHeight()+sprite1.getHeight())) ){
 			return true;
 		}
 		return false;
 	}
-	private boolean topBottomChecker (Sprite sprite1, Sprite sprite2){
-		if  ( ((sprite1.getY() + sprite1.getHeight() >= sprite2.getY()) && (sprite1.getY() + sprite1.getHeight() <= sprite2.getY()+sprite2.getHeight()) ) &&
+	
+	private boolean topBottomChecker (AnimatedGameSprite sprite1, AnimatedGameSprite sprite2){
+		if  ( ((sprite1.getY() + sprite1.getHeight() >= sprite2.getY()) && 
+				(sprite1.getY() + sprite1.getHeight() <= sprite2.getY()+sprite2.getHeight()) ) &&
+				(sprite1.getX() >= (sprite2.getX()-sprite1.getWidth())) &&
 				((sprite1.getX()+sprite1.getWidth()) <= (sprite2.getX()+sprite2.getWidth()+sprite1.getWidth())) ){
 			return true;
 		}
@@ -84,11 +70,73 @@ public class GameCollisionManager{
 	}
 	
 
-	private boolean CollisionChecker (Sprite sp1, Sprite sp2){
+	private boolean CollisionChecker (AnimatedGameSprite sp1, AnimatedGameSprite sp2){
 		if ( (leftRightChecker(sp1, sp2)) || (leftRightChecker(sp2, sp1)) || ( topBottomChecker (sp1, sp2) || (topBottomChecker(sp2, sp1)))){
 			return true;
 		}
 		else 
 			return false;
 	}
+
+	private CollisionSpec traverseSpec (AnimatedGameSprite sprite1, AnimatedGameSprite sprite2){
+		for (CollisionSpec cs: specList){
+			Set<String> spriteKeys = cs.returnActMap().keySet();
+			if (spriteKeys.contains(sprite1.getGroup()) && spriteKeys.contains(sprite2.getGroup())){
+				return cs;
+			}
+		}
+		return null;
+	}
+
+	private void takeAction (CollisionSpec cspec, AnimatedGameSprite sp1, AnimatedGameSprite sp2, int side){
+		if (cspec!=null){
+			ArrayList<String> tempList1 = cspec.returnActMap().get(sp1.getGroup());
+			ArrayList<String> tempList2 = cspec.returnActMap().get(sp2.getGroup());
+
+			CollisionContext ccntext = new CollisionContext();
+			ccntext.addSprite1(sp1); ccntext.addSprite2(sp2); ccntext.addSide(side);
+			Object args[] = new Object[2];
+			args[0] = ccntext; args[1] = cspec;
+
+			CollisionAction caSp1 = cspec.getActionInstance(sp1.getGroup());
+			CollisionAction caSp2 = cspec.getActionInstance(sp2.getGroup());
+
+			if (caSp1!=null){
+				caSp1.setSprite(sp1); 
+
+				for (String action1: tempList1){
+					if ((action1 == null ) || (action1.trim()=="")){
+						continue;
+					}
+					try{
+						Method mc = caSp1.getClass().getMethod(action1, ccntext.getClass(), cspec.getClass());
+						mc.invoke(caSp1, args);
+					}
+					catch (Exception e){
+						System.out.println ("");
+					}
+				}
+			}
+			if (caSp2 != null){
+				caSp2.setSprite(sp2);
+
+				for (String action2: tempList2){
+					if ((action2 == null ) || (action2.trim()=="")){
+						continue;
+					}
+					try{
+						Method mc = caSp2.getClass().getMethod(action2, ccntext.getClass(), cspec.getClass());
+						mc.invoke(caSp2, args);
+					}
+					catch (Exception e){
+						System.out.println ("");
+					}
+				}
+
+			}
+
+		}
+	}	
+
 }
+

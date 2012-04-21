@@ -4,14 +4,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import collisions.CustomActionPerformer;
-
-import com.golden.gamedev.object.collision.CollisionGroup;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import enemies.Enemy;
+
 
 
 import java.util.ResourceBundle;
@@ -44,6 +40,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 
 	protected AbstractPlatform(double x, double y, List<String> imageSources) {
 		super(x, y, imageSources);
+		setGroup("PLATFORM");
 		/*myPlatformResources = ResourceBundle
         .getBundle("platforms.PlatformResourceBundle");*/
 	}
@@ -54,6 +51,8 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	protected AbstractPlatform() {
 	    myPlatformResources = ResourceBundle
         .getBundle("platforms.PlatformResourceBundle");
+		setGroup("PLATFORM");
+
 	}
 
 	/**
@@ -69,33 +68,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	
 	public abstract Object clone();
 	
-	
-	public void standardAction (AnimatedGameSprite sprite1, int collisionType){ 	
-		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
-			if ( (sprite1.getX() >= (this.getX() - sprite1.getWidth() ))
-					&& ((sprite1.getX() + sprite1.getWidth()) <= this.getX()+ this.getWidth() + sprite1.getWidth()) ){
-				sprite1.setY(this.getY()-sprite1.getHeight()-1);
-				if (sprite1 instanceof Enemy){
-					((Enemy)sprite1).restoreOriginalAttribute("JumpingMovement");	
-				}
-			}
-		}
-		
-		if (sprite1 instanceof Enemy){
-			if ((collisionType!=CollisionGroup.TOP_BOTTOM_COLLISION) && (collisionType!=CollisionGroup.BOTTOM_TOP_COLLISION))
-				((Enemy)sprite1).invertAttribute("OneDirectionMovement");
-			if(collisionType == CollisionGroup.BOTTOM_TOP_COLLISION){
-				((Enemy)sprite1).allowAttribute("JumpingMovement", false);
-			}
-		}
-	}
-	
-	public void action (AnimatedGameSprite sprite1, int collisionType, CustomActionPerformer act){
-		this.standardAction (sprite1, collisionType);
-		customAction (sprite1, this, collisionType, act); 
-	}
-	
-	   
+
     public String toJson()
     {
         Gson gson = new Gson();
@@ -123,8 +96,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         
     }
     
-    public static AbstractPlatform fromJson(String json)
-    {
+    public static AbstractPlatform fromJson(String json){
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
         {}.getType();

@@ -1,7 +1,5 @@
 package sidescrolling.forced;
 
-import java.awt.event.KeyEvent;
-
 import sidescrolling.Sidescroller;
 
 import com.golden.gamedev.object.Sprite;
@@ -39,7 +37,7 @@ public class ForcedLeftSidescroller extends ForcedSidescroller {
     public void move(Sprite sprite) {
         sprite.moveX(forcedLeftSpeed);
         Fighter fighter = getFighter();
-        if (getGame().keyDown(KeyEvent.VK_RIGHT) && fighter.getX() >= rightBorder - fighter.getWidth()) {
+        if (fighter.getX() >= rightBorder - fighter.getWidth()) {
             fighter.setX(rightBorder - fighter.getWidth());
         }
     }

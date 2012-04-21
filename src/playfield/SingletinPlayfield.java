@@ -16,7 +16,7 @@ public class SingletinPlayfield
             "nicktest","platforms","playfield","resources","sidescrolling","sprite","tester","weapons" };
 
 
-    public SingletonPlayField getInstance ()
+    public static SingletonPlayField getInstance ()
     {
         @SuppressWarnings("rawtypes")
         ArrayList<Class> classes = new ArrayList<Class>();

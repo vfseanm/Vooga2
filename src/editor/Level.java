@@ -226,27 +226,28 @@ public class Level implements Serializable{
         
     }
     
-    public void fromJson(String json)
+    public static Level fromJson(String json)
     {
         Gson gson = new Gson();
-
+        Level level = new Level();
         Type collectionType = new TypeToken<ArrayList<String>>(){}.getType();
+        
 
         ArrayList<String> myList = gson.fromJson(json, collectionType); 
         String backgroundImageName = myList.get(0);
-        BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
+        BaseLoader loader = new BaseLoader(new BaseIO(Level.class), Color.PINK);
         if(!backgroundImageName.equals(""))
         {
             System.out.println(backgroundImageName);
-            setBackground(loader.getImage(backgroundImageName),backgroundImageName);
+            level.setBackground(loader.getImage(backgroundImageName),backgroundImageName);
         }
         
        String fighterJson = myList.get(1);
        if(!fighterJson.equals(""))
         {
            System.out.println("fighter being parsed");
-           setFighter(Fighter.fromJson(fighterJson));
-           System.out.println(this.getFighter());
+           level.setFighter(Fighter.fromJson(fighterJson));
+           
         }
        
         
@@ -255,9 +256,9 @@ public class Level implements Serializable{
         
         for(String f: frameworkList)
         {
-            addFramework(Framework.fromJson(f));
+            level.addFramework(Framework.fromJson(f));
         }
-        
+        return level;     
         
         
         

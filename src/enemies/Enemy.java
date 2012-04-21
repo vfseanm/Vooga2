@@ -401,4 +401,5 @@ public class Enemy extends GameCharacter
 
     }
 
+    
 }
