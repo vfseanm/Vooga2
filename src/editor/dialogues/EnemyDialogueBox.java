@@ -45,7 +45,7 @@ public class EnemyDialogueBox extends DialogueBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, new ArrayList<Attribute>());
+        attributePanel = new AttributeSelectionPanel(packagesToSearch);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
        
@@ -99,7 +99,6 @@ public class EnemyDialogueBox extends DialogueBox {
         System.out.println("framework's attributes" + attributes);
         return framework;
     }
-    
     class GoAction implements ActionListener {       
         
         public void actionPerformed(ActionEvent e)

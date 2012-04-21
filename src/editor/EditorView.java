@@ -45,7 +45,6 @@ public abstract class EditorView extends Game {
     protected double[] origPosition;
     protected double[] clickedSpriteOffset;
     //protected Framework myFramework;
-    protected Background myBackground;
     protected DynamicBox currentDialogueBox;
 
     public void initialize()
@@ -105,9 +104,9 @@ public abstract class EditorView extends Game {
     {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
-        if(myBackground!=null)
+        if(myController.getBackground()!=null)
         {
-            myBackground.render(pen);
+            myController.getBackground().render(pen);
         }
         for (AnimatedGameSprite s : myController.getAllSprites())
         {
@@ -120,9 +119,9 @@ public abstract class EditorView extends Game {
 
     public void updateEditor(long elapsedTime)
     {
-        if(myBackground!=null)
+        if(myController.getBackground()!=null)
         {
-            myBackground.update(elapsedTime);
+            myController.getBackground().update(elapsedTime);
         }
         framework.update();
         if (click())
@@ -319,9 +318,5 @@ public abstract class EditorView extends Game {
         }
     }
 
-    public void setBackground(BufferedImage image)
-    {
-        myBackground = new ImageBackground(image);
-    }
 
 }

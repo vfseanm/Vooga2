@@ -205,7 +205,7 @@ public class Level implements Serializable{
         Gson gson = new Gson();
         ArrayList<String> myList = new ArrayList<String>();
         myList.add(backgroundImagePath);
-        //System.out.println(myFighter.getAttributes());
+        
         if(myFighter!=null)
         {
         myList.add(myFighter.toJson());
@@ -237,6 +237,7 @@ public class Level implements Serializable{
         BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
         if(!backgroundImageName.equals(""))
         {
+            System.out.println(backgroundImageName);
             setBackground(loader.getImage(backgroundImageName),backgroundImageName);
         }
         
