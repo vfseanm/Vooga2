@@ -81,7 +81,7 @@ public class FighterDialogueBox extends DialogueBox{
         subPanel.add(imageButton);
                 
         JButton goButton = new JButton("Create Fighter");
-        goButton.addActionListener(new FighterAction());
+        goButton.addActionListener(new GoAction());
         subPanel.add(goButton);
         
 
@@ -91,40 +91,29 @@ public class FighterDialogueBox extends DialogueBox{
 
     }
 
-    private class FighterAction implements ActionListener {
-       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
-            
-            ArrayList<Attribute> carryableAttributes = carryablePanel.getSelectedAttributes();
-
-            /*BufferedImage[] s = new BufferedImage[myImages.size()];
-            for (int x = 0; x<s.length; x++)
-            {
-                s[x] = myImages.get(x);
-            }*/
-            ArrayList<String> imagePaths = new ArrayList<String>();
-            Fighter fighter = new Fighter(50, 50, myImagePaths);
-            
-            for(Attribute attribute: attributes)
-            {
-                System.out.println("adding attribute to fighter");
-                fighter.addAttribute(attribute);
-            }
-            //for(Attribute attribute: carryableAttributes)
-            //{
-                fighter.addCarryableAttributes(carryableAttributes);
-            //}
-            myController.setFighter(fighter);
-            setVisible(false);
-        }
-    }
-
     @Override
     public DialogueBox clone() {
         return new FighterDialogueBox(myController);
+    }
+
+    @Override
+    protected void BoxCompletedAction() {
+        ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
+        
+        ArrayList<Attribute> carryableAttributes = carryablePanel.getSelectedAttributes();
+
+        ArrayList<String> imagePaths = new ArrayList<String>();
+        Fighter fighter = new Fighter(50, 50, myImagePaths);
+        
+        for(Attribute attribute: attributes)
+        {
+            System.out.println("adding attribute to fighter");
+            fighter.addAttribute(attribute);
+        }
+            fighter.addCarryableAttributes(carryableAttributes);
+        myController.setFighter(fighter);
+        setVisible(false);
+        
     }
 
 
