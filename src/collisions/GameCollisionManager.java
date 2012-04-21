@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import sprite.*;
-import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 public class GameCollisionManager{

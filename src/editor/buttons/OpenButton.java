@@ -4,7 +4,7 @@ package editor.buttons;
 import com.golden.gamedev.gui.TButton;
 
 import editor.EditorView;
-import editor.LevelLoader;
+import editor.file.LevelLoader;
 
 
 public class OpenButton extends TButton
