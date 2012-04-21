@@ -98,5 +98,10 @@ public class RotatingPlatform extends DecoratedPlatform {
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new RotatingPlatform(toWrap);
 	}
+	
+	public static AbstractPlatform fromJson(String json)
+    {
+        return AbstractPlatform.fromJson(json);
+    }
 
 }
