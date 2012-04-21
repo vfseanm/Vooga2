@@ -3,8 +3,8 @@ package editor.buttons;
 
 import com.golden.gamedev.gui.TButton;
 
+
 import editor.EditorController;
-import editor.EditorView;
 import editor.frameworks.Framework;
 
 

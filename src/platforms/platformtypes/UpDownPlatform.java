@@ -86,5 +86,10 @@ import com.golden.gamedev.object.collision.CollisionGroup;
 		
 		customAction (sprite1, this, collisionType, act); 
 	}
+	
+	   public static AbstractPlatform fromJson(String json)
+	    {
+	        return AbstractPlatform.fromJson(json);
+	    }
 
 }

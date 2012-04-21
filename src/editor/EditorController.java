@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.buttons.ObjectPlacingButton;
 import editor.dialogues.DialogueBox;
@@ -91,6 +92,7 @@ public class EditorController {
     }
     
     
+    
     public void setFramework(Framework f)
     {
         myFramework = f;
@@ -112,7 +114,11 @@ public class EditorController {
     {
         myLevel.clear();
     }
-
+    
+    public ImageBackground getBackground()
+    {
+        return myLevel.getBackground();
+    }
     public void removeSprite(AnimatedGameSprite s)
     {
         myLevel.removeSprite(s);
@@ -287,7 +293,7 @@ public class EditorController {
     {
         myLevel.setBackground(image, imagePath);
         myView.closeFrame();
-        myView.setBackground(image);
+        
     }
     
     public void setFighter(Fighter fighter)
@@ -308,7 +314,7 @@ public class EditorController {
             System.out.println(myLevel.getAllSprites().size());
             for(AnimatedGameSprite s : myLevel.getAllSprites())
             {
-                System.out.println(((Enemy)s).getAttributes());
+                //System.out.println(((Enemy)s).getAttributes());
                 System.out.println(s.getX());
             }
         } catch (FileNotFoundException e)

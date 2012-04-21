@@ -33,7 +33,16 @@ public class AttributeSelectionPanel extends JPanel {
         originallyCheckedOff = checkedOff;
         this.add(makePanel());
     }
-
+    
+    public AttributeSelectionPanel(List<String> packagesToSearch)
+    {
+        attributeMap = new HashMap<JCheckBox, Class>();
+        attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
+        packageNames = packagesToSearch;
+        originallyCheckedOff = new ArrayList<Attribute>();
+        this.add(makePanel());
+    }
+    
     public JPanel makePanel()
     {
 
