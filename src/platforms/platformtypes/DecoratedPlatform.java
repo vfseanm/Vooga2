@@ -2,6 +2,7 @@ package platforms.platformtypes;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
 import platforms.FrameTimer;
@@ -299,5 +300,17 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	@Override
 	public int getWidth() {
 		return myDecoratorComponent.getWidth();
+	}
+	
+	public List<Class> getClassesOfDecorators()
+	{
+	    List<Class> classList = new ArrayList<Class>();
+	    classList.add(this.getClass());
+	    if(!myDecoratorComponent.getClass().equals(SimplePlatform.class))
+	    {
+	        classList.addAll(((DecoratedPlatform) myDecoratorComponent).getClassesOfDecorators());
+	    }
+	    return classList;
+	    
 	}
 }
