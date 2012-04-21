@@ -16,7 +16,7 @@ public class SingletinPlayfield
             "nicktest","platforms","playfield","resources","sidescrolling","sprite","tester","weapons" };
 
 
-    public static void getInstance ()
+    public SingletonPlayField getInstance ()
     {
         @SuppressWarnings("rawtypes")
         ArrayList<Class> classes = new ArrayList<Class>();
@@ -61,7 +61,7 @@ public class SingletinPlayfield
         {
             System.out.println(e);
         }
-
+        return SingletonPlayField.getInstance();
     }
 
 
