@@ -72,6 +72,7 @@ public abstract class DialogueBox extends JPanel {
         }
         return panel;
     }
+    
     protected abstract void BoxCompletedAction();
 
     protected class ImageAction implements ActionListener {
@@ -79,9 +80,9 @@ public abstract class DialogueBox extends JPanel {
         {
             getImage();
             
-
         }
     }
+    
 class GoAction implements ActionListener {       
         
         public void actionPerformed(ActionEvent e)
