@@ -6,16 +6,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import javax.naming.AuthenticationNotSupportedException;
-import org.omg.PortableServer.POAPackage.AdapterAlreadyExistsHelper;
 import platforms.platformtypes.AbstractPlatform;
 import platforms.platformtypes.BreakablePlatform;
 import platforms.platformtypes.SimplePlatform;
@@ -36,13 +33,27 @@ public class GodClass
             Scanner in =
                 new Scanner(new File(fileToRead));
             BufferedWriter out = new BufferedWriter(fstream);
+            String firstLine = in.nextLine();
+            if(toWriteAtBeg != null && !(firstLine.equals(toWriteAtBeg)))
+            {
+                out.write(toWriteAtBeg);
+                out.write("\n"); 
+            }
+            out.write(firstLine);
+            out.write("\n");
+
+            String nextLine = "";
             while (in.hasNextLine())
             {
-                out.write(in.nextLine());
+                nextLine = in.nextLine();
+                out.write(nextLine);
                 out.write("\n");
             }
-            if(toWriteAtEnd != null)
+            if(toWriteAtEnd != null && !(nextLine.equals(toWriteAtEnd)))
+            {
                 out.write(toWriteAtEnd);
+            }
+                
             out.close();
             in.close();
         }
@@ -97,12 +108,10 @@ public class GodClass
         {
             s = s.substring(s.indexOf("./"), s.indexOf(".java"));
             readAndWrite(s + ".java", s + "z" + ".java", null, null);
-            readAndWrite(s + "z" + ".java", s + ".java", "/** @author Mike Hewner */", null);
+            readAndWrite(s + "z" + ".java", s + ".java", "/** @author Mike Hewner */", "/** jk @author Joey Franklin */");
             File ff = new File(s + "z" + ".java");
             ff.delete();
-        }
-        if(1 >0) return null;
-        
+        }        
 
         // Write 
         String[] places = { "enemies", "demo", "tester", "attributes", "sprite" };
@@ -202,5 +211,10 @@ public class GodClass
         spf.add(ss);
 
         return toReturn;
+    }
+    
+    public static void main(String[] args)
+    {
+        GodClass.Do();
     }
 }

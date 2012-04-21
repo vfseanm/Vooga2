@@ -1,4 +1,3 @@
-
 package playfield;
 
 import java.io.IOException;
@@ -54,7 +53,7 @@ public class SingletinPlayfield
             for(int i = 0; i < meths.length; i ++)
             {
                 if(meths[i].getName().indexOf("Do") >= 0)
-                meths[i].invoke(null, null);
+                    meths[i].invoke(null, null);
             }
             
         }
