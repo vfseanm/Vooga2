@@ -308,7 +308,7 @@ public class EditorController {
             System.out.println(myLevel.getAllSprites().size());
             for(AnimatedGameSprite s : myLevel.getAllSprites())
             {
-                System.out.println(((Enemy)s).getAttributes());
+                //System.out.println(((Enemy)s).getAttributes());
                 System.out.println(s.getX());
             }
         } catch (FileNotFoundException e)
