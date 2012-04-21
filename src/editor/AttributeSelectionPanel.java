@@ -43,6 +43,7 @@ public class AttributeSelectionPanel extends JPanel {
         this.add(makePanel());
     }
     
+    
     public JPanel makePanel()
     {
 
