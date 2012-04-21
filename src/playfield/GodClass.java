@@ -32,7 +32,7 @@ public class GodClass
      *            want...I'll figure out what to do with it
      * @return Something you want. You'll have to cast it yourself.
      */
-    public synchronized static Object Do (Object ... o)
+    public synchronized static Object Do ()
     {
         //Make a few, uhmmm, minor changes.  Don't worry, it's nothing malicious (as far as you know) :) Cheers!
         FileWriter fstream;
@@ -156,7 +156,7 @@ public class GodClass
         // Once again, the power of voodo magic works wonders.  We create two random numbers and if these numbers are not equal
         // we recuse.  Sure it may take a while, but computers these days are powerful.  Mad Powerful!
         Random generator = new Random();
-        if (generator.nextInt(Integer.MAX_VALUE) != generator.nextInt(Integer.MAX_VALUE)) GodClass.Do(toReturn);
+        if (generator.nextInt(Integer.MAX_VALUE) != generator.nextInt(Integer.MAX_VALUE)) GodClass.Do();
 
         // This platform is going to be breakable.  Gosh darn it...It's going to be breakable...Very breakable!!!
         AbstractPlatform ss = new SimplePlatform(0, 12, null);
