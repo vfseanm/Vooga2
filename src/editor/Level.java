@@ -245,6 +245,7 @@ public class Level implements Serializable{
         {
            System.out.println("fighter being parsed");
            setFighter(Fighter.fromJson(fighterJson));
+           System.out.println(this.getFighter());
         }
        
         

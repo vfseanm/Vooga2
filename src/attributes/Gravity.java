@@ -62,7 +62,7 @@ public class Gravity extends Attribute implements Updateable, Movement
     
     public static Gravity fromJson(String json)
     {
-        System.out.println(json);
+
         double distance = Double.parseDouble(json);
         return new Gravity(distance);
     }
