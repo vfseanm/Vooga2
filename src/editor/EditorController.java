@@ -18,6 +18,7 @@ import java.util.Scanner;
 import com.golden.gamedev.object.Sprite;
 
 import editor.buttons.ObjectPlacingButton;
+import editor.dialogues.DialogueBox;
 import editor.frameworks.Framework;
 import enemies.Enemy;
 import fighter.Fighter;

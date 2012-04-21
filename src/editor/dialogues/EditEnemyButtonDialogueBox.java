@@ -3,35 +3,22 @@ package editor.dialogues;
 
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
-
-
-import editor.AttributeCreator;
 import editor.AttributeSelectionPanel;
 import editor.EditorController;
-import editor.frameworks.EnemyFramework;
 import editor.frameworks.Framework;
 import enemies.Enemy;
 
-import sprite.AnimatedGameSprite;
 
 import attributes.Attribute;
 
-
-import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class EditEnemyButtonDialogueBox extends DialogueBox {
@@ -41,38 +28,24 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
 
     private JTextField myName;
     private JTextField myGroup;
-
-
-
     private Framework myFramework;
     private AttributeSelectionPanel attributePanel;
 
     
-
-    
-    @SuppressWarnings("rawtypes")
     public EditEnemyButtonDialogueBox(EditorController m, Framework f )
     {
         super(m);
         myFramework = f;
         setLayout(new BorderLayout());
-        
         add(makeInputPanel(), BorderLayout.NORTH);
-        
     }
     
 
-    @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
-/*        List<Class> classList = new ArrayList<Class>();
-        for(AttributeCreator s: myFramework.getAttributeCreators())
-        {
-            classList.add(s.getCreatingClass());
-        }*/
         Enemy e = (Enemy) myFramework.getPrototype();
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
@@ -176,6 +149,11 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
             
             setVisible(false);
         }
+    }
+
+    @Override
+    public DialogueBox clone() {
+        return new EditEnemyButtonDialogueBox(myController, myFramework);
     }
     
 

@@ -1,35 +1,21 @@
 package editor.dialogues;
 
-import java.io.File;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
-
-
-import editor.AttributeCreator;
 import editor.AttributeSelectionPanel;
 import editor.EditorController;
 import enemies.Enemy;
 
-import sprite.AnimatedGameSprite;
-
 import attributes.Attribute;
 
-
-import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class EditEnemyDialogue extends DialogueBox {
@@ -40,21 +26,12 @@ public class EditEnemyDialogue extends DialogueBox {
     private JTextField myName;
     private JTextField myGroup;
 
-    @SuppressWarnings("rawtypes")
-    //private HashMap<JCheckBox, Class> attributeMap;
-   // private List<Attribute> myOldAttributes;
-    
-   // private HashMap<JCheckBox, AttributeCreator> attributeInstanceMap;
     private Enemy mySprite;
     private int myX;
     private int myY;
-   // private EnemyFramework myFramework;
     private AttributeSelectionPanel attributePanel;
 
     
-
-    
-    @SuppressWarnings("rawtypes")
     public EditEnemyDialogue(EditorController m, Enemy sprite, int x, int y)
     {
         super(m);
@@ -94,7 +71,6 @@ public class EditEnemyDialogue extends DialogueBox {
 //        
 //    }
 //    
-    @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
@@ -314,10 +290,10 @@ public class EditEnemyDialogue extends DialogueBox {
             setVisible(false);
         }
     }
+
+    @Override
+    public DialogueBox clone() {
+        return new EditEnemyDialogue(myController, mySprite, myX, myY);
+    }
     
-
-
-
-
-
 }

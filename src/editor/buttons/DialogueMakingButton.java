@@ -25,6 +25,6 @@ public class DialogueMakingButton extends TButton
 
     public void doAction ()
     {
-        myView.openDialogue(myDialogueBox);
+        myView.openDialogue(myDialogueBox.clone());
     }
 }

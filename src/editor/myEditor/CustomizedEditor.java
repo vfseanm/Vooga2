@@ -1,19 +1,14 @@
 package editor.myEditor;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
-import sprite.AnimatedGameSprite;
 
 import com.golden.gamedev.gui.TLabel;
 import com.golden.gamedev.gui.toolkit.UIConstants;
 
 import editor.EditorView;
-import editor.buttons.ObjectPlacingButton;
 import editor.buttons.DialogueMakingButton;
-import editor.buttons.CustomButton;
-import editor.dialogues.EditEnemyButtonDialogueBox;
 import editor.dialogues.EditEnemyDialogue;
 import editor.dialogues.EnemyDialogueBox;
 import editor.dialogues.ExtendedDialogueBox;
@@ -44,7 +39,7 @@ public class CustomizedEditor extends EditorView{
         l4.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l4);
         
-        CustomButton custom = new CustomButton("Customized dialogue", 125, 350, 150, 40, this);
+        DialogueMakingButton custom = new DialogueMakingButton("Customized dialogue", 125, 350, 150, 40, this, new ExtendedDialogueBox(myController));
         infoBox.add(custom);
         
         DialogueMakingButton newpowerUpButton = new DialogueMakingButton("Create Power-Up", 125, 450, 150, 40, this, new PowerupDialogueBox(myController));

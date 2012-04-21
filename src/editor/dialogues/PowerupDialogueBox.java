@@ -1,33 +1,21 @@
 package editor.dialogues;
 
-import java.io.File;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import bonusobjects.PowerUp;
 
-import editor.AttributeCreator;
 import editor.AttributeSelectionPanel;
 import editor.EditorController;
 import editor.frameworks.Framework;
-import editor.frameworks.PowerupFramework;
 
 import attributes.Attribute;
-
-
-import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class PowerupDialogueBox extends DialogueBox {
@@ -35,14 +23,12 @@ public class PowerupDialogueBox extends DialogueBox {
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
 
-
     
     private AttributeSelectionPanel powerupAttributePanel;
     private AttributeSelectionPanel attributesToGivePanel;
     private JTextField myName;
     private JTextField myGroup;
 
-    @SuppressWarnings("rawtypes")
     public PowerupDialogueBox(EditorController m)
     {
         super(m);
@@ -50,11 +36,7 @@ public class PowerupDialogueBox extends DialogueBox {
         add(makeInputPanel(), BorderLayout.NORTH);
         
     }
-
-   
-
     
-    @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
@@ -146,6 +128,10 @@ class GoAction implements ActionListener {
             setVisible(false);
         }
     }
+@Override
+public DialogueBox clone() {
+    return new PowerupDialogueBox(myController);
+}
     
     
 

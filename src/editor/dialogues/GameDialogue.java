@@ -74,6 +74,11 @@ public class GameDialogue extends DialogueBox {
             setVisible(false);
         }
     }
+
+    
+    public DialogueBox clone() {
+        return new GameDialogue(myController);
+    }
  
 
 

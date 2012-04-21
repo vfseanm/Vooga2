@@ -120,6 +120,11 @@ public class FighterDialogueBox extends DialogueBox{
         }
     }
 
+    @Override
+    public DialogueBox clone() {
+        return new FighterDialogueBox(myController);
+    }
+
 
 
 

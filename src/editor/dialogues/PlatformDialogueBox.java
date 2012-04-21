@@ -1,31 +1,21 @@
 
 package editor.dialogues;
 
-import java.io.File;
-
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import editor.EditorController;
 import editor.Reflection;
 import editor.frameworks.Framework;
-import editor.frameworks.PlatformFramework;
 
 import platforms.platformtypes.*;
-
-import attributes.Attribute;
 
 
 import java.util.HashMap;
@@ -45,7 +35,6 @@ public class PlatformDialogueBox extends DialogueBox {
     
     
 
-    @SuppressWarnings("rawtypes")
     public PlatformDialogueBox(EditorController m)
     {
         super(m);
@@ -166,6 +155,11 @@ public class PlatformDialogueBox extends DialogueBox {
             myController.addButton(myName.getText(), framework);
             setVisible(false);
         }
+    }
+
+    @Override
+    public DialogueBox clone() {
+        return new PlatformDialogueBox(myController);
     }
    
 

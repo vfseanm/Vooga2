@@ -110,6 +110,10 @@ public class EnemyDialogueBox extends DialogueBox {
             setVisible(false);
         }
     }
+
+    public DialogueBox clone() {
+        return new EnemyDialogueBox(myController);
+    }
 }
 
 

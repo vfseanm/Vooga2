@@ -7,21 +7,16 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
 import com.golden.gamedev.object.Background;
-import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
-
-
 import editor.buttons.ObjectPlacingButton;
 import editor.buttons.DialogueMakingButton;
 import editor.buttons.OpenButton;
@@ -31,15 +26,8 @@ import editor.buttons.SaveJsonButton;
 import editor.dialogues.DialogueBox;
 import editor.dialogues.DynamicBox;
 import editor.dialogues.EditEnemyButtonDialogueBox;
-import editor.dialogues.EditEnemyDialogue;
-import editor.dialogues.EnemyDialogueBox;
-import editor.dialogues.ExtendedDialogueBox;
 import editor.dialogues.FighterDialogueBox;
 import editor.dialogues.GameDialogue;
-import editor.dialogues.PlatformDialogueBox;
-import editor.dialogues.PowerupDialogueBox;
-import editor.frameworks.Framework;
-import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
 
@@ -58,11 +46,8 @@ public abstract class EditorView extends Game {
     protected double[] clickedSpriteOffset;
     //protected Framework myFramework;
     protected Background myBackground;
-    private HashMap<String, Class> boxMap;
     protected DynamicBox currentDialogueBox;
 
-    @SuppressWarnings("unchecked")
-    
     public void initialize()
     {
         currentDialogueBox = null;
@@ -145,17 +130,6 @@ public abstract class EditorView extends Game {
             for (ObjectPlacingButton button : allButtons)
             {
                 myController.checkAndPlaceSprite(button, getMouseX(), getMouseY());
-//                if (button.getClicked())
-//                {
-//                    AnimatedGameSprite s = myFramework.getSprite(getMouseX(), getMouseY());
-//                    //System.out.println(s.getClass());
-//                    if (checkInterference(s))
-//                    {
-//                        
-//                        myController.addSprite(s, myFramework);
-//                        
-//                    }
-//                }
             }
 
         }
@@ -231,31 +205,6 @@ public abstract class EditorView extends Game {
 
     }
 
-//    public boolean checkInterference(Sprite s)
-//    {
-//        boolean t = true;
-//        for (Sprite sprite : myController.getAllSprites())
-//        {
-//            if(sprite!=spriteClicked)
-//            {
-//            if ((s.getX() + s.getWidth() > sprite.getX())
-//                    && (s.getX() < sprite.getX() + sprite.getWidth()))
-//            {
-//                if ((s.getY() + s.getHeight() > sprite.getY())
-//                        && (s.getY() < sprite.getY() + sprite.getHeight()))
-//                {
-//                    t = false;
-//                }
-//            }
-//            }
-//
-//        }
-//        if (s.getX() + s.getWidth() > MENU_START)
-//            t = false;
-//        return t;
-//    }
-
- 
     public AnimatedGameSprite getClickedSprite()
     {
         AnimatedGameSprite selected = null;
@@ -338,22 +287,7 @@ public abstract class EditorView extends Game {
     }
 
     private JFrame frame;
-    
-    public void openDialogue(String type) // this needs to be refactored out
-    {
-        DialogueBox myView = null;
-        
-        frame = new JFrame("Enemy Behaviors");
-        Dimension d = new Dimension(600, 300);
-        frame.setPreferredSize(d);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
-        
-        if(myView instanceof DynamicBox)
-            currentDialogueBox = (DynamicBox) myView;
-    }
+
     public void editEnemy(ObjectPlacingButton button)
     {
         EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, button.getFramework());

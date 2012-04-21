@@ -22,7 +22,6 @@ public class ExtendedDialogueBox extends DynamicBox{
 
     public ExtendedDialogueBox(EditorController m) {
         super(m);
-
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
     }
@@ -64,6 +63,11 @@ class GoAction implements ActionListener {
             setVisible(false);
         }
     }
+
+@Override
+public DialogueBox clone() {
+    return new ExtendedDialogueBox(myController);
+}
 
 
 }

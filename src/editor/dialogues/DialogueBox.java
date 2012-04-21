@@ -33,6 +33,7 @@ public abstract class DialogueBox extends JPanel {
         myController = m;        
     }
     
+    public abstract DialogueBox clone();
     
     
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
