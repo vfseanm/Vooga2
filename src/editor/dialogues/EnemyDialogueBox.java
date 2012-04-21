@@ -21,7 +21,7 @@ import attributes.Attribute;
 
 
 @SuppressWarnings("serial")
-public class EnemyDialogueBox extends DialogueBox {
+public class EnemyDialogueBox extends DynamicBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -113,6 +113,14 @@ public class EnemyDialogueBox extends DialogueBox {
 
     public DialogueBox clone() {
         return new EnemyDialogueBox(myController);
+    }
+
+
+    protected void BoxCompletedAction() {
+        Framework framework = getFramework();
+        myController.addButton(myName.getText(), framework);
+        setVisible(false);
+        
     }
 }
 
