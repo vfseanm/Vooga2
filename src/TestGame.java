@@ -58,7 +58,7 @@ public class TestGame extends Game {
 		a.add("resources/platform1.png");
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
-		p = new UpDownPlatform (new SimplePlatform ( 380,190, a));
+		p = new BreakablePlatform (new SimplePlatform ( 380,190, a));
 
 		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
 
@@ -66,7 +66,7 @@ public class TestGame extends Game {
 
 		b1[0]= getImage("resources/platform1.png"); 
 
-		p1 = new SimplePlatform ( 170, 320, a);
+		p1 = new SimplePlatform ( 170, 220, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
 		p2 = new SimplePlatform ( 40, 110, a);

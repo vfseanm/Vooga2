@@ -300,6 +300,7 @@ public class EditorController {
     {
         
         myLevel.setFighter(fighter);
+        myView.closeFrame();
     }
     
     public void loadJsonFile(File f)
@@ -314,7 +315,6 @@ public class EditorController {
             System.out.println(myLevel.getAllSprites().size());
             for(AnimatedGameSprite s : myLevel.getAllSprites())
             {
-                //System.out.println(((Enemy)s).getAttributes());
                 System.out.println(s.getX());
             }
         } catch (FileNotFoundException e)
