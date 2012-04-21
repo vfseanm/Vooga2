@@ -322,6 +322,10 @@ public class EditorController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        for(Framework framework: myLevel.getFrameworks())
+        {
+            addButton(framework.getName(), framework);
+        }
         
     } 
     
