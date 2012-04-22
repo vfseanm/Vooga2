@@ -25,6 +25,18 @@ public class EnemyAction implements CollisionAction {
 			sprite.allowAttribute("JumpingMovement", false);
 		}
 	}
+	
+	public void death (CollisionContext ccntext, CollisionSpec cspec){
+		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
+			sprite.setActive(false);
+		}
+	}
+	
+	public void attack (CollisionContext ccntext, CollisionSpec cspec){
+		if ((ccntext.getSide() == CollisionGroup.LEFT_RIGHT_COLLISION) || (ccntext.getSide() == CollisionGroup.RIGHT_LEFT_COLLISION)){
+			sprite.attack(2);
+		}
+	}
 
 	public void setSprite(AnimatedGameSprite sprite) {
 		this.sprite = (Enemy) sprite;
