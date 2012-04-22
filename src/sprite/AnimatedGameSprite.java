@@ -104,6 +104,19 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         return new AnimatedGameSprite(this.getX(), this.getY(),myImageNames);
     }
     
+    public void setImageNamesandImages(List<String> imageNames)
+    {
+        myImageNames = imageNames;
+        BufferedImage[] images = new BufferedImage[imageNames.size()];
+        BaseLoader loader = new BaseLoader(new BaseIO(AnimatedGameSprite.class), Color.PINK);
+        for(int i=0; i<images.length; i++)
+        {
+            images[i] = loader.getImage(imageNames.get(i));      
+        }
+        this.setImages(images);
+        
+    }
+    
 
 	public String toJson()
     {

@@ -1,10 +1,8 @@
 package sidescrolling.forced;
 
 import sidescrolling.Sidescroller;
-
 import com.golden.gamedev.object.Sprite;
 
-import fighter.Fighter;
 
 /**
  * This object allows for forced sidescrolling in the left direction. The level, along with the fighter
@@ -20,15 +18,15 @@ public class ForcedLeftSidescroller extends ForcedSidescroller {
     /**
      * Creates a new ForcedLeftSidescroller.
      * @param scroller - an already created sidescroller
-     * @param speed - the speed at which sidescrolling will occur
      */
-    public ForcedLeftSidescroller(Sidescroller scroller, double speed) {
+    public ForcedLeftSidescroller(Sidescroller scroller) {
         super(scroller);
+        double speed = Double.parseDouble(mySidescrollerResources.getString("ForcedLeftSpeed"));
         if (speed > 0) {
             throw new RuntimeException("You must choose a negative number.");
         }
         forcedLeftSpeed = speed;
-        rightBorder = getGame().getWidth();
+        rightBorder = getGameWidth();
     }
 
     /**
@@ -36,7 +34,6 @@ public class ForcedLeftSidescroller extends ForcedSidescroller {
      */
     public void move(Sprite sprite) {
         sprite.moveX(forcedLeftSpeed);
-        Fighter fighter = getFighter();
         if (fighter.getX() >= rightBorder - fighter.getWidth()) {
             fighter.setX(rightBorder - fighter.getWidth());
         }

@@ -62,6 +62,7 @@ public class SimplePlatform extends AbstractPlatform {
 		imageNames.addAll(this.getImageNames());
 		SimplePlatform e = new SimplePlatform(this.getX(), this.getY(),
 				imageNames);
+		e.setGroup(this.getGroup());
 		return e;
 	}
 	

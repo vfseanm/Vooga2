@@ -1,8 +1,12 @@
-package editor;
+package editor.file;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+
+import editor.Level;
 
 public class JsonLevelWriter extends LevelWriter {
     
@@ -14,6 +18,7 @@ public class JsonLevelWriter extends LevelWriter {
         {
             fileOut = new FileWriter(filename);
             BufferedWriter out2 = new BufferedWriter(fileOut);
+            out2.write("json");
             out2.write(level.toJson());
             out2.close();
         }

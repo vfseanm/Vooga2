@@ -20,6 +20,8 @@ import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.buttons.ObjectPlacingButton;
 import editor.dialogues.DialogueBox;
+import editor.file.LevelLoader;
+import editor.file.LevelWriter;
 import editor.frameworks.Framework;
 import enemies.Enemy;
 import fighter.Fighter;

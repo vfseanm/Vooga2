@@ -26,8 +26,8 @@ public abstract class ForcedSidescroller extends DecoratedSidescroller {
      * Updates this sidescroller by telling all sprites, including the fighter, to move.
      */
     public void update(long elapsedTime) {
-        updateGroups();
-        move(getFighter());
+        updateSprites();
+        move(fighter);
         super.update(elapsedTime);
     }
     

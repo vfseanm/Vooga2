@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import editor.dialogues.DialogueBox;
+
 import attributes.Attribute;
 
 public class AttributeSelectionPanel extends JPanel {
@@ -74,7 +76,7 @@ public class AttributeSelectionPanel extends JPanel {
                 }
                 if (isAnnotated)
                 {
-                    JLabel label1 = new JLabel(c.getName());
+                    JLabel label1 = new JLabel(DialogueBox.getText(c));
                     panel.add(label1);
                     JCheckBox box = new JCheckBox();
                     panel.add(box);
@@ -118,10 +120,10 @@ public class AttributeSelectionPanel extends JPanel {
         public void actionPerformed(ActionEvent e)
         {
             
-            if (box.isSelected())
-            {
-                input.run();
-            }
+//            if (box.isSelected())
+//            {
+//                input.run();
+//            }
                 Constructor constructor = getAnnotatedConstructor(associatedClass);
                 Annotation a = constructor.getAnnotation(editorConstructor.class);
                 String[] paramNames = ((editorConstructor) a).parameterNames();
@@ -195,6 +197,24 @@ public class AttributeSelectionPanel extends JPanel {
                 
         }
         return attributes;
+    }
+    
+    public Constructor getAnnotatedConstructor(Class c)
+    {
+        Constructor[] constructors = c.getConstructors();
+        Constructor constructor = null;
+        for (Constructor co : constructors)
+        {
+            if (co.isAnnotationPresent(editorConstructor.class))
+            {
+                constructor = co;
+            }
+        }
+        if (constructor == null)
+        {
+            throw new RuntimeException();
+        }
+        return constructor;
     }
     
     

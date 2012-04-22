@@ -1,4 +1,6 @@
-package editor;
+package editor.file;
+
+import editor.Level;
 
 public abstract class LevelWriter {
     

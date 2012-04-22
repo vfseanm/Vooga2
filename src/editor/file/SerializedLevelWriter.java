@@ -1,8 +1,10 @@
-package editor;
+package editor.file;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+
+import editor.Level;
 
 public class SerializedLevelWriter extends LevelWriter {
     

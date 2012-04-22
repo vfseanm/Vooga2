@@ -11,18 +11,18 @@ import com.golden.gamedev.object.collision.CollisionGroup;
 
 public class GameCollisionManager{
 
-	private ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
+	private List<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 	
 	public GameCollisionManager(List<CollisionSpec> gs){
 		specList.addAll(gs);
 	}
-	
+
 	public void detectCollision (ArrayList<AnimatedGameSprite> spriteList){
 		HashMap<AnimatedGameSprite, ArrayList<AnimatedGameSprite>> checkList = 
 				new HashMap<AnimatedGameSprite, ArrayList<AnimatedGameSprite>>();
 		for (AnimatedGameSprite sprite1: spriteList){
 			for(AnimatedGameSprite sprite2: spriteList){
-			
+
 				if (sprite1==sprite2)
 					continue;
 				else{
@@ -37,7 +37,7 @@ public class GameCollisionManager{
 			}
 		}
 	}
-	
+
 	private boolean concatination(HashMap<AnimatedGameSprite, ArrayList<AnimatedGameSprite>> checkList, AnimatedGameSprite sprite1, AnimatedGameSprite sprite2){
 		if ( checkList.get(sprite1) == null) {
 			if (checkList.get(sprite2)==null){

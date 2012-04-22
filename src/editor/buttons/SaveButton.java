@@ -4,7 +4,7 @@ package editor.buttons;
 import com.golden.gamedev.gui.TButton;
 
 import editor.EditorView;
-import editor.LevelWriter;
+import editor.file.LevelWriter;
 
 
 public class SaveButton extends TButton
