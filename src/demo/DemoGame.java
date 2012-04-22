@@ -46,7 +46,6 @@ public class DemoGame extends PlatformGame {
 	private ArrayList<AnimatedGameSprite> list;
 	// private PlayField myPlayField;
 	private SpriteGroup allSprites;
-	private Sidescroller sidescroller;
 
 	@Override
 	public void initResources() 
@@ -83,5 +82,6 @@ public class DemoGame extends PlatformGame {
 	    
 	    myPlayfield.update(elapsedTime);
 	    gc.detectCollision(mySprites);
+	    mySidescroller.update(elapsedTime);
 	}
 }

@@ -11,6 +11,7 @@ import java.util.List;
 
 import playfield.SingletonPlayField;
 
+import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;   
 
 import com.golden.gamedev.Game;
@@ -23,11 +24,12 @@ import fighter.Fighter;
 
 public abstract  class PlatformGame extends Game {
     
-    protected List<AnimatedGameSprite> mySprites;
+    protected ArrayList<AnimatedGameSprite> mySprites;
     private Level myLevel;
     private Fighter myFighter;
     //protected ImageBackground myBackground;
     protected PlayField myPlayfield;
+    protected Sidescroller mySidescroller;
     
     PlatformGame()
     {
@@ -39,7 +41,7 @@ public abstract  class PlatformGame extends Game {
         LevelLoader loader = new LevelLoader();
         myLevel = loader.readLevel(new File(filename));
 
-        mySprites = myLevel.getSprites();
+        mySprites = (ArrayList<AnimatedGameSprite>) myLevel.getSprites();
         ImageBackground myBackground = myLevel.getBackground();
         myFighter = myLevel.getFighter();
         
@@ -54,7 +56,8 @@ public abstract  class PlatformGame extends Game {
         }
         myPlayfield.setBackground(myBackground);
         
-        
+        mySidescroller = myLevel.getSidescroller();
+        mySidescroller.setSprites(mySprites);
     }
     
     public Fighter getFighter() {

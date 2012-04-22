@@ -35,6 +35,11 @@ public class ConcreteSidescroller implements Sidescroller {
         return;
     }
     
+    public void setSprites(ArrayList<AnimatedGameSprite> sprites)
+    {
+        mySprites = sprites;
+    }
+    
     /**
      * returns the list of AnimatedGameSprites the ConcreteSidescroller holds.
      */

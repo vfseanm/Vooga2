@@ -27,6 +27,7 @@ import enemies.Enemy;
 import fighter.Fighter;
 
 import sidescrolling.ConcreteSidescroller;
+import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;
 
 public class EditorController {
@@ -107,7 +108,7 @@ public class EditorController {
         verticalOffset += y;
     }
 
-    public void setSidescrolling(ConcreteSidescroller s)
+    public void setSidescrolling(Sidescroller s)
     {
         myLevel.setSidescrolling(s);
     }

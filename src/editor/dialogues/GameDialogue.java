@@ -20,6 +20,7 @@ import platforms.platformtypes.AbstractPlatform;
 import platforms.platformtypes.DecoratedPlatform;
 import sidescrolling.ConcreteSidescroller;
 import sidescrolling.DecoratedSidescroller;
+import sidescrolling.Sidescroller;
 import sidescrolling.border.BorderSidescroller;
 import sidescrolling.forced.ForcedSidescroller;
 import sidescrolling.shift.ShiftSidescroller;
@@ -122,12 +123,16 @@ public class GameDialogue extends DialogueBox {
             image = ImageIO.read(new File(myImagePaths.get(myImagePaths.size()-1)));
             System.out.println(myImagePaths.get(0));
             myController.setBackground(image, myImagePaths.get(0));
-        } catch (IOException exc)
+        } catch (Exception exc)
         {
             System.out.println("There has been a problem importing your image");
         }
         
-        ConcreteSidescroller prototype = new ConcreteSidescroller(null, null);
+        int width = Integer.parseInt(myWidth.getText());
+        int height = Integer.parseInt(myHeight.getText()); // SHOULD THERE BE A TRY CATCH?
+                
+        
+        Sidescroller prototype = new ConcreteSidescroller( width, height, null);
         Object[] list = new Object[1];
         list[0] = prototype;
         for(JCheckBox box: classMap.keySet())
@@ -135,9 +140,10 @@ public class GameDialogue extends DialogueBox {
             if(box.isSelected())
             {
                 Class wrappingClass = classMap.get(box);
+                System.out.println("wrapping " + prototype + "with " + "wrappingClass" );
                 Constructor constructor=  wrappingClass.getConstructors()[0];
                 try {
-                    prototype = (ConcreteSidescroller) constructor.newInstance(list);
+                    prototype = (DecoratedSidescroller) constructor.newInstance(list);
                 } catch (IllegalArgumentException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

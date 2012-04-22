@@ -35,4 +35,6 @@ public interface Sidescroller {
      * @return the height of the game stored in the ConcreteSidescroller
      */
     public int getGameHeight();
+    
+    public void setSprites(ArrayList<AnimatedGameSprite> sprites);
 }
