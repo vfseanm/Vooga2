@@ -1,6 +1,8 @@
 package sidescrolling;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.*;
 import fighter.Fighter;
@@ -21,6 +23,8 @@ public abstract class DecoratedSidescroller implements Sidescroller {
 
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
+    transient protected ResourceBundle mySidescrollerResources = ResourceBundle
+            .getBundle("sidescrolling.SidescrollerResourceBundle");;
 
     /**
      * Creates a new DecoratedSidescroller

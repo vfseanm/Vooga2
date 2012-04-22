@@ -19,11 +19,11 @@ public class BorderRightSidescroller extends BorderSidescroller {
     /**
      * Creates a new BorderLeftSidescroller.
      * @param scroller - an already created sidescroller
-     * @param offsetFromRight - how far from the right of the screen a border will be created
      */
-    public BorderRightSidescroller(Sidescroller scroller, double offsetFromRight) {
+    public BorderRightSidescroller(Sidescroller scroller) {
         super(scroller);
-        boundary = getGameWidth() - offsetFromRight - fighter.getWidth();
+        boundary = getGameWidth() - Double.parseDouble(mySidescrollerResources.getString("OffsetFromRight")) 
+                - fighter.getWidth();
     }
     
     /**

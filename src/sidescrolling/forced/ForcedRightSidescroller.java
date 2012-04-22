@@ -18,10 +18,10 @@ public class ForcedRightSidescroller extends ForcedSidescroller {
     /**
      * Creates a new ForcedRightSidescroller.
      * @param scroller - an already created sidescroller
-     * @param speed - the speed at which sidescrolling will occur
      */
-    public ForcedRightSidescroller(Sidescroller scroller, double speed) {
+    public ForcedRightSidescroller(Sidescroller scroller) {
         super(scroller);
+        double speed = Double.parseDouble(mySidescrollerResources.getString("ForcedRightSpeed"));
         if (speed < 0) {
             throw new RuntimeException("You must choose a positive number.");
         }

@@ -18,12 +18,10 @@ public class BorderUpSidescroller extends BorderSidescroller {
     /**
      * Creates a new BorderUpSidescroller.
      * @param scroller - an already created sidescroller
-     * @param speed
-     * @param offsetFromTop - how far from the top of the screen a border will be created
      */
-    public BorderUpSidescroller(Sidescroller scroller, double offsetFromTop) {
+    public BorderUpSidescroller(Sidescroller scroller) {
         super(scroller);
-        boundary = offsetFromTop;
+        boundary = Double.parseDouble(mySidescrollerResources.getString("OffsetFromTop"));
     }
 
     /**
