@@ -52,7 +52,12 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 
-		loadLevel("level2");
+	    loadLevel("level2");
+        for(AnimatedGameSprite s: mySprites)
+        {
+            System.out.println(s.getGroup());
+        }
+
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec ();
 		spec.addActMap("ENEMY", "standOnTop");
@@ -75,6 +80,7 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void update(long elapsedTime) 
 	{
+	    
 	    myPlayfield.update(elapsedTime);
 	    gc.detectCollision(mySprites);
 	}
