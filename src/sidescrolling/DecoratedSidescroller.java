@@ -2,7 +2,11 @@ package sidescrolling;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import platforms.platformtypes.DecoratedPlatform;
+import platforms.platformtypes.SimplePlatform;
 
 import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.*;
@@ -86,6 +90,17 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
     public void setSprites(ArrayList<AnimatedGameSprite> sprites)
     {
         wrappedScroller.setSprites(sprites);
+    }
+    
+    public List<Class> getClassesOfDecorators()
+    {
+        List<Class> classList = new ArrayList<Class>();
+        classList.add(this.getClass());
+        if(!wrappedScroller.getClass().equals(SimplePlatform.class))
+        {
+            classList.addAll(((DecoratedSidescroller) wrappedScroller).getClassesOfDecorators());
+        }
+        return classList;       
     }
 
 }
