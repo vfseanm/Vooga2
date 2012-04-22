@@ -98,12 +98,14 @@ public class EditEnemyDialogue extends DialogueBox {
     Enemy enemy = new Enemy(myX,
             myY,
             myImagePaths);
+    enemy.setGroup(mySprite.getGroup());
     for(Attribute a: attributes)
     {
         
         
         enemy.addAttribute(a);
     }
+    
     
     if(!myGroup.getText().equals(""))
     {
