@@ -1,5 +1,6 @@
 package fighter;
 
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,13 +28,19 @@ public class Fighter extends GameCharacter {
 	private BaseInput						myUserInput;
 	private static Fighter myself;
 	
+//	public void render(Graphics2D pen){
+//	    myself.render(pen);
+//	}
+	//public void update()
 	
 //	public Fighter(double x, double y, List<String> images) {
 //		super(x, y, images);
 //		myCarryableAttributes = new ArrayList<Attribute>();
 //		setGroup("FIGHTER");
 //	}
-	private Fighter(){};
+	private Fighter(){
+	    super();
+	};
 	
 	public static Fighter getInstance()
 	{
@@ -41,6 +48,8 @@ public class Fighter extends GameCharacter {
 	    if(myself==null)
 	    {
 	        myself = new Fighter();
+	        myself.myAttributes = new ArrayList<Attribute>();
+	        myself.myCarryableAttributes = new ArrayList<Attribute>();
 	    }
 	    
 	    return myself;
@@ -175,7 +184,7 @@ public class Fighter extends GameCharacter {
         double y = Double.parseDouble(paramList.get(3));
         Fighter sprite = Fighter.getInstance();
         sprite.setLocation(x, y);
-        sprite.setImageNames(imageNames);
+        sprite.setImageNamesandImages(imageNames);
         sprite.setGroup(groupName);
         System.out.println("gets here");
 

@@ -23,14 +23,14 @@ public class ShiftUpSidescroller extends ShiftSidescroller {
      * moves a sprite to the down by the height of the screen.
      */
     public void move(Sprite sprite) {
-        sprite.setY(sprite.getY() + getGame().getHeight());
+        sprite.setY(sprite.getY() + getGameHeight());
     }
     
     /**
      * @returns true if the fighter moves off the down side of the screen
      */
     public boolean fighterOffCorrectSide() {
-        return getFighter().getY() <= 0;
+        return fighter.getY() <= 0;
     }
     
 }

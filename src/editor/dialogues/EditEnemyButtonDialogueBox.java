@@ -93,9 +93,14 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         }
 
         Enemy newPrototype = new Enemy(0,0, myImagePaths);
+        newPrototype.setGroup(myFramework.getPrototype().getGroup());
         for(Attribute attribute: attributePanel.getSelectedAttributes())
         {
             newPrototype.addAttribute(attribute);
+        }
+        if(!(myGroup.getText().equals("")))
+        {
+            newPrototype.setGroup(myGroup.getText());
         }
        
         myFramework.updateSprites(newPrototype);

@@ -1,11 +1,8 @@
 package sidescrolling;
 
 import java.util.ArrayList;
-
-
 import sprite.AnimatedGameSprite;
 
-import com.golden.gamedev.Game;
 
 /**
  * This is the most basic type of usable Sidescroller. Does not actually do any sidescrolling but allows
@@ -16,15 +13,18 @@ import com.golden.gamedev.Game;
 public class ConcreteSidescroller implements Sidescroller {
 
     private ArrayList<AnimatedGameSprite> mySprites;
-    private Game myGame;
+    private int myGameWidth;
+    private int myGameHeight;
     
     /**
      * Creates a new ConcreteSidescroller.
-     * @param game - the main game.
+     * @param width - width of the game.
+     * @param height - height of the game.
      * @param sprites - an arrayList of Sprites that the sidescroller must move.
      */
-    public ConcreteSidescroller(Game game, ArrayList<AnimatedGameSprite> sprites) {
-        myGame = game;
+    public ConcreteSidescroller(int width, int height, ArrayList<AnimatedGameSprite> sprites) {
+        myGameWidth = width;
+        myGameHeight = height;
         mySprites = sprites;
     }
 
@@ -43,10 +43,17 @@ public class ConcreteSidescroller implements Sidescroller {
     }
     
     /**
-     * returns the Game the ConcreteSidescroller holds.
+     * returns the width of the game that the ConcreteSidescroller holds.
      */
-    public Game getGame() {
-        return myGame;
+    public int getGameWidth() {
+        return myGameWidth;
+    }
+    
+    /**
+     * returns the height of the game that the ConcreteSidescroller holds.
+     */
+    public int getGameHeight() {
+        return myGameHeight;
     }
     
 }

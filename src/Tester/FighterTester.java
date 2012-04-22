@@ -1,6 +1,7 @@
 package Tester;
 
 import java.awt.*;
+
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import platforms.platformtypes.*;
 
 import sidescrolling.*;
 import sidescrolling.border.*;
-import sidescrolling.forced.ForcedLeftSidescroller;
+import sidescrolling.forced.*;
 import sidescrolling.shift.*;
 import sprite.AnimatedGameSprite;
 
@@ -25,7 +26,6 @@ import fighter.movement.*;
 public class FighterTester extends Game{
 	
     private ArrayList<AnimatedGameSprite> allSprites;
-    private SpriteGroup FIGHTER_GROUP;
     private Fighter fighter;
     private Sidescroller sidescroller;
     private SpriteGroup hay;
@@ -43,7 +43,11 @@ public class FighterTester extends Game{
             fighterIm[i] = getImage(fightNames[i]);
             names.add(fightNames[i]);
         }
-        fighter = new Fighter(300.0, 300.0, names);
+        fighter = Fighter.getInstance();
+        fighter.setX(300.0);
+        fighter.setY(300.0);
+        fighter.setImageNames(names);
+        fighter.setImages(fighterIm);
         fighter.setUserInput(bsInput);
         
         fighter.getAnimationTimer().setDelay(300);
@@ -56,9 +60,6 @@ public class FighterTester extends Game{
         Gravity g = new Gravity(1.0);
         g.setActivity(true);
         fighter.addAttribute(g);
-
-        FIGHTER_GROUP = new SpriteGroup("fight group");
-        FIGHTER_GROUP.add(fighter);
     }
     
     public void initResources() {
@@ -81,15 +82,15 @@ public class FighterTester extends Game{
         allSprites.add(p2);
         allSprites.add(p3);
         allSprites.add(p4);
-        sidescroller = new ConcreteSidescroller(this, fighter, allSprites);
-        sidescroller = new BorderLeftSidescroller(sidescroller, 100);
-        sidescroller = new BorderRightSidescroller(sidescroller, 100);
-        sidescroller = new BorderUpSidescroller(sidescroller, 100);
-        sidescroller = new BorderDownSidescroller(sidescroller, 100);
-        //sidescroller = new ForcedDownSidescroller(sidescroller, 0.2);
-        //sidescroller = new ForcedUpSidescroller(sidescroller, -1.0);
-        //sidescroller = new ForcedRightSidescroller(sidescroller, 1.0);
-        //sidescroller = new ForcedLeftSidescroller(sidescroller, -1.0);
+        sidescroller = new ConcreteSidescroller(this.getWidth(), this.getHeight(), allSprites);
+        //sidescroller = new BorderLeftSidescroller(sidescroller);
+        //sidescroller = new BorderRightSidescroller(sidescroller);
+        //sidescroller = new BorderUpSidescroller(sidescroller);
+        //sidescroller = new BorderDownSidescroller(sidescroller);
+        //sidescroller = new ForcedDownSidescroller(sidescroller);
+        sidescroller = new ForcedUpSidescroller(sidescroller);
+        //sidescroller = new ForcedRightSidescroller(sidescroller);
+        sidescroller = new ForcedLeftSidescroller(sidescroller);
         //sidescroller = new ShiftRightSidescroller(sidescroller);
         //sidescroller = new ShiftLeftSidescroller(sidescroller);
         //sidescroller = new ShiftUpSidescroller(sidescroller);
@@ -101,12 +102,11 @@ public class FighterTester extends Game{
         pen.fillRect(0, 0, getWidth(), getHeight());
         hay.render(pen);
         fighter.render(pen);
-        FIGHTER_GROUP.render(pen);
     }
     
     public void update(long elapsedTime) {
         hay.update(elapsedTime);
-        FIGHTER_GROUP.update(elapsedTime);
+        fighter.update(elapsedTime);
         sidescroller.update(elapsedTime);
     }
 

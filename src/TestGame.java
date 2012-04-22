@@ -60,18 +60,16 @@ public class TestGame extends Game {
 		a.add("resources/platform1.png");
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
-		p = new BreakablePlatform (new SimplePlatform ( 380,190, a));
-		//p = new BreakablePlatform (new SimplePlatform (b1, 380, 240, a));
+		p = new UpDownPlatform (new SimplePlatform ( 380,160, a));
 		b1[0]= getImage("resources/platform1.png"); 
 
-		p1 = new SimplePlatform ( 170, 220, a);
+		p1 = new SimplePlatform ( 140, 70, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
-		p2 = new SimplePlatform ( 40, 110, a);
+		p2 = new SimplePlatform ( 120, 200, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
-		//p3 = new SimplePlatform (b1, 360,220, a);
-		//p3 = new SimplePlatform ( 100, 30, a);
+		p3 = new SimplePlatform ( 20, 130, a);
 
 		b1[0]= getImage("resources/platform1.png"); 
 		//p4 = new RotatingPlatform (new SimplePlatform ( 390, 540, a));
@@ -80,12 +78,14 @@ public class TestGame extends Game {
 		list.add(p);
 		list.add(p1);
 		list.add(p2);
-		//list.add(p3);
+		list.add(p3);
 		//list.add(p4);
 		cs = new CollisionSpec ();
 		cs.addActMap(p1.getGroup(), "");
+		cs.addActMap(bob.getGroup(), "death");
 		cs.addActMap(bob.getGroup(), "standOnTop");
 		specList.add(cs);
+		
 		
 		cs.addClass(bob.getGroup(), EnemyAction.class);
 		gc = new GameCollisionManager(specList);
@@ -99,7 +99,7 @@ public class TestGame extends Game {
 		p.render(arg0);
 		p1.render(arg0);
 		p2.render(arg0);
-		//p3.render(arg0);
+		p3.render(arg0);
 		//p4.render(arg0);
 	}
 
@@ -112,7 +112,7 @@ public class TestGame extends Game {
 		p.update(arg0);
 		p1.update(arg0);
 		p2.update(arg0);
-		//p3.update(arg0);
+		p3.update(arg0);
 		//p4.update(arg0);
 		gc.detectCollision(list);
 	}

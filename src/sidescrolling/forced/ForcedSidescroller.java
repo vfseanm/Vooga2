@@ -27,7 +27,7 @@ public abstract class ForcedSidescroller extends DecoratedSidescroller {
      */
     public void update(long elapsedTime) {
         updateSprites();
-        move(getFighter());
+        move(fighter);
         super.update(elapsedTime);
     }
     
