@@ -68,17 +68,17 @@ public abstract class EditorView extends Game {
     {
         TPanel bottomBox = new TPanel(MENU_START, 680, 400, 100);
         
-        TButton openButton = new OpenButton("Open", 100, 10, 60, 40, this, new SerializedLevelLoader());
+        TButton openButton = new OpenButton("Open", 100, 10, 60, 40, this, new LevelLoader());
 
         SaveButton saveButton = new SaveButton("Save", 180, 10, 60, 40, this, new SerializedLevelWriter());
         
-        TButton openJsonButton = new OpenButton("OpenJSON", 10, 10, 80, 40, this, new JsonLevelLoader());
+        //TButton openJsonButton = new OpenButton("OpenJSON", 10, 10, 80, 40, this, new JsonLevelLoader());
         
         TButton saveJsonButton = new SaveButton("SaveJSON", 245, 10, 80, 40, this, new JsonLevelWriter());
 
         bottomBox.add(openButton);
         bottomBox.add(saveButton);
-        bottomBox.add(openJsonButton);
+        //bottomBox.add(openJsonButton);
         bottomBox.add(saveJsonButton);
 
         framework.add(bottomBox);
