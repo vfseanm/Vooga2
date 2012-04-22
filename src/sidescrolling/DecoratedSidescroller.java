@@ -81,5 +81,10 @@ public abstract class DecoratedSidescroller implements Sidescroller {
      * @param sprite - the sprite that is being moved
      */
     public abstract void move(Sprite sprite);
+    
+    public void setSprites(ArrayList<AnimatedGameSprite> sprites)
+    {
+        wrappedScroller.setSprites(sprites);
+    }
 
 }

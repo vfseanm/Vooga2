@@ -31,6 +31,9 @@ import enemies.Enemy;
 import fighter.Fighter;
 
 
+import sidescrolling.ConcreteSidescroller;
+import sidescrolling.Sidescroller;
+import sidescrolling.forced.ForcedLeftSidescroller;
 import sprite.AnimatedGameSprite;
 
 
@@ -46,6 +49,8 @@ public class Level implements Serializable{
     private String backgroundImagePath;
     private ImageBackground myBackground;
     private Fighter myFighter;
+    private Sidescroller mySidescroller; // THERE SHOULD BE SOME DEFAULT SIDESCROLLING !!
+                                                 // IT SHOULD ALSO BE WRITTEN WITH JSON !!
 
   
     
@@ -94,12 +99,28 @@ public class Level implements Serializable{
         }
     }
     
+    public void setSidescrolling(Sidescroller scroller)
+    {
+        mySidescroller = scroller;
+    }
+    
     public void moveVertically(double y)
     {
         for(Framework f: frameworks)
         {
             f.moveVertically(y);
         }
+    }
+    
+    public Sidescroller getSidescroller()
+    {
+        if (mySidescroller ==null)
+        {
+            mySidescroller = new ConcreteSidescroller(800, 600, null);
+            mySidescroller = new ForcedLeftSidescroller(mySidescroller);
+        }
+            
+        return mySidescroller;
     }
     
     public void clear()

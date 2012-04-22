@@ -26,6 +26,8 @@ import editor.frameworks.Framework;
 import enemies.Enemy;
 import fighter.Fighter;
 
+import sidescrolling.ConcreteSidescroller;
+import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;
 
 public class EditorController {
@@ -106,11 +108,10 @@ public class EditorController {
         verticalOffset += y;
     }
 
-//    public void addSprite(AnimatedGameSprite s, Framework f)
-//    {
-//        
-//        myLevel.addSprite(s,f);
-//    }
+    public void setSidescrolling(Sidescroller s)
+    {
+        myLevel.setSidescrolling(s);
+    }
 
     public void clearLevel()
     {
