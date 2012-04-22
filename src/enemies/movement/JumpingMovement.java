@@ -82,7 +82,7 @@ public class JumpingMovement extends Attribute implements Updateable
     public String toString ()
     {
         return "Attribute JumpingMovement my jump distance is " + myDistance +
-               " my jump time is " + myTime;
+               " my jump time is " + myTime+" activity is " +isActive;
 
     }
     
