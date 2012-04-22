@@ -26,9 +26,8 @@ public class EnemyAction implements CollisionAction {
 		}
 	}
 	
-	public void death (CollisionContext ccntext, CollisionSpec cspec){
+	public void instantDeath (CollisionContext ccntext, CollisionSpec cspec){
 		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
-			sprite.setActive(false);
 		}
 	}
 	
