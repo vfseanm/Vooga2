@@ -229,7 +229,15 @@ public class Level implements Serializable{
         
         if(myFighter!=null)
         {
-        myList.add(myFighter.toJson());
+            myList.add(myFighter.toJson());
+        }
+        else
+        {
+            myList.add("");
+        }
+        if(mySidescroller!=null)
+        {
+            myList.add(mySidescroller.toJson());
         }
         else
         {
@@ -271,8 +279,14 @@ public class Level implements Serializable{
            
         }
        
+        String scrollerJson = myList.get(2);
+        if(!scrollerJson.equals(""))
+        {
+            level.setSidescrolling(Sidescroller.fromJson(scrollerJson));
+        }
+       
         
-        ArrayList<String> frameworkList = gson.fromJson(myList.get(2), collectionType);
+        ArrayList<String> frameworkList = gson.fromJson(myList.get(3), collectionType);
         //System.out.println("framework LIst: "+frameworkList);
         
         for(String f: frameworkList)
@@ -281,35 +295,9 @@ public class Level implements Serializable{
         }
         return level;     
         
-        
-        
     }
     
-    public static void main(String[] args)
-    {
-        Level level = new Level();
-        Scanner scanner;
-        try
-        {
-            scanner = new Scanner(new File("Becky"));
-            String wholeFile = scanner.useDelimiter("\\A").next();
-            System.out.println(wholeFile);
-            level.fromJson(wholeFile);
-            
-            System.out.println(level.getAllSprites().size());
-            for(AnimatedGameSprite s : level.getAllSprites())
-            {
-            System.out.println(((Enemy)s).getAttributes());
-            System.out.println(s.getX());
-            }
-        } catch (FileNotFoundException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        
-    }
+
 
    
 }

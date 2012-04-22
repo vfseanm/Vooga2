@@ -96,7 +96,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
     {
         List<Class> classList = new ArrayList<Class>();
         classList.add(this.getClass());
-        if(!wrappedScroller.getClass().equals(SimplePlatform.class))
+        if(!wrappedScroller.getClass().equals(ConcreteSidescroller.class))
         {
             classList.addAll(((DecoratedSidescroller) wrappedScroller).getClassesOfDecorators());
         }
