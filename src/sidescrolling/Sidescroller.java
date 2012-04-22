@@ -1,5 +1,6 @@
 package sidescrolling;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import sprite.AnimatedGameSprite;
 
@@ -11,7 +12,7 @@ import sprite.AnimatedGameSprite;
  * @author Dustin
  *
  */
-public interface Sidescroller {
+public interface Sidescroller  {
                  
     /**
      * Updates the sidescroller.

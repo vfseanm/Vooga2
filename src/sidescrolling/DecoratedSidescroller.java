@@ -1,5 +1,6 @@
 package sidescrolling;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -19,7 +20,7 @@ import fighter.Fighter;
  * @author Dustin
  * 
  */
-public abstract class DecoratedSidescroller implements Sidescroller {
+public abstract class DecoratedSidescroller implements Sidescroller, Serializable {
 
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
