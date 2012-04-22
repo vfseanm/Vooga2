@@ -55,8 +55,7 @@ public class PlatformDialogueBox extends DialogueBox {
         for (Class c : reflection.getInstancesOf("platforms", DecoratedPlatform.class))
         {
 
-            
-                JLabel label1 = new JLabel(c.getName());
+                JLabel label1 = new JLabel(getText(c));
                 panel.add(label1);
                 JCheckBox box = new JCheckBox();
                 panel.add(box);

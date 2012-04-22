@@ -4,6 +4,8 @@ import java.io.File;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
@@ -12,7 +14,14 @@ import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import platforms.platformtypes.DecoratedPlatform;
+import sidescrolling.DecoratedSidescroller;
+import sidescrolling.border.BorderSidescroller;
+import sidescrolling.forced.ForcedSidescroller;
+import sidescrolling.shift.ShiftSidescroller;
+
 import editor.EditorController;
+import editor.Reflection;
 
 
 @SuppressWarnings("serial")
@@ -20,6 +29,7 @@ public class GameDialogue extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
+    private HashMap<JCheckBox, Class> classMap;
 
 
     public GameDialogue(EditorController m)
@@ -35,8 +45,37 @@ public class GameDialogue extends DialogueBox {
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
+        
+        classMap = new HashMap<JCheckBox, Class>();
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600,800));
+        // ArrayList<Class> list = reflection.getBehaviors();
+        Reflection reflection = new Reflection();
+        for (Class c : reflection.getInstancesOf("sidescrolling.border", BorderSidescroller.class))
+        {
+                JLabel label1 = new JLabel(getText(c));
+                panel.add(label1);
+                JCheckBox box = new JCheckBox();
+                panel.add(box);
+                classMap.put(box, c);
+        }
+        for (Class c : reflection.getInstancesOf("sidescrolling.forced", ForcedSidescroller.class))
+        {
+            JLabel label1 = new JLabel(getText(c));
+                panel.add(label1);
+                JCheckBox box = new JCheckBox();
+                panel.add(box);
+                classMap.put(box, c);
+        }
+        for (Class c : reflection.getInstancesOf("sidescrolling.shift", ShiftSidescroller.class))
+        {
+            
+            JLabel label1 = new JLabel(getText(c));
+                panel.add(label1);
+                JCheckBox box = new JCheckBox();
+                panel.add(box);
+                classMap.put(box, c);
+        }
         
        
 
