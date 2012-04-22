@@ -57,6 +57,7 @@ public abstract  class PlatformGame extends Game {
         mySprites = myLevel.getSprites();
         ImageBackground myBackground = myLevel.getBackground();
         myFighter = myLevel.getFighter();
+        
         if(myFighter!=null)
         {
             myFighter.setUserInput(bsInput);

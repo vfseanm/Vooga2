@@ -48,6 +48,8 @@ public class Fighter extends GameCharacter {
 	    if(myself==null)
 	    {
 	        myself = new Fighter();
+	        myself.myAttributes = new ArrayList<Attribute>();
+	        myself.myCarryableAttributes = new ArrayList<Attribute>();
 	    }
 	    
 	    return myself;
