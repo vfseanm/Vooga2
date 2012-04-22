@@ -42,6 +42,7 @@ public class PowerUp extends BonusObject {
         {
             c.addAttributeToOffer(a);
         }
+        c.setGroup(this.getGroup());
         return c;
     }
    

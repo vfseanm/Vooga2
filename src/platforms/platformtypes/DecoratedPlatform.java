@@ -311,6 +311,11 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		return myDecoratorComponent.getWidth();
 	}
 	
+	public String getGroup()
+	{
+	    return myDecoratorComponent.getGroup();
+	}
+	
 	public List<Class> getClassesOfDecorators()
 	{
 	    List<Class> classList = new ArrayList<Class>();
