@@ -20,12 +20,11 @@ import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.buttons.ObjectPlacingButton;
 import editor.dialogues.DialogueBox;
-import editor.file.LevelLoader;
-import editor.file.LevelWriter;
 import editor.frameworks.Framework;
 import enemies.Enemy;
 import fighter.Fighter;
 
+import sidescrolling.ConcreteSidescroller;
 import sprite.AnimatedGameSprite;
 
 public class EditorController {
@@ -106,11 +105,10 @@ public class EditorController {
         verticalOffset += y;
     }
 
-//    public void addSprite(AnimatedGameSprite s, Framework f)
-//    {
-//        
-//        myLevel.addSprite(s,f);
-//    }
+    public void setSidescrolling(ConcreteSidescroller s)
+    {
+        myLevel.setSidescrolling(s);
+    }
 
     public void clearLevel()
     {

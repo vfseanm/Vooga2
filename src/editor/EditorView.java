@@ -26,12 +26,6 @@ import editor.dialogues.DynamicBox;
 import editor.dialogues.EditEnemyButtonDialogueBox;
 import editor.dialogues.FighterDialogueBox;
 import editor.dialogues.GameDialogue;
-import editor.file.JsonLevelLoader;
-import editor.file.JsonLevelWriter;
-import editor.file.LevelLoader;
-import editor.file.LevelWriter;
-import editor.file.SerializedLevelLoader;
-import editor.file.SerializedLevelWriter;
 
 import sprite.AnimatedGameSprite;
 
