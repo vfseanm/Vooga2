@@ -82,8 +82,8 @@ public class TestGame extends Game {
 		//list.add(p4);
 		cs = new CollisionSpec ();
 		cs.addActMap(p1.getGroup(), "");
-		cs.addActMap(bob.getGroup(), "death");
-		cs.addActMap(bob.getGroup(), "standOnTop");
+		cs.addActMap(bob.getGroup(), "instantDeath");
+		//cs.addActMap(bob.getGroup(), "standOnTop");
 		specList.add(cs);
 		
 		
