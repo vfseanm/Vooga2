@@ -2,12 +2,11 @@ package sidescrolling;
 
 import java.util.ArrayList;
 
+
 import sprite.AnimatedGameSprite;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
-
-import fighter.Fighter;
 
 /**
  * DecoratorSidescroller allows the user to "wrap" sidescrollers so that
@@ -49,13 +48,6 @@ public abstract class DecoratedSidescroller implements Sidescroller {
     }
 
     /**
-     * Gets the Fighter from the ConcreteSidescroller
-     */
-    public Fighter getFighter() {
-        return wrappedScroller.getFighter();
-    }
-
-    /**
      * Gets the Game from the ConcreteSidescroller
      */
     public Game getGame() {
@@ -63,7 +55,7 @@ public abstract class DecoratedSidescroller implements Sidescroller {
     }
 
     /**
-     * Moves every sprite.
+     * Moves every Sprite.
      */
     public void updateSprites() {
         for (Sprite object: this.getSprites()) {

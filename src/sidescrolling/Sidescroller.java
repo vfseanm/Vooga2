@@ -2,12 +2,9 @@ package sidescrolling;
 
 import java.util.ArrayList;
 
-
 import sprite.AnimatedGameSprite;
 
 import com.golden.gamedev.Game;
-
-import fighter.Fighter;
 
 /**
  * Sidescroller is an interface that allows one to implement objects which allow for sidescrolling.
@@ -28,12 +25,6 @@ public interface Sidescroller {
      * @return the list of Sprites in the ConcreteSidescroller
      */
     public ArrayList<AnimatedGameSprite> getSprites();
-    
-    /**
-     * 
-     * @return the Fighter in the ConcreteSidescroller
-     */
-    public Fighter getFighter();
     
     /**
      * 
