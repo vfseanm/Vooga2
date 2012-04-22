@@ -16,6 +16,7 @@ public class JsonLevelLoader extends LevelLoader {
         {
             scanner = new Scanner(file);
             String wholeFile = scanner.useDelimiter("\\A").next();
+            
             Level level = Level.fromJson(wholeFile);
             return level;
         } catch (FileNotFoundException e)

@@ -184,7 +184,7 @@ public class Fighter extends GameCharacter {
         double y = Double.parseDouble(paramList.get(3));
         Fighter sprite = Fighter.getInstance();
         sprite.setLocation(x, y);
-        sprite.setImageNames(imageNames);
+        sprite.setImageNamesandImages(imageNames);
         sprite.setGroup(groupName);
         System.out.println("gets here");
 
