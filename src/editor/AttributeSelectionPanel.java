@@ -105,18 +105,23 @@ public class AttributeSelectionPanel extends JPanel {
     private class CheckBoxListener implements ActionListener {
         Class associatedClass;
         JCheckBox box;
+        CustomizedInput input;
+        
 
         public CheckBoxListener(JCheckBox b, Class c)
         {
             associatedClass = c;
             box = b;
+            input = new CustomizedInput(associatedClass);
         }
 
         public void actionPerformed(ActionEvent e)
         {
+            
             if (box.isSelected())
             {
-                
+                input.run();
+            }
                 Constructor constructor = getAnnotatedConstructor(associatedClass);
                 Annotation a = constructor.getAnnotation(editorConstructor.class);
                 String[] paramNames = ((editorConstructor) a).parameterNames();
@@ -176,7 +181,7 @@ public class AttributeSelectionPanel extends JPanel {
             }
 
         }
-    }
+    
     
     public  ArrayList<Attribute> getSelectedAttributes()
     {
@@ -192,22 +197,6 @@ public class AttributeSelectionPanel extends JPanel {
         return attributes;
     }
     
-    public Constructor getAnnotatedConstructor(Class c)
-    {
-        Constructor[] constructors = c.getConstructors();
-        Constructor constructor = null;
-        for (Constructor co : constructors)
-        {
-            if (co.isAnnotationPresent(editorConstructor.class))
-            {
-                constructor = co;
-            }
-        }
-        if (constructor == null)
-        {
-            throw new RuntimeException();
-        }
-        return constructor;
-    }
+    
 
 }
