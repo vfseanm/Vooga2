@@ -22,11 +22,11 @@ public class BorderDownSidescroller extends BorderSidescroller {
      * Creates a new BorderDownSidescroller.
      * 
      * @param scroller - an already create sidescroller
-     * @param offsetFromBottom- how far from the bottom of the screen a border will be created
      */
-    public BorderDownSidescroller(Sidescroller scroller, double offsetFromBottom) {
+    public BorderDownSidescroller(Sidescroller scroller) {
         super(scroller);
-        boundary = getGameHeight() - offsetFromBottom - fighter.getHeight();
+        boundary = getGameHeight() - Double.parseDouble(mySidescrollerResources
+                .getString("OffsetFromBottom")) - fighter.getHeight();
     }
 
     /**

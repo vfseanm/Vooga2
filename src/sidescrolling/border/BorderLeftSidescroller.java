@@ -18,11 +18,10 @@ public class BorderLeftSidescroller extends BorderSidescroller {
     /**
      * Creates a new BorderLeftSidescroller.
      * @param scroller - an already created sidescroller
-     * @param offsetFromLeft - how far from the left of the screen a border will be created
      */
-    public BorderLeftSidescroller(Sidescroller scroller, double offsetFromLeft) {
+    public BorderLeftSidescroller(Sidescroller scroller) {
         super(scroller);
-        boundary = offsetFromLeft;
+        boundary = Double.parseDouble(mySidescrollerResources.getString("OffsetFromLeft"));
     }
    
     /**
