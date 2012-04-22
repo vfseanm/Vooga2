@@ -12,7 +12,7 @@ public class RotatingPlatform extends DecoratedPlatform {
 	private int myFrames = 0;
 	private int myWidth;
 	private int myHeight;
-	private int numFrames = Integer.parseInt(myPlatformResources.getString("RotateFrames")); //number of rotations for 1 complete cycle
+	private int numFrames = Integer.parseInt(myPlatformResources.getString("RotateFrames")); ; //number of rotations for 1 complete cycle
 	
 	/**
 	 * Constructor to create a rotating platform
@@ -98,5 +98,10 @@ public class RotatingPlatform extends DecoratedPlatform {
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new RotatingPlatform(toWrap);
 	}
+	
+	public static AbstractPlatform fromJson(String json)
+    {
+        return AbstractPlatform.fromJson(json);
+    }
 
 }

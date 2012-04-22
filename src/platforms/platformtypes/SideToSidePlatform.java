@@ -61,15 +61,22 @@ public class SideToSidePlatform extends DecoratedPlatform {
 		return myPlatformResources.getString("SideToSide")
 				+ myDecoratorComponent.toString();
 	}
-
-	public Object clone() {
-		AbstractPlatform toWrap = null;
-		if (myDecoratorComponent != null) {
-			toWrap = (AbstractPlatform) myDecoratorComponent.clone();
-
-		}
-		return new SideToSidePlatform(toWrap);
-
-	}
+	
+	   public Object clone()
+       {
+           AbstractPlatform toWrap = null;
+           if(myDecoratorComponent!=null)
+           {
+               toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+               
+           }
+           return new SideToSidePlatform(toWrap);
+           
+       }
+	   
+	    public static AbstractPlatform fromJson(String json)
+	    {
+	        return AbstractPlatform.fromJson(json);
+	    }
 
 }

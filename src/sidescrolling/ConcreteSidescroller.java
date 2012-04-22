@@ -1,9 +1,8 @@
 package sidescrolling;
 
-import com.golden.gamedev.Game;
-import com.golden.gamedev.object.SpriteGroup;
+import java.util.ArrayList;
+import sprite.AnimatedGameSprite;
 
-import fighter.Fighter;
 
 /**
  * This is the most basic type of usable Sidescroller. Does not actually do any sidescrolling but allows
@@ -13,20 +12,20 @@ import fighter.Fighter;
  */
 public class ConcreteSidescroller implements Sidescroller {
 
-    private Fighter myFighter;
-    private SpriteGroup[] myGroups;
-    private Game myGame;
+    private ArrayList<AnimatedGameSprite> mySprites;
+    private int myGameWidth;
+    private int myGameHeight;
     
     /**
      * Creates a new ConcreteSidescroller.
-     * @param game - the main game.
-     * @param character - the Fighter that the sidescroller uses.
-     * @param groups - an array of SpriteGroups containing sprites that the sidescroller must move.
+     * @param width - width of the game.
+     * @param height - height of the game.
+     * @param sprites - an arrayList of Sprites that the sidescroller must move.
      */
-    public ConcreteSidescroller(Game game, Fighter character, SpriteGroup...groups) {
-        myGame = game;
-        myFighter = character;
-        myGroups = groups;
+    public ConcreteSidescroller(int width, int height, ArrayList<AnimatedGameSprite> sprites) {
+        myGameWidth = width;
+        myGameHeight = height;
+        mySprites = sprites;
     }
 
     /**
@@ -37,24 +36,24 @@ public class ConcreteSidescroller implements Sidescroller {
     }
     
     /**
-     * returns the list of SpriteGroups the ConcreteSidescroller holds.
+     * returns the list of AnimatedGameSprites the ConcreteSidescroller holds.
      */
-    public SpriteGroup[] getSpriteGroups() {
-        return myGroups;
+    public ArrayList<AnimatedGameSprite> getSprites() {
+        return mySprites;
     }
     
     /**
-     * returns the Fighter the ConcreteSidescroller holds.
+     * returns the width of the game that the ConcreteSidescroller holds.
      */
-    public Fighter getFighter() {
-        return myFighter;
+    public int getGameWidth() {
+        return myGameWidth;
     }
     
     /**
-     * returns the Game the ConcreteSidescroller holds.
+     * returns the height of the game that the ConcreteSidescroller holds.
      */
-    public Game getGame() {
-        return myGame;
+    public int getGameHeight() {
+        return myGameHeight;
     }
     
 }

@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import editor.dialogues.DialogueBox;
+
 import attributes.Attribute;
 
 public class AttributeSelectionPanel extends JPanel {
@@ -33,7 +35,17 @@ public class AttributeSelectionPanel extends JPanel {
         originallyCheckedOff = checkedOff;
         this.add(makePanel());
     }
-
+    
+    public AttributeSelectionPanel(List<String> packagesToSearch)
+    {
+        attributeMap = new HashMap<JCheckBox, Class>();
+        attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
+        packageNames = packagesToSearch;
+        originallyCheckedOff = new ArrayList<Attribute>();
+        this.add(makePanel());
+    }
+    
+    
     public JPanel makePanel()
     {
 
@@ -64,7 +76,7 @@ public class AttributeSelectionPanel extends JPanel {
                 }
                 if (isAnnotated)
                 {
-                    JLabel label1 = new JLabel(c.getName());
+                    JLabel label1 = new JLabel(DialogueBox.getText(c));
                     panel.add(label1);
                     JCheckBox box = new JCheckBox();
                     panel.add(box);
@@ -95,18 +107,23 @@ public class AttributeSelectionPanel extends JPanel {
     private class CheckBoxListener implements ActionListener {
         Class associatedClass;
         JCheckBox box;
+        CustomizedInput input;
+        
 
         public CheckBoxListener(JCheckBox b, Class c)
         {
             associatedClass = c;
             box = b;
+            input = new CustomizedInput(associatedClass);
         }
 
         public void actionPerformed(ActionEvent e)
         {
-            if (box.isSelected())
-            {
-                
+            
+//            if (box.isSelected())
+//            {
+//                input.run();
+//            }
                 Constructor constructor = getAnnotatedConstructor(associatedClass);
                 Annotation a = constructor.getAnnotation(editorConstructor.class);
                 String[] paramNames = ((editorConstructor) a).parameterNames();
@@ -166,7 +183,7 @@ public class AttributeSelectionPanel extends JPanel {
             }
 
         }
-    }
+    
     
     public  ArrayList<Attribute> getSelectedAttributes()
     {
@@ -199,5 +216,7 @@ public class AttributeSelectionPanel extends JPanel {
         }
         return constructor;
     }
+    
+    
 
 }

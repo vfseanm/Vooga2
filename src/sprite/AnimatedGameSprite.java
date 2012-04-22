@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import collisions.CustomActionPerformer;
 
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
@@ -105,15 +104,19 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         return new AnimatedGameSprite(this.getX(), this.getY(),myImageNames);
     }
     
-	protected void customAction (AnimatedGameSprite sprite1, AnimatedGameSprite sprite2, int collisionType, CustomActionPerformer act){
-		if (act!=null){
-			act.customAction(sprite1, sprite2, collisionType);
-		}
-	}
-	
-	public void action (AnimatedGameSprite otherSprite, int collisionType, CustomActionPerformer act){
-		
-	}
+    public void setImageNamesandImages(List<String> imageNames)
+    {
+        myImageNames = imageNames;
+        BufferedImage[] images = new BufferedImage[imageNames.size()];
+        BaseLoader loader = new BaseLoader(new BaseIO(AnimatedGameSprite.class), Color.PINK);
+        for(int i=0; i<images.length; i++)
+        {
+            images[i] = loader.getImage(imageNames.get(i));      
+        }
+        this.setImages(images);
+        
+    }
+    
 
 	public String toJson()
     {

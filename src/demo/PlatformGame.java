@@ -9,12 +9,16 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import playfield.SingletonPlayField;
+
 import sprite.AnimatedGameSprite;   
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.Level;
+import editor.file.LevelLoader;
 import fighter.Fighter;
 
 public abstract  class PlatformGame extends Game {
@@ -22,37 +26,35 @@ public abstract  class PlatformGame extends Game {
     protected List<AnimatedGameSprite> mySprites;
     private Level myLevel;
     private Fighter myFighter;
-    protected ImageBackground myBackground;
+    //protected ImageBackground myBackground;
+    protected PlayField myPlayfield;
     
     PlatformGame()
     {
         mySprites = new ArrayList<AnimatedGameSprite>();
+        myPlayfield = SingletonPlayField.getInstance(); 
     }
     public void loadLevel(String filename)
     {
-        File file = new File(filename);
-        FileInputStream fis = null;
-        ObjectInputStream in = null;
-        try
-        {
-          fis = new FileInputStream(file);
-          in = new ObjectInputStream(fis);
-          myLevel = (Level)in.readObject();
-          in.close();
-        }
-        catch(IOException ex)
-        {
-          ex.printStackTrace();
-        }
-        catch(ClassNotFoundException ex)
-        {
-          ex.printStackTrace();
-        }
+        LevelLoader loader = new LevelLoader();
+        myLevel = loader.readLevel(new File(filename));
 
         mySprites = myLevel.getSprites();
-        myBackground = myLevel.getBackground();
+        ImageBackground myBackground = myLevel.getBackground();
         myFighter = myLevel.getFighter();
-        myFighter.setUserInput(bsInput);
+        
+        if(myFighter!=null)
+        {
+            myFighter.setUserInput(bsInput);
+            myPlayfield.add(myFighter);
+        }
+        for(AnimatedGameSprite s: mySprites)
+        {
+            myPlayfield.add(s);
+        }
+        myPlayfield.setBackground(myBackground);
+        
+        
     }
     
     public Fighter getFighter() {

@@ -34,6 +34,7 @@ public class Carryable extends BonusObject {
 	    {
 	        c.addAttributeToOffer(a);
 	    }
+	    c.setGroup(this.getGroup());
 	    return c;
 	}
 }

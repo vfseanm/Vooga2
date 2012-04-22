@@ -1,31 +1,21 @@
 
 package editor.dialogues;
 
-import java.io.File;
-
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import editor.EditorController;
 import editor.Reflection;
 import editor.frameworks.Framework;
-import editor.frameworks.PlatformFramework;
 
 import platforms.platformtypes.*;
-
-import attributes.Attribute;
 
 
 import java.util.HashMap;
@@ -45,7 +35,6 @@ public class PlatformDialogueBox extends DialogueBox {
     
     
 
-    @SuppressWarnings("rawtypes")
     public PlatformDialogueBox(EditorController m)
     {
         super(m);
@@ -66,8 +55,7 @@ public class PlatformDialogueBox extends DialogueBox {
         for (Class c : reflection.getInstancesOf("platforms", DecoratedPlatform.class))
         {
 
-            
-                JLabel label1 = new JLabel(c.getName());
+                JLabel label1 = new JLabel(getText(c));
                 panel.add(label1);
                 JCheckBox box = new JCheckBox();
                 panel.add(box);
@@ -103,17 +91,6 @@ public class PlatformDialogueBox extends DialogueBox {
 
     public Framework getFramework()
     {
-/*        
-       List<Class> platformTypes = new ArrayList<Class>();
-       
-        for (JCheckBox box : classMap.keySet())
-        {
-            if (box.isSelected())
-            {
-                platformTypes.add(classMap.get(box));
-            }
-                
-        }*/
         
         AbstractPlatform prototype = new SimplePlatform(0,0,myImagePaths);
         Object[] list = new Object[1];
@@ -145,27 +122,22 @@ public class PlatformDialogueBox extends DialogueBox {
         }
         prototype.setGroup(myGroup.getText());
         
-        
-/*        BufferedImage[] s = new BufferedImage[myImages.size()];
-        for (int x = 0; x<s.length; x++)
-        {
-            s[x] = myImages.get(x);
-        }*/
-        
-        //PlatformFramework framework = new PlatformFramework(myImagePaths, platformTypes, myGroup.getText());
         return new Framework(myName.getText(), "platform", prototype);
         
     }
-    
-    class GoAction implements ActionListener {       
+
+    @Override
+    public DialogueBox clone() {
+        return new PlatformDialogueBox(myController);
+    }
+
+    @Override
+    protected void BoxCompletedAction() {
+        Framework framework = getFramework();
+        System.out.println("framework "+framework);
+        myController.addButton(myName.getText(), framework);
+        setVisible(false);
         
-        public void actionPerformed(ActionEvent e)
-        {
-            Framework framework = getFramework();
-            System.out.println("framework "+framework);
-            myController.addButton(myName.getText(), framework);
-            setVisible(false);
-        }
     }
    
 

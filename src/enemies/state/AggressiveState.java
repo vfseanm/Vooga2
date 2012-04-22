@@ -1,6 +1,5 @@
 package enemies.state;
 
-import weapons.Fireball;
 import enemies.Enemy;
 import fighter.Fighter;
 
@@ -28,7 +27,7 @@ public class AggressiveState implements EnemyState
     public void excuteBehavior (Enemy enemy, long elapsedTime)
     {
         
-        Fighter fighter = enemy.getFighter();
+        Fighter fighter = Fighter.getInstance();
         if(!changeState(enemy,fighter)){
            enemy.attack(elapsedTime);
            if(enemy.getX()>fighter.getX()){

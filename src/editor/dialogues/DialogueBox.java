@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 
 import editor.EditorController;
+import editor.frameworks.Framework;
 
 
 @SuppressWarnings("serial")
@@ -22,18 +23,22 @@ public abstract class DialogueBox extends JPanel {
 
 
     protected EditorController myController;
-    //protected ArrayList<BufferedImage> myImages;
     protected List<String> myImagePaths;
     
     
     public DialogueBox(EditorController m)
     {
-        //myImages = new ArrayList<BufferedImage>();
         myImagePaths = new ArrayList<String>();
         myController = m;        
     }
     
+    public abstract DialogueBox clone();
     
+    public static String getText(Class c)
+    {
+        String[] classPath = c.getName().split("\\."); 
+        return classPath[classPath.length-1];
+    }
     
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
 
@@ -53,15 +58,7 @@ public abstract class DialogueBox extends JPanel {
         {
             e1.printStackTrace();
         }
-        /*BufferedImage img = null;
-        try
-        {
-            img = ImageIO.read(new File(myImagePaths.get(myImagePaths.size()-1)));
-        } catch (IOException e)
-        {
-            System.out.println("There has been a problem importing your image");
-        }
-        return img;*/
+
 
     }
 
@@ -80,13 +77,22 @@ public abstract class DialogueBox extends JPanel {
         }
         return panel;
     }
+    
+    protected abstract void BoxCompletedAction();
 
     protected class ImageAction implements ActionListener {
         public void actionPerformed(ActionEvent e)
         {
             getImage();
             
-
+        }
+    }
+    
+class GoAction implements ActionListener {       
+        
+        public void actionPerformed(ActionEvent e)
+        {
+            BoxCompletedAction();
         }
     }
     
