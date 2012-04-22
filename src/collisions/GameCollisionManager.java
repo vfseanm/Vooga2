@@ -6,18 +6,17 @@ import java.util.List;
 import java.util.Set;
 
 import sprite.*;
-import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 public class GameCollisionManager{
 
-	private ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
+	private List<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 	
 	public GameCollisionManager(List<CollisionSpec> gs){
 		specList.addAll(gs);
 	}
 	
-	public void detectCollision (ArrayList<AnimatedGameSprite> spriteList){
+	public void detectCollision (List<AnimatedGameSprite> spriteList){
 		for (AnimatedGameSprite sprite1: spriteList){
 			for(AnimatedGameSprite sprite2: spriteList){
 				if (sprite1==sprite2)
