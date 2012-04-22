@@ -11,7 +11,7 @@ import sprite.AnimatedGameSprite;
  * @author Dustin
  *
  */
-public class ConcreteSidescroller implements Sidescroller, Serializable {
+public class ConcreteSidescroller extends Sidescroller  {
 
     private ArrayList<AnimatedGameSprite> mySprites;
     private int myGameWidth;

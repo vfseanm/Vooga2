@@ -12,30 +12,30 @@ import sprite.AnimatedGameSprite;
  * @author Dustin
  *
  */
-public interface Sidescroller  {
+public abstract class Sidescroller implements Serializable  {
                  
     /**
      * Updates the sidescroller.
      * @param elapsedTime
      */
-    public void update(long elapsedTime);
+    public abstract void update(long elapsedTime);
     
     /**
      * @return the list of Sprites in the ConcreteSidescroller
      */
-    public ArrayList<AnimatedGameSprite> getSprites();
+    public abstract ArrayList<AnimatedGameSprite> getSprites();
     
     /**
      * 
      * @return the width of the game stored in the ConcreteSidescroller
      */
-    public int getGameWidth();
+    public abstract int getGameWidth();
     
     /**
      * 
      * @return the height of the game stored in the ConcreteSidescroller
      */
-    public int getGameHeight();
+    public abstract int getGameHeight();
     
-    public void setSprites(ArrayList<AnimatedGameSprite> sprites);
+    public abstract void setSprites(ArrayList<AnimatedGameSprite> sprites);
 }

@@ -20,7 +20,7 @@ import fighter.Fighter;
  * @author Dustin
  * 
  */
-public abstract class DecoratedSidescroller implements Sidescroller, Serializable {
+public abstract class DecoratedSidescroller extends Sidescroller  {
 
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
