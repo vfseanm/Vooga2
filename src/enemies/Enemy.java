@@ -275,6 +275,7 @@ public class Enemy extends GameCharacter
         {
             e.setState(myState);
         }
+        e.setGroup(this.getGroup());
         return e;
     }
 

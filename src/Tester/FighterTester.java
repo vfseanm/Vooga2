@@ -9,7 +9,9 @@ import platforms.platformtypes.*;
 
 import sidescrolling.*;
 import sidescrolling.border.*;
+import sidescrolling.forced.ForcedLeftSidescroller;
 import sidescrolling.shift.*;
+import sprite.AnimatedGameSprite;
 
 import attributes.Gravity;
 
@@ -22,11 +24,11 @@ import fighter.movement.*;
 
 public class FighterTester extends Game{
 	
-    private SpriteGroup group1;
-    private SpriteGroup group2;
+    private ArrayList<AnimatedGameSprite> allSprites;
     private SpriteGroup FIGHTER_GROUP;
     private Fighter fighter;
     private Sidescroller sidescroller;
+    private SpriteGroup hay;
 
     public Fighter getFighter() {
         return fighter;
@@ -63,45 +65,47 @@ public class FighterTester extends Game{
         
     	initFighter();
         
-        group1 = new SpriteGroup("1");
-        group2 = new SpriteGroup("2");
+        allSprites = new ArrayList<AnimatedGameSprite>();
         ArrayList<String> imageName = new ArrayList<String>();
         imageName.add("Resources/block3.png");
         AbstractPlatform p1 = new SimplePlatform(400, 400, imageName);
         AbstractPlatform p2 = new SimplePlatform(200, 250, imageName);
         AbstractPlatform p3 = new SimplePlatform(500, 500, imageName);
-        group1.add(p1);
-        group1.add(p2);
-        group1.add(p3);
         AbstractPlatform p4 = new SimplePlatform(10, 15, imageName);
-        group2.add(p4);
-        sidescroller = new ConcreteSidescroller(this, fighter, group1, group2);
-        //sidescroller = new BorderLeftSidescroller(sidescroller, 100);
-        //sidescroller = new BorderRightSidescroller(sidescroller, 100);
-        //sidescroller = new BorderUpSidescroller(sidescroller, 100);
-        //sidescroller = new BorderDownSidescroller(sidescroller, 100);
+        hay = new SpriteGroup("birds");
+        hay.add(p1);
+        hay.add(p2);
+        hay.add(p3);
+        hay.add(p4);
+        allSprites.add(p1);
+        allSprites.add(p2);
+        allSprites.add(p3);
+        allSprites.add(p4);
+        sidescroller = new ConcreteSidescroller(this, fighter, allSprites);
+        sidescroller = new BorderLeftSidescroller(sidescroller, 100);
+        sidescroller = new BorderRightSidescroller(sidescroller, 100);
+        sidescroller = new BorderUpSidescroller(sidescroller, 100);
+        sidescroller = new BorderDownSidescroller(sidescroller, 100);
         //sidescroller = new ForcedDownSidescroller(sidescroller, 0.2);
         //sidescroller = new ForcedUpSidescroller(sidescroller, -1.0);
         //sidescroller = new ForcedRightSidescroller(sidescroller, 1.0);
         //sidescroller = new ForcedLeftSidescroller(sidescroller, -1.0);
-        sidescroller = new ShiftRightSidescroller(sidescroller);
-        sidescroller = new ShiftLeftSidescroller(sidescroller);
-        sidescroller = new ShiftUpSidescroller(sidescroller);
-        sidescroller = new ShiftDownSidescroller(sidescroller);
+        //sidescroller = new ShiftRightSidescroller(sidescroller);
+        //sidescroller = new ShiftLeftSidescroller(sidescroller);
+        //sidescroller = new ShiftUpSidescroller(sidescroller);
+        //sidescroller = new ShiftDownSidescroller(sidescroller);
     }
     
     public void render (Graphics2D pen) {
         pen.setColor(Color.WHITE);
         pen.fillRect(0, 0, getWidth(), getHeight());
-        group1.render(pen);
-        group2.render(pen);
+        hay.render(pen);
         fighter.render(pen);
         FIGHTER_GROUP.render(pen);
     }
     
     public void update(long elapsedTime) {
-        group1.update(elapsedTime);
-        group2.update(elapsedTime);
+        hay.update(elapsedTime);
         FIGHTER_GROUP.update(elapsedTime);
         sidescroller.update(elapsedTime);
     }
