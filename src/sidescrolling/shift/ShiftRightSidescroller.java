@@ -30,7 +30,7 @@ public class ShiftRightSidescroller extends ShiftSidescroller {
      * @returns true if the fighter moves off the right side of the screen
      */
     public boolean fighterOffCorrectSide() {
-        return getFighter().getX() >= getGame().getWidth();
+        return fighter.getX() >= getGame().getWidth();
     }
     
 }

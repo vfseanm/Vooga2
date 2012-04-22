@@ -30,7 +30,7 @@ public class ShiftLeftSidescroller extends ShiftSidescroller {
      * @returns true if the fighter moves off the left side of the screen
      */
     public boolean fighterOffCorrectSide() {
-        return getFighter().getX() <= 0;
+        return fighter.getX() <= 0;
     }
     
 }

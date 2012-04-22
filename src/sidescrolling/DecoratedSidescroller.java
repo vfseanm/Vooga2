@@ -8,6 +8,8 @@ import sprite.AnimatedGameSprite;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
+import fighter.Fighter;
+
 /**
  * DecoratorSidescroller allows the user to "wrap" sidescrollers so that
  * multiple sidescrollers can be used at once. The majority of its methods call
@@ -23,6 +25,7 @@ import com.golden.gamedev.object.*;
 public abstract class DecoratedSidescroller implements Sidescroller {
 
     private Sidescroller wrappedScroller;
+    protected Fighter fighter;
 
     /**
      * Creates a new DecoratedSidescroller
@@ -31,6 +34,7 @@ public abstract class DecoratedSidescroller implements Sidescroller {
      */
     public DecoratedSidescroller(Sidescroller scroller) {
         wrappedScroller = scroller;
+        fighter = Fighter.getInstance();
     }
 
     /**
