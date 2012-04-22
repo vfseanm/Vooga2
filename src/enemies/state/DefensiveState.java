@@ -1,6 +1,7 @@
 package enemies.state;
 
 import enemies.Enemy;
+import fighter.Fighter;
 
 
 public class DefensiveState implements EnemyState
@@ -23,19 +24,32 @@ public class DefensiveState implements EnemyState
     }
 
 
-    public void excuteBehavior (Enemy enemy)
+    public void excuteBehavior (Enemy enemy, long elapsedTime)
     {
-        //TODO write Defensive AI
+        Fighter fighter = Fighter.getInstance();
+        if(!changeState(enemy, fighter)){
+            if(enemy.getY()>fighter.getY()){
+                enemy.setY(enemy.getY()-1);
+            }else enemy.setY(enemy.getY()+1);
+            
+        }
 
     }
 
 
-    public void changeState (Enemy enemy)
+    public boolean changeState (Enemy enemy,Fighter fighter)
     {
+         
         if (!enemy.isOnScreen())
         {
             enemy.setState(PassiveState.getInstance());
+            return true;
         }
+        if(enemy.getY()==fighter.getY()){
+            enemy.setState(AggressiveState.getInstance());
+            return true;
+        }
+        return false;
 
     }
 

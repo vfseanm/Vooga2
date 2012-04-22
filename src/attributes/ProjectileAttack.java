@@ -3,6 +3,7 @@ package attributes;
 import weapons.Weapon;
 
 
+@SuppressWarnings("serial")
 public class ProjectileAttack extends Attack
 {
     private Weapon myWeapon;

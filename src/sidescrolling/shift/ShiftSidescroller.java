@@ -35,8 +35,8 @@ public abstract class ShiftSidescroller extends DecoratedSidescroller {
      */
     public void update(long elapsedTime) {
         if (fighterOffCorrectSide()) {
-            move(getFighter());
-            updateGroups();
+            move(fighter);
+            updateSprites();
         }
         super.update(elapsedTime);
     }

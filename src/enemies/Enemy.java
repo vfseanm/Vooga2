@@ -1,25 +1,24 @@
 package enemies;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
- import java.util.Map;
+import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
- import character.GameCharacter;
-import attributes.Attribute;
+import character.GameCharacter;
+import attributes.*;
 import attributes.Updateable;
 import enemies.state.EnemyState;
+import fighter.Fighter;
+
 
 /**
- * 
  * @author Alex
- *
  */
 @SuppressWarnings("serial")
 public class Enemy extends GameCharacter
@@ -50,6 +49,19 @@ public class Enemy extends GameCharacter
             if (attribute.getClass().getName().equalsIgnoreCase(name)) return true;
         }
         return false;
+    }
+
+
+    public void attack (long elapsedTime)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getClass().getSuperclass().equals(Attack.class))
+                ((Attack) attribute).update(elapsedTime);
+            
+                
+        }
+        
     }
 
 
@@ -150,7 +162,7 @@ public class Enemy extends GameCharacter
     }
 
 
-    public void updateAttribute (String name, Object ... o)
+    public void modifyAttribute (String name, Object ... o)
     {
         accessAttributeMethod("modify", name, o);
     }
@@ -166,10 +178,17 @@ public class Enemy extends GameCharacter
     {
         for (Attribute attribute : myAttributes)
         {
-            if (attribute.getName().equalsIgnoreCase(name) &&
-                attribute.getClass().getInterfaces()[0].equals(Updateable.class))
+            if (attribute.getName().equalsIgnoreCase(name))
+
             {
-                ((Updateable) attribute).invert();
+                for (Class<?> myInterface : attribute.getClass()
+                                                     .getInterfaces())
+                {
+                    if (myInterface.equals(Updateable.class))
+                    {
+                        ((Updateable) attribute).invert();
+                    }
+                }
             }
         }
     }
@@ -190,20 +209,33 @@ public class Enemy extends GameCharacter
     public void update (long elapsedTime)
     {
 
-        if (myState != null) myState.excuteBehavior(this);
+        if (myState != null) myState.excuteBehavior(this, elapsedTime);
         else
         {
-            for (Attribute attribute : myAttributes)
-            {
+            updateUpdateableAttributes(elapsedTime);
 
-                if (attribute.getClass().getInterfaces().length != 0 &&
-                    attribute.getClass().getInterfaces()[0].equals(Updateable.class))
+        }
+
+    }
+
+
+    public void updateUpdateableAttributes (long elapsedTime)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+
+            if (attribute.getClass().getInterfaces().length != 0)
+            {
+                for (Class<?> myInterface : attribute.getClass()
+                                                     .getInterfaces())
                 {
-                    ((Updateable) attribute).update(elapsedTime);
+                    if (myInterface.equals(Updateable.class))
+                    {
+                        ((Updateable) attribute).update(elapsedTime);
+                    }
                 }
             }
         }
-
     }
 
 
@@ -211,7 +243,6 @@ public class Enemy extends GameCharacter
     {
         myState = state;
     }
-
 
     public String getName ()
     {
@@ -244,15 +275,21 @@ public class Enemy extends GameCharacter
         {
             e.setState(myState);
         }
+        e.setGroup(this.getGroup());
         return e;
     }
-    
-     public boolean equals(Object o){
-        try{
+
+
+    public boolean equals (Object o)
+    {
+        try
+        {
+
             Enemy toCompare = ((Enemy) o);
             return toString().equals(toCompare.toString());
         }
-        catch(ClassCastException e){
+        catch (ClassCastException e)
+        {
             return false;
         }
     }
@@ -301,26 +338,28 @@ public class Enemy extends GameCharacter
         try
         {
 
-        Map<String, String> attributeMap = gson.fromJson(paramList.get(4), collectionType2);
-        System.out.println("attribute map: "+attributeMap);
-        for(String attributeClassName: attributeMap.keySet())
-        {
-            
-            Class attributeClass;
-            
-                attributeClass = Class.forName(attributeClassName.substring(6));
-            
-            String attributeJson = attributeMap.get(attributeClassName);
-            Class typeList[] = new Class[1];
-            typeList[0] = String.class;
-            Method method = attributeClass.getMethod("fromJson", typeList);
-            Attribute attribute = (Attribute) method.invoke(null, attributeJson);
-            sprite.addAttribute(attribute);
+            Map<String, String> attributeMap =
+                gson.fromJson(paramList.get(4), collectionType2);
+            System.out.println("attribute map: " + attributeMap);
+            for (String attributeClassName : attributeMap.keySet())
+            {
 
-        }
+                Class attributeClass;
+
+                attributeClass = Class.forName(attributeClassName.substring(6));
+
+                String attributeJson = attributeMap.get(attributeClassName);
+                Class typeList[] = new Class[1];
+                typeList[0] = String.class;
+                Method method = attributeClass.getMethod("fromJson", typeList);
+                Attribute attribute =
+                    (Attribute) method.invoke(null, attributeJson);
+                sprite.addAttribute(attribute);
+
+            }
             return sprite;
         }
-        
+
         catch (ClassNotFoundException e)
         {
             e.printStackTrace();
@@ -349,4 +388,5 @@ public class Enemy extends GameCharacter
 
     }
 
- }
+    
+}

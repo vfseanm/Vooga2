@@ -1,8 +1,5 @@
 package platforms.platformtypes;
 
-import com.golden.gamedev.object.collision.CollisionGroup;
-
-import enemies.Enemy;
 
 
 
@@ -76,16 +73,10 @@ public class SideToSidePlatform extends DecoratedPlatform {
            return new SideToSidePlatform(toWrap);
            
        }
+	   
+	    public static AbstractPlatform fromJson(String json)
+	    {
+	        return AbstractPlatform.fromJson(json);
+	    }
 
-	@Override
-	protected void releaseItem() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void doBreak() {
-		// TODO Auto-generated method stub
-		
-	}
 }

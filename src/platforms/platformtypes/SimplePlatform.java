@@ -62,18 +62,13 @@ public class SimplePlatform extends AbstractPlatform {
 		imageNames.addAll(this.getImageNames());
 		SimplePlatform e = new SimplePlatform(this.getX(), this.getY(),
 				imageNames);
+		e.setGroup(this.getGroup());
 		return e;
 	}
+	
+	   public static AbstractPlatform fromJson(String json)
+	    {
+	        return AbstractPlatform.fromJson(json);
+	    }
 
-	@Override
-	protected void releaseItem() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void doBreak() {
-		// TODO Auto-generated method stub
-		
-	}
 }

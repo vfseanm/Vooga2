@@ -1,11 +1,13 @@
 package platforms.platformtypes;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import collisions.CustomActionPerformer;
 
-import com.golden.gamedev.object.collision.CollisionGroup;
-
-import enemies.Enemy;
 
 
 import java.util.ResourceBundle;
@@ -21,9 +23,8 @@ import sprite.AnimatedGameSprite;
 public abstract class AbstractPlatform extends AnimatedGameSprite {
 
 	private static final long serialVersionUID = 1483938382856783084L;
-	protected ResourceBundle myPlatformResources = ResourceBundle
-			.getBundle("platforms.PlatformResourceBundle");
-
+	transient protected ResourceBundle myPlatformResources = ResourceBundle
+    .getBundle("platforms.PlatformResourceBundle");;
 	/**
 	 * Super constructor used for a simple platform
 	 * 
@@ -39,12 +40,16 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 
 	protected AbstractPlatform(double x, double y, List<String> imageSources) {
 		super(x, y, imageSources);
+		/*myPlatformResources = ResourceBundle
+        .getBundle("platforms.PlatformResourceBundle");*/
 	}
 
 	/**
 	 * Super constructor used for decorated platforms
 	 */
 	protected AbstractPlatform() {
+	    myPlatformResources = ResourceBundle
+        .getBundle("platforms.PlatformResourceBundle");
 	}
 
 	/**
@@ -58,35 +63,83 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	 */
 	protected abstract void doBehavior(double speed, double distance);
 	
-	protected abstract void releaseItem();
-	
-	protected abstract void doBreak();
-	
 	public abstract Object clone();
 	
-	
-	public void standardAction (AnimatedGameSprite sprite1, int collisionType){ 	
-		if (collisionType == CollisionGroup.TOP_BOTTOM_COLLISION){
-			if ( (sprite1.getX() >= (this.getX() - sprite1.getWidth() ))
-					&& ((sprite1.getX() + sprite1.getWidth()) <= this.getX()+ this.getWidth() + sprite1.getWidth()) ){
-				sprite1.setY(this.getY()-sprite1.getHeight()-1);
-				if (sprite1 instanceof Enemy){
-					((Enemy)sprite1).restoreOriginalAttribute("JumpingMovement");	
-				}
-			}
-		}
-		
-		if (sprite1 instanceof Enemy){
-			if ((collisionType!=CollisionGroup.TOP_BOTTOM_COLLISION) && (collisionType!=CollisionGroup.BOTTOM_TOP_COLLISION))
-				((Enemy)sprite1).invertAttribute("OneDirectionMovement");
-			if(collisionType == CollisionGroup.BOTTOM_TOP_COLLISION){
-				((Enemy)sprite1).allowAttribute("JumpingMovement", false);
-			}
-		}
-	}
-	
-	public void action (AnimatedGameSprite sprite1, int collisionType, CustomActionPerformer act){
-		this.standardAction (sprite1, collisionType);
-		customAction (sprite1, this, collisionType, act); 
-	}
+
+    public String toJson()
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>()
+        {}.getType();
+        List<String> paramList = new ArrayList<String>();
+        paramList.add(gson.toJson(this.getImageNames()));
+        paramList.add(this.getGroup());
+        paramList.add(this.getX() + "");
+        paramList.add(this.getY() + "");
+        if(!this.getClass().equals(SimplePlatform.class))
+        {
+            List<String> classNames = new ArrayList<String>();
+            for(Class c: ((DecoratedPlatform) this).getClassesOfDecorators())
+            {
+                classNames.add(c.toString());
+            }
+            paramList.add(gson.toJson(classNames));
+        }
+        else
+        {
+            paramList.add(gson.toJson(new ArrayList<String>()));
+        }
+        return gson.toJson(paramList);
+        
+    }
+    
+    public static AbstractPlatform fromJson(String json){
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<String>>()
+        {}.getType();
+        Type collectionType2 = new TypeToken<List<Class>>()
+        {}.getType();
+
+        List<String> paramList = gson.fromJson(json, collectionType);
+        List<String> imageNames =
+            gson.fromJson(paramList.get(0), collectionType);
+        String groupName = paramList.get(1);
+        double x = Double.parseDouble(paramList.get(2));
+        double y = Double.parseDouble(paramList.get(3));
+        List<String> classList = gson.fromJson(paramList.get(4), collectionType);
+        AbstractPlatform platform = new SimplePlatform(x, y, imageNames);
+        platform.setGroup(groupName);
+        Object[] list = new Object[1];
+        list[0] = platform;
+        for(String wrappingClass: classList)
+        {
+                
+            
+                try {
+                    Class attributeClass = Class.forName(wrappingClass.substring(6));
+                    Constructor constructor=  attributeClass.getConstructors()[0];
+                    platform = (DecoratedPlatform) constructor.newInstance(list);
+                } catch (IllegalArgumentException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e)
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                list[0] = platform;
+            
+        
+        }
+        return platform;
+    }
 }

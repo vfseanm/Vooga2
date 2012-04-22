@@ -1,6 +1,5 @@
 package platforms.platformtypes;
 
- import collisions.CustomActionPerformer;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
 
@@ -84,13 +83,6 @@ public class BreakablePlatform extends DecoratedPlatform {
 		setActive(false);
 	}
  	
-	public void action (Enemy sprite1, int collisionType, CustomActionPerformer act){
-		standardAction (sprite1, collisionType);
-		if (collisionType == CollisionGroup.BOTTOM_TOP_COLLISION){
-			this.doBreak();
-		}
-		customAction (sprite1, this, collisionType, act); 
-	}
 	/**
 	 * Used in saving platforms in the level editor this method creates a string
 	 * representing this platform class as well as the platforms that it
@@ -107,5 +99,10 @@ public class BreakablePlatform extends DecoratedPlatform {
 		AbstractPlatform toWrap = null;
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new BreakablePlatform(toWrap);
+	}
+	
+	public static AbstractPlatform fromJson(String json)
+	{
+	    return AbstractPlatform.fromJson(json);
 	}
 }

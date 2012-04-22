@@ -4,12 +4,14 @@ package editor.buttons;
 import com.golden.gamedev.gui.TButton;
 
 import editor.EditorView;
+import editor.file.LevelLoader;
 
 
 public class OpenButton extends TButton
 {
 
     EditorView myGame;
+    LevelLoader myLoader;
 
 
     public OpenButton (String name,
@@ -17,16 +19,18 @@ public class OpenButton extends TButton
                        int y,
                        int width,
                        int height,
-                       EditorView s)
+                       EditorView s,
+                       LevelLoader loader)
     {
         super(name, x, y, width, height);
         myGame = s;
+        myLoader = loader;
     }
 
 
     public void doAction ()
     {
-        myGame.openFile();
+        myGame.openFile(myLoader);
 
     }
 
