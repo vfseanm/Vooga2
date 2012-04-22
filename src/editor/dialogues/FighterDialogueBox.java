@@ -105,7 +105,8 @@ public class FighterDialogueBox extends DialogueBox{
         ArrayList<String> imagePaths = new ArrayList<String>();
         Fighter fighter = Fighter.getInstance();
         fighter.setLocation(50, 50);
-        fighter.setImageNames(myImagePaths);
+        
+        fighter.setImageNamesandImages(myImagePaths);
         
         for(Attribute attribute: attributes)
         {

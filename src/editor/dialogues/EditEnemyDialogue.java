@@ -98,12 +98,16 @@ public class EditEnemyDialogue extends DialogueBox {
     Enemy enemy = new Enemy(myX,
             myY,
             myImagePaths);
+    System.out.println("old group name: "+mySprite.getGroup());
+    enemy.setGroup(mySprite.getGroup());
+    System.out.println("group name: "+enemy.getGroup());
     for(Attribute a: attributes)
     {
         
         
         enemy.addAttribute(a);
     }
+    
     
     if(!myGroup.getText().equals(""))
     {

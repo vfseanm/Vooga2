@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+
 import editor.Level;
 
 public class JsonLevelWriter extends LevelWriter {
