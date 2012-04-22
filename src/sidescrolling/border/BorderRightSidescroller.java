@@ -2,10 +2,8 @@ package sidescrolling.border;
  
 
 import sidescrolling.Sidescroller;
-
 import com.golden.gamedev.object.Sprite;
 
-import fighter.Fighter;
 
 /**
  * This object allows for normal sidescrolling in the right direction. A border will be created that when the 
@@ -25,7 +23,7 @@ public class BorderRightSidescroller extends BorderSidescroller {
      */
     public BorderRightSidescroller(Sidescroller scroller, double offsetFromRight) {
         super(scroller);
-        boundary = getGame().getWidth() - offsetFromRight - getFighter().getWidth();
+        boundary = getGameWidth() - offsetFromRight - fighter.getWidth();
     }
     
     /**
@@ -33,9 +31,8 @@ public class BorderRightSidescroller extends BorderSidescroller {
      * right border and the right key is being held down.
      */
     public void move(Sprite sprite) {
-        Fighter fighter = getFighter();
         if (fighter.getX() >= boundary) {
-            sprite.moveX(-getFighter().getMovement()[0]);
+            sprite.moveX(-fighter.getMovement()[0]);
             fighter.setX(boundary);
         }
     }

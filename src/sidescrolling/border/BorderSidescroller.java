@@ -1,9 +1,6 @@
 package sidescrolling.border;
 
 import sidescrolling.DecoratedSidescroller;
-
-
-
 import sidescrolling.Sidescroller;
 
 
@@ -17,7 +14,7 @@ import sidescrolling.Sidescroller;
  *
  */
 public abstract class BorderSidescroller extends DecoratedSidescroller {
-    
+        
     /**
      * Creates a new BorderSidescroller.
      * @param scroller - an already created sidescroller

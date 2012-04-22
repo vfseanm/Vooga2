@@ -23,14 +23,14 @@ public class ShiftRightSidescroller extends ShiftSidescroller {
      * moves a sprite to the left by the width of the screen.
      */
     public void move(Sprite sprite) {
-        sprite.setX(sprite.getX() - getGame().getWidth());
+        sprite.setX(sprite.getX() - getGameWidth());
     }
     
     /**
      * @returns true if the fighter moves off the right side of the screen
      */
     public boolean fighterOffCorrectSide() {
-        return getFighter().getX() >= getGame().getWidth();
+        return fighter.getX() >= getGameWidth();
     }
     
 }

@@ -2,8 +2,6 @@ package sidescrolling.border;
 
 import sidescrolling.Sidescroller;
 
-import fighter.Fighter;
-
 import com.golden.gamedev.object.Sprite;
 
 /**
@@ -28,7 +26,7 @@ public class BorderDownSidescroller extends BorderSidescroller {
      */
     public BorderDownSidescroller(Sidescroller scroller, double offsetFromBottom) {
         super(scroller);
-        boundary = getGame().getHeight() - offsetFromBottom - getFighter().getHeight();
+        boundary = getGameHeight() - offsetFromBottom - fighter.getHeight();
     }
 
     /**
@@ -36,9 +34,8 @@ public class BorderDownSidescroller extends BorderSidescroller {
      * the fighter is on the bottom border.
      */
     public void move(Sprite sprite) {
-        Fighter fighter = getFighter();
         if (fighter.getY() >= boundary) {
-            sprite.moveY(-getFighter().getMovement()[1]);
+            sprite.moveY(-fighter.getMovement()[1]);
             fighter.setY(boundary);
         }
     }
