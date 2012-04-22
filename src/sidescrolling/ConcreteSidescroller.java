@@ -1,7 +1,11 @@
 package sidescrolling;
 
+import java.util.ArrayList;
+
+
+import sprite.AnimatedGameSprite;
+
 import com.golden.gamedev.Game;
-import com.golden.gamedev.object.SpriteGroup;
 
 import fighter.Fighter;
 
@@ -14,19 +18,19 @@ import fighter.Fighter;
 public class ConcreteSidescroller implements Sidescroller {
 
     private Fighter myFighter;
-    private SpriteGroup[] myGroups;
+    private ArrayList<AnimatedGameSprite> mySprites;
     private Game myGame;
     
     /**
      * Creates a new ConcreteSidescroller.
      * @param game - the main game.
      * @param character - the Fighter that the sidescroller uses.
-     * @param groups - an array of SpriteGroups containing sprites that the sidescroller must move.
+     * @param sprites - an arrayList of Sprites that the sidescroller must move.
      */
-    public ConcreteSidescroller(Game game, Fighter character, SpriteGroup...groups) {
+    public ConcreteSidescroller(Game game, Fighter character, ArrayList<AnimatedGameSprite> sprites) {
         myGame = game;
         myFighter = character;
-        myGroups = groups;
+        mySprites = sprites;
     }
 
     /**
@@ -37,10 +41,10 @@ public class ConcreteSidescroller implements Sidescroller {
     }
     
     /**
-     * returns the list of SpriteGroups the ConcreteSidescroller holds.
+     * returns the list of AnimatedGameSprites the ConcreteSidescroller holds.
      */
-    public SpriteGroup[] getSpriteGroups() {
-        return myGroups;
+    public ArrayList<AnimatedGameSprite> getSprites() {
+        return mySprites;
     }
     
     /**

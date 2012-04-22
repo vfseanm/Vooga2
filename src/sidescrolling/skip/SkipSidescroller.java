@@ -20,7 +20,7 @@ public abstract class SkipSidescroller extends DecoratedSidescroller {
     public void update(long elapsedTime) {
         if (fighterOffCorrectSide()) {
             move(getFighter());
-            updateGroups();
+            updateSprites();
         }
         super.update(elapsedTime);
     }
