@@ -1,9 +1,12 @@
 package editor;
 
+import java.awt.HeadlessException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import attributes.Attribute;
@@ -33,7 +36,34 @@ public class CustomizedInput {
                 {
                     if(!(paramTypes[i].equals(int.class) || paramTypes[i].equals(int.class) || paramTypes[i].equals(String.class) || paramTypes[i].equals(double.class) ||paramTypes[i].toString().equals("boolean") ))
                     {
-                        JOptionPane.showMessageDialog(paramTypes[i].getPrompt());
+                        
+                        Object paramTypes[i].newInstance();
+                        
+                        Method m;
+                        try {
+                            m = paramTypes[i].getMethod("getPrompt", null);
+                            JOptionPane.showMessageDialog(null,(String)m.invoke(null, null));
+                        } catch (SecurityException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        } catch (NoSuchMethodException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        } catch (HeadlessException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        } catch (IllegalArgumentException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        } catch (IllegalAccessException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        } catch (InvocationTargetException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        		
+                        
                     }
                     String selectedValue = JOptionPane
                             .showInputDialog("What would you like the "

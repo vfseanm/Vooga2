@@ -105,13 +105,14 @@ public class AttributeSelectionPanel extends JPanel {
     private class CheckBoxListener implements ActionListener {
         Class associatedClass;
         JCheckBox box;
+        CustomizedInput input;
         
 
         public CheckBoxListener(JCheckBox b, Class c)
         {
             associatedClass = c;
             box = b;
-            CustomizedInput input = new CustomizedInput(associatedClass);
+            input = new CustomizedInput(associatedClass);
         }
 
         public void actionPerformed(ActionEvent e)

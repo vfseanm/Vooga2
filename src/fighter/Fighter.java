@@ -25,14 +25,26 @@ public class Fighter extends GameCharacter {
 
 	private List<Attribute>					myCarryableAttributes;
 	private BaseInput						myUserInput;
+	private static Fighter myself;
 	
 	
-	public Fighter(double x, double y, List<String> images) {
-		super(x, y, images);
-		myCarryableAttributes = new ArrayList<Attribute>();
-		setGroup("FIGHTER");
+//	public Fighter(double x, double y, List<String> images) {
+//		super(x, y, images);
+//		myCarryableAttributes = new ArrayList<Attribute>();
+//		setGroup("FIGHTER");
+//	}
+	private Fighter(){};
+	
+	public static Fighter getInstance()
+	{
+	    
+	    if(myself==null)
+	    {
+	        myself = new Fighter();
+	    }
+	    
+	    return myself;
 	}
-	
 	
     public void update(long elapsedTime) {
 		performAttributeActions(elapsedTime);
@@ -161,7 +173,9 @@ public class Fighter extends GameCharacter {
         String groupName = paramList.get(1);
         double x = Double.parseDouble(paramList.get(2));
         double y = Double.parseDouble(paramList.get(3));
-        Fighter sprite = new Fighter(x, y, imageNames);
+        Fighter sprite = Fighter.getInstance();
+        sprite.setLocation(x, y);
+        sprite.setImageNames(imageNames);
         sprite.setGroup(groupName);
         System.out.println("gets here");
 
