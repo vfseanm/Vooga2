@@ -34,6 +34,11 @@ public abstract class DialogueBox extends JPanel {
     
     public abstract DialogueBox clone();
     
+    public static String getText(Class c)
+    {
+        String[] classPath = c.getName().split("\\."); 
+        return classPath[classPath.length-1];
+    }
     
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
 
