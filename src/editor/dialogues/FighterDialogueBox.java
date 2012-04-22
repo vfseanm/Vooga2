@@ -103,7 +103,9 @@ public class FighterDialogueBox extends DialogueBox{
         ArrayList<Attribute> carryableAttributes = carryablePanel.getSelectedAttributes();
 
         ArrayList<String> imagePaths = new ArrayList<String>();
-        Fighter fighter = new Fighter(50, 50, myImagePaths);
+        Fighter fighter = Fighter.getInstance();
+        fighter.setLocation(50, 50);
+        fighter.setImageNames(myImagePaths);
         
         for(Attribute attribute: attributes)
         {

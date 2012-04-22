@@ -28,7 +28,7 @@ public class PassiveState implements EnemyState
 
     public void excuteBehavior (Enemy enemy, long elapsedTime)
     {
-        Fighter opponent = enemy.getFighter();
+        Fighter opponent = Fighter.getInstance();
         if (!changeState(enemy, opponent))
         ;
         enemy.updateUpdateableAttributes(elapsedTime);

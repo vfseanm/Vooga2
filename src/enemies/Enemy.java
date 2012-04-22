@@ -25,7 +25,6 @@ public class Enemy extends GameCharacter
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;
-    private Fighter myFighter;
 
 
     public Enemy (double x, double y, List<String> image)
@@ -244,19 +243,6 @@ public class Enemy extends GameCharacter
     {
         myState = state;
     }
-
-
-    public void setFighter (Fighter fighter)
-    {
-        myFighter = fighter;
-    }
-
-
-    public Fighter getFighter ()
-    {
-        return myFighter;
-    }
-
 
     public String getName ()
     {

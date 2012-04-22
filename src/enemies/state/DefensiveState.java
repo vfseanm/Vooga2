@@ -26,7 +26,7 @@ public class DefensiveState implements EnemyState
 
     public void excuteBehavior (Enemy enemy, long elapsedTime)
     {
-        Fighter fighter = enemy.getFighter();
+        Fighter fighter = Fighter.getInstance();
         if(!changeState(enemy, fighter)){
             if(enemy.getY()>fighter.getY()){
                 enemy.setY(enemy.getY()-1);

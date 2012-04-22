@@ -25,7 +25,7 @@ public class GameCollisionManager{
 					if ( CollisionChecker(sprite1, sprite2) ){
 						int side = SideChecker (sprite1, sprite2);
 						CollisionSpec cspec = traverseSpec (sprite1, sprite2); 	
-						takeAction (cspec, sprite1, sprite2, side);
+						performAction (cspec, sprite1, sprite2, side);
 					}
 				}
 			}
@@ -87,7 +87,7 @@ public class GameCollisionManager{
 		return null;
 	}
 
-	private void takeAction (CollisionSpec cspec, AnimatedGameSprite sp1, AnimatedGameSprite sp2, int side){
+	private void performAction (CollisionSpec cspec, AnimatedGameSprite sp1, AnimatedGameSprite sp2, int side){
 		if (cspec!=null){
 			ArrayList<String> tempList1 = cspec.returnActMap().get(sp1.getGroup());
 			ArrayList<String> tempList2 = cspec.returnActMap().get(sp2.getGroup());

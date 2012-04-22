@@ -22,6 +22,8 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 		super(x, y, images);
 		myAttributes = new ArrayList<Attribute>();
 	}
+	
+	protected GameCharacter(){};
 
 	
 	public boolean hasAttributeByName(String name) {

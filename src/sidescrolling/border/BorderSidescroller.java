@@ -30,7 +30,7 @@ public abstract class BorderSidescroller extends DecoratedSidescroller {
      * Updates this sidescroller by telling all sprites to move.
      */
     public void update(long elapsedTime) {
-        updateGroups();
+        updateSprites();
         super.update(elapsedTime);
     }
         

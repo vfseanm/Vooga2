@@ -1,8 +1,11 @@
 package sidescrolling;
 
-import com.golden.gamedev.Game;
-import com.golden.gamedev.object.*;
+import java.util.ArrayList;
 
+
+import sprite.AnimatedGameSprite;
+
+import com.golden.gamedev.Game;
 
 import fighter.Fighter;
 
@@ -22,9 +25,9 @@ public interface Sidescroller {
     public void update(long elapsedTime);
     
     /**
-     * @return the list of SpriteGroups in the ConcreteSidescroller
+     * @return the list of Sprites in the ConcreteSidescroller
      */
-    public SpriteGroup[] getSpriteGroups();
+    public ArrayList<AnimatedGameSprite> getSprites();
     
     /**
      * 
