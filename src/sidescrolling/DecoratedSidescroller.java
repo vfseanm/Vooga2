@@ -1,13 +1,8 @@
 package sidescrolling;
 
 import java.util.ArrayList;
-
-
 import sprite.AnimatedGameSprite;
-
-import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
-
 import fighter.Fighter;
 
 /**
@@ -52,10 +47,17 @@ public abstract class DecoratedSidescroller implements Sidescroller {
     }
 
     /**
-     * Gets the Game from the ConcreteSidescroller
+     * Gets the width of the game from the ConcreteSidescroller
      */
-    public Game getGame() {
-        return wrappedScroller.getGame();
+    public int getGameWidth() {
+        return wrappedScroller.getGameWidth();
+    }
+    
+    /**
+     * Gets the height of the game from the ConcreteSidescroller
+     */
+    public int getGameHeight() {
+        return wrappedScroller.getGameHeight();
     }
 
     /**

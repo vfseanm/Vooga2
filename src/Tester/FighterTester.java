@@ -82,19 +82,19 @@ public class FighterTester extends Game{
         allSprites.add(p2);
         allSprites.add(p3);
         allSprites.add(p4);
-        sidescroller = new ConcreteSidescroller(this, allSprites);
-        //sidescroller = new BorderLeftSidescroller(sidescroller, 100);
-        //sidescroller = new BorderRightSidescroller(sidescroller, 100);
-        //sidescroller = new BorderUpSidescroller(sidescroller, 100);
-        //sidescroller = new BorderDownSidescroller(sidescroller, 100);
+        sidescroller = new ConcreteSidescroller(this.getWidth(), this.getHeight(), allSprites);
+        sidescroller = new BorderLeftSidescroller(sidescroller, 100);
+        sidescroller = new BorderRightSidescroller(sidescroller, 100);
+        sidescroller = new BorderUpSidescroller(sidescroller, 100);
+        sidescroller = new BorderDownSidescroller(sidescroller, 100);
         //sidescroller = new ForcedDownSidescroller(sidescroller, 0.2);
         //sidescroller = new ForcedUpSidescroller(sidescroller, -1.0);
         //sidescroller = new ForcedRightSidescroller(sidescroller, 1.0);
         //sidescroller = new ForcedLeftSidescroller(sidescroller, -1.0);
-        sidescroller = new ShiftRightSidescroller(sidescroller);
-        sidescroller = new ShiftLeftSidescroller(sidescroller);
-        sidescroller = new ShiftUpSidescroller(sidescroller);
-        sidescroller = new ShiftDownSidescroller(sidescroller);
+        //sidescroller = new ShiftRightSidescroller(sidescroller);
+        //sidescroller = new ShiftLeftSidescroller(sidescroller);
+        //sidescroller = new ShiftUpSidescroller(sidescroller);
+        //sidescroller = new ShiftDownSidescroller(sidescroller);
     }
     
     public void render (Graphics2D pen) {

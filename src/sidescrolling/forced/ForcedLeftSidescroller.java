@@ -26,7 +26,7 @@ public class ForcedLeftSidescroller extends ForcedSidescroller {
             throw new RuntimeException("You must choose a negative number.");
         }
         forcedLeftSpeed = speed;
-        rightBorder = getGame().getWidth();
+        rightBorder = getGameWidth();
     }
 
     /**

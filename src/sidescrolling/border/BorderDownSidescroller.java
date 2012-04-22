@@ -26,7 +26,7 @@ public class BorderDownSidescroller extends BorderSidescroller {
      */
     public BorderDownSidescroller(Sidescroller scroller, double offsetFromBottom) {
         super(scroller);
-        boundary = getGame().getHeight() - offsetFromBottom - fighter.getHeight();
+        boundary = getGameHeight() - offsetFromBottom - fighter.getHeight();
     }
 
     /**

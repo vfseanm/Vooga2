@@ -23,7 +23,7 @@ public class ShiftUpSidescroller extends ShiftSidescroller {
      * moves a sprite to the down by the height of the screen.
      */
     public void move(Sprite sprite) {
-        sprite.setY(sprite.getY() + getGame().getHeight());
+        sprite.setY(sprite.getY() + getGameHeight());
     }
     
     /**

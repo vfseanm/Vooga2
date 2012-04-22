@@ -23,7 +23,7 @@ public class BorderRightSidescroller extends BorderSidescroller {
      */
     public BorderRightSidescroller(Sidescroller scroller, double offsetFromRight) {
         super(scroller);
-        boundary = getGame().getWidth() - offsetFromRight - fighter.getWidth();
+        boundary = getGameWidth() - offsetFromRight - fighter.getWidth();
     }
     
     /**
