@@ -120,10 +120,10 @@ public class AttributeSelectionPanel extends JPanel {
         public void actionPerformed(ActionEvent e)
         {
             
-            if (box.isSelected())
-            {
-                input.run();
-            }
+//            if (box.isSelected())
+//            {
+//                input.run();
+//            }
                 Constructor constructor = getAnnotatedConstructor(associatedClass);
                 Annotation a = constructor.getAnnotation(editorConstructor.class);
                 String[] paramNames = ((editorConstructor) a).parameterNames();
