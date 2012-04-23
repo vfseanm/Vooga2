@@ -127,6 +127,11 @@ public class Fighter extends GameCharacter {
 		return horizVertMovement;
 	}
 	
+	public List<Attribute> getCarryableAttributes()
+	{
+	    return myCarryableAttributes;
+	}
+	
 	
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;

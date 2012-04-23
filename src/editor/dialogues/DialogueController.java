@@ -32,11 +32,13 @@ public class DialogueController {
     
     public void setRightClickSprite(AnimatedGameSprite sprite)
     {
-        currentInput.setRightClickSprite(sprite);
+        if(currentInput!=null)
+            currentInput.setRightClickSprite(sprite);
     }
     public void setLeftClickSprite(AnimatedGameSprite sprite)
     {
-        currentInput.setLeftClickSprite(sprite);
+        if(currentInput!=null)
+            currentInput.setLeftClickSprite(sprite);
     }
     
     

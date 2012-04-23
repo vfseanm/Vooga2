@@ -175,14 +175,13 @@ public class Level implements Serializable{
         }
         if(!backgroundImagePath.equals(""))
         {
-        myBackground.setImage(loader.getImage(backgroundImagePath));
+            myBackground.setImage(loader.getImage(backgroundImagePath));
         }
         if(myFighter!=null)
         {
         BufferedImage[] images = new BufferedImage[myFighter.getImageNames().size()];
         for(int i=0; i<images.length; i++)
         {
-            //System.out.println("image names: "+s.getImageNames());
             images[i] = loader.getImage(myFighter.getImageNames().get(i));
         }
         myFighter.setImages(images);
@@ -200,11 +199,7 @@ public class Level implements Serializable{
         return myBackground;
     }
     
-    public Fighter getFighter()
-    {
-        return myFighter;
-    }
-    
+
     public void addFramework(Framework f)
     {
         frameworks.add(f);

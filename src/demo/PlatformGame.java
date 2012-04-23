@@ -43,7 +43,7 @@ public abstract  class PlatformGame extends Game {
 
         mySprites = (ArrayList<AnimatedGameSprite>) myLevel.getSprites();
         ImageBackground myBackground = myLevel.getBackground();
-        myFighter = myLevel.getFighter();
+        myFighter = Fighter.getInstance();
         
         if(myFighter!=null)
         {
