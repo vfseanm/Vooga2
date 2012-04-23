@@ -25,8 +25,6 @@ public class BorderRightSidescroller extends BorderSidescroller {
         super(scroller);
         boundary = getGameWidth() - Double.parseDouble(mySidescrollerResources.getString("OffsetFromRight")) 
                 - fighter.getWidth();
-        System.out.println(getGameWidth());
-        System.out.println(boundary);
     }
     
     /**
