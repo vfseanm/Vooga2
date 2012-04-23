@@ -14,6 +14,7 @@ import editor.dialogues.EnemyDialogueBox;
 import editor.dialogues.ExtendedDialogueBox;
 import editor.dialogues.PlatformDialogueBox;
 import editor.dialogues.PowerupDialogueBox;
+import editor.dialogues.WildandCrazyDialogueBox;
 import enemies.Enemy;
 
 public class CustomizedEditor extends EditorView{
@@ -39,7 +40,7 @@ public class CustomizedEditor extends EditorView{
         l4.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l4);
         
-        DialogueOpeningButton custom = new DialogueOpeningButton("Customized dialogue", 125, 350, 150, 40, this, new ExtendedDialogueBox(myController));
+        DialogueOpeningButton custom = new DialogueOpeningButton("Customized dialogue", 125, 350, 150, 40, this, new WildandCrazyDialogueBox(myController));
         infoBox.add(custom);
         
         DialogueOpeningButton newpowerUpButton = new DialogueOpeningButton("Create Power-Up", 125, 450, 150, 40, this, new PowerupDialogueBox(myController));
@@ -56,12 +57,21 @@ public class CustomizedEditor extends EditorView{
 
     public void update(long time) {
         updateEditor(time);
+        
         if(currentDialogueBox!=null)
         {
             if (bsInput.isMouseDown(MouseEvent.BUTTON1))
-                currentDialogueBox.setXY(this.getMouseX(), this.getMouseY());
-            System.out.println("left click:" + getClickedSprite());
-            System.out.println("right click:" + getRightClickedSprite());
+            {
+                currentDialogueBox.setClick(this.getMouseX(), this.getMouseY());
+            }
+            if(getRightClickedSprite()!=null)
+            {
+                currentDialogueBox.setRightClickSprite(getRightClickedSprite());
+            }
+            if(getRightClickedSprite()!=null)
+            {
+                currentDialogueBox.setLeftClickSprite(getRightClickedSprite());
+            }
         }
         if(getRightClickedSprite()!=null)
         {

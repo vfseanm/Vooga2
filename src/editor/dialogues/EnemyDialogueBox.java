@@ -29,6 +29,7 @@ public class EnemyDialogueBox extends DynamicBox {
     private AttributeSelectionPanel attributePanel;
     private JTextField myName;
     private JTextField myGroup;
+    
 
 
     public EnemyDialogueBox(EditorController m)
@@ -45,7 +46,7 @@ public class EnemyDialogueBox extends DynamicBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, controller);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
        
@@ -99,16 +100,7 @@ public class EnemyDialogueBox extends DynamicBox {
         System.out.println("framework's attributes" + attributes);
         return framework;
     }
-    class GoAction implements ActionListener {       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            Framework framework = getFramework();
-            System.out.println("framework "+framework);
-            myController.addButton(myName.getText(), framework);
-            setVisible(false);
-        }
-    }
+
 
     public DialogueBox clone() {
         return new EnemyDialogueBox(myController);

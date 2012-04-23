@@ -1,7 +1,8 @@
 package sidescrolling;
 
+
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.List;
 
 import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.*;
@@ -19,12 +20,11 @@ import fighter.Fighter;
  * @author Dustin
  * 
  */
-public abstract class DecoratedSidescroller implements Sidescroller {
+@SuppressWarnings("serial")
+public abstract class DecoratedSidescroller extends Sidescroller  {
 
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
-    transient protected ResourceBundle mySidescrollerResources = ResourceBundle
-            .getBundle("sidescrolling.SidescrollerResourceBundle");;
 
     /**
      * Creates a new DecoratedSidescroller
@@ -85,6 +85,17 @@ public abstract class DecoratedSidescroller implements Sidescroller {
     public void setSprites(ArrayList<AnimatedGameSprite> sprites)
     {
         wrappedScroller.setSprites(sprites);
+    }
+    
+    public List<Class> getClassesOfDecorators()
+    {
+        List<Class> classList = new ArrayList<Class>();
+        classList.add(this.getClass());
+        if(!wrappedScroller.getClass().equals(ConcreteSidescroller.class))
+        {
+            classList.addAll(((DecoratedSidescroller) wrappedScroller).getClassesOfDecorators());
+        }
+        return classList;       
     }
 
 }

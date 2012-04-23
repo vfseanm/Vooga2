@@ -82,19 +82,20 @@ public class FighterTester extends Game{
         allSprites.add(p2);
         allSprites.add(p3);
         allSprites.add(p4);
-        sidescroller = new ConcreteSidescroller(this.getWidth(), this.getHeight(), allSprites);
+        sidescroller = new ConcreteSidescroller();
+        sidescroller.setSprites(allSprites);
         //sidescroller = new BorderLeftSidescroller(sidescroller);
         //sidescroller = new BorderRightSidescroller(sidescroller);
         //sidescroller = new BorderUpSidescroller(sidescroller);
         //sidescroller = new BorderDownSidescroller(sidescroller);
         //sidescroller = new ForcedDownSidescroller(sidescroller);
-        sidescroller = new ForcedUpSidescroller(sidescroller);
+        //sidescroller = new ForcedUpSidescroller(sidescroller);
         //sidescroller = new ForcedRightSidescroller(sidescroller);
-        sidescroller = new ForcedLeftSidescroller(sidescroller);
-        //sidescroller = new ShiftRightSidescroller(sidescroller);
-        //sidescroller = new ShiftLeftSidescroller(sidescroller);
-        //sidescroller = new ShiftUpSidescroller(sidescroller);
-        //sidescroller = new ShiftDownSidescroller(sidescroller);
+        //sidescroller = new ForcedLeftSidescroller(sidescroller);
+        sidescroller = new ShiftRightSidescroller(sidescroller);
+        sidescroller = new ShiftLeftSidescroller(sidescroller);
+        sidescroller = new ShiftUpSidescroller(sidescroller);
+        sidescroller = new ShiftDownSidescroller(sidescroller);
     }
     
     public void render (Graphics2D pen) {

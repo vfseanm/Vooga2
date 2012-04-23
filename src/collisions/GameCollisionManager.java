@@ -17,7 +17,7 @@ public class GameCollisionManager{
 		specList.addAll(gs);
 	}
 
-	public void detectCollision (ArrayList<AnimatedGameSprite> spriteList){
+	public void detectCollision (List<AnimatedGameSprite> spriteList){
 		HashMap<AnimatedGameSprite, ArrayList<AnimatedGameSprite>> checkList = 
 				new HashMap<AnimatedGameSprite, ArrayList<AnimatedGameSprite>>();
 		for (AnimatedGameSprite sprite1: spriteList){

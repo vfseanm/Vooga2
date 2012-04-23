@@ -101,8 +101,5 @@ public class BreakablePlatform extends DecoratedPlatform {
 		return new BreakablePlatform(toWrap);
 	}
 	
-	public static AbstractPlatform fromJson(String json)
-	{
-	    return AbstractPlatform.fromJson(json);
-	}
+
 }

@@ -99,9 +99,6 @@ public class RotatingPlatform extends DecoratedPlatform {
 		return new RotatingPlatform(toWrap);
 	}
 	
-	public static AbstractPlatform fromJson(String json)
-    {
-        return AbstractPlatform.fromJson(json);
-    }
+
 
 }

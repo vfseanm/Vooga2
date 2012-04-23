@@ -59,11 +59,11 @@ public class DemoGame extends PlatformGame {
 
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec ();
-		spec.addActMap("ENEMY", "standOnTop");
-		spec.addActMap("PLATFORM", "");
+		spec.addActMap("enemy", "standOnTop");
+		spec.addActMap("platfrom", "");
         
         specList.add(spec);        
-        spec.addClass("ENEMY", EnemyAction.class);
+        spec.addClass("enemy", EnemyAction.class);
         //spec.addClass("platform", AbstractPlatform.class);
         gc = new GameCollisionManager(specList);
 		

@@ -48,14 +48,14 @@ public class PowerupDialogueBox extends DialogueBox {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800,325));
-        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch);
+        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch, controller);
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
         panel2.add(title1);
         panel2.add(powerupAttributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Attributes for the Power-Up to Give:");
-        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch);
+        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch, controller);
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(attributesToGivePanel);
