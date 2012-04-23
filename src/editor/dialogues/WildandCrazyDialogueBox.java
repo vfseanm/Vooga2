@@ -18,11 +18,11 @@ import attributes.Attribute;
 
 import editor.EditorController;
 import editor.InputListener;
-import editor.WildAndCrazyObject;
-import editor.dialogues.DialogueBox.ImageAction;
+import editor.exampleStuff.GroupofEnemies;
+import editor.exampleStuff.WildAndCrazyObject;
+import editor.exampleStuff.Zone;
 import editor.frameworks.Framework;
 import editor.input.CustomInputManager;
-import editor.input.Zone;
 import enemies.Enemy;
 
 public class WildandCrazyDialogueBox extends DialogueBox{
@@ -71,6 +71,10 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
         
+//        JButton enemyButton = new JButton("Choose my enemies ");
+//        enemyButton.addActionListener(new EnemyGroupListener());
+//        panel.add(enemyButton);
+        
         JButton formatButton = new JButton("Set up my 'zone' ");
         formatButton.addActionListener(new FormatListener());
         panel.add(formatButton);
@@ -86,7 +90,6 @@ public class WildandCrazyDialogueBox extends DialogueBox{
     }
     
     public class FormatListener implements ActionListener, InputListener {
-        Class associatedClass;
         JCheckBox box;
         CustomInputManager input;
         
@@ -94,7 +97,21 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         {
             Class c = Zone.class;
             controller.promptForInput(c, this);
+        }
+        
+        public void setObject(Object zone) {
+            myZone = (Zone) zone;
             
+        }
+    }
+    public class EnemyGroupListener implements ActionListener, InputListener {
+        JCheckBox box;
+        CustomInputManager input;
+        
+        public void actionPerformed(ActionEvent e)
+        {
+            Class c = GroupofEnemies.class;
+            controller.promptForInput(c, this);
         }
         
         public void setObject(Object zone) {

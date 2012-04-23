@@ -15,6 +15,7 @@ import sprite.AnimatedGameSprite;
 
 import editor.EditorController;
 import editor.frameworks.Framework;
+import editor.input.DialogueController;
 
 
 @SuppressWarnings("serial")

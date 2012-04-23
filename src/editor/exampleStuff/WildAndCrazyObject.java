@@ -1,4 +1,4 @@
-package editor;
+package editor.exampleStuff;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -8,32 +8,25 @@ import java.util.List;
 
 import sprite.AnimatedGameSprite;
 
-import editor.input.Zone;
 import enemies.Enemy;
 
 @SuppressWarnings("serial")
 public class WildAndCrazyObject extends AnimatedGameSprite{
     private Zone myZone;
-    private HashSet<Enemy> myEnemies;
-    private ArrayList<AnimatedGameSprite> myOtherThings;
-    private Object myNonGameObject;
     
     public WildAndCrazyObject(double x, double y, List<String> images)
     {
         super(x, y, images);
+        setGroup("WILDANDCRAZY");
     }
     public void setZone(Zone zone)
     {
         myZone = zone;
-        setGroup("WILDANDCRAZY");
     }
     
     public Object clone ()
     {
-        Zone zone = myZone; //   CHANGE THIS
-        
-       
-        
+        Zone zone = myZone;
         List<String> imageNames = new ArrayList<String>();
         imageNames.addAll(this.getImageNames());
         

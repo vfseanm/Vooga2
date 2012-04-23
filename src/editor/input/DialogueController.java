@@ -1,4 +1,4 @@
-package editor.dialogues;
+package editor.input;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -10,7 +10,7 @@ import editor.InputListener;
 import editor.Reflection;
 import editor.editorConstructor;
 import editor.AttributeSelectionPanel.CheckBoxListener;
-import editor.input.CustomInputManager;
+import editor.dialogues.DialogueBox;
 
 public class DialogueController {
     private DialogueBox myBox;
@@ -58,6 +58,8 @@ public class DialogueController {
     public void constructObject(Object[] argList)
     {
         Constructor constructor = Reflection.getAnnotatedConstructor(currentInput.getAssociatedClass());
+        System.out.println("arg list length: " + argList.length);
+        System.out.println("arg list first: " + argList[0]);
         try {
             Object object = constructor.newInstance(argList);
             currentOutput.setObject(object);                    // give this object to the attribute selection panel
