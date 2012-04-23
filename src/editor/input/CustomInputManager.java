@@ -19,7 +19,6 @@ import editor.AttributeSelectionPanel;
 import editor.Reflection;
 import editor.editorConstructor;
 import editor.AttributeSelectionPanel.CheckBoxListener;
-import editor.dialogues.DialogueController;
 
 import attributes.Attribute;
 
@@ -41,14 +40,24 @@ public class CustomInputManager {
     {
         myController = controller;
         myClass = c;
-        
+//        if (c instanceof InputType)
+//        {
+//            
+//        }
         Constructor constructor = Reflection.getAnnotatedConstructor(myClass);
         Annotation a = constructor.getAnnotation(editorConstructor.class);
         String[] paramNames = ((editorConstructor) a).parameterNames();
         paramTypes = constructor.getParameterTypes();
         
+        if(paramTypes.length ==0)
+        {
+            argList = null;
+        }
+        else
+        {
             argList = new Object[paramNames.length];
-            currentArgumentCounter = 0;
+        }
+        currentArgumentCounter = 0;
         
     }
     public void setRightClickSprite(AnimatedGameSprite sprite)
@@ -74,7 +83,11 @@ public class CustomInputManager {
             Constructor constructor = Reflection.getAnnotatedConstructor(myClass);
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
-            
+            if(paramTypes.length ==0)
+            {
+                checkAndRun();
+                return;
+            }
             
                     currentInput = null;
                     if(!(paramTypes[currentArgumentCounter].equals(int.class) || paramTypes[currentArgumentCounter].equals(int.class) || paramTypes[currentArgumentCounter].equals(String.class) || paramTypes[currentArgumentCounter].equals(double.class) ||paramTypes[currentArgumentCounter].toString().equals("boolean") ))
@@ -148,8 +161,12 @@ public class CustomInputManager {
     }
     private void checkAndRun()
     {
-        System.out.println("# of arguments" + argList.length);
-        System.out.println("adding currentInput: " + currentInput);
+        if(paramTypes.length ==0)
+        {
+            myController.constructObject(argList);
+            return;
+        }
+        
         if(currentArgumentCounter== (argList.length-1)) { // the last argument has been created
             myController.constructObject(argList);
             return;
