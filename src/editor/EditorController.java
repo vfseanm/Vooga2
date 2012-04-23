@@ -111,6 +111,7 @@ public class EditorController {
     public void setSidescrolling(Sidescroller s)
     {
         myLevel.setSidescrolling(s);
+        myView.closeFrame();
     }
 
     public void clearLevel()

@@ -87,7 +87,7 @@ public abstract class Sidescroller implements Serializable  {
         int x = Integer.parseInt(paramList.get(0));
         int y = Integer.parseInt(paramList.get(1));
         List<String> classList = gson.fromJson(paramList.get(2), collectionType);
-        Sidescroller scroller = new ConcreteSidescroller(x, y, null);
+        Sidescroller scroller = new ConcreteSidescroller(x, y);
         Object[] list = new Object[1];
         list[0] = scroller;
         for(String wrappingClass: classList)

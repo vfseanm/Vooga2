@@ -132,7 +132,7 @@ public class GameDialogue extends DialogueBox {
         int height = Integer.parseInt(myHeight.getText()); // SHOULD THERE BE A TRY CATCH?
                 
         
-        Sidescroller prototype = new ConcreteSidescroller( width, height, null);
+        Sidescroller prototype = new ConcreteSidescroller( width, height);
         Object[] list = new Object[1];
         list[0] = prototype;
         for(JCheckBox box: classMap.keySet())

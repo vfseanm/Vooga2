@@ -71,21 +71,10 @@ public class Level implements Serializable{
                 f.addSprite(newSprite);
             }
         }
-        
-        //sprites.remove(oldSprite);
-        //sprites.add(newSprite);
+
     }
     
-//    public void addSprite(AnimatedGameSprite s, Framework f)
-//    {
-//        
-//        if(!frameworks.contains(f))
-//        {
-//            frameworks.add(f);
-//        }
-//        f.addSprite(s);
-//        
-//    }
+
     public List<Framework> getFrameworks()
     {
         return Collections.unmodifiableList(frameworks);
@@ -116,7 +105,7 @@ public class Level implements Serializable{
     {
         if (mySidescroller ==null)
         {
-            mySidescroller = new ConcreteSidescroller(800, 600, null);
+            mySidescroller = new ConcreteSidescroller(800, 600);
             mySidescroller = new ForcedLeftSidescroller(mySidescroller);
         }
             
