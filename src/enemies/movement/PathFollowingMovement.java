@@ -3,6 +3,7 @@ package enemies.movement;
 import java.awt.Point;
 import java.util.List;
 import editor.editorConstructor;
+import editor.input.Line;
 import attributes.Attribute;
 import attributes.Updateable;
 
@@ -15,12 +16,15 @@ public class PathFollowingMovement extends Attribute
     private int index;
     private int increment = 1;
 
-    @editorConstructor(parameterNames = {"list of points"})
-    public PathFollowingMovement (List<Point> path)
+    @editorConstructor(parameterNames = { "", "true or false", "name" })
+    public PathFollowingMovement (Line path, boolean tf, String name)
     {
-        super(path);
-        myPath = path;
+        super(path, tf, name);
+        myPath = path.getLine();
         index = 0;
+        System.out.println("my path:" + myPath);
+        System.out.println("my boolean" + tf);
+        System.out.println("my name:" + name);
     }
 
 
@@ -80,8 +84,8 @@ public class PathFollowingMovement extends Attribute
     @Override
     public Object clone ()
     {
-       
-        return new PathFollowingMovement(myPath);
+       return null; // FIX THIS OBVIOUSLY
+        //return new PathFollowingMovement(myPath);
     }
 
 }

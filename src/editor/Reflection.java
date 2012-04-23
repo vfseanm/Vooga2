@@ -5,6 +5,7 @@ import java.io.File;
 
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -68,6 +69,24 @@ public class Reflection {
             }
         }
         return classes;
+    }
+    
+    public static Constructor getAnnotatedConstructor(Class c)
+    {
+        Constructor[] constructors = c.getConstructors();
+        Constructor constructor = null;
+        for (Constructor co : constructors)
+        {
+            if (co.isAnnotationPresent(editorConstructor.class))
+            {
+                constructor = co;
+            }
+        }
+        if (constructor == null)
+        {
+            throw new RuntimeException();
+        }
+        return constructor;
     }
     
     @SuppressWarnings("rawtypes")
