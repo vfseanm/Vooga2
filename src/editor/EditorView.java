@@ -215,7 +215,7 @@ public abstract class EditorView extends Game {
             for (AnimatedGameSprite s : myController.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
-
+                    
                 {
                     selected = s;
                 }
