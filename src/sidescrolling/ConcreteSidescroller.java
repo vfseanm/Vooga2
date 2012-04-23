@@ -1,5 +1,6 @@
 package sidescrolling;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import sprite.AnimatedGameSprite;
 
@@ -10,7 +11,7 @@ import sprite.AnimatedGameSprite;
  * @author Dustin
  *
  */
-public class ConcreteSidescroller implements Sidescroller {
+public class ConcreteSidescroller extends Sidescroller  {
 
     private ArrayList<AnimatedGameSprite> mySprites;
     private int myGameWidth;
@@ -22,10 +23,9 @@ public class ConcreteSidescroller implements Sidescroller {
      * @param height - height of the game.
      * @param sprites - an arrayList of Sprites that the sidescroller must move.
      */
-    public ConcreteSidescroller(int width, int height, ArrayList<AnimatedGameSprite> sprites) {
+    public ConcreteSidescroller(int width, int height) {
         myGameWidth = width;
         myGameHeight = height;
-        mySprites = sprites;
     }
 
     /**
