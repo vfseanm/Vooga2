@@ -1,6 +1,7 @@
 package enemies;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
 import enemies.state.EnemyState;
-import fighter.Fighter;
 
 
 /**
