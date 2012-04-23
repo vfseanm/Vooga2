@@ -1,6 +1,7 @@
 package enemies.movement;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 import editor.editorConstructor;
 import editor.input.Line;
@@ -12,19 +13,17 @@ import attributes.Updateable;
 public class PathFollowingMovement extends Attribute
     implements Updateable, Cloneable
 {
-    private List<Point> myPath;
+    private ArrayList<Point> myPath;
     private int index;
     private int increment = 1;
 
-    @editorConstructor(parameterNames = { "", "true or false", "name" })
-    public PathFollowingMovement (Line path, boolean tf, String name)
+    @editorConstructor(parameterNames = { "" })
+    public PathFollowingMovement (Line path)
     {
-        super(path, tf, name);
+        super(path);
         myPath = path.getLine();
         index = 0;
         System.out.println("my path:" + myPath);
-        System.out.println("my boolean" + tf);
-        System.out.println("my name:" + name);
     }
 
 
@@ -84,8 +83,9 @@ public class PathFollowingMovement extends Attribute
     @Override
     public Object clone ()
     {
-       return null; // FIX THIS OBVIOUSLY
-        //return new PathFollowingMovement(myPath);
+       Line l = new Line();
+       l.setLine(myPath);
+       return new PathFollowingMovement(l);
     }
 
 }

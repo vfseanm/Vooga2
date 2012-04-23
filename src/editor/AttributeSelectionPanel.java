@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 import editor.dialogues.DialogueBox;
 import editor.dialogues.DialogueController;
-import editor.input.CustomizedInput;
+import editor.input.CustomInputManager;
 
 import attributes.Attribute;
 
@@ -109,16 +109,15 @@ public class AttributeSelectionPanel extends JPanel {
         return panel;
     }
 
-    public class CheckBoxListener implements ActionListener {
+    public class CheckBoxListener implements ActionListener, InputListener {
         Class associatedClass;
         JCheckBox box;
-        CustomizedInput input;
+        CustomInputManager input;
 
         public CheckBoxListener(JCheckBox b, Class c)
         {
             associatedClass = c;
             box = b;
-            //input = new CustomizedInput(associatedClass, this);
         }
         public void setObject(Object attribute)
         {
@@ -132,71 +131,9 @@ public class AttributeSelectionPanel extends JPanel {
             if (box.isSelected())
             {
                 myController.promptForInput(associatedClass, this);
-                //input.run();
             }
         }
     }
-//                Constructor constructor = getAnnotatedConstructor(associatedClass);
-//                Annotation a = constructor.getAnnotation(editorConstructor.class);
-//                String[] paramNames = ((editorConstructor) a).parameterNames();
-//                Class[] paramTypes = constructor.getParameterTypes();
-//                Object[] argList = null;
-//                // System.out.println(paramNames.length);
-//                // System.out.println("got here");
-//                if (!paramNames[0].equals(""))
-//                {
-//                    argList = new Object[paramNames.length];
-//                    for (int i = 0; i < paramNames.length; i++)
-//                    {
-//                        String selectedValue = JOptionPane
-//                                .showInputDialog("What would you like the "
-//                                        + paramNames[i] + " to be?");
-//
-//                        if (paramTypes[i].equals(int.class))
-//                        {
-//                            argList[i] = Integer.parseInt(selectedValue);
-//                        }
-//                        if (paramTypes[i].equals(String.class))
-//                        {
-//                            argList[i] = selectedValue;
-//                        }
-//                        if (paramTypes[i].equals(double.class))
-//                        {
-//                            argList[i] = Double.parseDouble(selectedValue);
-//                        }
-//                        if (paramTypes[i].toString().equals("boolean"))
-//                        {
-//                            argList[i] = Boolean.parseBoolean(selectedValue);
-//                        }
-//                    }
-//                }
-//                Attribute att;
-//                
-//                try {
-//
-//                    att= (Attribute) constructor.newInstance(argList);
-//                    attributeInstanceMap.put(box, att);
-//                    
-//                } catch (IllegalArgumentException e1) {
-//                    // TODO Auto-generated catch block
-//                    e1.printStackTrace();
-//                } catch (InstantiationException e1) {
-//                    // TODO Auto-generated catch block
-//                    e1.printStackTrace();
-//                } catch (IllegalAccessException e1) {
-//                    // TODO Auto-generated catch block
-//                    e1.printStackTrace();
-//                } catch (InvocationTargetException e1) {
-//                    // TODO Auto-generated catch block
-//                    e1.printStackTrace();
-//                }
-//
-//                
-//            }
-
-    
-    
-    
     
     public  ArrayList<Attribute> getSelectedAttributes()
     {

@@ -6,16 +6,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import sprite.AnimatedGameSprite;
+import editor.InputListener;
 import editor.Reflection;
 import editor.editorConstructor;
 import editor.AttributeSelectionPanel.CheckBoxListener;
-import editor.input.CustomizedInput;
+import editor.input.CustomInputManager;
 
 public class DialogueController {
     private DialogueBox myBox;
     protected ArrayList<AnimatedGameSprite> selectedSprites;
-    private CustomizedInput currentInput;
-    private CheckBoxListener currentOutput;
+    private CustomInputManager currentInput;
+    private InputListener currentOutput;
     
     public DialogueController(DialogueBox box )
     {
@@ -46,16 +47,12 @@ public class DialogueController {
      * 
      * We now prompt for details: the parameters of this input as defined by the constructor of this class.
      */
-    public void promptForInput(Class c, CheckBoxListener toNotify)  
+    public void promptForInput(Class c, InputListener toNotify)  
     {
         currentOutput = toNotify;
-        currentInput = new CustomizedInput(c, this);
+        currentInput = new CustomInputManager(c, this);
         currentInput.run();
-        
-        Constructor constructor = Reflection.getAnnotatedConstructor(c);
-        Annotation a = constructor.getAnnotation(editorConstructor.class);
-        String[] paramNames = ((editorConstructor) a).parameterNames();
-        Class[] paramTypes = constructor.getParameterTypes();
+
     }
     
     public void constructObject(Object[] argList)

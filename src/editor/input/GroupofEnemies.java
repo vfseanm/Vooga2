@@ -10,33 +10,27 @@ import com.golden.gamedev.engine.BaseInput;
 
 import editor.dialogues.DialogueBox;
 
-public class Line implements InputType, Serializable{
-private ArrayList<Point> myLine;
+public class GroupofEnemies implements InputType, Serializable{
 private ArrayList<AnimatedGameSprite> mySprites;
 
 public String getPrompt()
 {
-    return "Draw a line";
+    return "Click on the enemies that you'd like to add to the group";
 }
 
-public ArrayList<Point> getLine()
+public ArrayList<AnimatedGameSprite> getEnemies()
 {
-    System.out.println("returning line!");
-    return myLine;
+    System.out.println("returning enemies:" + mySprites);
+    return mySprites;
 }
 
 
 public void setXY(int x, int y) {
-    if(mySprites==null)
-        mySprites = new ArrayList<AnimatedGameSprite>();
-    if(myLine==null)
-        myLine = new ArrayList<Point>();
-    Point p = new Point(x, y);
-    myLine.add(p);
+    return;
 }
-public void setLine(ArrayList<Point> l)
+public void setEnemies(ArrayList<AnimatedGameSprite> sprites)
 {
-    myLine = l;
+    mySprites = sprites;
 }
 
 
@@ -46,7 +40,9 @@ public void setRightClickedSprite(AnimatedGameSprite sprite) {
 
 
 public void setLeftClickedSprite(AnimatedGameSprite sprite) {
-    return;
+    if (mySprites==null)
+        mySprites = new ArrayList<AnimatedGameSprite>();
+    mySprites.add(sprite);
 }
 
 }
