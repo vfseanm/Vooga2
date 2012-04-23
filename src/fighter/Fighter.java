@@ -139,6 +139,7 @@ public class Fighter extends GameCharacter {
 	public String getName() {
 		return "Fighter";
 	}
+	
     public String toJson ()
     {
         Gson gson = new Gson();
@@ -164,7 +165,6 @@ public class Fighter extends GameCharacter {
         }
         paramList.add(gson.toJson(carryableAttributeMap));
         return gson.toJson(paramList);
-
     }
 
 
@@ -260,7 +260,6 @@ public class Fighter extends GameCharacter {
             e.printStackTrace();
         }
         return null;
-
     }
 	
 }
