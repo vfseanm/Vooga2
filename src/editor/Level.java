@@ -199,11 +199,7 @@ public class Level implements Serializable{
         return myBackground;
     }
     
-    public Fighter getFighter()
-    {
-        return myFighter;
-    }
-    
+
     public void addFramework(Framework f)
     {
         frameworks.add(f);

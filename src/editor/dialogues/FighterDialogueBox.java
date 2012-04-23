@@ -107,7 +107,12 @@ public class FighterDialogueBox extends DialogueBox{
 
         ArrayList<String> imagePaths = new ArrayList<String>();
         Fighter fighter = Fighter.getInstance();
-        fighter.setLocation(50, 50);
+        //System.out.println("fighter default location "+ fighter.getX()+"   "+ fighter.getY());
+        if(fighter.getX()==0 && fighter.getY()==0)
+        {
+            fighter.setLocation(50, 50);
+        }
+        
         
         fighter.setImageNamesandImages(myImagePaths);
         
