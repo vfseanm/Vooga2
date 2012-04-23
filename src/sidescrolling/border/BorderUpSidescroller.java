@@ -11,6 +11,7 @@ import com.golden.gamedev.object.Sprite;
  * @author Dustin
  *
  */
+@SuppressWarnings("serial")
 public class BorderUpSidescroller extends BorderSidescroller {
 
     private double boundary;

@@ -12,6 +12,7 @@ import sidescrolling.Sidescroller;
  * @author Dustin
  *
  */
+@SuppressWarnings("serial")
 public abstract class ForcedSidescroller extends DecoratedSidescroller {
     
     /**
