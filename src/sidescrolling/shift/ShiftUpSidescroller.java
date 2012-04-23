@@ -9,6 +9,7 @@ import com.golden.gamedev.object.Sprite;
  * @author Dustin
  *
  */
+@SuppressWarnings("serial")
 public class ShiftUpSidescroller extends ShiftSidescroller {
 
     /**

@@ -1,16 +1,13 @@
 package sidescrolling;
 
 import java.io.Serializable;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import platforms.platformtypes.AbstractPlatform;
-import platforms.platformtypes.DecoratedPlatform;
-import platforms.platformtypes.SimplePlatform;
-
+import java.util.ResourceBundle;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -24,8 +21,12 @@ import sprite.AnimatedGameSprite;
  * @author Dustin
  *
  */
+@SuppressWarnings("serial")
 public abstract class Sidescroller implements Serializable  {
-                 
+            
+    transient protected ResourceBundle mySidescrollerResources = ResourceBundle
+            .getBundle("sidescrolling.SidescrollerResourceBundle");
+    
     /**
      * Updates the sidescroller.
      * @param elapsedTime

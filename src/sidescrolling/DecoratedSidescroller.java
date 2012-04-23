@@ -1,12 +1,8 @@
 package sidescrolling;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-
-import platforms.platformtypes.DecoratedPlatform;
-import platforms.platformtypes.SimplePlatform;
 
 import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.*;
@@ -24,12 +20,11 @@ import fighter.Fighter;
  * @author Dustin
  * 
  */
+@SuppressWarnings("serial")
 public abstract class DecoratedSidescroller extends Sidescroller  {
 
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
-    transient protected ResourceBundle mySidescrollerResources = ResourceBundle
-            .getBundle("sidescrolling.SidescrollerResourceBundle");;
 
     /**
      * Creates a new DecoratedSidescroller

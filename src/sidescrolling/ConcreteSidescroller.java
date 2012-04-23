@@ -1,16 +1,17 @@
 package sidescrolling;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import sprite.AnimatedGameSprite;
 
 
 /**
  * This is the most basic type of usable Sidescroller. Does not actually do any sidescrolling but allows
- * for other sidescrollers to access the fighter and the sprites that need to be moved.
+ * for other sidescrollers to access the fighter and the sprites that need to be moved. You must use
+ * setSprites to determine which Sprites must be used by the sidescroller.
  * @author Dustin
  *
  */
+@SuppressWarnings("serial")
 public class ConcreteSidescroller extends Sidescroller  {
 
     private ArrayList<AnimatedGameSprite> mySprites;
@@ -23,9 +24,9 @@ public class ConcreteSidescroller extends Sidescroller  {
      * @param height - height of the game.
      * @param sprites - an arrayList of Sprites that the sidescroller must move.
      */
-    public ConcreteSidescroller(int width, int height) {
-        myGameWidth = width;
-        myGameHeight = height;
+    public ConcreteSidescroller() {
+        myGameWidth = Integer.parseInt(mySidescrollerResources.getString("gameWidth"));
+        myGameHeight = Integer.parseInt(mySidescrollerResources.getString("gameHeight"));
     }
 
     /**
