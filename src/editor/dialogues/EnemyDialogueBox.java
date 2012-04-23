@@ -100,16 +100,7 @@ public class EnemyDialogueBox extends DynamicBox {
         System.out.println("framework's attributes" + attributes);
         return framework;
     }
-    class GoAction implements ActionListener {       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            Framework framework = getFramework();
-            System.out.println("framework "+framework);
-            myController.addButton(myName.getText(), framework);
-            setVisible(false);
-        }
-    }
+
 
     public DialogueBox clone() {
         return new EnemyDialogueBox(myController);

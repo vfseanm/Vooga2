@@ -218,7 +218,7 @@ public class EditorController {
                         enemyButtonPlacement[enemyButtonCounter],
                         enemyButtonPlacement[enemyButtonCounter + 1], 50, 40,
                         framework, this);
-                enemyButtonCounter += 2;
+                enemyButtonCounter += 1;
                 myView.addButton(newButton);
             }
         } else if (framework.getType().equals("platform"))
@@ -231,7 +231,7 @@ public class EditorController {
                         platformButtonPlacement[platformButtonCounter],
                         platformButtonPlacement[platformButtonCounter + 1], 50,
                         40, framework, this);
-                platformButtonCounter += 2;
+                platformButtonCounter += 1;
                 myView.addButton(newButton);
             }
         else if (framework.getType().equals("Power-Up"))
@@ -244,10 +244,16 @@ public class EditorController {
                         powerUpButtonPlacement[powerUpButtonCounter],
                         powerUpButtonPlacement[powerUpButtonCounter + 1], 50,
                         40, framework, this);
-                powerUpButtonCounter += 2;
+                powerUpButtonCounter += 1;
                 myView.addButton(newButton);
             }
-
+        else if (framework.getType().equals("WildandCrazy"))
+        {
+            ObjectPlacingButton newButton = new ObjectPlacingButton(name,
+                    15, 590, 50,
+                    40, framework, this);
+            myView.addButton(newButton);
+        }
         myView.closeFrame();
         
     }
@@ -265,6 +271,8 @@ public class EditorController {
         myLevel.setFighter(fighter);
         myView.closeFrame();
     }
+
+
     
 
     
