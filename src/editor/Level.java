@@ -105,7 +105,7 @@ public class Level implements Serializable{
     {
         if (mySidescroller ==null)
         {
-            mySidescroller = new ConcreteSidescroller(800, 600);
+            mySidescroller = new ConcreteSidescroller();
             mySidescroller = new ForcedLeftSidescroller(mySidescroller);
         }
             

@@ -46,9 +46,15 @@ public class CustomizedInput {
         Annotation a = constructor.getAnnotation(editorConstructor.class);
         String[] paramNames = ((editorConstructor) a).parameterNames();
         paramTypes = constructor.getParameterTypes();
-        
+        if(paramTypes.length ==0)
+        {
+            argList = null;
+        }
+        else
+        {
             argList = new Object[paramNames.length];
-            currentArgumentCounter = 0;
+        }
+        currentArgumentCounter = 0;
         
     }
     public void setRightClickSprite(AnimatedGameSprite sprite)
@@ -75,7 +81,11 @@ public class CustomizedInput {
             Constructor constructor = Reflection.getAnnotatedConstructor(myClass);
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
-            
+            if(paramTypes.length ==0)
+            {
+                checkAndRun();
+                return;
+            }
             
                     currentInput = null;
                     if(!(paramTypes[currentArgumentCounter].equals(int.class) || paramTypes[currentArgumentCounter].equals(int.class) || paramTypes[currentArgumentCounter].equals(String.class) || paramTypes[currentArgumentCounter].equals(double.class) ||paramTypes[currentArgumentCounter].toString().equals("boolean") ))
@@ -150,8 +160,12 @@ public class CustomizedInput {
     }
     private void checkAndRun()
     {
-        System.out.println("counter" + currentArgumentCounter);
-        System.out.println("# of arguments" + argList.length);
+        if(paramTypes.length ==0)
+        {
+            myController.constructObject(argList);
+            return;
+        }
+        
         if(currentArgumentCounter== (argList.length-1)) { // the last argument has been created
             myController.constructObject(argList);
             return;

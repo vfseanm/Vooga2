@@ -11,6 +11,7 @@ import javax.swing.*;
 
 import editor.AttributeSelectionPanel;
 import editor.EditorController;
+import editor.frameworks.Framework;
 import enemies.Enemy;
 
 import attributes.Attribute;
@@ -109,9 +110,13 @@ public class EditEnemyDialogue extends DialogueBox {
             mySprite.setGroup(myGroup.getText());
         }
         if (mySprite != null)
-            myController.replaceSprite(mySprite, enemy);
-       
-
+        {    
+            if(!mySprite.equals(enemy))
+            {
+                myController.addButton(myName.getText(), new Framework(myName.getText(),"enemy", enemy));
+                myController.replaceSprite(mySprite, enemy);
+            }
+        }
         setVisible(false);
 
     }

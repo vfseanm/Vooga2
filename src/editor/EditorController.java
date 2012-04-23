@@ -136,7 +136,9 @@ public class EditorController {
     public void replaceSprite(AnimatedGameSprite oldSprite,
             AnimatedGameSprite newSprite)
     {
+        
         myLevel.replaceSprite(oldSprite, newSprite);
+        
         myView.closeFrame();
     }
 
