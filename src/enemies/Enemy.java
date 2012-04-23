@@ -288,12 +288,21 @@ public class Enemy extends GameCharacter
         {
 
             Enemy toCompare = ((Enemy) o);
-            return toString().equals(toCompare.toString());
+            if(!toString().equals(toCompare.toString()))
+                    return false;
+            for(String im: toCompare.getImageNames())
+            {
+                if(!getImageNames().contains(im))
+                {
+                    return false;
+                }
+            }
         }
         catch (ClassCastException e)
         {
             return false;
         }
+        return false;
     }
 
 

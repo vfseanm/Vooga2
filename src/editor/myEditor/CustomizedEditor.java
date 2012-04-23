@@ -14,7 +14,6 @@ import editor.dialogues.EnemyDialogueBox;
 import editor.dialogues.ExtendedDialogueBox;
 import editor.dialogues.PlatformDialogueBox;
 import editor.dialogues.PowerupDialogueBox;
-import editor.dialogues.WildandCrazyDialogueBox;
 import enemies.Enemy;
 
 public class CustomizedEditor extends EditorView{
@@ -40,7 +39,7 @@ public class CustomizedEditor extends EditorView{
         l4.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l4);
         
-        DialogueOpeningButton custom = new DialogueOpeningButton("Customized dialogue", 125, 350, 150, 40, this, new WildandCrazyDialogueBox(myController));
+        DialogueOpeningButton custom = new DialogueOpeningButton("Customized dialogue", 125, 350, 150, 40, this, new ExtendedDialogueBox(myController));
         infoBox.add(custom);
         
         DialogueOpeningButton newpowerUpButton = new DialogueOpeningButton("Create Power-Up", 125, 450, 150, 40, this, new PowerupDialogueBox(myController));
@@ -73,13 +72,23 @@ public class CustomizedEditor extends EditorView{
                 currentDialogueBox.setLeftClickSprite(getRightClickedSprite());
             }
         }
-        if(getRightClickedSprite()!=null)
+/*        if(getRightClickedSprite()!=null)
         {
             if(getRightClickedSprite() instanceof Enemy)
             {
                 Enemy e = (Enemy) getRightClickedSprite();
                 EditEnemyDialogue editEnemyBox = new EditEnemyDialogue(myController, e, this.getMouseX(), this.getMouseY());
                 this.openDialogue(editEnemyBox);
+            }
+        }*/
+        if(rightClickedSprite!=null)
+        {
+            if(rightClickedSprite instanceof Enemy)
+            {
+                Enemy e = (Enemy) rightClickedSprite;
+                EditEnemyDialogue editEnemyBox = new EditEnemyDialogue(myController, e, this.getMouseX(), this.getMouseY());
+                this.openDialogue(editEnemyBox);
+                rightClickedSprite = null;
             }
         }
         
