@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import collisions.CollisionAction;
+import fighter.FighterAction;
+
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 
@@ -47,4 +50,9 @@ public class BonusObject extends AnimatedGameSprite {
         }
         return c;
     }
+    
+    public Class<? extends CollisionAction> getActionClass (){
+    	return BonusObjectAction.class; 
+    }
+    
 }

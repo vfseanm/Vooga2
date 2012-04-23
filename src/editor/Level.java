@@ -142,8 +142,10 @@ public class Level implements Serializable{
     {
         for(Framework f: frameworks)
         {
+            System.out.println("inside for loop");
             if(f.containsSprite(sprite))
             {
+                System.out.println("inside if statement");
                 f.removeSprite(sprite);
             }
         }
@@ -248,18 +250,16 @@ public class Level implements Serializable{
 
         ArrayList<String> myList = gson.fromJson(json, collectionType); 
         String backgroundImageName = myList.get(0);
-        BaseLoader loader = new BaseLoader(new BaseIO(Level.class), Color.PINK);
+        BaseLoader loader = new BaseLoader(new BaseIO(Level.class), Color.BLACK);
         if(!backgroundImageName.equals(""))
         {
-            System.out.println(backgroundImageName);
+            
             level.setBackground(loader.getImage(backgroundImageName),backgroundImageName);
         }
-        
-       String fighterJson = myList.get(1);
-       if(!fighterJson.equals(""))
+        String fighterJson = myList.get(1);
+        if(!fighterJson.equals(""))
         {
-           System.out.println("fighter being parsed");
-           level.setFighter(Fighter.fromJson(fighterJson));
+            level.setFighter(Fighter.fromJson(fighterJson));
            
         }
        

@@ -86,15 +86,6 @@ public class GameDialogue extends DialogueBox {
         }
         
         
-        JLabel label1 = new JLabel("Game Width:");
-        panel.add(label1);
-        myWidth = new JTextField(10);
-        panel.add(myWidth, BorderLayout.SOUTH);
-        
-        JLabel label2 = new JLabel("Game Height:");
-        panel.add(label2);
-        myHeight = new JTextField(10);
-        panel.add(myHeight, BorderLayout.SOUTH);
        
 
         JButton imageButton = new JButton("Select Image");
@@ -128,8 +119,7 @@ public class GameDialogue extends DialogueBox {
             System.out.println("There has been a problem importing your image");
         }
         
-        int width = Integer.parseInt(myWidth.getText());
-        int height = Integer.parseInt(myHeight.getText()); // SHOULD THERE BE A TRY CATCH?
+
                 
         
         Sidescroller prototype = new ConcreteSidescroller();

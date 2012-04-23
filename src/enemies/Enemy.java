@@ -8,11 +8,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import collisions.CollisionAction;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
-import attributes.Updateable;
 import enemies.state.EnemyState;
 import fighter.Fighter;
 
@@ -286,12 +288,21 @@ public class Enemy extends GameCharacter
         {
 
             Enemy toCompare = ((Enemy) o);
-            return toString().equals(toCompare.toString());
+            if(!toString().equals(toCompare.toString()))
+                    return false;
+            for(String im: toCompare.getImageNames())
+            {
+                if(!getImageNames().contains(im))
+                {
+                    return false;
+                }
+            }
         }
         catch (ClassCastException e)
         {
             return false;
         }
+        return false;
     }
 
 
@@ -314,6 +325,11 @@ public class Enemy extends GameCharacter
         paramList.add(gson.toJson(attributeList));
         return gson.toJson(paramList);
 
+    }
+    
+    
+    public Class<? extends CollisionAction> getActionClass (){
+    	return EnemyAction.class; 
     }
 
 

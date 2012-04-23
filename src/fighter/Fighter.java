@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import collisions.CollisionAction;
+
 import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -144,6 +146,11 @@ public class Fighter extends GameCharacter {
 	public String getName() {
 		return "Fighter";
 	}
+	
+    public Class<? extends CollisionAction> getActionClass (){
+    	return FighterAction.class; 
+    }
+	
     public String toJson ()
     {
         Gson gson = new Gson();

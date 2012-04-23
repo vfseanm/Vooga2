@@ -43,7 +43,8 @@ public abstract class EditorView extends Game {
     protected EditorController myController;
     protected TPanel infoBox;
 
-    protected AnimatedGameSprite spriteClicked;           
+    protected AnimatedGameSprite spriteClicked;
+    protected AnimatedGameSprite rightClickedSprite;
     protected double[] origPosition;
     protected double[] clickedSpriteOffset;
     //protected Framework myFramework;
@@ -200,6 +201,15 @@ public abstract class EditorView extends Game {
                 if (button.isMouseOver())
                 {
                     editEnemy(button);
+                }
+            }
+            
+            for (AnimatedGameSprite s : myController.getAllSprites())
+            {
+                if (this.checkPosMouse(s, true))
+
+                {
+                    rightClickedSprite = s;
                 }
             }
         }

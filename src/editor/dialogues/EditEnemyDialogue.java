@@ -11,8 +11,8 @@ import javax.swing.*;
 
 import editor.AttributeSelectionPanel;
 import editor.EditorController;
+import editor.frameworks.Framework;
 import enemies.Enemy;
-
 import attributes.Attribute;
 
 @SuppressWarnings("serial")
@@ -92,25 +92,35 @@ public class EditEnemyDialogue extends DialogueBox {
     {
         ArrayList<Attribute> attributes = attributePanel
                 .getSelectedAttributes();
-        myX = (int) mySprite.getOldX();
-        myY = (int) mySprite.getOldY();
-
-        Enemy enemy = new Enemy(myX, myY, myImagePaths);
+        myX = (int) mySprite.getX();
+        myY = (int) mySprite.getY();
+        if (myImagePaths.isEmpty())
+        {
+            myImagePaths.addAll(mySprite.getImageNames());
+        }
+        Enemy enemy = new Enemy(0, 0, myImagePaths);
         System.out.println("old group name: " + mySprite.getGroup());
         enemy.setGroup(mySprite.getGroup());
         System.out.println("group name: " + enemy.getGroup());
         for (Attribute a : attributes)
         {
-           enemy.addAttribute(a);
+            enemy.addAttribute(a);
         }
 
         if (!myGroup.getText().equals(""))
         {
-            mySprite.setGroup(myGroup.getText());
+            enemy.setGroup(myGroup.getText());
         }
-        if (mySprite != null)
-            myController.replaceSprite(mySprite, enemy);
-       
+
+        if (!mySprite.equals(enemy))
+        {
+            Framework framework = new Framework(myName.getText(), "enemy",
+                    enemy);
+            myController.addButton(myName.getText(), framework);
+            framework.createSprite(myX, myY);
+            myController.removeSprite(mySprite);
+            
+        }
 
         setVisible(false);
 

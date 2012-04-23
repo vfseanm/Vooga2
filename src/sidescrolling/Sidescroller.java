@@ -55,11 +55,9 @@ public abstract class Sidescroller implements Serializable  {
     public String toJson()
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>()
-        {}.getType();
+
         List<String> paramList = new ArrayList<String>();
-        paramList.add(this.getGameHeight() + "");
-        paramList.add(this.getGameWidth() + "");
+
         if(!this.getClass().equals(ConcreteSidescroller.class))
         {
             List<String> classNames = new ArrayList<String>();
@@ -85,10 +83,8 @@ public abstract class Sidescroller implements Serializable  {
         {}.getType();
 
         List<String> paramList = gson.fromJson(json, collectionType);
-        int x = Integer.parseInt(paramList.get(0));
-        int y = Integer.parseInt(paramList.get(1));
-        List<String> classList = gson.fromJson(paramList.get(2), collectionType);
-        Sidescroller scroller = new ConcreteSidescroller(x, y);
+        List<String> classList = gson.fromJson(paramList.get(0), collectionType);
+        Sidescroller scroller = new ConcreteSidescroller();
         Object[] list = new Object[1];
         list[0] = scroller;
         for(String wrappingClass: classList)
