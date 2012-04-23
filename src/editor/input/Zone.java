@@ -14,6 +14,7 @@ public class Zone {
     @editorConstructor(parameterNames = { "", "", "", "", "" })
     public Zone(Line l, Line l2, Line l3, Line l4, GroupofEnemies e)  //ArrayList<AnimatedGameSprite> customObjects, Object somethingElse,
     {
+        myLines = new ArrayList<Line>();
         myLines.add(l);
         myLines.add(l2);
         myLines.add(l3);

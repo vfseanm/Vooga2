@@ -58,6 +58,8 @@ public class DialogueController {
     public void constructObject(Object[] argList)
     {
         Constructor constructor = Reflection.getAnnotatedConstructor(currentInput.getAssociatedClass());
+        System.out.println("arg list length: " + argList.length);
+        System.out.println("arg list first: " + argList[0]);
         try {
             Object object = constructor.newInstance(argList);
             currentOutput.setObject(object);                    // give this object to the attribute selection panel

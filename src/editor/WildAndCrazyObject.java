@@ -30,10 +30,7 @@ public class WildAndCrazyObject extends AnimatedGameSprite{
     
     public Object clone ()
     {
-        Zone zone = myZone; //   CHANGE THIS
-        
-       
-        
+        Zone zone = myZone;
         List<String> imageNames = new ArrayList<String>();
         imageNames.addAll(this.getImageNames());
         

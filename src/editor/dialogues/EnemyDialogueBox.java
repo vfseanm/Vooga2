@@ -21,7 +21,7 @@ import attributes.Attribute;
 
 
 @SuppressWarnings("serial")
-public class EnemyDialogueBox extends DynamicBox {
+public class EnemyDialogueBox extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";

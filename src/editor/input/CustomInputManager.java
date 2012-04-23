@@ -62,7 +62,6 @@ public class CustomInputManager {
     
     public void giveXY(int x, int y)
     {
-        System.out.println("calling giveXY in currentInput");
         if(currentInput!=null)
         {
             System.out.println("giving x and y to current input" + x + " and " + y);
@@ -143,15 +142,14 @@ public class CustomInputManager {
     public void finishCurrentInput()
     {
         frame.setVisible(false);
-        System.out.println("input just entered:" + currentInput);
         argList[currentArgumentCounter] = currentInput;
         checkAndRun();
         
     }
     private void checkAndRun()
     {
-        System.out.println("counter" + currentArgumentCounter);
         System.out.println("# of arguments" + argList.length);
+        System.out.println("adding currentInput: " + currentInput);
         if(currentArgumentCounter== (argList.length-1)) { // the last argument has been created
             myController.constructObject(argList);
             return;

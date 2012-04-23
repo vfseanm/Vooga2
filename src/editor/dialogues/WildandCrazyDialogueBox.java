@@ -94,7 +94,6 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         {
             Class c = Zone.class;
             controller.promptForInput(c, this);
-            
         }
         
         public void setObject(Object zone) {

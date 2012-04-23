@@ -40,6 +40,8 @@ public void setRightClickedSprite(AnimatedGameSprite sprite) {
 
 
 public void setLeftClickedSprite(AnimatedGameSprite sprite) {
+
+    System.out.println("clicking on an enemy and giving it to the object!" + sprite);
     if (mySprites==null)
         mySprites = new ArrayList<AnimatedGameSprite>();
     mySprites.add(sprite);
