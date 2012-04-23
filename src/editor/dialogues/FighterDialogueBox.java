@@ -60,14 +60,14 @@ public class FighterDialogueBox extends DialogueBox{
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800,325));
-        attributePanel = new AttributeSelectionPanel(packagesToSearch);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, controller);
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Fighter to have:");
         panel2.add(title1);
         panel2.add(attributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Carryable attributes for the Fighter to Have:");
-        carryablePanel = new AttributeSelectionPanel(packagesToSearch);
+        carryablePanel = new AttributeSelectionPanel(packagesToSearch, controller);
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(carryablePanel);

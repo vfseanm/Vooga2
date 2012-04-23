@@ -29,6 +29,7 @@ public class EnemyDialogueBox extends DynamicBox {
     private AttributeSelectionPanel attributePanel;
     private JTextField myName;
     private JTextField myGroup;
+    
 
 
     public EnemyDialogueBox(EditorController m)
@@ -45,7 +46,7 @@ public class EnemyDialogueBox extends DynamicBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, controller);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
        

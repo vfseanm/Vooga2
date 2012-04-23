@@ -47,7 +47,7 @@ public abstract class EditorView extends Game {
     protected double[] origPosition;
     protected double[] clickedSpriteOffset;
     //protected Framework myFramework;
-    protected DynamicBox currentDialogueBox;
+    protected DialogueBox currentDialogueBox;
 
     public void initialize()
     {
@@ -285,6 +285,7 @@ public abstract class EditorView extends Game {
     
     public void openDialogue(DialogueBox box)
     {
+        currentDialogueBox = box;
         frame = new JFrame("");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -295,6 +296,7 @@ public abstract class EditorView extends Game {
     
     public void closeFrame()
     {
+        currentDialogueBox = null;
         if(frame!=null)
         {
         frame.setVisible(false);
