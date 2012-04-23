@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 
+import collisions.CollisionAction;
+
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
@@ -115,6 +117,10 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         }
         this.setImages(images);
         
+    }
+    
+    public Class<? extends CollisionAction> getActionClass (){
+    	return null; 
     }
     
 

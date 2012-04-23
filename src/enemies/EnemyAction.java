@@ -26,8 +26,10 @@ public class EnemyAction implements CollisionAction {
 		}
 	}
 	
-	public void instantDeath (CollisionContext ccntext, CollisionSpec cspec){
+	public void instantEnemyDeath (CollisionContext ccntext, CollisionSpec cspec){
 		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
+			System.out.println ("Need to fix death");
+			//sprite.setLocation(-1000, -1000);
 		}
 	}
 	

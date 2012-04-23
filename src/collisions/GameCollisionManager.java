@@ -160,8 +160,8 @@ public class GameCollisionManager{
 			Object args[] = new Object[2];
 			args[0] = ccntext; args[1] = cspec;
 
-			CollisionAction caSp1 = cspec.getActionInstance(sp1.getGroup());
-			CollisionAction caSp2 = cspec.getActionInstance(sp2.getGroup());
+			CollisionAction caSp1 = cspec.getActionInstance(sp1);
+			CollisionAction caSp2 = cspec.getActionInstance(sp2);
 
 			if (caSp1!=null){
 				caSp1.setSprite(sp1); 
