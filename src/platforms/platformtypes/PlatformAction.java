@@ -8,17 +8,14 @@ import collisions.CollisionContext;
 import collisions.CollisionSpec;
 
 public class PlatformAction implements CollisionAction {
-	AbstractPlatform sprite;
+	AnimatedGameSprite sprite;
 	
-	public void doBreak (CollisionContext ccntext, CollisionSpec cspec){		
-		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
-			//Do general break stuff;
-			sprite.setActive(false);
-		}
+	public void doBreak (CollisionContext ccntext, CollisionSpec cspec){
+		Platform.doBreak(AnimatedGameSprite sprite, CollisionContext ccntext, CollisionSpec cspec);
 	}
 	
 	public void setSprite(AnimatedGameSprite sprite) {
-		this.sprite = (AbstractPlatform) sprite;
+		this.sprite = sprite;
 	}
 
 }
