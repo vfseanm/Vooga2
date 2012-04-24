@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
 
+import editor.input.inputTypes.InputType;
+
 
 public class SingleInputManager extends InputManager{
 

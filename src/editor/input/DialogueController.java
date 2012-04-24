@@ -11,11 +11,13 @@ import editor.Reflection;
 import editor.editorConstructor;
 import editor.AttributeSelectionPanel.CheckBoxListener;
 import editor.dialogues.DialogueBox;
+import editor.frameworks.Framework;
+import editor.input.inputTypes.InputType;
 
 public class DialogueController {
     private DialogueBox myBox;
     protected ArrayList<AnimatedGameSprite> selectedSprites;
-    private InputManager currentInput;
+    private InputManager currentInputManager;
     private InputListener currentOutput;
     
     public DialogueController(DialogueBox box )
@@ -26,19 +28,29 @@ public class DialogueController {
     
     public void setXY(int x, int y)
     {
-        if(currentInput!=null)
-            currentInput.giveXY(x,y);
+        if(currentInputManager!=null)
+            currentInputManager.giveXY(x,y);
     }
     
     public void setRightClickSprite(AnimatedGameSprite sprite)
     {
-        if(currentInput!=null)
-            currentInput.setRightClickSprite(sprite);
+        if(currentInputManager!=null)
+            currentInputManager.setRightClickSprite(sprite);
     }
     public void setLeftClickSprite(AnimatedGameSprite sprite)
     {
-        if(currentInput!=null)
-            currentInput.setLeftClickSprite(sprite);
+        if(currentInputManager!=null)
+            currentInputManager.setLeftClickSprite(sprite);
+    }
+    public void setLeftClickFramework(Framework f)
+    {
+        if(currentInputManager!=null)
+            currentInputManager.setLeftClickFramework(f);
+    }
+    public void setRightClickFramework(Framework f)
+    {
+        if(currentInputManager!=null)
+            currentInputManager.setRightClickFramework(f);
     }
     
     
@@ -60,8 +72,8 @@ public class DialogueController {
             {
                 try {
                     InputType input = (InputType) c.newInstance();  
-                    currentInput = new SingleInputManager(c, this);
-                    currentInput.run();
+                    currentInputManager = new SingleInputManager(c, this);
+                    currentInputManager.run();
                     return;
                 } catch (InstantiationException e) {
                     // TODO Auto-generated catch block
@@ -73,13 +85,13 @@ public class DialogueController {
             }
         }
         
-        currentInput = new CustomInputManager(c, this);
-        currentInput.run();
+        currentInputManager = new CustomInputManager(c, this);
+        currentInputManager.run();
     }
     
     public void constructObject(Object[] argList)
     {
-        Constructor constructor = Reflection.getAnnotatedConstructor(currentInput.getAssociatedClass());
+        Constructor constructor = Reflection.getAnnotatedConstructor(currentInputManager.getAssociatedClass());
         try {
             Object object = constructor.newInstance(argList);
             currentOutput.setObject(object);                    // give this object to the attribute selection panel

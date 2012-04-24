@@ -4,7 +4,7 @@ import java.awt.Point;
 
 import java.util.ArrayList;
 import editor.editorConstructor;
-import editor.input.Line;
+import editor.input.inputTypes.Line;
 import attributes.Attribute;
 import attributes.Updateable;
 

@@ -1,22 +1,15 @@
-
 package editor.dialogues;
-
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-
 import javax.swing.*;
-
 import editor.EditorController;
 import editor.Reflection;
 import editor.frameworks.Framework;
-
 import platforms.platformtypes.*;
-
-
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
@@ -27,38 +20,31 @@ public class PlatformDialogueBox extends DialogueBox {
     private JTextField myName;
     private JTextField myGroup;
 
-
-
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> classMap;
-    
-    
 
-    public PlatformDialogueBox(EditorController m)
-    {
+    public PlatformDialogueBox(EditorController m) {
         super(m);
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
-        
+
     }
-    
+
     @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
-            IOException
-    {
+            IOException {
         classMap = new HashMap<JCheckBox, Class>();
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(600,800));
-        // ArrayList<Class> list = reflection.getBehaviors();
+        panel.setPreferredSize(new Dimension(600, 800));
         Reflection reflection = new Reflection();
-        for (Class c : reflection.getInstancesOf("platforms", DecoratedPlatform.class))
-        {
+        for (Class c : reflection.getInstancesOf("platforms",
+                DecoratedPlatform.class)) {
 
-                JLabel label1 = new JLabel(getText(c));
-                panel.add(label1);
-                JCheckBox box = new JCheckBox();
-                panel.add(box);
-                classMap.put(box, c);
+            JLabel label1 = new JLabel(getClassName(c));
+            panel.add(label1);
+            JCheckBox box = new JCheckBox();
+            panel.add(box);
+            classMap.put(box, c);
         }
 
         JLabel label1 = new JLabel("Platform Name");
@@ -67,7 +53,7 @@ public class PlatformDialogueBox extends DialogueBox {
         myName = new JTextField(10);
 
         panel.add(myName);
-        
+
         JLabel groupLabel = new JLabel("Group:");
         panel.add(groupLabel);
 
@@ -79,8 +65,7 @@ public class PlatformDialogueBox extends DialogueBox {
         panel.add(imageButton);
 
         String buttonPhrase = "Create Platform";
-        
-                
+
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
@@ -88,20 +73,18 @@ public class PlatformDialogueBox extends DialogueBox {
         return panel;
     }
 
-    public Framework getFramework()
-    {
-        
-        AbstractPlatform prototype = new SimplePlatform(0,0,myImagePaths);
+    public Framework getFramework() {
+
+        AbstractPlatform prototype = new SimplePlatform(0, 0, myImagePaths);
         Object[] list = new Object[1];
         list[0] = prototype;
-        for(JCheckBox box: classMap.keySet())
-        {
-            if(box.isSelected())
-            {
+        for (JCheckBox box : classMap.keySet()) {
+            if (box.isSelected()) {
                 Class wrappingClass = classMap.get(box);
-                Constructor constructor=  wrappingClass.getConstructors()[0];
+                Constructor constructor = wrappingClass.getConstructors()[0];
                 try {
-                    prototype = (DecoratedPlatform) constructor.newInstance(list);
+                    prototype = (DecoratedPlatform) constructor
+                            .newInstance(list);
                 } catch (IllegalArgumentException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -120,25 +103,21 @@ public class PlatformDialogueBox extends DialogueBox {
 
         }
         prototype.setGroup(myGroup.getText());
-        
+
         return new Framework(myName.getText(), "platform", prototype);
-        
+
     }
 
-    @Override
     public DialogueBox clone() {
-        return new PlatformDialogueBox(myController);
+        return new PlatformDialogueBox(editorController);
     }
 
-    @Override
     protected void BoxCompletedAction() {
         Framework framework = getFramework();
-        System.out.println("framework "+framework);
-        myController.addButton(myName.getText(), framework);
+        System.out.println("framework " + framework);
+        editorController.addButton(myName.getText(), framework);
         setVisible(false);
-        
-    }
-   
 
+    }
 
 }

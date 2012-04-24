@@ -19,6 +19,7 @@ import editor.AttributeSelectionPanel;
 import editor.Reflection;
 import editor.editorConstructor;
 import editor.AttributeSelectionPanel.CheckBoxListener;
+import editor.input.inputTypes.InputType;
 
 import attributes.Attribute;
 

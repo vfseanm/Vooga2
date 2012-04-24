@@ -1,20 +1,15 @@
 package editor.dialogues;
 
-
 import java.io.IOException;
 
 import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-
 import javax.swing.*;
-
 import bonusobjects.PowerUp;
-
 import editor.AttributeSelectionPanel;
 import editor.EditorController;
 import editor.frameworks.Framework;
-
 import attributes.Attribute;
 
 @SuppressWarnings("serial")
@@ -23,39 +18,37 @@ public class PowerupDialogueBox extends DialogueBox {
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
 
-    
     private AttributeSelectionPanel powerupAttributePanel;
     private AttributeSelectionPanel attributesToGivePanel;
     private JTextField myName;
     private JTextField myGroup;
 
-    public PowerupDialogueBox(EditorController m)
-    {
+    public PowerupDialogueBox(EditorController m) {
         super(m);
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
-        
-    }
-    
-    public JComponent makeSelectionPanel() throws ClassNotFoundException,
-            IOException
-    {
 
+    }
+
+    public JComponent makeSelectionPanel() throws ClassNotFoundException,
+            IOException {
 
         ArrayList<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("attributes");
-        
+
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(800,325));
-        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch, controller);
+        panel.setPreferredSize(new Dimension(800, 325));
+        powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch,
+                dialogueController);
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
         panel2.add(title1);
         panel2.add(powerupAttributePanel);
         panel.add(panel2, BorderLayout.PAGE_START);
         JLabel title2 = new JLabel("Attributes for the Power-Up to Give:");
-        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch, controller);
+        attributesToGivePanel = new AttributeSelectionPanel(packagesToSearch,
+                dialogueController);
         JPanel panel3 = new JPanel();
         panel3.add(title2);
         panel3.add(attributesToGivePanel);
@@ -70,60 +63,54 @@ public class PowerupDialogueBox extends DialogueBox {
         myName = new JTextField(10);
 
         subPanel.add(myName);
-        
+
         JLabel groupLabel = new JLabel("Group:");
         subPanel.add(groupLabel);
 
         myGroup = new JTextField(10);
         subPanel.add(myGroup, BorderLayout.SOUTH);
 
-
         JButton imageButton = new JButton("Select Image");
         imageButton.addActionListener(new ImageAction());
         subPanel.add(imageButton);
-                
+
         JButton goButton = new JButton("Create Power-Up");
         goButton.addActionListener(new GoAction());
         subPanel.add(goButton);
-        
 
         panel.add(subPanel, BorderLayout.PAGE_END);
 
         return panel;
     }
-    
-    
+
     public Framework getFramework() {
-            PowerUp prototype = new PowerUp(0,0,myImagePaths);
-           for(Attribute attribute: powerupAttributePanel.getSelectedAttributes())
-           {
-               prototype.addAttribute(attribute);
-           }
-           for(Attribute attributeToGive: attributesToGivePanel.getSelectedAttributes())
-           {
-               prototype.addAttributeToOffer(attributeToGive);
-           }
-           prototype.setGroup(myGroup.getText());
-           Framework framework = new Framework(myName.getText(), "Power-Up", prototype); 
-           return framework;
-
+        PowerUp prototype = new PowerUp(0, 0, myImagePaths);
+        for (Attribute attribute : powerupAttributePanel
+                .getSelectedAttributes()) {
+            prototype.addAttribute(attribute);
         }
+        for (Attribute attributeToGive : attributesToGivePanel
+                .getSelectedAttributes()) {
+            prototype.addAttributeToOffer(attributeToGive);
+        }
+        prototype.setGroup(myGroup.getText());
+        Framework framework = new Framework(myName.getText(), "Power-Up",
+                prototype);
+        return framework;
 
-@Override
-public DialogueBox clone() {
-    return new PowerupDialogueBox(myController);
-}
+    }
 
-@Override
-protected void BoxCompletedAction() {
-    Framework framework = getFramework();
-    myController.addButton(myName.getText(), framework);
-    setVisible(false);
-    
-}
-    
-    
+    @Override
+    public DialogueBox clone() {
+        return new PowerupDialogueBox(editorController);
+    }
 
+    @Override
+    protected void BoxCompletedAction() {
+        Framework framework = getFramework();
+        editorController.addButton(myName.getText(), framework);
+        setVisible(false);
 
+    }
 
 }
