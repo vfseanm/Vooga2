@@ -87,7 +87,7 @@ public class BasicMovement extends Attribute implements Updateable, Movement, In
 
 
 	public void setUserInput(BaseInput userInput) {
-		myUserInput = userInput;
+	    myUserInput = userInput;
 	}
 	
     public String toJson()
