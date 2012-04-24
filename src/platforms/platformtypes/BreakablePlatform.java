@@ -3,6 +3,13 @@ package platforms.platformtypes;
 import java.util.List;
 import java.util.Random;
 
+import com.golden.gamedev.object.collision.CollisionGroup;
+
+import sprite.AnimatedGameSprite;
+
+import collisions.CollisionContext;
+import collisions.CollisionSpec;
+
 import bonusobjects.BonusObject;
  
 /**
@@ -131,12 +138,12 @@ public class BreakablePlatform extends DecoratedPlatform {
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new BreakablePlatform(toWrap);
 	}
-
-/*	private BreakablePlatform(){};
 	
-    public static ObjectFromJsonFactory getFactory()
-    {
-        return new ObjectFromJsonFactory(new BreakablePlatform());
-    }*/
+	
+	public void doBreak (AnimatedGameSprite sprite, CollisionContext ccntext, CollisionSpec cspec){
+		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
+			((BreakablePlatform)sprite).doBreak();
+		}
+	}
    
 }
