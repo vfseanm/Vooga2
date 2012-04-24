@@ -3,6 +3,7 @@ package editor.dialogues;
 import java.io.File;
 
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
 
+import sprite.AnimatedGameSprite;
+
 import editor.EditorController;
-import editor.frameworks.Framework;
+import editor.input.DialogueController;
 
 
 @SuppressWarnings("serial")
@@ -24,12 +27,15 @@ public abstract class DialogueBox extends JPanel {
 
     protected EditorController myController;
     protected List<String> myImagePaths;
+    protected DialogueController controller;
     
     
     public DialogueBox(EditorController m)
     {
+        controller = new DialogueController(this);
         myImagePaths = new ArrayList<String>();
         myController = m;        
+        
     }
     
     public abstract DialogueBox clone();
@@ -39,6 +45,21 @@ public abstract class DialogueBox extends JPanel {
         String[] classPath = c.getName().split("\\."); 
         return classPath[classPath.length-1];
     }
+
+    
+    public void setClick(int x, int y)
+    {
+        controller.setXY(x, y);
+    }
+    public void setRightClickSprite(AnimatedGameSprite sprite)
+    {
+        controller.setRightClickSprite(sprite);
+    }
+    public void setLeftClickSprite(AnimatedGameSprite sprite)
+    {
+        controller.setLeftClickSprite(sprite);
+    }
+    
     
     public abstract JComponent makeSelectionPanel() throws ClassNotFoundException, IOException;
 

@@ -3,9 +3,9 @@ package editor.dialogues;
 
 import java.io.IOException;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -21,7 +21,7 @@ import attributes.Attribute;
 
 
 @SuppressWarnings("serial")
-public class EnemyDialogueBox extends DynamicBox {
+public class EnemyDialogueBox extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
@@ -29,6 +29,7 @@ public class EnemyDialogueBox extends DynamicBox {
     private AttributeSelectionPanel attributePanel;
     private JTextField myName;
     private JTextField myGroup;
+    
 
 
     public EnemyDialogueBox(EditorController m)
@@ -45,7 +46,7 @@ public class EnemyDialogueBox extends DynamicBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, controller);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
        
@@ -99,16 +100,7 @@ public class EnemyDialogueBox extends DynamicBox {
         System.out.println("framework's attributes" + attributes);
         return framework;
     }
-    class GoAction implements ActionListener {       
-        
-        public void actionPerformed(ActionEvent e)
-        {
-            Framework framework = getFramework();
-            System.out.println("framework "+framework);
-            myController.addButton(myName.getText(), framework);
-            setVisible(false);
-        }
-    }
+
 
     public DialogueBox clone() {
         return new EnemyDialogueBox(myController);

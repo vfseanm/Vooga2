@@ -31,6 +31,9 @@ import enemies.Enemy;
 import fighter.Fighter;
 
 
+import sidescrolling.ConcreteSidescroller;
+import sidescrolling.Sidescroller;
+import sidescrolling.forced.ForcedLeftSidescroller;
 import sprite.AnimatedGameSprite;
 
 
@@ -46,6 +49,8 @@ public class Level implements Serializable{
     private String backgroundImagePath;
     private ImageBackground myBackground;
     private Fighter myFighter;
+    private Sidescroller mySidescroller; // THERE SHOULD BE SOME DEFAULT SIDESCROLLING !!
+                                                 // IT SHOULD ALSO BE WRITTEN WITH JSON !!
 
   
     
@@ -66,21 +71,10 @@ public class Level implements Serializable{
                 f.addSprite(newSprite);
             }
         }
-        
-        //sprites.remove(oldSprite);
-        //sprites.add(newSprite);
+
     }
     
-//    public void addSprite(AnimatedGameSprite s, Framework f)
-//    {
-//        
-//        if(!frameworks.contains(f))
-//        {
-//            frameworks.add(f);
-//        }
-//        f.addSprite(s);
-//        
-//    }
+
     public List<Framework> getFrameworks()
     {
         return Collections.unmodifiableList(frameworks);
@@ -94,12 +88,28 @@ public class Level implements Serializable{
         }
     }
     
+    public void setSidescrolling(Sidescroller scroller)
+    {
+        mySidescroller = scroller;
+    }
+    
     public void moveVertically(double y)
     {
         for(Framework f: frameworks)
         {
             f.moveVertically(y);
         }
+    }
+    
+    public Sidescroller getSidescroller()
+    {
+        if (mySidescroller ==null)
+        {
+            mySidescroller = new ConcreteSidescroller();
+            mySidescroller = new ForcedLeftSidescroller(mySidescroller);
+        }
+            
+        return mySidescroller;
     }
     
     public void clear()
@@ -132,8 +142,10 @@ public class Level implements Serializable{
     {
         for(Framework f: frameworks)
         {
+            System.out.println("inside for loop");
             if(f.containsSprite(sprite))
             {
+                System.out.println("inside if statement");
                 f.removeSprite(sprite);
             }
         }
@@ -165,14 +177,13 @@ public class Level implements Serializable{
         }
         if(!backgroundImagePath.equals(""))
         {
-        myBackground.setImage(loader.getImage(backgroundImagePath));
+            myBackground.setImage(loader.getImage(backgroundImagePath));
         }
         if(myFighter!=null)
         {
         BufferedImage[] images = new BufferedImage[myFighter.getImageNames().size()];
         for(int i=0; i<images.length; i++)
         {
-            //System.out.println("image names: "+s.getImageNames());
             images[i] = loader.getImage(myFighter.getImageNames().get(i));
         }
         myFighter.setImages(images);
@@ -190,11 +201,7 @@ public class Level implements Serializable{
         return myBackground;
     }
     
-    public Fighter getFighter()
-    {
-        return myFighter;
-    }
-    
+
     public void addFramework(Framework f)
     {
         frameworks.add(f);
@@ -208,7 +215,15 @@ public class Level implements Serializable{
         
         if(myFighter!=null)
         {
-        myList.add(myFighter.toJson());
+            myList.add(myFighter.toJson());
+        }
+        else
+        {
+            myList.add("");
+        }
+        if(mySidescroller!=null)
+        {
+            myList.add(mySidescroller.toJson());
         }
         else
         {
@@ -235,23 +250,27 @@ public class Level implements Serializable{
 
         ArrayList<String> myList = gson.fromJson(json, collectionType); 
         String backgroundImageName = myList.get(0);
-        BaseLoader loader = new BaseLoader(new BaseIO(Level.class), Color.PINK);
+        BaseLoader loader = new BaseLoader(new BaseIO(Level.class), Color.BLACK);
         if(!backgroundImageName.equals(""))
         {
-            System.out.println(backgroundImageName);
+            
             level.setBackground(loader.getImage(backgroundImageName),backgroundImageName);
         }
-        
-       String fighterJson = myList.get(1);
-       if(!fighterJson.equals(""))
+        String fighterJson = myList.get(1);
+        if(!fighterJson.equals(""))
         {
-           System.out.println("fighter being parsed");
-           level.setFighter(Fighter.fromJson(fighterJson));
+            level.setFighter(Fighter.fromJson(fighterJson));
            
         }
        
+        String scrollerJson = myList.get(2);
+        if(!scrollerJson.equals(""))
+        {
+            level.setSidescrolling(Sidescroller.fromJson(scrollerJson));
+        }
+       
         
-        ArrayList<String> frameworkList = gson.fromJson(myList.get(2), collectionType);
+        ArrayList<String> frameworkList = gson.fromJson(myList.get(3), collectionType);
         //System.out.println("framework LIst: "+frameworkList);
         
         for(String f: frameworkList)
@@ -260,35 +279,9 @@ public class Level implements Serializable{
         }
         return level;     
         
-        
-        
     }
     
-    public static void main(String[] args)
-    {
-        Level level = new Level();
-        Scanner scanner;
-        try
-        {
-            scanner = new Scanner(new File("Becky"));
-            String wholeFile = scanner.useDelimiter("\\A").next();
-            System.out.println(wholeFile);
-            level.fromJson(wholeFile);
-            
-            System.out.println(level.getAllSprites().size());
-            for(AnimatedGameSprite s : level.getAllSprites())
-            {
-            System.out.println(((Enemy)s).getAttributes());
-            System.out.println(s.getX());
-            }
-        } catch (FileNotFoundException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        
-    }
+
 
    
 }

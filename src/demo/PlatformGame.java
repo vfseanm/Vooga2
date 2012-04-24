@@ -11,6 +11,7 @@ import java.util.List;
 
 import playfield.SingletonPlayField;
 
+import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;   
 
 import com.golden.gamedev.Game;
@@ -18,15 +19,17 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.Level;
+import editor.file.LevelLoader;
 import fighter.Fighter;
 
 public abstract  class PlatformGame extends Game {
     
-    protected List<AnimatedGameSprite> mySprites;
+    protected ArrayList<AnimatedGameSprite> mySprites;
     private Level myLevel;
     private Fighter myFighter;
     //protected ImageBackground myBackground;
     protected PlayField myPlayfield;
+    protected Sidescroller mySidescroller;
     
     PlatformGame()
     {
@@ -35,28 +38,12 @@ public abstract  class PlatformGame extends Game {
     }
     public void loadLevel(String filename)
     {
-        File file = new File(filename);
-        FileInputStream fis = null;
-        ObjectInputStream in = null;
-        try
-        {
-          fis = new FileInputStream(file);
-          in = new ObjectInputStream(fis);
-          myLevel = (Level)in.readObject();
-          in.close();
-        }
-        catch(IOException ex)
-        {
-          ex.printStackTrace();
-        }
-        catch(ClassNotFoundException ex)
-        {
-          ex.printStackTrace();
-        }
+        LevelLoader loader = new LevelLoader();
+        myLevel = loader.readLevel(new File(filename));
 
-        mySprites = myLevel.getSprites();
+        mySprites = (ArrayList<AnimatedGameSprite>) myLevel.getSprites();
         ImageBackground myBackground = myLevel.getBackground();
-        myFighter = myLevel.getFighter();
+        myFighter = Fighter.getInstance();
         
         if(myFighter!=null)
         {
@@ -69,7 +56,8 @@ public abstract  class PlatformGame extends Game {
         }
         myPlayfield.setBackground(myBackground);
         
-        
+        mySidescroller = myLevel.getSidescroller();
+        mySidescroller.setSprites(mySprites);
     }
     
     public Fighter getFighter() {

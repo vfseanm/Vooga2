@@ -73,10 +73,6 @@ public class SideToSidePlatform extends DecoratedPlatform {
            return new SideToSidePlatform(toWrap);
            
        }
-	   
-	    public static AbstractPlatform fromJson(String json)
-	    {
-	        return AbstractPlatform.fromJson(json);
-	    }
+
 
 }

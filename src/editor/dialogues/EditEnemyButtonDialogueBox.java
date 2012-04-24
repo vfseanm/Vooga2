@@ -3,9 +3,9 @@ package editor.dialogues;
 
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -50,7 +50,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, e.getAttributes());
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, e.getAttributes(), controller);
                
         JLabel label1 = new JLabel("Enemy Name:");
         panel.add(label1);

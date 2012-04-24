@@ -1,12 +1,12 @@
 package sprite;
 
 import java.awt.Color;
+
 import java.awt.image.BufferedImage;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.Method;
  import java.lang.reflect.Type;
 import java.util.ArrayList;
  import java.util.List;
@@ -14,9 +14,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 
+import collisions.CollisionAction;
+
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
-import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -115,6 +116,10 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         }
         this.setImages(images);
         
+    }
+    
+    public Class<? extends CollisionAction> getActionClass (){
+    	return null; 
     }
     
 

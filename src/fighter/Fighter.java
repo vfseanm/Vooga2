@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import collisions.CollisionAction;
+
 import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -127,6 +129,11 @@ public class Fighter extends GameCharacter {
 		return horizVertMovement;
 	}
 	
+	public List<Attribute> getCarryableAttributes()
+	{
+	    return myCarryableAttributes;
+	}
+	
 	
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
@@ -139,6 +146,11 @@ public class Fighter extends GameCharacter {
 	public String getName() {
 		return "Fighter";
 	}
+	
+
+    public Class<? extends CollisionAction> getActionClass (){
+    	return FighterAction.class; 
+    }
 	
     public String toJson ()
     {
@@ -184,7 +196,7 @@ public class Fighter extends GameCharacter {
         double y = Double.parseDouble(paramList.get(3));
         Fighter sprite = Fighter.getInstance();
         sprite.setLocation(x, y);
-        sprite.setImageNames(imageNames);
+        sprite.setImageNamesandImages(imageNames);
         sprite.setGroup(groupName);
         System.out.println("gets here");
 

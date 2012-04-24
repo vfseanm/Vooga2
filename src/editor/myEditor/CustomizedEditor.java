@@ -1,7 +1,10 @@
 package editor.myEditor;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JFrame;
 
 
 import com.golden.gamedev.gui.TLabel;
@@ -9,11 +12,13 @@ import com.golden.gamedev.gui.toolkit.UIConstants;
 
 import editor.EditorView;
 import editor.buttons.DialogueOpeningButton;
+import editor.buttons.ObjectPlacingButton;
+import editor.dialogues.EditEnemyButtonDialogueBox;
 import editor.dialogues.EditEnemyDialogue;
 import editor.dialogues.EnemyDialogueBox;
-import editor.dialogues.ExtendedDialogueBox;
 import editor.dialogues.PlatformDialogueBox;
 import editor.dialogues.PowerupDialogueBox;
+import editor.dialogues.WildandCrazyDialogueBox;
 import enemies.Enemy;
 
 public class CustomizedEditor extends EditorView{
@@ -39,7 +44,7 @@ public class CustomizedEditor extends EditorView{
         l4.UIResource().put("Text Horizontal Alignment Integer", UIConstants.CENTER);
         infoBox.add(l4);
         
-        DialogueOpeningButton custom = new DialogueOpeningButton("Customized dialogue", 125, 350, 150, 40, this, new ExtendedDialogueBox(myController));
+        DialogueOpeningButton custom = new DialogueOpeningButton("Customized dialogue", 125, 350, 150, 40, this, new WildandCrazyDialogueBox(myController));
         infoBox.add(custom);
         
         DialogueOpeningButton newpowerUpButton = new DialogueOpeningButton("Create Power-Up", 125, 450, 150, 40, this, new PowerupDialogueBox(myController));
@@ -56,25 +61,27 @@ public class CustomizedEditor extends EditorView{
 
     public void update(long time) {
         updateEditor(time);
-        if(currentDialogueBox!=null)
+        
+        if(rightClickedSprite!=null)
         {
-            if (bsInput.isMouseDown(MouseEvent.BUTTON1))
-                currentDialogueBox.setXY(this.getMouseX(), this.getMouseY());
-            System.out.println("left click:" + getClickedSprite());
-            System.out.println("right click:" + getRightClickedSprite());
-        }
-        if(getRightClickedSprite()!=null)
-        {
-            if(getRightClickedSprite() instanceof Enemy)
+            if(rightClickedSprite instanceof Enemy)
             {
-                Enemy e = (Enemy) getRightClickedSprite();
+                Enemy e = (Enemy) rightClickedSprite;
                 EditEnemyDialogue editEnemyBox = new EditEnemyDialogue(myController, e, this.getMouseX(), this.getMouseY());
                 this.openDialogue(editEnemyBox);
+                rightClickedSprite = null;
             }
         }
-        
-        
-        
+             if (rightClickedButton!=null)
+             {
+                 if(rightClickedButton instanceof ObjectPlacingButton)
+                 {
+                     ObjectPlacingButton b = (ObjectPlacingButton) rightClickedButton;
+                     EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, b.getFramework());
+                     this.openDialogue(myView);
+                     rightClickedButton = null;
+                 }
+              }
     }
     
     

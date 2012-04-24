@@ -22,15 +22,12 @@ import editor.buttons.DialogueOpeningButton;
 import editor.buttons.OpenButton;
 import editor.buttons.SaveButton;
 import editor.dialogues.DialogueBox;
-import editor.dialogues.DynamicBox;
 import editor.dialogues.EditEnemyButtonDialogueBox;
 import editor.dialogues.FighterDialogueBox;
 import editor.dialogues.GameDialogue;
-import editor.file.JsonLevelLoader;
 import editor.file.JsonLevelWriter;
 import editor.file.LevelLoader;
 import editor.file.LevelWriter;
-import editor.file.SerializedLevelLoader;
 import editor.file.SerializedLevelWriter;
 
 import sprite.AnimatedGameSprite;
@@ -45,11 +42,15 @@ public abstract class EditorView extends Game {
     protected EditorController myController;
     protected TPanel infoBox;
 
-    protected AnimatedGameSprite spriteClicked;           
-    protected double[] origPosition;
-    protected double[] clickedSpriteOffset;
+    protected AnimatedGameSprite leftClickedSprite;
+    protected AnimatedGameSprite rightClickedSprite;
+    protected TButton leftClickedButton;
+    protected TButton rightClickedButton;
+    
+    private double[] origPosition;
+    private double[] clickedSpriteOffset;
     //protected Framework myFramework;
-    protected DynamicBox currentDialogueBox;
+    protected DialogueBox currentDialogueBox;
 
     public void initialize()
     {
@@ -68,17 +69,17 @@ public abstract class EditorView extends Game {
     {
         TPanel bottomBox = new TPanel(MENU_START, 680, 400, 100);
         
-        TButton openButton = new OpenButton("Open", 100, 10, 60, 40, this, new SerializedLevelLoader());
+        TButton openButton = new OpenButton("Open", 100, 10, 60, 40, this, new LevelLoader());
 
         SaveButton saveButton = new SaveButton("Save", 180, 10, 60, 40, this, new SerializedLevelWriter());
         
-        TButton openJsonButton = new OpenButton("OpenJSON", 10, 10, 80, 40, this, new JsonLevelLoader());
+        //TButton openJsonButton = new OpenButton("OpenJSON", 10, 10, 80, 40, this, new JsonLevelLoader());
         
         TButton saveJsonButton = new SaveButton("SaveJSON", 245, 10, 80, 40, this, new JsonLevelWriter());
 
         bottomBox.add(openButton);
         bottomBox.add(saveButton);
-        bottomBox.add(openJsonButton);
+        //bottomBox.add(openJsonButton);
         bottomBox.add(saveJsonButton);
 
         framework.add(bottomBox);
@@ -136,14 +137,14 @@ public abstract class EditorView extends Game {
             }
 
         }
-        if (bsInput.isMouseDown(MouseEvent.BUTTON1) && spriteClicked == null)
+        if (bsInput.isMouseDown(MouseEvent.BUTTON1) && leftClickedSprite == null)
         {
             for (AnimatedGameSprite s : myController.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
 
                 {
-                    spriteClicked = s;
+                    leftClickedSprite = s;
                     clickedSpriteOffset = new double[2];
                     clickedSpriteOffset[0] = this.getMouseX() - s.getX();
                     clickedSpriteOffset[1] = this.getMouseY() - s.getY();
@@ -153,30 +154,30 @@ public abstract class EditorView extends Game {
                 }
             }
         }
-        if (spriteClicked != null && bsInput.isMouseDown(MouseEvent.BUTTON1))
+        if (leftClickedSprite != null && bsInput.isMouseDown(MouseEvent.BUTTON1))
         {
 
-            myController.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0], this.getMouseY()- clickedSpriteOffset[1]);
+            myController.setSpriteLocation(leftClickedSprite, this.getMouseX() - clickedSpriteOffset[0], this.getMouseY()- clickedSpriteOffset[1]);
             
 
         }
 
-        if (spriteClicked != null
+        if (leftClickedSprite != null
                 && bsInput.isMouseReleased(MouseEvent.BUTTON1))
         {
-            myController.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0],this.getMouseY() - clickedSpriteOffset[1]); 
-            if (!myController.checkInterference(spriteClicked))
+            myController.setSpriteLocation(leftClickedSprite, this.getMouseX() - clickedSpriteOffset[0],this.getMouseY() - clickedSpriteOffset[1]); 
+            if (!myController.checkInterference(leftClickedSprite))
             {
-                myController.setSpriteLocation(spriteClicked, origPosition[0], origPosition[1]);
+                myController.setSpriteLocation(leftClickedSprite, origPosition[0], origPosition[1]);
             }
 
-            spriteClicked = null;
+            leftClickedSprite = null;
         }
-        if (spriteClicked != null
+        if (leftClickedSprite != null
                 && bsInput.isKeyReleased(java.awt.event.KeyEvent.VK_DELETE))
         {
-            myController.removeSprite(spriteClicked);
-            spriteClicked = null;
+            myController.removeSprite(leftClickedSprite);
+            leftClickedSprite = null;
         }
 
         if (bsInput.isKeyDown(java.awt.event.KeyEvent.VK_RIGHT))
@@ -195,13 +196,47 @@ public abstract class EditorView extends Game {
         {
             myController.moveVertically(VERTICAL_MOVE);
         }
+        if(currentDialogueBox!=null)
+        {
+            if (bsInput.isMouseDown(MouseEvent.BUTTON1))
+            {
+                currentDialogueBox.setClick(this.getMouseX(), this.getMouseY());
+            }
+            if(getRightClickedSprite()!=null)
+            {
+                currentDialogueBox.setRightClickSprite(getRightClickedSprite());
+            }
+            if(getRightClickedSprite()!=null)
+            {
+                currentDialogueBox.setLeftClickSprite(getRightClickedSprite());
+            }
+        }
         if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
             for (ObjectPlacingButton button: allButtons)
             {
                 if (button.isMouseOver())
                 {
-                    editEnemy(button);
+                    rightClickedButton = button;
+                }
+            }
+            
+            for (AnimatedGameSprite s : myController.getAllSprites())
+            {
+                if (this.checkPosMouse(s, true))
+                    
+                {
+                    rightClickedSprite = s;
+                }
+            }
+        }
+        if (bsInput.isMousePressed(MouseEvent.BUTTON1))
+        {
+            for (ObjectPlacingButton button: allButtons)
+            {
+                if (button.isMouseOver())
+                {
+                    leftClickedButton = button;
                 }
             }
         }
@@ -217,7 +252,7 @@ public abstract class EditorView extends Game {
             for (AnimatedGameSprite s : myController.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
-
+                    
                 {
                     selected = s;
                 }
@@ -287,6 +322,7 @@ public abstract class EditorView extends Game {
     
     public void openDialogue(DialogueBox box)
     {
+        currentDialogueBox = box;
         frame = new JFrame("");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -297,6 +333,7 @@ public abstract class EditorView extends Game {
     
     public void closeFrame()
     {
+        currentDialogueBox = null;
         if(frame!=null)
         {
         frame.setVisible(false);

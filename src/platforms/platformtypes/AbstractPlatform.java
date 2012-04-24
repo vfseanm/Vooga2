@@ -4,6 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import collisions.CollisionAction;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -65,6 +68,9 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	
 	public abstract Object clone();
 	
+    public Class<? extends CollisionAction> getActionClass (){
+    	return PlatformAction.class;
+    }
 
     public String toJson()
     {

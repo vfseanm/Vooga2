@@ -66,9 +66,6 @@ public class SimplePlatform extends AbstractPlatform {
 		return e;
 	}
 	
-	   public static AbstractPlatform fromJson(String json)
-	    {
-	        return AbstractPlatform.fromJson(json);
-	    }
+
 
 }

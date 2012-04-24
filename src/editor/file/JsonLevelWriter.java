@@ -17,9 +17,10 @@ public class JsonLevelWriter extends LevelWriter {
         try
         {
             fileOut = new FileWriter(filename);
-            BufferedWriter out2 = new BufferedWriter(fileOut);
-            out2.write(level.toJson());
-            out2.close();
+            BufferedWriter out = new BufferedWriter(fileOut);
+            out.write("json");
+            out.write(level.toJson());
+            out.close();
         }
         catch (IOException e)
         {
