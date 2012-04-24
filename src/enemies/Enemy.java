@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
+import editor.Reflection;
 import enemies.state.EnemyState;
 
 
@@ -350,58 +351,15 @@ public class Enemy extends GameCharacter
         Enemy sprite = new Enemy(x, y, imageNames);
         sprite.setGroup(groupName);
         System.out.println("gets here");
-
-        try
+        Map<String, String> attributeMap = gson.fromJson(paramList.get(4), collectionType2);
+        System.out.println("attribute map: " + attributeMap);
+        for (String attributeClassName : attributeMap.keySet())
         {
-
-            Map<String, String> attributeMap =
-                gson.fromJson(paramList.get(4), collectionType2);
-            System.out.println("attribute map: " + attributeMap);
-            for (String attributeClassName : attributeMap.keySet())
-            {
-
-                Class attributeClass;
-
-                attributeClass = Class.forName(attributeClassName.substring(6));
-
-                String attributeJson = attributeMap.get(attributeClassName);
-                Class typeList[] = new Class[1];
-                typeList[0] = String.class;
-                Method method = attributeClass.getMethod("fromJson", typeList);
-                Attribute attribute =
-                    (Attribute) method.invoke(null, attributeJson);
+                Attribute attribute = (Attribute) Reflection.getObjectFromJson(attributeClassName, attributeMap.get(attributeClassName));
                 sprite.addAttribute(attribute);
 
-            }
-            return sprite;
         }
-
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (SecurityException e)
-        {
-            e.printStackTrace();
-        }
-        catch (NoSuchMethodException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IllegalArgumentException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e)
-        {
-            e.printStackTrace();
-        }
-        catch (InvocationTargetException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-
+        return sprite;
     }
 
     
