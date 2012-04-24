@@ -26,6 +26,11 @@ public class GroupofEnemies implements InputType, Serializable, Jsonable {
     public String getPrompt() {
         return "Click on the enemies that you'd like to add to the group";
     }
+    
+    public GroupofEnemies()
+    {
+        mySprites = new ArrayList<AnimatedGameSprite> ();
+    }
 
     public ArrayList<AnimatedGameSprite> getEnemies() {
         System.out.println("returning enemies:" + mySprites);

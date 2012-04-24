@@ -16,6 +16,11 @@ import editor.json.Jsonable;
 public class Line implements InputType, Serializable{
 private ArrayList<Point> myLine;
 
+public Line()
+{
+    myLine = new ArrayList<Point>();
+}
+
 public String getPrompt()
 {
     return "Draw a line";
