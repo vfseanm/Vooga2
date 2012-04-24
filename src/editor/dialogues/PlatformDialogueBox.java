@@ -5,7 +5,6 @@ package editor.dialogues;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 

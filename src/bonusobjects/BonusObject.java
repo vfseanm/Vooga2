@@ -1,11 +1,11 @@
 package bonusobjects;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.List;
 
 import collisions.CollisionAction;
-import fighter.FighterAction;
 
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;

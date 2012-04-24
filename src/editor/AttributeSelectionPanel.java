@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import editor.dialogues.DialogueBox;
-import editor.dialogues.DialogueController;
 import editor.input.CustomInputManager;
+import editor.input.DialogueController;
 
 import attributes.Attribute;
 

@@ -1,4 +1,4 @@
-package editor.input;
+package editor.exampleStuff;
 
 import java.awt.Point;
 import java.io.Serializable;
@@ -9,6 +9,7 @@ import sprite.AnimatedGameSprite;
 import com.golden.gamedev.engine.BaseInput;
 
 import editor.dialogues.DialogueBox;
+import editor.input.InputType;
 
 public class GroupofEnemies implements InputType, Serializable{
 private ArrayList<AnimatedGameSprite> mySprites;
@@ -40,6 +41,8 @@ public void setRightClickedSprite(AnimatedGameSprite sprite) {
 
 
 public void setLeftClickedSprite(AnimatedGameSprite sprite) {
+
+    System.out.println("clicking on an enemy and giving it to the object!" + sprite);
     if (mySprites==null)
         mySprites = new ArrayList<AnimatedGameSprite>();
     mySprites.add(sprite);

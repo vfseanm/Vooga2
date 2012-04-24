@@ -3,6 +3,7 @@ package editor.dialogues;
 import java.io.File;
 
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import javax.swing.*;
 import sprite.AnimatedGameSprite;
 
 import editor.EditorController;
-import editor.frameworks.Framework;
+import editor.input.DialogueController;
 
 
 @SuppressWarnings("serial")

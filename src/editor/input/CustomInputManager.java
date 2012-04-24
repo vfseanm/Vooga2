@@ -19,7 +19,6 @@ import editor.AttributeSelectionPanel;
 import editor.Reflection;
 import editor.editorConstructor;
 import editor.AttributeSelectionPanel.CheckBoxListener;
-import editor.dialogues.DialogueController;
 
 import attributes.Attribute;
 
@@ -41,14 +40,24 @@ public class CustomInputManager {
     {
         myController = controller;
         myClass = c;
-        
+//        if (c instanceof InputType)
+//        {
+//            
+//        }
         Constructor constructor = Reflection.getAnnotatedConstructor(myClass);
         Annotation a = constructor.getAnnotation(editorConstructor.class);
         String[] paramNames = ((editorConstructor) a).parameterNames();
         paramTypes = constructor.getParameterTypes();
         
+        if(paramTypes.length ==0)
+        {
+            argList = null;
+        }
+        else
+        {
             argList = new Object[paramNames.length];
-            currentArgumentCounter = 0;
+        }
+        currentArgumentCounter = 0;
         
     }
     public void setRightClickSprite(AnimatedGameSprite sprite)
@@ -62,7 +71,6 @@ public class CustomInputManager {
     
     public void giveXY(int x, int y)
     {
-        System.out.println("calling giveXY in currentInput");
         if(currentInput!=null)
         {
             System.out.println("giving x and y to current input" + x + " and " + y);
@@ -75,7 +83,11 @@ public class CustomInputManager {
             Constructor constructor = Reflection.getAnnotatedConstructor(myClass);
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
-            
+            if(paramTypes.length ==0)
+            {
+                checkAndRun();
+                return;
+            }
             
                     currentInput = null;
                     if(!(paramTypes[currentArgumentCounter].equals(int.class) || paramTypes[currentArgumentCounter].equals(int.class) || paramTypes[currentArgumentCounter].equals(String.class) || paramTypes[currentArgumentCounter].equals(double.class) ||paramTypes[currentArgumentCounter].toString().equals("boolean") ))
@@ -143,15 +155,18 @@ public class CustomInputManager {
     public void finishCurrentInput()
     {
         frame.setVisible(false);
-        System.out.println("input just entered:" + currentInput);
         argList[currentArgumentCounter] = currentInput;
         checkAndRun();
         
     }
     private void checkAndRun()
     {
-        System.out.println("counter" + currentArgumentCounter);
-        System.out.println("# of arguments" + argList.length);
+        if(paramTypes.length ==0)
+        {
+            myController.constructObject(argList);
+            return;
+        }
+        
         if(currentArgumentCounter== (argList.length-1)) { // the last argument has been created
             myController.constructObject(argList);
             return;
