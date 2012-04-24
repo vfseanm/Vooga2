@@ -10,29 +10,30 @@ import com.golden.gamedev.engine.BaseInput;
 
 import editor.dialogues.DialogueBox;
 
-public class Line implements InputType, Serializable{
-private ArrayList<Point> myLine;
+public class Points implements InputType, Serializable{
+private ArrayList<Point> myPoints;
+private ArrayList<AnimatedGameSprite> mySprites;
 
 public String getPrompt()
 {
-    return "Draw a line";
+    return "Click on as many Points as you want";
 }
 
-public ArrayList<Point> getLine()
+public ArrayList<Point> getPoints()
 {
-    return myLine;
+    return myPoints;
 }
 
 
 public void setXY(int x, int y) {
-    if(myLine==null)
-        myLine = new ArrayList<Point>();
+    if(myPoints==null)
+        myPoints = new ArrayList<Point>();
     Point p = new Point(x, y);
-    myLine.add(p);
+    myPoints.add(p);
 }
-public void setLine(ArrayList<Point> l)
+public void setPoints(ArrayList<Point> l)
 {
-    myLine = l;
+    myPoints = l;
 }
 
 

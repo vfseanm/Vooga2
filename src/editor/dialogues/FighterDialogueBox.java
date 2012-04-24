@@ -85,7 +85,6 @@ public class FighterDialogueBox extends DialogueBox{
         JButton goButton = new JButton("Create Fighter");
         goButton.addActionListener(new GoAction());
         subPanel.add(goButton);
-        
 
         panel.add(subPanel, BorderLayout.PAGE_END);
 
