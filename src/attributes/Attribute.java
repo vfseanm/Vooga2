@@ -1,12 +1,12 @@
 package attributes;
 import java.io.Serializable;
 
+
 import character.GameCharacter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 //import com.sun.tools.internal.xjc.model.Constructor;
 import java.lang.reflect.*;
-
 
 
 /**
@@ -48,6 +48,7 @@ public abstract class Attribute implements Serializable, Cloneable
     {
         return "";
     }
+    
 
 
     public Attribute (Object...o)

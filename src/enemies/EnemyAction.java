@@ -1,7 +1,11 @@
 package enemies;
 
+import java.util.List;
+
 import sprite.AnimatedGameSprite;
 
+import attributes.Attribute;
+import attributes.Hitpoints;
 import collisions.CollisionAction;
 import collisions.CollisionContext;
 import collisions.CollisionSpec;
@@ -28,8 +32,20 @@ public class EnemyAction implements CollisionAction {
 	
 	public void instantEnemyDeath (CollisionContext ccntext, CollisionSpec cspec){
 		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
-			System.out.println ("Need to fix death");
-			//sprite.setLocation(-1000, -1000);
+			sprite.setLocation(-10000, -1000);
+		}
+	}
+	
+	public void enemyLoseLife (CollisionContext ccntext, CollisionSpec cspec){
+		//Make sure the collision only happens once
+		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
+			List<Attribute> ability = sprite.getAttributes(); 
+			for (Attribute skill: ability){
+				if (skill.getName().equals("Hitpoints")){
+					((Hitpoints)skill).modifyHitpoints(-10);
+					System.out.println ((Hitpoints)skill);
+				}
+			}
 		}
 	}
 	

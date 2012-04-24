@@ -18,7 +18,7 @@ import editor.dialogues.EditEnemyDialogue;
 import editor.dialogues.EnemyDialogueBox;
 import editor.dialogues.PlatformDialogueBox;
 import editor.dialogues.PowerupDialogueBox;
-import editor.dialogues.WildandCrazyDialogueBox;
+import editor.exampleStuff.WildandCrazyDialogueBox;
 import enemies.Enemy;
 
 public class CustomizedEditor extends EditorView{

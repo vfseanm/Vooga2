@@ -2,6 +2,8 @@ package attributes;
 
 import java.awt.event.KeyEvent;
 
+import editor.json.Jsonable;
+
 
 // FINISH IMPLEMENTING
 @SuppressWarnings("serial")

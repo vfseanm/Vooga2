@@ -19,16 +19,15 @@ import editor.AttributeSelectionPanel;
 import editor.Reflection;
 import editor.editorConstructor;
 import editor.AttributeSelectionPanel.CheckBoxListener;
+import editor.input.inputTypes.InputType;
 
 import attributes.Attribute;
 
-public class CustomInputManager {
+public class CustomInputManager extends InputManager{
 
-    private Class myClass;
+
     private JFrame frame;
     private CheckBoxListener myPanel;
-    private InputType currentInput;
-    private DialogueController myController;
     
     private Object[] argList;
     private int currentArgumentCounter;
@@ -40,10 +39,7 @@ public class CustomInputManager {
     {
         myController = controller;
         myClass = c;
-//        if (c instanceof InputType)
-//        {
-//            
-//        }
+        
         Constructor constructor = Reflection.getAnnotatedConstructor(myClass);
         Annotation a = constructor.getAnnotation(editorConstructor.class);
         String[] paramNames = ((editorConstructor) a).parameterNames();
@@ -60,23 +56,7 @@ public class CustomInputManager {
         currentArgumentCounter = 0;
         
     }
-    public void setRightClickSprite(AnimatedGameSprite sprite)
-    {
-        currentInput.setRightClickedSprite(sprite);
-    }
-    public void setLeftClickSprite(AnimatedGameSprite sprite)
-    {
-        currentInput.setLeftClickedSprite(sprite);
-    }
-    
-    public void giveXY(int x, int y)
-    {
-        if(currentInput!=null)
-        {
-            System.out.println("giving x and y to current input" + x + " and " + y);
-            currentInput.setXY(x, y);
-        }
-    }
+
     
     public void run()
     {
@@ -90,7 +70,7 @@ public class CustomInputManager {
             }
             
                     currentInput = null;
-                    if(!(paramTypes[currentArgumentCounter].equals(int.class) || paramTypes[currentArgumentCounter].equals(int.class) || paramTypes[currentArgumentCounter].equals(String.class) || paramTypes[currentArgumentCounter].equals(double.class) ||paramTypes[currentArgumentCounter].toString().equals("boolean") ))
+                    if(!(paramTypes[currentArgumentCounter].equals(int.class) ||  paramTypes[currentArgumentCounter].equals(String.class) || paramTypes[currentArgumentCounter].equals(double.class) ||paramTypes[currentArgumentCounter].toString().equals("boolean") ))
                     {
                         try {
                             currentInput = (InputType) paramTypes[currentArgumentCounter].newInstance();
@@ -105,7 +85,7 @@ public class CustomInputManager {
                             frame = new JFrame("Edit Enemies");
                             Dimension d = new Dimension(200, 100);
                             frame.setPreferredSize(d);
-                            frame.getContentPane().add(new InputPopopBox(this, currentInput.getPrompt()));
+                            frame.getContentPane().add(new InputPopupBox(this, currentInput.getPrompt()));
                             frame.pack();
                             frame.setVisible(true);
                             
@@ -174,9 +154,6 @@ public class CustomInputManager {
         currentArgumentCounter+=1;
         run();
     }
-    public Class getAssociatedClass()
-    {
-        return myClass;
-    }
+
     
 }

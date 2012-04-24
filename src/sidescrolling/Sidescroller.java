@@ -11,6 +11,9 @@ import java.util.ResourceBundle;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import editor.Reflection;
+import editor.json.Jsonable;
+
 import sprite.AnimatedGameSprite;
 
 
@@ -22,7 +25,7 @@ import sprite.AnimatedGameSprite;
  *
  */
 @SuppressWarnings("serial")
-public abstract class Sidescroller implements Serializable  {
+public abstract class Sidescroller implements Serializable, Jsonable  {
             
     transient protected ResourceBundle mySidescrollerResources = ResourceBundle
             .getBundle("sidescrolling.SidescrollerResourceBundle");
@@ -79,43 +82,12 @@ public abstract class Sidescroller implements Serializable  {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
         {}.getType();
-        Type collectionType2 = new TypeToken<List<Class>>()
-        {}.getType();
+
 
         List<String> paramList = gson.fromJson(json, collectionType);
         List<String> classList = gson.fromJson(paramList.get(0), collectionType);
         Sidescroller scroller = new ConcreteSidescroller();
-        Object[] list = new Object[1];
-        list[0] = scroller;
-        for(String wrappingClass: classList)
-        {
-                
-            
-                try {
-                    Class attributeClass = Class.forName(wrappingClass.substring(6));
-                    Constructor constructor=  attributeClass.getConstructors()[0];
-                    scroller = (DecoratedSidescroller) constructor.newInstance(list);
-                } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                list[0] = scroller;
-            
         
-        }
-        return scroller;
+        return (Sidescroller) Reflection.wrapObject(classList, scroller);
     }
 }

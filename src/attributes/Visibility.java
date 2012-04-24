@@ -1,7 +1,11 @@
 package attributes;
 
 import java.awt.image.BufferedImage;
+
+import com.google.gson.Gson;
+
 import editor.editorConstructor;
+import editor.json.Jsonable;
 
 /**
  * Experimenting with building a layer on top of the GTGE methods to consolidate
@@ -10,7 +14,7 @@ import editor.editorConstructor;
  * @author Alex
  */
 @SuppressWarnings("serial")
-public class Visibility extends Attribute
+public class Visibility extends Attribute implements Jsonable
 {
     private boolean isVisible;
     private BufferedImage[] myImage;
@@ -61,13 +65,25 @@ public class Visibility extends Attribute
     
     public String toJson()
     {
-        return isVisible+"";
+        Gson gson = new Gson();
+        return gson.toJson(isVisible);
     }
     
     public static Visibility fromJson(String json)
     {
-        boolean visible = Boolean.parseBoolean(json);
+        Gson gson = new Gson();
+        boolean visible = gson.fromJson(json, boolean.class);
         return new Visibility(visible);
     }
+    
+/*    private Visibility(){}
+    
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new Visibility());
+    }*/
+   
+
+   
 
 }

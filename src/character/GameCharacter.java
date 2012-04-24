@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import editor.json.Jsonable;
+
 import bonusobjects.PowerUp;
 
 import sprite.AnimatedGameSprite;
@@ -13,7 +15,7 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 @SuppressWarnings("serial")
-public abstract class GameCharacter extends AnimatedGameSprite {
+public abstract class GameCharacter extends AnimatedGameSprite implements Jsonable {
 
 	protected List<Attribute> 		myAttributes;
 	

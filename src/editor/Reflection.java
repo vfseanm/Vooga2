@@ -1,29 +1,34 @@
 package editor;
 
-
 import java.io.File;
-
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import sidescrolling.DecoratedSidescroller;
+
+import attributes.Attribute;
 
 public class Reflection {
-    
+
     @SuppressWarnings("rawtypes")
-    private static List<Class> getClasses(String packageName) throws ClassNotFoundException, IOException 
+    private static List<Class> getClasses(String packageName)
+            throws ClassNotFoundException, IOException
     {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        ClassLoader classLoader = Thread.currentThread()
+                .getContextClassLoader();
         assert classLoader != null;
         String pathName = packageName.replace('.', '/');
         Enumeration<URL> resources = classLoader.getResources(pathName);
         List<File> directories = new ArrayList<File>();
-        while (resources.hasMoreElements()) 
+        while (resources.hasMoreElements())
         {
             URL resource = resources.nextElement();
             String fileName = resource.getFile();
@@ -31,46 +36,53 @@ public class Reflection {
             directories.add(new File(fileNameDecoded));
         }
         ArrayList<Class> classes = new ArrayList<Class>();
-        for (File directory : directories) 
+        for (File directory : directories)
         {
             classes.addAll(findClasses(directory, packageName));
         }
         return classes;
     }
-    
 
     @SuppressWarnings({ "rawtypes" })
-    private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException 
+    private static List<Class> findClasses(File directory, String packageName)
+            throws ClassNotFoundException
     {
         List<Class> classes = new ArrayList<Class>();
-        if (!directory.exists()) 
+        if (!directory.exists())
         {
             return classes;
         }
         File[] files = directory.listFiles();
-        for (File file : files) 
+        for (File file : files)
         {
             String fileName = file.getName();
-            if (file.isDirectory()) 
+            if (file.isDirectory())
             {
                 assert !fileName.contains(".");
                 classes.addAll(findClasses(file, packageName + "." + fileName));
-            } else if (fileName.endsWith(".class") && !fileName.contains("$")) 
+            } else if (fileName.endsWith(".class") && !fileName.contains("$"))
             {
                 Class c;
-                try {
-                    c = Class.forName(packageName + '.' + fileName.substring(0, fileName.length() - 6));
-                } catch (ExceptionInInitializerError e) {
+                try
+                {
+                    c = Class.forName(packageName + '.'
+                            + fileName.substring(0, fileName.length() - 6));
+                } catch (ExceptionInInitializerError e)
+                {
 
-                    c = Class.forName(packageName + '.' + fileName.substring(0, fileName.length() - 6),
-                            false, Thread.currentThread().getContextClassLoader());
+                    c = Class.forName(
+                            packageName
+                                    + '.'
+                                    + fileName.substring(0,
+                                            fileName.length() - 6), false,
+                            Thread.currentThread().getContextClassLoader());
                 }
                 classes.add(c);
             }
         }
         return classes;
     }
-    
+
     public static Constructor getAnnotatedConstructor(Class c)
     {
         Constructor[] constructors = c.getConstructors();
@@ -88,40 +100,114 @@ public class Reflection {
         }
         return constructor;
     }
-    
+
     @SuppressWarnings("rawtypes")
-    public ArrayList<Class> getInstancesOf(String packageName, Class superClass) throws ClassNotFoundException, IOException
+    public ArrayList<Class> getInstancesOf(String packageName, Class superClass)
+            throws ClassNotFoundException, IOException
     {
         ArrayList<Class> behaviors = new ArrayList<Class>();
         List<Class> list = getClasses(packageName);
-        
-        for(Class c: list)
+
+        for (Class c : list)
         {
             Class myClass = c;
-            while(myClass.getSuperclass()!=null)
+            while (myClass.getSuperclass() != null)
             {
-            
-                
-                if(myClass.getSuperclass().equals(superClass))
+
+                if (myClass.getSuperclass().equals(superClass))
                 {
                     behaviors.add(c);
                     break;
-                   
+
                 }
-                myClass= myClass.getSuperclass();
-                    
-            
+                myClass = myClass.getSuperclass();
+
             }
-            
+
         }
-        return behaviors;        
+        return behaviors;
+    }
+
+    public static Object getObjectFromJson(String className, String json)
+    {
+        Class specifiedClass;
+
+        try
+        {
+            specifiedClass = Class.forName(className.substring(6));
+            Class typeList[] = new Class[1];
+            typeList[0] = String.class;
+            Method method = specifiedClass.getMethod("fromJson", typeList);
+            Object object = method.invoke(null, json);
+            return object;
+        } catch (ClassNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SecurityException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchMethodException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+
     }
     
-    public Reflection(){};
     
-    
+    public static Object wrapObject(List<String> classNames, Object simpleObject)
+    {
+        Object wrappedObject = simpleObject;
+        Object[] list = new Object[1];
+        list[0] = wrappedObject;
+        for(String wrappingClass: classNames)
+        {
+                
+            
+                try {
+                    Class attributeClass = Class.forName(wrappingClass.substring(6));
+                    Constructor constructor=  attributeClass.getConstructors()[0];
+                    wrappedObject = constructor.newInstance(list);
+                } catch (IllegalArgumentException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e)
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                list[0] = wrappedObject ;
+                  
+        }
+        return wrappedObject;
+    }
 
-    
+    public Reflection()
+    {
+    };
 
-    
 }

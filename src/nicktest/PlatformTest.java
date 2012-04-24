@@ -9,9 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import platforms.fsmframework.PlatformSwitch;
+import platforms.fsmframework.AbstractEvent;
+import platforms.fsmframework.AbstractPlatformState;
+import platforms.fsmframework.Context;
 import platforms.fsmframework.PlatformSwitch;
+import platforms.fsmframework.SwitchEvent;
+import platforms.fsmframework.SwitchOff;
+import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
-import playfield.SingletinPlayfield;
 import com.golden.gamedev.Game;
 
 
@@ -20,7 +25,9 @@ public class PlatformTest extends Game {
 	
 	AbstractPlatform myPlatform;
 	PlatformSwitch mySwitch;
-	int counter;
+	Context myContext;
+	AbstractPlatform myPlatform2;
+	
 
 	@Override
 	public void initResources() {
@@ -36,20 +43,34 @@ public class PlatformTest extends Game {
 		myPlatform = new UpDownPlatform(myPlatform);
 		System.out.println(myPlatform.toString());
 		SimplePlatform sp = new SimplePlatform(400, 100, imNames);
+		myPlatform2 = sp;
 		List<String> imNames2 = new ArrayList<String>();
 		imNames2.add("resources/Switch1.jpg"); 
 		imNames2.add("resources/Switch2.jpg");
+		mySwitch = new PlatformSwitch(75, 75, imNames2);
+		List<AbstractPlatform> plats = new ArrayList<AbstractPlatform>();
+		plats.add(sp);
+		List<AbstractPlatformState> transition = new ArrayList<AbstractPlatformState>();
+		transition.add(new SwitchOff(plats));
+		transition.add(new SwitchOn(plats));
 		
-		mySwitch = new PlatformSwitch(sp, 75, 75, imNames2);
+		SwitchEvent event = new SwitchEvent(mySwitch, transition, plats);
+		List<AbstractEvent> events = new ArrayList<AbstractEvent>();
+		events.add(event);
+		myContext = new Context(events, plats);
+		//mySwitch.setActive(false);
+		//System.out.println(mySwitch.isActive());
 	}
 
 	@Override
 	public void render(Graphics2D arg0) {
 		arg0.setColor(Color.WHITE);
         arg0.fillRect(0, 0, getWidth(), getHeight());
+        myPlatform2.render(arg0);
 		myPlatform.render(arg0);
+		//System.out.println(mySwitch.isActive());
 		mySwitch.render(arg0);
-		if(counter>10) SingletinPlayfield.getInstance();
+		//System.out.println(mySwitch.isActive());
 	
 		
 	}
@@ -57,12 +78,16 @@ public class PlatformTest extends Game {
 	@Override
 	public void update(long arg0) {
 		if (keyPressed(KeyEvent.VK_S)) {
-			mySwitch.pushed();
-			counter++;
+			mySwitch.setOn(true);
+		
 			
 		}
+		myPlatform2.update(arg0);
 		myPlatform.update(arg0);	
+		//System.out.println(mySwitch.isActive());
 		mySwitch.update(arg0);
+		//System.out.println(mySwitch.isActive());
+		myContext.update(arg0);
 	}
 	
 }

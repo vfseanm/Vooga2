@@ -30,6 +30,7 @@ public class WildandCrazyDialogueBox extends DialogueBox{
     private JTextField myName;
     private JTextField myGroup;
     private Zone myZone;
+    private GroupofEnemies myEnemies;
 
     public WildandCrazyDialogueBox(EditorController m) {
         super(m);
@@ -71,9 +72,9 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
         
-//        JButton enemyButton = new JButton("Choose my enemies ");
-//        enemyButton.addActionListener(new EnemyGroupListener());
-//        panel.add(enemyButton);
+        JButton enemyButton = new JButton("Choose my enemies ");
+        enemyButton.addActionListener(new EnemyGroupListener());
+        panel.add(enemyButton);
         
         JButton formatButton = new JButton("Set up my 'zone' ");
         formatButton.addActionListener(new FormatListener());
@@ -114,8 +115,8 @@ public class WildandCrazyDialogueBox extends DialogueBox{
             controller.promptForInput(c, this);
         }
         
-        public void setObject(Object zone) {
-            myZone = (Zone) zone;
+        public void setObject(Object enemies) {
+            myEnemies = (GroupofEnemies) enemies;
             
         }
     }

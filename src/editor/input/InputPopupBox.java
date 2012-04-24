@@ -1,21 +1,20 @@
 package editor.input;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class InputPopopBox extends JPanel{
-    CustomInputManager myManager;
+@SuppressWarnings("serial")
+public class InputPopupBox extends JPanel{
+    InputManager myManager;
     
-    public InputPopopBox(CustomInputManager inputManager, String message)
+    public InputPopupBox(InputManager inputManager, String message)
     {
         myManager = inputManager;
         
@@ -42,18 +41,5 @@ class GoAction implements ActionListener {
             myManager.finishCurrentInput();
         }
     }
-    
-//    public void setBox(JFrame frame)
-//    {
-//        frame.setSize(150, 50);
-//
-//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-//        
-//        int w = frame.getSize().width;
-//        int h = frame.getSize().height;
-//        int x = (dim.width-w)/2;
-//        int y = (dim.height-h)/2;
-//         
-//        frame.setLocation(x, y);
-//    }
+
 }

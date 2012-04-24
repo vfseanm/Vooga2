@@ -1,10 +1,8 @@
 package editor;
 
-
 import java.awt.Color;
+
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -12,22 +10,17 @@ import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 import java.util.List;
 
-
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
-import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.frameworks.Framework;
-import enemies.Enemy;
+
 import fighter.Fighter;
 
 
@@ -142,10 +135,8 @@ public class Level implements Serializable{
     {
         for(Framework f: frameworks)
         {
-            System.out.println("inside for loop");
             if(f.containsSprite(sprite))
             {
-                System.out.println("inside if statement");
                 f.removeSprite(sprite);
             }
         }
@@ -259,7 +250,7 @@ public class Level implements Serializable{
         String fighterJson = myList.get(1);
         if(!fighterJson.equals(""))
         {
-            level.setFighter(Fighter.fromJson(fighterJson));
+           level.setFighter(Fighter.fromJson(fighterJson));
            
         }
        
@@ -271,7 +262,6 @@ public class Level implements Serializable{
        
         
         ArrayList<String> frameworkList = gson.fromJson(myList.get(3), collectionType);
-        //System.out.println("framework LIst: "+frameworkList);
         
         for(String f: frameworkList)
         {

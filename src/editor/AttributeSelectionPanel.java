@@ -81,7 +81,7 @@ public class AttributeSelectionPanel extends JPanel {
                 }
                 if (isAnnotated)
                 {
-                    JLabel label1 = new JLabel(DialogueBox.getText(c));
+                    JLabel label1 = new JLabel(DialogueBox.getClassName(c));
                     panel.add(label1);
                     JCheckBox box = new JCheckBox();
                     panel.add(box);
