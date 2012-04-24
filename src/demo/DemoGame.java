@@ -55,15 +55,15 @@ public class DemoGame extends PlatformGame {
 	// private PlayField myPlayField;
 	private SpriteGroup allSprites;
 	
-	/*private PlatformSwitch mySwitch;
+	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
-	private Context myContext;*/
+	private Context myContext;
 
 	@Override
 	public void initResources() 
 	{
 
-	    loadLevel("l1");
+	    loadLevel("level2");
         for(AnimatedGameSprite s: mySprites)
         {
             System.out.println(s.getGroup());
@@ -72,15 +72,30 @@ public class DemoGame extends PlatformGame {
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec ();
 		spec.addActMap("enemy", "standOnTop");
-		spec.addActMap("platfrom", "");
+		spec.addActMap("platform", "");
+		
         
         specList.add(spec);        
         //spec.addClass("enemy", EnemyAction.class);
         //spec.addClass("platform", AbstractPlatform.class);
+       
+        
+        
+        //FSM stuff
+        initPlatformFSM();
+        CollisionSpec spec2 = new CollisionSpec();
+        spec2.addActMap(mySwitch.getGroup(), "switchPlatform");
+        spec2.addActMap("Fighter", "");
+        specList.add(spec2);
+        
         gc = new GameCollisionManager(specList);
         
-        
-        /*List<String> imNames = new ArrayList<String>();
+
+	}
+	
+	private void initPlatformFSM() {
+		 //FSM stuff
+        List<String> imNames = new ArrayList<String>();
 		imNames.add("resources/platform1.png");
 		imNames.add("resources/RotatingPlatform1.png");
         SimplePlatform sp = new SimplePlatform(400, 100, imNames);
@@ -97,17 +112,18 @@ public class DemoGame extends PlatformGame {
 		SwitchEvent event = new SwitchEvent(mySwitch, transition, plats);
 		List<AbstractEvent> events = new ArrayList<AbstractEvent>();
 		events.add(event);
-		myContext = new Context(events, plats);*/
+		myContext = new Context(events, plats);
 		
-
 	}
 
 	@Override
 	public void render(Graphics2D arg0) 
 	{
 	    myPlayfield.render(arg0);
-	   /* myPlatform.render(arg0);
-	    mySwitch.render(arg0);*/
+	    
+	    //FSM Stuff
+	    myPlatform.render(arg0);
+	    mySwitch.render(arg0);
 	}
 
 	@Override
@@ -118,11 +134,12 @@ public class DemoGame extends PlatformGame {
 	    gc.detectCollision(mySprites);
 	    mySidescroller.update(elapsedTime);
 	    
-	    /*if (keyPressed(KeyEvent.VK_S)) {
+	    //FSM stuff
+	    if (keyPressed(KeyEvent.VK_S)) {
 			mySwitch.setOn(true);		
 		}
 	    myPlatform.update(elapsedTime);
 	    myContext.update(elapsedTime);
-	    mySwitch.update(elapsedTime);*/
+	    mySwitch.update(elapsedTime);
 	}
 }
