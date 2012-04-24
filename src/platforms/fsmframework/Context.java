@@ -1,7 +1,6 @@
 package platforms.fsmframework;
 
 import java.util.List;
-
 import platforms.platformtypes.AbstractPlatform;
 
 public class Context {

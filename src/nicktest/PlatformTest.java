@@ -58,6 +58,8 @@ public class PlatformTest extends Game {
 		List<AbstractEvent> events = new ArrayList<AbstractEvent>();
 		events.add(event);
 		myContext = new Context(events, plats);
+		mySwitch.setActive(false);
+		System.out.println(mySwitch.isActive());
 	}
 
 	@Override
@@ -66,7 +68,9 @@ public class PlatformTest extends Game {
         arg0.fillRect(0, 0, getWidth(), getHeight());
         myPlatform2.render(arg0);
 		myPlatform.render(arg0);
+		//System.out.println(mySwitch.isActive());
 		mySwitch.render(arg0);
+		//System.out.println(mySwitch.isActive());
 	
 		
 	}
@@ -74,13 +78,15 @@ public class PlatformTest extends Game {
 	@Override
 	public void update(long arg0) {
 		if (keyPressed(KeyEvent.VK_S)) {
-			mySwitch.setOn(true);
+			//mySwitch.setOn(true);
 		
 			
 		}
 		myPlatform2.update(arg0);
 		myPlatform.update(arg0);	
+		//System.out.println(mySwitch.isActive());
 		mySwitch.update(arg0);
+		//System.out.println(mySwitch.isActive());
 		myContext.update(arg0);
 	}
 	

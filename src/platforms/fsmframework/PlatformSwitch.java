@@ -1,8 +1,5 @@
 package platforms.fsmframework;
-import java.awt.Graphics2D;
 import java.util.List;
-import platforms.FrameTimer;
-import platforms.platformtypes.AbstractPlatform;
 import sprite.AnimatedGameSprite;
 
 

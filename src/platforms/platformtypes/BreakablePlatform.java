@@ -1,5 +1,6 @@
 package platforms.platformtypes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -24,7 +25,7 @@ import bonusobjects.BonusObject;
 public class BreakablePlatform extends DecoratedPlatform {
 
 	private static final long serialVersionUID = 1254073087890380273L;
-	private List<BonusObject> myBonusObjects;  // need to fix in level editor so this can be set...
+	private List<BonusObject> myBonusObjects = new ArrayList<BonusObject>();  // need to fix in level editor so this can be set...
 	int numHitsToBreak = Integer.parseInt(myPlatformResources.getString("DefaultNumHitsToBreak"));
 
 	/**
@@ -35,7 +36,6 @@ public class BreakablePlatform extends DecoratedPlatform {
 	 */
 	public BreakablePlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);
-		setImmutable(true);
 	}
 	
 	public void setNumHitsToBreak(int numHits) {
@@ -76,8 +76,8 @@ public class BreakablePlatform extends DecoratedPlatform {
 		if (myBonusObjects != null && myBonusObjects.size() > index) {
 			BonusObject object = myBonusObjects.get(index);
 			object.setActive(true);
-			object.setLocation(getX(), getY());
-			object.setHorizontalSpeed(Integer.parseInt(myPlatformResources.getString("BonusObjectSpeed")));
+			object.setLocation(getX(), getY() + 50);
+			object.setHorizontalSpeed(Double.parseDouble(myPlatformResources.getString("BonusObjectSpeed")));
 			myBonusObjects.remove(index);
 		}
 	}
@@ -94,10 +94,7 @@ public class BreakablePlatform extends DecoratedPlatform {
 	
 	protected void releaseRandomItem() {
 		Random rand = new Random();
-		int index = -1;
-		while (index >= 0 && index < myBonusObjects.size()) {
-			index = rand.nextInt();
-		}
+		int index = rand.nextInt(myBonusObjects.size());
 		releaseItem(index);
 	}
 
@@ -114,10 +111,13 @@ public class BreakablePlatform extends DecoratedPlatform {
 	//modifying collision manager
 	public void doBreak() {
 		// only called if user defined collision action is called on breakable platform
+		System.out.println("executing doBreak()");
+		System.out.println(myBonusObjects);
 		releaseRandomItem();
 		numHitsToBreak--;
 		if (numHitsToBreak == 0) {
-			setActive(false);
+			//setActive(false);
+			setLocation(-1000, -1000);
 		}
 	}
  	
