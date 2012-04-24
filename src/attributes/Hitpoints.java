@@ -41,7 +41,10 @@ public class Hitpoints extends Attribute
 
     }
 
-
+    public int getHitPoints(){
+		return myHitpoints;
+    	
+    }
  
 
     public String toString ()

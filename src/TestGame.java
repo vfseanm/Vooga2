@@ -80,10 +80,13 @@ public class TestGame extends Game {
 		list.add(p2);
 		list.add(p3);
 		//list.add(p4);
+		
+		Hitpoints hp = new Hitpoints(20);
+		bob.addAttribute(hp);
 		cs = new CollisionSpec ();
 		cs.addActMap(p1.getGroup(), "");
-		cs.addActMap(bob.getGroup(), "instantEnemyDeath");
-		cs.addActMap(bob.getGroup(), "standOnTop");
+		cs.addActMap(bob.getGroup(), "enemyLoseLife");
+		//cs.addActMap(bob.getGroup(), "standOnTop");
 		specList.add(cs);
 				
 		gc = new GameCollisionManager(specList);
