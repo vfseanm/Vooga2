@@ -1,6 +1,5 @@
 package editor.exampleStuff;
 
-import java.awt.Point;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -15,12 +14,16 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.Reflection;
+
 import editor.frameworks.Framework;
 import editor.input.inputTypes.InputType;
 import editor.json.Jsonable;
 import enemies.Enemy;
 
-public class GroupofEnemies implements InputType, Serializable, Jsonable {
+
+@SuppressWarnings("serial")
+public class GroupofEnemies implements InputType, Serializable {
+
     private ArrayList<AnimatedGameSprite> mySprites;
 
     public String getPrompt() {

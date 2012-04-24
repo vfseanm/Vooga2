@@ -1,48 +1,41 @@
 package editor.input;
 
 import java.awt.Point;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import sprite.AnimatedGameSprite;
 
-import com.golden.gamedev.engine.BaseInput;
+@SuppressWarnings("serial")
+public class Line implements InputType, Serializable {
+    private ArrayList<Point> myLine;
 
-import editor.dialogues.DialogueBox;
+    public String getPrompt() {
+        return "Draw a line";
+    }
 
-public class Line implements InputType, Serializable{
-private ArrayList<Point> myLine;
+    public ArrayList<Point> getLine() {
+        return myLine;
+    }
 
-public String getPrompt()
-{
-    return "Draw a line";
-}
+    public void setXY(int x, int y) {
+        if (myLine == null)
+            myLine = new ArrayList<Point>();
+        Point p = new Point(x, y);
+        myLine.add(p);
+    }
 
-public ArrayList<Point> getLine()
-{
-    return myLine;
-}
+    public void setLine(ArrayList<Point> l) {
+        myLine = l;
+    }
 
+    public void setRightClickedSprite(AnimatedGameSprite sprite) {
+        return;
+    }
 
-public void setXY(int x, int y) {
-    if(myLine==null)
-        myLine = new ArrayList<Point>();
-    Point p = new Point(x, y);
-    myLine.add(p);
-}
-public void setLine(ArrayList<Point> l)
-{
-    myLine = l;
-}
-
-
-public void setRightClickedSprite(AnimatedGameSprite sprite) {
-    return;
-}
-
-
-public void setLeftClickedSprite(AnimatedGameSprite sprite) {
-    return;
-}
+    public void setLeftClickedSprite(AnimatedGameSprite sprite) {
+        return;
+    }
 
 }

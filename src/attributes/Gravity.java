@@ -3,9 +3,11 @@ package attributes;
 
 import com.google.gson.Gson;
 
+
 import editor.editorConstructor;
 import editor.frameworks.Framework;
 import editor.json.Jsonable;
+
 import fighter.movement.Movement;
 
 @SuppressWarnings("serial")

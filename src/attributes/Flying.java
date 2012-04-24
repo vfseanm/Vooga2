@@ -3,6 +3,8 @@ import editor.editorConstructor;
 import editor.frameworks.Framework;
 import editor.json.Jsonable;
 
+
+
 // knows gravity too well?
 @SuppressWarnings("serial")
 public class Flying extends Attribute implements Updateable, Jsonable

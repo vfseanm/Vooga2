@@ -1,6 +1,7 @@
 package editor.input.inputTypes;
 
 import java.awt.Point;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -10,8 +11,10 @@ import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 
 import editor.dialogues.DialogueBox;
+
 import editor.frameworks.Framework;
 import editor.json.Jsonable;
+
 
 public class Points implements InputType, Serializable{
 private ArrayList<Point> myPoints;
@@ -51,9 +54,6 @@ public void setLeftClickedFramework(Framework f) {
 public void setRightClickedFramework(Framework f) {
     return; 
 }
-
-
-
 
 
 }

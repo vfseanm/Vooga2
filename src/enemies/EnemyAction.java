@@ -1,6 +1,5 @@
 package enemies;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import sprite.AnimatedGameSprite;

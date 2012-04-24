@@ -1,19 +1,16 @@
 package editor.exampleStuff;
 
-import java.awt.Point;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import com.google.gson.Gson;
 
+import editor.json.Jsonable;
+import editor.json.SpriteJsonData;
+
 
 import sprite.AnimatedGameSprite;
 
-import editor.Reflection;
-import editor.json.Jsonable;
-import editor.json.SpriteJsonData;
-import enemies.Enemy;
 
 @SuppressWarnings("serial")
 public class WildAndCrazyObject extends AnimatedGameSprite implements Jsonable{
