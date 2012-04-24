@@ -10,7 +10,6 @@ import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 import attributes.Attribute;
 import attributes.Flying;
 import attributes.Updateable;

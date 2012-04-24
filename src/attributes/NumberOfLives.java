@@ -2,7 +2,6 @@ package attributes;
 
 import editor.editorConstructor;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 @SuppressWarnings("serial")
 public class NumberOfLives extends Attribute implements Jsonable
 {

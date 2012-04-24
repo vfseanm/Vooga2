@@ -1,7 +1,6 @@
 package attributes;
 import editor.editorConstructor;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 import editor.frameworks.Framework;
 
 // knows gravity too well?

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 
 import editor.editorConstructor;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 
 @SuppressWarnings("serial")
 public class Hitpoints extends Attribute implements Jsonable

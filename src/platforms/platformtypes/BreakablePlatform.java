@@ -3,7 +3,6 @@ package platforms.platformtypes;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
 
-import editor.file.ObjectFromJsonFactory;
 import enemies.Enemy;
 
 import attributes.Flying;

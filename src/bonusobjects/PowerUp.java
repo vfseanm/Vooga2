@@ -14,7 +14,6 @@ import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import editor.Reflection;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 import enemies.Enemy;
 import attributes.*;
 

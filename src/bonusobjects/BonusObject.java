@@ -13,7 +13,6 @@ import com.google.gson.reflect.TypeToken;
 
 import collisions.CollisionAction;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;

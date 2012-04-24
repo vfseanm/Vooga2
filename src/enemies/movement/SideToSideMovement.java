@@ -11,7 +11,6 @@ import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 
 //Change location to coordinate
 
