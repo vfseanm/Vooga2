@@ -26,6 +26,7 @@ import com.golden.gamedev.object.background.ImageBackground;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import editor.file.Jsonable;
 import editor.frameworks.Framework;
 import enemies.Enemy;
 import fighter.Fighter;
@@ -269,7 +270,6 @@ public class Level implements Serializable{
        
         
         ArrayList<String> frameworkList = gson.fromJson(myList.get(3), collectionType);
-        //System.out.println("framework LIst: "+frameworkList);
         
         for(String f: frameworkList)
         {

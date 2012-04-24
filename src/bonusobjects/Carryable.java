@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.golden.gamedev.object.Sprite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import attributes.Attribute;
+import attributes.Flying;
 import editor.Reflection;
+import editor.file.Jsonable;
+import editor.file.ObjectFromJsonFactory;
 import fighter.Fighter;
 
 @SuppressWarnings("serial")
-public class Carryable extends BonusObject {
+public class Carryable extends BonusObject implements Jsonable {
 	
 	protected Fighter		myFighter;
 	
@@ -80,4 +84,15 @@ public class Carryable extends BonusObject {
         return sprite;
 
     }
+    
+/*    private Carryable(){}
+    
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new Carryable());
+    }
+   */
+    
+
+   
 }

@@ -12,9 +12,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import collisions.CollisionAction;
+import editor.file.Jsonable;
+import editor.file.ObjectFromJsonFactory;
 
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
+import attributes.Flying;
 
 @SuppressWarnings("serial")
 public class BonusObject extends AnimatedGameSprite {
@@ -27,7 +30,7 @@ public class BonusObject extends AnimatedGameSprite {
         myAttributes = new ArrayList<Attribute>();
         myAttributesToOffer = new ArrayList<Attribute>();
     }
-   
+
     // returns attributes to be added to sprite that collects this bonus object
     public List<Attribute> getAttributesToOffer() {
     	return Collections.unmodifiableList(myAttributesToOffer);
@@ -88,5 +91,6 @@ public class BonusObject extends AnimatedGameSprite {
         return gson.toJson(paramList);
 
     }
+    
     
 }

@@ -21,6 +21,8 @@ public abstract class TwoPartMovement extends Attribute implements Updateable
         time = duration / 2;
         isPart1 = true;
     }
+    
+    protected TwoPartMovement(){}
 
 
     public void setPart1 (boolean part1)

@@ -13,11 +13,13 @@ import com.google.gson.reflect.TypeToken;
 
 import character.GameCharacter;
 import editor.Reflection;
+import editor.file.Jsonable;
+import editor.file.ObjectFromJsonFactory;
 import enemies.Enemy;
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class PowerUp extends BonusObject {
+public class PowerUp extends BonusObject implements Jsonable {
 
     protected GameCharacter myGameCharacter;
 
@@ -86,5 +88,12 @@ public class PowerUp extends BonusObject {
         return sprite;
 
     }
+    
+/*    private PowerUp(){}
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new PowerUp());
+    }
+   */
 
 }

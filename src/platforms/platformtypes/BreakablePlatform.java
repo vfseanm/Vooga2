@@ -3,9 +3,11 @@ package platforms.platformtypes;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
 
+import editor.file.ObjectFromJsonFactory;
 import enemies.Enemy;
 
- import bonusobjects.BonusObject;
+import attributes.Flying;
+import bonusobjects.BonusObject;
  
 /**
  * This class provides functionality that can be added on to simple platforms or
@@ -101,5 +103,11 @@ public class BreakablePlatform extends DecoratedPlatform {
 		return new BreakablePlatform(toWrap);
 	}
 	
-
+/*	private BreakablePlatform(){};
+	
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new BreakablePlatform());
+    }*/
+   
 }

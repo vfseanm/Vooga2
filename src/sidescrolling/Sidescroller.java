@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.Reflection;
+import editor.file.Jsonable;
 
 import sprite.AnimatedGameSprite;
 
@@ -24,7 +25,7 @@ import sprite.AnimatedGameSprite;
  *
  */
 @SuppressWarnings("serial")
-public abstract class Sidescroller implements Serializable  {
+public abstract class Sidescroller implements Serializable, Jsonable  {
             
     transient protected ResourceBundle mySidescrollerResources = ResourceBundle
             .getBundle("sidescrolling.SidescrollerResourceBundle");

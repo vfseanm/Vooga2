@@ -9,9 +9,10 @@ import sprite.AnimatedGameSprite;
 import com.golden.gamedev.engine.BaseInput;
 
 import editor.dialogues.DialogueBox;
+import editor.file.Jsonable;
 import editor.frameworks.Framework;
 
-public class Points implements InputType, Serializable{
+public class Points implements InputType, Serializable, Jsonable{
 private ArrayList<Point> myPoints;
 private ArrayList<AnimatedGameSprite> mySprites;
 
@@ -50,5 +51,14 @@ public void setLeftClickedFramework(Framework f) {
 public void setRightClickedFramework(Framework f) {
     return; 
 }
+
+@Override
+public String toJson()
+{
+    // TODO Auto-generated method stub
+    return null;
+}
+
+
 
 }

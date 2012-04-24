@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.Reflection;
+import editor.file.Jsonable;
 
 
 
@@ -25,7 +26,7 @@ import sprite.AnimatedGameSprite;
  * @author yankeenjg
  * 
  */
-public abstract class AbstractPlatform extends AnimatedGameSprite {
+public abstract class AbstractPlatform extends AnimatedGameSprite implements Jsonable {
 
 	private static final long serialVersionUID = 1483938382856783084L;
 	transient protected ResourceBundle myPlatformResources = ResourceBundle

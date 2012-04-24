@@ -17,6 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
 import editor.Reflection;
+import editor.file.ObjectFromJsonFactory;
 import enemies.state.EnemyState;
 
 
@@ -361,6 +362,14 @@ public class Enemy extends GameCharacter
         }
         return sprite;
     }
+    
+/*    private Enemy(){}
+    
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new Enemy());
+    }
+   */
 
     
 }

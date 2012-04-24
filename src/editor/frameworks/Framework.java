@@ -20,11 +20,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.Reflection;
+import editor.file.Jsonable;
+import editor.file.ObjectFromJsonFactory;
 
 import sprite.AnimatedGameSprite;
 
 @SuppressWarnings("serial")
-public class Framework implements Serializable {
+public class Framework implements Serializable, Jsonable {
     protected List<AnimatedGameSprite> mySprites;
     // transient protected BufferedImage[] myImages;
     // protected List<String> imageNames;
@@ -202,6 +204,12 @@ public class Framework implements Serializable {
                     (int) ((double) coordinates.get(1)));
         }
         return framework;
-    }
+    }   
+    
+/*    private Framework(){};
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new Framework());
+    }*/
 
 }

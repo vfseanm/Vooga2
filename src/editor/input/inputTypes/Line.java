@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import sprite.AnimatedGameSprite;
 
 import com.golden.gamedev.engine.BaseInput;
+import com.google.gson.Gson;
 
 import editor.dialogues.DialogueBox;
+import editor.file.Jsonable;
 import editor.frameworks.Framework;
 
-public class Line implements InputType, Serializable{
+public class Line implements InputType, Serializable, Jsonable{
 private ArrayList<Point> myLine;
 
 public String getPrompt()
@@ -54,6 +56,19 @@ public void setLeftClickedFramework(Framework f) {
 
 public void setRightClickedFramework(Framework f) {
     return; 
+}
+
+public String toJson()
+{
+    Gson gson = new Gson();
+    return gson.toJson(this);
+    
+}
+
+public static Line fromJson(String json)
+{
+    Gson gson = new Gson();
+    return gson.fromJson(json, Line.class);
 }
 
 }
