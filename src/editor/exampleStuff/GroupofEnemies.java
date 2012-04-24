@@ -75,7 +75,10 @@ public class GroupofEnemies implements InputType, Serializable {
         Map<String, String> spriteMap = new HashMap<String,String>();
         for(AnimatedGameSprite sprite: mySprites)
         {
-            spriteMap.put(sprite.getClass().toString(), sprite.toJson());
+            if(sprite!=null)
+            {
+                spriteMap.put(sprite.getClass().toString(), sprite.toJson());
+            }
         }
         return gson.toJson(spriteMap);
         
