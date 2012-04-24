@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import editor.editorConstructor;
 import editor.file.Jsonable;
 
-@SuppressWarnings("serial")
 public class Hitpoints extends Attribute implements Jsonable
 {
     private int myHitpoints;
@@ -57,6 +56,11 @@ public class Hitpoints extends Attribute implements Jsonable
         return new Hitpoints(myHitpoints);
     }
     
+    public int getHitPoints(){
+		return myHitpoints;
+    	
+    }
+    
     public String toJson()
     {
         Gson gson = new Gson();
@@ -78,6 +82,4 @@ public class Hitpoints extends Attribute implements Jsonable
     }*/
    
     
-
-
 }

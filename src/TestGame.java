@@ -30,8 +30,8 @@ public class TestGame extends Game {
 	private Enemy bob;
 	private Background myBackground;
 	private int counter;
-	private AbstractPlatform p, p3, p4;
-	private SimplePlatform p1, p2;
+	private AbstractPlatform p, p3, p1;
+	private SimplePlatform p2;
 	private PlayField myPF;
 	private GameCollisionManager gc;
 	private ArrayList<AnimatedGameSprite> list = new ArrayList<AnimatedGameSprite>();
@@ -60,10 +60,10 @@ public class TestGame extends Game {
 		a.add("resources/platform1.png");
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
 		b1[0]= getImage("resources/platform1.png"); 
-		p = new UpDownPlatform (new SimplePlatform ( 380,160, a));
+		p = new RotatingPlatform (new SimplePlatform ( 380,160, a));
 		b1[0]= getImage("resources/platform1.png"); 
 
-		p1 = new SimplePlatform ( 140, 70, a);
+		p1 = new BreakablePlatform (new SimplePlatform ( 140, 70, a));
 
 		b1[0]= getImage("resources/platform1.png"); 
 		p2 = new SimplePlatform ( 120, 200, a);
@@ -80,9 +80,12 @@ public class TestGame extends Game {
 		list.add(p2);
 		list.add(p3);
 		//list.add(p4);
+		
+		Hitpoints hp = new Hitpoints(20);
+		bob.addAttribute(hp);
 		cs = new CollisionSpec ();
-		cs.addActMap(p1.getGroup(), "");
-		cs.addActMap(bob.getGroup(), "instantEnemyDeath");
+		cs.addActMap(p1.getGroup(), "actionBreak");
+		cs.addActMap(bob.getGroup(), "enemyLoseLife");
 		cs.addActMap(bob.getGroup(), "standOnTop");
 		specList.add(cs);
 				
