@@ -73,7 +73,7 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void render(Graphics2D arg0) 
 	{
-		 myPlayfield.render(arg0);
+	    myPlayfield.render(arg0);
 	}
 
 	@Override

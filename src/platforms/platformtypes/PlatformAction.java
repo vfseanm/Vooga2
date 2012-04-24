@@ -8,7 +8,7 @@ import collisions.CollisionContext;
 import collisions.CollisionSpec;
 
 public class PlatformAction implements CollisionAction {
-	AnimatedGameSprite sprite;
+ 	AnimatedGameSprite sprite;
 	
 	public void doBreak (CollisionContext ccntext, CollisionSpec cspec){
 		Platform.doBreak(AnimatedGameSprite sprite, CollisionContext ccntext, CollisionSpec cspec);
