@@ -58,8 +58,8 @@ public class PlatformTest extends Game {
 		List<AbstractEvent> events = new ArrayList<AbstractEvent>();
 		events.add(event);
 		myContext = new Context(events, plats);
-		mySwitch.setActive(false);
-		System.out.println(mySwitch.isActive());
+		//mySwitch.setActive(false);
+		//System.out.println(mySwitch.isActive());
 	}
 
 	@Override
