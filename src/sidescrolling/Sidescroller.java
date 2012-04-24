@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.Reflection;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
 
 import sprite.AnimatedGameSprite;
 
@@ -82,8 +82,7 @@ public abstract class Sidescroller implements Serializable, Jsonable  {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
         {}.getType();
-        Type collectionType2 = new TypeToken<List<Class>>()
-        {}.getType();
+
 
         List<String> paramList = gson.fromJson(json, collectionType);
         List<String> classList = gson.fromJson(paramList.get(0), collectionType);

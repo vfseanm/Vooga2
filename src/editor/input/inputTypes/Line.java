@@ -10,10 +10,10 @@ import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 
 import editor.dialogues.DialogueBox;
-import editor.file.Jsonable;
 import editor.frameworks.Framework;
+import editor.json.Jsonable;
 
-public class Line implements InputType, Serializable, Jsonable{
+public class Line implements InputType, Serializable{
 private ArrayList<Point> myLine;
 
 public String getPrompt()
@@ -58,17 +58,17 @@ public void setRightClickedFramework(Framework f) {
     return; 
 }
 
-public String toJson()
+public Object clone()
 {
-    Gson gson = new Gson();
-    return gson.toJson(this);
+    Line line = new Line();
+    ArrayList<Point> pointList = new ArrayList<Point>();
+    for(Point p: myLine)
+    {
+        pointList.add((Point) p.clone());
+    }
+    line.setLine(pointList);
+    return line;
     
-}
-
-public static Line fromJson(String json)
-{
-    Gson gson = new Gson();
-    return gson.fromJson(json, Line.class);
 }
 
 }

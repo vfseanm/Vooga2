@@ -13,7 +13,8 @@ import com.google.gson.reflect.TypeToken;
 
 import character.GameCharacter;
 import editor.Reflection;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
+import editor.json.SpriteJsonData;
 import enemies.Enemy;
 import attributes.*;
 
@@ -55,20 +56,16 @@ public class PowerUp extends BonusObject implements Jsonable {
     public static PowerUp fromJson(String json)
     {
         Gson gson = new Gson();
+        SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
+        PowerUp sprite = new PowerUp(spriteData.getX(), spriteData.getY(), spriteData.getImageNames());
+        sprite.setGroup(spriteData.getGroup());
         Type collectionType = new TypeToken<List<String>>() {
         }.getType();
         Type collectionType2 = new TypeToken<Map<String, String>>() {
-        }.getType();
-
-        List<String> paramList = gson.fromJson(json, collectionType);
-        List<String> imageNames = gson.fromJson(paramList.get(0),
-                collectionType);
-        String groupName = paramList.get(1);
-        double x = Double.parseDouble(paramList.get(2));
-        double y = Double.parseDouble(paramList.get(3));
-        PowerUp sprite = new PowerUp(x, y, imageNames);
-        sprite.setGroup(groupName);
-        Map<String, String> attributeMap = gson.fromJson(paramList.get(4),
+        }.getType();   
+        
+        List<String> paramList = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);
+        Map<String, String> attributeMap = gson.fromJson(paramList.get(0),
                 collectionType2);
         for (String attributeClassName : attributeMap.keySet())
         {
@@ -77,7 +74,7 @@ public class PowerUp extends BonusObject implements Jsonable {
             sprite.addAttribute(attribute);
         }
         Map<String, String> attributeToOfferMap = gson.fromJson(
-                paramList.get(5), collectionType2);
+                paramList.get(1), collectionType2);
         for (String attributeClassName : attributeToOfferMap.keySet())
         {
             Attribute attribute = (Attribute) Reflection.getObjectFromJson(
@@ -88,11 +85,6 @@ public class PowerUp extends BonusObject implements Jsonable {
 
     }
     
-/*    private PowerUp(){}
-    public static ObjectFromJsonFactory getFactory()
-    {
-        return new ObjectFromJsonFactory(new PowerUp());
-    }
-   */
+
 
 }

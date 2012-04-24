@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import editor.editorConstructor;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
 
 /**
  * Experimenting with building a layer on top of the GTGE methods to consolidate

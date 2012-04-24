@@ -18,7 +18,8 @@ import com.google.gson.reflect.TypeToken;
 
 import character.GameCharacter;
 import editor.Reflection;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
+import editor.json.SpriteJsonData;
 import enemies.Enemy;
 import fighter.movement.Input;
 import fighter.movement.Movement;
@@ -172,18 +173,10 @@ public class Fighter extends GameCharacter implements Jsonable {
     public String toJson()
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>() {
-        }.getType();
         List<String> paramList = new ArrayList<String>();
-        paramList.add(gson.toJson(this.getImageNames()));
-        paramList.add(this.getGroup());
-        paramList.add(this.getX() + "");
-        paramList.add(this.getY() + "");
-
         Map<String, String> attributeMap = new HashMap<String, String>();
         for (Attribute a : myAttributes)
         {
-            System.out.println("adding attribute to json");
             attributeMap.put(a.getClass().toString(), a.toJson());
         }
         paramList.add(gson.toJson(attributeMap));
@@ -193,7 +186,8 @@ public class Fighter extends GameCharacter implements Jsonable {
             carryableAttributeMap.put(a.getClass().toString(), a.toJson());
         }
         paramList.add(gson.toJson(carryableAttributeMap));
-        return gson.toJson(paramList);
+        String additionalInformation = gson.toJson(paramList); 
+        return gson.toJson(new SpriteJsonData(this, additionalInformation));
 
     }
 
@@ -204,18 +198,13 @@ public class Fighter extends GameCharacter implements Jsonable {
         }.getType();
         Type collectionType2 = new TypeToken<Map<String, String>>() {
         }.getType();
-
-        List<String> paramList = gson.fromJson(json, collectionType);
-        List<String> imageNames = gson.fromJson(paramList.get(0),
-                collectionType);
-        String groupName = paramList.get(1);
-        double x = Double.parseDouble(paramList.get(2));
-        double y = Double.parseDouble(paramList.get(3));
+        SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
         Fighter sprite = Fighter.getInstance();
-        sprite.setLocation(x, y);
-        sprite.setImageNamesandImages(imageNames);
-        sprite.setGroup(groupName);
-        Map<String, String> attributeMap = gson.fromJson(paramList.get(4),
+        sprite.setLocation(spriteData.getX(), spriteData.getY());
+        sprite.setImageNamesandImages(spriteData.getImageNames());
+        sprite.setGroup(spriteData.getGroup());
+        List<String> paramList = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);
+        Map<String, String> attributeMap = gson.fromJson(paramList.get(0),
                 collectionType2);
         for (String attributeClassName : attributeMap.keySet())
         {
@@ -226,7 +215,7 @@ public class Fighter extends GameCharacter implements Jsonable {
         }
         List<Attribute> carryableAttributes = new ArrayList<Attribute>();
         Map<String, String> carryableAttributeMap = gson.fromJson(
-                paramList.get(5), collectionType2);
+                paramList.get(1), collectionType2);
         for (String attributeClassName : carryableAttributeMap.keySet())
         {
             carryableAttributes.add((Attribute) Reflection.getObjectFromJson(

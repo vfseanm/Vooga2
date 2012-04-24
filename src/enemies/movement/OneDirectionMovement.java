@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
 import attributes.Attribute;
 import attributes.Flying;
 import attributes.Updateable;

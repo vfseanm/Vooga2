@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.Reflection;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
 
 import sprite.AnimatedGameSprite;
 
@@ -191,6 +191,7 @@ public class Framework implements Serializable, Jsonable {
         String prototypeClassName = list.get(2);
         String prototypeJson = list.get(3);
         List<String> instanceList = gson.fromJson(list.get(4), collectionType);
+        
         AnimatedGameSprite prototype = (AnimatedGameSprite) Reflection
                 .getObjectFromJson(prototypeClassName, prototypeJson);
         Framework framework = new Framework(name, type, prototype);

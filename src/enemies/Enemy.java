@@ -17,6 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
 import editor.Reflection;
+import editor.json.SpriteJsonData;
 import enemies.state.EnemyState;
 
 
@@ -310,21 +311,14 @@ public class Enemy extends GameCharacter
     public String toJson ()
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>()
-        {}.getType();
-        List<String> paramList = new ArrayList<String>();
-        paramList.add(gson.toJson(this.getImageNames()));
-        paramList.add(this.getGroup());
-        paramList.add(this.getX() + "");
-        paramList.add(this.getY() + "");
-
         Map<String, String> attributeList = new HashMap<String, String>();
         for (Attribute a : myAttributes)
         {
             attributeList.put(a.getClass().toString(), a.toJson());
         }
-        paramList.add(gson.toJson(attributeList));
-        return gson.toJson(paramList);
+        String additionalInformation = gson.toJson(attributeList);
+        
+        return gson.toJson(new SpriteJsonData(this, additionalInformation));
 
     }
     
@@ -337,21 +331,13 @@ public class Enemy extends GameCharacter
     public static Enemy fromJson (String json)
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>()
+        
+        SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
+        Enemy sprite = new Enemy(spriteData.getX(), spriteData.getY(), spriteData.getImageNames());
+        sprite.setGroup(spriteData.getGroup());
+        Type collectionType = new TypeToken<HashMap<String, String>>()
         {}.getType();
-        Type collectionType2 = new TypeToken<Map<String, String>>()
-        {}.getType();
-
-        List<String> paramList = gson.fromJson(json, collectionType);
-        List<String> imageNames =
-            gson.fromJson(paramList.get(0), collectionType);
-        String groupName = paramList.get(1);
-        double x = Double.parseDouble(paramList.get(2));
-        double y = Double.parseDouble(paramList.get(3));
-        Enemy sprite = new Enemy(x, y, imageNames);
-        sprite.setGroup(groupName);
-        System.out.println("gets here");
-        Map<String, String> attributeMap = gson.fromJson(paramList.get(4), collectionType2);
+        Map<String, String> attributeMap = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);
         System.out.println("attribute map: " + attributeMap);
         for (String attributeClassName : attributeMap.keySet())
         {
@@ -361,14 +347,7 @@ public class Enemy extends GameCharacter
         }
         return sprite;
     }
-    
-/*    private Enemy(){}
-    
-    public static ObjectFromJsonFactory getFactory()
-    {
-        return new ObjectFromJsonFactory(new Enemy());
-    }
-   */
+
 
     
 }

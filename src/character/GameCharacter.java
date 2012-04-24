@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import editor.file.Jsonable;
+import editor.json.Jsonable;
 
 import bonusobjects.PowerUp;
 

@@ -3,7 +3,7 @@ package attributes;
 import com.google.gson.Gson;
 
 import editor.editorConstructor;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
 
 public class Hitpoints extends Attribute implements Jsonable
 {

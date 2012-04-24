@@ -12,7 +12,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import collisions.CollisionAction;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
+import editor.json.SpriteJsonData;
 
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
@@ -66,14 +67,8 @@ public class BonusObject extends AnimatedGameSprite {
     public String toJson()
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>() {
-        }.getType();
+        
         List<String> paramList = new ArrayList<String>();
-        paramList.add(gson.toJson(this.getImageNames()));
-        paramList.add(this.getGroup());
-        paramList.add(this.getX() + "");
-        paramList.add(this.getY() + "");
-
         Map<String, String> attributeList = new HashMap<String, String>();
         for (Attribute a : myAttributes)
         {
@@ -86,8 +81,8 @@ public class BonusObject extends AnimatedGameSprite {
             attributeToOfferList.put(a.getClass().toString(), a.toJson());
         }
         paramList.add(gson.toJson(attributeToOfferList));
-
-        return gson.toJson(paramList);
+        String additionalInformation = gson.toJson(paramList);
+        return gson.toJson(new SpriteJsonData(this, additionalInformation));
 
     }
     

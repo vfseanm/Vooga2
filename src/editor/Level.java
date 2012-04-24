@@ -26,8 +26,8 @@ import com.golden.gamedev.object.background.ImageBackground;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.file.Jsonable;
 import editor.frameworks.Framework;
+import editor.json.Jsonable;
 import enemies.Enemy;
 import fighter.Fighter;
 

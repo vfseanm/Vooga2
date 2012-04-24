@@ -2,16 +2,23 @@ package enemies.movement;
 
 import java.awt.Point;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import editor.editorConstructor;
 import editor.input.inputTypes.Line;
+import editor.json.Jsonable;
 import attributes.Attribute;
 import attributes.Updateable;
 
 
 @SuppressWarnings("serial")
 public class PathFollowingMovement extends Attribute
-    implements Updateable, Cloneable
+    implements Updateable, Cloneable, Jsonable
 {
     private ArrayList<Point> myPath;
     private int index;
@@ -86,6 +93,22 @@ public class PathFollowingMovement extends Attribute
        Line l = new Line();
        l.setLine(myPath);
        return new PathFollowingMovement(l);
+    }
+    
+    public String toJson()
+    {
+        Gson gson = new Gson();
+        return gson.toJson(myPath);
+    }
+    
+    public static PathFollowingMovement fromJson(String json)
+    {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<ArrayList<Point>>(){}.getType();
+        ArrayList<Point> path = gson.fromJson(json, collectionType);
+        Line l = new Line();
+        l.setLine(path);
+        return new PathFollowingMovement(l);
     }
 
 }
