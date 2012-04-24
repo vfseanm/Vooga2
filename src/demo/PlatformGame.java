@@ -53,11 +53,14 @@ public abstract  class PlatformGame extends Game {
         for(AnimatedGameSprite s: mySprites)
         {
             myPlayfield.add(s);
+            System.out.println(s);
         }
         myPlayfield.setBackground(myBackground);
         
+        
         mySidescroller = myLevel.getSidescroller();
         mySidescroller.setSprites(mySprites);
+        System.out.println(mySidescroller);
     }
     
     public Fighter getFighter() {
