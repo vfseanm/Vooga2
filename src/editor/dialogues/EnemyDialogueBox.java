@@ -3,9 +3,9 @@ package editor.dialogues;
 
 import java.io.IOException;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 

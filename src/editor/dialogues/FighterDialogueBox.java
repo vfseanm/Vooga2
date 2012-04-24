@@ -39,7 +39,6 @@ public class FighterDialogueBox extends DialogueBox{
     AttributeSelectionPanel carryablePanel;
 
 
-    @SuppressWarnings("rawtypes")
     public FighterDialogueBox(EditorController m)
     {
        
