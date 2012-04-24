@@ -1,5 +1,10 @@
 package platforms.fsmframework;
 import java.util.List;
+
+import platforms.platformtypes.PlatformAction;
+
+import collisions.CollisionAction;
+import enemies.EnemyAction;
 import sprite.AnimatedGameSprite;
 
 
@@ -24,6 +29,14 @@ public class PlatformSwitch extends AnimatedGameSprite {
 	
 	public boolean getSwitchOnOff() {
 		return SwitchOn;
+	}
+	
+    public Class<? extends CollisionAction> getActionClass (){
+    	return PlatformAction.class; 
+    }
+	
+	public String getGroup(){
+		return ("PLATFORMSWITCH");
 	}
 }
 
