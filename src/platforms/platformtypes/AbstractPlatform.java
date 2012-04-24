@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.Reflection;
+import editor.json.SpriteJsonData;
 
 
 
@@ -76,27 +77,16 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	public String toJson()
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>()
-        {}.getType();
-        List<String> paramList = new ArrayList<String>();
-        paramList.add(gson.toJson(this.getImageNames()));
-        paramList.add(this.getGroup());
-        paramList.add(this.getX() + "");
-        paramList.add(this.getY() + "");
+        List<String> classNames = new ArrayList<String>();
         if(!this.getClass().equals(SimplePlatform.class))
         {
-            List<String> classNames = new ArrayList<String>();
             for(Class c: ((DecoratedPlatform) this).getClassesOfDecorators())
             {
                 classNames.add(c.toString());
             }
-            paramList.add(gson.toJson(classNames));
         }
-        else
-        {
-            paramList.add(gson.toJson(new ArrayList<String>()));
-        }
-        return gson.toJson(paramList);
+        String additionalInformation = gson.toJson(classNames);
+        return gson.toJson(new SpriteJsonData(this, additionalInformation));
         
     }
     
@@ -105,18 +95,10 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
         {}.getType();
-        Type collectionType2 = new TypeToken<List<Class>>()
-        {}.getType();
-
-        List<String> paramList = gson.fromJson(json, collectionType);
-        List<String> imageNames =
-            gson.fromJson(paramList.get(0), collectionType);
-        String groupName = paramList.get(1);
-        double x = Double.parseDouble(paramList.get(2));
-        double y = Double.parseDouble(paramList.get(3));
-        List<String> classList = gson.fromJson(paramList.get(4), collectionType);
-        AbstractPlatform platform = new SimplePlatform(x, y, imageNames);
-        platform.setGroup(groupName);        
+        SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
+        AbstractPlatform platform = new SimplePlatform(spriteData.getX(), spriteData.getY(),spriteData.getImageNames());
+        platform.setGroup(spriteData.getGroup());
+        List<String> classList = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);                
         return (AbstractPlatform) Reflection.wrapObject(classList, platform);
     }
 }

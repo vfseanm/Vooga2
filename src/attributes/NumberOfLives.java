@@ -1,7 +1,9 @@
 package attributes;
 
+import com.google.gson.Gson;
+
 import editor.editorConstructor;
-import editor.file.Jsonable;
+import editor.json.Jsonable;
 @SuppressWarnings("serial")
 public class NumberOfLives extends Attribute implements Jsonable
 {
@@ -45,12 +47,14 @@ public class NumberOfLives extends Attribute implements Jsonable
     
     public String toJson()
     {
-        return myLives+"";
+        Gson gson = new Gson();
+        return gson.toJson(myLives);
     }
     
     public static NumberOfLives fromJson(String json)
     {
-        int lives = Integer.parseInt(json);
+        Gson gson = new Gson();
+        int lives = gson.fromJson(json, int.class);
         return new NumberOfLives(lives);
     }
     

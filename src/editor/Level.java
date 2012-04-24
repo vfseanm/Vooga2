@@ -1,10 +1,8 @@
 package editor;
 
-
 import java.awt.Color;
+
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -12,23 +10,17 @@ import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 import java.util.List;
 
-
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
-import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.file.Jsonable;
 import editor.frameworks.Framework;
-import enemies.Enemy;
+
 import fighter.Fighter;
 
 

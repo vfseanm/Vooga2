@@ -175,7 +175,6 @@ public class GameCollisionManager{
 						mc.invoke(caSp1, args);
 					}
 					catch (Exception e){
-						System.out.println ("");
 					}
 				}
 			}
@@ -191,7 +190,6 @@ public class GameCollisionManager{
 						mc.invoke(caSp2, args);
 					}
 					catch (Exception e){
-						System.out.println ("");
 					}
 				}
 

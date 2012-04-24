@@ -1,20 +1,23 @@
 package editor.input.inputTypes;
 
 import java.awt.Point;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import sprite.AnimatedGameSprite;
 
 import com.golden.gamedev.engine.BaseInput;
+import com.google.gson.Gson;
 
 import editor.dialogues.DialogueBox;
-import editor.file.Jsonable;
-import editor.frameworks.Framework;
 
-public class Points implements InputType, Serializable, Jsonable{
+import editor.frameworks.Framework;
+import editor.json.Jsonable;
+
+
+public class Points implements InputType, Serializable{
 private ArrayList<Point> myPoints;
-private ArrayList<AnimatedGameSprite> mySprites;
 
 public String getPrompt()
 {
@@ -51,14 +54,6 @@ public void setLeftClickedFramework(Framework f) {
 public void setRightClickedFramework(Framework f) {
     return; 
 }
-
-@Override
-public String toJson()
-{
-    // TODO Auto-generated method stub
-    return null;
-}
-
 
 
 }

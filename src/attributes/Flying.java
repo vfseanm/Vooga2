@@ -1,7 +1,9 @@
 package attributes;
 import editor.editorConstructor;
-import editor.file.Jsonable;
 import editor.frameworks.Framework;
+import editor.json.Jsonable;
+
+
 
 // knows gravity too well?
 @SuppressWarnings("serial")

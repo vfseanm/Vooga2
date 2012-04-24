@@ -37,7 +37,7 @@ public class TestGame extends Game {
 	private PlayField myPF;
 	private GameCollisionManager gc;
 	private ArrayList<AnimatedGameSprite> list = new ArrayList<AnimatedGameSprite>();
-	private CollisionSpec cs;
+	private CollisionSpec cs, cs2;
 	private BonusObject myObject;
 	
 	ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
@@ -60,10 +60,13 @@ public class TestGame extends Game {
 		counter=0;
 		a.clear(); 
 		BufferedImage[] b1 = new BufferedImage[1];
-		a.add("resources/platform1.png");
+		a.add("resources/RotatingPlatform1.png");
+
 		List<AnimatedGameSprite> ag = new ArrayList<AnimatedGameSprite>(); 
-		b1[0]= getImage("resources/platform1.png"); 
+		b1[0]= getImage("resources/RotatingPlatform1.png"); 
 		p = new RotatingPlatform (new SimplePlatform ( 380,160, a));
+		a.clear();
+		a.add("resources/platform1.png");
 		b1[0]= getImage("resources/platform1.png"); 
 
 		p1 = new BreakablePlatform (new SimplePlatform ( 140, 70, a));
@@ -99,6 +102,10 @@ public class TestGame extends Game {
 		cs.addActMap(bob.getGroup(), "standOnTop");
 		specList.add(cs);
 				
+		cs2 = new CollisionSpec();
+		cs2.addActMap(p.getGroup(), "");
+		cs2.addActMap(myObject.getGroup(), "");
+		
 		gc = new GameCollisionManager(specList);
 	}
 

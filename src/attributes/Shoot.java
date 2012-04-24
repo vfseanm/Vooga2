@@ -2,7 +2,7 @@ package attributes;
 
 import java.awt.event.KeyEvent;
 
-import editor.file.Jsonable;
+import editor.json.Jsonable;
 
 
 // FINISH IMPLEMENTING
