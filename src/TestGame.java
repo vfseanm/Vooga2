@@ -72,6 +72,7 @@ public class TestGame extends Game {
 		p1 = new BreakablePlatform (new SimplePlatform ( 140, 70, a));
 		List<String> im = new ArrayList<String>();
 		im.add("resources/happy.jpg");
+		
 		myObject = new BonusObject(140, 70, im);
 		p1.addBonusObject(myObject);
 		//p1.setActive(false);
