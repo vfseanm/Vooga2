@@ -1,8 +1,5 @@
 package platforms.platformtypes;
 
- import sprite.AnimatedGameSprite;
-
-import com.golden.gamedev.object.collision.CollisionGroup;
 
 
  /**

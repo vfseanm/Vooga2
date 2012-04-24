@@ -66,7 +66,8 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	public abstract Object clone();
 	
 
-    public String toJson()
+    @SuppressWarnings({ "unused", "rawtypes" })
+	public String toJson()
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
@@ -93,7 +94,8 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         
     }
     
-    public static AbstractPlatform fromJson(String json){
+    @SuppressWarnings({ "unused", "rawtypes" })
+	public static AbstractPlatform fromJson(String json){
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
         {}.getType();

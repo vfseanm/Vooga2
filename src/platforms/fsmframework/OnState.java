@@ -15,5 +15,7 @@ public class OnState extends PlatformState {
  	public void handle(long elapsedTime) {
 		myDecorator.update(elapsedTime);	
 	}
+	
+	//public getNextState();
 
 }

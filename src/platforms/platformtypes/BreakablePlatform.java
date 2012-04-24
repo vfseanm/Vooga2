@@ -1,11 +1,11 @@
 package platforms.platformtypes;
 
 
-import com.golden.gamedev.object.collision.CollisionGroup;
+import java.util.List;
 
-import enemies.Enemy;
+import java.util.Random;
 
- import bonusobjects.BonusObject;
+import bonusobjects.BonusObject;
  
 /**
  * This class provides functionality that can be added on to simple platforms or
@@ -19,8 +19,8 @@ import enemies.Enemy;
 public class BreakablePlatform extends DecoratedPlatform {
 
 	private static final long serialVersionUID = 1254073087890380273L;
-	private BonusObject myBonusObject; // need to fix in level editor so this
-										// can be set...
+	private List<BonusObject> myBonusObjects;  // need to fix in level editor so this can be set...
+	int numHitsToBreak = Integer.parseInt(myPlatformResources.getString("DefaultNumHitsToBreak"));
 
 	/**
 	 * Constructor for a breakable platform
@@ -30,6 +30,11 @@ public class BreakablePlatform extends DecoratedPlatform {
 	 */
 	public BreakablePlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);
+		setImmutable(true);
+	}
+	
+	public void setNumHitsToBreak(int numHits) {
+		numHitsToBreak = numHits;
 	}
 
 	/**
@@ -50,23 +55,45 @@ public class BreakablePlatform extends DecoratedPlatform {
 	 * @param bonusObject
 	 *            BonusObject that will be stored in the myBonusObject field.
 	 */
-	public void setBonusObject(BonusObject bonusObject) {
-		myBonusObject = bonusObject;
-		myBonusObject.setActive(false);
+	public void addBonusObject(BonusObject bonusObject) {
+		bonusObject.setActive(false);
+		myBonusObjects.add(bonusObject);
+		
 	}
 
 	/**
 	 * Function that releases the bonus object stored in myBonusObject field. It
 	 * sets the bonus object to active, gives it the location of the platform
-	 * and sets its horizontal speed to 0.02 so that it moves slowly once
+	 * and sets its horizontal speed to 0.01 so that it moves slowly once
 	 * released.
 	 */
-	private void releaseItem() {
-		if (myBonusObject != null) {
-			myBonusObject.setActive(true);
-			myBonusObject.setLocation(getX(), getY() + 20);
-			myBonusObject.setHorizontalSpeed(0.02);
+	protected void releaseItem(int index) {
+		if (myBonusObjects != null && myBonusObjects.size() > index) {
+			BonusObject object = myBonusObjects.get(index);
+			object.setActive(true);
+			object.setLocation(getX(), getY());
+			object.setHorizontalSpeed(Integer.parseInt(myPlatformResources.getString("BonusObjectSpeed")));
+			myBonusObjects.remove(index);
 		}
+	}
+	
+	protected void releaseAllItems() {
+		double speed = Integer.parseInt(myPlatformResources.getString("BonusObjectSpeed"));
+		for (BonusObject object : myBonusObjects) {
+			object.setActive(true);
+			object.setLocation(getX(), getY());
+			object.setHorizontalSpeed(speed);
+			speed += Integer.parseInt(myPlatformResources.getString("BonusObjectSpeed"));
+		}
+	}
+	
+	protected void releaseRandomItem() {
+		Random rand = new Random();
+		int index = -1;
+		while (index >= 0 && index < myBonusObjects.size()) {
+			index = rand.nextInt();
+		}
+		releaseItem(index);
 	}
 
 	/**
@@ -77,10 +104,16 @@ public class BreakablePlatform extends DecoratedPlatform {
 	 * fighter. This method should only be called in the collision manager for
 	 * fighters and breakable platforms.
 	 */
+	
+	//if user wants to change what items get released etc... they can change this by subclassing... or by
+	//modifying collision manager
 	public void doBreak() {
-		// only called if colliding top/bottom with fighter
-		releaseItem();
-		setActive(false);
+		// only called if user defined collision action is called on breakable platform
+		releaseRandomItem();
+		numHitsToBreak--;
+		if (numHitsToBreak == 0) {
+			setActive(false);
+		}
 	}
  	
 	/**
@@ -100,6 +133,4 @@ public class BreakablePlatform extends DecoratedPlatform {
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new BreakablePlatform(toWrap);
 	}
-	
-
 }
