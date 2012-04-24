@@ -12,6 +12,7 @@ import sidescrolling.*;
 import sidescrolling.border.*;
 import sidescrolling.forced.*;
 import sidescrolling.shift.*;
+import sidescrolling.special.BorderToShiftLocation;
 import sprite.AnimatedGameSprite;
 
 import attributes.Gravity;
@@ -84,6 +85,7 @@ public class FighterTester extends Game{
         allSprites.add(p4);
         sidescroller = new ConcreteSidescroller();
         sidescroller.setSprites(allSprites);
+        //sidescroller = new BorderToShiftLocation(sidescroller);
         sidescroller = new BorderLeftSidescroller(sidescroller);
         sidescroller = new BorderRightSidescroller(sidescroller);
         sidescroller = new BorderUpSidescroller(sidescroller);
