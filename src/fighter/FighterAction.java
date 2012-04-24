@@ -10,5 +10,6 @@ public class FighterAction implements CollisionAction{
 	public void setSprite(AnimatedGameSprite sprite) {
 		this.sprite = (Fighter) sprite;
 	}
+
 	
 }
