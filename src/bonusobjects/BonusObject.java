@@ -36,6 +36,10 @@ public class BonusObject extends AnimatedGameSprite {
     	return Collections.unmodifiableList(myAttributesToOffer);
     }
     
+    public String getGroup(){
+    	return "BONUSOBJECT";
+    }
+    
     public void addAttribute(Attribute attributeToAdd) {
     	myAttributes.add(attributeToAdd);
     }
