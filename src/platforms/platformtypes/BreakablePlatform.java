@@ -140,8 +140,9 @@ public class BreakablePlatform extends DecoratedPlatform {
 	}
 	
 	
-	public void doBreak (AnimatedGameSprite sprite, CollisionContext ccntext, CollisionSpec cspec){
+	public void actionBreak (AnimatedGameSprite sprite, CollisionContext ccntext, CollisionSpec cspec){
 		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
+			System.out.println ("Break is not working!");
 			((BreakablePlatform)sprite).doBreak();
 		}
 	}
