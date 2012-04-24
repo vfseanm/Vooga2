@@ -142,10 +142,8 @@ public class Level implements Serializable{
     {
         for(Framework f: frameworks)
         {
-            System.out.println("inside for loop");
             if(f.containsSprite(sprite))
             {
-                System.out.println("inside if statement");
                 f.removeSprite(sprite);
             }
         }
@@ -259,7 +257,7 @@ public class Level implements Serializable{
         String fighterJson = myList.get(1);
         if(!fighterJson.equals(""))
         {
-            level.setFighter(Fighter.fromJson(fighterJson));
+           level.setFighter(Fighter.fromJson(fighterJson));
            
         }
        
