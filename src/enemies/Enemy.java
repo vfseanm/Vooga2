@@ -361,6 +361,14 @@ public class Enemy extends GameCharacter
         }
         return sprite;
     }
+    
+/*    private Enemy(){}
+    
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new Enemy());
+    }
+   */
 
     
 }

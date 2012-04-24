@@ -1,8 +1,9 @@
 package attributes;
 
 import editor.editorConstructor;
+import editor.file.Jsonable;
 @SuppressWarnings("serial")
-public class NumberOfLives extends Attribute
+public class NumberOfLives extends Attribute implements Jsonable
 {
     private int myLives;
 
@@ -52,5 +53,14 @@ public class NumberOfLives extends Attribute
         int lives = Integer.parseInt(json);
         return new NumberOfLives(lives);
     }
+    
+/*    private NumberOfLives(){}
+    
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new NumberOfLives());
+    }*/
+   
+   
 
 }

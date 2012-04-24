@@ -95,7 +95,7 @@ public class BasicMovement extends Attribute implements Updateable, Movement, In
         return myHorizMovement+"";
     }
     
-    public static BasicMovement fromJson(String json)
+   public static BasicMovement fromJson(String json)
     {
 
         double movement = Double.parseDouble(json);

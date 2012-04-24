@@ -51,7 +51,7 @@ public class EditEnemyDialogue extends DialogueBox {
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
         attributePanel = new AttributeSelectionPanel(packagesToSearch,
-                mySprite.getAttributes(), controller);
+                mySprite.getAttributes(), dialogueController);
 
         JLabel label1 = new JLabel("Enemy Name:");
         panel.add(label1);
@@ -84,7 +84,7 @@ public class EditEnemyDialogue extends DialogueBox {
     @Override
     public DialogueBox clone()
     {
-        return new EditEnemyDialogue(myController, mySprite, myX, myY);
+        return new EditEnemyDialogue(editorController, mySprite, myX, myY);
     }
 
     @Override
@@ -114,10 +114,10 @@ public class EditEnemyDialogue extends DialogueBox {
 
         if (!mySprite.equals(enemy))
         {
-            myController.removeSprite(mySprite);
+            editorController.removeSprite(mySprite);
             Framework framework = new Framework(myName.getText(), "enemy",
                     enemy);
-            myController.addButton(myName.getText(), framework);
+            editorController.addButton(myName.getText(), framework);
             framework.createSprite(myX, myY);
             
             

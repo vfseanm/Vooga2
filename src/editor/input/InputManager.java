@@ -1,5 +1,7 @@
 package editor.input;
 
+import editor.frameworks.Framework;
+import editor.input.inputTypes.InputType;
 import sprite.AnimatedGameSprite;
 
 public abstract class InputManager {
@@ -18,6 +20,14 @@ public abstract class InputManager {
     public void setLeftClickSprite(AnimatedGameSprite sprite)
     {
         currentInput.setLeftClickedSprite(sprite);
+    }
+    public void setLeftClickFramework(Framework f)
+    {
+        currentInput.setLeftClickedFramework(f);
+    }
+    public void setRightClickFramework(Framework f)
+    {
+        currentInput.setRightClickedFramework(f);
     }
     
     public void giveXY(int x, int y)

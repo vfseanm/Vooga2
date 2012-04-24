@@ -17,5 +17,6 @@ public class PlatformAction implements CollisionAction {
 	public void setSprite(AnimatedGameSprite sprite) {
 		this.sprite = sprite;
 	}
+	
 
 }

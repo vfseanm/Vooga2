@@ -1,6 +1,4 @@
 package platforms.platformtypes;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +72,8 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
     	return PlatformAction.class;
     }
 
-    public String toJson()
+    @SuppressWarnings({ "unused", "rawtypes" })
+	public String toJson()
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
@@ -101,7 +100,8 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         
     }
     
-    public static AbstractPlatform fromJson(String json){
+    @SuppressWarnings({ "unused", "rawtypes" })
+	public static AbstractPlatform fromJson(String json){
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
         {}.getType();

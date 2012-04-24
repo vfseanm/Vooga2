@@ -17,6 +17,7 @@ import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
+
 import editor.buttons.ObjectPlacingButton;
 import editor.buttons.DialogueOpeningButton;
 import editor.buttons.OpenButton;
@@ -49,7 +50,6 @@ public abstract class EditorView extends Game {
     
     private double[] origPosition;
     private double[] clickedSpriteOffset;
-    //protected Framework myFramework;
     protected DialogueBox currentDialogueBox;
 
     public void initialize()
@@ -196,21 +196,7 @@ public abstract class EditorView extends Game {
         {
             myController.moveVertically(VERTICAL_MOVE);
         }
-        if(currentDialogueBox!=null)
-        {
-            if (bsInput.isMouseDown(MouseEvent.BUTTON1))
-            {
-                currentDialogueBox.setClick(this.getMouseX(), this.getMouseY());
-            }
-            if(getRightClickedSprite()!=null)
-            {
-                currentDialogueBox.setRightClickSprite(getRightClickedSprite());
-            }
-            if(getRightClickedSprite()!=null)
-            {
-                currentDialogueBox.setLeftClickSprite(getRightClickedSprite());
-            }
-        }
+        checkAndUpdateDialogue();
         if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
             for (ObjectPlacingButton button: allButtons)
@@ -242,8 +228,47 @@ public abstract class EditorView extends Game {
         }
 
     }
+    
+    private void checkAndUpdateDialogue()
+    {
+        if(currentDialogueBox!=null)
+        {
+            if (bsInput.isMouseDown(MouseEvent.BUTTON1))
+            {
+                currentDialogueBox.setClick(this.getMouseX(), this.getMouseY());
+            }
+            if(getRightClickedSprite()!=null)
+            {
+                currentDialogueBox.setRightClickSprite(getRightClickedSprite());
+            }
+            if(getLeftClickedSprite()!=null)
+            {
+                currentDialogueBox.setLeftClickSprite(getRightClickedSprite());
+            }
+            if (bsInput.isMouseDown(MouseEvent.BUTTON1))
+            {
+            for (ObjectPlacingButton button: allButtons)
+            {
+                if (button.isMouseOver())
+                {
+                    currentDialogueBox.setLeftClickFramework(button.getFramework());
+                }
+            }
+            }
+            if (bsInput.isMouseDown(MouseEvent.BUTTON3))
+            {
+            for (ObjectPlacingButton button: allButtons)
+            {
+                if (button.isMouseOver())
+                {
+                    currentDialogueBox.setRightClickFramework(button.getFramework());
+                }
+            }
+            }
+        }
+    }
 
-    public AnimatedGameSprite getClickedSprite()
+    public AnimatedGameSprite getLeftClickedSprite()
     {
         AnimatedGameSprite selected = null;
                 
@@ -308,17 +333,6 @@ public abstract class EditorView extends Game {
     
 
     private JFrame frame;
-
-    public void editEnemy(ObjectPlacingButton button)
-    {
-        EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, button.getFramework());
-        frame = new JFrame("Edit Enemies");
-        Dimension d = new Dimension(500, 300);
-        frame.setPreferredSize(d);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
-    }
     
     public void openDialogue(DialogueBox box)
     {

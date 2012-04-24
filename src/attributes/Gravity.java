@@ -1,11 +1,15 @@
 package attributes;
 
 
+import com.google.gson.Gson;
+
 import editor.editorConstructor;
+import editor.file.Jsonable;
+import editor.frameworks.Framework;
 import fighter.movement.Movement;
 
 @SuppressWarnings("serial")
-public class Gravity extends Attribute implements Updateable, Movement
+public class Gravity extends Attribute implements Updateable, Movement, Jsonable
 {
     private double myDistance;
 
@@ -57,13 +61,15 @@ public class Gravity extends Attribute implements Updateable, Movement
     
     public String toJson()
     {
-        return myDistance+"";
+        Gson gson = new Gson();
+        return gson.toJson(myDistance);
     }
     
     public static Gravity fromJson(String json)
     {
 
-        double distance = Double.parseDouble(json);
+        Gson gson = new Gson();
+        double distance = gson.fromJson(json, double.class);
         return new Gravity(distance);
     }
 
@@ -77,5 +83,13 @@ public class Gravity extends Attribute implements Updateable, Movement
 		if (isActive) return myDistance;
 		return 0;
 	}
+	
+/*	private Gravity(){}
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new Gravity());
+    }*/
+   
+
 
 }

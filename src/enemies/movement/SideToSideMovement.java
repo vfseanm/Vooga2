@@ -4,15 +4,18 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import attributes.Flying;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
+import editor.file.Jsonable;
 
 //Change location to coordinate
 
 @SuppressWarnings("serial")
-public class SideToSideMovement extends TwoPartMovement
+public class SideToSideMovement extends TwoPartMovement implements Jsonable
 {
     
 
@@ -76,5 +79,12 @@ public class SideToSideMovement extends TwoPartMovement
         List<Integer> argList = gson.fromJson(json, collectionType);
         return new SideToSideMovement(argList.get(0), (argList.get(1)));
     }
+    
+/*    private SideToSideMovement(){}
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new SideToSideMovement());
+    }*/
+   
 
 }

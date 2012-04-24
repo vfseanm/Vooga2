@@ -50,7 +50,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, e.getAttributes(), controller);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, e.getAttributes(), dialogueController);
                
         JLabel label1 = new JLabel("Enemy Name:");
         panel.add(label1);
@@ -83,7 +83,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
 
     @Override
     public DialogueBox clone() {
-        return new EditEnemyButtonDialogueBox(myController, myFramework);
+        return new EditEnemyButtonDialogueBox(editorController, myFramework);
     }
 
     protected void BoxCompletedAction() {
@@ -104,7 +104,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         }
        
         myFramework.updateSprites(newPrototype);
-        myController.closeDialogue();
+        editorController.closeDialogue();
         
         setVisible(false);
         

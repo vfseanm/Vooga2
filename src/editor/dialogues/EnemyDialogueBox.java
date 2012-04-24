@@ -46,7 +46,7 @@ public class EnemyDialogueBox extends DialogueBox {
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, controller);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, dialogueController);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
        
@@ -103,12 +103,12 @@ public class EnemyDialogueBox extends DialogueBox {
 
 
     public DialogueBox clone() {
-        return new EnemyDialogueBox(myController);
+        return new EnemyDialogueBox(editorController);
     }
 
     protected void BoxCompletedAction() {
         Framework framework = getFramework();
-        myController.addButton(myName.getText(), framework);
+        editorController.addButton(myName.getText(), framework);
         setVisible(false);
         
     }

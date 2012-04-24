@@ -4,10 +4,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import attributes.Flying;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
+import editor.file.Jsonable;
 
 
 // Idea master config file to control attribute exlusivity
@@ -15,7 +18,7 @@ import editor.editorConstructor;
 
 
 @SuppressWarnings("serial")
-public class UpDownMovement extends TwoPartMovement
+public class UpDownMovement extends TwoPartMovement implements Jsonable
 {
 
     @editorConstructor(parameterNames = { "distance" , "duration"})
@@ -83,5 +86,13 @@ public class UpDownMovement extends TwoPartMovement
         List<Integer> argList = gson.fromJson(json, collectionType);
         return new UpDownMovement(argList.get(0), (argList.get(1)));
     }
+/*    
+    private UpDownMovement(){}
+    
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new UpDownMovement());
+    }*/
+   
 
 }

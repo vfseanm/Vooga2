@@ -73,6 +73,12 @@ public class SideToSidePlatform extends DecoratedPlatform {
            return new SideToSidePlatform(toWrap);
            
        }
+	   
+	/* public void setNextState(state);
+	   		myNextSTate = state;
+	   public PlatformState nextState() {
+		   return myNextState;
+	   }*/
 
 
 }
