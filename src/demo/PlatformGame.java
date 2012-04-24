@@ -33,11 +33,6 @@ public abstract  class PlatformGame extends Game {
     }
     public void loadLevel(String filename)
     {
-        LevelLoader loader = new LevelLoader();
-        myLevel = loader.readLevel(new File(filename));
-
-        mySprites = (ArrayList<AnimatedGameSprite>) myLevel.getSprites();
-        ImageBackground myBackground = myLevel.getBackground();
         myFighter = Fighter.getInstance();
         
         if(myFighter!=null)
@@ -45,17 +40,21 @@ public abstract  class PlatformGame extends Game {
             myFighter.setUserInput(bsInput);
             myPlayfield.add(myFighter);
         }
+        LevelLoader loader = new LevelLoader();
+        myLevel = loader.readLevel(new File(filename));
+
+        mySprites = (ArrayList<AnimatedGameSprite>) myLevel.getSprites();
+        ImageBackground myBackground = myLevel.getBackground();
+        
         for(AnimatedGameSprite s: mySprites)
         {
             myPlayfield.add(s);
-            System.out.println(s);
         }
         myPlayfield.setBackground(myBackground);
         
         
         mySidescroller = myLevel.getSidescroller();
         mySidescroller.setSprites(mySprites);
-        System.out.println(mySidescroller);
     }
     
     public Fighter getFighter() {

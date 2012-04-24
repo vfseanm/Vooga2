@@ -51,7 +51,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 
-	    loadLevel("level2");
+	    loadLevel("l1");
         for(AnimatedGameSprite s: mySprites)
         {
             System.out.println(s.getGroup());
