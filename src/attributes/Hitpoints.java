@@ -1,9 +1,13 @@
 package attributes;
 
+import com.google.gson.Gson;
+
 import editor.editorConstructor;
+import editor.file.Jsonable;
+import editor.file.ObjectFromJsonFactory;
 
 @SuppressWarnings("serial")
-public class Hitpoints extends Attribute
+public class Hitpoints extends Attribute implements Jsonable
 {
     private int myHitpoints;
  
@@ -56,13 +60,25 @@ public class Hitpoints extends Attribute
     
     public String toJson()
     {
-        return myHitpoints+"";
+        Gson gson = new Gson();
+        return gson.toJson(myHitpoints);
     }
     
     public static Hitpoints fromJson(String json)
     {
-        int points = Integer.parseInt(json);
+        Gson gson = new Gson();
+        System.out.println(json);
+        int points = gson.fromJson(json, int.class);
         return new Hitpoints(points);
     }
+    
+/*    private Hitpoints(){}
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new Hitpoints());
+    }*/
+   
+    
+
 
 }

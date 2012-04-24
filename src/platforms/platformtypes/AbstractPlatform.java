@@ -1,11 +1,14 @@
 package platforms.platformtypes;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import collisions.CollisionAction;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import editor.Reflection;
 
 
 
@@ -65,6 +68,9 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	
 	public abstract Object clone();
 	
+    public Class<? extends CollisionAction> getActionClass (){
+    	return PlatformAction.class;
+    }
 
     @SuppressWarnings({ "unused", "rawtypes" })
 	public String toJson()
@@ -110,38 +116,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         double y = Double.parseDouble(paramList.get(3));
         List<String> classList = gson.fromJson(paramList.get(4), collectionType);
         AbstractPlatform platform = new SimplePlatform(x, y, imageNames);
-        platform.setGroup(groupName);
-        Object[] list = new Object[1];
-        list[0] = platform;
-        for(String wrappingClass: classList)
-        {
-                
-            
-                try {
-                    Class attributeClass = Class.forName(wrappingClass.substring(6));
-                    Constructor constructor=  attributeClass.getConstructors()[0];
-                    platform = (DecoratedPlatform) constructor.newInstance(list);
-                } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                list[0] = platform;
-            
-        
-        }
-        return platform;
+        platform.setGroup(groupName);        
+        return (AbstractPlatform) Reflection.wrapObject(classList, platform);
     }
 }

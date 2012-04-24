@@ -10,6 +10,7 @@ import com.golden.gamedev.object.Sprite;
  * @author Dustin
  *
  */
+@SuppressWarnings("serial")
 public class ForcedLeftSidescroller extends ForcedSidescroller {
 
     private double forcedLeftSpeed;

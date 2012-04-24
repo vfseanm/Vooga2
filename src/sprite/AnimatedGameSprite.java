@@ -1,29 +1,32 @@
 package sprite;
 
 import java.awt.Color;
+
 import java.awt.image.BufferedImage;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.Method;
- import java.lang.reflect.Type;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
- import java.util.List;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 
+import collisions.CollisionAction;
+
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
-import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import editor.file.Jsonable;
+
 
 @SuppressWarnings("serial")
-public class AnimatedGameSprite extends AdvanceSprite implements Serializable, Cloneable
+public class AnimatedGameSprite extends AdvanceSprite implements Serializable, Cloneable, Jsonable
 {
 
     String myType;
@@ -41,6 +44,7 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         myType = this.getClass().toString();
         myImageNames = imageNames;
     }
+    
 
 
     private static BufferedImage[] getImagesFromNames(List<String> imageNames)
@@ -117,6 +121,10 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         
     }
     
+    public Class<? extends CollisionAction> getActionClass (){
+    	return null; 
+    }
+    
 
 	public String toJson()
     {
@@ -130,7 +138,7 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         return gson.toJson(paramList);
         
     }
-    public static AnimatedGameSprite fromJson(String json)
+    /*public static AnimatedGameSprite fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>(){}.getType();
@@ -144,5 +152,5 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         return sprite;
         
         
-    }
+    }*/
 }

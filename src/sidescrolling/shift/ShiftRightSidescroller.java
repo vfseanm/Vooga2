@@ -9,6 +9,7 @@ import com.golden.gamedev.object.*;
  * @author Dustin
  *
  */
+@SuppressWarnings("serial")
 public class ShiftRightSidescroller extends ShiftSidescroller {
 
     /**

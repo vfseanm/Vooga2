@@ -63,7 +63,7 @@ public class DemoGame extends PlatformGame {
 		spec.addActMap("platfrom", "");
         
         specList.add(spec);        
-        spec.addClass("enemy", EnemyAction.class);
+        //spec.addClass("enemy", EnemyAction.class);
         //spec.addClass("platform", AbstractPlatform.class);
         gc = new GameCollisionManager(specList);
 		
@@ -73,7 +73,7 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void render(Graphics2D arg0) 
 	{
-		 myPlayfield.render(arg0);
+	    myPlayfield.render(arg0);
 	}
 
 	@Override

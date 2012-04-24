@@ -26,6 +26,7 @@ import com.golden.gamedev.object.background.ImageBackground;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import editor.file.Jsonable;
 import editor.frameworks.Framework;
 import enemies.Enemy;
 import fighter.Fighter;
@@ -105,7 +106,7 @@ public class Level implements Serializable{
     {
         if (mySidescroller ==null)
         {
-            mySidescroller = new ConcreteSidescroller(800, 600);
+            mySidescroller = new ConcreteSidescroller();
             mySidescroller = new ForcedLeftSidescroller(mySidescroller);
         }
             
@@ -175,14 +176,13 @@ public class Level implements Serializable{
         }
         if(!backgroundImagePath.equals(""))
         {
-        myBackground.setImage(loader.getImage(backgroundImagePath));
+            myBackground.setImage(loader.getImage(backgroundImagePath));
         }
         if(myFighter!=null)
         {
         BufferedImage[] images = new BufferedImage[myFighter.getImageNames().size()];
         for(int i=0; i<images.length; i++)
         {
-            //System.out.println("image names: "+s.getImageNames());
             images[i] = loader.getImage(myFighter.getImageNames().get(i));
         }
         myFighter.setImages(images);
@@ -200,11 +200,7 @@ public class Level implements Serializable{
         return myBackground;
     }
     
-    public Fighter getFighter()
-    {
-        return myFighter;
-    }
-    
+
     public void addFramework(Framework f)
     {
         frameworks.add(f);
@@ -253,17 +249,15 @@ public class Level implements Serializable{
 
         ArrayList<String> myList = gson.fromJson(json, collectionType); 
         String backgroundImageName = myList.get(0);
-        BaseLoader loader = new BaseLoader(new BaseIO(Level.class), Color.PINK);
+        BaseLoader loader = new BaseLoader(new BaseIO(Level.class), Color.BLACK);
         if(!backgroundImageName.equals(""))
         {
-            System.out.println(backgroundImageName);
+            
             level.setBackground(loader.getImage(backgroundImageName),backgroundImageName);
         }
-        
-       String fighterJson = myList.get(1);
-       if(!fighterJson.equals(""))
+        String fighterJson = myList.get(1);
+        if(!fighterJson.equals(""))
         {
-           System.out.println("fighter being parsed");
            level.setFighter(Fighter.fromJson(fighterJson));
            
         }
@@ -276,7 +270,6 @@ public class Level implements Serializable{
        
         
         ArrayList<String> frameworkList = gson.fromJson(myList.get(3), collectionType);
-        //System.out.println("framework LIst: "+frameworkList);
         
         for(String f: frameworkList)
         {

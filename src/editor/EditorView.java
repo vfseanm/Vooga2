@@ -17,12 +17,12 @@ import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
+
 import editor.buttons.ObjectPlacingButton;
 import editor.buttons.DialogueOpeningButton;
 import editor.buttons.OpenButton;
 import editor.buttons.SaveButton;
 import editor.dialogues.DialogueBox;
-import editor.dialogues.DynamicBox;
 import editor.dialogues.EditEnemyButtonDialogueBox;
 import editor.dialogues.FighterDialogueBox;
 import editor.dialogues.GameDialogue;
@@ -43,11 +43,14 @@ public abstract class EditorView extends Game {
     protected EditorController myController;
     protected TPanel infoBox;
 
-    protected AnimatedGameSprite spriteClicked;           
-    protected double[] origPosition;
-    protected double[] clickedSpriteOffset;
-    //protected Framework myFramework;
-    protected DynamicBox currentDialogueBox;
+    protected AnimatedGameSprite leftClickedSprite;
+    protected AnimatedGameSprite rightClickedSprite;
+    protected TButton leftClickedButton;
+    protected TButton rightClickedButton;
+    
+    private double[] origPosition;
+    private double[] clickedSpriteOffset;
+    protected DialogueBox currentDialogueBox;
 
     public void initialize()
     {
@@ -134,14 +137,14 @@ public abstract class EditorView extends Game {
             }
 
         }
-        if (bsInput.isMouseDown(MouseEvent.BUTTON1) && spriteClicked == null)
+        if (bsInput.isMouseDown(MouseEvent.BUTTON1) && leftClickedSprite == null)
         {
             for (AnimatedGameSprite s : myController.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
 
                 {
-                    spriteClicked = s;
+                    leftClickedSprite = s;
                     clickedSpriteOffset = new double[2];
                     clickedSpriteOffset[0] = this.getMouseX() - s.getX();
                     clickedSpriteOffset[1] = this.getMouseY() - s.getY();
@@ -151,30 +154,30 @@ public abstract class EditorView extends Game {
                 }
             }
         }
-        if (spriteClicked != null && bsInput.isMouseDown(MouseEvent.BUTTON1))
+        if (leftClickedSprite != null && bsInput.isMouseDown(MouseEvent.BUTTON1))
         {
 
-            myController.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0], this.getMouseY()- clickedSpriteOffset[1]);
+            myController.setSpriteLocation(leftClickedSprite, this.getMouseX() - clickedSpriteOffset[0], this.getMouseY()- clickedSpriteOffset[1]);
             
 
         }
 
-        if (spriteClicked != null
+        if (leftClickedSprite != null
                 && bsInput.isMouseReleased(MouseEvent.BUTTON1))
         {
-            myController.setSpriteLocation(spriteClicked, this.getMouseX() - clickedSpriteOffset[0],this.getMouseY() - clickedSpriteOffset[1]); 
-            if (!myController.checkInterference(spriteClicked))
+            myController.setSpriteLocation(leftClickedSprite, this.getMouseX() - clickedSpriteOffset[0],this.getMouseY() - clickedSpriteOffset[1]); 
+            if (!myController.checkInterference(leftClickedSprite))
             {
-                myController.setSpriteLocation(spriteClicked, origPosition[0], origPosition[1]);
+                myController.setSpriteLocation(leftClickedSprite, origPosition[0], origPosition[1]);
             }
 
-            spriteClicked = null;
+            leftClickedSprite = null;
         }
-        if (spriteClicked != null
+        if (leftClickedSprite != null
                 && bsInput.isKeyReleased(java.awt.event.KeyEvent.VK_DELETE))
         {
-            myController.removeSprite(spriteClicked);
-            spriteClicked = null;
+            myController.removeSprite(leftClickedSprite);
+            leftClickedSprite = null;
         }
 
         if (bsInput.isKeyDown(java.awt.event.KeyEvent.VK_RIGHT))
@@ -193,20 +196,79 @@ public abstract class EditorView extends Game {
         {
             myController.moveVertically(VERTICAL_MOVE);
         }
+        checkAndUpdateDialogue();
         if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
             for (ObjectPlacingButton button: allButtons)
             {
                 if (button.isMouseOver())
                 {
-                    editEnemy(button);
+                    rightClickedButton = button;
+                }
+            }
+            
+            for (AnimatedGameSprite s : myController.getAllSprites())
+            {
+                if (this.checkPosMouse(s, true))
+                    
+                {
+                    rightClickedSprite = s;
+                }
+            }
+        }
+        if (bsInput.isMousePressed(MouseEvent.BUTTON1))
+        {
+            for (ObjectPlacingButton button: allButtons)
+            {
+                if (button.isMouseOver())
+                {
+                    leftClickedButton = button;
                 }
             }
         }
 
     }
+    
+    private void checkAndUpdateDialogue()
+    {
+        if(currentDialogueBox!=null)
+        {
+            if (bsInput.isMouseDown(MouseEvent.BUTTON1))
+            {
+                currentDialogueBox.setClick(this.getMouseX(), this.getMouseY());
+            }
+            if(getRightClickedSprite()!=null)
+            {
+                currentDialogueBox.setRightClickSprite(getRightClickedSprite());
+            }
+            if(getLeftClickedSprite()!=null)
+            {
+                currentDialogueBox.setLeftClickSprite(getRightClickedSprite());
+            }
+            if (bsInput.isMouseDown(MouseEvent.BUTTON1))
+            {
+            for (ObjectPlacingButton button: allButtons)
+            {
+                if (button.isMouseOver())
+                {
+                    currentDialogueBox.setLeftClickFramework(button.getFramework());
+                }
+            }
+            }
+            if (bsInput.isMouseDown(MouseEvent.BUTTON3))
+            {
+            for (ObjectPlacingButton button: allButtons)
+            {
+                if (button.isMouseOver())
+                {
+                    currentDialogueBox.setRightClickFramework(button.getFramework());
+                }
+            }
+            }
+        }
+    }
 
-    public AnimatedGameSprite getClickedSprite()
+    public AnimatedGameSprite getLeftClickedSprite()
     {
         AnimatedGameSprite selected = null;
                 
@@ -215,7 +277,7 @@ public abstract class EditorView extends Game {
             for (AnimatedGameSprite s : myController.getAllSprites())
             {
                 if (this.checkPosMouse(s, true))
-
+                    
                 {
                     selected = s;
                 }
@@ -271,20 +333,10 @@ public abstract class EditorView extends Game {
     
 
     private JFrame frame;
-
-    public void editEnemy(ObjectPlacingButton button)
-    {
-        EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(myController, button.getFramework());
-        frame = new JFrame("Edit Enemies");
-        Dimension d = new Dimension(500, 300);
-        frame.setPreferredSize(d);
-        frame.getContentPane().add(myView);
-        frame.pack();
-        frame.setVisible(true);
-    }
     
     public void openDialogue(DialogueBox box)
     {
+        currentDialogueBox = box;
         frame = new JFrame("");
         Dimension d = new Dimension(500, 300);
         frame.setPreferredSize(d);
@@ -295,6 +347,7 @@ public abstract class EditorView extends Game {
     
     public void closeFrame()
     {
+        currentDialogueBox = null;
         if(frame!=null)
         {
         frame.setVisible(false);

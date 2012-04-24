@@ -87,7 +87,19 @@ public class BasicMovement extends Attribute implements Updateable, Movement, In
 
 
 	public void setUserInput(BaseInput userInput) {
-		myUserInput = userInput;
+	    myUserInput = userInput;
 	}
+	
+    public String toJson()
+    {
+        return myHorizMovement+"";
+    }
+    
+   public static BasicMovement fromJson(String json)
+    {
+
+        double movement = Double.parseDouble(json);
+        return new BasicMovement(movement);
+    }
 
 }

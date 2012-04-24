@@ -9,14 +9,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
+import editor.file.Jsonable;
+import editor.file.ObjectFromJsonFactory;
 import attributes.Attribute;
+import attributes.Flying;
 import attributes.Updateable;
 
 
 // go do isActive and use that
 // turnaround
 @SuppressWarnings("serial")
-public class JumpingMovement extends Attribute implements Updateable
+public class JumpingMovement extends Attribute implements Updateable, Jsonable
 {
     private int myDistance;
     private int myTime;
@@ -107,5 +110,13 @@ public class JumpingMovement extends Attribute implements Updateable
         List<Integer> argList = gson.fromJson(json, collectionType);
         return new JumpingMovement(argList.get(0), argList.get(1));
     }
+    
+/*    private JumpingMovement(){}
+    
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new JumpingMovement());
+    }
+   */
 
 }

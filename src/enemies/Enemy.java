@@ -1,6 +1,7 @@
 package enemies;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -8,13 +9,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import collisions.CollisionAction;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
-import attributes.Updateable;
+import editor.Reflection;
+import editor.file.ObjectFromJsonFactory;
 import enemies.state.EnemyState;
-import fighter.Fighter;
 
 
 /**
@@ -286,12 +290,21 @@ public class Enemy extends GameCharacter
         {
 
             Enemy toCompare = ((Enemy) o);
-            return toString().equals(toCompare.toString());
+            if(!toString().equals(toCompare.toString()))
+                    return false;
+            for(String im: toCompare.getImageNames())
+            {
+                if(!getImageNames().contains(im))
+                {
+                    return false;
+                }
+            }
         }
         catch (ClassCastException e)
         {
             return false;
         }
+        return false;
     }
 
 
@@ -315,6 +328,11 @@ public class Enemy extends GameCharacter
         return gson.toJson(paramList);
 
     }
+    
+    
+    public Class<? extends CollisionAction> getActionClass (){
+    	return EnemyAction.class; 
+    }
 
 
     public static Enemy fromJson (String json)
@@ -334,59 +352,24 @@ public class Enemy extends GameCharacter
         Enemy sprite = new Enemy(x, y, imageNames);
         sprite.setGroup(groupName);
         System.out.println("gets here");
-
-        try
+        Map<String, String> attributeMap = gson.fromJson(paramList.get(4), collectionType2);
+        System.out.println("attribute map: " + attributeMap);
+        for (String attributeClassName : attributeMap.keySet())
         {
-
-            Map<String, String> attributeMap =
-                gson.fromJson(paramList.get(4), collectionType2);
-            System.out.println("attribute map: " + attributeMap);
-            for (String attributeClassName : attributeMap.keySet())
-            {
-
-                Class attributeClass;
-
-                attributeClass = Class.forName(attributeClassName.substring(6));
-
-                String attributeJson = attributeMap.get(attributeClassName);
-                Class typeList[] = new Class[1];
-                typeList[0] = String.class;
-                Method method = attributeClass.getMethod("fromJson", typeList);
-                Attribute attribute =
-                    (Attribute) method.invoke(null, attributeJson);
+                Attribute attribute = (Attribute) Reflection.getObjectFromJson(attributeClassName, attributeMap.get(attributeClassName));
                 sprite.addAttribute(attribute);
 
-            }
-            return sprite;
         }
-
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (SecurityException e)
-        {
-            e.printStackTrace();
-        }
-        catch (NoSuchMethodException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IllegalArgumentException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e)
-        {
-            e.printStackTrace();
-        }
-        catch (InvocationTargetException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-
+        return sprite;
     }
+    
+/*    private Enemy(){}
+    
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new Enemy());
+    }
+   */
 
     
 }

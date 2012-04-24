@@ -1,10 +1,6 @@
 package platforms.platformtypes;
-
-
 import java.util.List;
-
 import java.util.Random;
-
 import bonusobjects.BonusObject;
  
 /**
@@ -133,4 +129,12 @@ public class BreakablePlatform extends DecoratedPlatform {
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new BreakablePlatform(toWrap);
 	}
+
+/*	private BreakablePlatform(){};
+	
+    public static ObjectFromJsonFactory getFactory()
+    {
+        return new ObjectFromJsonFactory(new BreakablePlatform());
+    }*/
+   
 }
