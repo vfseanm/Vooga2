@@ -13,7 +13,6 @@ import attributes.Attribute;
 import attributes.Flying;
 import editor.Reflection;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 import fighter.Fighter;
 
 @SuppressWarnings("serial")

@@ -7,7 +7,6 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import editor.editorConstructor;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 
 /**
  * Experimenting with building a layer on top of the GTGE methods to consolidate

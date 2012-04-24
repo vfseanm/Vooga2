@@ -1,6 +1,8 @@
 package platforms.platformtypes;
+
 import java.util.List;
 import java.util.Random;
+
 import bonusobjects.BonusObject;
  
 /**

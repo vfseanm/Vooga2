@@ -17,7 +17,6 @@ import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
 import editor.Reflection;
-import editor.file.ObjectFromJsonFactory;
 import enemies.state.EnemyState;
 
 
