@@ -21,7 +21,6 @@ import com.google.gson.reflect.TypeToken;
 
 import editor.Reflection;
 import editor.file.Jsonable;
-import editor.file.ObjectFromJsonFactory;
 
 import sprite.AnimatedGameSprite;
 
