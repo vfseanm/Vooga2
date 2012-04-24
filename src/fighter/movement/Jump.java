@@ -23,7 +23,7 @@ public class Jump extends Attribute implements Updateable, Movement, Input
     private int 			time;
 
 
-    @editorConstructor(parameterNames = { "user input", "jump height", "time" })
+    @editorConstructor(parameterNames = { "jump height", "time" })
     public Jump (double jumpHeight, double delay)
     {
         super(jumpHeight, delay);

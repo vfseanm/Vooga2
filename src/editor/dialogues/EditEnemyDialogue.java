@@ -92,8 +92,8 @@ public class EditEnemyDialogue extends DialogueBox {
     {
         ArrayList<Attribute> attributes = attributePanel
                 .getSelectedAttributes();
-        myX = (int) mySprite.getX();
-        myY = (int) mySprite.getY();
+        myX = (int) mySprite.getOldX();
+        myY = (int) mySprite.getOldY();
         if (myImagePaths.isEmpty())
         {
             myImagePaths.addAll(mySprite.getImageNames());
@@ -101,7 +101,7 @@ public class EditEnemyDialogue extends DialogueBox {
         Enemy enemy = new Enemy(0, 0, myImagePaths);
         System.out.println("old group name: " + mySprite.getGroup());
         enemy.setGroup(mySprite.getGroup());
-        System.out.println("group name: " + enemy.getGroup());
+        //System.out.println("group name: " + enemy.getGroup());
         for (Attribute a : attributes)
         {
             enemy.addAttribute(a);
@@ -114,11 +114,12 @@ public class EditEnemyDialogue extends DialogueBox {
 
         if (!mySprite.equals(enemy))
         {
+            myController.removeSprite(mySprite);
             Framework framework = new Framework(myName.getText(), "enemy",
                     enemy);
             myController.addButton(myName.getText(), framework);
             framework.createSprite(myX, myY);
-            myController.removeSprite(mySprite);
+            
             
         }
 

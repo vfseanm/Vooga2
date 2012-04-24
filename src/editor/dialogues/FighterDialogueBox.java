@@ -54,6 +54,7 @@ public class FighterDialogueBox extends DialogueBox{
 
         ArrayList<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("attributes");
+        packagesToSearch.add("fighter.movement");
         
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
