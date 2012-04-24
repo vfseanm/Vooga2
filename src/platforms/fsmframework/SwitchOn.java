@@ -13,7 +13,7 @@ public class SwitchOn extends AbstractPlatformState {
 		super(platforms);	
 	}
 
-	List<AbstractPlatform> newPlatforms = new ArrayList<AbstractPlatform>();
+	private List<AbstractPlatform> newPlatforms = new ArrayList<AbstractPlatform>();
 	
 	public void thing() {
 		for (AbstractPlatform platform : myControlledPlatforms) {

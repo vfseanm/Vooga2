@@ -6,10 +6,10 @@ import platforms.platformtypes.AbstractPlatform;
 
 public abstract class AbstractEvent {
 	
-	List<AbstractPlatform> myPlatforms;
-	List<AbstractPlatformState> myTransitionList;
-	AbstractPlatformState myCurrentState;
-	int myCurrentStateIndex;
+	protected List<AbstractPlatform> myPlatforms;
+	protected List<AbstractPlatformState> myTransitionList;
+	protected AbstractPlatformState myCurrentState;
+	protected int myCurrentStateIndex;
 	
 	public AbstractEvent(List<AbstractPlatformState> transitionList, List<AbstractPlatform> platforms) {
 		myTransitionList = transitionList;

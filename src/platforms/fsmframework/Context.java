@@ -5,7 +5,7 @@ import platforms.platformtypes.AbstractPlatform;
 
 public class Context {
 	
-	List<AbstractEvent> myEvents;
+	protected List<AbstractEvent> myEvents;
 	
 	public Context(List<AbstractEvent> events, List<AbstractPlatform> platforms) {
 		myEvents = events;

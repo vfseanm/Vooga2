@@ -5,7 +5,7 @@ import platforms.platformtypes.AbstractPlatform;
 
 public abstract class AbstractPlatformState {
 
-	List<AbstractPlatform>  myControlledPlatforms;
+	protected List<AbstractPlatform>  myControlledPlatforms;
 	
 	public AbstractPlatformState(List<AbstractPlatform> platforms) {
 		myControlledPlatforms = platforms;
