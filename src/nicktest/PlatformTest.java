@@ -78,7 +78,7 @@ public class PlatformTest extends Game {
 	@Override
 	public void update(long arg0) {
 		if (keyPressed(KeyEvent.VK_S)) {
-			//mySwitch.setOn(true);
+			mySwitch.setOn(true);
 		
 			
 		}

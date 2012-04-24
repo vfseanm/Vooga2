@@ -1,4 +1,5 @@
 package platforms.fsmframework;
+import java.util.ArrayList;
 import java.util.List;
 import platforms.platformtypes.AbstractPlatform;
 import platforms.platformtypes.SimplePlatform;
@@ -10,17 +11,21 @@ public class SwitchOff extends AbstractPlatformState {
 		super(platforms);
 	}
 	
+	List<AbstractPlatform> newPlatforms = new ArrayList<AbstractPlatform>();
+	
 	//from constructor
 	public void thing() {
 		System.out.println(myControlledPlatforms);
 		for (AbstractPlatform platform : myControlledPlatforms) {
-			platform = new SimplePlatform(platform.getX(), platform.getY(), platform.getImageNames());
+			newPlatforms.add(new SimplePlatform(platform.getX(), platform.getY(), platform.getImageNames()));
+			
+			//System.out.println(platform.toString());
 		}
 	}
 	
 	@Override
  	public void handle(long elapsedTime) {
-		for (AbstractPlatform platform : myControlledPlatforms) {
+		for (AbstractPlatform platform : newPlatforms) {
 			platform.update(elapsedTime);	
 	}
 	
