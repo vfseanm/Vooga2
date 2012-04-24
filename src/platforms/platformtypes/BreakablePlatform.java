@@ -116,8 +116,8 @@ public class BreakablePlatform extends DecoratedPlatform {
 		releaseRandomItem();
 		numHitsToBreak--;
 		if (numHitsToBreak == 0) {
-			//setActive(false);
-			setLocation(-1000, -1000);
+			setActive(false);
+			setLocation(-1000, -1000); //move off screen so seems like disappeared since setActive(false) not working properly....
 		}
 	}
  	
