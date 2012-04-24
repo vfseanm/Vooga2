@@ -1,16 +1,14 @@
 package editor.exampleStuff;
 
-import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import sprite.AnimatedGameSprite;
 
-import com.golden.gamedev.engine.BaseInput;
-
 import editor.frameworks.Framework;
 import editor.input.inputTypes.InputType;
 
+@SuppressWarnings("serial")
 public class GroupofEnemies implements InputType, Serializable {
     private ArrayList<AnimatedGameSprite> mySprites;
 

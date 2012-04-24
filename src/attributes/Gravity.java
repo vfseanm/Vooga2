@@ -3,9 +3,9 @@ package attributes;
 
 import com.google.gson.Gson;
 
+
 import editor.editorConstructor;
 import editor.file.Jsonable;
-import editor.frameworks.Framework;
 import fighter.movement.Movement;
 
 @SuppressWarnings("serial")

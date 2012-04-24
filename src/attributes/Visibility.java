@@ -3,7 +3,6 @@ package attributes;
 import java.awt.image.BufferedImage;
 
 import com.google.gson.Gson;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import editor.editorConstructor;
 import editor.file.Jsonable;

@@ -1,14 +1,10 @@
 package editor.exampleStuff;
 
-import java.awt.Point;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 
 import sprite.AnimatedGameSprite;
-
-import enemies.Enemy;
 
 @SuppressWarnings("serial")
 public class WildAndCrazyObject extends AnimatedGameSprite{

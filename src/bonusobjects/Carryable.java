@@ -1,16 +1,15 @@
 package bonusobjects;
 
 import java.lang.reflect.Type;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.golden.gamedev.object.Sprite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import attributes.Attribute;
-import attributes.Flying;
 import editor.Reflection;
 import editor.file.Jsonable;
 import fighter.Fighter;
