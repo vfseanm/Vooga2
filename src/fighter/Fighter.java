@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import character.GameCharacter;
 import editor.ReflectionUtil;
+import editor.json.JsonUtil;
 import editor.json.Jsonable;
 import editor.json.SpriteJsonData;
 import fighter.movement.Input;
@@ -201,7 +202,7 @@ public class Fighter extends GameCharacter implements Jsonable {
         for (String attributeClassName : attributeMap.keySet())
         {
 
-            sprite.addAttribute((Attribute) ReflectionUtil.getObjectFromJson(
+            sprite.addAttribute((Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName)));
 
         }
@@ -210,7 +211,7 @@ public class Fighter extends GameCharacter implements Jsonable {
                 paramList.get(1), collectionType2);
         for (String attributeClassName : carryableAttributeMap.keySet())
         {
-            carryableAttributes.add((Attribute) ReflectionUtil.getObjectFromJson(
+            carryableAttributes.add((Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName)));
 
         }
