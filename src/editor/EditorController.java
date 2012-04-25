@@ -22,7 +22,6 @@ import editor.buttons.ObjectPlacingButton;
 import editor.dialogues.DialogueBox;
 import editor.file.LevelLoader;
 import editor.file.LevelWriter;
-import editor.frameworks.Framework;
 import enemies.Enemy;
 import fighter.Fighter;
 
@@ -64,10 +63,10 @@ public class EditorController {
     {
         if (button.getClicked())
           {
-              AnimatedGameSprite s = myFramework.getPotentialSprite(x, y);
+              AnimatedGameSprite s = myFramework.getPotentialSprite(x, y-button.getFramework().getPrototype().getHeight());
               if (checkInterference(s))
               {
-                 myFramework.createSprite(x, y);
+                 myFramework.createSprite(x, y-button.getFramework().getPrototype().getHeight());
               }
           }
     }
@@ -172,7 +171,7 @@ public class EditorController {
         
         for(Framework f: myLevel.getFrameworks())
         {
-            addButton(f.getName(), f);
+            addFrameworkAndButton(f.getName(), f);
         }
      }
 
@@ -201,7 +200,7 @@ public class EditorController {
         powerUpButtonPlacement = setUp;
     }
 
-    public void addButton(String name, Framework framework)
+    public void addFrameworkAndButton(String name, Framework framework)
     {
         if(!myLevel.getFrameworks().contains(framework))
         {

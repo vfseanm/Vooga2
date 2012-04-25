@@ -1,6 +1,6 @@
 package editor.input.inputTypes;
 
-import editor.frameworks.Framework;
+import editor.Framework;
 import sprite.AnimatedGameSprite;
 
 public interface InputType {

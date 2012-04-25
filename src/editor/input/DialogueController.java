@@ -6,12 +6,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import sprite.AnimatedGameSprite;
+import editor.Framework;
 import editor.InputListener;
 import editor.Reflection;
 import editor.editorConstructor;
-import editor.AttributeSelectionPanel.CheckBoxListener;
 import editor.dialogues.DialogueBox;
-import editor.frameworks.Framework;
+import editor.dialogues.AttributeSelectionPanel.CheckBoxListener;
 import editor.input.inputTypes.InputType;
 
 public class DialogueController {

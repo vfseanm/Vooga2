@@ -7,9 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
 import bonusobjects.PowerUp;
-import editor.AttributeSelectionPanel;
 import editor.EditorController;
-import editor.frameworks.Framework;
+import editor.Framework;
 import attributes.Attribute;
 
 @SuppressWarnings("serial")
@@ -108,7 +107,7 @@ public class PowerupDialogueBox extends DialogueBox {
     @Override
     protected void BoxCompletedAction() {
         Framework framework = getFramework();
-        editorController.addButton(myName.getText(), framework);
+        editorController.addFrameworkAndButton(myName.getText(), framework);
         setVisible(false);
 
     }

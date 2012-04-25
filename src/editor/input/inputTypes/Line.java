@@ -10,9 +10,9 @@ import sprite.AnimatedGameSprite;
 import com.google.gson.Gson;
 
 
+import editor.Framework;
 import editor.dialogues.DialogueBox;
 
-import editor.frameworks.Framework;
 import editor.json.Jsonable;
 
 

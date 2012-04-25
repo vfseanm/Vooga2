@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 
 import sprite.AnimatedGameSprite;
 
-import editor.AttributeSelectionPanel;
 import editor.Reflection;
 import editor.editorConstructor;
-import editor.AttributeSelectionPanel.CheckBoxListener;
+import editor.dialogues.AttributeSelectionPanel;
+import editor.dialogues.AttributeSelectionPanel.CheckBoxListener;
 import editor.input.inputTypes.InputType;
 
 import attributes.Attribute;

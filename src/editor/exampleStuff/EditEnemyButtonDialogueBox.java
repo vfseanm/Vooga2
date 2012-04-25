@@ -1,4 +1,4 @@
-package editor.dialogues;
+package editor.exampleStuff;
 
 
 
@@ -11,9 +11,10 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import editor.AttributeSelectionPanel;
 import editor.EditorController;
-import editor.frameworks.Framework;
+import editor.Framework;
+import editor.dialogues.AttributeSelectionPanel;
+import editor.dialogues.DialogueBox;
 import enemies.Enemy;
 
 
@@ -53,16 +54,22 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         attributePanel = new AttributeSelectionPanel(packagesToSearch, e.getAttributes(), dialogueController);
                
         JLabel label1 = new JLabel("Enemy Name:");
+        
         panel.add(label1);
 
         myName = new JTextField(10);
+        String originalName = myFramework.getPrototype().getGroup();
+        myName.setText(originalName);
 
         panel.add(myName, BorderLayout.SOUTH);
         
-        JLabel groupLabel = new JLabel("Group:");
+        JLabel groupLabel = new JLabel("Collision Group:");
+        
         panel.add(groupLabel);
 
         myGroup = new JTextField(10);
+        String originalGroup = myFramework.getPrototype().getGroup();
+        myGroup.setText(originalGroup);
 
         panel.add(myGroup, BorderLayout.SOUTH);
 
@@ -70,7 +77,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create Enemy";
+        String buttonPhrase = "Edit Framework";
                 
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
@@ -93,15 +100,11 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         }
 
         Enemy newPrototype = new Enemy(0,0, myImagePaths);
-        newPrototype.setGroup(myFramework.getPrototype().getGroup());
         for(Attribute attribute: attributePanel.getSelectedAttributes())
         {
             newPrototype.addAttribute(attribute);
         }
-        if(!(myGroup.getText().equals("")))
-        {
-            newPrototype.setGroup(myGroup.getText());
-        }
+        newPrototype.setGroup(myGroup.getText());
        
         myFramework.updateSprites(newPrototype);
         editorController.closeDialogue();

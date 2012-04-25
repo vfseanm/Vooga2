@@ -1,4 +1,4 @@
-package editor.frameworks;
+package editor;
 
 import java.awt.Color;
 
@@ -19,7 +19,6 @@ import com.golden.gamedev.object.Sprite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.Reflection;
 import editor.json.Jsonable;
 
 import sprite.AnimatedGameSprite;
@@ -45,7 +44,7 @@ public class Framework implements Serializable, Jsonable {
     {
         AnimatedGameSprite s = (AnimatedGameSprite) prototypeSprite.clone();
         s.setX(x);
-        s.setY(y - s.getHeight());
+        s.setY(y);
         return s;
     }
 
@@ -53,7 +52,7 @@ public class Framework implements Serializable, Jsonable {
     {
         AnimatedGameSprite s = (AnimatedGameSprite) prototypeSprite.clone();
         s.setX(x);
-        s.setY(y - s.getHeight());
+        s.setY(y);
         mySprites.add(s);
     }
 

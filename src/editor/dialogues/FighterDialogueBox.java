@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
-import editor.AttributeSelectionPanel;
 import editor.EditorController;
 import fighter.Fighter;
 import attributes.Attribute;
