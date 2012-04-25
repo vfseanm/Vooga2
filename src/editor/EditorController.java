@@ -59,6 +59,10 @@ public class EditorController {
         horizontalOffset += x;
     }
     
+    /*
+     * 
+     * 
+     */
     public void checkAndPlaceSprite(ObjectPlacingButton button, int x, int y)
     {
         if (button.getClicked())
@@ -180,7 +184,7 @@ public class EditorController {
     static
     {
         enemyButtonCounter = 0;
-        int[] setUp = { 15, 120, 75, 120, 135, 120, 15, 180, 75, 180, 135, 180, };
+        int[] setUp = { 25, 60, 85, 60, 145, 60, 225, 60, 305, 60, 385, 60, 25, 120, 85, 120, 145, 120, 225, 120, 305, 120, 385, 120 };
         enemyButtonPlacement = setUp;
     }
     private static int[] platformButtonPlacement;
@@ -188,7 +192,7 @@ public class EditorController {
     static
     {
         platformButtonCounter = 0;
-        int[] setUp = { 15, 300, 75, 300, 135, 300, 15, 360, 75, 360, 135, 360, };
+        int[] setUp = { 25, 220, 85, 220, 145, 220, 225, 220, 305, 220, 385, 220, 25, 280, 85, 280, 145, 280, 225, 280, 305, 280, 385, 280 };
         platformButtonPlacement = setUp;
     }
     private static int[] powerUpButtonPlacement;
@@ -196,7 +200,7 @@ public class EditorController {
     static
     {
         powerUpButtonCounter = 0;
-        int[] setUp = { 15, 530, 75, 530, 135, 530, 15, 590, 75, 590, 135, 590, };
+        int[] setUp = { 25, 380, 85, 380, 145, 380, 225, 380, 305, 380, 385, 380, 25, 440, 85, 440, 145, 440, 225, 440, 305, 440, 385, 440 };
         powerUpButtonPlacement = setUp;
     }
 
@@ -209,21 +213,19 @@ public class EditorController {
         System.out.println("adding button");
         if (framework.getType().equals("enemy"))
         {
-            if (enemyButtonCounter == 5)
+            if (enemyButtonCounter == 23)
             {
-                // make a + button that lets you look at your other ones
             } else
             {
-                // System.out.println("adding enemybutton");
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
                         enemyButtonPlacement[enemyButtonCounter],
                         enemyButtonPlacement[enemyButtonCounter + 1], 50, 40,
                         framework, this);
-                enemyButtonCounter += 1;
+                enemyButtonCounter += 2;
                 myView.addButton(newButton);
             }
         } else if (framework.getType().equals("platform"))
-            if (platformButtonCounter == 5)
+            if (platformButtonCounter == 23)
             {
                 // make a + button that lets you look at your other ones
             } else
@@ -232,11 +234,11 @@ public class EditorController {
                         platformButtonPlacement[platformButtonCounter],
                         platformButtonPlacement[platformButtonCounter + 1], 50,
                         40, framework, this);
-                platformButtonCounter += 1;
+                platformButtonCounter += 2;
                 myView.addButton(newButton);
             }
         else if (framework.getType().equals("Power-Up"))
-            if (platformButtonCounter == 5)
+            if (platformButtonCounter == 23)
             {
                 // make a + button that lets you look at your other ones
             } else
@@ -245,13 +247,13 @@ public class EditorController {
                         powerUpButtonPlacement[powerUpButtonCounter],
                         powerUpButtonPlacement[powerUpButtonCounter + 1], 50,
                         40, framework, this);
-                powerUpButtonCounter += 1;
+                powerUpButtonCounter += 2;
                 myView.addButton(newButton);
             }
         else if (framework.getType().equals("WildandCrazy"))
         {
             ObjectPlacingButton newButton = new ObjectPlacingButton(name,
-                    15, 590, 50,
+                    15, 540, 50,
                     40, framework, this);
             myView.addButton(newButton);
         }
