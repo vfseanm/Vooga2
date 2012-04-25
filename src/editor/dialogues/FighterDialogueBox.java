@@ -93,8 +93,11 @@ public class FighterDialogueBox extends DialogueBox {
             fighter.setLocation(50, 50);
         }
 
-        fighter.setImageNamesandImages(myImagePaths);
-
+        if(myImagePaths.size()>0)
+        {
+            fighter.setImageNamesandImages(myImagePaths);
+        }
+        fighter.clearAttributes();
         for (Attribute attribute : attributes) {
             fighter.addAttribute(attribute);
         }
