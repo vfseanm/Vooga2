@@ -16,7 +16,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
-import editor.Reflection;
+import editor.ReflectionUtil;
+import editor.json.JsonUtil;
 import editor.json.SpriteJsonData;
 import enemies.state.EnemyState;
 
@@ -341,7 +342,7 @@ public class Enemy extends GameCharacter
         System.out.println("attribute map: " + attributeMap);
         for (String attributeClassName : attributeMap.keySet())
         {
-                Attribute attribute = (Attribute) Reflection.getObjectFromJson(attributeClassName, attributeMap.get(attributeClassName));
+                Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(attributeClassName, attributeMap.get(attributeClassName));
                 sprite.addAttribute(attribute);
 
         }
