@@ -2,6 +2,7 @@ package Tester;
 
 import java.awt.*;
 
+
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ import sidescrolling.*;
 import sidescrolling.border.*;
 import sidescrolling.forced.*;
 import sidescrolling.shift.*;
-import sidescrolling.special.BorderToShiftLocation;
 import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 
