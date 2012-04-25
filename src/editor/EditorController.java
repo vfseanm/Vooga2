@@ -225,7 +225,7 @@ public class EditorController {
                 myView.addButton(newButton);
             }
         } else if (framework.getType().equals("platform"))
-            if (platformButtonCounter == 5)
+            if (platformButtonCounter == 23)
             {
                 // make a + button that lets you look at your other ones
             } else
@@ -238,7 +238,7 @@ public class EditorController {
                 myView.addButton(newButton);
             }
         else if (framework.getType().equals("Power-Up"))
-            if (platformButtonCounter == 5)
+            if (platformButtonCounter == 23)
             {
                 // make a + button that lets you look at your other ones
             } else
