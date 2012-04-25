@@ -24,6 +24,9 @@ import java.util.List;
 import platforms.*;
 import sidescrolling.*;
 import sidescrolling.border.*;
+import sidescrolling.shift.ShiftLeftSidescroller;
+import sidescrolling.shift.ShiftRightSidescroller;
+import sidescrolling.special.SidescrollerSwitch;
 import platforms.fsmframework.AbstractEvent;
 import platforms.fsmframework.AbstractPlatformState;
 import platforms.fsmframework.Context;
@@ -49,6 +52,8 @@ public class DemoGame extends PlatformGame {
 	private int counter;
 	private SimplePlatform p;
 	private SimplePlatform p1, p2;
+	
+	private SidescrollerSwitch scrollerSwitch;
 
 	private GameCollisionManager gc;
 	private ArrayList<AnimatedGameSprite> list;
@@ -79,14 +84,26 @@ public class DemoGame extends PlatformGame {
         //spec.addClass("enemy", EnemyAction.class);
         //spec.addClass("platform", AbstractPlatform.class);
        
-        
-        
         //FSM stuff
         initPlatformFSM();
         CollisionSpec spec2 = new CollisionSpec();
         spec2.addActMap(mySwitch.getGroup(), "switchPlatform");
         spec2.addActMap("Fighter", "");
         specList.add(spec2);
+        
+        //make sidescroller switch
+        ArrayList<String> switchImage = new ArrayList<String>();
+        String switchName = "Resources/Bowser.jpg";
+        switchImage.add(switchName);
+        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller(mySprites)));
+        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
+        
+        //Special sidescroller-switch collision stuff
+        specList = new ArrayList<CollisionSpec>();
+        CollisionSpec spec3 = new CollisionSpec();
+        spec3.addActMap(scrollerSwitch.getGroup(), "switchSidescroller");
+        spec3.addActMap(getFighter().getGroup(), "");
+        specList.add(spec3);
         
         gc = new GameCollisionManager(specList);
         
@@ -115,6 +132,10 @@ public class DemoGame extends PlatformGame {
 		myContext = new Context(events, plats);
 		
 	}
+	
+	public void setSidescroller(Sidescroller newScroll) {
+        mySidescroller = newScroll;
+    }
 
 	@Override
 	public void render(Graphics2D arg0) 

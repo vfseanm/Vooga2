@@ -13,9 +13,13 @@ import sidescrolling.border.*;
 import sidescrolling.forced.*;
 import sidescrolling.shift.*;
 import sidescrolling.special.BorderToShiftLocation;
+import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 
 import attributes.Gravity;
+
+import collisions.CollisionSpec;
+import collisions.GameCollisionManager;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
@@ -27,9 +31,14 @@ import fighter.movement.*;
 public class FighterTester extends Game{
 	
     private ArrayList<AnimatedGameSprite> allSprites;
+    private ArrayList<AnimatedGameSprite> spritess;
     private Fighter fighter;
     private Sidescroller sidescroller;
     private SpriteGroup hay;
+    private CollisionSpec cs;
+    private SidescrollerSwitch scrollerSwitch;
+    private ArrayList<CollisionSpec> specList;
+    private GameCollisionManager gc;
 
     public Fighter getFighter() {
         return fighter;
@@ -83,13 +92,16 @@ public class FighterTester extends Game{
         allSprites.add(p2);
         allSprites.add(p3);
         allSprites.add(p4);
+        
+        ArrayList<String> imageName2 = new ArrayList<String>();
+        String switchName = "Resources/Bowser.jpg";
+        imageName2.add(switchName);
+        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller(allSprites)));
+        //scrollerSwitch = new SidescrollerSwitch(350, 400, imageName2, newscroll, this);
+        
+        allSprites.add(scrollerSwitch);
         sidescroller = new ConcreteSidescroller();
         sidescroller.setSprites(allSprites);
-        //sidescroller = new BorderToShiftLocation(sidescroller);
-        sidescroller = new BorderLeftSidescroller(sidescroller);
-        sidescroller = new BorderRightSidescroller(sidescroller);
-        sidescroller = new BorderUpSidescroller(sidescroller);
-        sidescroller = new BorderDownSidescroller(sidescroller);
         //sidescroller = new ForcedDownSidescroller(sidescroller);
         //sidescroller = new ForcedUpSidescroller(sidescroller);
         //sidescroller = new ForcedRightSidescroller(sidescroller);
@@ -98,6 +110,26 @@ public class FighterTester extends Game{
         //sidescroller = new ShiftLeftSidescroller(sidescroller);
         //sidescroller = new ShiftUpSidescroller(sidescroller);
         //sidescroller = new ShiftDownSidescroller(sidescroller);
+        //sidescroller = new BorderToShiftLocation(sidescroller);
+        sidescroller = new BorderLeftSidescroller(sidescroller);
+        sidescroller = new BorderRightSidescroller(sidescroller);
+        sidescroller = new BorderUpSidescroller(sidescroller);
+        sidescroller = new BorderDownSidescroller(sidescroller);
+        
+        specList = new ArrayList<CollisionSpec>();
+        cs = new CollisionSpec();
+        cs.addActMap(scrollerSwitch.getGroup(), "switchSidescroller");
+        cs.addActMap(fighter.getGroup(), "");
+        specList.add(cs);
+        
+        spritess = new ArrayList<AnimatedGameSprite>();
+        spritess.addAll(allSprites);
+        spritess.add(fighter);
+        gc = new GameCollisionManager(specList);
+    }
+    
+    public void setSidescroller(Sidescroller newScroll) {
+        sidescroller = newScroll;
     }
     
     public void render (Graphics2D pen) {
@@ -105,12 +137,15 @@ public class FighterTester extends Game{
         pen.fillRect(0, 0, getWidth(), getHeight());
         hay.render(pen);
         fighter.render(pen);
+        scrollerSwitch.render(pen);
     }
     
     public void update(long elapsedTime) {
         hay.update(elapsedTime);
         fighter.update(elapsedTime);
         sidescroller.update(elapsedTime);
+        scrollerSwitch.update(elapsedTime);
+        gc.detectCollision(spritess);
     }
 
 }

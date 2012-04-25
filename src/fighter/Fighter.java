@@ -43,11 +43,12 @@ public class Fighter extends GameCharacter implements Jsonable {
     private Fighter()
     {
         super();
+        setGroup("FIGHTER");
     };
 
     public static Fighter getInstance()
     {
-
+        
         if (myself == null)
         {
             myself = new Fighter();
