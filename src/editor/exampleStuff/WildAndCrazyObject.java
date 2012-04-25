@@ -1,5 +1,6 @@
 package editor.exampleStuff;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import sprite.AnimatedGameSprite;
 
 
 @SuppressWarnings("serial")
-public class WildAndCrazyObject extends AnimatedGameSprite implements Jsonable{
+public class WildAndCrazyObject extends AnimatedGameSprite implements Jsonable, Serializable{
     private Zone myZone;
     
     public WildAndCrazyObject(double x, double y, List<String> images)
