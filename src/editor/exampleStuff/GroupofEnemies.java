@@ -13,9 +13,9 @@ import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import editor.Framework;
 import editor.Reflection;
 
-import editor.frameworks.Framework;
 import editor.input.inputTypes.InputType;
 import editor.json.Jsonable;
 import enemies.Enemy;

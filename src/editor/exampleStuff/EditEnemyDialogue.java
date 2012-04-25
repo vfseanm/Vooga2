@@ -1,4 +1,4 @@
-package editor.dialogues;
+package editor.exampleStuff;
 
 import java.io.IOException;
 
@@ -9,9 +9,10 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import editor.AttributeSelectionPanel;
 import editor.EditorController;
-import editor.frameworks.Framework;
+import editor.Framework;
+import editor.dialogues.AttributeSelectionPanel;
+import editor.dialogues.DialogueBox;
 import enemies.Enemy;
 import attributes.Attribute;
 
@@ -20,21 +21,14 @@ public class EditEnemyDialogue extends DialogueBox {
 
     public static final Dimension SIZE = new Dimension(800, 600);
     public static final String BLANK = " ";
-
     private JTextField myName;
     private JTextField myGroup;
-
     private Enemy mySprite;
-    private int myX;
-    private int myY;
     private AttributeSelectionPanel attributePanel;
 
-    public EditEnemyDialogue(EditorController m, Enemy sprite, int x, int y)
+    public EditEnemyDialogue(EditorController m, Enemy sprite)
     {
         super(m);
-
-        myX = x;
-        myY = y;
         mySprite = sprite;
 
         setLayout(new BorderLayout());
@@ -47,6 +41,7 @@ public class EditEnemyDialogue extends DialogueBox {
     {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
+        
         List<String> packagesToSearch = new ArrayList<String>();
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
@@ -60,10 +55,13 @@ public class EditEnemyDialogue extends DialogueBox {
 
         panel.add(myName, BorderLayout.SOUTH);
 
-        JLabel groupLabel = new JLabel("Group:");
+        JLabel groupLabel = new JLabel("Collision Group:");
+        
         panel.add(groupLabel);
 
         myGroup = new JTextField(10);
+        String originalGroup = mySprite.getGroup();
+        myGroup.setText(originalGroup);
 
         panel.add(myGroup, BorderLayout.SOUTH);
 
@@ -71,7 +69,7 @@ public class EditEnemyDialogue extends DialogueBox {
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create Enemy";
+        String buttonPhrase = "Edit Enemy";
 
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
@@ -84,7 +82,7 @@ public class EditEnemyDialogue extends DialogueBox {
     @Override
     public DialogueBox clone()
     {
-        return new EditEnemyDialogue(editorController, mySprite, myX, myY);
+        return new EditEnemyDialogue(editorController, mySprite);
     }
 
     @Override
@@ -92,36 +90,25 @@ public class EditEnemyDialogue extends DialogueBox {
     {
         ArrayList<Attribute> attributes = attributePanel
                 .getSelectedAttributes();
-        myX = (int) mySprite.getOldX();
-        myY = (int) mySprite.getOldY();
         if (myImagePaths.isEmpty())
         {
             myImagePaths.addAll(mySprite.getImageNames());
         }
         Enemy enemy = new Enemy(0, 0, myImagePaths);
-        System.out.println("old group name: " + mySprite.getGroup());
-        enemy.setGroup(mySprite.getGroup());
-        //System.out.println("group name: " + enemy.getGroup());
         for (Attribute a : attributes)
         {
             enemy.addAttribute(a);
         }
 
-        if (!myGroup.getText().equals(""))
-        {
-            enemy.setGroup(myGroup.getText());
-        }
+        enemy.setGroup(myGroup.getText());
 
-        if (!mySprite.equals(enemy))
-        {
+        
             editorController.removeSprite(mySprite);
             Framework framework = new Framework(myName.getText(), "enemy",
                     enemy);
-            editorController.addButton(myName.getText(), framework);
-            framework.createSprite(myX, myY);
+            editorController.addFrameworkAndButton(myName.getText(), framework);
+            framework.createSprite((int) mySprite.getX(), (int) mySprite.getY());
             
-            
-        }
 
         setVisible(false);
 

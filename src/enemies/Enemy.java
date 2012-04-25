@@ -284,28 +284,28 @@ public class Enemy extends GameCharacter
     }
 
 
-    public boolean equals (Object o)
-    {
-        try
-        {
-
-            Enemy toCompare = ((Enemy) o);
-            if(!toString().equals(toCompare.toString()))
-                    return false;
-            for(String im: toCompare.getImageNames())
-            {
-                if(!getImageNames().contains(im))
-                {
-                    return false;
-                }
-            }
-        }
-        catch (ClassCastException e)
-        {
-            return false;
-        }
-        return false;
-    }
+//    public boolean equals (Object o)
+//    {
+//        try
+//        {
+//
+//            Enemy toCompare = ((Enemy) o);
+//            if(!toString().equals(toCompare.toString()))
+//                    return false;
+//            for(String im: toCompare.getImageNames())
+//            {
+//                if(!getImageNames().contains(im))
+//                {
+//                    return false;
+//                }
+//            }
+//        }
+//        catch (ClassCastException e)
+//        {
+//            return false;
+//        }
+//        return false;
+//    }
 
 
     public String toJson ()

@@ -1,6 +1,6 @@
 package attributes;
+import editor.Framework;
 import editor.editorConstructor;
-import editor.frameworks.Framework;
 import editor.json.Jsonable;
 
 

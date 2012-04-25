@@ -47,11 +47,10 @@ public class FighterAction implements CollisionAction{
 			}
 		}
 	}
-	
-	
-	@Override
+
 	public void setSprite(AnimatedGameSprite sprite) {
 		this.sprite = (Fighter) sprite;
 	}
+
 	
 }

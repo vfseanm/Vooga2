@@ -1,9 +1,6 @@
 package fighter;
 
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,11 +17,10 @@ import character.GameCharacter;
 import editor.Reflection;
 import editor.json.Jsonable;
 import editor.json.SpriteJsonData;
-import enemies.Enemy;
 import fighter.movement.Input;
 import fighter.movement.Movement;
 import attributes.Attribute;
-import attributes.Flying;
+
 
 @SuppressWarnings("serial")
 public class Fighter extends GameCharacter implements Jsonable {
@@ -119,56 +115,53 @@ public class Fighter extends GameCharacter implements Jsonable {
                     .println("This Carryable Attribute is not in your inventory.");
         }
     }
+	
+	
+	
+	/**
+	 * Method for getting horizontal and vertical movement distances                           
+	 * to ensure accurate side scrolling.
+	 *         
+	 * @return array with [0] = horizontal movement & [1] = vertical movement
+	 */
+	public double[] getMovement() {
+		double[] horizVertMovement = new double[2];
+		for (Attribute attribute : myAttributes) {
+			if (attribute.getClass().getInterfaces().length >= 2) {
+	            if (attribute.getClass().getInterfaces()[1].equals(Movement.class)) {
+	            	Movement scrollSpeed = (Movement) attribute;
+	            	horizVertMovement[0] += scrollSpeed.getHorizMovement();
+	            	horizVertMovement[1] += scrollSpeed.getVertMovement();
+	            }
+			}
+		}
+		return horizVertMovement;
+	}
+	
+	public List<Attribute> getCarryableAttributes()
+	{
+	    return myCarryableAttributes;
+	}
+	
+	
+	public void setUserInput(BaseInput userInput) {
+		myUserInput = userInput;
+	}
+	
+	public BaseInput getUserInput() {
+		return myUserInput;
+	}
+	
+	public String getName() {
+		return "Fighter";
+	}
+	
 
-    /**
-     * Method for getting horizontal and vertical movement distances to ensure
-     * accurate side scrolling.
-     * 
-     * @return array with [0] = horizontal movement & [1] = vertical movement
-     */
-    public double[] getMovement()
-    {
-        double[] horizVertMovement = new double[2];
-        for (Attribute attribute : myAttributes)
-        {
-            if (attribute.getClass().getInterfaces().length >= 2)
-            {
-                if (attribute.getClass().getInterfaces()[1]
-                        .equals(Movement.class))
-                {
-                    Movement scrollSpeed = (Movement) attribute;
-                    horizVertMovement[0] += scrollSpeed.getHorizMovement();
-                    horizVertMovement[1] += scrollSpeed.getVertMovement();
-                }
-            }
-        }
-        return horizVertMovement;
+    public Class<? extends CollisionAction> getActionClass (){
+    	return FighterAction.class; 
     }
 
-    public List<Attribute> getCarryableAttributes()
-    {
-        return myCarryableAttributes;
-    }
 
-    public void setUserInput(BaseInput userInput)
-    {
-        myUserInput = userInput;
-    }
-
-    public BaseInput getUserInput()
-    {
-        return myUserInput;
-    }
-
-    public String getName()
-    {
-        return "Fighter";
-    }
-
-    public Class<? extends CollisionAction> getActionClass()
-    {
-        return FighterAction.class;
-    }
 
     public String toJson()
     {
@@ -188,7 +181,6 @@ public class Fighter extends GameCharacter implements Jsonable {
         paramList.add(gson.toJson(carryableAttributeMap));
         String additionalInformation = gson.toJson(paramList); 
         return gson.toJson(new SpriteJsonData(this, additionalInformation));
-
     }
 
     public static Fighter fromJson(String json)
@@ -224,7 +216,6 @@ public class Fighter extends GameCharacter implements Jsonable {
         }
         sprite.addCarryableAttributes(carryableAttributes);
         return sprite;
-
     }
     
     

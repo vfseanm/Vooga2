@@ -7,8 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
 import editor.EditorController;
+import editor.Framework;
 import editor.Reflection;
-import editor.frameworks.Framework;
 import platforms.platformtypes.*;
 import java.util.HashMap;
 
@@ -115,7 +115,7 @@ public class PlatformDialogueBox extends DialogueBox {
     protected void BoxCompletedAction() {
         Framework framework = getFramework();
         System.out.println("framework " + framework);
-        editorController.addButton(myName.getText(), framework);
+        editorController.addFrameworkAndButton(myName.getText(), framework);
         setVisible(false);
 
     }

@@ -19,7 +19,6 @@ import com.golden.gamedev.object.background.ImageBackground;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.frameworks.Framework;
 
 import fighter.Fighter;
 
@@ -137,6 +136,7 @@ public class Level implements Serializable{
         {
             if(f.containsSprite(sprite))
             {
+                System.out.println("removing sprite");
                 f.removeSprite(sprite);
             }
         }

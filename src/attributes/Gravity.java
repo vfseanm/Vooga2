@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 
 
 import editor.editorConstructor;
-import editor.frameworks.Framework;
 import editor.json.Jsonable;
 
 import fighter.movement.Movement;
@@ -95,3 +94,4 @@ public class Gravity extends Attribute implements Updateable, Movement, Jsonable
 
 
 }
+

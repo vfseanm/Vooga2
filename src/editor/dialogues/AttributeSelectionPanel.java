@@ -1,4 +1,4 @@
-package editor;
+package editor.dialogues;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import editor.dialogues.DialogueBox;
+import editor.InputListener;
+import editor.Reflection;
+import editor.editorConstructor;
 import editor.input.CustomInputManager;
 import editor.input.DialogueController;
 

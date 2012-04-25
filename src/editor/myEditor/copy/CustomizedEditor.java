@@ -1,4 +1,4 @@
-package editor.myEditor;
+package editor.myEditor.copy;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;

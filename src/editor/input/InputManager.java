@@ -1,6 +1,6 @@
 package editor.input;
 
-import editor.frameworks.Framework;
+import editor.Framework;
 import editor.input.inputTypes.InputType;
 import sprite.AnimatedGameSprite;
 
