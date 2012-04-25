@@ -191,7 +191,7 @@ public class Framework implements Serializable, Jsonable {
         String prototypeJson = list.get(3);
         List<String> instanceList = gson.fromJson(list.get(4), collectionType);
         
-        AnimatedGameSprite prototype = (AnimatedGameSprite) Reflection
+        AnimatedGameSprite prototype = (AnimatedGameSprite) ReflectionUtil
                 .getObjectFromJson(prototypeClassName, prototypeJson);
         Framework framework = new Framework(name, type, prototype);
         System.out.println("type: " + framework.getType() + "  name: "
