@@ -99,10 +99,13 @@ public class TestGame extends Game {
 		bob.addAttribute(hp);
 		cs = new CollisionSpec ();
 		cs.addActMap(p1.getGroup(), "actionBreak");
-		cs.addActMap(bob.getGroup(), "enemyLoseLife");
-		cs.addActMap(bob.getGroup(), "standOnTop");
+		//cs.addActMap(bob.getGroup(), "enemyLoseLife");
+		cs.addActMap(bob.getGroup(), "enemyStandOnTop");
 		specList.add(cs);
 				
+		
+		
+		
 		cs2 = new CollisionSpec();
 		cs2.addActMap(p.getGroup(), "");
 		cs2.addActMap(myObject.getGroup(), "");
