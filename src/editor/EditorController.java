@@ -29,7 +29,7 @@ import sidescrolling.ConcreteSidescroller;
 import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;
 
-public class EditorController {
+public class EditorController implements EditorConstants{
 
     private EditorView myView;
 
@@ -40,6 +40,9 @@ public class EditorController {
     private double verticalOffset;
 
     private Framework myFramework;
+    private int enemyButtonCounter;
+    private int platformButtonCounter;
+    private int powerUpButtonCounter;
 
     public EditorController(EditorView view)
     {
@@ -47,6 +50,9 @@ public class EditorController {
         horizontalOffset = 0;
         verticalOffset = 0;
         myLevel = new Level();
+        enemyButtonCounter = 0;
+        platformButtonCounter = 0;
+        powerUpButtonCounter = 0;
 
     }
 
@@ -179,31 +185,6 @@ public class EditorController {
         }
      }
 
-    private static int[] enemyButtonPlacement;
-    private static int enemyButtonCounter;
-    static
-    {
-        enemyButtonCounter = 0;
-        int[] setUp = { 25, 60, 85, 60, 145, 60, 225, 60, 305, 60, 385, 60, 25, 120, 85, 120, 145, 120, 225, 120, 305, 120, 385, 120 };
-        enemyButtonPlacement = setUp;
-    }
-    private static int[] platformButtonPlacement;
-    private static int platformButtonCounter;
-    static
-    {
-        platformButtonCounter = 0;
-        int[] setUp = { 25, 220, 85, 220, 145, 220, 225, 220, 305, 220, 385, 220, 25, 280, 85, 280, 145, 280, 225, 280, 305, 280, 385, 280 };
-        platformButtonPlacement = setUp;
-    }
-    private static int[] powerUpButtonPlacement;
-    private static int powerUpButtonCounter;
-    static
-    {
-        powerUpButtonCounter = 0;
-        int[] setUp = { 25, 380, 85, 380, 145, 380, 225, 380, 305, 380, 385, 380, 25, 440, 85, 440, 145, 440, 225, 440, 305, 440, 385, 440 };
-        powerUpButtonPlacement = setUp;
-    }
-
     public void addFrameworkAndButton(String name, Framework framework)
     {
         if(!myLevel.getFrameworks().contains(framework))
@@ -218,8 +199,8 @@ public class EditorController {
             } else
             {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
-                        enemyButtonPlacement[enemyButtonCounter],
-                        enemyButtonPlacement[enemyButtonCounter + 1], 50, 40,
+                        ENEMY_BUTTON_PLACEMENT[enemyButtonCounter],
+                        ENEMY_BUTTON_PLACEMENT[enemyButtonCounter + 1], BUTTON_WIDTH, BUTTON_HEIGHT,
                         framework, this);
                 enemyButtonCounter += 2;
                 myView.addButton(newButton);
@@ -231,9 +212,9 @@ public class EditorController {
             } else
             {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
-                        platformButtonPlacement[platformButtonCounter],
-                        platformButtonPlacement[platformButtonCounter + 1], 50,
-                        40, framework, this);
+                        PLATFORM_BUTTON_PLACEMENT[platformButtonCounter],
+                        PLATFORM_BUTTON_PLACEMENT[platformButtonCounter + 1], BUTTON_WIDTH,
+                        BUTTON_HEIGHT, framework, this);
                 platformButtonCounter += 2;
                 myView.addButton(newButton);
             }
@@ -244,17 +225,17 @@ public class EditorController {
             } else
             {
                 ObjectPlacingButton newButton = new ObjectPlacingButton(name,
-                        powerUpButtonPlacement[powerUpButtonCounter],
-                        powerUpButtonPlacement[powerUpButtonCounter + 1], 50,
-                        40, framework, this);
+                        POWERUP_BUTTON_PLACEMENT[powerUpButtonCounter],
+                        POWERUP_BUTTON_PLACEMENT[powerUpButtonCounter + 1], BUTTON_WIDTH,
+                        BUTTON_HEIGHT, framework, this);
                 powerUpButtonCounter += 2;
                 myView.addButton(newButton);
             }
         else if (framework.getType().equals("WildandCrazy"))
         {
             ObjectPlacingButton newButton = new ObjectPlacingButton(name,
-                    15, 540, 50,
-                    40, framework, this);
+                    15, 540, BUTTON_WIDTH,
+                    BUTTON_HEIGHT, framework, this);
             myView.addButton(newButton);
         }
         myView.closeFrame();
