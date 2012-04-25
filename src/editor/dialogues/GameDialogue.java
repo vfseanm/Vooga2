@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -18,7 +20,7 @@ import sidescrolling.forced.ForcedSidescroller;
 import sidescrolling.shift.ShiftSidescroller;
 
 import editor.EditorController;
-import editor.Reflection;
+import editor.ReflectionUtil;
 
 @SuppressWarnings("serial")
 public class GameDialogue extends DialogueBox {
@@ -41,8 +43,7 @@ public class GameDialogue extends DialogueBox {
         classMap = new HashMap<JCheckBox, Class>();
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
-        Reflection reflection = new Reflection();
-        for (Class c : reflection.getInstancesOf("sidescrolling.border",
+        for (Class c : ReflectionUtil.getInstancesOf("sidescrolling.border",
                 BorderSidescroller.class)) {
             JLabel label1 = new JLabel(getClassName(c));
             panel.add(label1);
@@ -50,7 +51,7 @@ public class GameDialogue extends DialogueBox {
             panel.add(box);
             classMap.put(box, c);
         }
-        for (Class c : reflection.getInstancesOf("sidescrolling.forced",
+        for (Class c : ReflectionUtil.getInstancesOf("sidescrolling.forced",
                 ForcedSidescroller.class)) {
             JLabel label1 = new JLabel(getClassName(c));
             panel.add(label1);
@@ -58,7 +59,7 @@ public class GameDialogue extends DialogueBox {
             panel.add(box);
             classMap.put(box, c);
         }
-        for (Class c : reflection.getInstancesOf("sidescrolling.shift",
+        for (Class c : ReflectionUtil.getInstancesOf("sidescrolling.shift",
                 ShiftSidescroller.class)) {
 
             JLabel label1 = new JLabel(getClassName(c));
@@ -95,36 +96,16 @@ public class GameDialogue extends DialogueBox {
         } catch (Exception exc) {
             System.out.println("There has been a problem importing your image");
         }
-
+        List<String> classNames = new ArrayList<String>();
         Sidescroller prototype = new ConcreteSidescroller();
-        Object[] list = new Object[1];
-        list[0] = prototype;
         for (JCheckBox box : classMap.keySet()) {
-            if (box.isSelected()) {
-                Class wrappingClass = classMap.get(box);
-                System.out.println("wrapping " + prototype + "with "
-                        + "wrappingClass");
-                Constructor constructor = wrappingClass.getConstructors()[0];
-                try {
-                    prototype = (DecoratedSidescroller) constructor
-                            .newInstance(list);
-                } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                list[0] = prototype;
+            if (box.isSelected()) 
+            {
+                classNames.add(classMap.get(box).toString());
             }
 
         }
+        prototype = (Sidescroller) ReflectionUtil.wrapObject(classNames, prototype);
         editorController.setSidescrolling(prototype);
 
         setVisible(false);

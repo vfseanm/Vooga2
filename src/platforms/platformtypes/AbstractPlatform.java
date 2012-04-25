@@ -8,7 +8,7 @@ import collisions.CollisionAction;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.Reflection;
+import editor.ReflectionUtil;
 import editor.json.SpriteJsonData;
 
 
@@ -99,6 +99,6 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         AbstractPlatform platform = new SimplePlatform(spriteData.getX(), spriteData.getY(),spriteData.getImageNames());
         platform.setGroup(spriteData.getGroup());
         List<String> classList = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);                
-        return (AbstractPlatform) Reflection.wrapObject(classList, platform);
+        return (AbstractPlatform) ReflectionUtil.wrapObject(classList, platform);
     }
 }

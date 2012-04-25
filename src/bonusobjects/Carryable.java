@@ -10,7 +10,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import attributes.Attribute;
-import editor.Reflection;
+import editor.ReflectionUtil;
+import editor.json.JsonUtil;
 import editor.json.Jsonable;
 import editor.json.SpriteJsonData;
 import enemies.Enemy;
@@ -65,7 +66,7 @@ public class Carryable extends BonusObject implements Jsonable {
                 collectionType2);
         for (String attributeClassName : attributeMap.keySet())
         {
-            Attribute attribute = (Attribute) Reflection.getObjectFromJson(
+            Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName));
             sprite.addAttribute(attribute);
         }
@@ -73,7 +74,7 @@ public class Carryable extends BonusObject implements Jsonable {
                 paramList.get(1), collectionType2);
         for (String attributeClassName : attributeToOfferMap.keySet())
         {
-            Attribute attribute = (Attribute) Reflection.getObjectFromJson(
+            Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName));
             sprite.addAttributeToOffer(attribute);
         }
