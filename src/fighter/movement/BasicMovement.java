@@ -1,16 +1,20 @@
 package fighter.movement;
 
+import bonusobjects.PowerUp;
 import character.GameCharacter;
 
 import com.golden.gamedev.engine.BaseInput;
 
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
+import editor.json.JsonableAttribute;
+import editor.json.SpriteFactory;
 
 import java.awt.event.KeyEvent;
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class BasicMovement extends Attribute implements Updateable, Movement, Input {
+public class BasicMovement extends Attribute implements Updateable, Movement, Input,JsonableAttribute {
 
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
@@ -95,11 +99,19 @@ public class BasicMovement extends Attribute implements Updateable, Movement, In
         return myHorizMovement+"";
     }
     
-   public static BasicMovement fromJson(String json)
+   public  BasicMovement fromJson(String json)
     {
 
         double movement = Double.parseDouble(json);
         return new BasicMovement(movement);
     }
+   
+   
+   private BasicMovement(){};
+   public static AttributeFactory<BasicMovement> getFactory()
+   {
+       return new AttributeFactory<BasicMovement>(new BasicMovement());
+   }
+   
 
 }

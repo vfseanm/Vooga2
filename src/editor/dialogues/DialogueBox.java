@@ -13,7 +13,7 @@ import javax.swing.*;
 import sprite.AnimatedGameSprite;
 
 import editor.EditorController;
-import editor.frameworks.Framework;
+import editor.Framework;
 import editor.input.DialogueController;
 
 @SuppressWarnings("serial")

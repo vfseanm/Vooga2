@@ -10,10 +10,9 @@ import sprite.AnimatedGameSprite;
 import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 
+import editor.Framework;
 import editor.dialogues.DialogueBox;
 
-import editor.frameworks.Framework;
-import editor.json.Jsonable;
 
 
 public class Points implements InputType, Serializable{

@@ -23,9 +23,9 @@ import editor.buttons.DialogueOpeningButton;
 import editor.buttons.OpenButton;
 import editor.buttons.SaveButton;
 import editor.dialogues.DialogueBox;
-import editor.dialogues.EditEnemyButtonDialogueBox;
 import editor.dialogues.FighterDialogueBox;
 import editor.dialogues.GameDialogue;
+import editor.exampleStuff.EditEnemyButtonDialogueBox;
 import editor.file.JsonLevelWriter;
 import editor.file.LevelLoader;
 import editor.file.LevelWriter;
@@ -33,7 +33,7 @@ import editor.file.SerializedLevelWriter;
 
 import sprite.AnimatedGameSprite;
 
-public abstract class EditorView extends Game {
+public abstract class EditorView extends Game{
     protected FrameWork framework;
     protected ArrayList<ObjectPlacingButton> allButtons;
     protected static final int MENU_START = 900;
@@ -44,9 +44,6 @@ public abstract class EditorView extends Game {
     protected TPanel infoBox;
 
     protected AnimatedGameSprite leftClickedSprite;
-    protected AnimatedGameSprite rightClickedSprite;
-    protected TButton leftClickedButton;
-    protected TButton rightClickedButton;
     
     private double[] origPosition;
     private double[] clickedSpriteOffset;
@@ -73,13 +70,10 @@ public abstract class EditorView extends Game {
 
         SaveButton saveButton = new SaveButton("Save", 180, 10, 60, 40, this, new SerializedLevelWriter());
         
-        //TButton openJsonButton = new OpenButton("OpenJSON", 10, 10, 80, 40, this, new JsonLevelLoader());
-        
         TButton saveJsonButton = new SaveButton("SaveJSON", 245, 10, 80, 40, this, new JsonLevelWriter());
 
         bottomBox.add(openButton);
         bottomBox.add(saveButton);
-        //bottomBox.add(openJsonButton);
         bottomBox.add(saveJsonButton);
 
         framework.add(bottomBox);
@@ -118,7 +112,6 @@ public abstract class EditorView extends Game {
             s.render(pen);
         }
         framework.render(pen);
-        
 
     }
 
@@ -159,7 +152,6 @@ public abstract class EditorView extends Game {
 
             myController.setSpriteLocation(leftClickedSprite, this.getMouseX() - clickedSpriteOffset[0], this.getMouseY()- clickedSpriteOffset[1]);
             
-
         }
 
         if (leftClickedSprite != null
@@ -173,13 +165,19 @@ public abstract class EditorView extends Game {
 
             leftClickedSprite = null;
         }
+        
+        runKeyInput();
+        checkAndUpdateDialogue();
+    }
+    
+    private void runKeyInput()
+    {
         if (leftClickedSprite != null
-                && bsInput.isKeyReleased(java.awt.event.KeyEvent.VK_DELETE))
+                && bsInput.isKeyDown(java.awt.event.KeyEvent.VK_DELETE))
         {
             myController.removeSprite(leftClickedSprite);
             leftClickedSprite = null;
         }
-
         if (bsInput.isKeyDown(java.awt.event.KeyEvent.VK_RIGHT))
         {
             myController.moveHorizonally(-HORIZONTAL_MOVE); 
@@ -196,39 +194,10 @@ public abstract class EditorView extends Game {
         {
             myController.moveVertically(VERTICAL_MOVE);
         }
-        checkAndUpdateDialogue();
-        if (bsInput.isMousePressed(MouseEvent.BUTTON3))
-        {
-            for (ObjectPlacingButton button: allButtons)
-            {
-                if (button.isMouseOver())
-                {
-                    rightClickedButton = button;
-                }
-            }
-            
-            for (AnimatedGameSprite s : myController.getAllSprites())
-            {
-                if (this.checkPosMouse(s, true))
-                    
-                {
-                    rightClickedSprite = s;
-                }
-            }
-        }
-        if (bsInput.isMousePressed(MouseEvent.BUTTON1))
-        {
-            for (ObjectPlacingButton button: allButtons)
-            {
-                if (button.isMouseOver())
-                {
-                    leftClickedButton = button;
-                }
-            }
-        }
-
     }
-    
+    /**
+     * 
+     */
     private void checkAndUpdateDialogue()
     {
         if(currentDialogueBox!=null)
@@ -245,34 +214,67 @@ public abstract class EditorView extends Game {
             {
                 currentDialogueBox.setLeftClickSprite(getRightClickedSprite());
             }
-            if (bsInput.isMouseDown(MouseEvent.BUTTON1))
+            if(getLeftClickedFramework()!=null)
             {
-            for (ObjectPlacingButton button: allButtons)
-            {
-                if (button.isMouseOver())
-                {
-                    currentDialogueBox.setLeftClickFramework(button.getFramework());
-                }
+                currentDialogueBox.setLeftClickFramework(getLeftClickedFramework());
             }
-            }
-            if (bsInput.isMouseDown(MouseEvent.BUTTON3))
+            if(getRightClickedFramework()!=null)
             {
-            for (ObjectPlacingButton button: allButtons)
-            {
-                if (button.isMouseOver())
-                {
-                    currentDialogueBox.setRightClickFramework(button.getFramework());
-                }
-            }
+                currentDialogueBox.setLeftClickFramework(getRightClickedFramework());
             }
         }
     }
+    
+    
+    /*
+     * Gets left-clicked Framework, null if none. This will return once for every click.
+     */
 
+    public Framework getLeftClickedFramework()
+    {
+        Framework selected = null;
+                
+        if (bsInput.isMousePressed(MouseEvent.BUTTON1))
+        {
+        for (ObjectPlacingButton button: allButtons)
+        {
+            if (button.isMouseOver())
+            {
+                selected = button.getFramework();
+            }
+        }
+        }
+        return selected;
+    }
+    
+    /*
+     * Gets right-clicked Framework, null if none. This will return once for every click.
+     */
+    public Framework getRightClickedFramework()
+    {
+        Framework selected = null;
+                
+        if (bsInput.isMousePressed(MouseEvent.BUTTON3))
+        {
+        for (ObjectPlacingButton button: allButtons)
+        {
+            if (button.isMouseOver())
+            {
+                selected = button.getFramework();
+            }
+        }
+        }
+        return selected;
+    }
+    
+    /*
+     * Gets left-clicked sprite, null if none. This will return once for every click.
+     */
     public AnimatedGameSprite getLeftClickedSprite()
     {
         AnimatedGameSprite selected = null;
                 
-        if (bsInput.isMouseDown(MouseEvent.BUTTON1))
+        if (bsInput.isMousePressed(MouseEvent.BUTTON1))
         {
             for (AnimatedGameSprite s : myController.getAllSprites())
             {
@@ -286,11 +288,14 @@ public abstract class EditorView extends Game {
         return selected;
     }
     
+    /*
+     * Gets right-clicked sprite, null if none. This will return once for every click.
+     */
     public AnimatedGameSprite getRightClickedSprite()
     {
         AnimatedGameSprite selected = null;
         
-        if (bsInput.isMouseDown(MouseEvent.BUTTON3))
+        if (bsInput.isMousePressed(MouseEvent.BUTTON3))
         {
             for (AnimatedGameSprite s : myController.getAllSprites())
             {
@@ -312,13 +317,19 @@ public abstract class EditorView extends Game {
 
     public void saveFile(LevelWriter writer)
     {
-        
-        String selectedValue = JOptionPane
-                .showInputDialog("Where would you like to save the level?");
-        myController.writeFile(selectedValue, writer);
-        
+        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
+        int returnVal = fc.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+        {
+            File file = fc.getSelectedFile();
+            myController.writeFile(file.getAbsolutePath(), writer);
+        }        
     }
 
+    /*
+     * 
+     * 
+     */
     public void openFile(LevelLoader loader)
     {
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
@@ -334,6 +345,9 @@ public abstract class EditorView extends Game {
 
     private JFrame frame;
     
+    /*
+     * Opens a new JFrame containing the inputed dialogue box extending DialogueBox.
+     */
     public void openDialogue(DialogueBox box)
     {
         currentDialogueBox = box;

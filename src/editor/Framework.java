@@ -1,4 +1,4 @@
-package editor.frameworks;
+package editor;
 
 import java.awt.Color;
 
@@ -13,25 +13,36 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import platforms.platformtypes.BreakablePlatform;
+import platforms.platformtypes.RotatingPlatform;
+import platforms.platformtypes.SideToSidePlatform;
+import platforms.platformtypes.SimplePlatform;
+import platforms.platformtypes.UpDownPlatform;
+
+import bonusobjects.Carryable;
+import bonusobjects.PowerUp;
+
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
 import com.golden.gamedev.object.Sprite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.Reflection;
-import editor.json.Jsonable;
+import editor.exampleStuff.WildAndCrazyObject;
+import editor.json.SpriteFactory;
+import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
 
 @SuppressWarnings("serial")
-public class Framework implements Serializable, Jsonable {
+public class Framework implements Serializable {
     protected List<AnimatedGameSprite> mySprites;
     // transient protected BufferedImage[] myImages;
     // protected List<String> imageNames;
     private AnimatedGameSprite prototypeSprite;
     private String myType;
     private String myName;
+    
 
     public Framework(String name, String type, AnimatedGameSprite s)
     {
@@ -45,7 +56,7 @@ public class Framework implements Serializable, Jsonable {
     {
         AnimatedGameSprite s = (AnimatedGameSprite) prototypeSprite.clone();
         s.setX(x);
-        s.setY(y - s.getHeight());
+        s.setY(y);
         return s;
     }
 
@@ -53,7 +64,7 @@ public class Framework implements Serializable, Jsonable {
     {
         AnimatedGameSprite s = (AnimatedGameSprite) prototypeSprite.clone();
         s.setX(x);
-        s.setY(y - s.getHeight());
+        s.setY(y);
         mySprites.add(s);
     }
 
@@ -192,8 +203,28 @@ public class Framework implements Serializable, Jsonable {
         String prototypeJson = list.get(3);
         List<String> instanceList = gson.fromJson(list.get(4), collectionType);
         
-        AnimatedGameSprite prototype = (AnimatedGameSprite) Reflection
+        /*AnimatedGameSprite prototype = (AnimatedGameSprite) JsonUtil
                 .getObjectFromJson(prototypeClassName, prototypeJson);
+        */
+        List<SpriteFactory> factories = new ArrayList<SpriteFactory>();
+        factories.add( Enemy.getFactory());
+        factories.add( BreakablePlatform.getFactory());
+        factories.add(SimplePlatform.getFactory());
+        factories.add(SideToSidePlatform.getFactory());
+        factories.add(UpDownPlatform.getFactory());
+        factories.add(RotatingPlatform.getFactory());
+        factories.add(PowerUp.getFactory());
+        factories.add(Carryable.getFactory());
+        factories.add(WildAndCrazyObject.getFactory());
+        
+        AnimatedGameSprite prototype = null;
+        for(SpriteFactory factory: factories)
+        {
+            if(factory.isThisKindOfSprite(prototypeClassName))
+            {
+                prototype = factory.parseFromJson(prototypeJson);
+            }
+        }
         Framework framework = new Framework(name, type, prototype);
         System.out.println("type: " + framework.getType() + "  name: "
                 + framework.getName());

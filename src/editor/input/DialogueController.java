@@ -6,12 +6,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import sprite.AnimatedGameSprite;
+import editor.Framework;
 import editor.InputListener;
-import editor.Reflection;
+import editor.ReflectionUtil;
 import editor.editorConstructor;
-import editor.AttributeSelectionPanel.CheckBoxListener;
 import editor.dialogues.DialogueBox;
-import editor.frameworks.Framework;
+import editor.dialogues.AttributeSelectionPanel.CheckBoxListener;
 import editor.input.inputTypes.InputType;
 
 public class DialogueController {
@@ -91,7 +91,7 @@ public class DialogueController {
     
     public void constructObject(Object[] argList)
     {
-        Constructor constructor = Reflection.getAnnotatedConstructor(currentInputManager.getAssociatedClass());
+        Constructor constructor = ReflectionUtil.getAnnotatedConstructor(currentInputManager.getAssociatedClass());
         try {
             Object object = constructor.newInstance(argList);
             currentOutput.setObject(object);                    // give this object to the attribute selection panel

@@ -11,9 +11,8 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import editor.AttributeSelectionPanel;
 import editor.EditorController;
-import editor.frameworks.Framework;
+import editor.Framework;
 import enemies.Enemy;
 
 
@@ -108,7 +107,7 @@ public class EnemyDialogueBox extends DialogueBox {
 
     protected void BoxCompletedAction() {
         Framework framework = getFramework();
-        editorController.addButton(myName.getText(), framework);
+        editorController.addFrameworkAndButton(myName.getText(), framework);
         setVisible(false);
         
     }

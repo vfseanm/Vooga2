@@ -12,9 +12,11 @@ import com.google.gson.reflect.TypeToken;
 import attributes.Attribute;
 import attributes.Updateable;
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
+import editor.json.JsonableAttribute;
 
 @SuppressWarnings("serial")
-public class Fly extends Attribute implements Updateable, Movement, Input
+public class Fly extends Attribute implements Updateable, Movement, Input, JsonableAttribute
 {
 	private BaseInput	myUserInput;
 	private double		myFlightMovement;
@@ -96,7 +98,7 @@ public class Fly extends Attribute implements Updateable, Movement, Input
         return gson.toJson(argList);
     }
     
-    public static Fly fromJson(String json)
+    public Fly fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<Double>>(){}.getType();
@@ -108,4 +110,10 @@ public class Fly extends Attribute implements Updateable, Movement, Input
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
 	}
+	
+	   private Fly(){};
+	   public static AttributeFactory<Fly> getFactory()
+	   {
+	       return new AttributeFactory<Fly>(new Fly());
+	   }
 }

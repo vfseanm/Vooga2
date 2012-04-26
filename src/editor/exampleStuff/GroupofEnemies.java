@@ -13,11 +13,11 @@ import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.Reflection;
+import editor.Framework;
+import editor.ReflectionUtil;
 
-import editor.frameworks.Framework;
 import editor.input.inputTypes.InputType;
-import editor.json.Jsonable;
+import editor.json.JsonUtil;
 import enemies.Enemy;
 
 
@@ -110,7 +110,7 @@ public class GroupofEnemies implements InputType, Serializable {
         ArrayList<AnimatedGameSprite> enemyList = new ArrayList<AnimatedGameSprite>();
         for(String spriteString: spriteMap.keySet())
         {
-            enemyList.add((AnimatedGameSprite) Reflection.getObjectFromJson(spriteString, spriteMap.get(spriteString)));
+            enemyList.add((AnimatedGameSprite) JsonUtil.getObjectFromJson(spriteString, spriteMap.get(spriteString)));
         }
         group.setEnemies(enemyList);
         return group;

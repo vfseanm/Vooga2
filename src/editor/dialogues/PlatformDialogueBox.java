@@ -7,10 +7,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
 import editor.EditorController;
-import editor.Reflection;
-import editor.frameworks.Framework;
+import editor.Framework;
+import editor.ReflectionUtil;
 import platforms.platformtypes.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class PlatformDialogueBox extends DialogueBox {
@@ -36,8 +39,7 @@ public class PlatformDialogueBox extends DialogueBox {
         classMap = new HashMap<JCheckBox, Class>();
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
-        Reflection reflection = new Reflection();
-        for (Class c : reflection.getInstancesOf("platforms",
+        for (Class c : ReflectionUtil.getInstancesOf("platforms",
                 DecoratedPlatform.class)) {
 
             JLabel label1 = new JLabel(getClassName(c));
@@ -76,34 +78,16 @@ public class PlatformDialogueBox extends DialogueBox {
     public Framework getFramework() {
 
         AbstractPlatform prototype = new SimplePlatform(0, 0, myImagePaths);
-        Object[] list = new Object[1];
-        list[0] = prototype;
+        List<String> classNames = new ArrayList<String>();
         for (JCheckBox box : classMap.keySet()) {
-            if (box.isSelected()) {
-                Class wrappingClass = classMap.get(box);
-                Constructor constructor = wrappingClass.getConstructors()[0];
-                try {
-                    prototype = (DecoratedPlatform) constructor
-                            .newInstance(list);
-                } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                list[0] = prototype;
+            if (box.isSelected()) 
+            {
+                classNames.add(classMap.get(box).toString());
             }
 
         }
+        prototype = (AbstractPlatform) ReflectionUtil.wrapObject(classNames, prototype);
         prototype.setGroup(myGroup.getText());
-
         return new Framework(myName.getText(), "platform", prototype);
 
     }
@@ -115,7 +99,7 @@ public class PlatformDialogueBox extends DialogueBox {
     protected void BoxCompletedAction() {
         Framework framework = getFramework();
         System.out.println("framework " + framework);
-        editorController.addButton(myName.getText(), framework);
+        editorController.addFrameworkAndButton(myName.getText(), framework);
         setVisible(false);
 
     }

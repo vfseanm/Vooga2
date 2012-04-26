@@ -9,12 +9,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
-import editor.json.Jsonable;
+import editor.json.AttributeFactory;
+import editor.json.JsonableAttribute;
 
 //Change location to coordinate
 
 @SuppressWarnings("serial")
-public class SideToSideMovement extends TwoPartMovement implements Jsonable
+public class SideToSideMovement extends TwoPartMovement implements JsonableAttribute
 {
     
 
@@ -71,7 +72,7 @@ public class SideToSideMovement extends TwoPartMovement implements Jsonable
         return gson.toJson(argList);
     }
     
-    public static SideToSideMovement fromJson(String json)
+    public SideToSideMovement fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<Integer>>(){}.getType();
@@ -79,11 +80,11 @@ public class SideToSideMovement extends TwoPartMovement implements Jsonable
         return new SideToSideMovement(argList.get(0), (argList.get(1)));
     }
     
-/*    private SideToSideMovement(){}
-    public static ObjectFromJsonFactory getFactory()
+    private SideToSideMovement(){}
+    public static AttributeFactory<SideToSideMovement> getFactory()
     {
-        return new ObjectFromJsonFactory(new SideToSideMovement());
-    }*/
+        return new AttributeFactory<SideToSideMovement>(new SideToSideMovement());
+    }
    
 
 }

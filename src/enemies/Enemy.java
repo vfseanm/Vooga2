@@ -16,19 +16,42 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
-import editor.Reflection;
+import editor.ReflectionUtil;
+import editor.json.AttributeFactory;
+import editor.json.JsonUtil;
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
+import enemies.movement.JumpingMovement;
+import enemies.movement.OneDirectionMovement;
+import enemies.movement.PathFollowingMovement;
+import enemies.movement.SideToSideMovement;
+import enemies.movement.UpDownMovement;
 import enemies.state.EnemyState;
 
 
 /**
  * @author Alex
  */
-@SuppressWarnings("serial")
-public class Enemy extends GameCharacter
+@SuppressWarnings({ "serial", "rawtypes" })
+public class Enemy extends GameCharacter implements JsonableSprite
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;
+    private static List<AttributeFactory> myAttributeFactories;
+    static
+    {
+        myAttributeFactories = new ArrayList<AttributeFactory>();
+        myAttributeFactories.add(Flying.getFactory());
+        myAttributeFactories.add(Hitpoints.getFactory());
+        myAttributeFactories.add(Flying.getFactory());
+        myAttributeFactories.add(Gravity.getFactory());
+        myAttributeFactories.add(SideToSideMovement.getFactory());
+        myAttributeFactories.add(UpDownMovement.getFactory());
+        myAttributeFactories.add(JumpingMovement.getFactory());
+        myAttributeFactories.add(PathFollowingMovement.getFactory());
+        myAttributeFactories.add(OneDirectionMovement.getFactory());
+    }
 
 
     public Enemy (double x, double y, List<String> image)
@@ -284,28 +307,28 @@ public class Enemy extends GameCharacter
     }
 
 
-    public boolean equals (Object o)
-    {
-        try
-        {
-
-            Enemy toCompare = ((Enemy) o);
-            if(!toString().equals(toCompare.toString()))
-                    return false;
-            for(String im: toCompare.getImageNames())
-            {
-                if(!getImageNames().contains(im))
-                {
-                    return false;
-                }
-            }
-        }
-        catch (ClassCastException e)
-        {
-            return false;
-        }
-        return false;
-    }
+//    public boolean equals (Object o)
+//    {
+//        try
+//        {
+//
+//            Enemy toCompare = ((Enemy) o);
+//            if(!toString().equals(toCompare.toString()))
+//                    return false;
+//            for(String im: toCompare.getImageNames())
+//            {
+//                if(!getImageNames().contains(im))
+//                {
+//                    return false;
+//                }
+//            }
+//        }
+//        catch (ClassCastException e)
+//        {
+//            return false;
+//        }
+//        return false;
+//    }
 
 
     public String toJson ()
@@ -328,7 +351,7 @@ public class Enemy extends GameCharacter
     }
 
 
-    public static Enemy fromJson (String json)
+    public  Enemy fromJson (String json)
     {
         Gson gson = new Gson();
         
@@ -341,11 +364,25 @@ public class Enemy extends GameCharacter
         System.out.println("attribute map: " + attributeMap);
         for (String attributeClassName : attributeMap.keySet())
         {
-                Attribute attribute = (Attribute) Reflection.getObjectFromJson(attributeClassName, attributeMap.get(attributeClassName));
-                sprite.addAttribute(attribute);
+                for(AttributeFactory factory: myAttributeFactories)
+                {
+                    if(factory.isThisKindOfSprite(attributeClassName))
+                    {
+                        sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                    }
+                }
+                /*Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(attributeClassName, attributeMap.get(attributeClassName));
+                sprite.addAttribute(attribute);*/
 
         }
         return sprite;
+    }
+    
+    private Enemy(){}
+    
+    public static SpriteFactory<Enemy> getFactory()
+    {
+        return new SpriteFactory<Enemy>( new Enemy());
     }
 
 

@@ -9,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.*;
 
 
+
 /**
  * This class is used to allow for dynamic attribute allocation to enemies and fighters.
  * In essence, this allows for flexibility in the framework while still providing
@@ -62,7 +63,11 @@ public abstract class Attribute implements Serializable, Cloneable
            
             try
             {
-                myOriginal =  c[0].newInstance(o);
+                for(Constructor constructor: c)
+                {
+                    if(constructor.isAccessible())
+                        myOriginal =  c[0].newInstance(o);
+                }
             }
             catch (IllegalArgumentException e)
             {

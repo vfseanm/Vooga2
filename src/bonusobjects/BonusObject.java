@@ -1,6 +1,5 @@
 package bonusobjects;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import java.util.Collections;
@@ -9,15 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import collisions.CollisionAction;
-import editor.json.Jsonable;
 import editor.json.SpriteJsonData;
 
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
-import attributes.Flying;
 
 @SuppressWarnings("serial")
 public class BonusObject extends AnimatedGameSprite {
@@ -35,6 +31,8 @@ public class BonusObject extends AnimatedGameSprite {
     public List<Attribute> getAttributesToOffer() {
     	return Collections.unmodifiableList(myAttributesToOffer);
     }
+    
+    protected BonusObject(){}
     
     public String getGroup(){
     	return "BONUSOBJECT";

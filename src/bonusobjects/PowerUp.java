@@ -5,20 +5,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import character.GameCharacter;
-import editor.Reflection;
-import editor.json.Jsonable;
+import editor.json.AttributeFactory;
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
+
 
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class PowerUp extends BonusObject implements Jsonable {
+public class PowerUp extends BonusObject implements JsonableSprite {
 
     protected GameCharacter myGameCharacter;
+    private static List<AttributeFactory> myAttributeFactories;
+    static
+    {
+        myAttributeFactories = new ArrayList<AttributeFactory>();
+        myAttributeFactories.add(Flying.getFactory());
+        myAttributeFactories.add(Gravity.getFactory());
+        myAttributeFactories.add(Hitpoints.getFactory());
+        myAttributeFactories.add(NumberOfLives.getFactory());
+        myAttributeFactories.add(NumberOfLives.getFactory());
+        myAttributeFactories.add(PointValue.getFactory());
+        myAttributeFactories.add(Visibility.getFactory());
+        
+    }
 
     public PowerUp(double x, double y, List<String> image)
     {
@@ -50,7 +66,7 @@ public class PowerUp extends BonusObject implements Jsonable {
 
 
 
-    public static PowerUp fromJson(String json)
+    public PowerUp fromJson(String json)
     {
         Gson gson = new Gson();
         SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
@@ -66,20 +82,40 @@ public class PowerUp extends BonusObject implements Jsonable {
                 collectionType2);
         for (String attributeClassName : attributeMap.keySet())
         {
-            Attribute attribute = (Attribute) Reflection.getObjectFromJson(
+            for(AttributeFactory factory: myAttributeFactories)
+            {
+                if(factory.isThisKindOfSprite(attributeClassName))
+                {
+                    sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                }
+            }
+            /*            Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName));
-            sprite.addAttribute(attribute);
+            sprite.addAttribute(attribute);*/
         }
         Map<String, String> attributeToOfferMap = gson.fromJson(
                 paramList.get(1), collectionType2);
         for (String attributeClassName : attributeToOfferMap.keySet())
         {
-            Attribute attribute = (Attribute) Reflection.getObjectFromJson(
+            for(AttributeFactory factory: myAttributeFactories)
+            {
+                if(factory.isThisKindOfSprite(attributeClassName))
+                {
+                    sprite.addAttributeToOffer(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                }
+            }
+            /*Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName));
-            sprite.addAttributeToOffer(attribute);
+            sprite.addAttributeToOffer(attribute);*/
         }
         return sprite;
 
+    }
+    
+    private PowerUp(){};
+    public static SpriteFactory<PowerUp> getFactory()
+    {
+        return new SpriteFactory<PowerUp>(new PowerUp());
     }
     
 

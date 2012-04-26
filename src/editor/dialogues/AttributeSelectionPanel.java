@@ -1,4 +1,4 @@
-package editor;
+package editor.dialogues;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import editor.dialogues.DialogueBox;
+import editor.InputListener;
+import editor.ReflectionUtil;
+import editor.editorConstructor;
 import editor.input.CustomInputManager;
 import editor.input.DialogueController;
 
@@ -53,8 +55,6 @@ public class AttributeSelectionPanel extends JPanel {
     
     public JPanel makePanel()
     {
-
-        Reflection reflection = new Reflection();
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
         JPanel panel = new JPanel();
@@ -65,7 +65,7 @@ public class AttributeSelectionPanel extends JPanel {
             List<Class> listOfClasses = new ArrayList<Class>();
             for(String s: packageNames)
             {
-                listOfClasses.addAll(reflection.getInstancesOf(s, Attribute.class));
+                listOfClasses.addAll(ReflectionUtil.getInstancesOf(s, Attribute.class));
             }
 
             for (Class c : listOfClasses)

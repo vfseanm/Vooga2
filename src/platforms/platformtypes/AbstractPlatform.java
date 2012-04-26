@@ -8,7 +8,7 @@ import collisions.CollisionAction;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.Reflection;
+import editor.ReflectionUtil;
 import editor.json.SpriteJsonData;
 
 
@@ -73,7 +73,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
     	return PlatformAction.class;
     }
 
-    @SuppressWarnings({ "unused", "rawtypes" })
+    @SuppressWarnings({ "rawtypes" })
 	public String toJson()
     {
         Gson gson = new Gson();
@@ -90,8 +90,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         
     }
     
-    @SuppressWarnings({ "unused", "rawtypes" })
-	public static AbstractPlatform fromJson(String json){
+	public AbstractPlatform fromJson(String json){
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
         {}.getType();
@@ -99,6 +98,6 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         AbstractPlatform platform = new SimplePlatform(spriteData.getX(), spriteData.getY(),spriteData.getImageNames());
         platform.setGroup(spriteData.getGroup());
         List<String> classList = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);                
-        return (AbstractPlatform) Reflection.wrapObject(classList, platform);
+        return (AbstractPlatform) ReflectionUtil.wrapObject(classList, platform);
     }
 }

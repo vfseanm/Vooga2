@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import platforms.platformtypes.SideToSidePlatform;
+
 import collisions.CollisionAction;
 
 import com.golden.gamedev.engine.BaseInput;
@@ -14,21 +16,49 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import character.GameCharacter;
-import editor.Reflection;
-import editor.json.Jsonable;
+import editor.ReflectionUtil;
+import editor.json.AttributeFactory;
+import editor.json.JsonUtil;
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
+import fighter.movement.BasicMovement;
+import fighter.movement.Fly;
 import fighter.movement.Input;
+import fighter.movement.Jump;
 import fighter.movement.Movement;
 import attributes.Attribute;
+import attributes.Flying;
+import attributes.Gravity;
+import attributes.Hitpoints;
+import attributes.NumberOfLives;
+import attributes.PointValue;
+import attributes.Visibility;
 
 
 @SuppressWarnings("serial")
-public class Fighter extends GameCharacter implements Jsonable {
+public class Fighter extends GameCharacter implements JsonableSprite  {
 
     private List<Attribute> myCarryableAttributes;
     private List<Attribute> myDuplicateAttributes;
     private BaseInput myUserInput;
     private static Fighter myself;
+    private static List<AttributeFactory> myAttributeFactories;
+    static
+    {
+        myAttributeFactories = new ArrayList<AttributeFactory>();
+        myAttributeFactories.add(BasicMovement.getFactory());
+        myAttributeFactories.add(Fly.getFactory());
+        myAttributeFactories.add(Jump.getFactory());
+        myAttributeFactories.add(Flying.getFactory());
+        myAttributeFactories.add(Gravity.getFactory());
+        myAttributeFactories.add(Hitpoints.getFactory());
+        myAttributeFactories.add(NumberOfLives.getFactory());
+        myAttributeFactories.add(NumberOfLives.getFactory());
+        myAttributeFactories.add(PointValue.getFactory());
+        myAttributeFactories.add(Visibility.getFactory());
+        
+    }
 
     // public void render(Graphics2D pen){
     // myself.render(pen);
@@ -44,11 +74,12 @@ public class Fighter extends GameCharacter implements Jsonable {
     private Fighter()
     {
         super();
+        setGroup("FIGHTER");
     };
 
     public static Fighter getInstance()
     {
-
+        
         if (myself == null)
         {
             myself = new Fighter();
@@ -181,7 +212,7 @@ public class Fighter extends GameCharacter implements Jsonable {
         return gson.toJson(new SpriteJsonData(this, additionalInformation));
     }
 
-    public static Fighter fromJson(String json)
+    public  Fighter fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>() {
@@ -199,17 +230,31 @@ public class Fighter extends GameCharacter implements Jsonable {
         for (String attributeClassName : attributeMap.keySet())
         {
 
-            sprite.addAttribute((Attribute) Reflection.getObjectFromJson(
+            for(AttributeFactory factory: myAttributeFactories)
+            {
+                if(factory.isThisKindOfSprite(attributeClassName))
+                {
+                    sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                }
+            }
+            /*sprite.addAttribute((Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName)));
-
+*/
         }
         List<Attribute> carryableAttributes = new ArrayList<Attribute>();
         Map<String, String> carryableAttributeMap = gson.fromJson(
                 paramList.get(1), collectionType2);
         for (String attributeClassName : carryableAttributeMap.keySet())
         {
-            carryableAttributes.add((Attribute) Reflection.getObjectFromJson(
-                    attributeClassName, attributeMap.get(attributeClassName)));
+            for(AttributeFactory factory: myAttributeFactories)
+            {
+                if(factory.isThisKindOfSprite(attributeClassName))
+                {
+                    carryableAttributes.add(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                }
+            }
+            /*carryableAttributes.add((Attribute) JsonUtil.getObjectFromJson(
+                    attributeClassName, attributeMap.get(attributeClassName)));*/
 
         }
         sprite.addCarryableAttributes(carryableAttributes);
@@ -217,10 +262,9 @@ public class Fighter extends GameCharacter implements Jsonable {
     }
     
     
-//    public static ObjectFromJsonFactory getFactory()
-//    {
-//        return new ObjectFromJsonFactory(new Fighter());
-//    }
-//   
+    public static SpriteFactory getFactory()
+    {
+        return new SpriteFactory(new Fighter());
+    }
 
 }

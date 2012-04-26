@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
-import editor.AttributeSelectionPanel;
 import editor.EditorController;
 import fighter.Fighter;
 import attributes.Attribute;
@@ -93,8 +92,11 @@ public class FighterDialogueBox extends DialogueBox {
             fighter.setLocation(50, 50);
         }
 
-        fighter.setImageNamesandImages(myImagePaths);
-
+        if(myImagePaths.size()>0)
+        {
+            fighter.setImageNamesandImages(myImagePaths);
+        }
+        fighter.clearAttributes();
         for (Attribute attribute : attributes) {
             fighter.addAttribute(attribute);
         }

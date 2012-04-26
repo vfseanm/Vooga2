@@ -10,11 +10,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
+import editor.json.JsonableAttribute;
 import attributes.Attribute;
 import attributes.Updateable;
 
 @SuppressWarnings("serial")
-public class Jump extends Attribute implements Updateable, Movement, Input
+public class Jump extends Attribute implements Updateable, Movement, Input, JsonableAttribute
 {
 	private BaseInput 		myUserInput;
     private double 			myJumpHeight;
@@ -121,7 +123,7 @@ public class Jump extends Attribute implements Updateable, Movement, Input
         return gson.toJson(argList);
     }
     
-    public static Jump fromJson(String json)
+    public Jump fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<Double>>(){}.getType();
@@ -133,4 +135,10 @@ public class Jump extends Attribute implements Updateable, Movement, Input
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
 	}
+	
+	   private Jump(){};
+	   public static AttributeFactory<Jump> getFactory()
+	   {
+	       return new AttributeFactory<Jump>(new Jump());
+	   }
 }

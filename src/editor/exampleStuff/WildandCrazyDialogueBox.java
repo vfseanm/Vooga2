@@ -17,9 +17,9 @@ import javax.swing.JTextField;
 import attributes.Attribute;
 
 import editor.EditorController;
+import editor.Framework;
 import editor.InputListener;
 import editor.dialogues.DialogueBox;
-import editor.frameworks.Framework;
 import editor.input.CustomInputManager;
 import enemies.Enemy;
 
@@ -83,7 +83,7 @@ public class WildandCrazyDialogueBox extends DialogueBox{
 
     protected void BoxCompletedAction() {
         Framework framework = getFramework();
-        editorController.addButton(myName.getText(), framework);
+        editorController.addFrameworkAndButton(myName.getText(), framework);
         setVisible(false);
         
     }

@@ -3,7 +3,7 @@ package editor.buttons;
 
 import com.golden.gamedev.gui.TButton;
 import editor.EditorController;
-import editor.frameworks.Framework;
+import editor.Framework;
 
 public class ObjectPlacingButton extends TButton
 {

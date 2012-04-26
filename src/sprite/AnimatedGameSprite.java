@@ -22,11 +22,10 @@ import com.golden.gamedev.object.sprite.AdvanceSprite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import editor.json.Jsonable;
 
 
 @SuppressWarnings("serial")
-public class AnimatedGameSprite extends AdvanceSprite implements Serializable, Cloneable, Jsonable
+public class AnimatedGameSprite extends AdvanceSprite implements Serializable, Cloneable
 {
 
     String myType;

@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 
 import sprite.AnimatedGameSprite;
 
-import editor.AttributeSelectionPanel;
-import editor.Reflection;
+import editor.ReflectionUtil;
 import editor.editorConstructor;
-import editor.AttributeSelectionPanel.CheckBoxListener;
+import editor.dialogues.AttributeSelectionPanel;
+import editor.dialogues.AttributeSelectionPanel.CheckBoxListener;
 import editor.input.inputTypes.InputType;
 
 import attributes.Attribute;
@@ -40,7 +40,7 @@ public class CustomInputManager extends InputManager{
         myController = controller;
         myClass = c;
         
-        Constructor constructor = Reflection.getAnnotatedConstructor(myClass);
+        Constructor constructor = ReflectionUtil.getAnnotatedConstructor(myClass);
         Annotation a = constructor.getAnnotation(editorConstructor.class);
         String[] paramNames = ((editorConstructor) a).parameterNames();
         paramTypes = constructor.getParameterTypes();
@@ -60,7 +60,7 @@ public class CustomInputManager extends InputManager{
     
     public void run()
     {
-            Constructor constructor = Reflection.getAnnotatedConstructor(myClass);
+            Constructor constructor = ReflectionUtil.getAnnotatedConstructor(myClass);
             Annotation a = constructor.getAnnotation(editorConstructor.class);
             String[] paramNames = ((editorConstructor) a).parameterNames();
             if(paramTypes.length ==0)

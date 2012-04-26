@@ -6,18 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import attributes.Attribute;
-import editor.Reflection;
-import editor.json.Jsonable;
+import editor.json.JsonUtil;
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
-import enemies.Enemy;
 import fighter.Fighter;
 
 @SuppressWarnings("serial")
-public class Carryable extends BonusObject implements Jsonable {
+public class Carryable extends BonusObject implements JsonableSprite {
 	
 	protected Fighter		myFighter;
 	
@@ -49,7 +50,7 @@ public class Carryable extends BonusObject implements Jsonable {
 	}
 	
 
-    public static Carryable fromJson(String json)
+    public  Carryable fromJson(String json)
     {
         Gson gson = new Gson();
         SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
@@ -65,7 +66,7 @@ public class Carryable extends BonusObject implements Jsonable {
                 collectionType2);
         for (String attributeClassName : attributeMap.keySet())
         {
-            Attribute attribute = (Attribute) Reflection.getObjectFromJson(
+            Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName));
             sprite.addAttribute(attribute);
         }
@@ -73,12 +74,17 @@ public class Carryable extends BonusObject implements Jsonable {
                 paramList.get(1), collectionType2);
         for (String attributeClassName : attributeToOfferMap.keySet())
         {
-            Attribute attribute = (Attribute) Reflection.getObjectFromJson(
+            Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName));
             sprite.addAttributeToOffer(attribute);
         }
         return sprite;
 
+    }
+    private Carryable(){}
+    public static SpriteFactory<Carryable> getFactory()
+    {
+        return new SpriteFactory<Carryable>(new Carryable());
     }
     
 
