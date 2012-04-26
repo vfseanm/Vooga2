@@ -52,7 +52,7 @@ public abstract class Attribute implements Serializable, Cloneable
     }
     
 
-
+    //WHAT happened
     public Attribute (Object...o)
     {
         System.out.println(this);
@@ -65,6 +65,7 @@ public abstract class Attribute implements Serializable, Cloneable
            
             try
             {
+            	
                 for(Constructor constructor: c)
                 {
                     if(constructor.getModifiers()==Modifier.PUBLIC)
@@ -75,6 +76,7 @@ public abstract class Attribute implements Serializable, Cloneable
                             break;
                         }
                     }
+
                 }
             }
             catch (IllegalArgumentException e)
@@ -95,6 +97,8 @@ public abstract class Attribute implements Serializable, Cloneable
             catch (InvocationTargetException e)
             {
                 // TODO Auto-generated catch block
+            	
+            	System.out.println("hello");
                 e.printStackTrace();
             }
             

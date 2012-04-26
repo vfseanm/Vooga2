@@ -2,18 +2,16 @@ package sidescrolling;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.ReflectionUtil;
-
-import sprite.AnimatedGameSprite;
 
 
 /**
@@ -46,6 +44,8 @@ public abstract class Sidescroller implements Serializable  {
      * @return the height of the game stored in the ConcreteSidescroller
      */
     public abstract int getGameHeight();
+    
+    public abstract void setUserInput(BaseInput userInput);
         
     public String toJson()
     {

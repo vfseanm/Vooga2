@@ -19,11 +19,11 @@ import attributes.interfaces.Updateable;
 public class OneDirectionMovement extends Attribute implements Updateable, JsonableAttribute
 {
     private String myDirection;
-    private int myDistance;
+    private double myDistance;
 
 
     @editorConstructor(parameterNames = { "direction", "distance" })
-    public OneDirectionMovement (String direction, int distance)
+    public OneDirectionMovement (String direction, double distance)
     {
         super(direction, distance);
         myDirection = direction;

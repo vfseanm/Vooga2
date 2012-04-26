@@ -20,7 +20,7 @@ public class SideToSideMovement extends TwoPartMovement implements JsonableAttri
     
 
     @editorConstructor(parameterNames = { "distance" , "duration"})
-    public SideToSideMovement (int distance, int duration)
+    public SideToSideMovement (double distance, int duration)
     {
         super(distance,duration);
         
@@ -62,6 +62,8 @@ public class SideToSideMovement extends TwoPartMovement implements JsonableAttri
     {
         return new SideToSideMovement(myDistance, myPartDuration);
     }
+    
+    //TODO fix json problem
     public String toJson()
     {
         Gson gson = new Gson();

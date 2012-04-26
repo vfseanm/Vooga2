@@ -74,6 +74,7 @@ public class TestGame extends Game {
 		p1 = new BreakablePlatform (new SimplePlatform ( 140, 70, a));
 		List<String> im = new ArrayList<String>();
 		im.add("resources/happy.jpg");
+		
 		myObject = new BonusObject(140, 70, im);
 		p1.addBonusObject(myObject);
 		//p1.setActive(false);
@@ -100,10 +101,13 @@ public class TestGame extends Game {
 		bob.addAttribute(hp);
 		cs = new CollisionSpec ();
 		cs.addActMap(p1.getGroup(), "actionBreak");
-		cs.addActMap(bob.getGroup(), "enemyLoseLife");
-		cs.addActMap(bob.getGroup(), "standOnTop");
+		//cs.addActMap(bob.getGroup(), "enemyLoseLife");
+		cs.addActMap(bob.getGroup(), "enemyStandOnTop");
 		specList.add(cs);
-				
+		
+		
+		
+		
 		cs2 = new CollisionSpec();
 		cs2.addActMap(p.getGroup(), "");
 		cs2.addActMap(myObject.getGroup(), "");
