@@ -6,7 +6,7 @@ import java.util.List;
 // Do we still want to do this? Implementation?
 
 @SuppressWarnings("serial")
-public class SlowEnemiesPowerUp extends PowerUp {
+public class SlowEnemiesPowerUp extends BonusObject {
 
     public SlowEnemiesPowerUp(double x, double y, List<String> image) {
         super(x, y, image);

@@ -1,69 +1,141 @@
 package bonusobjects;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
+import sprite.AnimatedGameSprite;
+
 
 import collisions.CollisionAction;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import character.GameCharacter;
+import editor.json.AttributeFactory;
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
 
-import sprite.AnimatedGameSprite;
-import attributes.Attribute;
+
+import attributes.*;
 
 @SuppressWarnings("serial")
-public class BonusObject extends AnimatedGameSprite {
+public class BonusObject extends AnimatedGameSprite implements JsonableSprite {
 
-    protected List<Attribute>		myAttributes;
-    protected List<Attribute>		myAttributesToOffer;
+    protected GameCharacter myGameCharacter;
+    private List<Attribute> myAttributes;
+    private List<Attribute> myAttributesToOffer;
+    private static List<AttributeFactory> myAttributeFactories;
+    static
+    {
+        myAttributeFactories = new ArrayList<AttributeFactory>();
+        myAttributeFactories.add(Flying.getFactory());
+        myAttributeFactories.add(Gravity.getFactory());
+        myAttributeFactories.add(Hitpoints.getFactory());
+        myAttributeFactories.add(NumberOfLives.getFactory());
+        myAttributeFactories.add(NumberOfLives.getFactory());
+        myAttributeFactories.add(PointValue.getFactory());
+        myAttributeFactories.add(Visibility.getFactory());
+        
+    }
 
-    public BonusObject(double x, double y, List<String> image) {
+    public BonusObject(double x, double y, List<String> image)
+    {
         super(x, y, image);
         myAttributes = new ArrayList<Attribute>();
         myAttributesToOffer = new ArrayList<Attribute>();
     }
 
-    // returns attributes to be added to sprite that collects this bonus object
     public List<Attribute> getAttributesToOffer() {
-    	return Collections.unmodifiableList(myAttributesToOffer);
-    }
-    
-    protected BonusObject(){}
-    
-    public String getGroup(){
-    	return "BONUSOBJECT";
+        return Collections.unmodifiableList(myAttributesToOffer);
     }
     
     public void addAttribute(Attribute attributeToAdd) {
-    	myAttributes.add(attributeToAdd);
+        myAttributes.add(attributeToAdd);
     }
     
     public void addAttributeToOffer(Attribute attributeToAdd) {
-    	myAttributesToOffer.add(attributeToAdd);
+        myAttributesToOffer.add(attributeToAdd);
     }
+    public Class<? extends CollisionAction> getActionClass (){
+        return BonusObjectAction.class; 
+    }
+
     
+    public void setGameCharacter(GameCharacter gameCharacter)
+    {
+        myGameCharacter = gameCharacter;
+    }
+
     public Object clone()
     {
         List<String> imageNames = new ArrayList<String>();
         imageNames.addAll(this.getImageNames());
-        BonusObject c = new BonusObject(this.getX(), this.getY(),imageNames);
-        for(Attribute a: myAttributes)
+        BonusObject c = new BonusObject(this.getX(), this.getY(), imageNames);
+        c.setGameCharacter(myGameCharacter);
+        for (Attribute a : myAttributes)
         {
             c.addAttribute(a);
         }
-        for(Attribute a: myAttributesToOffer)
+        for (Attribute a : myAttributesToOffer)
         {
             c.addAttributeToOffer(a);
         }
+        c.setGroup(this.getGroup());
         return c;
     }
-    
-    public Class<? extends CollisionAction> getActionClass (){
-    	return BonusObjectAction.class; 
+
+
+
+    public BonusObject fromJson(String json)
+    {
+        Gson gson = new Gson();
+        SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
+        BonusObject sprite = new BonusObject(spriteData.getX(), spriteData.getY(), spriteData.getImageNames());
+        sprite.setGroup(spriteData.getGroup());
+        Type collectionType = new TypeToken<List<String>>() {
+        }.getType();
+        Type collectionType2 = new TypeToken<Map<String, String>>() {
+        }.getType();   
+        
+        List<String> paramList = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);
+        Map<String, String> attributeMap = gson.fromJson(paramList.get(0),
+                collectionType2);
+        for (String attributeClassName : attributeMap.keySet())
+        {
+            for(AttributeFactory factory: myAttributeFactories)
+            {
+                if(factory.isThisKindOfAttribute(attributeClassName))
+                {
+                    sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                }
+            }
+            /*            Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
+                    attributeClassName, attributeMap.get(attributeClassName));
+            sprite.addAttribute(attribute);*/
+        }
+        Map<String, String> attributeToOfferMap = gson.fromJson(
+                paramList.get(1), collectionType2);
+        for (String attributeClassName : attributeToOfferMap.keySet())
+        {
+            for(AttributeFactory factory: myAttributeFactories)
+            {
+                if(factory.isThisKindOfAttribute(attributeClassName))
+                {
+                    sprite.addAttributeToOffer(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                }
+            }
+            /*Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
+                    attributeClassName, attributeMap.get(attributeClassName));
+            sprite.addAttributeToOffer(attribute);*/
+        }
+        return sprite;
+
     }
     
     public String toJson()
@@ -89,4 +161,12 @@ public class BonusObject extends AnimatedGameSprite {
     }
     
     
+    private BonusObject(){};
+    public static SpriteFactory<BonusObject> getFactory()
+    {
+        return new SpriteFactory<BonusObject>(new BonusObject());
+    }
+    
+
+
 }
