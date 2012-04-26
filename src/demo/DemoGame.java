@@ -37,11 +37,11 @@ public class DemoGame extends PlatformGame {
 	{
 
 	    loadLevel("level2");
-        for(AnimatedGameSprite s: mySprites)
-        {
-            System.out.print(s.getGroup() + " ");
-            System.out.println(s.getX() + "   " + s.getY());
-        }
+//        for(AnimatedGameSprite s: mySprites)
+//        {
+//            System.out.print(s.getGroup() + " ");
+//            System.out.println(s.getX() + "   " + s.getY());
+//        }
 
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec();
@@ -65,7 +65,7 @@ public class DemoGame extends PlatformGame {
         ArrayList<String> switchImage = new ArrayList<String>();
         String switchName = "Resources/Bowser.jpg";
         switchImage.add(switchName);
-        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller(mySprites)));
+        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller()));
         scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
         
         //Special sidescroller-switch collision stuff
@@ -118,7 +118,7 @@ public class DemoGame extends PlatformGame {
 	{
 	    
 	    myPlayfield.update(elapsedTime);
-	    gc.detectCollision(mySprites);
+	    gc.detectCollision(myPlayfield.getMySprites());
 	    mySidescroller.update(elapsedTime);
 	    
 	    //FSM stuff
