@@ -2,8 +2,9 @@ package sidescrolling.special;
 
 import java.util.List;
 
+
 import collisions.CollisionAction;
-import demo.DemoGame;
+import demo.PlatformGame;
 
 import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;
@@ -12,9 +13,9 @@ import sprite.AnimatedGameSprite;
 public class SidescrollerSwitch extends AnimatedGameSprite {
     
     private Sidescroller changeScroller;
-    private DemoGame game;
+    private PlatformGame game;
     
-    public SidescrollerSwitch(double x, double y, List<String> imSources, Sidescroller newScroller, DemoGame game) {
+    public SidescrollerSwitch(double x, double y, List<String> imSources, Sidescroller newScroller, PlatformGame game) {
         super(x, y, imSources);
         setGroup("SIDESCROLLERSWITCH");
         changeScroller = newScroller;

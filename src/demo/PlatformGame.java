@@ -91,5 +91,10 @@ public abstract  class PlatformGame extends Game {
     public Fighter getFighter() {
     	return myFighter;
     }
+    
+
+    public void setSidescroller(Sidescroller newScroll) {
+        mySidescroller = newScroll;
+    }
 
 }
