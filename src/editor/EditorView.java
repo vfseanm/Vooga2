@@ -318,7 +318,7 @@ public abstract class EditorView extends Game{
     public void saveFile(LevelWriter writer)
     {
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
-        int returnVal = fc.showOpenDialog(null);
+        int returnVal = fc.showSaveDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION)
         {
             File file = fc.getSelectedFile();
