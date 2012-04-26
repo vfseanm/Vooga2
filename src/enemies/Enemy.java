@@ -2,6 +2,7 @@ package enemies;
 
 import java.lang.reflect.InvocationTargetException;
 
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -16,9 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.GameCharacter;
 import attributes.*;
-import editor.ReflectionUtil;
 import editor.json.AttributeFactory;
-import editor.json.JsonUtil;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;

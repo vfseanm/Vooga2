@@ -132,10 +132,6 @@ public class DemoGame extends PlatformGame {
 		myContext = new Context(events, plats);
 		
 	}
-	
-	public void setSidescroller(Sidescroller newScroll) {
-        mySidescroller = newScroll;
-    }
 
 	@Override
 	public void render(Graphics2D arg0) 
