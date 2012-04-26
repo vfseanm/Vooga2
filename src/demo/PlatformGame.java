@@ -16,8 +16,9 @@ import fighter.Fighter;
 
 public abstract  class PlatformGame extends Game {
     
-    
+
     protected Level myLevel;
+
     protected Fighter myFighter;
     //protected ImageBackground myBackground;
     protected SingletonPlayField myPlayfield;
@@ -27,6 +28,10 @@ public abstract  class PlatformGame extends Game {
     public PlatformGame()
     {  
         myPlayfield = SingletonPlayField.getInstance(); 
+    }
+    
+    public String getGroup(){
+        return ("FIGHTER");
     }
     
     public void loadLevel(String filename)

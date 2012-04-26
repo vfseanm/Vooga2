@@ -62,19 +62,15 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
     {  	
         if (isActive)
         {
-            System.out.println(time);
-            System.out.println("myTime:" + myTime);
         	if (myUserInput.isKeyPressed(KeyEvent.VK_SPACE)) 
     		{
     		    isJumping = true;
     		    myGameCharacter.allowAttribute("Gravity", false);
     		    time = 0;
-    		    System.out.println("jumping!");
     		}
         	
             if (isJumping && time <= myTime)
             {
-                System.out.println("jumping");
                 myGameCharacter.moveY(-myJumpHeight);
             }
             else

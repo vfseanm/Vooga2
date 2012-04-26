@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import platforms.platformtypes.SimplePlatform;
 
 import sprite.*;
 import com.golden.gamedev.object.collision.CollisionGroup;
@@ -143,6 +144,8 @@ public class GameCollisionManager{
 	private CollisionSpec traverseSpec (AnimatedGameSprite sprite1, AnimatedGameSprite sprite2){
 		for (CollisionSpec cs: specList){
 			Set<String> spriteKeys = cs.returnActMap().keySet();
+			System.out.println ("sprite1:" + sprite1.getGroup());
+			System.out.println ("sprite2:" + sprite2.getGroup());
 			if (spriteKeys.contains(sprite1.getGroup()) && spriteKeys.contains(sprite2.getGroup())){
 				return cs;
 			}
