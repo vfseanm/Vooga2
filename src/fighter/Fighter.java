@@ -77,6 +77,10 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         super();
         setGroup("FIGHTER");
     };
+    
+    public String getGroup(){
+        return ("FIGHTER");
+    }
 
     public static Fighter getInstance()
     {

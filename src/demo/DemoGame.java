@@ -46,7 +46,7 @@ public class DemoGame extends PlatformGame {
 //            System.out.print(s.getGroup() + " ");
 //            System.out.println(s.getX() + "   " + s.getY());
 //        }
-	    myFighter.add
+
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec();
 		spec.addActMap("ENEMY", "standOnTop");
@@ -57,6 +57,8 @@ public class DemoGame extends PlatformGame {
 		spec2.addActMap("FIGHTER", "fighterStandOnTop");
 		spec2.addActMap("PLATFORM", "");
 		specList.add(spec2);
+		
+		gc = new GameCollisionManager(specList);
        
 //        //FSM stuff
 //        initPlatformFSM();
@@ -79,7 +81,7 @@ public class DemoGame extends PlatformGame {
 //        spec4.addActMap(getFighter().getGroup(), "");
 //        specList.add(spec4);
         
-        gc = new GameCollisionManager(specList);
+        
         
 
 	}
@@ -122,7 +124,10 @@ public class DemoGame extends PlatformGame {
 	{
 	    
 	    myPlayfield.update(elapsedTime);
-	    gc.detectCollision(myPlayfield.getMySprites());
+	    ArrayList<AnimatedGameSprite> everything = new ArrayList<AnimatedGameSprite>();
+	    everything.addAll(myPlayfield.getMySprites());
+	    everything.add(myFighter);
+	    gc.detectCollision(everything);
 	    mySidescroller.update(elapsedTime);
 	    
 	    //FSM stuff

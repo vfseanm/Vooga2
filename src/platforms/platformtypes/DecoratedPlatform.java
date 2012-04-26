@@ -177,6 +177,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		myDecoratorComponent.setLocation(x, y);
 	}
 	
+	
 	public Background getBackground() {
 		return myDecoratorComponent.getBackground();
 	}
@@ -427,16 +428,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	public int getWidth() {
 		return myDecoratorComponent.getWidth();
 	}
-	
-	public String getGroup()
-	{
-	    return myDecoratorComponent.getGroup();
-	}
-	
-	public void setGroup(String group)
-	{
-	    myDecoratorComponent.setGroup(group);
-	}
+
 	
 	
 	
