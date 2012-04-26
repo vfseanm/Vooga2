@@ -142,6 +142,10 @@ public class Level implements Serializable{
             }
         }
     }
+    public Fighter getFighter()
+    {
+        return myFighter;
+    }
     
     public void setSpriteLocation(AnimatedGameSprite sprite, double x, double y)
     {

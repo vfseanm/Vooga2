@@ -42,8 +42,8 @@ public class EnemyDialogueBox extends DialogueBox {
             IOException
     {
         List<String> packagesToSearch = new ArrayList<String>();
-        packagesToSearch.add("enemies.movement");
-        packagesToSearch.add("attributes");
+        packagesToSearch.add("attributes.enemyattributes");
+        packagesToSearch.add("attributes.sharedattributes");
         attributePanel = new AttributeSelectionPanel(packagesToSearch, dialogueController);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));

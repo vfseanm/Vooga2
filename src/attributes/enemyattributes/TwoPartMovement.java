@@ -7,13 +7,13 @@ import attributes.interfaces.Updateable;
 @SuppressWarnings("serial")
 public abstract class TwoPartMovement extends Attribute implements Updateable
 {
-    protected int myDistance;
+    protected double myDistance;
     protected int myPartDuration;
     private int time;
     private boolean isPart1;
 
 
-    public TwoPartMovement (int distance, int duration)
+    public TwoPartMovement (double distance, int duration)
     {
         super(distance, duration);
         myDistance = distance;
