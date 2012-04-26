@@ -1,7 +1,6 @@
 package demo;
 
 import java.awt.Graphics2D;
-
 import sprite.AnimatedGameSprite;
 
 import java.awt.event.KeyEvent;
@@ -78,29 +77,29 @@ public class DemoGame extends PlatformGame {
         
 
 	}
-	
-//	private void initPlatformFSM() {
-//		 //FSM stuff
-//        List<String> imNames = new ArrayList<String>();
-//		imNames.add("resources/platform1.png");
-//		imNames.add("resources/RotatingPlatform1.png");
-//        SimplePlatform sp = new SimplePlatform(400, 100, imNames);
-//		myPlatform = sp;
-//		List<String> imNames2 = new ArrayList<String>();
-//		imNames2.add("resources/Switch1.jpg"); 
-//		imNames2.add("resources/Switch2.jpg");
-//		mySwitch = new PlatformSwitch(75, 75, imNames2);
-//		List<AbstractPlatform> plats = new ArrayList<AbstractPlatform>();
-//		plats.add(sp);
-//		List<AbstractPlatformState> transition = new ArrayList<AbstractPlatformState>();
-//		transition.add(new SwitchOff(plats));
-//		transition.add(new SwitchOn(plats));
-//		SwitchEvent event = new SwitchEvent(mySwitch, transition, plats);
-//		List<AbstractEvent> events = new ArrayList<AbstractEvent>();
-//		events.add(event);
-//		myContext = new Context(events, plats);
-//		
-//	}
+
+	private void initPlatformFSM() {
+		 //FSM stuff
+        List<String> imNames = new ArrayList<String>();
+		imNames.add("resources/platform1.png");
+		imNames.add("resources/RotatingPlatform1.png");
+        SimplePlatform sp = new SimplePlatform(400, 100, imNames);
+		myPlatform = sp;
+		List<String> imNames2 = new ArrayList<String>();
+		imNames2.add("resources/Switch1.jpg"); 
+		imNames2.add("resources/Switch2.jpg");
+		mySwitch = new PlatformSwitch(75, 75, imNames2);
+		List<AbstractPlatform> plats = new ArrayList<AbstractPlatform>();
+		plats.add(sp);
+		/*List<AbstractPlatformState> transition = new ArrayList<AbstractPlatformState>();
+		transition.add(new SwitchOff(plats));
+		transition.add(new SwitchOn(plats));
+		SwitchEvent event = new SwitchEvent(mySwitch, transition, plats);
+		List<AbstractEvent> events = new ArrayList<AbstractEvent>();
+		events.add(event);
+		myContext = new Context(events, plats);
+		*/
+	}
 
 	@Override
 	public void render(Graphics2D arg0) 

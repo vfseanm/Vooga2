@@ -28,7 +28,6 @@ public class Visibility extends Attribute implements JsonableAttribute
         super(visible);
         isVisible = visible;
 
-        checkAndSetVisibility();
     }
 
 
@@ -50,6 +49,8 @@ public class Visibility extends Attribute implements JsonableAttribute
     {
         myGameCharacter = character;
         myImage = myGameCharacter.getImages();
+        checkAndSetVisibility();
+
     }
 
 
