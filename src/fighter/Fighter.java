@@ -3,9 +3,11 @@ package fighter;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import collisions.CollisionAction;
 
@@ -34,6 +36,9 @@ import attributes.fighterattributes.Movement;
 
 @SuppressWarnings("serial")
 public class Fighter extends GameCharacter implements JsonableSprite  {
+	
+	transient protected ResourceBundle myGameKeys = ResourceBundle
+    .getBundle("demo.GameKeysResourceBundle");
 
     private List<Attribute> myCarryableAttributes;
     private List<Attribute> myDuplicateAttributes;
@@ -113,11 +118,12 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
             myAttributes.remove(currentVersion);
         }
         super.addAttribute(toAdd);
-        if (toAdd.getClass().getInterfaces().length >= 3)
-        {
-            if (toAdd.getClass().getInterfaces()[2].equals(Input.class))
-                ((Input) toAdd).setUserInput(myUserInput);
-        }
+        
+        Class[] attributeInterfaces = toAdd.getClass().getInterfaces();
+    	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {
+    		Input inputAttribute = (Input) toAdd;
+    		inputAttribute.setUserInput(myUserInput);
+    	}
     }
     
 
