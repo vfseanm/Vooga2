@@ -33,7 +33,7 @@ import editor.file.SerializedLevelWriter;
 
 import sprite.AnimatedGameSprite;
 
-public abstract class EditorView extends Game implements EditorConstants{
+public abstract class EditorView extends Game{
     protected FrameWork framework;
     protected ArrayList<ObjectPlacingButton> allButtons;
     protected static final int MENU_START = 900;
@@ -195,7 +195,9 @@ public abstract class EditorView extends Game implements EditorConstants{
             myController.moveVertically(VERTICAL_MOVE);
         }
     }
-
+    /**
+     * 
+     */
     private void checkAndUpdateDialogue()
     {
         if(currentDialogueBox!=null)
@@ -227,6 +229,7 @@ public abstract class EditorView extends Game implements EditorConstants{
     /*
      * Gets left-clicked Framework, null if none. This will return once for every click.
      */
+
     public Framework getLeftClickedFramework()
     {
         Framework selected = null;
@@ -320,11 +323,7 @@ public abstract class EditorView extends Game implements EditorConstants{
         {
             File file = fc.getSelectedFile();
             myController.writeFile(file.getAbsolutePath(), writer);
-        }/*
-        String selectedValue = JOptionPane
-                .showInputDialog("Where would you like to save the level?");
-        myController.writeFile(selectedValue, writer);*/
-        
+        }        
     }
 
     /*

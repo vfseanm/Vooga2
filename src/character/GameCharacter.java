@@ -15,7 +15,7 @@ import attributes.Attribute;
 import attributes.Updateable;
 
 @SuppressWarnings("serial")
-public abstract class GameCharacter extends AnimatedGameSprite implements Jsonable {
+public abstract class GameCharacter extends AnimatedGameSprite {
 
 	protected List<Attribute> 		myAttributes;
 	

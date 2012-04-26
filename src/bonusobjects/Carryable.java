@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import attributes.Attribute;
-import editor.ReflectionUtil;
 import editor.json.JsonUtil;
 import editor.json.Jsonable;
+import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
-import enemies.Enemy;
 import fighter.Fighter;
 
 @SuppressWarnings("serial")
@@ -50,7 +50,7 @@ public class Carryable extends BonusObject implements Jsonable {
 	}
 	
 
-    public static Carryable fromJson(String json)
+    public  Carryable fromJson(String json)
     {
         Gson gson = new Gson();
         SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
@@ -80,6 +80,11 @@ public class Carryable extends BonusObject implements Jsonable {
         }
         return sprite;
 
+    }
+    private Carryable(){}
+    public static SpriteFactory<Carryable> getFactory()
+    {
+        return new SpriteFactory<Carryable>(new Carryable());
     }
     
 

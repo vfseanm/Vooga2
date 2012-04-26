@@ -3,6 +3,9 @@ package platforms.platformtypes;
 import java.util.ArrayList;
 import java.util.List;
 
+import editor.json.Jsonable;
+import editor.json.SpriteFactory;
+
 /**
  * Class that defines a simple platform. This class serves as the basis for
  * decorating platforms and combining their functionality. Unlike decorating
@@ -13,7 +16,7 @@ import java.util.List;
  * @author yankeenjg
  * 
  */
-public class SimplePlatform extends AbstractPlatform {
+public class SimplePlatform extends AbstractPlatform implements Jsonable {
 
 	private static final long serialVersionUID = 7514750773895804951L;
 
@@ -65,6 +68,12 @@ public class SimplePlatform extends AbstractPlatform {
 		e.setGroup(this.getGroup());
 		return e;
 	}
+	
+    private SimplePlatform(){};
+    public static SpriteFactory<SimplePlatform> getFactory()
+    {
+        return new SpriteFactory<SimplePlatform>(new SimplePlatform());
+    }
 	
 
 

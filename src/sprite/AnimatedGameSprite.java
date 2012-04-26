@@ -26,7 +26,7 @@ import editor.json.Jsonable;
 
 
 @SuppressWarnings("serial")
-public class AnimatedGameSprite extends AdvanceSprite implements Serializable, Cloneable, Jsonable
+public class AnimatedGameSprite extends AdvanceSprite implements Serializable, Cloneable
 {
 
     String myType;

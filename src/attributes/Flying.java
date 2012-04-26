@@ -1,6 +1,6 @@
 package attributes;
-import editor.Framework;
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
 import editor.json.Jsonable;
 
 
@@ -60,16 +60,18 @@ public class Flying extends Attribute implements Updateable, Jsonable
         return new Flying();
     }
     
-    public static Flying fromJson(String json) 
+    public Flying fromJson(String json) 
     {
         return new Flying();
     }
     
-/*    public static ObjectFromJsonFactory getFactory()
+    
+    public static AttributeFactory<Flying> getFactory()
     {
-        return new ObjectFromJsonFactory(new Flying());
+        return new AttributeFactory<Flying>(new Flying());
     }
-   */
+    
+
 
 
 }

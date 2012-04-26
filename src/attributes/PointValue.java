@@ -3,6 +3,7 @@ package attributes;
 import com.google.gson.Gson;
 
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
 import editor.json.Jsonable;
 
 @SuppressWarnings("serial")
@@ -45,20 +46,20 @@ public class PointValue extends Attribute implements Jsonable
         return gson.toJson(myPointValue);
     }
     
-    public static PointValue fromJson(String json)
+    public PointValue fromJson(String json)
     {
         Gson gson = new Gson();
         int points = gson.fromJson(json, int.class);
         return new PointValue(points);
     }
     
-/*    private PointValue(){}
+    private PointValue(){}
     
-    public static ObjectFromJsonFactory getFactory()
+    public static AttributeFactory<PointValue> getFactory()
     {
-        return new ObjectFromJsonFactory(new PointValue());
+        return new AttributeFactory<PointValue>(new PointValue());
     }
-   */
+   
 
 
 }

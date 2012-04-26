@@ -73,7 +73,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
     	return PlatformAction.class;
     }
 
-    @SuppressWarnings({ "unused", "rawtypes" })
+    @SuppressWarnings({ "rawtypes" })
 	public String toJson()
     {
         Gson gson = new Gson();
@@ -90,8 +90,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         
     }
     
-    @SuppressWarnings({ "unused", "rawtypes" })
-	public static AbstractPlatform fromJson(String json){
+	public AbstractPlatform fromJson(String json){
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>()
         {}.getType();

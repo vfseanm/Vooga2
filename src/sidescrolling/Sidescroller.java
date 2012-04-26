@@ -25,7 +25,7 @@ import sprite.AnimatedGameSprite;
  *
  */
 @SuppressWarnings("serial")
-public abstract class Sidescroller implements Serializable, Jsonable  {
+public abstract class Sidescroller implements Serializable  {
             
     transient protected ResourceBundle mySidescrollerResources = ResourceBundle
             .getBundle("sidescrolling.SidescrollerResourceBundle");

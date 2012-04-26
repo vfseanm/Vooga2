@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
 import editor.json.Jsonable;
 import attributes.Attribute;
 import attributes.Updateable;
@@ -102,7 +103,7 @@ public class JumpingMovement extends Attribute implements Updateable, Jsonable
         return gson.toJson(argList);
     }
     
-    public static JumpingMovement fromJson(String json)
+    public JumpingMovement fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<Integer>>(){}.getType();
@@ -110,12 +111,12 @@ public class JumpingMovement extends Attribute implements Updateable, Jsonable
         return new JumpingMovement(argList.get(0), argList.get(1));
     }
     
-/*    private JumpingMovement(){}
+    private JumpingMovement(){}
     
-    public static ObjectFromJsonFactory getFactory()
+    public static AttributeFactory<JumpingMovement> getFactory()
     {
-        return new ObjectFromJsonFactory(new JumpingMovement());
+        return new AttributeFactory<JumpingMovement>(new JumpingMovement());
     }
-   */
+   
 
 }

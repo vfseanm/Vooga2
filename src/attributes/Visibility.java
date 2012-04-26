@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import com.google.gson.Gson;
 
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
 import editor.json.Jsonable;
 
 /**
@@ -69,19 +70,19 @@ public class Visibility extends Attribute implements Jsonable
         return gson.toJson(isVisible);
     }
     
-    public static Visibility fromJson(String json)
+    public Visibility fromJson(String json)
     {
         Gson gson = new Gson();
         boolean visible = gson.fromJson(json, boolean.class);
         return new Visibility(visible);
     }
     
-/*    private Visibility(){}
+    private Visibility(){}
     
-    public static ObjectFromJsonFactory getFactory()
+    public static AttributeFactory<Visibility> getFactory()
     {
-        return new ObjectFromJsonFactory(new Visibility());
-    }*/
+        return new AttributeFactory<Visibility>(new Visibility());
+    }
    
 
    

@@ -15,7 +15,7 @@ import editor.input.inputTypes.Points;
 import editor.json.Jsonable;
 
 
-public class Zone implements Cloneable, Jsonable {
+public class Zone implements Cloneable {
     private ArrayList<Line> myLines;
     private GroupofEnemies myEnemies;
     private boolean defaultActive;

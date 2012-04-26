@@ -1,5 +1,8 @@
 package platforms.platformtypes;
 
+import editor.json.Jsonable;
+import editor.json.SpriteFactory;
+
 
 
  /**
@@ -10,7 +13,7 @@ package platforms.platformtypes;
  * @author yankeenjg
  * 
  */
- public class UpDownPlatform extends DecoratedPlatform {
+ public class UpDownPlatform extends DecoratedPlatform implements Jsonable {
 
 	private static final long serialVersionUID = -3578102991430723896L;
 
@@ -71,5 +74,11 @@ package platforms.platformtypes;
         }
         return new UpDownPlatform(toWrap);
         
+    }
+    
+    private UpDownPlatform(){};
+    public static SpriteFactory<UpDownPlatform> getFactory()
+    {
+        return new SpriteFactory<UpDownPlatform>(new UpDownPlatform());
     }
 }

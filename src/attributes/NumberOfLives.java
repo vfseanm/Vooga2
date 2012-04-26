@@ -3,6 +3,7 @@ package attributes;
 import com.google.gson.Gson;
 
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
 import editor.json.Jsonable;
 @SuppressWarnings("serial")
 public class NumberOfLives extends Attribute implements Jsonable
@@ -51,19 +52,19 @@ public class NumberOfLives extends Attribute implements Jsonable
         return gson.toJson(myLives);
     }
     
-    public static NumberOfLives fromJson(String json)
+    public  NumberOfLives fromJson(String json)
     {
         Gson gson = new Gson();
         int lives = gson.fromJson(json, int.class);
         return new NumberOfLives(lives);
     }
     
-/*    private NumberOfLives(){}
+    private NumberOfLives(){}
     
-    public static ObjectFromJsonFactory getFactory()
+    public static AttributeFactory<NumberOfLives> getFactory()
     {
-        return new ObjectFromJsonFactory(new NumberOfLives());
-    }*/
+        return new AttributeFactory<NumberOfLives>(new NumberOfLives());
+    }
    
    
 
