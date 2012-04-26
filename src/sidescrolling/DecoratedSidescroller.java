@@ -2,9 +2,11 @@ package sidescrolling;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import sprite.AnimatedGameSprite;
+import playfield.SingletonPlayField;
+
 import com.golden.gamedev.object.*;
 import fighter.Fighter;
 
@@ -25,7 +27,8 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
 
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
-
+    private SingletonPlayField playfield;
+    
     /**
      * Creates a new DecoratedSidescroller
      * 
@@ -34,6 +37,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
     public DecoratedSidescroller(Sidescroller scroller) {
         wrappedScroller = scroller;
         fighter = Fighter.getInstance();
+        playfield = SingletonPlayField.getInstance();
     }
 
     /**
@@ -41,13 +45,6 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
      */
     public void update(long elapsedTime) {
         wrappedScroller.update(elapsedTime);
-    }
-
-    /**
-     * Gets the list of Sprites from the ConcreteSidescroller
-     */
-    public ArrayList<AnimatedGameSprite> getSprites() {
-        return wrappedScroller.getSprites();
     }
 
     /**
@@ -68,7 +65,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
      * Moves every Sprite.
      */
     public void updateSprites() {
-        for (Sprite object: this.getSprites()) {
+        for (Sprite object: playfield.getMySprites()) {
             if (object != null) {
                 move(object);
             }
@@ -81,11 +78,6 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
      * @param sprite - the sprite that is being moved
      */
     public abstract void move(Sprite sprite);
-    
-    public void setSprites(ArrayList<AnimatedGameSprite> sprites)
-    {
-        wrappedScroller.setSprites(sprites);
-    }
     
     public List<Class> getClassesOfDecorators()
     {
