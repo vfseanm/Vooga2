@@ -81,12 +81,12 @@ public class AttributeSelectionPanel extends JPanel {
                 }
                 if (isAnnotated)
                 {
-                    JLabel label1 = new JLabel(DialogueBox.getClassName(c));
-                    panel.add(label1);
                     JCheckBox box = new JCheckBox();
                     panel.add(box);
                     box.addActionListener(new CheckBoxListener(box, c));
                     attributeMap.put(box, c);
+                    JLabel label1 = new JLabel(DialogueBox.getClassName(c));
+                    panel.add(label1);
                     for(Attribute a: originallyCheckedOff)
                     {
                        if(a.getClass().equals(c))

@@ -4,18 +4,12 @@ import java.awt.Point;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import sprite.AnimatedGameSprite;
-
-import com.google.gson.Gson;
-
-
 import editor.Framework;
-import editor.dialogues.DialogueBox;
-
-import editor.json.Jsonable;
 
 
+
+@SuppressWarnings("serial")
 public class Line implements InputType, Serializable{
 private ArrayList<Point> myLine;
 
@@ -23,8 +17,6 @@ public Line()
 {
     myLine = new ArrayList<Point>();
 }
-
-
 
     public String getPrompt() {
         return "Draw a line";

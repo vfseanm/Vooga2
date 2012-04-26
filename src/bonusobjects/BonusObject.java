@@ -29,6 +29,7 @@ public class BonusObject extends AnimatedGameSprite {
         super(x, y, image);
         myAttributes = new ArrayList<Attribute>();
         myAttributesToOffer = new ArrayList<Attribute>();
+        setGroup("BONUSOBJECT");
     }
 
     // returns attributes to be added to sprite that collects this bonus object
@@ -36,9 +37,6 @@ public class BonusObject extends AnimatedGameSprite {
     	return Collections.unmodifiableList(myAttributesToOffer);
     }
     
-    public String getGroup(){
-    	return "BONUSOBJECT";
-    }
     
     public void addAttribute(Attribute attributeToAdd) {
     	myAttributes.add(attributeToAdd);

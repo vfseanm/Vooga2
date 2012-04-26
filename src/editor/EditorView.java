@@ -347,7 +347,7 @@ public abstract class EditorView extends Game {
     {
         currentDialogueBox = box;
         frame = new JFrame("");
-        Dimension d = new Dimension(500, 300);
+        Dimension d = new Dimension(600, 300);
         frame.setPreferredSize(d);
         frame.getContentPane().add(box);
         frame.pack();

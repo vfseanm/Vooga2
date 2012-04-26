@@ -54,7 +54,7 @@ public class PowerupDialogueBox extends DialogueBox {
         panel.add(panel3, BorderLayout.CENTER);
 
         JPanel subPanel = new JPanel();
-        subPanel.setPreferredSize(new Dimension(600, 100));
+        subPanel.setPreferredSize(new Dimension(600, 150));
 
         JLabel label1 = new JLabel("Power-Up Name");
         subPanel.add(label1);
@@ -63,7 +63,7 @@ public class PowerupDialogueBox extends DialogueBox {
 
         subPanel.add(myName);
 
-        JLabel groupLabel = new JLabel("Group:");
+        JLabel groupLabel = new JLabel("Collision Group:");
         subPanel.add(groupLabel);
 
         myGroup = new JTextField(10);

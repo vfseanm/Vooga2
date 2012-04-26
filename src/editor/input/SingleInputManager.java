@@ -32,8 +32,7 @@ public class SingleInputManager extends InputManager{
                         }
                         try {
                             frame = new JFrame("");
-                            frame = new JFrame("Edit Enemies");
-                            Dimension d = new Dimension(200, 100);
+                            Dimension d = new Dimension(350, 150);
                             frame.setPreferredSize(d);
                             frame.getContentPane().add(new InputPopupBox(this, currentInput.getPrompt()));
                             frame.pack();

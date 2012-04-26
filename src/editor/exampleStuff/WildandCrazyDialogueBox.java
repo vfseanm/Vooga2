@@ -64,12 +64,6 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create this Wild and Crazy Thing";
-                
-        JButton goButton = new JButton(buttonPhrase);
-        goButton.addActionListener(new GoAction());
-        panel.add(goButton);
-        
         JButton enemyButton = new JButton("Choose my enemies ");
         enemyButton.addActionListener(new EnemyGroupListener());
         panel.add(enemyButton);
@@ -77,6 +71,12 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         JButton formatButton = new JButton("Set up my 'zone' ");
         formatButton.addActionListener(new FormatListener());
         panel.add(formatButton);
+        
+        String buttonPhrase = "Create this Wild and Crazy Thing";
+        
+        JButton goButton = new JButton(buttonPhrase);
+        goButton.addActionListener(new GoAction());
+        panel.add(goButton);
         
         return panel;
     }
