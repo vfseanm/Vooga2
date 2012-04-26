@@ -3,7 +3,7 @@ package weapons;
 import playfield.SingletonPlayField;
 import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.Sprite;
-import character.GameCharacter;
+import character.AttributeUser;
 
 
 public class Fireball implements Weapon
@@ -25,7 +25,7 @@ public class Fireball implements Weapon
     }
 
     //uses the fireball attack only when the counter allows
-    public void use (GameCharacter character)
+    public void use (AttributeUser character)
     {
         if (counter == 0)
         {

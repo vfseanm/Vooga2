@@ -2,7 +2,7 @@ package attributes;
 import java.io.Serializable;
 
 
-import character.GameCharacter;
+import character.AttributeUser;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 //import com.sun.tools.internal.xjc.model.Constructor;
@@ -22,7 +22,7 @@ import java.lang.reflect.*;
 @SuppressWarnings("serial")
 public abstract class Attribute implements Serializable, Cloneable
 {
-    protected GameCharacter		myGameCharacter;	
+    protected AttributeUser		myGameCharacter;	
     protected Object 			myOriginal;
     protected boolean 			isActive;
     public static boolean 		makeOriginal = true;   //Note, this is not thread-safe...Sorry multi-threaded programmers
@@ -30,8 +30,8 @@ public abstract class Attribute implements Serializable, Cloneable
     public abstract String getName();
     
     //associates an attribute with the given enemy/fighter
-    public void setGameCharacter(GameCharacter gameCharacter) {
-        myGameCharacter = gameCharacter;
+    public void setGameCharacter(AttributeUser user) {
+        myGameCharacter = user;
     }
     
     // turns an attribute on/off (active/inactive)
