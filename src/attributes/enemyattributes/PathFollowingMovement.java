@@ -26,7 +26,21 @@ public class PathFollowingMovement extends Attribute
     public PathFollowingMovement (Line path)
     {
         super(path);
-        myPath = path.getLine();
+        myPath = new ArrayList<Point>();
+        ArrayList<Point> reference = path.getLine();
+
+        for (int i = 0; i < reference.size() - 1; i++)
+        {
+
+            Point first = reference.get(i);
+            Point second = reference.get(i + 1);
+            int x = (int) (second.getX() - first.getX());
+            int y = (int) (second.getY() - first.getY());
+            Point delta = new Point(x, y);
+            myPath.add(delta);
+
+        }
+
         index = 0;
 
     }
@@ -38,8 +52,10 @@ public class PathFollowingMovement extends Attribute
         {
             if (index < myPath.size() && index >= 0)
             {
-                myGameCharacter.setLocation(myPath.get(index).getX(),
-                                            myPath.get(index).getY());
+                Point current = myPath.get(index);
+                double x = myGameCharacter.getX() + current.getX();
+                double y = myGameCharacter.getY() + current.getY();
+                myGameCharacter.setLocation(x, y);
             }
             else
             {
@@ -55,6 +71,16 @@ public class PathFollowingMovement extends Attribute
     public void invert ()
     {
         increment = -increment;
+        for (int i = 0; i < myPath.size(); i++)
+        {
+            Point current = myPath.get(i);
+            int x = (int) (current.getX());
+            int y = (int) (current.getY());
+            Point delta = new Point(x, y);
+            myPath.remove(i);
+            myPath.add(i, delta);
+
+        }
 
     }
 
@@ -65,7 +91,7 @@ public class PathFollowingMovement extends Attribute
     }
 
 
-    public void modifyPathFollowingMovement (Point p, int insertIndex)
+    public void modifyPathFollowingMovement (int insertIndex, Point p)
     {
         myPath.add(insertIndex, p);
     }
