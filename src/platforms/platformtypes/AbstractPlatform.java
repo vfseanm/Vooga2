@@ -46,6 +46,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 		super(x, y, imageSources);
 		/*myPlatformResources = ResourceBundle
         .getBundle("platforms.PlatformResourceBundle");*/
+		setGroup("PLATFORM");
 	}
 
 	/**
