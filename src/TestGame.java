@@ -95,6 +95,7 @@ public class TestGame extends Game {
 		list.add(p1);
 		list.add(p2);
 		list.add(p3);
+		list.add(myObject);
 		//list.add(p4);
 		
 		Hitpoints hp = new Hitpoints(20);
@@ -103,7 +104,11 @@ public class TestGame extends Game {
 		cs.addActMap(p1.getGroup(), "actionBreak");
 		//cs.addActMap(bob.getGroup(), "enemyLoseLife");
 		cs.addActMap(bob.getGroup(), "enemyStandOnTop");
+		cs2 = new CollisionSpec();
+		cs2.addActMap(myObject.getGroup(),"bonusObjectStandOnTop");
+		cs2.addActMap(bob.getGroup(), "");
 		specList.add(cs);
+		specList.add(cs2);
 		
 		
 		
