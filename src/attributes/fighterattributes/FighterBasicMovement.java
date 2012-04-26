@@ -1,6 +1,6 @@
 package attributes.fighterattributes;
 
-import character.GameCharacter;
+import character.AttributeUser;
 
 import com.golden.gamedev.engine.BaseInput;
 
@@ -86,7 +86,7 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 		return facingRight;
 	}
 	
-	public void setGameCharacter(GameCharacter gameCharacter) {
+	public void setGameCharacter(AttributeUser gameCharacter) {
 		myGameCharacter = gameCharacter;
 	}
 
