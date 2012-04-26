@@ -1,4 +1,4 @@
-package attributes.fighterattributes;
+package attributes.interfaces;
 
 /**
  * This interface is used to ensure accurate side scrolling. Any Attribute

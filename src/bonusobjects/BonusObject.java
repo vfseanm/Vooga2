@@ -22,6 +22,12 @@ import editor.json.SpriteJsonData;
 
 
 import attributes.*;
+import attributes.enemyattributes.Flying;
+import attributes.fighterattributes.PointValue;
+import attributes.sharedattributes.Gravity;
+import attributes.sharedattributes.Hitpoints;
+import attributes.sharedattributes.NumberOfLives;
+import attributes.sharedattributes.Visibility;
 
 @SuppressWarnings("serial")
 public class BonusObject extends AttributeUser implements JsonableSprite {

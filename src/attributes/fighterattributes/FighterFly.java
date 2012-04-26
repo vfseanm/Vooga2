@@ -10,7 +10,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import attributes.Attribute;
-import attributes.Updateable;
+import attributes.interfaces.Input;
+import attributes.interfaces.Movement;
+import attributes.interfaces.Updateable;
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;

@@ -1,4 +1,4 @@
-package attributes;
+package attributes.enemyattributes;
 
 import weapons.Weapon;
 

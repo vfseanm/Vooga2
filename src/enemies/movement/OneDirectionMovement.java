@@ -12,7 +12,7 @@ import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
 import attributes.Attribute;
-import attributes.Updateable;
+import attributes.interfaces.Updateable;
 
 
 @SuppressWarnings("serial")

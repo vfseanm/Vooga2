@@ -5,7 +5,7 @@ import java.util.List;
 import sprite.AnimatedGameSprite;
 
 import attributes.Attribute;
-import attributes.Hitpoints;
+import attributes.sharedattributes.Hitpoints;
 import collisions.CollisionAction;
 import collisions.CollisionContext;
 import collisions.CollisionSpec;
