@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
+
 import editor.EditorController;
 import fighter.Fighter;
 import attributes.Attribute;
@@ -91,10 +92,14 @@ public class FighterDialogueBox extends DialogueBox {
         if (fighter.getX() == 0 && fighter.getY() == 0) {
             fighter.setLocation(50, 50);
         }
-
-        if(myImagePaths.size()>0)
-        {
+        
+        try{
+            checkErrors();
             fighter.setImageNamesandImages(myImagePaths);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "You must select an image" );
+            return;
         }
         fighter.clearAttributes();
         for (Attribute attribute : attributes) {
@@ -105,5 +110,12 @@ public class FighterDialogueBox extends DialogueBox {
         setVisible(false);
 
     }
+    private void checkErrors() throws RuntimeException
+    {
+        if(myImagePaths==null)
+        {
+        throw new RuntimeException();
+    }
+}
 
 }

@@ -27,7 +27,6 @@ public class CustomInputManager extends InputManager{
 
 
     private JFrame frame;
-    private CheckBoxListener myPanel;
     
     private Object[] argList;
     private int currentArgumentCounter;
@@ -79,11 +78,9 @@ public class CustomInputManager extends InputManager{
                         } catch (IllegalAccessException e1) {
                             e1.printStackTrace();
                         }
-                        System.out.println("prompting for" + currentInput);
                         try {
                             frame = new JFrame("");
-                            frame = new JFrame("Edit Enemies");
-                            Dimension d = new Dimension(200, 100);
+                            Dimension d = new Dimension(350, 150);
                             frame.setPreferredSize(d);
                             frame.getContentPane().add(new InputPopupBox(this, currentInput.getPrompt()));
                             frame.pack();

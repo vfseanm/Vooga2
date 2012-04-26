@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -64,12 +65,6 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         imageButton.addActionListener(new ImageAction());
         panel.add(imageButton);
 
-        String buttonPhrase = "Create this Wild and Crazy Thing";
-                
-        JButton goButton = new JButton(buttonPhrase);
-        goButton.addActionListener(new GoAction());
-        panel.add(goButton);
-        
         JButton enemyButton = new JButton("Choose my enemies ");
         enemyButton.addActionListener(new EnemyGroupListener());
         panel.add(enemyButton);
@@ -78,13 +73,26 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         formatButton.addActionListener(new FormatListener());
         panel.add(formatButton);
         
+        String buttonPhrase = "Create this Wild and Crazy Thing";
+        
+        JButton goButton = new JButton(buttonPhrase);
+        goButton.addActionListener(new GoAction());
+        panel.add(goButton);
+        
         return panel;
     }
 
     protected void BoxCompletedAction() {
-        Framework framework = getFramework();
-        editorController.addFrameworkAndButton(myName.getText(), framework);
-        setVisible(false);
+        try{
+            Framework framework = getFramework();
+            editorController.addFrameworkAndButton(myName.getText(), framework);
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "You must select an image" );
+                return;
+            }
+            setVisible(false);
+        
         
     }
     
@@ -120,8 +128,11 @@ public class WildandCrazyDialogueBox extends DialogueBox{
     }
     
     
-    public Framework getFramework()
-    {
+    public Framework getFramework() throws RuntimeException{
+        if(myImagePaths==null)
+        {
+            throw new RuntimeException();
+        }
         
         WildAndCrazyObject prototype = new WildAndCrazyObject(0,0, myImagePaths);
         prototype.setZone(myZone);

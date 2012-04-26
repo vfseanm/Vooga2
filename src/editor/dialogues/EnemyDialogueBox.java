@@ -28,7 +28,6 @@ public class EnemyDialogueBox extends DialogueBox {
     private AttributeSelectionPanel attributePanel;
     private JTextField myName;
     private JTextField myGroup;
-    
 
 
     public EnemyDialogueBox(EditorController m)
@@ -48,15 +47,16 @@ public class EnemyDialogueBox extends DialogueBox {
         attributePanel = new AttributeSelectionPanel(packagesToSearch, dialogueController);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
-       
+        panel.add(attributePanel);
+        
         JLabel label1 = new JLabel("Enemy Name:");
         panel.add(label1);
-
+        
         myName = new JTextField(10);
-
+        
         panel.add(myName, BorderLayout.SOUTH);
         
-        JLabel groupLabel = new JLabel("Group:");
+        JLabel groupLabel = new JLabel("Collision Group:");
         panel.add(groupLabel);
 
         myGroup = new JTextField(10);
@@ -72,21 +72,17 @@ public class EnemyDialogueBox extends DialogueBox {
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
-        panel.add(attributePanel);
+        
 
         return panel;
     }
 
-    public Framework getFramework()
+    public Framework getFramework() throws RuntimeException
     {
-        
-        
-       /* BufferedImage[] s = new BufferedImage[myImages.size()];
-        for (int x = 0; x<s.length; x++)
+        if(myImagePaths==null)
         {
-            s[x] = myImages.get(x);
-        }*/
-        
+            throw new RuntimeException();
+        }
         Enemy prototype = new Enemy(0,0, myImagePaths);
         ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
         for(Attribute a: attributes)
@@ -106,8 +102,14 @@ public class EnemyDialogueBox extends DialogueBox {
     }
 
     protected void BoxCompletedAction() {
+        try{
         Framework framework = getFramework();
         editorController.addFrameworkAndButton(myName.getText(), framework);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "You must select an image" );
+            return;
+        }
         setVisible(false);
         
     }
