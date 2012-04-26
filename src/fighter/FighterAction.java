@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import attributes.Attribute;
 import attributes.Hitpoints;
+import attributes.NumberOfLives;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
 
@@ -36,16 +37,24 @@ public class FighterAction implements CollisionAction{
 		}
 	}
 	
-	public void fighterLoseLife (CollisionContext ccntext, CollisionSpec cspec){
-		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
+	public void fighterLoseHitpoints (CollisionContext ccntext, CollisionSpec cspec){
 			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
 			
 			for (Attribute skill: ability){
 				if (skill.getName().equals("Hitpoints")){
-					((Hitpoints)skill).modifyHitpoints(10);
+					((Hitpoints)skill).modifyHitpoints(-10);
 				}
 			}
-		}
+	}
+	
+	public void fighterLoseLife (CollisionContext ccntext, CollisionSpec cspec){
+			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
+			
+			for (Attribute skill: ability){
+				if (skill.getName().equals("NumberOfLoves")){
+					((NumberOfLives) skill).modifyNumberOfLives(-1);
+				}
+			}
 	}
 
 	public void setSprite(AnimatedGameSprite sprite) {

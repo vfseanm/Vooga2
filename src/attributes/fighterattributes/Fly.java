@@ -1,4 +1,4 @@
-package fighter.movement;
+package attributes.fighterattributes;
 
 import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;

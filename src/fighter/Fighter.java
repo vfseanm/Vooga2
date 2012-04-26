@@ -22,11 +22,6 @@ import editor.json.JsonUtil;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
-import fighter.movement.BasicMovement;
-import fighter.movement.Fly;
-import fighter.movement.Input;
-import fighter.movement.Jump;
-import fighter.movement.Movement;
 import attributes.Attribute;
 import attributes.Flying;
 import attributes.Gravity;
@@ -34,6 +29,11 @@ import attributes.Hitpoints;
 import attributes.NumberOfLives;
 import attributes.PointValue;
 import attributes.Visibility;
+import attributes.fighterattributes.BasicMovement;
+import attributes.fighterattributes.Fly;
+import attributes.fighterattributes.Input;
+import attributes.fighterattributes.Jump;
+import attributes.fighterattributes.Movement;
 
 
 @SuppressWarnings("serial")
@@ -56,8 +56,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
         myAttributeFactories.add(NumberOfLives.getFactory());
         myAttributeFactories.add(NumberOfLives.getFactory());
         myAttributeFactories.add(PointValue.getFactory());
-        myAttributeFactories.add(Visibility.getFactory());
-        
+        myAttributeFactories.add(Visibility.getFactory());  
     }
 
     // public void render(Graphics2D pen){
