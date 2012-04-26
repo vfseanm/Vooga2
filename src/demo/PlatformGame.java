@@ -1,13 +1,18 @@
 package demo;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import playfield.SingletonPlayField;
 
 import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;   
+
+import attributes.Attribute;
+import attributes.fighterattributes.Input;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.PlayField;
@@ -25,19 +30,30 @@ public abstract  class PlatformGame extends Game {
     //protected ImageBackground myBackground;
     protected PlayField myPlayfield;
     protected Sidescroller mySidescroller;
+    protected boolean	pause;
     
     PlatformGame()
     {
         mySprites = new ArrayList<AnimatedGameSprite>();
         myPlayfield = SingletonPlayField.getInstance(); 
     }
+    
     public void loadLevel(String filename)
     {
         myFighter = Fighter.getInstance();
         
-        if(myFighter!=null)
+        if(myFighter != null)
         {
             myFighter.setUserInput(bsInput);
+            
+            for (Attribute ability: myFighter.getAttributes()) {
+            	Class[] attributeInterfaces = ability.getClass().getInterfaces();
+            	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {
+            		Input inputAttribute = (Input) ability;
+            		inputAttribute.setUserInput(bsInput);
+            	}
+            }
+            	
             myPlayfield.add(myFighter);
         }
         LevelLoader loader = new LevelLoader();
@@ -55,6 +71,21 @@ public abstract  class PlatformGame extends Game {
         
         mySidescroller = myLevel.getSidescroller();
         mySidescroller.setSprites(mySprites);
+    }
+    
+    public void update(long elapsedTime) {
+    	if (bsInput.isKeyPressed(KeyEvent.VK_P))
+        {
+           if (pause) pause = false;
+           else pause = true;
+        }
+    	
+    	if (bsInput.isKeyPressed(KeyEvent.VK_M))
+        {
+           // pop up menu
+        }
+    	
+    	if (!pause) myPlayfield.update(elapsedTime);
     }
     
     public Fighter getFighter() {

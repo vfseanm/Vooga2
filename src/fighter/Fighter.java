@@ -29,10 +29,10 @@ import attributes.Hitpoints;
 import attributes.NumberOfLives;
 import attributes.PointValue;
 import attributes.Visibility;
-import attributes.fighterattributes.BasicMovement;
-import attributes.fighterattributes.Fly;
+import attributes.fighterattributes.FighterBasicMovement;
+import attributes.fighterattributes.FighterFly;
 import attributes.fighterattributes.Input;
-import attributes.fighterattributes.Jump;
+import attributes.fighterattributes.FighterJump;
 import attributes.fighterattributes.Movement;
 
 
@@ -47,9 +47,9 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
     static
     {
         myAttributeFactories = new ArrayList<AttributeFactory>();
-        myAttributeFactories.add(BasicMovement.getFactory());
-        myAttributeFactories.add(Fly.getFactory());
-        myAttributeFactories.add(Jump.getFactory());
+        myAttributeFactories.add(FighterBasicMovement.getFactory());
+        myAttributeFactories.add(FighterFly.getFactory());
+        myAttributeFactories.add(FighterJump.getFactory());
         myAttributeFactories.add(Flying.getFactory());
         myAttributeFactories.add(Gravity.getFactory());
         myAttributeFactories.add(Hitpoints.getFactory());
