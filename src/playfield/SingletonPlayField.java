@@ -61,7 +61,7 @@ public class SingletonPlayField extends PlayField
         mySprites = list;
         for (AnimatedGameSprite sprite : mySprites)
         {
-            add(sprite);
+            super.add(sprite);
         }
     }
 }
