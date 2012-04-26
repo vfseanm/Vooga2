@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-import bonusobjects.PowerUp;
+import bonusobjects.BonusObject;
 
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
@@ -58,7 +58,7 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 	}
 
 	
-	public void addPowerUp(PowerUp bonus) {
+	public void addPowerUp(BonusObject bonus) {
     	for (Attribute toAdd: bonus.getAttributesToOffer()) {
     		addAttribute(toAdd);
     	}

@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import attributes.Attribute;
 import attributes.Hitpoints;
 import attributes.NumberOfLives;
-import bonusobjects.Carryable;
-import bonusobjects.PowerUp;
+import bonusobjects.BonusObject;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
 
@@ -30,7 +29,7 @@ public class FighterAction implements CollisionAction{
 	public void fighterGetPowerUp(CollisionContext ccntext, CollisionSpec cspec) {
 		try
         {
-            PowerUp bonus = (PowerUp) ccntext.getOtherSprite(sprite);
+            BonusObject bonus = (BonusObject) ccntext.getOtherSprite(sprite);
             for (Attribute toAdd: bonus.getAttributesToOffer()) {
             	sprite.addAttribute(toAdd);
             }
@@ -45,7 +44,7 @@ public class FighterAction implements CollisionAction{
 	public void fighterGetCarryable(CollisionContext ccntext, CollisionSpec cspec) {
 		try
         {
-            Carryable bonus = (Carryable) ccntext.getOtherSprite(sprite);
+            BonusObject bonus = (BonusObject) ccntext.getOtherSprite(sprite);
             sprite.addCarryableAttributes(bonus.getAttributesToOffer());
             bonus.setActive(false);
         } catch (ClassCastException e)

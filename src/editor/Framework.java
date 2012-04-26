@@ -19,8 +19,7 @@ import platforms.platformtypes.SideToSidePlatform;
 import platforms.platformtypes.SimplePlatform;
 import platforms.platformtypes.UpDownPlatform;
 
-import bonusobjects.Carryable;
-import bonusobjects.PowerUp;
+import bonusobjects.BonusObject;
 
 import com.golden.gamedev.engine.BaseIO;
 import com.golden.gamedev.engine.BaseLoader;
@@ -213,8 +212,7 @@ public class Framework implements Serializable {
         factories.add(SideToSidePlatform.getFactory());
         factories.add(UpDownPlatform.getFactory());
         factories.add(RotatingPlatform.getFactory());
-        factories.add(PowerUp.getFactory());
-        factories.add(Carryable.getFactory());
+        factories.add(BonusObject.getFactory());
         factories.add(WildAndCrazyObject.getFactory());
         
         AnimatedGameSprite prototype = null;
