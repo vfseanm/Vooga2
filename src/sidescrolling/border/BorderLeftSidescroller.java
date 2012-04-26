@@ -1,7 +1,5 @@
 package sidescrolling.border;
 
-import java.awt.event.KeyEvent;
-
 import sidescrolling.Sidescroller;
 
 import com.golden.gamedev.object.Sprite;
