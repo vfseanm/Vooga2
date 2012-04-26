@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
+
 import bonusobjects.BonusObject;
 import editor.EditorController;
 import editor.Framework;
@@ -54,7 +55,7 @@ public class PowerupDialogueBox extends DialogueBox {
         panel.add(panel3, BorderLayout.CENTER);
 
         JPanel subPanel = new JPanel();
-        subPanel.setPreferredSize(new Dimension(600, 100));
+        subPanel.setPreferredSize(new Dimension(600, 150));
 
         JLabel label1 = new JLabel("Power-Up Name");
         subPanel.add(label1);
@@ -63,7 +64,7 @@ public class PowerupDialogueBox extends DialogueBox {
 
         subPanel.add(myName);
 
-        JLabel groupLabel = new JLabel("Group:");
+        JLabel groupLabel = new JLabel("Collision Group:");
         subPanel.add(groupLabel);
 
         myGroup = new JTextField(10);
@@ -82,7 +83,12 @@ public class PowerupDialogueBox extends DialogueBox {
         return panel;
     }
 
-    public Framework getFramework() {
+    
+    public Framework getFramework() throws RuntimeException {
+        if(myImagePaths==null)
+        {
+            throw new RuntimeException();
+        }
         BonusObject prototype = new BonusObject(0, 0, myImagePaths);
         for (Attribute attribute : powerupAttributePanel
                 .getSelectedAttributes()) {
@@ -106,9 +112,15 @@ public class PowerupDialogueBox extends DialogueBox {
 
     @Override
     protected void BoxCompletedAction() {
-        Framework framework = getFramework();
-        editorController.addFrameworkAndButton(myName.getText(), framework);
-        setVisible(false);
+        try{
+            Framework framework = getFramework();
+            editorController.addFrameworkAndButton(myName.getText(), framework);
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "You must select an image" );
+                return;
+            }
+            setVisible(false);
 
     }
 

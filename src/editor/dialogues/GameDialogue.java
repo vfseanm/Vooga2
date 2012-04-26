@@ -43,25 +43,16 @@ public class GameDialogue extends DialogueBox {
         classMap = new HashMap<JCheckBox, Class>();
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 800));
-        for (Class c : ReflectionUtil.getInstancesOf("sidescrolling.border",
-                BorderSidescroller.class)) {
-            JLabel label1 = new JLabel(getClassName(c));
-            panel.add(label1);
-            JCheckBox box = new JCheckBox();
-            panel.add(box);
-            classMap.put(box, c);
-        }
-        for (Class c : ReflectionUtil.getInstancesOf("sidescrolling.forced",
-                ForcedSidescroller.class)) {
-            JLabel label1 = new JLabel(getClassName(c));
-            panel.add(label1);
-            JCheckBox box = new JCheckBox();
-            panel.add(box);
-            classMap.put(box, c);
-        }
-        for (Class c : ReflectionUtil.getInstancesOf("sidescrolling.shift",
-                ShiftSidescroller.class)) {
-
+        
+        List<Class> sidescrollers = new ArrayList<Class>();
+        sidescrollers.addAll(ReflectionUtil.getInstancesOf("sidescrolling.border",
+                BorderSidescroller.class));
+        sidescrollers.addAll(ReflectionUtil.getInstancesOf("sidescrolling.forced",
+                ForcedSidescroller.class));
+        sidescrollers.addAll(ReflectionUtil.getInstancesOf("sidescrolling.shift",
+                ShiftSidescroller.class));
+        
+        for (Class c : sidescrollers) {
             JLabel label1 = new JLabel(getClassName(c));
             panel.add(label1);
             JCheckBox box = new JCheckBox();

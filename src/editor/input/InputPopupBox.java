@@ -1,6 +1,7 @@
 package editor.input;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,8 +23,8 @@ public class InputPopupBox extends JPanel{
         
         
         JPanel frame = new JPanel();
+        frame.setPreferredSize(new Dimension(350, 150));
         JLabel label1 = new JLabel(message);
-        label1.setHorizontalAlignment(10);
         frame.add(label1);
         
         JButton goButton = new JButton("OK");

@@ -67,9 +67,12 @@ public class CustomizedEditor extends EditorView {
             }
         }
         if (getRightClickedFramework() != null) {
+            if(getRightClickedFramework().getPrototype() instanceof Enemy)
+            {
             EditEnemyButtonDialogueBox myView = new EditEnemyButtonDialogueBox(
                     myController, getRightClickedFramework());
             this.openDialogue(myView);
+            }
         }
     }
 }
