@@ -102,7 +102,7 @@ public class TestGame extends Game {
 		//cs.addActMap(bob.getGroup(), "enemyLoseLife");
 		cs.addActMap(bob.getGroup(), "enemyStandOnTop");
 		specList.add(cs);
-				
+		
 		
 		
 		
