@@ -84,7 +84,7 @@ public class PowerUp extends BonusObject implements JsonableSprite {
         {
             for(AttributeFactory factory: myAttributeFactories)
             {
-                if(factory.isThisKindOfSprite(attributeClassName))
+                if(factory.isThisKindOfAttribute(attributeClassName))
                 {
                     sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }
@@ -99,7 +99,7 @@ public class PowerUp extends BonusObject implements JsonableSprite {
         {
             for(AttributeFactory factory: myAttributeFactories)
             {
-                if(factory.isThisKindOfSprite(attributeClassName))
+                if(factory.isThisKindOfAttribute(attributeClassName))
                 {
                     sprite.addAttributeToOffer(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }

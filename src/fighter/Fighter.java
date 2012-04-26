@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import platforms.platformtypes.SideToSidePlatform;
-
 import collisions.CollisionAction;
 
 import com.golden.gamedev.engine.BaseInput;
@@ -16,9 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import character.GameCharacter;
-import editor.ReflectionUtil;
 import editor.json.AttributeFactory;
-import editor.json.JsonUtil;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
@@ -44,6 +40,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
     private BaseInput myUserInput;
     private static Fighter myself;
     private static List<AttributeFactory> myAttributeFactories;
+    
     static
     {
         myAttributeFactories = new ArrayList<AttributeFactory>();
@@ -231,7 +228,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
 
             for(AttributeFactory factory: myAttributeFactories)
             {
-                if(factory.isThisKindOfSprite(attributeClassName))
+                if(factory.isThisKindOfAttribute(attributeClassName))
                 {
                     sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }
@@ -247,7 +244,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
         {
             for(AttributeFactory factory: myAttributeFactories)
             {
-                if(factory.isThisKindOfSprite(attributeClassName))
+                if(factory.isThisKindOfAttribute(attributeClassName))
                 {
                     carryableAttributes.add(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }
