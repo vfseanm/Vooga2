@@ -1,21 +1,23 @@
 package weapons;
 
 import playfield.SingletonPlayField;
+import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.Sprite;
 import character.GameCharacter;
 
 
 public class Fireball implements Weapon
 {
-    private Sprite myFireball;
+    private AnimatedGameSprite myFireball;
     private double myDamage;
     private int myDelay;
     private int counter;
 
     //associates a sprite with the attack also needs speed damage and delay between attacks
-    public Fireball (Sprite fireball, double speed, double damage, int delay)
+    public Fireball (AnimatedGameSprite fireball, double speed, double damage, int delay)
     {
         myFireball = fireball;
+        myFireball.setGroup("FIREBALL");
         myDamage = damage;
         myDelay = delay;
         myFireball.setHorizontalSpeed(speed);
