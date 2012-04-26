@@ -36,11 +36,6 @@ public abstract class Sidescroller implements Serializable  {
     public abstract void update(long elapsedTime);
     
     /**
-     * @return the list of Sprites in the ConcreteSidescroller
-     */
-    public abstract ArrayList<AnimatedGameSprite> getSprites();
-    
-    /**
      * 
      * @return the width of the game stored in the ConcreteSidescroller
      */
@@ -51,9 +46,7 @@ public abstract class Sidescroller implements Serializable  {
      * @return the height of the game stored in the ConcreteSidescroller
      */
     public abstract int getGameHeight();
-    
-    public abstract void setSprites(ArrayList<AnimatedGameSprite> sprites);
-    
+        
     public String toJson()
     {
         Gson gson = new Gson();
