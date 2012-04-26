@@ -1,6 +1,6 @@
 package platforms.platformtypes;
 
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 
 
@@ -13,7 +13,7 @@ import editor.json.SpriteFactory;
  * @author yankeenjg
  * 
  */
- public class UpDownPlatform extends DecoratedPlatform implements Jsonable {
+ public class UpDownPlatform extends DecoratedPlatform implements JsonableSprite {
 
 	private static final long serialVersionUID = -3578102991430723896L;
 

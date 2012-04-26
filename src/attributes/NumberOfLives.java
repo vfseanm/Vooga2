@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 @SuppressWarnings("serial")
-public class NumberOfLives extends Attribute implements Jsonable
+public class NumberOfLives extends Attribute implements JsonableAttribute
 {
     private int myLives;
 

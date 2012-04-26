@@ -1,6 +1,6 @@
 package platforms.platformtypes;
 
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 
 /**
@@ -9,7 +9,7 @@ import editor.json.SpriteFactory;
  * @author yankeenjg
  *
  */
-public class RotatingPlatform extends DecoratedPlatform implements Jsonable{
+public class RotatingPlatform extends DecoratedPlatform implements JsonableSprite{
 	
 	private static final long serialVersionUID = 7537483544825845415L;
 	private int myFrames = 0;

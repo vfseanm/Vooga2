@@ -11,7 +11,7 @@ import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 import attributes.Attribute;
 import attributes.Updateable;
 
@@ -19,7 +19,7 @@ import attributes.Updateable;
 // go do isActive and use that
 // turnaround
 @SuppressWarnings("serial")
-public class JumpingMovement extends Attribute implements Updateable, Jsonable
+public class JumpingMovement extends Attribute implements Updateable, JsonableAttribute
 {
     private int myDistance;
     private int myTime;

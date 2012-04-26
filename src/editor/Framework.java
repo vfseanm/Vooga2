@@ -29,8 +29,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.exampleStuff.WildAndCrazyObject;
-import editor.json.JsonUtil;
-import editor.json.Jsonable;
 import editor.json.SpriteFactory;
 import enemies.Enemy;
 

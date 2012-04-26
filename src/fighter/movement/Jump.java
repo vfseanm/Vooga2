@@ -11,12 +11,12 @@ import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 import attributes.Attribute;
 import attributes.Updateable;
 
 @SuppressWarnings("serial")
-public class Jump extends Attribute implements Updateable, Movement, Input, Jsonable
+public class Jump extends Attribute implements Updateable, Movement, Input, JsonableAttribute
 {
 	private BaseInput 		myUserInput;
     private double 			myJumpHeight;

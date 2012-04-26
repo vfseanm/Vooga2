@@ -1,13 +1,13 @@
 package attributes;
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 
 
 
 // knows gravity too well?
 @SuppressWarnings("serial")
-public class Flying extends Attribute implements Updateable, Jsonable
+public class Flying extends Attribute implements Updateable, JsonableAttribute
 {
 
     

@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 
 
 // Idea master config file to control attribute exlusivity
@@ -18,7 +18,7 @@ import editor.json.Jsonable;
 
 
 @SuppressWarnings("serial")
-public class UpDownMovement extends TwoPartMovement implements Jsonable
+public class UpDownMovement extends TwoPartMovement implements JsonableAttribute
 {
 
     @editorConstructor(parameterNames = { "distance" , "duration"})

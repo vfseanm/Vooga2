@@ -10,12 +10,12 @@ import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 
 //Change location to coordinate
 
 @SuppressWarnings("serial")
-public class SideToSideMovement extends TwoPartMovement implements Jsonable
+public class SideToSideMovement extends TwoPartMovement implements JsonableAttribute
 {
     
 

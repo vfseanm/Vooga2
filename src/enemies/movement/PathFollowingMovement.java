@@ -14,7 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import editor.editorConstructor;
 import editor.input.inputTypes.Line;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 import editor.json.SpriteFactory;
 import attributes.Attribute;
 import attributes.Updateable;
@@ -22,7 +22,7 @@ import attributes.Updateable;
 
 @SuppressWarnings("serial")
 public class PathFollowingMovement extends Attribute
-    implements Updateable, Cloneable, Jsonable
+    implements Updateable, Cloneable, JsonableAttribute
 {
     private ArrayList<Point> myPath;
     private int index;

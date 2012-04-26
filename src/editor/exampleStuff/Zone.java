@@ -12,7 +12,6 @@ import com.google.gson.reflect.TypeToken;
 import editor.editorConstructor;
 import editor.input.inputTypes.Line;
 import editor.input.inputTypes.Points;
-import editor.json.Jsonable;
 
 
 public class Zone implements Cloneable {

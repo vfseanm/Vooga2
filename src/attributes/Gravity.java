@@ -6,12 +6,12 @@ import com.google.gson.Gson;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 
 import fighter.movement.Movement;
 
 @SuppressWarnings("serial")
-public class Gravity extends Attribute implements Updateable, Movement, Jsonable
+public class Gravity extends Attribute implements Updateable, Movement, JsonableAttribute
 {
     private double myDistance;
 

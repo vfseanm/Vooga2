@@ -11,8 +11,7 @@ import com.google.gson.reflect.TypeToken;
 
 import character.GameCharacter;
 import editor.json.AttributeFactory;
-import editor.json.JsonUtil;
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
 
@@ -20,7 +19,7 @@ import editor.json.SpriteJsonData;
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class PowerUp extends BonusObject implements Jsonable {
+public class PowerUp extends BonusObject implements JsonableSprite {
 
     protected GameCharacter myGameCharacter;
     private static List<AttributeFactory> myAttributeFactories;

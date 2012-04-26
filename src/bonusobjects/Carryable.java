@@ -12,13 +12,13 @@ import com.google.gson.reflect.TypeToken;
 
 import attributes.Attribute;
 import editor.json.JsonUtil;
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
 import fighter.Fighter;
 
 @SuppressWarnings("serial")
-public class Carryable extends BonusObject implements Jsonable {
+public class Carryable extends BonusObject implements JsonableSprite {
 	
 	protected Fighter		myFighter;
 	

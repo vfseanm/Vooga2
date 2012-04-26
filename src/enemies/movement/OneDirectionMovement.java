@@ -10,13 +10,13 @@ import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 import attributes.Attribute;
 import attributes.Updateable;
 
 
 @SuppressWarnings("serial")
-public class OneDirectionMovement extends Attribute implements Updateable, Jsonable
+public class OneDirectionMovement extends Attribute implements Updateable, JsonableAttribute
 {
     private String myDirection;
     private int myDistance;

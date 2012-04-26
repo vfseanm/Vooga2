@@ -1,6 +1,6 @@
 package platforms.platformtypes;
 
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 
 
@@ -14,7 +14,7 @@ import editor.json.SpriteFactory;
  * 
  * @author yankeenjg
  */
-public class SideToSidePlatform extends DecoratedPlatform implements Jsonable{
+public class SideToSidePlatform extends DecoratedPlatform implements JsonableSprite{
 
 	private static final long serialVersionUID = -1092406048949643816L;
 

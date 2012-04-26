@@ -7,14 +7,14 @@ import com.golden.gamedev.engine.BaseInput;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 import editor.json.SpriteFactory;
 
 import java.awt.event.KeyEvent;
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class BasicMovement extends Attribute implements Updateable, Movement, Input,Jsonable {
+public class BasicMovement extends Attribute implements Updateable, Movement, Input,JsonableAttribute {
 
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;

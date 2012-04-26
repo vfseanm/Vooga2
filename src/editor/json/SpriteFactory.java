@@ -2,7 +2,7 @@ package editor.json;
 
 import sprite.AnimatedGameSprite;
 
-public class SpriteFactory<T extends AnimatedGameSprite & Jsonable> {
+public class SpriteFactory<T extends AnimatedGameSprite & JsonableSprite> {
     T mySprite;
     public SpriteFactory(T s)
     {
@@ -16,6 +16,6 @@ public class SpriteFactory<T extends AnimatedGameSprite & Jsonable> {
     
     public AnimatedGameSprite parseFromJson(String json)
     {
-        return (AnimatedGameSprite) (mySprite).fromJson(json);
+        return (mySprite).fromJson(json);
     }
 }

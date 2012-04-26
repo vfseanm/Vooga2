@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.ReflectionUtil;
-import editor.json.Jsonable;
 
 import sprite.AnimatedGameSprite;
 

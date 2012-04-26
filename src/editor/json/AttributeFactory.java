@@ -4,7 +4,7 @@ import attributes.Attribute;
 
 
 
-public class AttributeFactory<T extends Attribute & Jsonable > {
+public class AttributeFactory<T extends Attribute & JsonableAttribute > {
     T myAttribute;
     public AttributeFactory(T a)
     {
@@ -18,7 +18,7 @@ public class AttributeFactory<T extends Attribute & Jsonable > {
     
     public Attribute parseFromJson(String json)
     {
-        return (Attribute) myAttribute.fromJson(json);
+        return  myAttribute.fromJson(json);
     }
 }
 

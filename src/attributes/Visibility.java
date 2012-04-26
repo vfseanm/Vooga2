@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 
 /**
  * Experimenting with building a layer on top of the GTGE methods to consolidate
@@ -15,7 +15,7 @@ import editor.json.Jsonable;
  * @author Alex
  */
 @SuppressWarnings("serial")
-public class Visibility extends Attribute implements Jsonable
+public class Visibility extends Attribute implements JsonableAttribute
 {
     private boolean isVisible;
     private BufferedImage[] myImage;

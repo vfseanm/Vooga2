@@ -19,7 +19,7 @@ import character.GameCharacter;
 import editor.ReflectionUtil;
 import editor.json.AttributeFactory;
 import editor.json.JsonUtil;
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
 import fighter.movement.BasicMovement;
@@ -37,7 +37,7 @@ import attributes.Visibility;
 
 
 @SuppressWarnings("serial")
-public class Fighter extends GameCharacter implements Jsonable  {
+public class Fighter extends GameCharacter implements JsonableSprite  {
 
     private List<Attribute> myCarryableAttributes;
     private BaseInput myUserInput;

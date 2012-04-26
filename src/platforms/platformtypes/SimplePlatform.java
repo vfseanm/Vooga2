@@ -3,7 +3,7 @@ package platforms.platformtypes;
 import java.util.ArrayList;
 import java.util.List;
 
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 
 /**
@@ -16,7 +16,7 @@ import editor.json.SpriteFactory;
  * @author yankeenjg
  * 
  */
-public class SimplePlatform extends AbstractPlatform implements Jsonable {
+public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 
 	private static final long serialVersionUID = 7514750773895804951L;
 

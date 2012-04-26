@@ -4,10 +4,10 @@ import com.google.gson.Gson;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 
 @SuppressWarnings("serial")
-public class Hitpoints extends Attribute implements Jsonable
+public class Hitpoints extends Attribute implements JsonableAttribute
 {
     private int myHitpoints;
  

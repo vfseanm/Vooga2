@@ -19,7 +19,7 @@ import attributes.*;
 import editor.ReflectionUtil;
 import editor.json.AttributeFactory;
 import editor.json.JsonUtil;
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
 import enemies.movement.JumpingMovement;
@@ -34,7 +34,7 @@ import enemies.state.EnemyState;
  * @author Alex
  */
 @SuppressWarnings({ "serial", "rawtypes" })
-public class Enemy extends GameCharacter implements Jsonable
+public class Enemy extends GameCharacter implements JsonableSprite
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;

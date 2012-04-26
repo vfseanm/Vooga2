@@ -13,10 +13,10 @@ import attributes.Attribute;
 import attributes.Updateable;
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
-import editor.json.Jsonable;
+import editor.json.JsonableAttribute;
 
 @SuppressWarnings("serial")
-public class Fly extends Attribute implements Updateable, Movement, Input, Jsonable
+public class Fly extends Attribute implements Updateable, Movement, Input, JsonableAttribute
 {
 	private BaseInput	myUserInput;
 	private double		myFlightMovement;
