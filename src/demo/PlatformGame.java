@@ -78,6 +78,7 @@ public abstract  class PlatformGame extends Game {
     }
 
     public void setSidescroller(Sidescroller scroller) {
+        scroller.setUserInput(bsInput);
         mySidescroller = scroller;
     }
     

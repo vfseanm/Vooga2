@@ -23,6 +23,7 @@ public class SidescrollerSwitch extends AnimatedGameSprite {
     }
     
     public void switchSidescroller() {
+        setFrame(1);
         game.setSidescroller(changeScroller);
     }
     

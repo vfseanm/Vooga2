@@ -105,7 +105,6 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
     
    public  FighterBasicMovement fromJson(String json)
     {
-
         double movement = Double.parseDouble(json);
         return new FighterBasicMovement(movement);
     }
