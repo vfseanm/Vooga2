@@ -36,6 +36,10 @@ public class FighterAction implements CollisionAction{
 			sprite.setX(ccntext.getOtherSprite(sprite).getX()-sprite.getHeight()-1);
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
 		}
+		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
+			sprite.setX(ccntext.getOtherSprite(sprite).getX()-sprite.getHeight()-1);
+			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
+		}
 	}
 	
 	public void fighterGetPowerUp(CollisionContext ccntext, CollisionSpec cspec) {

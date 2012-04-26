@@ -36,7 +36,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 
-	    loadLevel("level2");
+	    loadLevel("testLevel");
 //        for(AnimatedGameSprite s: mySprites)
 //        {
 //            System.out.print(s.getGroup() + " ");
