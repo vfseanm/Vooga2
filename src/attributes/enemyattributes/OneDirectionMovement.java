@@ -104,7 +104,7 @@ public class OneDirectionMovement extends Attribute implements Updateable, Jsona
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>(){}.getType();
         List<String> argList = gson.fromJson(json, collectionType);
-        return new OneDirectionMovement(argList.get(0), Integer.parseInt((argList.get(1))));
+        return new OneDirectionMovement(argList.get(0), Double.parseDouble((argList.get(1))));
     }
     
     private OneDirectionMovement(){}
