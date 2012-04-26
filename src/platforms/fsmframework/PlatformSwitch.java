@@ -2,6 +2,8 @@ package platforms.fsmframework;
 import java.util.List;
 
 
+
+import platforms.FrameTimer;
 import platforms.platformtypes.PlatformAction;
 
 import collisions.CollisionAction;
@@ -12,6 +14,8 @@ public class PlatformSwitch extends AnimatedGameSprite {
 	
 	private static final long serialVersionUID = 1L;
 	private boolean SwitchOn = false;
+	private int myButtonDelay = 2000;
+	private FrameTimer myTimer = new FrameTimer();
 
 	public PlatformSwitch(double x, double y, List<String> imSources) {
 		super(x, y, imSources);
@@ -29,6 +33,15 @@ public class PlatformSwitch extends AnimatedGameSprite {
 	
 	public boolean getSwitchOnOff() {
 		return SwitchOn;
+	}
+	
+	public void update(long elapsedTime) {
+		super.update(elapsedTime);
+		if (myTimer.getPassedFrames() >= myButtonDelay && SwitchOn) {
+			setOn(false);
+			myTimer.clear();	
+		}
+		myTimer.update();
 	}
 	
     public Class<? extends CollisionAction> getActionClass (){

@@ -45,6 +45,11 @@ public abstract class Sidescroller implements Serializable  {
      */
     public abstract int getGameHeight();
     
+    /**
+     * Gives sidescroller a BaseInput which can be used later for things such as
+     * checking if keys are pressed.
+     * @param userInput - a BaseInput from the Game
+     */
     public abstract void setUserInput(BaseInput userInput);
         
     public String toJson()

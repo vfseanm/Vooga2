@@ -13,6 +13,8 @@ import platforms.fsmframework.AbstractEvent;
 import platforms.fsmframework.AbstractPlatformState;
 import platforms.fsmframework.Context;
 import platforms.fsmframework.PlatformSwitch;
+import platforms.fsmframework.RandomEvent;
+import platforms.fsmframework.SimpleEvent;
 import platforms.fsmframework.SwitchEvent;
 import platforms.fsmframework.SwitchOff;
 import platforms.fsmframework.SwitchOn;
@@ -51,13 +53,12 @@ public class PlatformTest extends Game {
 		List<AbstractPlatform> plats = new ArrayList<AbstractPlatform>();
 		plats.add(sp);
 		List<AbstractPlatformState> transition = new ArrayList<AbstractPlatformState>();
-		transition.add(new SwitchOff(plats));
-		transition.add(new SwitchOn(plats));
-		
-		SwitchEvent event = new SwitchEvent(mySwitch, transition, plats);
-		List<AbstractEvent> events = new ArrayList<AbstractEvent>();
-		events.add(event);
-		myContext = new Context(events, plats);
+		transition.add(new SwitchOff());
+		transition.add(new SwitchOn());
+		AbstractEvent event = new SimpleEvent(transition, plats);
+		event = new SwitchEvent(mySwitch, event);
+		//event = new RandomEvent(event);
+		myContext = new Context(event, plats);
 		//mySwitch.setActive(false);
 		//System.out.println(mySwitch.isActive());
 	}
@@ -77,10 +78,8 @@ public class PlatformTest extends Game {
 
 	@Override
 	public void update(long arg0) {
-		if (keyPressed(KeyEvent.VK_S)) {
+		if (keyDown(KeyEvent.VK_S)) {
 			mySwitch.setOn(true);
-		
-			
 		}
 		myPlatform2.update(arg0);
 		myPlatform.update(arg0);	
