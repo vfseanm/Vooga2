@@ -98,7 +98,7 @@ public class JumpingMovement extends Attribute implements Updateable, JsonableAt
     {
         Gson gson = new Gson();
         List<Integer> argList = new ArrayList<Integer>();
-        argList.add(myDistance);
+        //argList.add(myDistance);
         argList.add(myTime);
         return gson.toJson(argList);
     }

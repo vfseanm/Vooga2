@@ -87,6 +87,8 @@ public abstract class Attribute implements Serializable, Cloneable
             catch (InvocationTargetException e)
             {
                 // TODO Auto-generated catch block
+            	
+            	System.out.println("hello");
                 e.printStackTrace();
             }
             
