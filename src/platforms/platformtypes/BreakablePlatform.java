@@ -10,6 +10,8 @@ import sprite.AnimatedGameSprite;
 
 import collisions.CollisionContext;
 import collisions.CollisionSpec;
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
 
 import bonusobjects.BonusObject;
  
@@ -22,7 +24,7 @@ import bonusobjects.BonusObject;
  * 
  * @author yankeenjg
  */
-public class BreakablePlatform extends DecoratedPlatform {
+public class BreakablePlatform extends DecoratedPlatform implements JsonableSprite {
 
 	private static final long serialVersionUID = 1254073087890380273L;
 	private List<BonusObject> myBonusObjects = new ArrayList<BonusObject>();  // need to fix in level editor so this can be set...
@@ -145,6 +147,12 @@ public class BreakablePlatform extends DecoratedPlatform {
 			System.out.println ("Break is not working!");
 			((BreakablePlatform)sprite).doBreak();
 		}
+	}
+	
+	private BreakablePlatform(){};
+	public static SpriteFactory<BreakablePlatform> getFactory()
+	{
+	    return new SpriteFactory<BreakablePlatform>(new BreakablePlatform());
 	}
    
 }

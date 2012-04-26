@@ -13,7 +13,6 @@ import com.google.gson.Gson;
 import editor.Framework;
 import editor.dialogues.DialogueBox;
 
-import editor.json.Jsonable;
 
 
 public class Line implements InputType, Serializable{

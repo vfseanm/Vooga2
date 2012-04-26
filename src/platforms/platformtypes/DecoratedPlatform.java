@@ -55,6 +55,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	            .getString("DistanceOffset"));*/
 		
 	}
+	public DecoratedPlatform(){}
 
 	/**
 	 * Used to set the delay of certain platforms. For example, the higher the

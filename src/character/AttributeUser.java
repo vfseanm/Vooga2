@@ -3,29 +3,30 @@ package character;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import editor.json.Jsonable;
 
-import bonusobjects.PowerUp;
+import bonusobjects.BonusObject;
 
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
-import attributes.Updateable;
+import attributes.interfaces.Input;
+import attributes.interfaces.Updateable;
 
 @SuppressWarnings("serial")
-public abstract class GameCharacter extends AnimatedGameSprite implements Jsonable {
+public abstract class AttributeUser extends AnimatedGameSprite {
 
 	protected List<Attribute> 		myAttributes;
 	
-	public GameCharacter(double x, double y,
+	public AttributeUser(double x, double y,
 			List<String> images) {
 		super(x, y, images);
 		myAttributes = new ArrayList<Attribute>();
 	}
 	
-	protected GameCharacter(){
+	protected AttributeUser(){
 	    myAttributes=new ArrayList<Attribute>();
 	};
 
@@ -59,7 +60,7 @@ public abstract class GameCharacter extends AnimatedGameSprite implements Jsonab
 	}
 
 	
-	public void addPowerUp(PowerUp bonus) {
+	public void addPowerUp(BonusObject bonus) {
     	for (Attribute toAdd: bonus.getAttributesToOffer()) {
     		addAttribute(toAdd);
     	}
@@ -143,11 +144,10 @@ public abstract class GameCharacter extends AnimatedGameSprite implements Jsonab
 	
 	public void invertAttribute(String name) {
 		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equalsIgnoreCase(name)
-					&& attribute.getClass().getInterfaces()[0]
-							.equals(Updateable.class)) {
-				((Updateable) attribute).invert();
-			}
+			Class[] attributeInterfaces = attribute.getClass().getInterfaces();
+        	if (Arrays.asList(attributeInterfaces).contains(Updateable.class)) {
+        		((Updateable) attribute).invert();
+        	}
 		}
 	}
 

@@ -9,13 +9,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
-import editor.json.Jsonable;
+import editor.json.AttributeFactory;
+import editor.json.JsonableAttribute;
 import attributes.Attribute;
-import attributes.Updateable;
+import attributes.interfaces.Updateable;
 
 
 @SuppressWarnings("serial")
-public class OneDirectionMovement extends Attribute implements Updateable, Jsonable
+public class OneDirectionMovement extends Attribute implements Updateable, JsonableAttribute
 {
     private String myDirection;
     private int myDistance;
@@ -98,7 +99,7 @@ public class OneDirectionMovement extends Attribute implements Updateable, Jsona
         return gson.toJson(argList);
     }
     
-    public static  OneDirectionMovement fromJson(String json)
+    public  OneDirectionMovement fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>(){}.getType();
@@ -106,11 +107,11 @@ public class OneDirectionMovement extends Attribute implements Updateable, Jsona
         return new OneDirectionMovement(argList.get(0), Integer.parseInt((argList.get(1))));
     }
     
-/*    private OneDirectionMovement(){}
+    private OneDirectionMovement(){}
     
-    public static ObjectFromJsonFactory getFactory()
+    public static AttributeFactory<OneDirectionMovement> getFactory()
     {
-        return new ObjectFromJsonFactory(new OneDirectionMovement());
-    }*/
+        return new AttributeFactory<OneDirectionMovement>(new OneDirectionMovement());
+    }
    
 }

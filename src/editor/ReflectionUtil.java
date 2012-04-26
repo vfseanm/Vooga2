@@ -5,16 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-import sidescrolling.DecoratedSidescroller;
 
-import attributes.Attribute;
 
 public class ReflectionUtil {
 
@@ -83,6 +80,7 @@ public class ReflectionUtil {
         return classes;
     }
 
+    @SuppressWarnings("rawtypes")
     public static Constructor getAnnotatedConstructor(Class c)
     {
         Constructor[] constructors = c.getConstructors();

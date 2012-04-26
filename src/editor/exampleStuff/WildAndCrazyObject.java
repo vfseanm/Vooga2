@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import platforms.platformtypes.SideToSidePlatform;
+
 import com.google.gson.Gson;
 
-import editor.json.Jsonable;
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
 
 
@@ -14,7 +17,7 @@ import sprite.AnimatedGameSprite;
 
 
 @SuppressWarnings("serial")
-public class WildAndCrazyObject extends AnimatedGameSprite implements Jsonable, Serializable{
+public class WildAndCrazyObject extends AnimatedGameSprite implements JsonableSprite, Serializable{
     private Zone myZone;
     
     public WildAndCrazyObject(double x, double y, List<String> images)
@@ -47,7 +50,7 @@ public class WildAndCrazyObject extends AnimatedGameSprite implements Jsonable, 
         return gson.toJson(spriteData);
     }
     
-    public static WildAndCrazyObject fromJson(String json)
+    public WildAndCrazyObject fromJson(String json)
     {
         Gson gson = new Gson();
         SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
@@ -57,6 +60,12 @@ public class WildAndCrazyObject extends AnimatedGameSprite implements Jsonable, 
         sprite.setZone(zone);
         return sprite;
         
+    }
+    
+    private WildAndCrazyObject(){};
+    public static SpriteFactory<WildAndCrazyObject> getFactory()
+    {
+        return new SpriteFactory<WildAndCrazyObject>(new WildAndCrazyObject());
     }
     
 }

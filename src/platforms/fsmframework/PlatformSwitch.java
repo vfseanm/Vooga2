@@ -1,10 +1,10 @@
 package platforms.fsmframework;
 import java.util.List;
 
+
 import platforms.platformtypes.PlatformAction;
 
 import collisions.CollisionAction;
-import enemies.EnemyAction;
 import sprite.AnimatedGameSprite;
 
 

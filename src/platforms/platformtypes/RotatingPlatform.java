@@ -1,12 +1,15 @@
 package platforms.platformtypes;
 
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
+
 /**
  * Creates a platform decorator to add functionality to a platform to allow the platform to rotate around various axis, such as its
  * center axis or left axis, etc...
  * @author yankeenjg
  *
  */
-public class RotatingPlatform extends DecoratedPlatform {
+public class RotatingPlatform extends DecoratedPlatform implements JsonableSprite{
 	
 	private static final long serialVersionUID = 7537483544825845415L;
 	private int myFrames = 0;
@@ -99,6 +102,10 @@ public class RotatingPlatform extends DecoratedPlatform {
 		return new RotatingPlatform(toWrap);
 	}
 	
-
+	   private RotatingPlatform(){};
+	    public static SpriteFactory<RotatingPlatform> getFactory()
+	    {
+	        return new SpriteFactory<RotatingPlatform>(new RotatingPlatform());
+	    }
 
 }
