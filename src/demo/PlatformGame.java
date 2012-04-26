@@ -50,7 +50,7 @@ public abstract  class PlatformGame extends Game {
         LevelLoader loader = new LevelLoader();
         myLevel = loader.readLevel(new File(filename));
 
-        myPlayfield.setMySprites(  myLevel.getSprites());
+        myPlayfield.setMySprites(myLevel.getSprites());
         ImageBackground myBackground = myLevel.getBackground();
         
         
