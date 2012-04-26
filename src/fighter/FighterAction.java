@@ -20,7 +20,7 @@ public class FighterAction implements CollisionAction{
 	
 	public void fighterStandOnTop (CollisionContext ccntext, CollisionSpec cspec){ 	
 	    System.out.println("woop");
-		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
+		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
 			sprite.allowAttribute("Jump", true);
 			sprite.allowAttribute("Gravity", false);

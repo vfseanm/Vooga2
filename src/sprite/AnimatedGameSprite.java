@@ -93,8 +93,8 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         myImageNames = names;
     }
     
-    public void setGroup(String group){
-        myGroup=group;
+    public void setGroup(String group) {
+        myGroup = group;
     }
     
     public String getGroup(){
