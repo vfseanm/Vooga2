@@ -1,4 +1,6 @@
-package attributes;
+package attributes.sharedattributes;
+
+import attributes.Attribute;
 
 import com.google.gson.Gson;
 

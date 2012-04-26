@@ -10,6 +10,9 @@ import editor.json.JsonableAttribute;
 
 import java.awt.event.KeyEvent;
 import attributes.*;
+import attributes.interfaces.Input;
+import attributes.interfaces.Movement;
+import attributes.interfaces.Updateable;
 
 /**
  * This Attribute allows basic movement (right/left) by the parameterized distance

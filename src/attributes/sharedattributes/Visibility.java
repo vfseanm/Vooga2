@@ -1,6 +1,8 @@
-package attributes;
+package attributes.sharedattributes;
 
 import java.awt.image.BufferedImage;
+
+import attributes.Attribute;
 
 import com.google.gson.Gson;
 

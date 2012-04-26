@@ -3,8 +3,8 @@ package fighter;
 import java.util.ArrayList;
 
 import attributes.Attribute;
-import attributes.Hitpoints;
-import attributes.NumberOfLives;
+import attributes.sharedattributes.Hitpoints;
+import attributes.sharedattributes.NumberOfLives;
 import bonusobjects.BonusObject;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
@@ -23,6 +23,17 @@ public class FighterAction implements CollisionAction{
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
 			sprite.allowAttribute("Jump", true);
 			sprite.allowAttribute("Gravity", false);
+		}
+	}
+	
+	public void fighterHitObject (CollisionContext ccntext, CollisionSpec cspec){ 		
+		if (ccntext.getSide() == CollisionGroup.LEFT_RIGHT_COLLISION){
+			sprite.setX(ccntext.getOtherSprite(sprite).getX()-sprite.getHeight()-1);
+			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
+		}
+		if (ccntext.getSide() == CollisionGroup.RIGHT_LEFT_COLLISION){
+			sprite.setX(ccntext.getOtherSprite(sprite).getX()-sprite.getHeight()-1);
+			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
 		}
 	}
 	

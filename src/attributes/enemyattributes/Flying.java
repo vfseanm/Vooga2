@@ -1,4 +1,6 @@
-package attributes;
+package attributes.enemyattributes;
+import attributes.Attribute;
+import attributes.interfaces.Updateable;
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;

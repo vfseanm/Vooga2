@@ -1,4 +1,7 @@
-package attributes;
+package attributes.enemyattributes;
+
+import attributes.Attribute;
+import attributes.interfaces.Updateable;
 
 @SuppressWarnings("serial")
 public abstract class Attack extends Attribute implements Updateable

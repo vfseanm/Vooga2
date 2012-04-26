@@ -12,8 +12,8 @@ import bonusobjects.BonusObject;
 
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
-import attributes.Updateable;
-import attributes.fighterattributes.Input;
+import attributes.interfaces.Input;
+import attributes.interfaces.Updateable;
 
 @SuppressWarnings("serial")
 public abstract class AttributeUser extends AnimatedGameSprite {

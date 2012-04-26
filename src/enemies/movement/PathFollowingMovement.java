@@ -13,7 +13,7 @@ import editor.input.inputTypes.Line;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
 import attributes.Attribute;
-import attributes.Updateable;
+import attributes.interfaces.Updateable;
 
 
 @SuppressWarnings("serial")

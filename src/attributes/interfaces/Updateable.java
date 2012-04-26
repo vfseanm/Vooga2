@@ -1,4 +1,4 @@
-package attributes;
+package attributes.interfaces;
 
 /**
  * This interface is used to distinguish whether or not a given attribute
