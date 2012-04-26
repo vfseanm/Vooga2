@@ -96,12 +96,11 @@ public class FighterTester extends Game{
         ArrayList<String> imageName2 = new ArrayList<String>();
         String switchName = "Resources/Bowser.jpg";
         imageName2.add(switchName);
-        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller(allSprites)));
+        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller()));
         //scrollerSwitch = new SidescrollerSwitch(350, 400, imageName2, newscroll, this);
         
         allSprites.add(scrollerSwitch);
         sidescroller = new ConcreteSidescroller();
-        sidescroller.setSprites(allSprites);
         //sidescroller = new ForcedDownSidescroller(sidescroller);
         //sidescroller = new ForcedUpSidescroller(sidescroller);
         //sidescroller = new ForcedRightSidescroller(sidescroller);
