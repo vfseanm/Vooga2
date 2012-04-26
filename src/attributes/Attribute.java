@@ -29,6 +29,7 @@ public abstract class Attribute implements Serializable, Cloneable
     
     public abstract String getName();
     
+    
     //associates an attribute with the given enemy/fighter
     public void setGameCharacter(AttributeUser user) {
         myGameCharacter = user;
@@ -54,6 +55,7 @@ public abstract class Attribute implements Serializable, Cloneable
     //WHAT happened
     public Attribute (Object...o)
     {
+        System.out.println(this);
         isActive=true;
         if (makeOriginal == true)
         {
@@ -66,8 +68,15 @@ public abstract class Attribute implements Serializable, Cloneable
             	
                 for(Constructor constructor: c)
                 {
-                    if(constructor.getParameterTypes().length==o.length);
-                    myOriginal =  c[0].newInstance(o);
+                    if(constructor.getModifiers()==Modifier.PUBLIC)
+                    {    
+                        if(o.length == constructor.getParameterTypes().length)
+                        {
+                            myOriginal =  constructor.newInstance(o);
+                            break;
+                        }
+                    }
+
                 }
             }
             catch (IllegalArgumentException e)

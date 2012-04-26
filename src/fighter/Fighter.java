@@ -177,6 +177,7 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
 	
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
+		System.out.println("seting inpput");
 	
 		for (Attribute ability: getAttributes()) {
         	Class[] attributeInterfaces = ability.getClass().getInterfaces();

@@ -7,6 +7,7 @@ import java.util.List;
 
 import playfield.SingletonPlayField;
 
+import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.*;
 import fighter.Fighter;
 
@@ -28,6 +29,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
     private SingletonPlayField playfield;
+    protected BaseInput myUserInput;
     
     /**
      * Creates a new DecoratedSidescroller
@@ -70,6 +72,11 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
                 move(object);
             }
         }
+    }
+    
+    public void setUserInput(BaseInput userInput) {
+        myUserInput = userInput;
+        wrappedScroller.setUserInput(userInput);
     }
 
     /**
