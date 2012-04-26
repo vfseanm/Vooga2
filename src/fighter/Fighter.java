@@ -15,27 +15,27 @@ import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import character.GameCharacter;
+import character.AttributeUser;
 import editor.json.AttributeFactory;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
 import attributes.Attribute;
-import attributes.Flying;
-import attributes.Gravity;
-import attributes.Hitpoints;
-import attributes.NumberOfLives;
-import attributes.PointValue;
-import attributes.Visibility;
+import attributes.enemyattributes.Flying;
 import attributes.fighterattributes.FighterBasicMovement;
 import attributes.fighterattributes.FighterFly;
-import attributes.fighterattributes.Input;
 import attributes.fighterattributes.FighterJump;
-import attributes.fighterattributes.Movement;
+import attributes.fighterattributes.PointValue;
+import attributes.interfaces.Input;
+import attributes.interfaces.Movement;
+import attributes.sharedattributes.Gravity;
+import attributes.sharedattributes.Hitpoints;
+import attributes.sharedattributes.NumberOfLives;
+import attributes.sharedattributes.Visibility;
 
 
 @SuppressWarnings("serial")
-public class Fighter extends GameCharacter implements JsonableSprite  {
+public class Fighter extends AttributeUser implements JsonableSprite  {
 	
 	transient protected ResourceBundle myGameKeys = ResourceBundle
     .getBundle("demo.GameKeysResourceBundle");
@@ -177,7 +177,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
 	
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
-		
+	
 		for (Attribute ability: getAttributes()) {
         	Class[] attributeInterfaces = ability.getClass().getInterfaces();
         	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {

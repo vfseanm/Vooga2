@@ -1,4 +1,4 @@
-package attributes.fighterattributes;
+package attributes.interfaces;
 
 import com.golden.gamedev.engine.BaseInput;
 

@@ -13,7 +13,9 @@ import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
 import attributes.Attribute;
-import attributes.Updateable;
+import attributes.interfaces.Input;
+import attributes.interfaces.Movement;
+import attributes.interfaces.Updateable;
 
 @SuppressWarnings("serial")
 public class FighterJump extends Attribute implements Updateable, Movement, Input, JsonableAttribute

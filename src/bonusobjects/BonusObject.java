@@ -21,7 +21,14 @@ import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
 
 
+
 import attributes.*;
+import attributes.enemyattributes.Flying;
+import attributes.fighterattributes.PointValue;
+import attributes.sharedattributes.Gravity;
+import attributes.sharedattributes.Hitpoints;
+import attributes.sharedattributes.NumberOfLives;
+import attributes.sharedattributes.Visibility;
 
 @SuppressWarnings("serial")
 public class BonusObject extends AttributeUser implements JsonableSprite {
@@ -48,6 +55,7 @@ public class BonusObject extends AttributeUser implements JsonableSprite {
         super(x, y, image);
         myAttributes = new ArrayList<Attribute>();
         myAttributesToOffer = new ArrayList<Attribute>();
+        setGroup("BONUSOBJECT");
     }
 
     public List<Attribute> getAttributesToOffer() {
@@ -166,7 +174,7 @@ public class BonusObject extends AttributeUser implements JsonableSprite {
         return new SpriteFactory<BonusObject>(new BonusObject());
     }
 
-	@Override
+
 	public String getName() {
 		return "BonusObject";
 	}

@@ -78,6 +78,7 @@ public class Level implements Serializable{
         {
             f.moveHorizontally(x);
         }
+        myFighter.moveX(x);
     }
     
     public void setSidescrolling(Sidescroller scroller)
@@ -91,6 +92,7 @@ public class Level implements Serializable{
         {
             f.moveVertically(y);
         }
+        myFighter.moveY(y);
     }
     
     public Sidescroller getSidescroller()
@@ -155,6 +157,7 @@ public class Level implements Serializable{
     {
         stream.defaultReadObject();
         updateImages();
+        
         
     }
     

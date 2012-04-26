@@ -52,6 +52,7 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         packagesToSearch.add("enemies.movement");
         packagesToSearch.add("attributes");
         attributePanel = new AttributeSelectionPanel(packagesToSearch, e.getAttributes(), dialogueController);
+        panel.add(attributePanel);
                
         JLabel label1 = new JLabel("Enemy Name:");
         
@@ -82,7 +83,6 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
-        panel.add(attributePanel);
 
         return panel;
 

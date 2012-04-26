@@ -47,6 +47,7 @@ public class EditEnemyDialogue extends DialogueBox {
         packagesToSearch.add("attributes");
         attributePanel = new AttributeSelectionPanel(packagesToSearch,
                 mySprite.getAttributes(), dialogueController);
+        panel.add(attributePanel);
 
         JLabel label1 = new JLabel("Enemy Name:");
         panel.add(label1);
@@ -74,7 +75,6 @@ public class EditEnemyDialogue extends DialogueBox {
         JButton goButton = new JButton(buttonPhrase);
         goButton.addActionListener(new GoAction());
         panel.add(goButton);
-        panel.add(attributePanel);
 
         return panel;
     }

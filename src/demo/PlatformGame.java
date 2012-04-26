@@ -12,7 +12,7 @@ import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;   
 
 import attributes.Attribute;
-import attributes.fighterattributes.Input;
+import attributes.interfaces.Input;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.PlayField;
@@ -40,19 +40,11 @@ public abstract  class PlatformGame extends Game {
     public void loadLevel(String filename)
     {
         myFighter = Fighter.getInstance();
-        
+        System.out.println(myFighter);
         if(myFighter != null)
         {
-            myFighter.setUserInput(bsInput);
-            
-            for (Attribute ability: myFighter.getAttributes()) {
-            	Class[] attributeInterfaces = ability.getClass().getInterfaces();
-            	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {
-            		Input inputAttribute = (Input) ability;
-            		inputAttribute.setUserInput(bsInput);
-            	}
-            }
-            	
+
+            myFighter.setUserInput(bsInput);        	
             myPlayfield.add(myFighter);
         }
         LevelLoader loader = new LevelLoader();
@@ -87,10 +79,9 @@ public abstract  class PlatformGame extends Game {
     public Fighter getFighter() {
     	return myFighter;
     }
-    
 
-    public void setSidescroller(Sidescroller newScroll) {
-        mySidescroller = newScroll;
+    public void setSidescroller(Sidescroller scroller) {
+        mySidescroller = scroller;
     }
-
+    
 }

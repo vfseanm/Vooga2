@@ -74,7 +74,6 @@ public abstract class DialogueBox extends JPanel {
         try {
             myImagePaths.add(file.getCanonicalPath());
         } catch (IOException e1) {
-            e1.printStackTrace();
         }
 
     }

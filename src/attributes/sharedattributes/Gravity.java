@@ -1,7 +1,9 @@
-package attributes;
+package attributes.sharedattributes;
 
 
-import attributes.fighterattributes.Movement;
+import attributes.Attribute;
+import attributes.interfaces.Movement;
+import attributes.interfaces.Updateable;
 
 import com.google.gson.Gson;
 
