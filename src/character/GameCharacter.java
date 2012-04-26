@@ -3,6 +3,7 @@ package character;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import bonusobjects.BonusObject;
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 import attributes.Updateable;
+import attributes.fighterattributes.Input;
 
 @SuppressWarnings("serial")
 public abstract class GameCharacter extends AnimatedGameSprite {
@@ -142,11 +144,10 @@ public abstract class GameCharacter extends AnimatedGameSprite {
 	
 	public void invertAttribute(String name) {
 		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equalsIgnoreCase(name)
-					&& attribute.getClass().getInterfaces()[0]
-							.equals(Updateable.class)) {
-				((Updateable) attribute).invert();
-			}
+			Class[] attributeInterfaces = attribute.getClass().getInterfaces();
+        	if (Arrays.asList(attributeInterfaces).contains(Updateable.class)) {
+        		((Updateable) attribute).invert();
+        	}
 		}
 	}
 
