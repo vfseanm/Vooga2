@@ -31,8 +31,8 @@ public class FighterDialogueBox extends DialogueBox {
             IOException {
 
         ArrayList<String> packagesToSearch = new ArrayList<String>();
-        packagesToSearch.add("attributes");
-        packagesToSearch.add("fighter.movement");
+        packagesToSearch.add("attributes.fighterattributes");
+        packagesToSearch.add("attributes.sharedattributes");
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
