@@ -51,7 +51,7 @@ public abstract class Attribute implements Serializable, Cloneable
     }
     
 
-
+    //WHAT happened
     public Attribute (Object...o)
     {
         isActive=true;
@@ -63,10 +63,11 @@ public abstract class Attribute implements Serializable, Cloneable
            
             try
             {
+            	
                 for(Constructor constructor: c)
                 {
-                    if(constructor.isAccessible())
-                        myOriginal =  constructor.newInstance(o);
+                    if(constructor.getParameterTypes().length==o.length);
+                    myOriginal =  c[0].newInstance(o);
                 }
             }
             catch (IllegalArgumentException e)
@@ -87,6 +88,8 @@ public abstract class Attribute implements Serializable, Cloneable
             catch (InvocationTargetException e)
             {
                 // TODO Auto-generated catch block
+            	
+            	System.out.println("hello");
                 e.printStackTrace();
             }
             

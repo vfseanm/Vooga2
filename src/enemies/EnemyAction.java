@@ -15,7 +15,7 @@ import com.golden.gamedev.object.collision.CollisionGroup;
 
 public class EnemyAction implements CollisionAction {
 	Enemy sprite;
-		
+
 
 	public void enemyStandOnTop (CollisionContext ccntext, CollisionSpec cspec){ 	
 		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
@@ -25,18 +25,18 @@ public class EnemyAction implements CollisionAction {
 		else if ((ccntext.getSide()!=CollisionGroup.TOP_BOTTOM_COLLISION) && (ccntext.getSide()!=CollisionGroup.BOTTOM_TOP_COLLISION)){
 			(sprite).invertAttribute("OneDirectionMovement");
 		}
-	
+
 		else if(ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
 			sprite.allowAttribute("JumpingMovement", false);
 		}
 	}
-	
+
 	public void instantEnemyDeath (CollisionContext ccntext, CollisionSpec cspec){
 		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
 			sprite.setLocation(-10000, -1000);
 		}
 	}
-	
+
 	public void enemyLoseLife (CollisionContext ccntext, CollisionSpec cspec){
 		//Make sure the collision only happens once
 		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
@@ -49,7 +49,7 @@ public class EnemyAction implements CollisionAction {
 			}
 		}
 	}
-	
+
 	public void attack (CollisionContext ccntext, CollisionSpec cspec){
 		if ((ccntext.getSide() == CollisionGroup.LEFT_RIGHT_COLLISION) || (ccntext.getSide() == CollisionGroup.RIGHT_LEFT_COLLISION)){
 			sprite.attack(2);
