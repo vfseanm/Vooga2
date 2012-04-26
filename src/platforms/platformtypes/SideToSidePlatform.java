@@ -1,5 +1,8 @@
 package platforms.platformtypes;
 
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
+
 
 
 
@@ -11,7 +14,7 @@ package platforms.platformtypes;
  * 
  * @author yankeenjg
  */
-public class SideToSidePlatform extends DecoratedPlatform {
+public class SideToSidePlatform extends DecoratedPlatform implements JsonableSprite{
 
 	private static final long serialVersionUID = -1092406048949643816L;
 
@@ -79,6 +82,12 @@ public class SideToSidePlatform extends DecoratedPlatform {
 	   public PlatformState nextState() {
 		   return myNextState;
 	   }*/
+	   
+       private SideToSidePlatform(){};
+       public static SpriteFactory<SideToSidePlatform> getFactory()
+       {
+           return new SpriteFactory<SideToSidePlatform>(new SideToSidePlatform());
+       }
 
 
 }

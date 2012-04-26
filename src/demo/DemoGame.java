@@ -1,29 +1,17 @@
 package demo;
 
-import java.awt.Color;
-
-
-
 import java.awt.Graphics2D;
-
-import com.golden.gamedev.object.PlayField;
-import com.golden.gamedev.object.SpriteGroup;
-
-import fighter.Fighter;
-import fighter.movement.BasicMovement;
-import fighter.movement.Jump;
 
 import sprite.AnimatedGameSprite;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import platforms.*;
 import sidescrolling.*;
-import sidescrolling.border.*;
+import sidescrolling.shift.ShiftLeftSidescroller;
+import sidescrolling.shift.ShiftRightSidescroller;
+import sidescrolling.special.SidescrollerSwitch;
 import platforms.fsmframework.AbstractEvent;
 import platforms.fsmframework.AbstractPlatformState;
 import platforms.fsmframework.Context;
@@ -32,29 +20,14 @@ import platforms.fsmframework.SwitchEvent;
 import platforms.fsmframework.SwitchOff;
 import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
-import attributes.*;
 import collisions.CollisionSpec;
 import collisions.GameCollisionManager;
-import com.golden.gamedev.Game;
-import com.golden.gamedev.object.*;
-import com.golden.gamedev.object.background.ImageBackground;
-
-import enemies.Enemy;
-import enemies.EnemyAction;
-import enemies.movement.JumpingMovement;
-import enemies.movement.OneDirectionMovement;
 
 public class DemoGame extends PlatformGame {
-	private Enemy bob;
-	private int counter;
-	private SimplePlatform p;
-	private SimplePlatform p1, p2;
+    private SidescrollerSwitch scrollerSwitch;
 
 	private GameCollisionManager gc;
-	private ArrayList<AnimatedGameSprite> list;
-	// private PlayField myPlayField;
-	private SpriteGroup allSprites;
-	
+	// private PlayField myPlayField;	
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
@@ -66,27 +39,41 @@ public class DemoGame extends PlatformGame {
 	    loadLevel("level2");
         for(AnimatedGameSprite s: mySprites)
         {
-            System.out.println(s.getGroup());
+            System.out.print(s.getGroup() + " ");
+            System.out.println(s.getX() + "   " + s.getY());
         }
 
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
-		CollisionSpec spec = new CollisionSpec ();
-		spec.addActMap("enemy", "standOnTop");
-		spec.addActMap("platform", "");
+		CollisionSpec spec = new CollisionSpec();
+		spec.addActMap("ENEMY", "standOnTop");
+		spec.addActMap("PLATFORM", "");
+		specList.add(spec);
 		
-        
-        specList.add(spec);        
-        //spec.addClass("enemy", EnemyAction.class);
-        //spec.addClass("platform", AbstractPlatform.class);
+		CollisionSpec spec2 = new CollisionSpec();
+		spec2.addActMap("FIGHTER", "fighterStandOnTop");
+		spec2.addActMap("PLATFORM", "");
+		specList.add(spec2);
        
-        
-        
         //FSM stuff
         initPlatformFSM();
-        CollisionSpec spec2 = new CollisionSpec();
-        spec2.addActMap(mySwitch.getGroup(), "switchPlatform");
-        spec2.addActMap("Fighter", "");
-        specList.add(spec2);
+        CollisionSpec spec3 = new CollisionSpec();
+        spec3.addActMap(mySwitch.getGroup(), "switchPlatform");
+        spec3.addActMap("FIGHTER", "");
+        specList.add(spec3);
+        
+        //make sidescroller switch
+        ArrayList<String> switchImage = new ArrayList<String>();
+        String switchName = "Resources/Bowser.jpg";
+        switchImage.add(switchName);
+        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller(mySprites)));
+        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
+        
+        //Special sidescroller-switch collision stuff
+        specList = new ArrayList<CollisionSpec>();
+        CollisionSpec spec4 = new CollisionSpec();
+        spec4.addActMap(scrollerSwitch.getGroup(), "switchSidescroller");
+        spec4.addActMap(getFighter().getGroup(), "");
+        specList.add(spec4);
         
         gc = new GameCollisionManager(specList);
         

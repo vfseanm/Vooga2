@@ -1,7 +1,7 @@
 package enemies.movement;
 
 import attributes.Attribute;
-import attributes.Updateable;
+import attributes.interfaces.Updateable;
 
 
 @SuppressWarnings("serial")

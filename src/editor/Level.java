@@ -100,7 +100,6 @@ public class Level implements Serializable{
         if (mySidescroller ==null)
         {
             mySidescroller = new ConcreteSidescroller();
-            mySidescroller = new ForcedLeftSidescroller(mySidescroller);
         }
             
         return mySidescroller;
@@ -252,7 +251,7 @@ public class Level implements Serializable{
         String fighterJson = myList.get(1);
         if(!fighterJson.equals(""))
         {
-           level.setFighter(Fighter.fromJson(fighterJson));
+           level.setFighter((Fighter) Fighter.getFactory().parseFromJson(fighterJson));
            
         }
        

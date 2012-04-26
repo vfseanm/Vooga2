@@ -18,7 +18,6 @@ import editor.ReflectionUtil;
 
 import editor.input.inputTypes.InputType;
 import editor.json.JsonUtil;
-import editor.json.Jsonable;
 import enemies.Enemy;
 
 

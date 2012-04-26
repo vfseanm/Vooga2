@@ -1,10 +1,10 @@
 package weapons;
 
-import character.GameCharacter;
+import character.AttributeUser;
 
 
 public interface Weapon
 {
-	public void use(GameCharacter character);
+	public void use(AttributeUser character);
 	public void invert();
 }

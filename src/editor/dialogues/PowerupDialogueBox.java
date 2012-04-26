@@ -7,7 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
 
-import bonusobjects.PowerUp;
+import bonusobjects.BonusObject;
 import editor.EditorController;
 import editor.Framework;
 import attributes.Attribute;
@@ -83,13 +83,13 @@ public class PowerupDialogueBox extends DialogueBox {
         return panel;
     }
 
-    public Framework getFramework() throws RuntimeException{
+    
+    public Framework getFramework() throws RuntimeException {
         if(myImagePaths==null)
         {
             throw new RuntimeException();
         }
-        
-        PowerUp prototype = new PowerUp(0, 0, myImagePaths);
+        BonusObject prototype = new BonusObject(0, 0, myImagePaths);
         for (Attribute attribute : powerupAttributePanel
                 .getSelectedAttributes()) {
             prototype.addAttribute(attribute);

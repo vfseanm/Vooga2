@@ -1,24 +1,36 @@
-package fighter.movement;
+package attributes.fighterattributes;
 
-import character.GameCharacter;
+import character.AttributeUser;
 
 import com.golden.gamedev.engine.BaseInput;
 
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
+import editor.json.JsonableAttribute;
 
 import java.awt.event.KeyEvent;
 import attributes.*;
+import attributes.interfaces.Input;
+import attributes.interfaces.Movement;
+import attributes.interfaces.Updateable;
+
+/**
+ * This Attribute allows basic movement (right/left) by the parameterized distance
+ * myHorizMovement. The GameCharacter that has the attribute will move based on user 
+ * input, which must be set after the Attribute is constructed.
+ *  
+ * @author Tori
+ */
 
 @SuppressWarnings("serial")
-public class BasicMovement extends Attribute implements Updateable, Movement, Input {
+public class FighterBasicMovement extends Attribute implements Updateable, Movement, Input, JsonableAttribute {
 
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
 	public boolean		facingRight;
-	public boolean 		facingLeft;
 	
 	@editorConstructor(parameterNames = { "horizontal movement" })
-	public BasicMovement(double horizMove) {
+	public FighterBasicMovement(double horizMove) {
 	    super(horizMove);
 		 if (horizMove < 0) 
 	        	throw new RuntimeException("You must enter a positive number for the horizontal movement");
@@ -37,13 +49,11 @@ public class BasicMovement extends Attribute implements Updateable, Movement, In
 			if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) {
 				myGameCharacter.moveX(-myHorizMovement);
 				facingRight = false;
-				facingLeft = true;
 			}
 
 			if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) {
 				myGameCharacter.moveX(myHorizMovement);
 				facingRight = true;
-				facingLeft = false;
 			}
 		}
 	}
@@ -56,7 +66,7 @@ public class BasicMovement extends Attribute implements Updateable, Movement, In
 	
 	public Object clone()
 	{
-	    return new BasicMovement(myHorizMovement);
+	    return new FighterBasicMovement(myHorizMovement);
 	}
 
 	
@@ -73,15 +83,13 @@ public class BasicMovement extends Attribute implements Updateable, Movement, In
 	 * Method for getting the direction the GameCharacter is facing to enable                           
 	 * shooting in proper direction
 	 *         
-	 * @return array with [0] = whether the GameCharacter is facing left (true/false)
-	 * 					  [1] = whether the GameCharacter is facing right (true/false)
+	 * @return boolean = whether the GameCharacter is facing right (true/false)
 	 */
-	public boolean[] getDirection() {
-		boolean[] directions = {facingLeft, facingRight};
-		return directions;
+	public boolean getWhetherFacingRight() {
+		return facingRight;
 	}
 	
-	public void setGameCharacter(GameCharacter gameCharacter) {
+	public void setGameCharacter(AttributeUser gameCharacter) {
 		myGameCharacter = gameCharacter;
 	}
 
@@ -92,14 +100,21 @@ public class BasicMovement extends Attribute implements Updateable, Movement, In
 	
     public String toJson()
     {
-        return myHorizMovement+"";
+        return myHorizMovement + "";
     }
     
-   public static BasicMovement fromJson(String json)
+   public  FighterBasicMovement fromJson(String json)
     {
 
         double movement = Double.parseDouble(json);
-        return new BasicMovement(movement);
+        return new FighterBasicMovement(movement);
     }
-
+   
+   
+   private FighterBasicMovement(){};
+   
+   public static AttributeFactory<FighterBasicMovement> getFactory()
+   {
+       return new AttributeFactory<FighterBasicMovement>(new FighterBasicMovement());
+   }
 }

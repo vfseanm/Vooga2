@@ -1,4 +1,4 @@
-package fighter.movement;
+package attributes.fighterattributes;
 
 import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
@@ -10,11 +10,15 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import editor.editorConstructor;
+import editor.json.AttributeFactory;
+import editor.json.JsonableAttribute;
 import attributes.Attribute;
-import attributes.Updateable;
+import attributes.interfaces.Input;
+import attributes.interfaces.Movement;
+import attributes.interfaces.Updateable;
 
 @SuppressWarnings("serial")
-public class Jump extends Attribute implements Updateable, Movement, Input
+public class FighterJump extends Attribute implements Updateable, Movement, Input, JsonableAttribute
 {
 	private BaseInput 		myUserInput;
     private double 			myJumpHeight;
@@ -24,7 +28,7 @@ public class Jump extends Attribute implements Updateable, Movement, Input
 
 
     @editorConstructor(parameterNames = { "jump height", "time" })
-    public Jump (double jumpHeight, double delay)
+    public FighterJump (double jumpHeight, double delay)
     {
         super(jumpHeight, delay);
         if (jumpHeight < 0) 
@@ -43,22 +47,22 @@ public class Jump extends Attribute implements Updateable, Movement, Input
     }
     
     
-    public void setActivity(boolean active){
-    	if (!active) {
-    		myGameCharacter.allowAttribute("Gravity", true);
-    	}
-    	else {
-    		myGameCharacter.allowAttribute("Gravity", false);
-    	}
-    	isActive = active;
-    }
+//    public void setActivity(boolean active){
+//    	if (!active) {
+//    		myGameCharacter.allowAttribute("Gravity", true);
+//    	}
+//    	else {
+//    		myGameCharacter.allowAttribute("Gravity", false);
+//    	}
+//    	isActive = active;
+//    }
 
     
     public void update (long elapsedTime)
     {  	
         if (isActive)
         {
-        	if (myUserInput.isKeyPressed(KeyEvent.VK_UP)) 
+        	if (myUserInput.isKeyPressed(KeyEvent.VK_SPACE)) 
     		{
     		    isJumping = true;
     		    myGameCharacter.allowAttribute("Gravity", false);
@@ -84,7 +88,7 @@ public class Jump extends Attribute implements Updateable, Movement, Input
 
 	@Override
 	public Object clone() {
-		return new Jump(myJumpHeight, myTime);
+		return new FighterJump(myJumpHeight, myTime);
 	}
 	
 	
@@ -121,16 +125,22 @@ public class Jump extends Attribute implements Updateable, Movement, Input
         return gson.toJson(argList);
     }
     
-    public static Jump fromJson(String json)
+    public FighterJump fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<Double>>(){}.getType();
         List<Double> argList = gson.fromJson(json, collectionType);
-        return new Jump(argList.get(0), argList.get(1));
+        return new FighterJump(argList.get(0), argList.get(1));
     }
 
 
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
 	}
+	
+	   private FighterJump(){};
+	   public static AttributeFactory<FighterJump> getFactory()
+	   {
+	       return new AttributeFactory<FighterJump>(new FighterJump());
+	   }
 }

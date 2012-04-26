@@ -11,6 +11,8 @@ import sidescrolling.*;
 import sprite.AnimatedGameSprite;
 
 import attributes.*;
+import attributes.sharedattributes.Gravity;
+import attributes.sharedattributes.Hitpoints;
 import bonusobjects.BonusObject;
 import collisions.CollisionSpec;
 import collisions.GameCollisionManager;

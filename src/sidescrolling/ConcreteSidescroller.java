@@ -28,6 +28,12 @@ public class ConcreteSidescroller extends Sidescroller  {
         myGameWidth = Integer.parseInt(mySidescrollerResources.getString("gameWidth"));
         myGameHeight = Integer.parseInt(mySidescrollerResources.getString("gameHeight"));
     }
+    
+    public ConcreteSidescroller(ArrayList<AnimatedGameSprite> sprites) {
+        myGameWidth = Integer.parseInt(mySidescrollerResources.getString("gameWidth"));
+        myGameHeight = Integer.parseInt(mySidescrollerResources.getString("gameHeight"));
+        mySprites = sprites;
+    }
 
     /**
      * Does nothing.

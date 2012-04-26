@@ -1,13 +1,15 @@
-package attributes;
-import editor.Framework;
+package attributes.enemyattributes;
+import attributes.Attribute;
+import attributes.interfaces.Updateable;
 import editor.editorConstructor;
-import editor.json.Jsonable;
+import editor.json.AttributeFactory;
+import editor.json.JsonableAttribute;
 
 
 
 // knows gravity too well?
 @SuppressWarnings("serial")
-public class Flying extends Attribute implements Updateable, Jsonable
+public class Flying extends Attribute implements Updateable, JsonableAttribute
 {
 
     
@@ -60,16 +62,18 @@ public class Flying extends Attribute implements Updateable, Jsonable
         return new Flying();
     }
     
-    public static Flying fromJson(String json) 
+    public Flying fromJson(String json) 
     {
         return new Flying();
     }
     
-/*    public static ObjectFromJsonFactory getFactory()
+    
+    public static AttributeFactory<Flying> getFactory()
     {
-        return new ObjectFromJsonFactory(new Flying());
+        return new AttributeFactory<Flying>(new Flying());
     }
-   */
+    
+
 
 
 }

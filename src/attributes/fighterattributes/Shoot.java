@@ -1,6 +1,9 @@
-package attributes;
+package attributes.fighterattributes;
 
 import java.awt.event.KeyEvent;
+
+import attributes.Attribute;
+import attributes.interfaces.Updateable;
 
 import editor.json.Jsonable;
 

@@ -3,9 +3,11 @@ package fighter;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import collisions.CollisionAction;
 
@@ -13,22 +15,51 @@ import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import character.GameCharacter;
-import editor.ReflectionUtil;
-import editor.json.JsonUtil;
-import editor.json.Jsonable;
+import character.AttributeUser;
+import editor.json.AttributeFactory;
+import editor.json.JsonableSprite;
+import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
-import fighter.movement.Input;
-import fighter.movement.Movement;
 import attributes.Attribute;
+import attributes.enemyattributes.Flying;
+import attributes.fighterattributes.FighterBasicMovement;
+import attributes.fighterattributes.FighterFly;
+import attributes.fighterattributes.FighterJump;
+import attributes.fighterattributes.PointValue;
+import attributes.interfaces.Input;
+import attributes.interfaces.Movement;
+import attributes.sharedattributes.Gravity;
+import attributes.sharedattributes.Hitpoints;
+import attributes.sharedattributes.NumberOfLives;
+import attributes.sharedattributes.Visibility;
 
 
 @SuppressWarnings("serial")
-public class Fighter extends GameCharacter implements Jsonable {
+public class Fighter extends AttributeUser implements JsonableSprite  {
+	
+	transient protected ResourceBundle myGameKeys = ResourceBundle
+    .getBundle("demo.GameKeysResourceBundle");
 
     private List<Attribute> myCarryableAttributes;
+    private List<Attribute> myDuplicateAttributes;
     private BaseInput myUserInput;
     private static Fighter myself;
+    private static List<AttributeFactory> myAttributeFactories;
+    
+    static
+    {
+        myAttributeFactories = new ArrayList<AttributeFactory>();
+        myAttributeFactories.add(FighterBasicMovement.getFactory());
+        myAttributeFactories.add(FighterFly.getFactory());
+        myAttributeFactories.add(FighterJump.getFactory());
+        myAttributeFactories.add(Flying.getFactory());
+        myAttributeFactories.add(Gravity.getFactory());
+        myAttributeFactories.add(Hitpoints.getFactory());
+        myAttributeFactories.add(NumberOfLives.getFactory());
+        myAttributeFactories.add(NumberOfLives.getFactory());
+        myAttributeFactories.add(PointValue.getFactory());
+        myAttributeFactories.add(Visibility.getFactory());  
+    }
 
     // public void render(Graphics2D pen){
     // myself.render(pen);
@@ -40,21 +71,23 @@ public class Fighter extends GameCharacter implements Jsonable {
     // myCarryableAttributes = new ArrayList<Attribute>();
     // setGroup("FIGHTER");
     // }
+    
     private Fighter()
     {
         super();
+        setGroup("FIGHTER");
     };
 
     public static Fighter getInstance()
     {
-
+        
         if (myself == null)
         {
             myself = new Fighter();
             myself.myAttributes = new ArrayList<Attribute>();
             myself.myCarryableAttributes = new ArrayList<Attribute>();
+            myself.myDuplicateAttributes = new ArrayList<Attribute>();
         }
-
         return myself;
     }
 
@@ -62,7 +95,7 @@ public class Fighter extends GameCharacter implements Jsonable {
     {
         performAttributeActions(elapsedTime);
 
-        if (myUserInput.isKeyDown(KeyEvent.VK_C))
+        if (myUserInput.isKeyPressed(KeyEvent.VK_C))
         {
             // POP UP DIALOG ALLOWING YOU TO CHOOSE CARRYABLE OBJECT? CAN WE
             // ACTUALLY PAUSE THE GAME?
@@ -70,6 +103,8 @@ public class Fighter extends GameCharacter implements Jsonable {
             // LIST? MAX = 6?
         }
     }
+    
+    
 
     /**
      * Adds Attributes, removing older, duplicate versions; also sets user input
@@ -83,26 +118,21 @@ public class Fighter extends GameCharacter implements Jsonable {
             myAttributes.remove(currentVersion);
         }
         super.addAttribute(toAdd);
-        if (toAdd.getClass().getInterfaces().length >= 3)
-        {
-            if (toAdd.getClass().getInterfaces()[2].equals(Input.class))
-                ((Input) toAdd).setUserInput(myUserInput);
-        }
+        
+        Class[] attributeInterfaces = toAdd.getClass().getInterfaces();
+    	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {
+    		Input inputAttribute = (Input) toAdd;
+    		inputAttribute.setUserInput(myUserInput);
+    	}
     }
+    
 
     public void addCarryableAttributes(List<Attribute> carryables)
     {
         myCarryableAttributes.addAll(carryables);
-
-        // method for adding attributes to inventory of limited length =
-        // myMaxNumCarryables
-        /*
-         * for (int i = myCarryableAttributes.size(); i < myMaxNumCarryables;
-         * i++) { myCarryableAttributes.add(i,
-         * carryables.get(i-myCarryableAttributes.size())); }
-         */
     }
 
+    
     public void useCarryableAttribute(int indexCarryableAttribute)
     {
         try
@@ -147,6 +177,14 @@ public class Fighter extends GameCharacter implements Jsonable {
 	
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
+	
+		for (Attribute ability: getAttributes()) {
+        	Class[] attributeInterfaces = ability.getClass().getInterfaces();
+        	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {
+        		Input inputAttribute = (Input) ability;
+        		inputAttribute.setUserInput(userInput);
+        	}
+        }
 	}
 	
 	public BaseInput getUserInput() {
@@ -184,7 +222,7 @@ public class Fighter extends GameCharacter implements Jsonable {
         return gson.toJson(new SpriteJsonData(this, additionalInformation));
     }
 
-    public static Fighter fromJson(String json)
+    public  Fighter fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>() {
@@ -202,17 +240,31 @@ public class Fighter extends GameCharacter implements Jsonable {
         for (String attributeClassName : attributeMap.keySet())
         {
 
-            sprite.addAttribute((Attribute) JsonUtil.getObjectFromJson(
+            for(AttributeFactory factory: myAttributeFactories)
+            {
+                if(factory.isThisKindOfAttribute(attributeClassName))
+                {
+                    sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                }
+            }
+            /*sprite.addAttribute((Attribute) JsonUtil.getObjectFromJson(
                     attributeClassName, attributeMap.get(attributeClassName)));
-
+*/
         }
         List<Attribute> carryableAttributes = new ArrayList<Attribute>();
         Map<String, String> carryableAttributeMap = gson.fromJson(
                 paramList.get(1), collectionType2);
         for (String attributeClassName : carryableAttributeMap.keySet())
         {
-            carryableAttributes.add((Attribute) JsonUtil.getObjectFromJson(
-                    attributeClassName, attributeMap.get(attributeClassName)));
+            for(AttributeFactory factory: myAttributeFactories)
+            {
+                if(factory.isThisKindOfAttribute(attributeClassName))
+                {
+                    carryableAttributes.add(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                }
+            }
+            /*carryableAttributes.add((Attribute) JsonUtil.getObjectFromJson(
+                    attributeClassName, attributeMap.get(attributeClassName)));*/
 
         }
         sprite.addCarryableAttributes(carryableAttributes);
@@ -220,10 +272,9 @@ public class Fighter extends GameCharacter implements Jsonable {
     }
     
     
-//    public static ObjectFromJsonFactory getFactory()
-//    {
-//        return new ObjectFromJsonFactory(new Fighter());
-//    }
-//   
+    public static SpriteFactory getFactory()
+    {
+        return new SpriteFactory(new Fighter());
+    }
 
 }
