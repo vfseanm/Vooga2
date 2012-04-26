@@ -41,9 +41,10 @@ public abstract  class PlatformGame extends Game {
     public void loadLevel(String filename)
     {
         myFighter = Fighter.getInstance();
-        
+        System.out.println(myFighter);
         if(myFighter != null)
         {
+
             myFighter.setUserInput(bsInput);        	
             myPlayfield.add(myFighter);
         }
@@ -83,4 +84,8 @@ public abstract  class PlatformGame extends Game {
     	return myFighter;
     }
 
+    public void setSidescroller(Sidescroller scroller) {
+        mySidescroller = scroller;
+    }
+    
 }
