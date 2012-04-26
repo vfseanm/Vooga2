@@ -1,7 +1,7 @@
 package demo;
 
 import java.awt.Graphics2D;
-
+import collisions.Collisions;
 import sprite.AnimatedGameSprite;
 
 import java.awt.event.KeyEvent;
@@ -25,6 +25,7 @@ import platforms.fsmframework.SwitchOff;
 import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
+import collisions.Collisions;
 import collisions.GameCollisionManager;
 import fighter.Fighter;
 
@@ -125,14 +126,14 @@ public class DemoGame extends PlatformGame {
 		mySwitch = new PlatformSwitch(75, 75, imNames2);
 		List<AbstractPlatform> plats = new ArrayList<AbstractPlatform>();
 		plats.add(sp);
-		List<AbstractPlatformState> transition = new ArrayList<AbstractPlatformState>();
+		/*List<AbstractPlatformState> transition = new ArrayList<AbstractPlatformState>();
 		transition.add(new SwitchOff(plats));
 		transition.add(new SwitchOn(plats));
 		SwitchEvent event = new SwitchEvent(mySwitch, transition, plats);
 		List<AbstractEvent> events = new ArrayList<AbstractEvent>();
 		events.add(event);
 		myContext = new Context(events, plats);
-		
+		*/
 	}
 
 	@Override
