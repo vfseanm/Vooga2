@@ -22,7 +22,7 @@ public class UpDownMovement extends TwoPartMovement implements JsonableAttribute
 {
 
     @editorConstructor(parameterNames = { "distance" , "duration"})
-    public UpDownMovement (int distance, int duration)
+    public UpDownMovement (double distance, int duration)
     {
         super(distance,duration);
         
@@ -68,7 +68,8 @@ public class UpDownMovement extends TwoPartMovement implements JsonableAttribute
     {
         return new UpDownMovement(myDistance, myPartDuration);
     }
-    
+ 
+    //TODO fix json problem
     public String toJson()
     {
         Gson gson = new Gson();

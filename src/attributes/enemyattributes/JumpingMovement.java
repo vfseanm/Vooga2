@@ -21,13 +21,13 @@ import attributes.interfaces.Updateable;
 @SuppressWarnings("serial")
 public class JumpingMovement extends Attribute implements Updateable, JsonableAttribute
 {
-    private int myDistance;
+    private double myDistance;
     private int myTime;
     private int time;
 
 
     @editorConstructor(parameterNames = { "distance", "time" })
-    public JumpingMovement (int distance, int delay)
+    public JumpingMovement (double distance, int delay)
     {
 
         super(distance, delay);
@@ -38,7 +38,7 @@ public class JumpingMovement extends Attribute implements Updateable, JsonableAt
         
     }
 
-    public void modifyJumpingMovement (int distance, int time)
+    public void modifyJumpingMovement (double distance, int time)
     {
         myDistance += distance;
         myTime += time;
@@ -70,7 +70,7 @@ public class JumpingMovement extends Attribute implements Updateable, JsonableAt
         time++;
 
     }
-    //Repeated Code Andrew Help
+    
     public void invert(){
         myDistance=-myDistance;
     }
@@ -93,7 +93,7 @@ public class JumpingMovement extends Attribute implements Updateable, JsonableAt
     {
         return new JumpingMovement(myDistance, myTime);
     }
-    
+    //TODO fix this Json problem
     public String toJson()
     {
         Gson gson = new Gson();
