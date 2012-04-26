@@ -52,10 +52,8 @@ public abstract class Attribute implements Serializable, Cloneable
     }
     
 
-    //WHAT happened
     public Attribute (Object...o)
     {
-        System.out.println(this);
         isActive=true;
         if (makeOriginal == true)
         {

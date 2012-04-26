@@ -2,6 +2,7 @@ package sidescrolling;
 
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import java.util.List;
 
@@ -26,6 +27,8 @@ import fighter.Fighter;
 @SuppressWarnings("serial")
 public abstract class DecoratedSidescroller extends Sidescroller  {
 
+    transient protected ResourceBundle myKeysResources = ResourceBundle
+            .getBundle("demo.GameKeysResourceBundle");
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
     private SingletonPlayField playfield;

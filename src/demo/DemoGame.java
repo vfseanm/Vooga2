@@ -22,6 +22,7 @@ import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
 import collisions.GameCollisionManager;
+import fighter.Fighter;
 
 public class DemoGame extends PlatformGame {
     private SidescrollerSwitch scrollerSwitch;
@@ -30,6 +31,7 @@ public class DemoGame extends PlatformGame {
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
+	private Fighter myFighter;
 
 	public DemoGame()
 	{
@@ -44,7 +46,7 @@ public class DemoGame extends PlatformGame {
 //            System.out.print(s.getGroup() + " ");
 //            System.out.println(s.getX() + "   " + s.getY());
 //        }
-
+	    myFighter.add
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec();
 		spec.addActMap("ENEMY", "standOnTop");

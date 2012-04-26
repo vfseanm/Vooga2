@@ -17,8 +17,8 @@ import fighter.Fighter;
 public abstract  class PlatformGame extends Game {
     
     
-    private Level myLevel;
-    private Fighter myFighter;
+    protected Level myLevel;
+    protected Fighter myFighter;
     //protected ImageBackground myBackground;
     protected SingletonPlayField myPlayfield;
     protected Sidescroller mySidescroller;
@@ -50,7 +50,7 @@ public abstract  class PlatformGame extends Game {
         
         
         mySidescroller = myLevel.getSidescroller();
-        
+        mySidescroller.setUserInput(bsInput);
     }
     
     public void update(long elapsedTime) {
