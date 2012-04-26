@@ -19,6 +19,11 @@ import character.AttributeUser;
 import attributes.*;
 import attributes.enemyattributes.Attack;
 import attributes.enemyattributes.Flying;
+import attributes.enemyattributes.JumpingMovement;
+import attributes.enemyattributes.OneDirectionMovement;
+import attributes.enemyattributes.PathFollowingMovement;
+import attributes.enemyattributes.SideToSideMovement;
+import attributes.enemyattributes.UpDownMovement;
 import attributes.interfaces.Updateable;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
@@ -26,11 +31,6 @@ import editor.json.AttributeFactory;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
-import enemies.movement.JumpingMovement;
-import enemies.movement.OneDirectionMovement;
-import enemies.movement.PathFollowingMovement;
-import enemies.movement.SideToSideMovement;
-import enemies.movement.UpDownMovement;
 import enemies.state.EnemyState;
 
 

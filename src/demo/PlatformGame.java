@@ -24,17 +24,16 @@ import fighter.Fighter;
 
 public abstract  class PlatformGame extends Game {
     
-    protected ArrayList<AnimatedGameSprite> mySprites;
+    
     private Level myLevel;
     private Fighter myFighter;
     //protected ImageBackground myBackground;
-    protected PlayField myPlayfield;
+    protected SingletonPlayField myPlayfield;
     protected Sidescroller mySidescroller;
     protected boolean	pause;
     
-    PlatformGame()
-    {
-        mySprites = new ArrayList<AnimatedGameSprite>();
+    public PlatformGame()
+    {  
         myPlayfield = SingletonPlayField.getInstance(); 
     }
     
@@ -51,18 +50,15 @@ public abstract  class PlatformGame extends Game {
         LevelLoader loader = new LevelLoader();
         myLevel = loader.readLevel(new File(filename));
 
-        mySprites = (ArrayList<AnimatedGameSprite>) myLevel.getSprites();
+        myPlayfield.setMySprites(  myLevel.getSprites());
         ImageBackground myBackground = myLevel.getBackground();
         
-        for(AnimatedGameSprite s: mySprites)
-        {
-            myPlayfield.add(s);
-        }
+        
         myPlayfield.setBackground(myBackground);
         
         
         mySidescroller = myLevel.getSidescroller();
-        mySidescroller.setSprites(mySprites);
+        
     }
     
     public void update(long elapsedTime) {

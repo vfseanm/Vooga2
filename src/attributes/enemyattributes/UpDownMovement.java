@@ -1,4 +1,4 @@
-package enemies.movement;
+package attributes.enemyattributes;
 
 import java.lang.reflect.Type;
 

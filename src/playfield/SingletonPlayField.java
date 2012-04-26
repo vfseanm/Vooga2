@@ -1,6 +1,7 @@
 package playfield;
 
 import java.util.ArrayList;
+import java.util.List;
 import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Sprite;
@@ -15,7 +16,7 @@ import fighter.Fighter;
  */
 public class SingletonPlayField extends PlayField
 {
-    private ArrayList<AnimatedGameSprite> mySprites;
+    private List<AnimatedGameSprite> mySprites;
 
 
     private SingletonPlayField ()
@@ -49,9 +50,18 @@ public class SingletonPlayField extends PlayField
     }
 
 
-    public ArrayList<AnimatedGameSprite> getMySprites ()
+    public List<AnimatedGameSprite> getMySprites ()
     {
         return mySprites;
     }
 
+
+    public void setMySprites (List<AnimatedGameSprite> list)
+    {
+        mySprites = list;
+        for (AnimatedGameSprite sprite : mySprites)
+        {
+            add(sprite);
+        }
+    }
 }

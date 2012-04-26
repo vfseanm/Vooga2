@@ -1,19 +1,18 @@
 package attributes.sharedattributes;
 
 import java.awt.image.BufferedImage;
-
 import attributes.Attribute;
-
+import character.AttributeUser;
 import com.google.gson.Gson;
-
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
 
+
 /**
  * Experimenting with building a layer on top of the GTGE methods to consolidate
- * all functions into attributes
- * Here I'm thinking cloaked or ghosts
+ * all functions into attributes Here I'm thinking cloaked or ghosts
+ * 
  * @author Alex
  */
 @SuppressWarnings("serial")
@@ -22,25 +21,35 @@ public class Visibility extends Attribute implements JsonableAttribute
     private boolean isVisible;
     private BufferedImage[] myImage;
 
+
     @editorConstructor(parameterNames = { "visibility (ghosts)" })
     public Visibility (boolean visible)
     {
         super(visible);
         isVisible = visible;
-        myImage = myGameCharacter.getImages();
+
         checkAndSetVisibility();
     }
 
 
     private void checkAndSetVisibility ()
     {
-        if(!isVisible){
+        if (!isVisible)
+        {
             myGameCharacter.setImages(null);
         }
-        else{
+        else
+        {
             myGameCharacter.setImages(myImage);
         }
-        
+
+    }
+
+
+    public void setGameCharacter (AttributeUser character)
+    {
+        myGameCharacter = character;
+        myImage = myGameCharacter.getImages();
     }
 
 
@@ -56,37 +65,42 @@ public class Visibility extends Attribute implements JsonableAttribute
         isVisible = visible;
         checkAndSetVisibility();
     }
-    
-    public String toString(){
+
+
+    public String toString ()
+    {
         return "Attribute Visibility is currently" + isVisible;
     }
-    
-    public Object clone()
+
+
+    public Object clone ()
     {
         return new Visibility(isVisible);
     }
-    
-    public String toJson()
+
+
+    public String toJson ()
     {
         Gson gson = new Gson();
         return gson.toJson(isVisible);
     }
-    
-    public Visibility fromJson(String json)
+
+
+    public Visibility fromJson (String json)
     {
         Gson gson = new Gson();
         boolean visible = gson.fromJson(json, boolean.class);
         return new Visibility(visible);
     }
-    
-    private Visibility(){}
-    
-    public static AttributeFactory<Visibility> getFactory()
+
+
+    private Visibility ()
+    {}
+
+
+    public static AttributeFactory<Visibility> getFactory ()
     {
         return new AttributeFactory<Visibility>(new Visibility());
     }
-   
-
-   
 
 }
