@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
+
 import sidescrolling.*;
 import sidescrolling.shift.ShiftLeftSidescroller;
 import sidescrolling.shift.ShiftRightSidescroller;
@@ -40,6 +42,22 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	    loadLevel("level2");
+	    
+	    
+
+//        AdvanceCollisionGroup myCollisions = new Collisions();
+//        myCollisions.setCollisionGroup(arg0, arg1);
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 //        for(AnimatedGameSprite s: mySprites)
 //        {
 //            System.out.print(s.getGroup() + " ");
@@ -48,12 +66,13 @@ public class DemoGame extends PlatformGame {
 
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec();
-		spec.addActMap("ENEMY", "standOnTop");
-		spec.addActMap("PLATFORM", "");
-		specList.add(spec);
+//		spec.addActMap("ENEMY", "standOnTop");
+//		spec.addActMap("PLATFORM", "");
+//		specList.add(spec);
 		
 		CollisionSpec spec2 = new CollisionSpec();
 		spec2.addActMap("FIGHTER", "fighterStandOnTop");
+		spec2.addActMap("FIGHTER", "fighterHitObject");
 		spec2.addActMap("PLATFORM", "");
 		specList.add(spec2);
 		
@@ -124,9 +143,9 @@ public class DemoGame extends PlatformGame {
 	    
 	    myPlayfield.update(elapsedTime);
 	    ArrayList<AnimatedGameSprite> everything = new ArrayList<AnimatedGameSprite>();
+
+        everything.add(myFighter);
 	    everything.addAll(myPlayfield.getMySprites());
-	    everything.add(myFighter);
-	    System.out.println("fighter:" + myFighter);
 	    gc.detectCollision(everything);
 	    mySidescroller.update(elapsedTime);
 	    
