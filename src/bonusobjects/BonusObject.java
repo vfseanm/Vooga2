@@ -122,9 +122,7 @@ public class BonusObject extends AttributeUser implements JsonableSprite {
                     sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }
             }
-            /*            Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
-                    attributeClassName, attributeMap.get(attributeClassName));
-            sprite.addAttribute(attribute);*/
+            
         }
         Map<String, String> attributeToOfferMap = gson.fromJson(
                 paramList.get(1), collectionType2);
@@ -134,12 +132,10 @@ public class BonusObject extends AttributeUser implements JsonableSprite {
             {
                 if(factory.isThisKindOfAttribute(attributeClassName))
                 {
-                    sprite.addAttributeToOffer(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                    sprite.addAttributeToOffer(factory.parseFromJson(attributeToOfferMap.get(attributeClassName)));
                 }
             }
-            /*Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(
-                    attributeClassName, attributeMap.get(attributeClassName));
-            sprite.addAttributeToOffer(attribute);*/
+            
         }
         return sprite;
 
