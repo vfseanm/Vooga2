@@ -41,11 +41,10 @@ public abstract  class PlatformGame extends Game {
     public void loadLevel(String filename)
     {
         myFighter = Fighter.getInstance();
-        
+        System.out.println(myFighter);
         if(myFighter != null)
         {
             myFighter.setUserInput(bsInput);
-            
             for (Attribute ability: myFighter.getAttributes()) {
             	Class[] attributeInterfaces = ability.getClass().getInterfaces();
             	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {
