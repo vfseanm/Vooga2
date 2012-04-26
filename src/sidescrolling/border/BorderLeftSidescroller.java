@@ -1,7 +1,7 @@
 package sidescrolling.border;
 
-
 import sidescrolling.Sidescroller;
+
 import com.golden.gamedev.object.Sprite;
 
 /**

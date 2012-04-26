@@ -1,5 +1,7 @@
 package sidescrolling;
 
+import com.golden.gamedev.engine.BaseInput;
+
 /**
  * This is the most basic type of usable Sidescroller. Does not actually do any sidescrolling but allows
  * for other sidescrollers to access the fighter and the sprites that need to be moved. You must use
@@ -45,4 +47,7 @@ public class ConcreteSidescroller extends Sidescroller  {
         return myGameHeight;
     }
     
+    public void setUserInput(BaseInput userInput) {
+        return;
+    }
 }
