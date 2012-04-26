@@ -17,8 +17,8 @@ import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 
 import attributes.Gravity;
-import attributes.fighterattributes.BasicMovement;
-import attributes.fighterattributes.Jump;
+import attributes.fighterattributes.FighterBasicMovement;
+import attributes.fighterattributes.FighterJump;
 
 import collisions.CollisionSpec;
 import collisions.GameCollisionManager;
@@ -27,6 +27,10 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
 import fighter.*;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 91d7333d07f8958842fe6bf93ea5efdd9b1bcdad
 
 public class FighterTester extends Game{
 	
@@ -65,8 +69,8 @@ public class FighterTester extends Game{
         fighter.setAnimate(true);
         fighter.setLoopAnim(true);
         
-        fighter.addAttribute(new BasicMovement(6));
-        fighter.addAttribute(new Jump(1.5, 300));
+        fighter.addAttribute(new FighterBasicMovement(6));
+        fighter.addAttribute(new FighterJump(1.5, 300));
         Gravity g = new Gravity(1.0);
         g.setActivity(true);
         fighter.addAttribute(g);
