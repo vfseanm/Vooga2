@@ -36,17 +36,16 @@ public abstract  class PlatformGame extends Game {
     
     public void loadLevel(String filename)
     {
-        myFighter = Fighter.getInstance();
         
         LevelLoader loader = new LevelLoader();
         myLevel = loader.readLevel(new File(filename));
         myFighter = myLevel.getFighter();
         if(myFighter != null)
         {
-
             myFighter.setUserInput(bsInput);            
             myPlayfield.add(myFighter);
         }
+        System.out.println("fighter:" + myFighter);
         myPlayfield.setMySprites(myLevel.getSprites());
         ImageBackground myBackground = myLevel.getBackground();
         

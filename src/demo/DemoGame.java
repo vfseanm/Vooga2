@@ -31,7 +31,6 @@ public class DemoGame extends PlatformGame {
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
-	private Fighter myFighter;
 
 	public DemoGame()
 	{
@@ -127,6 +126,7 @@ public class DemoGame extends PlatformGame {
 	    ArrayList<AnimatedGameSprite> everything = new ArrayList<AnimatedGameSprite>();
 	    everything.addAll(myPlayfield.getMySprites());
 	    everything.add(myFighter);
+	    System.out.println("fighter:" + myFighter);
 	    gc.detectCollision(everything);
 	    mySidescroller.update(elapsedTime);
 	    
