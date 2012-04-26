@@ -107,8 +107,15 @@ public class CustomInputManager extends InputManager{
 
                     if (paramTypes[currentArgumentCounter].equals(int.class))
                     {
+                        try{
                         argList[currentArgumentCounter] = Integer.parseInt(selectedValue);
                         checkAndRun();
+                        }
+                        catch(NumberFormatException e){
+                            JOptionPane.showMessageDialog(null, "Bad input" );
+                            run();
+                            return;
+                        }
                     }
                     if (paramTypes[currentArgumentCounter].equals(String.class))
                     {
@@ -117,13 +124,29 @@ public class CustomInputManager extends InputManager{
                     }
                     if (paramTypes[currentArgumentCounter].equals(double.class))
                     {
-                        argList[currentArgumentCounter] = Double.parseDouble(selectedValue);
-                        checkAndRun();
+                        try{
+                            argList[currentArgumentCounter] = Double.parseDouble(selectedValue);
+                            checkAndRun();
+                            }
+                            catch(NumberFormatException e){
+                                JOptionPane.showMessageDialog(null, "Bad input" );
+                                run();
+                                return;
+                            }
                     }
                     if (paramTypes[currentArgumentCounter].toString().equals("boolean"))
                     {
-                        argList[currentArgumentCounter] = Boolean.parseBoolean(selectedValue);
-                        checkAndRun();
+                        if(!(selectedValue.equalsIgnoreCase("true") || selectedValue.equalsIgnoreCase("false")) )
+                        {
+                            JOptionPane.showMessageDialog(null, "Bad input" );
+                            run();
+                            return;
+                        }
+                        else{
+                            argList[currentArgumentCounter] = Boolean.parseBoolean(selectedValue);
+                            checkAndRun();
+                            
+                            }
                     }
                     }
                 
