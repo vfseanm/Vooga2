@@ -22,10 +22,10 @@ public class OneDirectionMovement extends Attribute implements Updateable, Jsona
     private double myDistance;
 
 
-    @editorConstructor(parameterNames = { "direction", "distance" })
-    public OneDirectionMovement (String direction, double distance)
+    @editorConstructor(parameterNames = { "distance", "direction" })
+    public OneDirectionMovement ( double distance, String direction)
     {
-        super(direction, distance);
+        super(distance, direction);
         myDirection = direction;
         myDistance = distance;
         isActive = false;
@@ -85,7 +85,7 @@ public class OneDirectionMovement extends Attribute implements Updateable, Jsona
     
     public Object clone()
     {
-        return new OneDirectionMovement(myDirection, myDistance);
+        return new OneDirectionMovement(myDistance, myDirection);
     }
     
     
@@ -104,7 +104,7 @@ public class OneDirectionMovement extends Attribute implements Updateable, Jsona
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>(){}.getType();
         List<String> argList = gson.fromJson(json, collectionType);
-        return new OneDirectionMovement(argList.get(0), Integer.parseInt((argList.get(1))));
+        return new OneDirectionMovement(Double.parseDouble((argList.get(1))), argList.get(0) );
     }
     
     private OneDirectionMovement(){}
