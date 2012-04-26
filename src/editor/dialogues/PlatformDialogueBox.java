@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
+
 import editor.EditorController;
 import editor.Framework;
 import editor.ReflectionUtil;
@@ -73,8 +74,11 @@ public class PlatformDialogueBox extends DialogueBox {
         return panel;
     }
 
-    public Framework getFramework() {
-
+    public Framework getFramework() throws RuntimeException {
+        if(myImagePaths==null)
+        {
+            throw new RuntimeException();
+        }
         AbstractPlatform prototype = new SimplePlatform(0, 0, myImagePaths);
         List<String> classNames = new ArrayList<String>();
         for (JCheckBox box : classMap.keySet()) {
@@ -95,9 +99,15 @@ public class PlatformDialogueBox extends DialogueBox {
     }
 
     protected void BoxCompletedAction() {
-        Framework framework = getFramework();
-        System.out.println("framework " + framework);
-        editorController.addFrameworkAndButton(myName.getText(), framework);
+        
+        try{
+            Framework framework = getFramework();
+            editorController.addFrameworkAndButton(myName.getText(), framework);
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "You must select an image" );
+                return;
+            }
         setVisible(false);
 
     }

@@ -77,9 +77,12 @@ public class EnemyDialogueBox extends DialogueBox {
         return panel;
     }
 
-    public Framework getFramework()
+    public Framework getFramework() throws RuntimeException
     {
-        
+        if(myImagePaths==null)
+        {
+            throw new RuntimeException();
+        }
         Enemy prototype = new Enemy(0,0, myImagePaths);
         ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
         for(Attribute a: attributes)
@@ -99,8 +102,14 @@ public class EnemyDialogueBox extends DialogueBox {
     }
 
     protected void BoxCompletedAction() {
+        try{
         Framework framework = getFramework();
         editorController.addFrameworkAndButton(myName.getText(), framework);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "You must select an image" );
+            return;
+        }
         setVisible(false);
         
     }

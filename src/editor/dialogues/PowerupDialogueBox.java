@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
+
 import bonusobjects.PowerUp;
 import editor.EditorController;
 import editor.Framework;
@@ -82,7 +83,12 @@ public class PowerupDialogueBox extends DialogueBox {
         return panel;
     }
 
-    public Framework getFramework() {
+    public Framework getFramework() throws RuntimeException{
+        if(myImagePaths==null)
+        {
+            throw new RuntimeException();
+        }
+        
         PowerUp prototype = new PowerUp(0, 0, myImagePaths);
         for (Attribute attribute : powerupAttributePanel
                 .getSelectedAttributes()) {
@@ -106,9 +112,15 @@ public class PowerupDialogueBox extends DialogueBox {
 
     @Override
     protected void BoxCompletedAction() {
-        Framework framework = getFramework();
-        editorController.addFrameworkAndButton(myName.getText(), framework);
-        setVisible(false);
+        try{
+            Framework framework = getFramework();
+            editorController.addFrameworkAndButton(myName.getText(), framework);
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "You must select an image" );
+                return;
+            }
+            setVisible(false);
 
     }
 
