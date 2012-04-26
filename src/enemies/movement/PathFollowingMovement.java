@@ -2,12 +2,9 @@ package enemies.movement;
 
 import java.awt.Point;
 
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
-
-import bonusobjects.BonusObject;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -15,7 +12,6 @@ import editor.editorConstructor;
 import editor.input.inputTypes.Line;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
-import editor.json.SpriteFactory;
 import attributes.Attribute;
 import attributes.Updateable;
 
