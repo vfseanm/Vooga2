@@ -90,7 +90,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
     {
         performAttributeActions(elapsedTime);
 
-        if (myUserInput.isKeyDown(KeyEvent.VK_C))
+        if (myUserInput.isKeyPressed(KeyEvent.VK_C))
         {
             // POP UP DIALOG ALLOWING YOU TO CHOOSE CARRYABLE OBJECT? CAN WE
             // ACTUALLY PAUSE THE GAME?
