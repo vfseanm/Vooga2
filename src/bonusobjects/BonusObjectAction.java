@@ -11,4 +11,11 @@ public class BonusObjectAction implements CollisionAction{
 		this.sprite = (BonusObject) sprite;
 	}
 
+	public void addAttribute() {
+		
+	}
+	
+	public void addCarryableAttribute() {
+		
+	}
 }

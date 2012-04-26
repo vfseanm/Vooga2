@@ -26,6 +26,7 @@ import attributes.Attribute;
 public class Fighter extends GameCharacter implements Jsonable {
 
     private List<Attribute> myCarryableAttributes;
+    private List<Attribute> myDuplicateAttributes;
     private BaseInput myUserInput;
     private static Fighter myself;
 
@@ -39,6 +40,7 @@ public class Fighter extends GameCharacter implements Jsonable {
     // myCarryableAttributes = new ArrayList<Attribute>();
     // setGroup("FIGHTER");
     // }
+    
     private Fighter()
     {
         super();
@@ -52,8 +54,8 @@ public class Fighter extends GameCharacter implements Jsonable {
             myself = new Fighter();
             myself.myAttributes = new ArrayList<Attribute>();
             myself.myCarryableAttributes = new ArrayList<Attribute>();
+            myself.myDuplicateAttributes = new ArrayList<Attribute>();
         }
-
         return myself;
     }
 
@@ -69,6 +71,8 @@ public class Fighter extends GameCharacter implements Jsonable {
             // LIST? MAX = 6?
         }
     }
+    
+    
 
     /**
      * Adds Attributes, removing older, duplicate versions; also sets user input
@@ -88,20 +92,14 @@ public class Fighter extends GameCharacter implements Jsonable {
                 ((Input) toAdd).setUserInput(myUserInput);
         }
     }
+    
 
     public void addCarryableAttributes(List<Attribute> carryables)
     {
         myCarryableAttributes.addAll(carryables);
-
-        // method for adding attributes to inventory of limited length =
-        // myMaxNumCarryables
-        /*
-         * for (int i = myCarryableAttributes.size(); i < myMaxNumCarryables;
-         * i++) { myCarryableAttributes.add(i,
-         * carryables.get(i-myCarryableAttributes.size())); }
-         */
     }
 
+    
     public void useCarryableAttribute(int indexCarryableAttribute)
     {
         try
