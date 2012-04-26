@@ -3,19 +3,11 @@ package demo;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import playfield.SingletonPlayField;
 
-import sidescrolling.Sidescroller;
-import sprite.AnimatedGameSprite;   
-
-import attributes.Attribute;
-import attributes.interfaces.Input;
+import sidescrolling.Sidescroller; 
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.Level;

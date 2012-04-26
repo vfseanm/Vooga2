@@ -40,7 +40,6 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void initResources() 
 	{
-	    
 	    loadLevel("level2");
 //        for(AnimatedGameSprite s: mySprites)
 //        {
