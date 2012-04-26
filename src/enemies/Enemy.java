@@ -15,7 +15,7 @@ import collisions.CollisionAction;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import character.GameCharacter;
+import character.AttributeUser;
 import attributes.*;
 import editor.json.AttributeFactory;
 import editor.json.JsonableSprite;
@@ -33,7 +33,7 @@ import enemies.state.EnemyState;
  * @author Alex
  */
 @SuppressWarnings({ "serial", "rawtypes" })
-public class Enemy extends GameCharacter implements JsonableSprite
+public class Enemy extends AttributeUser implements JsonableSprite
 {
     private ArrayList<Attribute> myAttributes;
     private EnemyState myState;
