@@ -83,4 +83,8 @@ public abstract  class PlatformGame extends Game {
     	return myFighter;
     }
 
+    public void setSidescroller(Sidescroller scroller) {
+        mySidescroller = scroller;
+    }
+    
 }
