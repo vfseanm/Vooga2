@@ -2,7 +2,6 @@ package demo;
 
 import java.awt.Dimension;
 import java.util.ResourceBundle;
-
 import com.golden.gamedev.GameLoader;
 import demo.DemoGame;
 
