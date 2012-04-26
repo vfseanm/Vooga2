@@ -66,7 +66,7 @@ public abstract class Attribute implements Serializable, Cloneable
                 for(Constructor constructor: c)
                 {
                     if(constructor.isAccessible())
-                        myOriginal =  c[0].newInstance(o);
+                        myOriginal =  constructor.newInstance(o);
                 }
             }
             catch (IllegalArgumentException e)
