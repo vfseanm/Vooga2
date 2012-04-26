@@ -177,6 +177,14 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
 	
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
+		
+		for (Attribute ability: getAttributes()) {
+        	Class[] attributeInterfaces = ability.getClass().getInterfaces();
+        	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {
+        		Input inputAttribute = (Input) ability;
+        		inputAttribute.setUserInput(userInput);
+        	}
+        }
 	}
 	
 	public BaseInput getUserInput() {

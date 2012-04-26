@@ -1,13 +1,12 @@
 package bonusobjects;
 
 import java.lang.reflect.Type;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import sprite.AnimatedGameSprite;
 
 
 import collisions.CollisionAction;
@@ -15,7 +14,7 @@ import collisions.CollisionAction;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import character.GameCharacter;
+import character.AttributeUser;
 import editor.json.AttributeFactory;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
@@ -25,9 +24,9 @@ import editor.json.SpriteJsonData;
 import attributes.*;
 
 @SuppressWarnings("serial")
-public class BonusObject extends AnimatedGameSprite implements JsonableSprite {
+public class BonusObject extends AttributeUser implements JsonableSprite {
 
-    protected GameCharacter myGameCharacter;
+    protected AttributeUser myAttributeUser;
     private List<Attribute> myAttributes;
     private List<Attribute> myAttributesToOffer;
     private static List<AttributeFactory> myAttributeFactories;
@@ -67,9 +66,9 @@ public class BonusObject extends AnimatedGameSprite implements JsonableSprite {
     }
 
     
-    public void setGameCharacter(GameCharacter gameCharacter)
+    public void setGameCharacter(AttributeUser gameCharacter)
     {
-        myGameCharacter = gameCharacter;
+        myAttributeUser = gameCharacter;
     }
 
     public Object clone()
@@ -77,7 +76,7 @@ public class BonusObject extends AnimatedGameSprite implements JsonableSprite {
         List<String> imageNames = new ArrayList<String>();
         imageNames.addAll(this.getImageNames());
         BonusObject c = new BonusObject(this.getX(), this.getY(), imageNames);
-        c.setGameCharacter(myGameCharacter);
+        c.setGameCharacter(myAttributeUser);
         for (Attribute a : myAttributes)
         {
             c.addAttribute(a);
@@ -166,6 +165,11 @@ public class BonusObject extends AnimatedGameSprite implements JsonableSprite {
     {
         return new SpriteFactory<BonusObject>(new BonusObject());
     }
+
+	@Override
+	public String getName() {
+		return "BonusObject";
+	}
     
 
 
