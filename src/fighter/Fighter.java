@@ -234,7 +234,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
 
             for(AttributeFactory factory: myAttributeFactories)
             {
-                if(factory.isThisKindOfSprite(attributeClassName))
+                if(factory.isThisKindOfAttribute(attributeClassName))
                 {
                     sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }
@@ -250,7 +250,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
         {
             for(AttributeFactory factory: myAttributeFactories)
             {
-                if(factory.isThisKindOfSprite(attributeClassName))
+                if(factory.isThisKindOfAttribute(attributeClassName))
                 {
                     carryableAttributes.add(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }

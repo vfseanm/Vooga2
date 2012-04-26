@@ -11,7 +11,7 @@ public class AttributeFactory<T extends Attribute & JsonableAttribute > {
         myAttribute = a;
     }
     
-    public boolean isThisKindOfSprite(String s)
+    public boolean isThisKindOfAttribute(String s)
     {
         return myAttribute.getClass().toString().equals(s);
     }

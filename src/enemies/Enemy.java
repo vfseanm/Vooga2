@@ -366,7 +366,7 @@ public class Enemy extends GameCharacter implements JsonableSprite
         {
                 for(AttributeFactory factory: myAttributeFactories)
                 {
-                    if(factory.isThisKindOfSprite(attributeClassName))
+                    if(factory.isThisKindOfAttribute(attributeClassName))
                     {
                         sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
                     }
