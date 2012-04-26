@@ -27,8 +27,6 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.*;
 
 import fighter.*;
-import fighter.movement.*;
-
 
 public class FighterTester extends Game{
 	
