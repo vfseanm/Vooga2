@@ -8,7 +8,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
+import com.golden.gamedev.object.collision.CollisionGroup;
 
 import sidescrolling.*;
 import sidescrolling.shift.ShiftLeftSidescroller;
@@ -42,14 +44,31 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	    loadLevel("level2");
-	    
+	    SpriteGroup allSprites = new SpriteGroup("allSprites");
+	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites())
+	    {
+	        allSprites.add(sprite);
+	    }
 	    
 
-//        AdvanceCollisionGroup myCollisions = new Collisions();
-//        myCollisions.setCollisionGroup(arg0, arg1);
+        Collisions myCollisions = new Collisions();
+        myCollisions.setCollisionGroup(allSprites, allSprites);
 	    
-	    
-	    
+        ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
+        CollisionSpec spec = new CollisionSpec();
+//      spec.addActMap("ENEMY", "standOnTop");
+//      spec.addActMap("PLATFORM", "");
+//      specList.add(spec);
+        
+        CollisionSpec spec2 = new CollisionSpec();
+        spec2.addActMap("FIGHTER", "fighterStandOnTop");
+        spec2.addActMap("FIGHTER", "fighterHitObject");
+        spec2.addActMap("PLATFORM", "");
+        specList.add(spec2);
+        
+        myCollisions.addSpecList(specList);
+
+        myPlayfield.addCollisionGroup(allSprites, allSprites, myCollisions);
 	    
 	    
 	    
@@ -64,17 +83,6 @@ public class DemoGame extends PlatformGame {
 //            System.out.println(s.getX() + "   " + s.getY());
 //        }
 
-		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
-		CollisionSpec spec = new CollisionSpec();
-//		spec.addActMap("ENEMY", "standOnTop");
-//		spec.addActMap("PLATFORM", "");
-//		specList.add(spec);
-		
-		CollisionSpec spec2 = new CollisionSpec();
-		spec2.addActMap("FIGHTER", "fighterStandOnTop");
-		spec2.addActMap("FIGHTER", "fighterHitObject");
-		spec2.addActMap("PLATFORM", "");
-		specList.add(spec2);
 		
 		gc = new GameCollisionManager(specList);
        
@@ -146,7 +154,7 @@ public class DemoGame extends PlatformGame {
 
         everything.add(myFighter);
 	    everything.addAll(myPlayfield.getMySprites());
-	    gc.detectCollision(everything);
+	    //gc.detectCollision(everything);
 	    mySidescroller.update(elapsedTime);
 	    
 	    //FSM stuff
