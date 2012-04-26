@@ -11,6 +11,10 @@ import sidescrolling.*;
 import sprite.AnimatedGameSprite;
 
 import attributes.*;
+import attributes.enemyattributes.JumpingMovement;
+import attributes.enemyattributes.OneDirectionMovement;
+import attributes.enemyattributes.SideToSideMovement;
+import attributes.enemyattributes.UpDownMovement;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
 import bonusobjects.BonusObject;
@@ -22,10 +26,6 @@ import com.golden.gamedev.object.background.ImageBackground;
 
 import enemies.Enemy;
 import enemies.EnemyAction;
-import enemies.movement.JumpingMovement;
-import enemies.movement.OneDirectionMovement;
-import enemies.movement.SideToSideMovement;
-import enemies.movement.UpDownMovement;
 import fighter.Fighter;
 
 
