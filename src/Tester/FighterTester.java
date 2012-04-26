@@ -17,6 +17,8 @@ import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 
 import attributes.Gravity;
+import attributes.fighterattributes.BasicMovement;
+import attributes.fighterattributes.Jump;
 
 import collisions.CollisionSpec;
 import collisions.GameCollisionManager;

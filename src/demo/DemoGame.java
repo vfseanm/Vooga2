@@ -10,8 +10,6 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 
 import fighter.Fighter;
-import fighter.movement.BasicMovement;
-import fighter.movement.Jump;
 
 import sprite.AnimatedGameSprite;
 
@@ -36,6 +34,8 @@ import platforms.fsmframework.SwitchOff;
 import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
 import attributes.*;
+import attributes.fighterattributes.BasicMovement;
+import attributes.fighterattributes.Jump;
 import collisions.CollisionSpec;
 import collisions.GameCollisionManager;
 import com.golden.gamedev.Game;

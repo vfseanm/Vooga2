@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import attributes.Attribute;
 import attributes.Hitpoints;
+import attributes.NumberOfLives;
+import bonusobjects.Carryable;
+import bonusobjects.PowerUp;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
 
@@ -16,18 +19,39 @@ public class FighterAction implements CollisionAction{
 
 	Fighter sprite;
 	
-	public void standOnTop (CollisionContext ccntext, CollisionSpec cspec){ 		
+	public void fighterStandOnTop (CollisionContext ccntext, CollisionSpec cspec){ 		
 		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
-			(sprite).restoreOriginalAttribute("JumpingMovement");
+			sprite.allowAttribute("Jump", true);
+			sprite.allowAttribute("Gravity", false);
 		}
-		else if ((ccntext.getSide()!=CollisionGroup.TOP_BOTTOM_COLLISION) && (ccntext.getSide()!=CollisionGroup.BOTTOM_TOP_COLLISION)){
-			(sprite).invertAttribute("OneDirectionMovement");
-		}
+	}
 	
-		else if(ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
-			sprite.allowAttribute("JumpingMovement", false);
-		}
+	public void fighterGetPowerUp(CollisionContext ccntext, CollisionSpec cspec) {
+		try
+        {
+            PowerUp bonus = (PowerUp) ccntext.getOtherSprite(sprite);
+            for (Attribute toAdd: bonus.getAttributesToOffer()) {
+            	sprite.addAttribute(toAdd);
+            }
+            bonus.setActive(false);
+        } catch (ClassCastException e)
+        {
+            System.out.println("You have implemented the collision framework incorrectly. The fighterGetPowerUp method is meant to be used with PowerUps.");
+        }
+	}
+	
+	
+	public void fighterGetCarryable(CollisionContext ccntext, CollisionSpec cspec) {
+		try
+        {
+            Carryable bonus = (Carryable) ccntext.getOtherSprite(sprite);
+            sprite.addCarryableAttributes(bonus.getAttributesToOffer());
+            bonus.setActive(false);
+        } catch (ClassCastException e)
+        {
+            System.out.println("You have implemented the collision framework incorrectly. The fighterGetCarryable method is meant to be used with Carryables.");
+        }
 	}
 	
 	public void instantFighterDeath (CollisionContext ccntext, CollisionSpec cspec){
@@ -36,16 +60,24 @@ public class FighterAction implements CollisionAction{
 		}
 	}
 	
-	public void fighterLoseLife (CollisionContext ccntext, CollisionSpec cspec){
-		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
+	public void fighterLoseHitpoints (CollisionContext ccntext, CollisionSpec cspec){
 			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
 			
 			for (Attribute skill: ability){
 				if (skill.getName().equals("Hitpoints")){
-					((Hitpoints)skill).modifyHitpoints(10);
+					((Hitpoints)skill).modifyHitpoints(-10);
 				}
 			}
-		}
+	}
+	
+	public void fighterLoseLife (CollisionContext ccntext, CollisionSpec cspec){
+			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
+			
+			for (Attribute skill: ability){
+				if (skill.getName().equals("NumberOfLoves")){
+					((NumberOfLives) skill).modifyNumberOfLives(-1);
+				}
+			}
 	}
 
 	public void setSprite(AnimatedGameSprite sprite) {

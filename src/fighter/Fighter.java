@@ -22,11 +22,6 @@ import editor.json.JsonUtil;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 import editor.json.SpriteJsonData;
-import fighter.movement.BasicMovement;
-import fighter.movement.Fly;
-import fighter.movement.Input;
-import fighter.movement.Jump;
-import fighter.movement.Movement;
 import attributes.Attribute;
 import attributes.Flying;
 import attributes.Gravity;
@@ -34,12 +29,18 @@ import attributes.Hitpoints;
 import attributes.NumberOfLives;
 import attributes.PointValue;
 import attributes.Visibility;
+import attributes.fighterattributes.BasicMovement;
+import attributes.fighterattributes.Fly;
+import attributes.fighterattributes.Input;
+import attributes.fighterattributes.Jump;
+import attributes.fighterattributes.Movement;
 
 
 @SuppressWarnings("serial")
 public class Fighter extends GameCharacter implements JsonableSprite  {
 
     private List<Attribute> myCarryableAttributes;
+    private List<Attribute> myDuplicateAttributes;
     private BaseInput myUserInput;
     private static Fighter myself;
     private static List<AttributeFactory> myAttributeFactories;
@@ -55,8 +56,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
         myAttributeFactories.add(NumberOfLives.getFactory());
         myAttributeFactories.add(NumberOfLives.getFactory());
         myAttributeFactories.add(PointValue.getFactory());
-        myAttributeFactories.add(Visibility.getFactory());
-        
+        myAttributeFactories.add(Visibility.getFactory());  
     }
 
     // public void render(Graphics2D pen){
@@ -69,6 +69,7 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
     // myCarryableAttributes = new ArrayList<Attribute>();
     // setGroup("FIGHTER");
     // }
+    
     private Fighter()
     {
         super();
@@ -83,8 +84,8 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
             myself = new Fighter();
             myself.myAttributes = new ArrayList<Attribute>();
             myself.myCarryableAttributes = new ArrayList<Attribute>();
+            myself.myDuplicateAttributes = new ArrayList<Attribute>();
         }
-
         return myself;
     }
 
@@ -100,6 +101,8 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
             // LIST? MAX = 6?
         }
     }
+    
+    
 
     /**
      * Adds Attributes, removing older, duplicate versions; also sets user input
@@ -119,20 +122,14 @@ public class Fighter extends GameCharacter implements JsonableSprite  {
                 ((Input) toAdd).setUserInput(myUserInput);
         }
     }
+    
 
     public void addCarryableAttributes(List<Attribute> carryables)
     {
         myCarryableAttributes.addAll(carryables);
-
-        // method for adding attributes to inventory of limited length =
-        // myMaxNumCarryables
-        /*
-         * for (int i = myCarryableAttributes.size(); i < myMaxNumCarryables;
-         * i++) { myCarryableAttributes.add(i,
-         * carryables.get(i-myCarryableAttributes.size())); }
-         */
     }
 
+    
     public void useCarryableAttribute(int indexCarryableAttribute)
     {
         try

@@ -1,4 +1,4 @@
-package fighter.movement;
+package attributes.fighterattributes;
 
 import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
@@ -45,15 +45,15 @@ public class Jump extends Attribute implements Updateable, Movement, Input, Json
     }
     
     
-    public void setActivity(boolean active){
-    	if (!active) {
-    		myGameCharacter.allowAttribute("Gravity", true);
-    	}
-    	else {
-    		myGameCharacter.allowAttribute("Gravity", false);
-    	}
-    	isActive = active;
-    }
+//    public void setActivity(boolean active){
+//    	if (!active) {
+//    		myGameCharacter.allowAttribute("Gravity", true);
+//    	}
+//    	else {
+//    		myGameCharacter.allowAttribute("Gravity", false);
+//    	}
+//    	isActive = active;
+//    }
 
     
     public void update (long elapsedTime)
