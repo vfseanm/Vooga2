@@ -47,7 +47,6 @@ public class DemoGame extends PlatformGame {
 //            System.out.print(s.getGroup() + " ");
 //            System.out.println(s.getX() + "   " + s.getY());
 //        }
-	    myFighter.add
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec();
 		spec.addActMap("ENEMY", "standOnTop");
