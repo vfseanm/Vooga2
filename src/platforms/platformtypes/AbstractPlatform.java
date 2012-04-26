@@ -44,6 +44,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 
 	protected AbstractPlatform(double x, double y, List<String> imageSources) {
 		super(x, y, imageSources);
+		setGroup("PLATFORM");
 		/*myPlatformResources = ResourceBundle
         .getBundle("platforms.PlatformResourceBundle");*/
 	}
@@ -54,7 +55,14 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	protected AbstractPlatform() {
 	    myPlatformResources = ResourceBundle
         .getBundle("platforms.PlatformResourceBundle");
+	    setGroup("PLATFORM");
 	}
+	
+	public String getGroup()
+	{
+	    return "PLATFORM";
+	}
+	
 
 	/**
 	 * Function that implements the behavior of each type of platform
@@ -72,6 +80,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
     public Class<? extends CollisionAction> getActionClass (){
     	return PlatformAction.class;
     }
+    
 
     @SuppressWarnings({ "rawtypes" })
 	public String toJson()
@@ -89,6 +98,7 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
         return gson.toJson(new SpriteJsonData(this, additionalInformation));
         
     }
+   
     
 	public AbstractPlatform fromJson(String json){
         Gson gson = new Gson();

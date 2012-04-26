@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
+
 import sidescrolling.*;
 import sidescrolling.shift.ShiftLeftSidescroller;
 import sidescrolling.shift.ShiftRightSidescroller;
@@ -22,21 +24,40 @@ import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
 import collisions.GameCollisionManager;
+import fighter.Fighter;
 
 public class DemoGame extends PlatformGame {
     private SidescrollerSwitch scrollerSwitch;
 
 	private GameCollisionManager gc;
-	// private PlayField myPlayField;	
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
 
+	public DemoGame()
+	{
+	    super();
+	}
 	@Override
 	public void initResources() 
 	{
-
 	    loadLevel("level2");
+	    
+	    
+
+//        AdvanceCollisionGroup myCollisions = new Collisions();
+//        myCollisions.setCollisionGroup(arg0, arg1);
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 //        for(AnimatedGameSprite s: mySprites)
 //        {
 //            System.out.print(s.getGroup() + " ");
@@ -45,37 +66,40 @@ public class DemoGame extends PlatformGame {
 
 		ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 		CollisionSpec spec = new CollisionSpec();
-		spec.addActMap("ENEMY", "standOnTop");
-		spec.addActMap("PLATFORM", "");
-		specList.add(spec);
+//		spec.addActMap("ENEMY", "standOnTop");
+//		spec.addActMap("PLATFORM", "");
+//		specList.add(spec);
 		
 		CollisionSpec spec2 = new CollisionSpec();
 		spec2.addActMap("FIGHTER", "fighterStandOnTop");
+		spec2.addActMap("FIGHTER", "fighterHitObject");
 		spec2.addActMap("PLATFORM", "");
 		specList.add(spec2);
+		
+		gc = new GameCollisionManager(specList);
        
-        //FSM stuff
-        initPlatformFSM();
-        CollisionSpec spec3 = new CollisionSpec();
-        spec3.addActMap(mySwitch.getGroup(), "switchPlatform");
-        spec3.addActMap("FIGHTER", "");
-        specList.add(spec3);
-        
-        //make sidescroller switch
-        ArrayList<String> switchImage = new ArrayList<String>();
-        String switchName = "Resources/Bowser.jpg";
-        switchImage.add(switchName);
-        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller()));
-        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
+//        //FSM stuff
+//        initPlatformFSM();
+//        CollisionSpec spec3 = new CollisionSpec();
+//        spec3.addActMap(mySwitch.getGroup(), "switchPlatform");
+//        spec3.addActMap("FIGHTER", "");
+//        specList.add(spec3);
+//        
+//        //make sidescroller switch
+//        ArrayList<String> switchImage = new ArrayList<String>();
+//        String switchName = "Resources/Bowser.jpg";
+//        switchImage.add(switchName);
+//        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller()));
+//        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
         
         //Special sidescroller-switch collision stuff
-        specList = new ArrayList<CollisionSpec>();
-        CollisionSpec spec4 = new CollisionSpec();
-        spec4.addActMap(scrollerSwitch.getGroup(), "switchSidescroller");
-        spec4.addActMap(getFighter().getGroup(), "");
-        specList.add(spec4);
+//        specList = new ArrayList<CollisionSpec>();
+//        CollisionSpec spec4 = new CollisionSpec();
+//        spec4.addActMap(scrollerSwitch.getGroup(), "switchSidescroller");
+//        spec4.addActMap(getFighter().getGroup(), "");
+//        specList.add(spec4);
         
-        gc = new GameCollisionManager(specList);
+        
         
 
 	}
@@ -109,8 +133,8 @@ public class DemoGame extends PlatformGame {
 	    myPlayfield.render(arg0);
 	    
 	    //FSM Stuff
-	    myPlatform.render(arg0);
-	    mySwitch.render(arg0);
+	    //myPlatform.render(arg0);
+	    //mySwitch.render(arg0);
 	}
 
 	@Override
@@ -118,15 +142,19 @@ public class DemoGame extends PlatformGame {
 	{
 	    
 	    myPlayfield.update(elapsedTime);
-	    gc.detectCollision(myPlayfield.getMySprites());
+	    ArrayList<AnimatedGameSprite> everything = new ArrayList<AnimatedGameSprite>();
+
+        everything.add(myFighter);
+	    everything.addAll(myPlayfield.getMySprites());
+	    gc.detectCollision(everything);
 	    mySidescroller.update(elapsedTime);
 	    
 	    //FSM stuff
 	    if (keyPressed(KeyEvent.VK_S)) {
 			mySwitch.setOn(true);		
 		}
-	    myPlatform.update(elapsedTime);
-	    myContext.update(elapsedTime);
-	    mySwitch.update(elapsedTime);
+	    //myPlatform.update(elapsedTime);
+	    //myContext.update(elapsedTime);
+	    //mySwitch.update(elapsedTime);
 	}
 }

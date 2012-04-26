@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import platforms.platformtypes.SimplePlatform;
 
 import sprite.*;
 import com.golden.gamedev.object.collision.CollisionGroup;
@@ -112,7 +113,7 @@ public class GameCollisionManager{
 	}
 	
 	private boolean leftRightChecker (AnimatedGameSprite sprite1, AnimatedGameSprite sprite2){
-		if  ((sprite1.getX() + sprite1.getWidth() == sprite2.getX()) &&
+		if  ((sprite1.getX() + sprite1.getWidth() <= sprite2.getX()) &&
 				(sprite1.getX() + sprite1.getWidth() <= (sprite2.getX()+sprite1.getWidth())) && 
 				(sprite1.getY() >= (sprite2.getY()-sprite1.getHeight())) &&
 				((sprite1.getY()+sprite1.getHeight()) <= (sprite2.getY()+sprite2.getHeight()+sprite1.getHeight())) ){

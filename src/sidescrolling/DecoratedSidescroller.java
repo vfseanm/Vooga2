@@ -2,11 +2,13 @@ package sidescrolling;
 
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import java.util.List;
 
 import playfield.SingletonPlayField;
 
+import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.*;
 import fighter.Fighter;
 
@@ -25,9 +27,12 @@ import fighter.Fighter;
 @SuppressWarnings("serial")
 public abstract class DecoratedSidescroller extends Sidescroller  {
 
+    transient protected ResourceBundle myKeysResources = ResourceBundle
+            .getBundle("demo.GameKeysResourceBundle");
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
-    private SingletonPlayField playfield;
+    private SingletonPlayField myPlayfield;
+    protected BaseInput myUserInput;
     
     /**
      * Creates a new DecoratedSidescroller
@@ -37,7 +42,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
     public DecoratedSidescroller(Sidescroller scroller) {
         wrappedScroller = scroller;
         fighter = Fighter.getInstance();
-        playfield = SingletonPlayField.getInstance();
+        myPlayfield = SingletonPlayField.getInstance();
     }
 
     /**
@@ -65,11 +70,16 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
      * Moves every Sprite.
      */
     public void updateSprites() {
-        for (Sprite object: playfield.getMySprites()) {
+        for (Sprite object: myPlayfield.getMySprites()) {
             if (object != null) {
                 move(object);
             }
         }
+    }
+    
+    public void setUserInput(BaseInput userInput) {
+        myUserInput = userInput;
+        wrappedScroller.setUserInput(userInput);
     }
 
     /**

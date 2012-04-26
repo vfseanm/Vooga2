@@ -77,6 +77,10 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         super();
         setGroup("FIGHTER");
     };
+    
+    public String getGroup(){
+        return ("FIGHTER");
+    }
 
     public static Fighter getInstance()
     {
@@ -177,6 +181,7 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
 	
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
+		System.out.println("seting inpput");
 	
 		for (Attribute ability: getAttributes()) {
         	Class[] attributeInterfaces = ability.getClass().getInterfaces();
@@ -260,7 +265,7 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
             {
                 if(factory.isThisKindOfAttribute(attributeClassName))
                 {
-                    carryableAttributes.add(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                    carryableAttributes.add(factory.parseFromJson(carryableAttributeMap.get(attributeClassName)));
                 }
             }
             /*carryableAttributes.add((Attribute) JsonUtil.getObjectFromJson(

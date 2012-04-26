@@ -3,19 +3,11 @@ package demo;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import playfield.SingletonPlayField;
 
-import sidescrolling.Sidescroller;
-import sprite.AnimatedGameSprite;   
-
-import attributes.Attribute;
-import attributes.interfaces.Input;
+import sidescrolling.Sidescroller; 
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.Level;
@@ -24,9 +16,10 @@ import fighter.Fighter;
 
 public abstract  class PlatformGame extends Game {
     
-    
-    private Level myLevel;
-    private Fighter myFighter;
+
+    protected Level myLevel;
+
+    protected Fighter myFighter;
     //protected ImageBackground myBackground;
     protected SingletonPlayField myPlayfield;
     protected Sidescroller mySidescroller;
@@ -37,19 +30,22 @@ public abstract  class PlatformGame extends Game {
         myPlayfield = SingletonPlayField.getInstance(); 
     }
     
+    public String getGroup(){
+        return ("FIGHTER");
+    }
+    
     public void loadLevel(String filename)
     {
-        myFighter = Fighter.getInstance();
-        System.out.println(myFighter);
-        if(myFighter != null)
-        {
-
-            myFighter.setUserInput(bsInput);        	
-            myPlayfield.add(myFighter);
-        }
+        
         LevelLoader loader = new LevelLoader();
         myLevel = loader.readLevel(new File(filename));
-
+        myFighter = myLevel.getFighter();
+        if(myFighter != null)
+        {
+            myFighter.setUserInput(bsInput);            
+            myPlayfield.add(myFighter);
+        }
+        System.out.println("fighter:" + myFighter);
         myPlayfield.setMySprites(myLevel.getSprites());
         ImageBackground myBackground = myLevel.getBackground();
         
@@ -58,7 +54,7 @@ public abstract  class PlatformGame extends Game {
         
         
         mySidescroller = myLevel.getSidescroller();
-        
+        mySidescroller.setUserInput(bsInput);
     }
     
     public void update(long elapsedTime) {
@@ -81,6 +77,7 @@ public abstract  class PlatformGame extends Game {
     }
 
     public void setSidescroller(Sidescroller scroller) {
+        scroller.setUserInput(bsInput);
         mySidescroller = scroller;
     }
     

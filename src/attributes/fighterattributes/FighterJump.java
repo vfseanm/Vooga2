@@ -66,6 +66,7 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
     		{
     		    isJumping = true;
     		    myGameCharacter.allowAttribute("Gravity", false);
+    		    time = 0;
     		}
         	
             if (isJumping && time <= myTime)

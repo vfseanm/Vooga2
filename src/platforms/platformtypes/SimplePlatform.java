@@ -46,7 +46,7 @@ public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 	 */
 	public SimplePlatform(double x, double y, List<String> imageNames) {
 		super(x, y, imageNames);
-	    setGroup("PLATFORM");
+	    
 	}
 
 	/**

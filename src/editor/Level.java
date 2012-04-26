@@ -78,7 +78,10 @@ public class Level implements Serializable{
         {
             f.moveHorizontally(x);
         }
-        myFighter.moveX(x);
+        if(myFighter!=null)
+        {
+            myFighter.moveX(x);
+        }
     }
     
     public void setSidescrolling(Sidescroller scroller)
@@ -92,7 +95,10 @@ public class Level implements Serializable{
         {
             f.moveVertically(y);
         }
-        myFighter.moveY(y);
+        if(myFighter!=null)
+        {
+            myFighter.moveY(y);
+        }
     }
     
     public Sidescroller getSidescroller()
@@ -141,6 +147,10 @@ public class Level implements Serializable{
                 f.removeSprite(sprite);
             }
         }
+    }
+    public Fighter getFighter()
+    {
+        return myFighter;
     }
     
     public void setSpriteLocation(AnimatedGameSprite sprite, double x, double y)

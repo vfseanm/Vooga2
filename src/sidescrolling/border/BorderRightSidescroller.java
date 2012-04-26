@@ -1,6 +1,5 @@
 package sidescrolling.border;
  
-
 import sidescrolling.Sidescroller;
 import com.golden.gamedev.object.Sprite;
 
@@ -32,7 +31,8 @@ public class BorderRightSidescroller extends BorderSidescroller {
      * right border and the right key is being held down.
      */
     public void move(Sprite sprite) {
-        if (fighter.getX() >= boundary) {
+        int rightKey = Integer.parseInt(myKeysResources.getString("RIGHT"));
+        if (myUserInput.isKeyDown(rightKey) && fighter.getX() >= boundary) {
             sprite.moveX(-fighter.getMovement()[0]);
             fighter.setX(boundary);
         }

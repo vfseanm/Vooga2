@@ -67,9 +67,9 @@ public class SideToSideMovement extends TwoPartMovement implements JsonableAttri
     public String toJson()
     {
         Gson gson = new Gson();
-        List<Integer> argList = new ArrayList<Integer>();
-        argList.add(myDistance);
-        argList.add(myPartDuration);
+        List<String> argList = new ArrayList<String>();
+        argList.add(myDistance+"");
+        argList.add(myPartDuration+"");
         
         return gson.toJson(argList);
     }
@@ -77,9 +77,9 @@ public class SideToSideMovement extends TwoPartMovement implements JsonableAttri
     public SideToSideMovement fromJson(String json)
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<Integer>>(){}.getType();
-        List<Integer> argList = gson.fromJson(json, collectionType);
-        return new SideToSideMovement(argList.get(0), (argList.get(1)));
+        Type collectionType = new TypeToken<List<String>>(){}.getType();
+        List<String> argList = gson.fromJson(json, collectionType);
+        return new SideToSideMovement(Double.parseDouble(argList.get(0)),Integer.parseInt((argList.get(1))));
     }
     
     private SideToSideMovement(){}
