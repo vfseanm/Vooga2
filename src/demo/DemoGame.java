@@ -74,7 +74,7 @@ public class DemoGame extends PlatformGame {
 
 
 	    
-	    System.out.println(myPlayfield.getMySprites());
+	    //System.out.println(myPlayfield.getMySprites());
 	    
 	    
 	    
