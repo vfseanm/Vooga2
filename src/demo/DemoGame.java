@@ -1,7 +1,7 @@
 package demo;
 
 import java.awt.Graphics2D;
-import collisions.Collisions;
+import collisions.GameCollisionManager;
 import sprite.AnimatedGameSprite;
 
 import java.awt.event.KeyEvent;
@@ -25,7 +25,7 @@ import platforms.fsmframework.SwitchOff;
 import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
-import collisions.Collisions;
+import collisions.GameCollisionManager;
 import collisions.GameCollisionManager;
 import fighter.Fighter;
 
@@ -52,7 +52,7 @@ public class DemoGame extends PlatformGame {
 	    }
 	    
 
-        Collisions myCollisions = new Collisions();
+        GameCollisionManager myCollisions = new GameCollisionManager();
         myCollisions.setCollisionGroup(allSprites, allSprites);
 	    
         ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
@@ -85,7 +85,6 @@ public class DemoGame extends PlatformGame {
 //        }
 
 		
-		gc = new GameCollisionManager(specList);
        
 //        //FSM stuff
 //        initPlatformFSM();
