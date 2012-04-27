@@ -6,10 +6,12 @@ import fighter.Fighter;
 
 public class AggressiveState implements EnemyState
 {
+
+
     //Bill Pugh Thread Safe Lazy Initialization Singleton Solution
     private AggressiveState ()
     {
-
+        
     }
 
     private static class AggressiveStateHolder
@@ -28,22 +30,21 @@ public class AggressiveState implements EnemyState
     {
 
         Fighter fighter = Fighter.getInstance();
-        if (fighter.getX() < enemy.getX())
-        {
-            enemy.invertAttribute("ProjectileAttack");
-        }
-        else if (fighter.getX() > enemy.getX())
-        {
-            enemy.invertAttribute("ProjectileAttack");
-        }
+        //System.out.println("hello");
         if (!changeState(enemy, fighter))
         {
+            //System.out.println("hi");
             enemy.attack(elapsedTime);
             if (enemy.getX() > fighter.getX())
             {
+                
                 enemy.setX(enemy.getX() - 1);
             }
-            else enemy.setX(enemy.getX() + 1);
+            else
+            {
+                
+                enemy.setX(enemy.getX() + 1);
+            }
 
         }
 
@@ -52,14 +53,17 @@ public class AggressiveState implements EnemyState
 
     public boolean changeState (Enemy enemy, Fighter fighter)
     {
+       
 
         if (!enemy.isOnScreen())
         {
+            
             enemy.setState(PassiveState.getInstance());
             return true;
         }
-        if (fighter.getY() != enemy.getY())
+        if (Math.abs(fighter.getY() - enemy.getY())>20)
         {
+            
             enemy.setState(DefensiveState.getInstance());
             return true;
         }

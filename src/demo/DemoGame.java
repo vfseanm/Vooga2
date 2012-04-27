@@ -48,7 +48,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	  
-	    loadLevel("demo1");
+	    loadLevel("demo2");
 
 	    allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
@@ -64,6 +64,10 @@ public class DemoGame extends PlatformGame {
         spec.addActMap("ENEMY", "instantEnemyDeath");
         specList.add(spec);
         
+        CollisionSpec enemySpec = new CollisionSpec();
+        spec.addActMap("ENEMY", "enemyHitObject");
+        specList.add(spec);
+        
         CollisionSpec spec2 = new CollisionSpec();
         spec2.addActMap("FIGHTER", "fighterStandOnTop");
         spec2.addActMap("FIGHTER", "fighterHitObject");
@@ -77,7 +81,7 @@ public class DemoGame extends PlatformGame {
         specList.add(spec3);
         
         CollisionSpec spec4 = new CollisionSpec();
-        spec4.addActMap("BONUSOBJECT", "");
+        spec4.addActMap("BONUSOBJECT", "bonusObjectDestruction");
         spec4.addActMap("FIGHTER", "fighterHitObject");
         spec4.addActMap("FIGHTER", "fighterGetPowerUp");
         spec4.addActMap("FIGHTER", "fighterGetCarryable");
@@ -91,11 +95,13 @@ public class DemoGame extends PlatformGame {
         CollisionSpec spec6 = new CollisionSpec();
         spec6.addActMap("PLATFORMSWITCH", "switchPlatform" );
         spec6.addActMap("FIGHTER", "");
+        specList.add(spec6);
         
         List<String> switchImages = new ArrayList<String>();
-        switchImages.add("resources/scrollerSwitch1.png"); 
-        switchImages.add("resources/scrollerSwitch2.png");
-        Sidescroller newScroller = new ShiftLeftSidescroller(new ShiftRightSidescroller(new ConcreteSidescroller()));
+        switchImages.add("resources/scrollerSwitchUp.png"); 
+        switchImages.add("resources/scrollerSwitchDown.png");
+        Sidescroller newScroller = new ShiftLeftSidescroller(new ShiftRightSidescroller(
+                new ShiftDownSidescroller(new ShiftUpSidescroller(new ConcreteSidescroller()))));
         mySidescrollerSwitch = new SidescrollerSwitch(1300, 295, switchImages, newScroller, this);
         
         allSprites.add(mySidescrollerSwitch);
@@ -124,6 +130,10 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void update(long elapsedTime) 
 	{		
+
+	    
+	   //System.out.println("X location " + myFighter.getX());
+
 	   updateFSM(elapsedTime);
 	   myEnemy.update(elapsedTime);
 	   myCollisions.checkCollision(); 
@@ -137,16 +147,18 @@ public class DemoGame extends PlatformGame {
 	private void initEnemyFSM() {
 		List<String> images = new ArrayList<String>();
 		images.add("resources/Bowser.jpg");
-		myEnemy = new Enemy(3000, 200, images);
+		myEnemy = new Enemy(1500, 200, images);
 		myEnemy.setState(PassiveState.getInstance());
+		myEnemy.setGroup("UNIQUE");
 		
 		List<String> images2 = new ArrayList<String>();
 		images2.add("resources/Fireball.jpg");
 		AnimatedGameSprite wep = new AnimatedGameSprite(-1000, -1000, images2);
-		Weapon weapon = new Fireball(wep, 0.1, 100000000, 200);
+		Weapon weapon = new Fireball(wep, -0.1, 100000000, 200);
 		Attribute att = new ProjectileAttack(weapon);
 		myEnemy.addAttribute(att);
 		allSprites.add(myEnemy);
+		myPlayfield.add(myEnemy);
 	}
 	
 	
