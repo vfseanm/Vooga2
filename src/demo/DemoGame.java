@@ -101,7 +101,7 @@ public class DemoGame extends PlatformGame {
         switchImages.add("resources/scrollerSwitch1.png"); 
         switchImages.add("resources/scrollerSwitch2.png");
         Sidescroller newScroller = new ShiftLeftSidescroller(new ShiftRightSidescroller(new ConcreteSidescroller()));
-        mySidescrollerSwitch = new SidescrollerSwitch(1500, 480, switchImages, newScroller, this);
+        mySidescrollerSwitch = new SidescrollerSwitch(1300, 295, switchImages, newScroller, this);
         
         allSprites.add(mySidescrollerSwitch);
         myPlayfield.add(mySidescrollerSwitch);
