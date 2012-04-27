@@ -78,11 +78,6 @@ public abstract  class PlatformGame extends Game {
            else pause = true;
         }
     	
-    	if (bsInput.isKeyPressed(myKeyController.getKeyCode("MENU")))
-        {
-          //  Menu options = new Menu(EditorController m);
-        }
-    	
     	if (!pause) myPlayfield.update(elapsedTime);
     }
     
