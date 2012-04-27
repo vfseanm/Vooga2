@@ -19,7 +19,7 @@ public class EnemyAction implements CollisionAction {
 
 	public void enemyStandOnTop (CollisionContext ccntext, CollisionSpec cspec){ 	
 		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
-			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
+			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight());
 			(sprite).restoreOriginalAttribute("JumpingMovement");
 		}
 		else if ((ccntext.getSide()!=CollisionGroup.TOP_BOTTOM_COLLISION) && (ccntext.getSide()!=CollisionGroup.BOTTOM_TOP_COLLISION)){
