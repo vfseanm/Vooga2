@@ -1,9 +1,9 @@
 package demo;
 import java.awt.Graphics2D;
+
 import attributes.Attribute;
 import attributes.sharedattributes.ProjectileAttack;
 import collisions.GameCollisionManager;
-import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 import weapons.enemyweapons.Fireball;
