@@ -1,4 +1,4 @@
-package weapons.fighterweapons;
+package resources;
 
 import java.util.List;
 import java.util.ResourceBundle;

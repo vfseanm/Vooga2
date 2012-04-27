@@ -2,8 +2,8 @@ package fighter;
 
 import java.util.ArrayList;
 
+
 import attributes.Attribute;
-import attributes.fighterattributes.FighterJump;
 import attributes.sharedattributes.Hitpoints;
 import attributes.sharedattributes.NumberOfLives;
 import bonusobjects.BonusObject;
@@ -46,7 +46,7 @@ public class FighterAction implements CollisionAction{
             for (Attribute toAdd: bonus.getAttributesToOffer()) {
             	sprite.addAttribute(toAdd);
             }
-            bonus.setActive(false);
+            // bonus.setActive(false);
         } catch (ClassCastException e)
         {
             System.out.println("You have implemented the collision framework incorrectly. The fighterGetPowerUp method is meant to be used with PowerUps.");
@@ -59,7 +59,7 @@ public class FighterAction implements CollisionAction{
         {
             BonusObject bonus = (BonusObject) ccntext.getOtherSprite(sprite);
             sprite.addCarryableAttributes(bonus.getAttributesToOffer());
-            bonus.setActive(false);
+            // bonus.setActive(false);
         } catch (ClassCastException e)
         {
             System.out.println("You have implemented the collision framework incorrectly. The fighterGetCarryable method is meant to be used with Carryables.");
@@ -69,6 +69,7 @@ public class FighterAction implements CollisionAction{
 	public void instantFighterDeath (CollisionContext ccntext, CollisionSpec cspec){
 		if (ccntext.getSide() != CollisionGroup.TOP_BOTTOM_COLLISION){
 			sprite.setLocation(-10000, -1000);
+			sprite.setActive(false);
 		}
 	}
 	

@@ -34,14 +34,14 @@ import attributes.sharedattributes.NumberOfLives;
 import attributes.sharedattributes.Visibility;
 
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "rawtypes" })
 public class Fighter extends AttributeUser implements JsonableSprite  {
 
     private List<Attribute> myCarryableAttributes;
     private List<Attribute> myDuplicateAttributes;
     private BaseInput myUserInput;
     private static Fighter myself;
-    private static List<AttributeFactory> myAttributeFactories;
+	private static List<AttributeFactory> myAttributeFactories;
     
     static
     {
@@ -289,7 +289,8 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
     }
     
     
-    public static SpriteFactory getFactory()
+    @SuppressWarnings("unchecked")
+	public static SpriteFactory getFactory()
     {
         return new SpriteFactory(new Fighter());
     }

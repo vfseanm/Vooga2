@@ -3,7 +3,7 @@ package demo;
 import java.awt.Graphics2D;
 
 import attributes.Attribute;
-import attributes.enemyattributes.ProjectileAttack;
+import attributes.sharedattributes.ProjectileAttack;
 import collisions.GameCollisionManager;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;

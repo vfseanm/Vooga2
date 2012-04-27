@@ -12,7 +12,6 @@ import character.AttributeUser;
 import com.golden.gamedev.engine.BaseInput;
 import attributes.interfaces.Input;
 
-@SuppressWarnings("serial")
 public class FighterMissile implements Weapon, Input {
 
 	transient protected ResourceBundle myGameKeys = ResourceBundle

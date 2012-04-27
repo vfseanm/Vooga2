@@ -64,7 +64,7 @@ public abstract class Attribute implements Serializable, Cloneable
             try
             {
             	
-                for(Constructor constructor: c)
+                for(@SuppressWarnings("rawtypes") Constructor constructor: c)
                 {
                     if(constructor.getModifiers()==Modifier.PUBLIC)
                     {    

@@ -2,6 +2,7 @@ package editor;
 
 import java.awt.Color;
 
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -25,7 +26,6 @@ import fighter.Fighter;
 
 import sidescrolling.ConcreteSidescroller;
 import sidescrolling.Sidescroller;
-import sidescrolling.forced.ForcedLeftSidescroller;
 import sprite.AnimatedGameSprite;
 
 

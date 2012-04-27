@@ -92,7 +92,8 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
      */
     public abstract void move(Sprite sprite);
     
-    public List<Class> getClassesOfDecorators()
+    @SuppressWarnings("rawtypes")
+	public List<Class> getClassesOfDecorators()
     {
         List<Class> classList = new ArrayList<Class>();
         classList.add(this.getClass());

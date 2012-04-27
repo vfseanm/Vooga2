@@ -12,7 +12,8 @@ public class SingleInputManager extends InputManager{
     private JFrame frame;
     
     
-    public SingleInputManager(Class c, DialogueController controller)
+    @SuppressWarnings("rawtypes")
+	public SingleInputManager(Class c, DialogueController controller)
     {
         myController = controller;
         myClass = c;

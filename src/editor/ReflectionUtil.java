@@ -129,7 +129,8 @@ public class ReflectionUtil {
     
     
     
-    public static Object wrapObject(List<String> classNames, Object simpleObject)
+    @SuppressWarnings("rawtypes")
+	public static Object wrapObject(List<String> classNames, Object simpleObject)
     {
         Object wrappedObject = simpleObject;
         Object[] list = new Object[1];
