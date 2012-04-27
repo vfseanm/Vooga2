@@ -33,6 +33,7 @@ public class DemoGame extends PlatformGame {
 	private AbstractPlatform myPlatform;
 	private AbstractEvent myEvent;
 	private Enemy myEnemy;
+	private SpriteGroup allSprites;
 	
 
 	public DemoGame() {
@@ -43,7 +44,7 @@ public class DemoGame extends PlatformGame {
 	  
 	    loadLevel("demo1");
 
-	    SpriteGroup allSprites = new SpriteGroup("allSprites");
+	    allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
 	        allSprites.add(sprite);
 	    }
@@ -83,7 +84,11 @@ public class DemoGame extends PlatformGame {
         spec5.addActMap("BONUSOBJECT", "bonusObjectStandOnTop");
         spec5.addActMap("PLATFORM", "");
         specList.add(spec5);
-    
+        
+        CollisionSpec spec6 = new CollisionSpec();
+        spec6.addActMap("SWITCH", "switchPlatform" );
+        spec6.addActMap("FIGHTER", "");
+     
         myCollisions.setCollisionGroup(allSprites, allSprites);
         myCollisions.addSpecList(specList);
         
@@ -102,7 +107,10 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void update(long elapsedTime) 
 	{		
+
+	    
 	   //System.out.println("X location " + myFighter.getX());
+
 	   updateFSM(elapsedTime);
 	   myEnemy.update(elapsedTime);
 	   myCollisions.checkCollision(); 
@@ -125,6 +133,7 @@ public class DemoGame extends PlatformGame {
 		Weapon weapon = new Fireball(wep, 0.1, 100000000, 200);
 		Attribute att = new ProjectileAttack(weapon);
 		myEnemy.addAttribute(att);
+		allSprites.add(myEnemy);
 	}
 	
 	
@@ -148,6 +157,8 @@ public class DemoGame extends PlatformGame {
 		//event = new RandomEvent(event);
 	    myEvent = event;
 	    myEvent.setControlledPlatforms(plats);
+	    allSprites.add(myPlatform);
+	    allSprites.add(mySwitch);
 	    myPlayfield.add(mySwitch);
 	    myPlayfield.add(myPlatform);
 	}

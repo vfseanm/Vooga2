@@ -1,5 +1,6 @@
 package attributes.enemyattributes;
 
+import attributes.sharedattributes.Attack;
 import weapons.Weapon;
 
 
