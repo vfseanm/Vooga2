@@ -22,7 +22,6 @@ public class Visibility extends Attribute implements JsonableAttribute
     private BufferedImage[] myImage;
 
 
-    @editorConstructor(parameterNames = { "visibility (ghosts)" })
     public Visibility (boolean visible)
     {
         super(visible);

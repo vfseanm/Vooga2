@@ -1,4 +1,5 @@
 package platforms.platformtypes;
+
 import java.util.ArrayList;
 import java.util.List;
 import editor.json.JsonableSprite;
@@ -11,14 +12,13 @@ import editor.json.SpriteFactory;
  * Decorating platforms are used to add functionality and behaviors to this
  * class.
  * 
- * @author yankeenjg
+ * @author Nick Gordon
  * 
  */
 public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 
 	private static final long serialVersionUID = 7514750773895804951L;
 
-	
 	/**
 	 * Constructor for a simple platform
 	 * 
@@ -32,7 +32,7 @@ public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 	 */
 	public SimplePlatform(double x, double y, List<String> imageNames) {
 		super(x, y, imageNames);
-	    
+
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 	 */
 	@Override
 	public String toString() {
-		return "simple";
+		return  myPlatformResources.getString("Simple");
 	}
 
 	@Override
@@ -68,13 +68,12 @@ public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 		e.setGroup(this.getGroup());
 		return e;
 	}
-	
-    private SimplePlatform(){};
-    public static SpriteFactory<SimplePlatform> getFactory()
-    {
-        return new SpriteFactory<SimplePlatform>(new SimplePlatform());
-    }
-	
 
+	private SimplePlatform() {
+	};
+
+	public static SpriteFactory<SimplePlatform> getFactory() {
+		return new SpriteFactory<SimplePlatform>(new SimplePlatform());
+	}
 
 }

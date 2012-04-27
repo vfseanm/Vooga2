@@ -11,41 +11,41 @@ import editor.json.JsonableAttribute;
 @SuppressWarnings("serial")
 public class FighterScore extends Attribute implements JsonableAttribute
 {
-    private int myPointValue;
+    private int myScore;
 
     @editorConstructor(parameterNames = { "point value" }) 
-    public FighterScore (int value)
+    public FighterScore (int score)
     {
-        super(value);
-        myPointValue = value;
+        super(score);
+        myScore = score;
     }
 
 
     @Override
     public String getName ()
     {
-        return "PointValue";
+        return "FighterScore";
     }
 
 
     public void modifyPointValue (int change)
     {
-        myPointValue += change;
+        myScore += change;
     }
     
     public String toString(){
-        return "Attribute PointValue is" + myPointValue;
+        return "Attribute is FighterScore = " + myScore;
     }
     
     public Object clone()
     {
-        return new FighterScore(myPointValue);
+        return new FighterScore(myScore);
     }
     
     public String toJson()
     {
         Gson gson = new Gson();
-        return gson.toJson(myPointValue);
+        return gson.toJson(myScore);
     }
     
     public FighterScore fromJson(String json)

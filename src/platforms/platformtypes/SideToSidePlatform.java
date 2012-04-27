@@ -3,18 +3,15 @@ package platforms.platformtypes;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 
-
-
-
-
 /**
  * Class used to decorate platforms in order to add side to side functionality
  * i.e. this class will allow the user to add functionality to a platform to
  * allow it to traverse a horizontal distance repeatedly.
  * 
- * @author yankeenjg
+ * @author Nick Gordon
  */
-public class SideToSidePlatform extends DecoratedPlatform implements JsonableSprite{
+public class SideToSidePlatform extends DecoratedPlatform implements
+		JsonableSprite {
 
 	private static final long serialVersionUID = -1092406048949643816L;
 
@@ -64,30 +61,22 @@ public class SideToSidePlatform extends DecoratedPlatform implements JsonableSpr
 		return myPlatformResources.getString("SideToSide")
 				+ myDecoratorComponent.toString();
 	}
-	
-	   public Object clone()
-       {
-           AbstractPlatform toWrap = null;
-           if(myDecoratorComponent!=null)
-           {
-               toWrap = (AbstractPlatform) myDecoratorComponent.clone();
-               
-           }
-           return new SideToSidePlatform(toWrap);
-           
-       }
-	   
-	/* public void setNextState(state);
-	   		myNextSTate = state;
-	   public PlatformState nextState() {
-		   return myNextState;
-	   }*/
-	   
-       private SideToSidePlatform(){};
-       public static SpriteFactory<SideToSidePlatform> getFactory()
-       {
-           return new SpriteFactory<SideToSidePlatform>(new SideToSidePlatform());
-       }
 
+	public Object clone() {
+		AbstractPlatform toWrap = null;
+		if (myDecoratorComponent != null) {
+			toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+
+		}
+		return new SideToSidePlatform(toWrap);
+
+	}
+
+	private SideToSidePlatform() {
+	};
+
+	public static SpriteFactory<SideToSidePlatform> getFactory() {
+		return new SpriteFactory<SideToSidePlatform>(new SideToSidePlatform());
+	}
 
 }

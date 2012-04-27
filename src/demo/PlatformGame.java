@@ -10,14 +10,11 @@ import sidescrolling.Sidescroller;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.background.ImageBackground;
-
-import editor.EditorController;
 import editor.Level;
 import editor.file.LevelLoader;
 import fighter.Fighter;
 
 public abstract  class PlatformGame extends Game {
-    
 
     protected Level 					myLevel;
     protected LevelLoader				myLevelLoader;

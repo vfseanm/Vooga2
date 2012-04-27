@@ -15,6 +15,14 @@ import attributes.interfaces.Input;
 import attributes.interfaces.Movement;
 import attributes.interfaces.Updateable;
 
+
+/**
+ * This Attribute allows the AttributeUser to jump (up) by the parameterized distance
+ * myJumpHeight. The AttributeUser that has the attribute will move based on user 
+ * input, which must be set after the Attribute is constructed.
+ *  
+ * @author Tori
+ */
 @SuppressWarnings("serial")
 public class FighterJump extends Attribute
     implements Updateable, Movement, Input, JsonableAttribute
