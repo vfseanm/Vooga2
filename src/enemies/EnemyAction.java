@@ -30,9 +30,20 @@ public class EnemyAction implements CollisionAction {
 			sprite.allowAttribute("JumpingMovement", false);
 		}
 	}
+	public void enemyHitObject (CollisionContext ccntext, CollisionSpec cspec){ 		
+		if (ccntext.getSide() == CollisionGroup.LEFT_RIGHT_COLLISION){
+			sprite.setX(ccntext.getOtherSprite(sprite).getX()-sprite.getWidth());
+		}
+		if (ccntext.getSide() == CollisionGroup.RIGHT_LEFT_COLLISION){
+			sprite.setX(ccntext.getOtherSprite(sprite).getX()+ccntext.getOtherSprite(sprite).getWidth());
+			
+		}
+	}
 
 	public void instantEnemyDeath (CollisionContext ccntext, CollisionSpec cspec){
-		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
+		System.out.println("calling enemy death");
+		if ( (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION) ){
+			System.out.println (ccntext.getSide());
 			sprite.setLocation(-10000, -1000);
 		}
 	}

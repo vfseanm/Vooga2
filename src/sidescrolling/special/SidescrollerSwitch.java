@@ -47,6 +47,7 @@ public class SidescrollerSwitch extends AnimatedGameSprite {
     }
     
     public Class<? extends CollisionAction> getActionClass (){
+    	System.out.println("getting class name");
         return SidescrollerSwitchAction.class; 
     }
 

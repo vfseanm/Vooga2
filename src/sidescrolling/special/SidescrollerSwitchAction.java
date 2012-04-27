@@ -4,6 +4,7 @@ import com.golden.gamedev.object.collision.CollisionGroup;
 import sprite.AnimatedGameSprite;
 import collisions.CollisionAction;
 import collisions.CollisionContext;
+import collisions.CollisionSpec;
 
 public class SidescrollerSwitchAction implements CollisionAction {
     private SidescrollerSwitch sprite;
@@ -13,8 +14,10 @@ public class SidescrollerSwitchAction implements CollisionAction {
      * SidescrollerSwitch class.
      * @param ccntext - the context of this CollisionAction
      */
-    public void switchSidescroller(CollisionContext ccntext) {
+    public void switchSidescroller(CollisionContext ccntext, CollisionSpec cspec) {
+    	System.out.println("switch is going on");
         if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION) {
+        	System.out.println("in if statement");
             sprite.switchSidescroller();
         }
     }
