@@ -80,6 +80,7 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         }
         return myself;
     }
+    
     public Attribute getAttributeByName(String name) {
         for (Attribute attribute : myAttributes) {
             if (attribute.getClass().getName().equalsIgnoreCase(name))
