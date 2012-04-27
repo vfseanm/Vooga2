@@ -58,16 +58,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         myAttributeFactories.add(Visibility.getFactory());  
     }
 
-    // public void render(Graphics2D pen){
-    // myself.render(pen);
-    // }
-    // public void update()
-
-    // public Fighter(double x, double y, List<String> images) {
-    // super(x, y, images);
-    // myCarryableAttributes = new ArrayList<Attribute>();
-    // setGroup("FIGHTER");
-    // }
     
     private Fighter()
     {
@@ -109,10 +99,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         }
     }
 
-    public void update(long elapsedTime)
-    {
-        performUpdateableAttributes(elapsedTime);
-    }
     
     
 
@@ -284,9 +270,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
                     sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }
             }
-            /*sprite.addAttribute((Attribute) JsonUtil.getObjectFromJson(
-                    attributeClassName, attributeMap.get(attributeClassName)));
-*/
         }
         List<Attribute> carryableAttributes = new ArrayList<Attribute>();
         Map<String, String> carryableAttributeMap = gson.fromJson(
@@ -300,9 +283,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
                     carryableAttributes.add(factory.parseFromJson(carryableAttributeMap.get(attributeClassName)));
                 }
             }
-            /*carryableAttributes.add((Attribute) JsonUtil.getObjectFromJson(
-                    attributeClassName, attributeMap.get(attributeClassName)));*/
-
         }
         sprite.addCarryableAttributes(carryableAttributes);
         return sprite;

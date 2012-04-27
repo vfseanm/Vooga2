@@ -1,6 +1,6 @@
 package weapons.fighterweapons;
 
-import java.awt.event.KeyEvent;
+
 import java.util.ResourceBundle;
 
 import playfield.SingletonSpriteManager;
@@ -9,13 +9,8 @@ import weapons.Weapon;
 
 
 import character.AttributeUser;
-
 import com.golden.gamedev.engine.BaseInput;
-
-import attributes.fighterattributes.FighterBasicMovement;
 import attributes.interfaces.Input;
-
-import editor.editorConstructor;
 
 @SuppressWarnings("serial")
 public class FighterMissile implements Weapon, Input {
