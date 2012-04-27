@@ -2,6 +2,7 @@ package sidescrolling;
 
 import java.io.Serializable;
 
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public abstract class Sidescroller implements Serializable  {
      * @param userInput - a BaseInput from the Game
      */
     public abstract void setUserInput(BaseInput userInput);
-        
+            
     public String toJson()
     {
         Gson gson = new Gson();

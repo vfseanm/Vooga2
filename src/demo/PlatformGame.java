@@ -22,12 +22,14 @@ public abstract  class PlatformGame extends Game {
     protected Fighter 					myFighter;
     protected ImageBackground 			myBackground;
     protected SingletonSpriteManager 	myPlayfield;
+    protected SingletonKeyController	myKeyController;
     protected Sidescroller 				mySidescroller;
     protected boolean					pause;
     
     public PlatformGame()
     {  
         myPlayfield = SingletonSpriteManager.getInstance();
+        myKeyController = SingletonKeyController.getInstance();
     }
     
     public void loadLevel(String filename)
@@ -72,13 +74,13 @@ public abstract  class PlatformGame extends Game {
     
     
     public void update(long elapsedTime) {
-    	if (bsInput.isKeyPressed(KeyEvent.VK_P))
+    	if (bsInput.isKeyPressed(myKeyController.getKeyCode("PAUSE")))
         {
            if (pause) pause = false;
            else pause = true;
         }
     	
-    	if (bsInput.isKeyPressed(KeyEvent.VK_M))
+    	if (bsInput.isKeyPressed(myKeyController.getKeyCode("MENU")))
         {
           //  Menu options = new Menu(EditorController m);
         }

@@ -17,8 +17,10 @@ public class FighterAction implements CollisionAction{
 	
 	public void fighterStandOnTop (CollisionContext ccntext, CollisionSpec cspec){ 	
 		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
+			System.out.println("STANDONTOP");
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight());
 			sprite.modifyAttribute("Jump",true);
+		
 		}
 	}
 	
@@ -31,8 +33,10 @@ public class FighterAction implements CollisionAction{
 			
 		}
 		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
+			System.out.println("HITTINGBOTTOM");
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()+ccntext.getOtherSprite(sprite).getHeight());
 		}
+
 	}
 	
 	public void fighterGetPowerUp(CollisionContext ccntext, CollisionSpec cspec) {
@@ -47,22 +51,7 @@ public class FighterAction implements CollisionAction{
         {
             System.out.println("You have implemented the collision framework incorrectly. The fighterGetPowerUp method is meant to be used with PowerUps.");
         }
-		System.out.println ("Here it is!" + sprite.getAttributes());
 
-	}
-	
-	
-	public void fighterGetCarryable(CollisionContext ccntext, CollisionSpec cspec) {
-		try
-        {
-            BonusObject bonus = (BonusObject) ccntext.getOtherSprite(sprite);
-            System.out.println("giving"+ bonus.getAttributesToOffer());
-            sprite.addCarryableAttributes(bonus.getAttributesToOffer());
-            // bonus.setActive(false);
-        } catch (ClassCastException e)
-        {
-            System.out.println("You have implemented the collision framework incorrectly. The fighterGetCarryable method is meant to be used with Carryables.");
-        }
 	}
 	
 

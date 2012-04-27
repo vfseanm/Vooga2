@@ -19,11 +19,11 @@ import attributes.interfaces.Updateable;
 @SuppressWarnings("serial")
 public abstract class AttributeUser extends AnimatedGameSprite
 {
-    
+
     protected List<Attribute> myAttributes;
 
+
     /**
-     * 
      * @param x x coordinate of the sprite
      * @param y y coordinate of the sprite
      * @param images list of images associated with the character
@@ -42,11 +42,9 @@ public abstract class AttributeUser extends AnimatedGameSprite
 
 
     /**
-     * Secret reflection method for sean's uses
-     * 
      * @author Alex
-     * @param name
-     * @return
+     * @param name The name of the attribute that you are looking for
+     * @return true if the name is contained within the list of attributes
      */
     public boolean hasAttributeByName (String name)
     {
@@ -59,19 +57,22 @@ public abstract class AttributeUser extends AnimatedGameSprite
 
 
     /**
-     * Secret reflection method for sean's uses
+     * Used by the level editor team
      * 
-     * @author Alex
-     * @param name
-     * @return
+     * @return an unmodifiablelist of myAttributes
      */
-
     public List<Attribute> getAttributes ()
     {
         return Collections.unmodifiableList(myAttributes);
     }
 
 
+    /**
+     * Adds an attribute to the list of attributes Also associates the attribute
+     * with the type of attribute user (enemy, fighter, or bonus object)
+     * 
+     * @param attribute attribute to add to the list
+     */
     public void addAttribute (Attribute attribute)
     {
         myAttributes.add(attribute);
@@ -79,6 +80,12 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * Adds a list of attributes to the attribute user's currentlist calls the
+     * add attribute method for each attribute
+     * 
+     * @param attributes
+     */
     public void addAttributeList (ArrayList<Attribute> attributes)
     {
         for (Attribute attribute : attributes)
@@ -88,12 +95,20 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * removes all attributes from myAttributes
+     */
     public void clearAttributes ()
     {
         myAttributes.clear();
     }
 
 
+    /**
+     * Removes an attribute by name from the list of attributes
+     * 
+     * @param name the name of the Attribute to remove
+     */
     public void removeAttributeByName (String name)
     {
         for (Attribute attribute : myAttributes)
@@ -104,6 +119,15 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * helper method which is used by several other methods
+     * 
+     * @param methodStart beginning string of the attribute method which is
+     *            going to be called
+     * @param name the name of the attribute whose method is to be called
+     * @param o the objects which are the necessary parameters to call the
+     *            method in the attribute
+     */
     protected void accessAttributeMethod (String methodStart,
                                           String name,
                                           Object ... o)
@@ -155,6 +179,14 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * Used for attribute encapsulation this method is used to call the modify
+     * method in a given attribute and takes the necessary parameters to modify
+     * this attribute
+     * 
+     * @param name
+     * @param o
+     */
     public void modifyAttribute (String name, Object ... o)
     {
         accessAttributeMethod("modify", name, o);

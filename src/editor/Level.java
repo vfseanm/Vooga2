@@ -142,7 +142,6 @@ public class Level implements Serializable{
         {
             if(f.containsSprite(sprite))
             {
-                System.out.println("removing sprite");
                 f.removeSprite(sprite);
             }
         }

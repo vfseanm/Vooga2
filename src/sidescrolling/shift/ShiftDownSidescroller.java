@@ -27,6 +27,10 @@ public class ShiftDownSidescroller extends ShiftSidescroller {
         sprite.setY(sprite.getY() - getGameHeight());
     }
     
+    public void moveFighter() {
+        fighter.setY(10);
+    }
+    
     /**
      * @returns true if the fighter moves off the bottom of the screen
      */
