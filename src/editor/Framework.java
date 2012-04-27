@@ -215,6 +215,7 @@ public class Framework implements Serializable {
         factories.add(BonusObject.getFactory());
         factories.add(WildAndCrazyObject.getFactory());
         
+        
         AnimatedGameSprite prototype = null;
         for(SpriteFactory factory: factories)
         {
