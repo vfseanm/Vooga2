@@ -16,6 +16,7 @@ import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.*;
 
 import editor.editorConstructor;
+import enemies.Enemy;
 import sprite.*;
 import weapons.Weapon;
 
@@ -25,14 +26,15 @@ public class FighterTargetedMissile implements Weapon, Input{
 	transient protected ResourceBundle myGameKeys = ResourceBundle
     .getBundle("demo.GameKeysResourceBundle");
 	
-	private AnimatedGameSprite 		myMissile;
-	private BaseInput 				myUserInput;
-	private int 					myDamage;
-	private int 					myDelay;
-	private int 					myTimer;
-	private double 					mySpeed;
-	private boolean 				canFire;
-	private int						shootKey;
+	private AnimatedGameSprite 			myMissile;
+	private List<Enemy>					myTargets;
+	private BaseInput 					myUserInput;
+	private int 						myDamage;
+	private int 						myDelay;
+	private int 						myTimer;
+	private double 						mySpeed;
+	private boolean 					canFire;
+	private int							shootKey;
 
 	
 	public FighterTargetedMissile(AnimatedGameSprite missile, int damage, int delay,
@@ -52,7 +54,7 @@ public class FighterTargetedMissile implements Weapon, Input{
 			SingletonSpriteManager.getInstance().add(myMissile);
 			myMissile.setLocation(character.getX(), character.getY());
 			
-			List<AnimatedGameSprite> otherSprite = SingletonSpriteManager.getInstance().getMySprites();
+			
 		
 
 			canFire = false;
@@ -61,6 +63,16 @@ public class FighterTargetedMissile implements Weapon, Input{
 			myTimer = 0;
 		}
 		myTimer++; 
+	}
+	
+	public void findTargets() {
+		for (AnimatedGameSprite sprite: SingletonSpriteManager.getInstance().getMySprites()) 
+		{
+			if (sprite instanceof Enemy) 
+			{
+				myTargets.add((Enemy) sprite);
+			}
+		}
 	}
 
 	public void invert() {
