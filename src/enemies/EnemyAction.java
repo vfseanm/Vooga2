@@ -41,9 +41,9 @@ public class EnemyAction implements CollisionAction {
 	}
 
 	public void instantEnemyDeath (CollisionContext ccntext, CollisionSpec cspec){
-		System.out.println("calling enemy death");
+		//System.out.println("calling enemy death");
 		if ( (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION) ){
-			System.out.println (ccntext.getSide());
+			//System.out.println (ccntext.getSide());
 			sprite.setLocation(-10000, -1000);
 		}
 	}
@@ -55,7 +55,7 @@ public class EnemyAction implements CollisionAction {
 			for (Attribute skill: ability){
 				if (skill.getName().equals("Hitpoints")){
 					((Hitpoints)skill).modifyHitpoints(-10);
-					System.out.println ((Hitpoints)skill);
+					//System.out.println ((Hitpoints)skill);
 				}
 			}
 		}

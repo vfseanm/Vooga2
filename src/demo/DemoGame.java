@@ -27,7 +27,7 @@ import enemies.Enemy;
 import enemies.state.PassiveState;
 
 public class DemoGame extends PlatformGame {
-	
+	//{distribute = true;}
 	
 	private GameCollisionManager myCollisions;
 	private PlatformSwitch mySwitch;
@@ -160,6 +160,7 @@ public class DemoGame extends PlatformGame {
 		List<String> imNames = new ArrayList<String>();
 		imNames.add("resources/platform1.png");
 		myPlatform = new SimplePlatform(2800, 280, imNames);
+	
 		List<String> imNames2 = new ArrayList<String>();
 		imNames2.add("resources/Switch1.jpg"); 
 		imNames2.add("resources/Switch2.jpg");
@@ -178,6 +179,7 @@ public class DemoGame extends PlatformGame {
 	    allSprites.add(mySwitch);
 	    myPlayfield.add(mySwitch);
 	    myPlayfield.add(myPlatform);
+	    //playMusic("resources/smb3-world1.mid");
 	}
 
 	private void renderFSM(Graphics2D graphics) {
