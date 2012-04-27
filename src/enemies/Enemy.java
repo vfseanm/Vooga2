@@ -45,7 +45,6 @@ public class Enemy extends AttributeUser implements JsonableSprite
         myAttributeFactories = new ArrayList<AttributeFactory>();
         myAttributeFactories.add(Flying.getFactory());
         myAttributeFactories.add(Hitpoints.getFactory());
-        myAttributeFactories.add(Flying.getFactory());
         myAttributeFactories.add(Gravity.getFactory());
         myAttributeFactories.add(SideToSideMovement.getFactory());
         myAttributeFactories.add(UpDownMovement.getFactory());
