@@ -41,7 +41,7 @@ public class SingletonSpriteManager
 
     public void add (Sprite sprite)
     {
-        super.add(sprite);
+        
 
         if (sprite instanceof AnimatedGameSprite &&
             !(sprite instanceof Fighter))
@@ -76,9 +76,6 @@ public class SingletonSpriteManager
     public void setMySprites (List<AnimatedGameSprite> list)
     {
         mySprites = list;
-        for (AnimatedGameSprite sprite : mySprites)
-        {
-            super.add(sprite);
-        }
+       
     }
 }
