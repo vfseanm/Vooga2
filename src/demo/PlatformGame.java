@@ -36,14 +36,12 @@ public abstract  class PlatformGame extends Game {
     
     public void loadLevel(String filename)
     {
-        myFighter = Fighter.getInstance();
         
         LevelLoader loader = new LevelLoader();
         myLevel = loader.readLevel(new File(filename));
         myFighter = myLevel.getFighter();
         if(myFighter != null)
         {
-
             myFighter.setUserInput(bsInput);            
             myPlayfield.add(myFighter);
         }
@@ -54,8 +52,8 @@ public abstract  class PlatformGame extends Game {
         myPlayfield.setBackground(myBackground);
         
         
-        mySidescroller = myLevel.getSidescroller();
-        mySidescroller.setUserInput(bsInput);
+        //mySidescroller = myLevel.getSidescroller();
+        //mySidescroller.setUserInput(bsInput);
     }
     
     public void update(long elapsedTime) {
@@ -78,6 +76,7 @@ public abstract  class PlatformGame extends Game {
     }
 
     public void setSidescroller(Sidescroller scroller) {
+        scroller.setUserInput(bsInput);
         mySidescroller = scroller;
     }
     

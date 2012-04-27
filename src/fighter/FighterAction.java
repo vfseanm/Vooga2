@@ -19,9 +19,8 @@ public class FighterAction implements CollisionAction{
 	Fighter sprite;
 	
 	public void fighterStandOnTop (CollisionContext ccntext, CollisionSpec cspec){ 	
-	    System.out.println("woop");
-		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
-			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight()-1);
+		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
+			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight());
 			sprite.allowAttribute("Jump", true);
 			sprite.allowAttribute("Gravity", false);
 		}
@@ -29,13 +28,14 @@ public class FighterAction implements CollisionAction{
 	
 	public void fighterHitObject (CollisionContext ccntext, CollisionSpec cspec){ 		
 		if (ccntext.getSide() == CollisionGroup.LEFT_RIGHT_COLLISION){
-			sprite.setX(ccntext.getOtherSprite(sprite).getX()+sprite.getHeight()+1);
+			sprite.setX(ccntext.getOtherSprite(sprite).getX()-sprite.getWidth());
 		}
 		if (ccntext.getSide() == CollisionGroup.RIGHT_LEFT_COLLISION){
-			sprite.setX(ccntext.getOtherSprite(sprite).getX()-sprite.getWidth()-1);
+			sprite.setX(ccntext.getOtherSprite(sprite).getX()+ccntext.getOtherSprite(sprite).getWidth());
 		}
 		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
-			sprite.setY(ccntext.getOtherSprite(sprite).getY()+sprite.getHeight()+1);
+
+			sprite.setY(ccntext.getOtherSprite(sprite).getY()+ccntext.getOtherSprite(sprite).getHeight());
 		}
 	}
 	

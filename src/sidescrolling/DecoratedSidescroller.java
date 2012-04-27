@@ -31,7 +31,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
             .getBundle("demo.GameKeysResourceBundle");
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
-    private SingletonPlayField playfield;
+    private SingletonPlayField myPlayfield;
     protected BaseInput myUserInput;
     
     /**
@@ -42,7 +42,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
     public DecoratedSidescroller(Sidescroller scroller) {
         wrappedScroller = scroller;
         fighter = Fighter.getInstance();
-        playfield = SingletonPlayField.getInstance();
+        myPlayfield = SingletonPlayField.getInstance();
     }
 
     /**
@@ -70,7 +70,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
      * Moves every Sprite.
      */
     public void updateSprites() {
-        for (Sprite object: playfield.getMySprites()) {
+        for (Sprite object: myPlayfield.getMySprites()) {
             if (object != null) {
                 move(object);
             }

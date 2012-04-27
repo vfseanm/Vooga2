@@ -58,6 +58,10 @@ public abstract class AbstractPlatform extends AnimatedGameSprite {
 	    setGroup("PLATFORM");
 	}
 	
+	public String getGroup()
+	{
+	    return "PLATFORM";
+	}
 	
 
 	/**

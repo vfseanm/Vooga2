@@ -1,4 +1,4 @@
-package collisions;
+package demo;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import sprite.AnimatedGameSprite;
+import collisions.CollisionAction;
+import collisions.CollisionContext;
+import collisions.CollisionSpec;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
@@ -13,11 +16,11 @@ import com.golden.gamedev.object.collision.BasicCollisionGroup;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 
-public class GameCollisionManager extends CollisionGroup
+public class Collisions extends CollisionGroup
 {
     private List<CollisionSpec> specList = new ArrayList<CollisionSpec>();
     
-    public GameCollisionManager()
+    public Collisions()
     {
         specList = new ArrayList<CollisionSpec>();
     }
@@ -26,8 +29,6 @@ public class GameCollisionManager extends CollisionGroup
     {
         CollisionSpec cspec = traverseSpec((AnimatedGameSprite) sprite1, (AnimatedGameSprite) sprite2);  
         performAction(cspec, (AnimatedGameSprite) sprite1, (AnimatedGameSprite) sprite2, getCollisionSide());
-
-
     }
     
     public void addSpecList(List<CollisionSpec> gs){

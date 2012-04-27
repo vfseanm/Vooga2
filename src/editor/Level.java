@@ -42,7 +42,6 @@ public class Level implements Serializable{
     private ImageBackground myBackground;
     private Fighter myFighter;
     private Sidescroller mySidescroller; // THERE SHOULD BE SOME DEFAULT SIDESCROLLING !!
-                                                 // IT SHOULD ALSO BE WRITTEN WITH JSON !!
 
   
     

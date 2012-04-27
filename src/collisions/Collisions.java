@@ -13,11 +13,11 @@ import com.golden.gamedev.object.collision.BasicCollisionGroup;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 
-public class GameCollisionManager extends CollisionGroup
+public class Collisions extends CollisionGroup
 {
     private List<CollisionSpec> specList = new ArrayList<CollisionSpec>();
     
-    public GameCollisionManager()
+    public Collisions()
     {
         specList = new ArrayList<CollisionSpec>();
     }

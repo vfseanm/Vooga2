@@ -257,7 +257,7 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
             {
                 if(factory.isThisKindOfAttribute(attributeClassName))
                 {
-                    carryableAttributes.add(factory.parseFromJson(attributeMap.get(attributeClassName)));
+                    carryableAttributes.add(factory.parseFromJson(carryableAttributeMap.get(attributeClassName)));
                 }
             }
             /*carryableAttributes.add((Attribute) JsonUtil.getObjectFromJson(

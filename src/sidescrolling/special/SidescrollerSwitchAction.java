@@ -1,15 +1,17 @@
 package sidescrolling.special;
 
+import com.golden.gamedev.object.collision.CollisionGroup;
 import sprite.AnimatedGameSprite;
 import collisions.CollisionAction;
 import collisions.CollisionContext;
-import collisions.CollisionSpec;
 
 public class SidescrollerSwitchAction implements CollisionAction {
     private SidescrollerSwitch sprite;
     
-    public void switchSidescroller(CollisionContext ccntext, CollisionSpec cspec) {
-        sprite.switchSidescroller();
+    public void switchSidescroller(CollisionContext ccntext) {
+        if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION) {
+            sprite.switchSidescroller();
+        }
     }
     
     public void setSprite(AnimatedGameSprite sprite) {
