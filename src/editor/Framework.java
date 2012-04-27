@@ -215,6 +215,7 @@ public class Framework implements Serializable {
         factories.add(BonusObject.getFactory());
         factories.add(WildAndCrazyObject.getFactory());
         
+        
         AnimatedGameSprite prototype = null;
         for(SpriteFactory factory: factories)
         {
@@ -224,8 +225,7 @@ public class Framework implements Serializable {
             }
         }
         Framework framework = new Framework(name, type, prototype);
-        System.out.println("type: " + framework.getType() + "  name: "
-                + framework.getName());
+
         for (String s : instanceList)
         {
             List<Double> coordinates = gson.fromJson(s, collectionType2);
