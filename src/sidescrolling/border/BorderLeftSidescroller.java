@@ -30,7 +30,7 @@ public class BorderLeftSidescroller extends BorderSidescroller {
      * left border.
      */
     public void move(Sprite sprite) {
-        System.out.println("Left Boundary " + boundary);
+        //System.out.println("Left Boundary " + boundary);
         int leftKey = Integer.parseInt(myKeysResources.getString("LEFT"));
         if (myUserInput.isKeyDown(leftKey) && fighter.getX() <= boundary) {
             sprite.moveX(-fighter.getMovement()[0]);
