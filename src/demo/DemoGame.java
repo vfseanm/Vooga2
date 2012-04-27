@@ -158,7 +158,7 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void update(long elapsedTime) 
 	{
-	    myCollisions.checkCollision();
+	   myCollisions.checkCollision();
 	   sprite.update(elapsedTime); 
 	   myPlayfield.update(elapsedTime);
 	   myFighter.update(elapsedTime);
