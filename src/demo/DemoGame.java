@@ -3,7 +3,7 @@ package demo;
 import java.awt.Graphics2D;
 
 import attributes.Attribute;
-import attributes.enemyattributes.ProjectileAttack;
+import attributes.sharedattributes.ProjectileAttack;
 import collisions.GameCollisionManager;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
@@ -107,7 +107,6 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void update(long elapsedTime) 
 	{		
-	   System.out.println("X location " + myFighter.getX());
 	   updateFSM(elapsedTime);
 	   myEnemy.update(elapsedTime);
 	   myCollisions.checkCollision(); 
