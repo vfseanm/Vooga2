@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
@@ -28,6 +29,7 @@ import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
 import collisions.GameCollisionManager;
+import enemies.Enemy;
 import fighter.Fighter;
 
 public class DemoGame extends PlatformGame {
@@ -37,23 +39,27 @@ public class DemoGame extends PlatformGame {
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
-
+	private Sprite sprite;
+	private Collisions myCollisions;
 	public DemoGame()
-	{
+		{
 	    super();
 	}
-	@Override
 	public void initResources() 
 	{
+	    sprite = new Sprite(0,0);
+	    sprite.setVerticalSpeed(1);
+	    sprite.setImage(getImage("resources/Bowser.jpg"));
 	    loadLevel("level2");
 	    SpriteGroup allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites())
 	    {
 	        allSprites.add(sprite);
+
 	    }
 	    
 
-        Collisions myCollisions = new Collisions();
+         myCollisions = new Collisions();
         myCollisions.setCollisionGroup(allSprites, allSprites);
 	    
         ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
@@ -104,23 +110,27 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void render(Graphics2D arg0) 
 	{
-	    myPlayfield.getBackground().render(arg0);
-	    for(Sprite s: myPlayfield.getMySprites())
-	    {
-	        System.out.println("myX: " + s.getX());
-	        s.render(arg0);
-	    }
-	    
-	    //FSM Stuff
-	    //myPlatform.render(arg0);
-	    //mySwitch.render(arg0);
+
+        myBackground.render(arg0);
+	    myPlayfield.render(arg0);
+//	    //System.out.println(getHeight());
+//	    //System.out.println(getWidth());
+//	    
+//	    //FSM Stuff
+//	    //myPlatform.render(arg0);
+//	    //mySwitch.render(arg0);
+	    myFighter.render(arg0);
+	    sprite.render(arg0);
 	}
 
 	@Override
 	public void update(long elapsedTime) 
 	{
-	    
-	    myPlayfield.update(elapsedTime);
+	    myCollisions.checkCollision();
+	   sprite.update(elapsedTime); 
+	   myPlayfield.update(elapsedTime);
+	   myFighter.update(elapsedTime);
+	   
 	   // mySidescroller.update(elapsedTime);
 
 	}
