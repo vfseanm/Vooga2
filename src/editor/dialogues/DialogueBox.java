@@ -71,10 +71,9 @@ public abstract class DialogueBox extends JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             file = fc.getSelectedFile();
         }
-        try {
-            myImagePaths.add(file.getCanonicalPath());
-        } catch (IOException e1) {
-        }
+        myImagePaths.add("resources/"+file.getName());
+      
+   
 
     }
 

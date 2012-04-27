@@ -4,7 +4,7 @@ import attributes.Attribute;
 
 
 
-public class AttributeFactory<T extends Attribute & JsonableAttribute > {
+public class AttributeFactory<T extends JsonableAttribute > {
     T myAttribute;
     public AttributeFactory(T a)
     {
