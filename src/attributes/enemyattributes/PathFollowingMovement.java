@@ -30,7 +30,7 @@ public class PathFollowingMovement extends Attribute
         super(path);
         myPath = path.getLine();
         index = 0;
-        System.out.println("my path:" + myPath);
+   
     }
 
 

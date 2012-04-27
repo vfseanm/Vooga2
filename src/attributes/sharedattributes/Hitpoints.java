@@ -74,7 +74,6 @@ public class Hitpoints extends Attribute implements JsonableAttribute
     public  Hitpoints fromJson(String json)
     {
         Gson gson = new Gson();
-        System.out.println(json);
         int points = gson.fromJson(json, int.class);
         return new Hitpoints(points);
     }

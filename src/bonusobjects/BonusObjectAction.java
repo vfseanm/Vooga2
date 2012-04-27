@@ -51,7 +51,7 @@ public class BonusObjectAction implements CollisionAction{
 			for (Attribute skill: ability){
 				if (skill.getName().equals("Hitpoints")){
 					((Hitpoints)skill).modifyHitpoints(-10);
-					System.out.println ((Hitpoints)skill);
+			
 				}
 			}
 		}

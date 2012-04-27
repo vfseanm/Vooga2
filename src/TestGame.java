@@ -148,7 +148,7 @@ public class TestGame extends Game {
 	@Override
 	public void update (long arg0)
 	{
-	    System.out.println(bob);
+	   
 		myBackground.update(arg0);
 		counter++;
 		myObject.update(arg0);

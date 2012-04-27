@@ -43,7 +43,7 @@ public class PlatformTest extends Game {
 		myPlatform = new RotatingPlatform(myPlatform);	
 		myPlatform = new SideToSidePlatform(myPlatform);
 		myPlatform = new UpDownPlatform(myPlatform);
-		System.out.println(myPlatform.toString());
+		
 		SimplePlatform sp = new SimplePlatform(400, 100, imNames);
 		myPlatform2 = sp;
 		List<String> imNames2 = new ArrayList<String>();
@@ -61,7 +61,7 @@ public class PlatformTest extends Game {
 	     myEvent = event;
 	     myEvent.setControlledPlatforms(plats);
 		//mySwitch.setActive(false);
-		//System.out.println(mySwitch.isActive());
+		
 	}
 
 	@Override
@@ -70,9 +70,9 @@ public class PlatformTest extends Game {
         arg0.fillRect(0, 0, getWidth(), getHeight());
         myPlatform2.render(arg0);
 		myPlatform.render(arg0);
-		//System.out.println(mySwitch.isActive());
+		
 		mySwitch.render(arg0);
-		//System.out.println(mySwitch.isActive());
+		
 	
 		
 	}
@@ -84,9 +84,9 @@ public class PlatformTest extends Game {
 		}
 		myPlatform2.update(arg0);
 		myPlatform.update(arg0);	
-		//System.out.println(mySwitch.isActive());
+		
 		mySwitch.update(arg0);
-		//System.out.println(mySwitch.isActive());
+	
 		myEvent.update(arg0);
 	}
 	

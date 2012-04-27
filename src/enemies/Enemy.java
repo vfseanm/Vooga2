@@ -179,7 +179,7 @@ public class Enemy extends AttributeUser implements JsonableSprite
         Map<String, String> attributeList = new HashMap<String, String>();
         for (Attribute a : myAttributes)
         {
-            System.out.println(a.getClass().toString()+ "   "+ a.toJson());
+           
             attributeList.put(a.getClass().toString(), a.toJson());
         }
         String additionalInformation = gson.toJson(attributeList);
