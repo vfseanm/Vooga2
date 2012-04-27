@@ -102,7 +102,7 @@ public abstract class AttributeUser extends AnimatedGameSprite {
         }
 
 
-        private void accessAttributeMethod (String methodStart,
+        protected void accessAttributeMethod (String methodStart,
                                             String name,
                                             Object ... o)
         {
