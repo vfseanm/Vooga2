@@ -87,7 +87,7 @@ public class DemoGame extends PlatformGame {
         specList.add(spec5);
         
         CollisionSpec spec6 = new CollisionSpec();
-        spec6.addActMap("SWITCH", "switchPlatform" );
+        spec6.addActMap("PLATFORMSWITCH", "switchPlatform" );
         spec6.addActMap("FIGHTER", "");
         
         List<String> switchImages = new ArrayList<String>();
@@ -127,7 +127,7 @@ public class DemoGame extends PlatformGame {
 	private void initEnemyFSM() {
 		List<String> images = new ArrayList<String>();
 		images.add("resources/Bowser.jpg");
-		myEnemy = new Enemy(1000, 200, images);
+		myEnemy = new Enemy(3000, 200, images);
 		myEnemy.setState(PassiveState.getInstance());
 		
 		List<String> images2 = new ArrayList<String>();
