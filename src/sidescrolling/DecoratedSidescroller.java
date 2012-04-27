@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import java.util.List;
 
-import playfield.SingletonPlayField;
+import playfield.SingletonSpriteManager;
 
 import com.golden.gamedev.engine.BaseInput;
 import com.golden.gamedev.object.*;
@@ -31,7 +31,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
             .getBundle("demo.GameKeysResourceBundle");
     private Sidescroller wrappedScroller;
     protected Fighter fighter;
-    private SingletonPlayField myPlayfield;
+    private SingletonSpriteManager myPlayfield;
     protected BaseInput myUserInput;
     
     /**
@@ -42,7 +42,7 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
     public DecoratedSidescroller(Sidescroller scroller) {
         wrappedScroller = scroller;
         fighter = Fighter.getInstance();
-        myPlayfield = SingletonPlayField.getInstance();
+        myPlayfield = SingletonSpriteManager.getInstance();
     }
 
     /**

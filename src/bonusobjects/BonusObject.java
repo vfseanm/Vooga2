@@ -24,7 +24,7 @@ import editor.json.SpriteJsonData;
 
 import attributes.*;
 import attributes.enemyattributes.Flying;
-import attributes.fighterattributes.PointValue;
+import attributes.fighterattributes.FighterScore;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
 import attributes.sharedattributes.NumberOfLives;
@@ -45,7 +45,7 @@ public class BonusObject extends AttributeUser implements JsonableSprite {
         myAttributeFactories.add(Hitpoints.getFactory());
         myAttributeFactories.add(NumberOfLives.getFactory());
         myAttributeFactories.add(NumberOfLives.getFactory());
-        myAttributeFactories.add(PointValue.getFactory());
+        myAttributeFactories.add(FighterScore.getFactory());
         myAttributeFactories.add(Visibility.getFactory());
         
     }

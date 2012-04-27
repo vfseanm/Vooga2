@@ -86,7 +86,7 @@ public class FighterAction implements CollisionAction{
 			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
 			
 			for (Attribute skill: ability){
-				if (skill.getName().equals("NumberOfLoves")){
+				if (skill.getName().equals("NumberOfLives")){
 					((NumberOfLives) skill).modifyNumberOfLives(-1);
 				}
 			}

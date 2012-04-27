@@ -1,6 +1,6 @@
 package weapons;
 
-import playfield.SingletonPlayField;
+import playfield.SingletonSpriteManager;
 import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.Sprite;
 import character.AttributeUser;
@@ -29,7 +29,7 @@ public class Fireball implements Weapon
     {
         if (counter == 0)
         {
-            SingletonPlayField.getInstance().add(myFireball);
+            SingletonSpriteManager.getInstance().add(myFireball);
             myFireball.setLocation(character.getX(), character.getY());
         }
         else if (counter > myDelay)
@@ -37,7 +37,6 @@ public class Fireball implements Weapon
             counter = 0;
         }
         counter++;
-
     }
 
     //useful for collisons to inflict damage

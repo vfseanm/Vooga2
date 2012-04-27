@@ -59,7 +59,7 @@ public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 	 */
 	@Override
 	public String toString() {
-		return myPlatformResources.getString("Simple");
+		return "simple";
 	}
 
 	@Override
