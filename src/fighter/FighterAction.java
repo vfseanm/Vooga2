@@ -23,13 +23,13 @@ public class FighterAction implements CollisionAction{
 		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight());
 			
-			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
-			
-			for (Attribute skill: ability){
-				if (skill.getName().equals("FighterJump")){
-					((FighterJump) skill).modifyFighterJump(true);
-				}
-			}
+//			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
+//			
+//			for (Attribute skill: ability){
+//				if (skill.getName().equals("FighterJump")){
+//					((FighterJump) skill).modifyFighterJump(true);
+//				}
+//			}
 		}
 	}
 	
