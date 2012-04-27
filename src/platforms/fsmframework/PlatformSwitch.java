@@ -19,6 +19,7 @@ public class PlatformSwitch extends AnimatedGameSprite {
 
 	public PlatformSwitch(double x, double y, List<String> imSources) {
 		super(x, y, imSources);
+		setGroup("SWITCH");
 	}
 	
 	public void setOn(boolean bool) {

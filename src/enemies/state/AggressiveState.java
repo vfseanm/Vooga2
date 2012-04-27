@@ -26,30 +26,40 @@ public class AggressiveState implements EnemyState
 
     public void excuteBehavior (Enemy enemy, long elapsedTime)
     {
-        
+
         Fighter fighter = Fighter.getInstance();
-        if(!changeState(enemy,fighter)){
-           enemy.attack(elapsedTime);
-           if(enemy.getX()>fighter.getX()){
-               enemy.setX(enemy.getX()-1);
-           }
-           else
-              enemy.setX(enemy.getX()+1); 
-           
+        if (fighter.getX() < enemy.getX())
+        {
+            enemy.invertAttribute("ProjectileAttack");
+        }
+        else if (fighter.getX() > enemy.getX())
+        {
+            enemy.invertAttribute("ProjectileAttack");
+        }
+        if (!changeState(enemy, fighter))
+        {
+            enemy.attack(elapsedTime);
+            if (enemy.getX() > fighter.getX())
+            {
+                enemy.setX(enemy.getX() - 1);
+            }
+            else enemy.setX(enemy.getX() + 1);
+
         }
 
     }
 
 
-    public boolean changeState (Enemy enemy,Fighter fighter)
+    public boolean changeState (Enemy enemy, Fighter fighter)
     {
-        
+
         if (!enemy.isOnScreen())
         {
             enemy.setState(PassiveState.getInstance());
             return true;
         }
-        if(fighter.getY()!=enemy.getY()){
+        if (fighter.getY() != enemy.getY())
+        {
             enemy.setState(DefensiveState.getInstance());
             return true;
         }
