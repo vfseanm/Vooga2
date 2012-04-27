@@ -4,8 +4,8 @@ import com.golden.gamedev.engine.BaseInput;
 
 /**
  * This is the most basic type of usable Sidescroller. Does not actually do any sidescrolling but allows
- * for other sidescrollers to access the fighter and the sprites that need to be moved. You must use
- * setSprites to determine which Sprites must be used by the sidescroller.
+ * for other sidescrollers to access the game width and height. Must be used as the inner-most wrapped
+ * sidescroller.
  * @author Dustin
  *
  */
@@ -16,10 +16,7 @@ public class ConcreteSidescroller extends Sidescroller  {
     private int myGameHeight;
     
     /**
-     * Creates a new ConcreteSidescroller.
-     * @param width - width of the game.
-     * @param height - height of the game.
-     * @param sprites - an arrayList of Sprites that the sidescroller must move.
+     * Creates a new ConcreteSidescroller. Gets the height and width of the game from a resource bundle.
      */
     public ConcreteSidescroller() {
         myGameWidth = Integer.parseInt(mySidescrollerResources.getString("gameWidth"));
@@ -47,6 +44,9 @@ public class ConcreteSidescroller extends Sidescroller  {
         return myGameHeight;
     }
     
+    /**
+     * Does nothing.
+     */
     public void setUserInput(BaseInput userInput) {
         return;
     }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import sprite.AnimatedGameSprite;
 import com.golden.gamedev.object.Sprite;
+
+import enemies.Enemy;
 import fighter.Fighter;
 
 
@@ -16,13 +18,15 @@ import fighter.Fighter;
  */
 public class SingletonSpriteManager
 {
-    private List<AnimatedGameSprite> mySprites;
-    private List<AnimatedGameSprite> toAdd;
+    private List<AnimatedGameSprite> 	mySprites;
+    private List<Enemy>					myEnemies;
+    private List<AnimatedGameSprite> 	toAdd;
 
 
     private SingletonSpriteManager ()
     {
         mySprites = new ArrayList<AnimatedGameSprite>();
+        myEnemies = new ArrayList<Enemy>();
         toAdd = new ArrayList<AnimatedGameSprite>();
 
     }
@@ -69,6 +73,11 @@ public class SingletonSpriteManager
             for (AnimatedGameSprite s : toAdd)
             {
                 mySprites.add(s);
+                
+                if (s instanceof Enemy) 
+                {
+                	myEnemies.add((Enemy) s);
+                }
 
             }
             toAdd.clear();
@@ -89,5 +98,10 @@ public class SingletonSpriteManager
     public void setMySprites (List<AnimatedGameSprite> list)
     {
         mySprites = list;
+    }
+    
+    public List<Enemy> getMyEnemies()
+    {
+        return myEnemies;
     }
 }
