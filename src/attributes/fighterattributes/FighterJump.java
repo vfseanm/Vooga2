@@ -76,11 +76,11 @@ public class FighterJump extends Attribute
                     myGameCharacter.allowAttribute("FighterJump", false);
                     myTimer = 0;
                     isJumping = false;
+                    canJump = true;
                 }
             }
             myTimer++;
         }
-        else canJump = true;
     }
 
 
