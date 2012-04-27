@@ -2,8 +2,8 @@ package fighter;
 
 import java.util.ArrayList;
 
+
 import attributes.Attribute;
-import attributes.fighterattributes.FighterJump;
 import attributes.sharedattributes.Hitpoints;
 import attributes.sharedattributes.NumberOfLives;
 import bonusobjects.BonusObject;
@@ -67,7 +67,7 @@ public class FighterAction implements CollisionAction{
 	}
 	
 	public void instantFighterDeath (CollisionContext ccntext, CollisionSpec cspec){
-		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
+		if (ccntext.getSide() != CollisionGroup.TOP_BOTTOM_COLLISION){
 			sprite.setLocation(-10000, -1000);
 			sprite.setActive(false);
 		}

@@ -2,13 +2,13 @@ package attributes.fighterattributes;
 
 import character.AttributeUser;
 
+
 import com.golden.gamedev.engine.BaseInput;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
 
-import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
 
 import attributes.*;

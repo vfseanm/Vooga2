@@ -1,10 +1,10 @@
 package editor.exampleStuff;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import platforms.platformtypes.SideToSidePlatform;
 
 import com.google.gson.Gson;
 

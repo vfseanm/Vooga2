@@ -1,6 +1,7 @@
 package demo;
 
 import java.awt.event.KeyEvent;
+
 import java.io.File;
 
 import playfield.SingletonSpriteManager;
@@ -8,7 +9,6 @@ import playfield.SingletonSpriteManager;
 import sidescrolling.Sidescroller; 
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.Level;

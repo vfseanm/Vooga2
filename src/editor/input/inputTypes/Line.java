@@ -2,11 +2,11 @@ package editor.input.inputTypes;
 
 import java.awt.Point;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import sprite.AnimatedGameSprite;
 import editor.Framework;
-import editor.dialogues.DialogueBox;
 
 
 
