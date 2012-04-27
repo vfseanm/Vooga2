@@ -20,11 +20,11 @@ public abstract  class PlatformGame extends Game {
 
     protected Level myLevel;
 
-    protected Fighter myFighter;
-    protected ImageBackground myBackground;
-    protected SingletonSpriteManager myPlayfield;
-    protected Sidescroller mySidescroller;
-    protected boolean	pause;
+    protected Fighter 					myFighter;
+    protected ImageBackground 			myBackground;
+    protected SingletonSpriteManager 	myPlayfield;
+    protected Sidescroller 				mySidescroller;
+    protected boolean					pause;
     
     public PlatformGame()
     {  
@@ -33,7 +33,6 @@ public abstract  class PlatformGame extends Game {
     
     public void loadLevel(String filename)
     {
-        
         LevelLoader loader = new LevelLoader();
         myLevel = loader.readLevel(new File(filename));
         myFighter = myLevel.getFighter();

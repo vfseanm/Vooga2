@@ -63,12 +63,14 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 		if (isActive) {
 			if (myUserInput.isKeyDown(leftKey)) {
 				myGameCharacter.moveX(-myHorizMovement);
+				myGameCharacter.modifyAttribute("FighterMissile", false);
 				movingRight = false;
 				movingLeft = true;
 			}
 
 			if (myUserInput.isKeyDown(rightKey)) {
 				myGameCharacter.moveX(myHorizMovement);
+				myGameCharacter.modifyAttribute("FighterMissile", true);
 				movingRight = true;
 				movingLeft = false;
 			}
