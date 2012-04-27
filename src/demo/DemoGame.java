@@ -1,12 +1,9 @@
 package demo;
 import java.awt.Graphics2D;
+
 import attributes.Attribute;
 import attributes.sharedattributes.ProjectileAttack;
 import collisions.GameCollisionManager;
-import sidescrolling.ConcreteSidescroller;
-import sidescrolling.Sidescroller;
-import sidescrolling.shift.*;
-import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 import weapons.enemyweapons.Fireball;
@@ -35,7 +32,6 @@ public class DemoGame extends PlatformGame {
 	private AbstractEvent myEvent;
 	private Enemy myEnemy;
 	private SpriteGroup allSprites;
-	private SidescrollerSwitch mySidescrollerSwitch;
 	
 
 	public DemoGame() {
@@ -89,21 +85,7 @@ public class DemoGame extends PlatformGame {
         specList.add(spec6);
        
         
-        List<String> switchImages = new ArrayList<String>();
-        switchImages.add("resources/scrollerSwitchUp.png"); 
-        switchImages.add("resources/scrollerSwitchDown.png");
-        Sidescroller newScroller = new ShiftLeftSidescroller(new ShiftRightSidescroller(
-                new ShiftDownSidescroller(new ShiftUpSidescroller(new ConcreteSidescroller()))));
-        mySidescrollerSwitch = new SidescrollerSwitch(1300, 295, switchImages, newScroller, this);
         
-        allSprites.add(mySidescrollerSwitch);
-        myPlayfield.add(mySidescrollerSwitch);
-        
-        CollisionSpec spec7 = new CollisionSpec();
-        spec7.addActMap("SIDESCROLLERSWITCH", "switchSidescroller");
-        spec7.addActMap("FIGHTER", "");
-        specList.add(spec7);
-     
         myCollisions.setCollisionGroup(allSprites, allSprites);
         myCollisions.addSpecList(specList);
         
