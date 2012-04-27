@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bonusobjects.BonusObject;
 import collisions.CollisionAction;
 
 import com.golden.gamedev.engine.BaseInput;
@@ -30,6 +31,7 @@ import attributes.interfaces.Movement;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
 import attributes.sharedattributes.NumberOfLives;
+import attributes.sharedattributes.Visibility;
 
 
 @SuppressWarnings({ "serial", "rawtypes" })
