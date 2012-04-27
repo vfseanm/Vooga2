@@ -28,6 +28,7 @@ public abstract  class PlatformGame extends Game {
     {  
         myPlayfield = SingletonSpriteManager.getInstance();
         myKeyController = SingletonKeyController.getInstance();
+        myKeyController.convertResourceBundleToMap();
     }
     
     public void loadLevel(String filename)
@@ -47,7 +48,6 @@ public abstract  class PlatformGame extends Game {
         
         
         mySidescroller = myLevel.getSidescroller();
-        System.out.println(myLevel.getSidescroller());
         mySidescroller.setUserInput(bsInput);
     }
     

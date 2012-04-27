@@ -1,10 +1,5 @@
 package bonusobjects;
 
-import java.util.List;
-
-import attributes.Attribute;
-import attributes.sharedattributes.Hitpoints;
-
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 import sprite.AnimatedGameSprite;
@@ -47,13 +42,7 @@ public class BonusObjectAction implements CollisionAction{
 
 	public void bonusObjectLoseLife (CollisionContext ccntext, CollisionSpec cspec){
 		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
-			List<Attribute> ability = sprite.getAttributes(); 
-			for (Attribute skill: ability){
-				if (skill.getName().equals("Hitpoints")){
-					((Hitpoints)skill).modifyHitpoints(-10);
-					System.out.println ((Hitpoints)skill);
-				}
-			}
+			sprite.modifyAttribute("NumberOfLives", -1);
 		}
 	}
 	
