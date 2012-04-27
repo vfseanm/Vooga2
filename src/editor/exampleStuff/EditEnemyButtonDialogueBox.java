@@ -104,7 +104,10 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         {
             newPrototype.addAttribute(attribute);
         }
-        newPrototype.setGroup(myGroup.getText());
+        if(myGroup.getText().length()!=0)
+        {
+            newPrototype.setGroup(myGroup.getText());
+        }
        
         myFramework.updateSprites(newPrototype);
         editorController.closeDialogue();

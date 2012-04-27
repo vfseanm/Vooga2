@@ -27,9 +27,11 @@ public class DemoGame extends PlatformGame {
 	public DemoGame() {
 	    super();
 	}
-	
-	public void initResources() { 
+	public void initResources() 
+	{
+	  
 	    loadLevel("demo1");
+
 	    SpriteGroup allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
 	        allSprites.add(sprite);
@@ -53,6 +55,45 @@ public class DemoGame extends PlatformGame {
         spec2.addActMap("PLATFORM", "actionBreak");
         specList.add(spec2);
         
+        myCollisions.setCollisionGroup(allSprites, allSprites);
+        myCollisions.addSpecList(specList);
+
+
+	    
+	    //System.out.println(myPlayfield.getMySprites());
+	    
+	    
+	    
+	    
+	    
+	    
+//        for(AnimatedGameSprite s: mySprites)
+//        {
+//            System.out.print(s.getGroup() + " ");
+//            System.out.println(s.getX() + "   " + s.getY());
+//        }
+
+		
+       
+//        //FSM stuff
+//        initPlatformFSM();
+//        CollisionSpec spec3 = new CollisionSpec();
+//        spec3.addActMap(mySwitch.getGroup(), "switchPlatform");
+//        spec3.addActMap("FIGHTER", "");
+//        specList.add(spec3);
+//        
+//        //make sidescroller switch
+//        ArrayList<String> switchImage = new ArrayList<String>();
+//        String switchName = "Resources/Bowser.jpg";
+//        switchImage.add(switchName);
+//        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller()));
+//        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
+        //myPlayfield.addCollisionGroup(allSprites, allSprites, myCollisions);
+        
+        //mySidescroller = new ForcedRightSidescroller(new ConcreteSidescroller());
+        //mySidescroller.setUserInput(bsInput);
+
+
         CollisionSpec spec3 = new CollisionSpec();
         spec3.addActMap("ENEMY", "enemyStandOnTop");
         spec3.addActMap("PLATFORM", "");

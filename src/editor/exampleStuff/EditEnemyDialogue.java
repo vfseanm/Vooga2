@@ -99,8 +99,11 @@ public class EditEnemyDialogue extends DialogueBox {
         {
             enemy.addAttribute(a);
         }
-
-        enemy.setGroup(myGroup.getText());
+        
+        if(myGroup.getText().length()!=0)
+        {
+            enemy.setGroup(myGroup.getText());
+        }
 
         
             editorController.removeSprite(mySprite);
