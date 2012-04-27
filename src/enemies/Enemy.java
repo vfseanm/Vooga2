@@ -260,6 +260,7 @@ public class Enemy extends AttributeUser implements JsonableSprite
                 for (Class<?> myInterface : attribute.getClass()
                                                      .getInterfaces())
                 {
+                    
                     if (myInterface.equals(Updateable.class))
                     {
                         ((Updateable) attribute).update(elapsedTime);

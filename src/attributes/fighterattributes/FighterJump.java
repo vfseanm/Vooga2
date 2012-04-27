@@ -4,11 +4,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
@@ -17,28 +15,29 @@ import attributes.interfaces.Input;
 import attributes.interfaces.Movement;
 import attributes.interfaces.Updateable;
 
+
 @SuppressWarnings("serial")
-public class FighterJump extends Attribute implements Updateable, Movement, Input, JsonableAttribute
+public class FighterJump extends Attribute
+    implements Updateable, Movement, Input, JsonableAttribute
 {
-	
-	transient protected ResourceBundle myGameKeys = ResourceBundle
-    .getBundle("demo.GameKeysResourceBundle");
-	
-	private BaseInput 		myUserInput;
-    private double 			myJumpHeight;
-    private double			myDelay;
-    private boolean 		canJump;
-    private boolean 		isJumping;
-    private int 			myTimer;
-    private int 			jumpKey;
+
+    transient protected ResourceBundle myGameKeys =
+        ResourceBundle.getBundle("demo.GameKeysResourceBundle");
+
+    private BaseInput myUserInput;
+    private double myJumpHeight;
+    private double myDelay;
+    private boolean canJump;
+    private boolean isJumping;
+    private int myTimer;
+    private int jumpKey;
 
 
     @editorConstructor(parameterNames = { "jump height", "time" })
     public FighterJump (double jumpHeight, double delay)
     {
         super(jumpHeight, delay);
-        if (jumpHeight < 0) 
-        	throw new RuntimeException("You must enter a positive number for the jump height");
+        if (jumpHeight < 0) throw new RuntimeException("You must enter a positive number for the jump height");
         myJumpHeight = jumpHeight;
         myDelay = delay;
         canJump = true;
@@ -46,52 +45,59 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
         jumpKey = Integer.parseInt(myGameKeys.getString("JUMP"));
     }
 
-    
+
     public void modifyJump (double jumpHeight, int time)
     {
         myJumpHeight += jumpHeight;
         myDelay += time;
     }
 
-    
-    public void update(long elapsedTime)
-    {  	
+
+    public void update (long elapsedTime)
+    {
         if (isActive)
         {
-        	if (canJump && myUserInput.isKeyPressed(jumpKey)) 
-    		{
-    		    myGameCharacter.allowAttribute("Gravity", false);
-    		    canJump = false;
-    		    isJumping = true;
-    		}
-        	
+            if (canJump && myUserInput.isKeyPressed(jumpKey))
+            {
+
+                canJump = false;
+                isJumping = true;
+            }
+
             if (isJumping)
             {
-            	if (myTimer <= myDelay) myGameCharacter.moveY(-myJumpHeight);
-            	else 
-            	{
-            		canJump = true;
-            		isJumping = false;
+                if (myTimer <= myDelay)
+                {
+                    myGameCharacter.moveY(-myJumpHeight);
+                    myGameCharacter.allowAttribute("Gravity", false);
+                }
+                else
+                {
+                    isJumping = false;
                     myGameCharacter.allowAttribute("Gravity", true);
                     myGameCharacter.allowAttribute("FighterJump", false);
+                    canJump = true;
                     myTimer = 0;
-            	}
+                }
             }
             myTimer++;
-        }     
+        }
     }
 
 
-	public void invert() {
-		myJumpHeight = -myJumpHeight;
-	}
+    public void invert ()
+    {
+        myJumpHeight = -myJumpHeight;
+    }
 
-	@Override
-	public Object clone() {
-		return new FighterJump(myJumpHeight, myDelay);
-	}
-	
-	
+
+    @Override
+    public Object clone ()
+    {
+        return new FighterJump(myJumpHeight, myDelay);
+    }
+
+
     @Override
     public String getName ()
     {
@@ -106,17 +112,20 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
     }
 
 
-	public double getHorizMovement() {
-		return 0;
-	}
+    public double getHorizMovement ()
+    {
+        return 0;
+    }
 
 
-	public double getVertMovement() {
-		if (isActive && isJumping) return -myJumpHeight;
-		return 0;
-	}
-	
-	public String toJson()
+    public double getVertMovement ()
+    {
+        if (isActive && isJumping) return -myJumpHeight;
+        return 0;
+    }
+
+
+    public String toJson ()
     {
         Gson gson = new Gson();
         List<Double> argList = new ArrayList<Double>();
@@ -124,23 +133,30 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
         argList.add(myDelay);
         return gson.toJson(argList);
     }
-    
-    public FighterJump fromJson(String json)
+
+
+    public FighterJump fromJson (String json)
     {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<Double>>(){}.getType();
+        Type collectionType = new TypeToken<List<Double>>()
+        {}.getType();
         List<Double> argList = gson.fromJson(json, collectionType);
         return new FighterJump(argList.get(0), argList.get(1));
     }
 
 
-	public void setUserInput(BaseInput userInput) {
-		myUserInput = userInput;
-	}
-	
-	   private FighterJump(){};
-	   public static AttributeFactory<FighterJump> getFactory()
-	   {
-	       return new AttributeFactory<FighterJump>(new FighterJump());
-	   }
+    public void setUserInput (BaseInput userInput)
+    {
+        myUserInput = userInput;
+    }
+
+
+    private FighterJump ()
+    {};
+
+
+    public static AttributeFactory<FighterJump> getFactory ()
+    {
+        return new AttributeFactory<FighterJump>(new FighterJump());
+    }
 }
