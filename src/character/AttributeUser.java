@@ -1,180 +1,278 @@
 package character;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
 import attributes.interfaces.Updateable;
 
+
+/**
+ * Abstract super class for enemy, fighter and bonus objects. encapsulates
+ * attribute handling that is basic to all three of these classes
+ * 
+ * @author Alex
+ */
 @SuppressWarnings("serial")
-public abstract class AttributeUser extends AnimatedGameSprite {
+public abstract class AttributeUser extends AnimatedGameSprite
+{
 
-	protected List<Attribute> myAttributes;
+    protected List<Attribute> myAttributes;
 
-	public AttributeUser(double x, double y, List<String> images) {
-		super(x, y, images);
-		myAttributes = new ArrayList<Attribute>();
-	}
 
-	protected AttributeUser() {
-		myAttributes = new ArrayList<Attribute>();
-	};
+    /**
+     * @param x x coordinate of the sprite
+     * @param y y coordinate of the sprite
+     * @param images list of images associated with the character
+     */
+    public AttributeUser (double x, double y, List<String> images)
+    {
+        super(x, y, images);
+        myAttributes = new ArrayList<Attribute>();
+    }
 
-	/**
-	 * Secret reflection method for sean's uses
-	 * 
-	 * @author Alex
-	 * @param name
-	 * @return
-	 */
-	public boolean hasAttributeByName(String name) {
-		for (Attribute attribute : myAttributes) {
-			if (attribute.getClass().getName().equalsIgnoreCase(name))
-				return true;
-		}
-		return false;
-	}
 
-	/**
-	 * Secret reflection method for sean's uses
-	 * 
-	 * @author Alex
-	 * @param name
-	 * @return
-	 */
+    protected AttributeUser ()
+    {
+        myAttributes = new ArrayList<Attribute>();
+    };
 
-	public List<Attribute> getAttributes() {
-		return Collections.unmodifiableList(myAttributes);
-	}
 
-	public void addAttribute(Attribute attribute) {
-		myAttributes.add(attribute);
-		attribute.setGameCharacter(this);
-	}
+    /**
+     * @author Alex
+     * @param name The name of the attribute that you are looking for
+     * @return true if the name is contained within the list of attributes
+     */
+    public boolean hasAttributeByName (String name)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getClass().getName().equalsIgnoreCase(name)) return true;
+        }
+        return false;
+    }
 
-	public void addAttributeList(ArrayList<Attribute> attributes) {
-		for (Attribute attribute : attributes) {
-			addAttribute(attribute);
-		}
-	}
 
-	public void clearAttributes() {
-		myAttributes.clear();
-	}
+    /**
+     * Used by the level editor team
+     * 
+     * @return an unmodifiablelist of myAttributes
+     */
+    public List<Attribute> getAttributes ()
+    {
+        return Collections.unmodifiableList(myAttributes);
+    }
 
-	public void removeAttributeByName(String name) {
-		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equalsIgnoreCase(name))
-				myAttributes.remove(attribute);
-		}
 
-	}
+    /**
+     * Adds an attribute to the list of attributes Also associates the attribute
+     * with the type of attribute user (enemy, fighter, or bonus object)
+     * 
+     * @param attribute attribute to add to the list
+     */
+    public void addAttribute (Attribute attribute)
+    {
+        myAttributes.add(attribute);
+        attribute.setGameCharacter(this);
+    }
 
-	protected void accessAttributeMethod(String methodStart, String name,
-			Object... o) {
 
-		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equals(name)) {
-				Class<?> c = attribute.getClass();
-				for (Method m : c.getMethods()) {
+    /**
+     * Adds a list of attributes to the attribute user's currentlist calls the
+     * add attribute method for each attribute
+     * 
+     * @param attributes
+     */
+    public void addAttributeList (ArrayList<Attribute> attributes)
+    {
+        for (Attribute attribute : attributes)
+        {
+            addAttribute(attribute);
+        }
+    }
 
-					if (!m.getName().startsWith(methodStart))
-						continue;
-					if (m.getGenericParameterTypes().length != o.length)
-						continue;
-					for (int i = 0; i < m.getGenericParameterTypes().length; i++) {
-						Class<?> t = m.getParameterTypes()[i];
-						if (!t.equals(o[i])) {
 
-							continue;
-						}
+    /**
+     * removes all attributes from myAttributes
+     */
+    public void clearAttributes ()
+    {
+        myAttributes.clear();
+    }
 
-					}
 
-					try {
+    /**
+     * Removes an attribute by name from the list of attributes
+     * 
+     * @param name the name of the Attribute to remove
+     */
+    public void removeAttributeByName (String name)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getName().equalsIgnoreCase(name)) myAttributes.remove(attribute);
+        }
 
-						m.invoke(attribute, o);
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						e.printStackTrace();
-					}
+    }
 
-				}
-			}
-		}
 
-	}
+    /**
+     * helper method which is used by several other methods
+     * 
+     * @param methodStart beginning string of the attribute method which is
+     *            going to be called
+     * @param name the name of the attribute whose method is to be called
+     * @param o the objects which are the necessary parameters to call the
+     *            method in the attribute
+     */
+    protected void accessAttributeMethod (String methodStart,
+                                          String name,
+                                          Object ... o)
+    {
 
-	public void modifyAttribute(String name, Object... o) {
-		accessAttributeMethod("modify", name, o);
-	}
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getName().equals(name))
+            {
+                Class<?> c = attribute.getClass();
+                for (Method m : c.getMethods())
+                {
 
-	public void restoreOriginalAttribute(String name) {
-		accessAttributeMethod("restore", name);
-	}
+                    if (!m.getName().startsWith(methodStart)) continue;
+                    if (m.getGenericParameterTypes().length != o.length) continue;
+                    for (int i = 0; i < m.getGenericParameterTypes().length; i++)
+                    {
+                        Class<?> t = m.getParameterTypes()[i];
+                        if (!t.equals(o[i]))
+                        {
 
-	public void invertAttribute(String name) {
-		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equalsIgnoreCase(name))
+                            continue;
+                        }
 
-			{
-				for (Class<?> myInterface : attribute.getClass()
-						.getInterfaces()) {
-					if (myInterface.equals(Updateable.class)) {
-						((Updateable) attribute).invert();
-					}
-				}
-			}
-		}
-	}
+                    }
 
-	public void allowAttribute(String name, boolean activity) {
-		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equalsIgnoreCase(name)) {
-				attribute.setActivity(activity);
-			}
-		}
-	}
+                    try
+                    {
 
-	public void update(long elapsedTime) {
+                        m.invoke(attribute, o);
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (IllegalAccessException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (InvocationTargetException e)
+                    {
+                        e.printStackTrace();
+                    }
 
-		performUpdateableAttributes(elapsedTime);
+                }
+            }
+        }
 
-	}
+    }
 
-	public void performUpdateableAttributes(long elapsedTime) {
-		for (Attribute attribute : myAttributes) {
 
-			if (attribute.getClass().getInterfaces().length != 0) {
-				for (Class<?> myInterface : attribute.getClass()
-						.getInterfaces()) {
+    /**
+     * Used for attribute encapsulation this method is used to call the modify
+     * method in a given attribute and takes the necessary parameters to modify
+     * this attribute
+     * 
+     * @param name
+     * @param o
+     */
+    public void modifyAttribute (String name, Object ... o)
+    {
+        accessAttributeMethod("modify", name, o);
+    }
 
-					if (myInterface.equals(Updateable.class)) {
-						((Updateable) attribute).update(elapsedTime);
-					}
-				}
-			}
-		}
-	}
 
-	public String toString() {
-		StringBuilder toReturn = new StringBuilder();
-		toReturn.append(getName() + "\n");
-		for (Attribute attribute : getAttributes()) {
-			toReturn.append(attribute.toString());
-			toReturn.append("\n");
-		}
-		return toReturn.toString();
-	}
+    public void restoreOriginalAttribute (String name)
+    {
+        accessAttributeMethod("restore", name);
+    }
 
-	public abstract String getName();
+
+    public void invertAttribute (String name)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getName().equalsIgnoreCase(name))
+
+            {
+                for (Class<?> myInterface : attribute.getClass()
+                                                     .getInterfaces())
+                {
+                    if (myInterface.equals(Updateable.class))
+                    {
+                        ((Updateable) attribute).invert();
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void allowAttribute (String name, boolean activity)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+            if (attribute.getName().equalsIgnoreCase(name))
+            {
+                attribute.setActivity(activity);
+            }
+        }
+    }
+
+
+    public void update (long elapsedTime)
+    {
+
+        performUpdateableAttributes(elapsedTime);
+
+    }
+
+
+    public void performUpdateableAttributes (long elapsedTime)
+    {
+        for (Attribute attribute : myAttributes)
+        {
+
+            if (attribute.getClass().getInterfaces().length != 0)
+            {
+                for (Class<?> myInterface : attribute.getClass()
+                                                     .getInterfaces())
+                {
+
+                    if (myInterface.equals(Updateable.class))
+                    {
+                        ((Updateable) attribute).update(elapsedTime);
+                    }
+                }
+            }
+        }
+    }
+
+
+    public String toString ()
+    {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append(getName() + "\n");
+        for (Attribute attribute : getAttributes())
+        {
+            toReturn.append(attribute.toString());
+            toReturn.append("\n");
+        }
+        return toReturn.toString();
+    }
+
+
+    public abstract String getName ();
 
 }
