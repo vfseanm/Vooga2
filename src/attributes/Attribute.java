@@ -96,7 +96,7 @@ public abstract class Attribute implements Serializable, Cloneable
             {
                 // TODO Auto-generated catch block
             	
-            	System.out.println("hello");
+          
                 e.printStackTrace();
             }
             

@@ -66,7 +66,7 @@ public abstract  class PlatformGame extends Game {
         
         
         mySidescroller = myLevel.getSidescroller();
-        System.out.println(myLevel.getSidescroller());
+      
         mySidescroller.setUserInput(bsInput);
     }
     

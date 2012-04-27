@@ -98,7 +98,7 @@ public class EnemyDialogueBox extends DialogueBox {
             throw new RuntimeException();
         }
         Enemy prototype = new Enemy(0,0, myImagePaths);
-        System.out.println(myImagePaths);
+       
         ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
         for(Attribute a: attributes)
         {
@@ -110,7 +110,7 @@ public class EnemyDialogueBox extends DialogueBox {
         }
         
         Framework framework = new Framework(myName.getText(), "enemy", prototype);
-        System.out.println("framework's attributes" + attributes);
+       
         return framework;
     }
 

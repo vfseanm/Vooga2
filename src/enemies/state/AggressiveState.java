@@ -8,7 +8,7 @@ public class AggressiveState implements EnemyState
 {
 
 
-    //Bill Pugh Thread Safe Lazy Initialization Singleton Solution
+   
     private AggressiveState ()
     {
         
@@ -30,10 +30,10 @@ public class AggressiveState implements EnemyState
     {
 
         Fighter fighter = Fighter.getInstance();
-        //System.out.println("hello");
+       
         if (!changeState(enemy, fighter))
         {
-            //System.out.println("hi");
+           
             enemy.attack(elapsedTime);
             if (enemy.getX() > fighter.getX())
             {

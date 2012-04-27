@@ -35,7 +35,7 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
     {
 
         super(getImagesFromNames(imageNames), x, y);
-        //setImages(im);
+    
         myType = this.getClass().toString();
         myImageNames = imageNames;
     }
@@ -49,16 +49,7 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         for(int i=0; i<images.length; i++)
         {
             images[i] = loader.getImage(imageNames.get(i));
-            /*try
-            {
-                File f = new File(imageNames.get(i));
-                System.out.println(f);
-                images[i] = ImageIO.read(f);
-            } catch (IOException e)
-            {
-                System.out.println("There has been a problem importing your image");
-            }*/
-            
+   
         }
         return images;
     }
@@ -134,19 +125,5 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
         return gson.toJson(paramList);
         
     }
-    /*public static AnimatedGameSprite fromJson(String json)
-    {
-        Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<String>>(){}.getType();
-        List<String> paramList = gson.fromJson(json, collectionType);
-        List<String> imageNames = gson.fromJson(paramList.get(0), collectionType);
-        String groupName = paramList.get(1);
-        double x = Double.parseDouble(paramList.get(2));
-        double y = Double.parseDouble(paramList.get(3));
-        AnimatedGameSprite sprite = new AnimatedGameSprite(x, y,imageNames );
-        sprite.setGroup(groupName);
-        return sprite;
-        
-        
-    }*/
+  
 }
