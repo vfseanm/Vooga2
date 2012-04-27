@@ -39,6 +39,10 @@ public class DemoGame extends PlatformGame {
 	    
         ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
         CollisionSpec spec = new CollisionSpec();
+        spec.addActMap("FIGHTER", "fighterLoseLife");
+        spec.addActMap("FIGHTER", "fighterLoseHitpoints");
+        spec.addActMap("FIGHTER", "instantFighterDeath");
+        spec.addActMap("FIGHTER", "");
         spec.addActMap("FIGHTER", "");
         spec.addActMap("ENEMY", "instantEnemyDeath");
         spec.addActMap("ENEMY", "enemyLoseLife");
