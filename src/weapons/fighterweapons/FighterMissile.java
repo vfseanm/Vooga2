@@ -64,6 +64,10 @@ public class FighterMissile implements Weapon, Input {
 		myTimer++; 
 	}
 
+	public AnimatedGameSprite getMissile() {
+		return myMissile;
+	}
+	
 	public void modifyFighterMissile(boolean value) {
 		facingRight = value;
 	}
