@@ -29,8 +29,6 @@ public class Collisions extends CollisionGroup
     {
         CollisionSpec cspec = traverseSpec((AnimatedGameSprite) sprite1, (AnimatedGameSprite) sprite2);  
         performAction(cspec, (AnimatedGameSprite) sprite1, (AnimatedGameSprite) sprite2, getCollisionSide());
-
-
     }
     
     public void addSpecList(List<CollisionSpec> gs){
