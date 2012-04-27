@@ -20,18 +20,7 @@ import editor.json.SpriteFactory;
 public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 
 	private static final long serialVersionUID = 7514750773895804951L;
-	private List<AbstractPlatformState> myTransitionList;
 
-	
-	
-	public SimplePlatform(double x, double y, List<String> imageNames, List<AbstractPlatformState> states) {
-		super(x, y, imageNames);
-		myTransitionList = states;
-	}
-	
-	public AbstractPlatformState getState(int ind) {
-		return myTransitionList.get(ind % myTransitionList.size());
-	}
 	
 	/**
 	 * Constructor for a simple platform
@@ -70,7 +59,7 @@ public class SimplePlatform extends AbstractPlatform implements JsonableSprite {
 	 */
 	@Override
 	public String toString() {
-		return myPlatformResources.getString("Simple");
+		return "simple";
 	}
 
 	@Override

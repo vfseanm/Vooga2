@@ -1,12 +1,15 @@
 package demo;
 
 import java.awt.Graphics2D;
+import collisions.GameCollisionManager;
+
 import sprite.AnimatedGameSprite;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
@@ -23,11 +26,14 @@ import platforms.fsmframework.AbstractPlatformState;
 import platforms.fsmframework.Context;
 import platforms.fsmframework.PlatformSwitch;
 import platforms.fsmframework.SwitchEvent;
-import platforms.fsmframework.SwitchOff;
 import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
+
 import collisions.GameCollisionManager;
+
+import collisions.GameCollisionManager;
+import enemies.Enemy;
 import fighter.Fighter;
 
 public class DemoGame extends PlatformGame {
@@ -37,24 +43,26 @@ public class DemoGame extends PlatformGame {
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
-
+	private Sprite sprite;
+	private Collisions myCollisions;
 	public DemoGame()
-	{
+		{
 	    super();
 	}
-	@Override
 	public void initResources() 
 	{
+	    sprite = new Sprite(0,0);
+	    sprite.setVerticalSpeed(1);
+	    sprite.setImage(getImage("resources/Bowser.jpg"));
 	    loadLevel("level2");
 	    SpriteGroup allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites())
 	    {
 	        allSprites.add(sprite);
+
 	    }
 	    
-
-        Collisions myCollisions = new Collisions();
-        myCollisions.setCollisionGroup(allSprites, allSprites);
+         myCollisions = new Collisions();
 	    
         ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
         CollisionSpec spec = new CollisionSpec();
@@ -67,6 +75,36 @@ public class DemoGame extends PlatformGame {
         
         myCollisions.addSpecList(specList);
 
+
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+//        for(AnimatedGameSprite s: mySprites)
+//        {
+//            System.out.print(s.getGroup() + " ");
+//            System.out.println(s.getX() + "   " + s.getY());
+//        }
+
+		
+       
+//        //FSM stuff
+//        initPlatformFSM();
+//        CollisionSpec spec3 = new CollisionSpec();
+//        spec3.addActMap(mySwitch.getGroup(), "switchPlatform");
+//        spec3.addActMap("FIGHTER", "");
+//        specList.add(spec3);
+//        
+//        //make sidescroller switch
+//        ArrayList<String> switchImage = new ArrayList<String>();
+//        String switchName = "Resources/Bowser.jpg";
+//        switchImage.add(switchName);
+//        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller()));
+//        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
         //myPlayfield.addCollisionGroup(allSprites, allSprites, myCollisions);
         
         mySidescroller = new ForcedRightSidescroller(new ConcreteSidescroller());
@@ -104,23 +142,27 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void render(Graphics2D arg0) 
 	{
-	    myPlayfield.getBackground().render(arg0);
-	    for(Sprite s: myPlayfield.getMySprites())
-	    {
-	        System.out.println("myX: " + s.getX());
-	        s.render(arg0);
-	    }
-	    
-	    //FSM Stuff
-	    //myPlatform.render(arg0);
-	    //mySwitch.render(arg0);
+
+        myBackground.render(arg0);
+	    myPlayfield.render(arg0);
+//	    //System.out.println(getHeight());
+//	    //System.out.println(getWidth());
+//	    
+//	    //FSM Stuff
+//	    //myPlatform.render(arg0);
+//	    //mySwitch.render(arg0);
+	    myFighter.render(arg0);
+	    sprite.render(arg0);
 	}
 
 	@Override
 	public void update(long elapsedTime) 
 	{
-	    
-	    myPlayfield.update(elapsedTime);
+	    myCollisions.checkCollision();
+	   sprite.update(elapsedTime); 
+	   myPlayfield.update(elapsedTime);
+	   myFighter.update(elapsedTime);
+	   
 	   // mySidescroller.update(elapsedTime);
 
 	}

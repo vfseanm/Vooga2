@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import platforms.*;
+import playfield.SingletonPlayField;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;
@@ -41,6 +42,9 @@ public class TestGame extends Game {
 	private ArrayList<AnimatedGameSprite> list = new ArrayList<AnimatedGameSprite>();
 	private CollisionSpec cs, cs2;
 	private BonusObject myObject;
+	private Sprite s;
+	private Sprite s1;
+	private SingletonPlayField myPlayfield;
 	
 	ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 
@@ -55,7 +59,7 @@ public class TestGame extends Game {
 		bob = new Enemy( 470, 90, a);
 
 		bob.addAttribute(new Gravity(1));
-		bob.addAttribute(new OneDirectionMovement("left",1));        
+		bob.addAttribute(new OneDirectionMovement(1,"left"));        
 		bob.addAttribute(new JumpingMovement(1,70));
 
 
@@ -118,6 +122,14 @@ public class TestGame extends Game {
 		cs2.addActMap(myObject.getGroup(), "");
 		
 		gc = new GameCollisionManager(specList);
+		 s = new Sprite(700,0);
+		 s1 = new Sprite(0,650);
+		myPlayfield = SingletonPlayField.getInstance();
+		s.setImage(getImage("resources/Bowser.jpg"));
+		s1.setImage(getImage("resources/Bowser.jpg"));
+		myPlayfield.add(s);
+		myPlayfield.add(s1);
+		
 	}
 
 	@Override
@@ -132,7 +144,9 @@ public class TestGame extends Game {
 		//p3.setActive(false);
 		p3.render(arg0);
 		myObject.render(arg0);
-		
+//		s1.render(arg0);
+//		s.render(arg0);
+		myPlayfield.render(arg0);
 		//p4.render(arg0);
 	}
 
