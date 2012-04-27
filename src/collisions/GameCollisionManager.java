@@ -1,6 +1,7 @@
 package collisions;
 
 import java.lang.reflect.Method;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -8,8 +9,6 @@ import java.util.Set;
 import sprite.AnimatedGameSprite;
 
 import com.golden.gamedev.object.Sprite;
-import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
-import com.golden.gamedev.object.collision.BasicCollisionGroup;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 
