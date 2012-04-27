@@ -54,6 +54,7 @@ public class SimpleEvent extends AbstractEvent {
 		myCurrentState.decoratePlatforms();
 	}
 	
+
 	public void changeToPreviousState() {
 		if (myTransitionList == null) {
 			return;

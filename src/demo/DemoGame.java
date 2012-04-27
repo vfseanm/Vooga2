@@ -26,7 +26,7 @@ import platforms.fsmframework.AbstractPlatformState;
 import platforms.fsmframework.Context;
 import platforms.fsmframework.PlatformSwitch;
 import platforms.fsmframework.SwitchEvent;
-import platforms.fsmframework.SwitchOn;
+import platforms.fsmframework.UpDownState;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
 
@@ -39,12 +39,11 @@ import fighter.Fighter;
 public class DemoGame extends PlatformGame {
     private SidescrollerSwitch scrollerSwitch;
 
-	private GameCollisionManager gc;
+	private GameCollisionManager gc, myCollisions;
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
 	private Sprite sprite;
-	private Collisions myCollisions;
 	public DemoGame()
 		{
 	    super();
@@ -54,15 +53,13 @@ public class DemoGame extends PlatformGame {
 	    sprite = new Sprite(0,0);
 	    sprite.setVerticalSpeed(1);
 	    sprite.setImage(getImage("resources/Bowser.jpg"));
-	    loadLevel("level2");
+	    loadLevel("demo1");
 	    SpriteGroup allSprites = new SpriteGroup("allSprites");
-	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites())
-	    {
+	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
 	        allSprites.add(sprite);
-
 	    }
 	    
-         myCollisions = new Collisions();
+        myCollisions = new Collisions();
 	    
         ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
         CollisionSpec spec = new CollisionSpec();
@@ -158,7 +155,7 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void update(long elapsedTime) 
 	{
-	    myCollisions.checkCollision();
+	   myCollisions.checkCollision();
 	   sprite.update(elapsedTime); 
 	   myPlayfield.update(elapsedTime);
 	   myFighter.update(elapsedTime);

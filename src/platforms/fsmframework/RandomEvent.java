@@ -5,7 +5,7 @@ import java.util.Random;
 public class RandomEvent extends DecoratedEvent {
 	
 	private Random myRand = new Random();
-	private int myNum = -1;
+	private int myNum = 0;
 
 	public RandomEvent(AbstractEvent event) {
 		super(event);
@@ -23,7 +23,7 @@ public class RandomEvent extends DecoratedEvent {
 	}
 	
 	public void update(long elapsedTime) {
-		myNum = myRand.nextInt(1001);
+		myNum = myRand.nextInt(5001);
 		System.out.println(myNum);
 		super.update(elapsedTime);
 	}
