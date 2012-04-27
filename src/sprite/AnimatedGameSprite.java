@@ -2,17 +2,13 @@ package sprite;
 
 import java.awt.Color;
 
+
 import java.awt.image.BufferedImage;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-
 
 import collisions.CollisionAction;
 

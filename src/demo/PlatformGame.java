@@ -31,10 +31,6 @@ public abstract  class PlatformGame extends Game {
         myPlayfield = SingletonSpriteManager.getInstance();
     }
     
-    public String getGroup(){
-        return ("FIGHTER");
-    }
-    
     public void loadLevel(String filename)
     {
         LevelLoader loader = new LevelLoader();

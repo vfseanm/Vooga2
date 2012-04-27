@@ -1,10 +1,10 @@
 package weapons.enemyweapons;
 
 import playfield.SingletonSpriteManager;
+
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 
-import com.golden.gamedev.object.Sprite;
 import character.AttributeUser;
 
 
@@ -29,6 +29,7 @@ public class Fireball implements Weapon
     //uses the fireball attack only when the counter allows
     public void use (AttributeUser character)
     {
+    
         if (counter == 0)
         {
             SingletonSpriteManager.getInstance().add(myFireball);
@@ -36,9 +37,10 @@ public class Fireball implements Weapon
         }
         else if (counter > myDelay)
         {
-            counter = 0;
+            counter = -1;
         }
         counter++;
+        
     }
 
     //useful for collisons to inflict damage
