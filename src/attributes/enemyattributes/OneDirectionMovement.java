@@ -14,6 +14,11 @@ import editor.json.JsonableAttribute;
 import attributes.Attribute;
 import attributes.interfaces.Updateable;
 
+/**
+ * OneDirectional movement extends attribute and implements updateable and jsonableattribute
+ * @author Alex
+ *
+ */
 
 @SuppressWarnings("serial")
 public class OneDirectionMovement extends Attribute implements Updateable, JsonableAttribute
