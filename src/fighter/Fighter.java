@@ -180,6 +180,11 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         }
     }
 	
+    
+    public List<Attribute> getCarryableAttributes()
+	{
+	    return Collections.unmodifiableList(myCarryableAttributes);
+	}
 	
 	
 	/**
@@ -199,11 +204,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         	}
 		}
 		return horizVertMovement;
-	}
-	
-	public List<Attribute> getCarryableAttributes()
-	{
-	    return Collections.unmodifiableList(myCarryableAttributes);
 	}
 	
 	

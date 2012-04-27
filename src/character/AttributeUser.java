@@ -3,17 +3,11 @@ package character;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
-import bonusobjects.BonusObject;
-
 import sprite.AnimatedGameSprite;
 import attributes.Attribute;
-import attributes.enemyattributes.Attack;
-import attributes.interfaces.Input;
 import attributes.interfaces.Updateable;
 
 @SuppressWarnings("serial")

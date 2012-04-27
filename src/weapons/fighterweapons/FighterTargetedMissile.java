@@ -56,13 +56,7 @@ public class FighterTargetedMissile implements Weapon, Input{
 			
 			List<Enemy> myEnemies = SingletonSpriteManager.getInstance().getMyEnemies();
 			
-			for (Enemy potentialTarget: myEnemies) 
-			{
-				double horizDistance = character.getX() - potentialTarget.getX();
-				double vertDistance = character.getY() - potentialTarget.getY();
-				
-			}
-			double ratio = vertDistance / horizDistance;
+			
 			if (horizDistance < 0)
 				myMissile.setSpeed(-mySpeed, -mySpeed * ratio);
 			else
@@ -76,8 +70,10 @@ public class FighterTargetedMissile implements Weapon, Input{
 		myTimer++; 
 	}
 	
-	public int[] calculateDistance() {
-		
+	public int[] calculateDistance(AttributeUser character, Enemy target) {
+		double horizDistance = character.getX() - target.getX();
+		double vertDistance = character.getY() - target.getY();
+		double ratio = vertDistance / horizDistance;
 	}
 
 	public void invert() {
