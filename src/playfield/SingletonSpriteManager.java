@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import sprite.AnimatedGameSprite;
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Sprite;
 import fighter.Fighter;
 
@@ -90,6 +89,5 @@ public class SingletonSpriteManager
     public void setMySprites (List<AnimatedGameSprite> list)
     {
         mySprites = list;
-
     }
 }
