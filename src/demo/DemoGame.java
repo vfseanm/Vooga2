@@ -46,7 +46,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	  
-	    loadLevel("demo1");
+	    loadLevel("demo2");
 
 	    allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
@@ -93,6 +93,7 @@ public class DemoGame extends PlatformGame {
         CollisionSpec spec6 = new CollisionSpec();
         spec6.addActMap("PLATFORMSWITCH", "switchPlatform" );
         spec6.addActMap("FIGHTER", "");
+        specList.add(spec6);
         
         List<String> switchImages = new ArrayList<String>();
         switchImages.add("resources/scrollerSwitch1.jpg"); 
