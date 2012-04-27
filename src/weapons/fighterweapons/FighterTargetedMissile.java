@@ -40,6 +40,7 @@ public class FighterTargetedMissile implements Weapon, Input {
 
 	public FighterTargetedMissile(AnimatedGameSprite missile, int damage,
 			int delay, double speed, boolean value) {
+		myMissile.setGroup("FIGHTERMISSILE");
 		myMissile = missile;
 		myDamage = damage;
 		myDelay = delay;
@@ -52,7 +53,6 @@ public class FighterTargetedMissile implements Weapon, Input {
 
 	@SuppressWarnings("unused")
 	public void use(AttributeUser character) {
-
 		if (myTimer == 0 && myUserInput.isKeyPressed((shootKey)) && canFire) {
 			SingletonSpriteManager.getInstance().add(myMissile);
 			myMissile.setLocation(character.getX(), character.getY());
