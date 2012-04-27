@@ -292,6 +292,7 @@ public abstract class AttributeUser extends AnimatedGameSprite
         }
     }
 
+
     /**
      * returns a String representation of an Attribute User
      */
@@ -308,6 +309,11 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * Abstract method which returns the name of the attribute user
+     * 
+     * @return String of the name of the attribute user
+     */
     public abstract String getName ();
 
 }
