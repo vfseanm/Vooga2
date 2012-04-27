@@ -8,8 +8,15 @@ package attributes.interfaces;
  */
 public interface Updateable
 {
-    
+    /**
+     * Attributes that interact with the update from GTGE's framework
+     * @param elaspedTime the time between the update call
+     */
     public void update(long elaspedTime);
+    
+    /**
+     * allows attributes to be inverted
+     */
     public void invert();
 
 }

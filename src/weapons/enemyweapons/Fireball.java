@@ -6,7 +6,11 @@ import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 
 import character.AttributeUser;
-
+/**
+ * A concrete weapon fireball can be created to shoot fireballs
+ * @author Alex
+ *
+ */
 
 public class Fireball implements Weapon
 {

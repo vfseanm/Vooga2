@@ -122,6 +122,7 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void update(long elapsedTime) 
 	{		
+
 	   updateFSM(elapsedTime);
 	   myEnemy.update(elapsedTime);
 	   myCollisions.checkCollision(); 

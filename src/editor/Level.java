@@ -260,18 +260,28 @@ public class Level implements Serializable{
         backgroundImagePath = imagePath;
         myBackground = new ImageBackground(image);
     }
-    
+    /**
+     * 
+     * @return the bakcground of the level
+     */
     public ImageBackground getBackground()
     {
         return myBackground;
     }
     
-
+    /**
+     * add a framework to the level
+     * @param f framework to be added
+     */
     public void addFramework(Framework f)
     {
         frameworks.add(f);
     }
     
+    /**
+     * writing the level to json
+     * @return String to write to json
+     */
     public String toJson()
     {
         Gson gson = new Gson();
@@ -305,7 +315,11 @@ public class Level implements Serializable{
         return gson.toJson(myList);
         
     }
-    
+    /**
+     * takes a json string and creates a level
+     * @param json string to be loaded
+     * @return Level that is created fromJson
+     */
     public static Level fromJson(String json)
     {
         Gson gson = new Gson();
