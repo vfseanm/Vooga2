@@ -1,8 +1,14 @@
 package demo;
 
 import java.awt.Graphics2D;
+
+import attributes.Attribute;
+import attributes.enemyattributes.ProjectileAttack;
 import collisions.GameCollisionManager;
 import sprite.AnimatedGameSprite;
+import weapons.Weapon;
+import weapons.enemyweapons.Fireball;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +22,17 @@ import platforms.fsmframework.SwitchEvent;
 import platforms.fsmframework.UpDownState;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
+import enemies.Enemy;
+import enemies.state.PassiveState;
 
 public class DemoGame extends PlatformGame {
+	
+	
 	private GameCollisionManager myCollisions;
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private AbstractEvent myEvent;
+	private Enemy myEnemy;
 	
 
 	public DemoGame() {
@@ -37,6 +48,7 @@ public class DemoGame extends PlatformGame {
 	        allSprites.add(sprite);
 	    }
 	    initPlatformFSM();
+	    initEnemyFSM();
         myCollisions = new GameCollisionManager();
 	    
         ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
@@ -55,45 +67,6 @@ public class DemoGame extends PlatformGame {
         spec2.addActMap("PLATFORM", "actionBreak");
         specList.add(spec2);
         
-        myCollisions.setCollisionGroup(allSprites, allSprites);
-        myCollisions.addSpecList(specList);
-
-
-	    
-	    //System.out.println(myPlayfield.getMySprites());
-	    
-	    
-	    
-	    
-	    
-	    
-//        for(AnimatedGameSprite s: mySprites)
-//        {
-//            System.out.print(s.getGroup() + " ");
-//            System.out.println(s.getX() + "   " + s.getY());
-//        }
-
-		
-       
-//        //FSM stuff
-//        initPlatformFSM();
-//        CollisionSpec spec3 = new CollisionSpec();
-//        spec3.addActMap(mySwitch.getGroup(), "switchPlatform");
-//        spec3.addActMap("FIGHTER", "");
-//        specList.add(spec3);
-//        
-//        //make sidescroller switch
-//        ArrayList<String> switchImage = new ArrayList<String>();
-//        String switchName = "Resources/Bowser.jpg";
-//        switchImage.add(switchName);
-//        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller()));
-//        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
-        //myPlayfield.addCollisionGroup(allSprites, allSprites, myCollisions);
-        
-        //mySidescroller = new ForcedRightSidescroller(new ConcreteSidescroller());
-        //mySidescroller.setUserInput(bsInput);
-
-
         CollisionSpec spec3 = new CollisionSpec();
         spec3.addActMap("ENEMY", "enemyStandOnTop");
         spec3.addActMap("PLATFORM", "");
@@ -118,9 +91,10 @@ public class DemoGame extends PlatformGame {
 	
 	@Override
 	public void render(Graphics2D arg0) 
-	{
+	{	
         myBackground.render(arg0);
 	    myPlayfield.render(arg0);
+	    myEnemy.render(arg0);
 	    renderFSM(arg0);	
 	}
 
@@ -129,11 +103,31 @@ public class DemoGame extends PlatformGame {
 	public void update(long elapsedTime) 
 	{		
 	   updateFSM(elapsedTime);
+	   myEnemy.update(elapsedTime);
 	   myCollisions.checkCollision(); 
 	   myPlayfield.update(elapsedTime);
 	   myFighter.update(elapsedTime);
 	   mySidescroller.update(elapsedTime);
 	}
+	
+	
+	
+	private void initEnemyFSM() {
+		List<String> images = new ArrayList<String>();
+		images.add("resources/Bowser.jpg");
+		myEnemy = new Enemy(1000, 200, images);
+		myEnemy.setState(PassiveState.getInstance());
+		
+		List<String> images2 = new ArrayList<String>();
+		images2.add("resources/Fireball.jpg");
+		AnimatedGameSprite wep = new AnimatedGameSprite(-1000, -1000, images2);
+		Weapon weapon = new Fireball(wep, 0.1, 100000000, 200);
+		Attribute att = new ProjectileAttack(weapon);
+		myEnemy.addAttribute(att);
+	}
+	
+	
+	
 	
 	private void initPlatformFSM() {
 		List<String> imNames = new ArrayList<String>();

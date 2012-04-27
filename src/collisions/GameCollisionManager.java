@@ -40,8 +40,8 @@ public class GameCollisionManager extends CollisionGroup
             if (spriteKeys.contains(sprite1.getGroup()) && spriteKeys.contains(sprite2.getGroup())){
                 return cs;
             }
-            System.out.println (sprite1.getGroup());
-            System.out.println (sprite2.getGroup());
+            //System.out.println (sprite1.getGroup());
+            //System.out.println (sprite2.getGroup());
         }
         return null;
     }
