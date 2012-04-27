@@ -1,12 +1,10 @@
 package enemies;
 
-import java.lang.reflect.InvocationTargetException;
 
 
-import java.lang.reflect.Method;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +22,6 @@ import attributes.enemyattributes.OneDirectionMovement;
 import attributes.enemyattributes.PathFollowingMovement;
 import attributes.enemyattributes.SideToSideMovement;
 import attributes.enemyattributes.UpDownMovement;
-import attributes.interfaces.Updateable;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
 import editor.json.AttributeFactory;
@@ -40,7 +37,7 @@ import enemies.state.EnemyState;
 @SuppressWarnings({ "serial", "rawtypes" })
 public class Enemy extends AttributeUser implements JsonableSprite
 {
-    private ArrayList<Attribute> myAttributes;
+    
     private EnemyState myState;
     private static List<AttributeFactory> myAttributeFactories;
     static
@@ -61,7 +58,6 @@ public class Enemy extends AttributeUser implements JsonableSprite
     public Enemy (double x, double y, List<String> image)
     {
         super(x, y, image);
-        myAttributes = new ArrayList<Attribute>();
         setGroup("ENEMY");
     }
 
@@ -85,7 +81,7 @@ public class Enemy extends AttributeUser implements JsonableSprite
 
 
 
-
+    
 
 
 

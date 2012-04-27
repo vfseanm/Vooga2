@@ -109,10 +109,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         }
     }
 
-    public void update(long elapsedTime)
-    {
-        performUpdateableAttributes(elapsedTime);
-    }
     
     
 
