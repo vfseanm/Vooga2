@@ -24,7 +24,7 @@ public class ForcedLeftSidescroller extends ForcedSidescroller {
         super(scroller);
         double speed = Double.parseDouble(mySidescrollerResources.getString("ForcedLeftSpeed"));
         if (speed > 0) {
-            throw new RuntimeException("You must choose a negative number.");
+            throw new RuntimeException(mySidescrollerResources.getString("PositiveSpeedError"));
         }
         forcedLeftSpeed = speed;
         rightBorder = getGameWidth();
