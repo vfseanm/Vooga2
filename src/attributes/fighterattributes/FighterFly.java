@@ -1,6 +1,5 @@
 package attributes.fighterattributes;
 
-import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;

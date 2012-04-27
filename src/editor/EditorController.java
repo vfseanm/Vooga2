@@ -1,31 +1,18 @@
 package editor;
 
-import java.awt.Button;
 import java.awt.image.BufferedImage;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.List;
-import java.util.Scanner;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.buttons.ObjectPlacingButton;
-import editor.dialogues.DialogueBox;
 import editor.file.LevelLoader;
 import editor.file.LevelWriter;
-import enemies.Enemy;
 import fighter.Fighter;
 
-import sidescrolling.ConcreteSidescroller;
 import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;
 
