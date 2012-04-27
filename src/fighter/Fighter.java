@@ -98,14 +98,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
     public void update(long elapsedTime)
     {
         performAttributeActions(elapsedTime);
-
-        if (myUserInput.isKeyPressed(KeyEvent.VK_C))
-        {
-            // POP UP DIALOG ALLOWING YOU TO CHOOSE CARRYABLE OBJECT? CAN WE
-            // ACTUALLY PAUSE THE GAME?
-            // OTHERWISE, SIMPLY HAVE KEYSTROKES = INDEX OF CARRYABLE ITEMS IN
-            // LIST? MAX = 6?
-        }
     }
     
     
