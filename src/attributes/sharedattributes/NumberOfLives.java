@@ -31,11 +31,7 @@ public class NumberOfLives extends Attribute implements JsonableAttribute
     {
         myLives += change;
         if (myLives <= 0) {
-
-        	
         		myGameCharacter.setActive(false);
-
-
         }
     }
     
