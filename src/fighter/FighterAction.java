@@ -1,11 +1,7 @@
 package fighter;
 
-import java.util.ArrayList;
-
-
 import attributes.Attribute;
-import attributes.sharedattributes.Hitpoints;
-import attributes.sharedattributes.NumberOfLives;
+
 import bonusobjects.BonusObject;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
@@ -66,32 +62,22 @@ public class FighterAction implements CollisionAction{
         }
 	}
 	
+
 	public void instantFighterDeath (CollisionContext ccntext, CollisionSpec cspec){
 		System.out.println("instant fighter death" + ccntext.getSide());
 		if ( (ccntext.getSide() != CollisionGroup.TOP_BOTTOM_COLLISION) ){
 			System.out.println (ccntext.getSide());
 			sprite.setLocation(-10000, -1000);
 		}
-	}
+		}
+
 	
 	public void fighterLoseHitpoints (CollisionContext ccntext, CollisionSpec cspec){
-			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
-			
-			for (Attribute skill: ability){
-				if (skill.getName().equals("Hitpoints")){
-					((Hitpoints)skill).modifyHitpoints(-10);
-				}
-			}
+		sprite.modifyAttribute("Hitpoints", -10);
 	}
 	
 	public void fighterLoseLife (CollisionContext ccntext, CollisionSpec cspec){
-			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
-			
-			for (Attribute skill: ability){
-				if (skill.getName().equals("NumberOfLives")){
-					((NumberOfLives) skill).modifyNumberOfLives(-1);
-				}
-			}
+		sprite.modifyAttribute("NumberOfLives", -1);
 	}
 
 	public void setSprite(AnimatedGameSprite sprite) {
