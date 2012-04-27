@@ -85,7 +85,7 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 	 *         
 	 * @return boolean = whether the GameCharacter is facing right (true/false)
 	 */
-	public boolean getWhetherFacingRight() {
+	public boolean isFacingRight() {
 		return facingRight;
 	}
 	

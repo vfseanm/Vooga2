@@ -2,6 +2,7 @@
 package nicktest;
 import java.awt.Color;
 
+
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -11,7 +12,6 @@ import java.util.List;
 //import platforms.fsmframework.PlatformSwitch;
 import platforms.fsmframework.AbstractEvent;
 import platforms.fsmframework.AbstractPlatformState;
-import platforms.fsmframework.Context;
 import platforms.fsmframework.PlatformSwitch;
 import platforms.fsmframework.RandomEvent;
 import platforms.fsmframework.SimpleEvent;
@@ -27,7 +27,7 @@ public class PlatformTest extends Game {
 	
 	AbstractPlatform myPlatform;
 	PlatformSwitch mySwitch;
-	Context myContext;
+	AbstractEvent myEvent;
 	AbstractPlatform myPlatform2;
 	
 
@@ -57,8 +57,9 @@ public class PlatformTest extends Game {
 		transition.add(new SwitchOn());
 		AbstractEvent event = new SimpleEvent(transition, plats);
 		event = new SwitchEvent(mySwitch, event);
-		//event = new RandomEvent(event);
-		myContext = new Context(event, plats);
+		event = new RandomEvent(event);
+	     myEvent = event;
+	     myEvent.setControlledPlatforms(plats);
 		//mySwitch.setActive(false);
 		//System.out.println(mySwitch.isActive());
 	}
@@ -86,7 +87,7 @@ public class PlatformTest extends Game {
 		//System.out.println(mySwitch.isActive());
 		mySwitch.update(arg0);
 		//System.out.println(mySwitch.isActive());
-		myContext.update(arg0);
+		myEvent.update(arg0);
 	}
 	
 }

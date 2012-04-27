@@ -1,6 +1,8 @@
 package demo;
 
 import java.awt.Graphics2D;
+import collisions.GameCollisionManager;
+
 import sprite.AnimatedGameSprite;
 
 import java.awt.event.KeyEvent;
@@ -24,10 +26,12 @@ import platforms.fsmframework.AbstractPlatformState;
 import platforms.fsmframework.Context;
 import platforms.fsmframework.PlatformSwitch;
 import platforms.fsmframework.SwitchEvent;
-import platforms.fsmframework.SwitchOff;
 import platforms.fsmframework.SwitchOn;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
+
+import collisions.GameCollisionManager;
+
 import collisions.GameCollisionManager;
 import enemies.Enemy;
 import fighter.Fighter;
@@ -58,9 +62,7 @@ public class DemoGame extends PlatformGame {
 
 	    }
 	    
-
          myCollisions = new Collisions();
-        myCollisions.setCollisionGroup(allSprites, allSprites);
 	    
         ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
         CollisionSpec spec = new CollisionSpec();
@@ -73,6 +75,36 @@ public class DemoGame extends PlatformGame {
         
         myCollisions.addSpecList(specList);
 
+
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+//        for(AnimatedGameSprite s: mySprites)
+//        {
+//            System.out.print(s.getGroup() + " ");
+//            System.out.println(s.getX() + "   " + s.getY());
+//        }
+
+		
+       
+//        //FSM stuff
+//        initPlatformFSM();
+//        CollisionSpec spec3 = new CollisionSpec();
+//        spec3.addActMap(mySwitch.getGroup(), "switchPlatform");
+//        spec3.addActMap("FIGHTER", "");
+//        specList.add(spec3);
+//        
+//        //make sidescroller switch
+//        ArrayList<String> switchImage = new ArrayList<String>();
+//        String switchName = "Resources/Bowser.jpg";
+//        switchImage.add(switchName);
+//        Sidescroller newscroll = new ShiftRightSidescroller(new ShiftLeftSidescroller(new ConcreteSidescroller()));
+//        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
         //myPlayfield.addCollisionGroup(allSprites, allSprites, myCollisions);
         
         mySidescroller = new ForcedRightSidescroller(new ConcreteSidescroller());

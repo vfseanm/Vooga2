@@ -10,7 +10,6 @@ public class SwitchOff extends AbstractPlatformState {
 
 	public SwitchOff() {}
 	
-	private List<AbstractPlatform> newPlatforms = new ArrayList<AbstractPlatform>();
 	
 	//from constructor
 	public void decoratePlatforms() {

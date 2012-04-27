@@ -37,7 +37,6 @@ public class Fireball implements Weapon
             counter = 0;
         }
         counter++;
-
     }
 
     //useful for collisons to inflict damage
