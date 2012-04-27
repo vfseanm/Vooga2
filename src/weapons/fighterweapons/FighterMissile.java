@@ -1,6 +1,8 @@
 package weapons.fighterweapons;
 
 import java.awt.event.KeyEvent;
+
+import playfield.SingletonSpriteManager;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 
@@ -40,7 +42,7 @@ public class FighterMissile implements Weapon, Input {
 	public void use(AttributeUser character) {
 
 		if (myTimer == 0 && myUserInput.isKeyPressed((KeyEvent.VK_SPACE)) && canFire) {
-			SingletonPlayField.getInstance().add(myMissile);
+			SingletonSpriteManager.getInstance().add(myMissile);
 			
 			if (character.getAttributeByName("FighterBasicMovement") != null) {
 				FighterBasicMovement mover = (FighterBasicMovement) character.getAttributeByName("FighterBasicMovement");
