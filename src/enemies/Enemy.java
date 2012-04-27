@@ -206,7 +206,6 @@ public class Enemy extends AttributeUser implements JsonableSprite
         Type collectionType = new TypeToken<HashMap<String, String>>()
         {}.getType();
         Map<String, String> attributeMap = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);
-        System.out.println("attribute map: " + attributeMap);
         for (String attributeClassName : attributeMap.keySet())
         {
                 for(AttributeFactory factory: myAttributeFactories)
@@ -216,8 +215,6 @@ public class Enemy extends AttributeUser implements JsonableSprite
                         sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
                     }
                 }
-                /*Attribute attribute = (Attribute) JsonUtil.getObjectFromJson(attributeClassName, attributeMap.get(attributeClassName));
-                sprite.addAttribute(attribute);*/
 
         }
         return sprite;

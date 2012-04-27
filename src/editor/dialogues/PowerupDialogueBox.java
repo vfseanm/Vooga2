@@ -102,7 +102,10 @@ public class PowerupDialogueBox extends DialogueBox {
                 .getSelectedAttributes()) {
             prototype.addAttributeToOffer(attributeToGive);
         }
-        prototype.setGroup(myGroup.getText());
+        if(myGroup.getText().length()!=0)
+        {
+            prototype.setGroup(myGroup.getText());
+        }
         Framework framework = new Framework(myName.getText(), "Power-Up",
                 prototype);
         return framework;

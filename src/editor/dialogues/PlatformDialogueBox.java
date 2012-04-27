@@ -89,7 +89,10 @@ public class PlatformDialogueBox extends DialogueBox {
 
         }
         prototype = (AbstractPlatform) ReflectionUtil.wrapObject(classNames, prototype);
-        prototype.setGroup(myGroup.getText());
+        if(myGroup.getText().length()!=0)
+        {
+            prototype.setGroup(myGroup.getText());
+        }
         return new Framework(myName.getText(), "platform", prototype);
 
     }
