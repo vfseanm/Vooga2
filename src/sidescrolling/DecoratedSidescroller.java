@@ -14,7 +14,7 @@ import fighter.Fighter;
 
 /**
  * DecoratorSidescroller allows the user to "wrap" sidescrollers so that
- * multiple sidescrollers can be used at once. The majority of its methods call
+ * multiple sidescrollers can be used at once. Many of its methods call
  * the method of the same name on the object it is wrapping so that when the
  * wrapping sidescroller is done doing its responsibility the wrapped
  * sidescroller can start its job. In essence, for the most part,
@@ -77,6 +77,9 @@ public abstract class DecoratedSidescroller extends Sidescroller  {
         }
     }
     
+    /**
+     * Sets BaseInput for this sidescroller and all wrapped ones.
+     */
     public void setUserInput(BaseInput userInput) {
         myUserInput = userInput;
         wrappedScroller.setUserInput(userInput);

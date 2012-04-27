@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import platforms.*;
-import playfield.SingletonPlayField;
+import playfield.SingletonSpriteManager;
 
 import sidescrolling.*;
 import sprite.AnimatedGameSprite;
@@ -44,7 +44,7 @@ public class TestGame extends Game {
 	private BonusObject myObject;
 	private Sprite s;
 	private Sprite s1;
-	private SingletonPlayField myPlayfield;
+	private SingletonSpriteManager myPlayfield;
 	
 	ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 
@@ -58,9 +58,9 @@ public class TestGame extends Game {
 		a.add("resources/Bowser.jpg");
 		bob = new Enemy( 470, 90, a);
 
-		bob.addAttribute(new Gravity(1));
-		bob.addAttribute(new OneDirectionMovement(1,"left"));        
-		bob.addAttribute(new JumpingMovement(1,70));
+//		bob.addAttribute(new Gravity(1));
+		bob.addAttribute(new SideToSideMovement(1,100));        
+//		bob.addAttribute(new JumpingMovement(1,70));
 
 
 		counter=0;
@@ -121,10 +121,10 @@ public class TestGame extends Game {
 		cs2.addActMap(p.getGroup(), "");
 		cs2.addActMap(myObject.getGroup(), "");
 		
-		gc = new GameCollisionManager(specList);
+		//gc = new GameCollisionManager(specList);
 		 s = new Sprite(700,0);
 		 s1 = new Sprite(0,650);
-		myPlayfield = SingletonPlayField.getInstance();
+		myPlayfield = SingletonSpriteManager.getInstance();
 		s.setImage(getImage("resources/Bowser.jpg"));
 		s1.setImage(getImage("resources/Bowser.jpg"));
 		myPlayfield.add(s);
@@ -153,6 +153,7 @@ public class TestGame extends Game {
 	@Override
 	public void update (long arg0)
 	{
+	    System.out.println(bob);
 		myBackground.update(arg0);
 		counter++;
 		myObject.update(arg0);
@@ -164,7 +165,7 @@ public class TestGame extends Game {
 		//p3.setActive(false);
 		p3.update(arg0);
 		//p4.update(arg0);
-		gc.detectCollision(list);
+//		gc.detectCollision(list);
 	}
 
 }
