@@ -39,7 +39,7 @@ public class UpDownMovement extends TwoPartMovement implements Updateable,Jsonab
 
     protected void movementPart1 ()
     {
-        myGameCharacter.setY( myGameCharacter.getY() + myDistance);
+        myAttributeUser.setY( myAttributeUser.getY() + myDistance);
         
 
     }
@@ -47,7 +47,7 @@ public class UpDownMovement extends TwoPartMovement implements Updateable,Jsonab
 
     protected void movementPart2 ()
     {
-        myGameCharacter.setY( myGameCharacter.getY() - myDistance);
+        myAttributeUser.setY( myAttributeUser.getY() - myDistance);
         
     }
 

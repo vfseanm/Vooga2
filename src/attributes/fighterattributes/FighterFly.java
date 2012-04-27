@@ -43,21 +43,21 @@ public class FighterFly extends Attribute implements Updateable, Movement, Input
     public void update (long elapsedTime)
     {
     	if (isActive) {
-    		myGameCharacter.allowAttribute("Gravity", false);
+    		myAttributeUser.allowAttribute("Gravity", false);
     		
 			if (myUserInput.isKeyDown(SingletonKeyController.getInstance().getKeyCode(("UP")))) {
-				myGameCharacter.moveY(-myFlightMovement);
+				myAttributeUser.moveY(-myFlightMovement);
 				movingUp = true;
 				movingDown = false;
 			}
 
 			if (myUserInput.isKeyDown(SingletonKeyController.getInstance().getKeyCode(("DOWN")))) {
-				myGameCharacter.moveY(myFlightMovement);
+				myAttributeUser.moveY(myFlightMovement);
 				movingUp = false;
 				movingDown = true;
 			}
     	}
-    	else myGameCharacter.restoreOriginalAttribute("Gravity");
+    	else myAttributeUser.restoreOriginalAttribute("Gravity");
     } 
 
 

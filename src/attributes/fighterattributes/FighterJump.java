@@ -84,12 +84,12 @@ public class FighterJump extends Attribute
                 myTimer++;
                 if (myTimer <= myDelay)
                 {
-                    myGameCharacter.moveY(-myJumpHeight);
-                    myGameCharacter.allowAttribute("Gravity", false);
+                    myAttributeUser.moveY(-myJumpHeight);
+                    myAttributeUser.allowAttribute("Gravity", false);
                 }
                 else
                 {
-                    myGameCharacter.allowAttribute("Gravity", true);
+                    myAttributeUser.allowAttribute("Gravity", true);
                     myTimer = 0;
                     isJumping = false;
                 }

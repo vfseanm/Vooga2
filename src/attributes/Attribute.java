@@ -22,7 +22,7 @@ import java.lang.reflect.*;
 @SuppressWarnings("serial")
 public abstract class Attribute implements Serializable, Cloneable
 {
-    protected AttributeUser		myGameCharacter;	
+    protected AttributeUser		myAttributeUser;	
     protected Object 			myOriginal;
     protected boolean 			isActive;
     public static boolean 		makeOriginal = true;   //Note, this is not thread-safe...Sorry multi-threaded programmers
@@ -31,8 +31,8 @@ public abstract class Attribute implements Serializable, Cloneable
     
     
     //associates an attribute with the given enemy/fighter
-    public void setGameCharacter(AttributeUser user) {
-        myGameCharacter = user;
+    public void setAttributeUser(AttributeUser user) {
+        myAttributeUser = user;
     }
     
     // turns an attribute on/off (active/inactive)

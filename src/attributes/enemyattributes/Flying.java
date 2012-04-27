@@ -38,11 +38,11 @@ public class Flying extends Attribute implements Updateable, JsonableAttribute
 
         if (isActive)
         {
-            myGameCharacter.allowAttribute("Gravity", false);
+            myAttributeUser.allowAttribute("Gravity", false);
         }
         else
         {
-            myGameCharacter.restoreOriginalAttribute("Gravity");
+            myAttributeUser.restoreOriginalAttribute("Gravity");
         }
     }
 
