@@ -21,7 +21,7 @@ import platforms.FrameTimer;
  * this way, these classes can add functionality to other platforms without
  * having to deal with any of the data associated with them.
  * 
- * @author yankeenjg
+ * @author Nick Gordon
  * 
  */
 public abstract class DecoratedPlatform extends AbstractPlatform {
@@ -30,12 +30,12 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	protected AbstractPlatform myDecoratorComponent;
 	protected double mySpeed;
 	protected double myDistance;
-	protected int myDelay =Integer.parseInt(myPlatformResources
-            .getString("RotateDelay")); ;
+	protected int myDelay = Integer.parseInt(myPlatformResources
+			.getString("RotateDelay"));;
 	protected int mySpeedOffset = Integer.parseInt(myPlatformResources
-            .getString("SpeedOffset"));;
+			.getString("SpeedOffset"));;
 	protected int myDistanceOffset = Integer.parseInt(myPlatformResources
-            .getString("DistanceOffset"));;
+			.getString("DistanceOffset"));;
 
 	FrameTimer myTimer = new FrameTimer();
 
@@ -47,15 +47,18 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	 */
 	public DecoratedPlatform(AbstractPlatform decoratorComponent) {
 		myDecoratorComponent = decoratorComponent;
-/*		myDelay = Integer.parseInt(myPlatformResources
-	            .getString("RotateDelay"));
-		mySpeedOffset = Integer.parseInt(myPlatformResources
-	            .getString("SpeedOffset"));
-		myDistanceOffset = Integer.parseInt(myPlatformResources
-	            .getString("DistanceOffset"));*/
-		
+		/*
+		 * myDelay = Integer.parseInt(myPlatformResources
+		 * .getString("RotateDelay")); mySpeedOffset =
+		 * Integer.parseInt(myPlatformResources .getString("SpeedOffset"));
+		 * myDistanceOffset = Integer.parseInt(myPlatformResources
+		 * .getString("DistanceOffset"));
+		 */
+
 	}
-	public DecoratedPlatform(){}
+
+	public DecoratedPlatform() {
+	}
 
 	/**
 	 * Used to set the delay of certain platforms. For example, the higher the
@@ -176,125 +179,126 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 	public void setLocation(double x, double y) {
 		myDecoratorComponent.setLocation(x, y);
 	}
-	
-	
+
 	public Background getBackground() {
 		return myDecoratorComponent.getBackground();
 	}
-	
+
 	public double getScreenX() {
 		return myDecoratorComponent.getScreenX();
 	}
-	
+
 	public double getScreenY() {
 		return myDecoratorComponent.getScreenY();
 	}
-	
+
 	public double getOldX() {
 		return myDecoratorComponent.getOldX();
 	}
-	
+
 	public double getOldY() {
 		return myDecoratorComponent.getOldY();
 	}
-	
+
 	public double getVerticalSpeed() {
 		return myDecoratorComponent.getVerticalSpeed();
 	}
-	
+
 	public double getHorizontalSpeed() {
 		return myDecoratorComponent.getHorizontalSpeed();
 	}
-	
+
 	public double getDistance(Sprite other) {
 		return myDecoratorComponent.getDistance(other);
 	}
-	
+
 	public void forceY(double ys) {
 		myDecoratorComponent.forceY(ys);
 	}
-	
+
 	public void forceX(double xs) {
 		myDecoratorComponent.forceX(xs);
 	}
-	
-	public void addHorizontalSpeed(long elapsedTime, double accel, double maxSpeed) {
+
+	public void addHorizontalSpeed(long elapsedTime, double accel,
+			double maxSpeed) {
 		myDecoratorComponent.addHorizontalSpeed(elapsedTime, accel, maxSpeed);
 	}
-	
+
 	public void addVerticalSpeed(long elapsedTime, double accel, double maxSpeed) {
 		myDecoratorComponent.addVerticalSpeed(elapsedTime, accel, maxSpeed);
 	}
-	
+
 	public Object getDataID() {
 		return myDecoratorComponent.getDataID();
 	}
-	
+
 	public int getID() {
 		return myDecoratorComponent.getID();
 	}
-	
+
 	public int getLayer() {
 		return myDecoratorComponent.getLayer();
 	}
-	
+
 	public boolean isActive() {
 		return myDecoratorComponent.isActive();
 	}
-	
+
 	public boolean isImmutable() {
 		return myDecoratorComponent.isImmutable();
 	}
-	
-	
+
 	public boolean isOnScreen() {
 		return myDecoratorComponent.isOnScreen();
 	}
-	
-	public boolean isOnScreen(int leftOffset, int topOffset, int rightOffset, int bottomOffset) {
-		return myDecoratorComponent.isOnScreen(leftOffset, topOffset, rightOffset, bottomOffset);
+
+	public boolean isOnScreen(int leftOffset, int topOffset, int rightOffset,
+			int bottomOffset) {
+		return myDecoratorComponent.isOnScreen(leftOffset, topOffset,
+				rightOffset, bottomOffset);
 	}
-	
+
 	public void move(double dx, double dy) {
 		myDecoratorComponent.move(dx, dy);
 	}
-	
+
 	public boolean moveTo(long elapsedTime, double xs, double ys, double speed) {
 		return myDecoratorComponent.moveTo(elapsedTime, xs, ys, speed);
 	}
-	
+
 	public void moveX(double dx) {
 		myDecoratorComponent.moveX(dx);
 	}
-	
+
 	public void moveY(double dy) {
 		myDecoratorComponent.moveY(dy);
 	}
-	
+
 	public void render(Graphics2D graphics, int x, int y) {
 		myDecoratorComponent.render(graphics, x, y);
 	}
-	
+
 	public void setBackground(Background backgr) {
 		myDecoratorComponent.setBackground(backgr);
 	}
-	
+
 	public void setImmutable(boolean b) {
 		myDecoratorComponent.setImmutable(b);
 	}
-	
+
 	public void setLayer(int i) {
 		myDecoratorComponent.setLayer(i);
 	}
-	
+
 	public void setMovement(double speed, double angleDir) {
 		myDecoratorComponent.setMovement(speed, angleDir);
 	}
-	
-	/*protected void updateMovement(long elapsedTime) {
-		myDecoratorComponent.updateMovement(elapsedTime);
-	}*/
-	
+
+	/*
+	 * protected void updateMovement(long elapsedTime) {
+	 * myDecoratorComponent.updateMovement(elapsedTime); }
+	 */
 
 	/**
 	 * Gets the x position of the platform stored in simple platform
@@ -338,7 +342,7 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		myDecoratorComponent.setY(y);
 
 	}
-	
+
 	public BufferedImage getImage() {
 		return myDecoratorComponent.getImage();
 	}
@@ -429,19 +433,15 @@ public abstract class DecoratedPlatform extends AbstractPlatform {
 		return myDecoratorComponent.getWidth();
 	}
 
-	
-	
-	
 	@SuppressWarnings("rawtypes")
-	public List<Class> getClassesOfDecorators()
-	{
-	    List<Class> classList = new ArrayList<Class>();
-	    classList.add(this.getClass());
-	    if(!myDecoratorComponent.getClass().equals(SimplePlatform.class))
-	    {
-	        classList.addAll(((DecoratedPlatform) myDecoratorComponent).getClassesOfDecorators());
-	    }
-	    return classList;	    
+	public List<Class> getClassesOfDecorators() {
+		List<Class> classList = new ArrayList<Class>();
+		classList.add(this.getClass());
+		if (!myDecoratorComponent.getClass().equals(SimplePlatform.class)) {
+			classList.addAll(((DecoratedPlatform) myDecoratorComponent)
+					.getClassesOfDecorators());
+		}
+		return classList;
 	}
 
 }
