@@ -63,6 +63,7 @@ public class FighterAction implements CollisionAction{
 	
 	public void instantFighterDeath (CollisionContext ccntext, CollisionSpec cspec){
 			sprite.setLocation(-10000, -1000);
+			sprite.setActive(false);
 	}
 	
 	public void fighterLoseHitpoints (CollisionContext ccntext, CollisionSpec cspec){
