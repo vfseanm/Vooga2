@@ -61,7 +61,7 @@ public class FighterJump extends Attribute
             {
             	System.out.println("commanded to jump");
                 isJumping = true;
-                canJump = false;
+                //canJump = false;
             }
 
             if (isJumping)
