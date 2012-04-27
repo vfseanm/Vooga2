@@ -44,7 +44,7 @@ public class JumpingMovement extends Attribute implements Updateable, JsonableAt
     }
 
     public void setActivity(boolean active){
-    	myGameCharacter.allowAttribute("Gravity", true);
+    	myAttributeUser.allowAttribute("Gravity", true);
     	isActive=active;
     }
     
@@ -56,13 +56,13 @@ public class JumpingMovement extends Attribute implements Updateable, JsonableAt
             if (time <= myTime)
             {
                 
-                myGameCharacter.setY(myGameCharacter.getY() - myDistance);
-                myGameCharacter.allowAttribute("Gravity", false);
+                myAttributeUser.setY(myAttributeUser.getY() - myDistance);
+                myAttributeUser.allowAttribute("Gravity", false);
             }
             else
             {
                 
-                myGameCharacter.restoreOriginalAttribute("Gravity");
+                myAttributeUser.restoreOriginalAttribute("Gravity");
             }
         }
         

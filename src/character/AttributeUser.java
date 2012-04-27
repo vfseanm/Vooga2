@@ -76,7 +76,7 @@ public abstract class AttributeUser extends AnimatedGameSprite
     public void addAttribute (Attribute attribute)
     {
         myAttributes.add(attribute);
-        attribute.setGameCharacter(this);
+        attribute.setAttributeUser(this);
     }
 
 

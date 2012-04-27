@@ -20,7 +20,8 @@ import java.lang.reflect.*;
 @SuppressWarnings("serial")
 public abstract class Attribute implements Serializable, Cloneable
 {
-    protected AttributeUser myGameCharacter;
+
+    protected AttributeUser myAttributeUser;
     protected Object myOriginal;
     protected boolean isActive;
     public static boolean makeOriginal = true;
@@ -30,13 +31,15 @@ public abstract class Attribute implements Serializable, Cloneable
 
 
     /**
-     * associates an attribute with the given enemy/fighter
+     * associates an attribute with the given enemy/fighter or other attribute user
      * 
      * @param user the attribute user to be bound to the attribute
      */
-    public void setGameCharacter (AttributeUser user)
-    {
-        myGameCharacter = user;
+
+
+    public void setAttributeUser(AttributeUser user) {
+        myAttributeUser = user;
+
     }
 
 
@@ -128,6 +131,7 @@ public abstract class Attribute implements Serializable, Cloneable
             }
             catch (InvocationTargetException e)
             {
+
 
                 e.printStackTrace();
             }

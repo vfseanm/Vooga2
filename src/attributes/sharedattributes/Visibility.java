@@ -34,20 +34,20 @@ public class Visibility extends Attribute implements JsonableAttribute
     {
         if (!isVisible)
         {
-            myGameCharacter.setImages(null);
+            myAttributeUser.setImages(null);
         }
         else
         {
-            myGameCharacter.setImages(myImage);
+            myAttributeUser.setImages(myImage);
         }
 
     }
 
 
-    public void setGameCharacter (AttributeUser character)
+    public void setAttributeUser (AttributeUser character)
     {
-        myGameCharacter = character;
-        myImage = myGameCharacter.getImages();
+        myAttributeUser = character;
+        myImage = myAttributeUser.getImages();
         checkAndSetVisibility();
 
     }

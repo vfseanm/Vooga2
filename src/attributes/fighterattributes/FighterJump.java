@@ -76,7 +76,7 @@ public class FighterJump extends Attribute
             if (canJump && myUserInput.isKeyPressed(SingletonKeyController.getInstance().getKeyCode(("JUMP"))))
             {
                 isJumping = true;
-                //canJump = false;
+                canJump = false;
             }
 
             if (isJumping)
@@ -84,12 +84,12 @@ public class FighterJump extends Attribute
                 myTimer++;
                 if (myTimer <= myDelay)
                 {
-                    myGameCharacter.moveY(-myJumpHeight);
-                    myGameCharacter.allowAttribute("Gravity", false);
+                    myAttributeUser.moveY(-myJumpHeight);
+                    myAttributeUser.allowAttribute("Gravity", false);
                 }
                 else
                 {
-                    myGameCharacter.allowAttribute("Gravity", true);
+                    myAttributeUser.allowAttribute("Gravity", true);
                     myTimer = 0;
                     isJumping = false;
                 }

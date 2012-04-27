@@ -54,15 +54,15 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 	public void update(long elapsedTime) {
 		if (isActive) {
 			if (myUserInput.isKeyDown(SingletonKeyController.getInstance().getKeyCode(("LEFT")))) {
-				myGameCharacter.moveX(-myHorizMovement);
-				myGameCharacter.modifyAttribute("FighterMissile", false);
+				myAttributeUser.moveX(-myHorizMovement);
+				myAttributeUser.modifyAttribute("FighterMissile", false);
 				movingRight = false;
 				movingLeft = true;
 			}
 
 			if (myUserInput.isKeyDown(SingletonKeyController.getInstance().getKeyCode(("RIGHT")))) {
-				myGameCharacter.moveX(myHorizMovement);
-				myGameCharacter.modifyAttribute("FighterMissile", true);
+				myAttributeUser.moveX(myHorizMovement);
+				myAttributeUser.modifyAttribute("FighterMissile", true);
 				movingRight = true;
 				movingLeft = false;
 			}
@@ -101,8 +101,8 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 		return movingRight;
 	}
 	
-	public void setGameCharacter(AttributeUser gameCharacter) {
-		myGameCharacter = gameCharacter;
+	public void setAttributeUser(AttributeUser gameCharacter) {
+		myAttributeUser = gameCharacter;
 	}
 
 
