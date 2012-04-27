@@ -4,6 +4,7 @@ package enemies;
 
 
 import java.lang.reflect.Type;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +22,6 @@ import attributes.enemyattributes.OneDirectionMovement;
 import attributes.enemyattributes.PathFollowingMovement;
 import attributes.enemyattributes.SideToSideMovement;
 import attributes.enemyattributes.UpDownMovement;
-import attributes.interfaces.Updateable;
 import attributes.sharedattributes.Attack;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
