@@ -1,17 +1,11 @@
 package enemies;
 
-
-
-
 import java.lang.reflect.Type;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import collisions.CollisionAction;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.AttributeUser;
@@ -33,12 +27,14 @@ import enemies.state.EnemyState;
 
 
 /**
+ * The enemy class extends attribute user and implements jsonablesprite
+ * 
  * @author Alex
  */
 @SuppressWarnings({ "serial", "rawtypes" })
 public class Enemy extends AttributeUser implements JsonableSprite
 {
-    
+
     private EnemyState myState;
     private static List<AttributeFactory> myAttributeFactories;
     static
@@ -55,6 +51,14 @@ public class Enemy extends AttributeUser implements JsonableSprite
     }
 
 
+    /**
+     * Constructor used to set location and images
+     * 
+     * @param x x coordinate of the sprites location
+     * @param y y coordinate of the sprites location
+     * @param image the image file names which are used to set the images as
+     *            well
+     */
     public Enemy (double x, double y, List<String> image)
     {
         super(x, y, image);
@@ -62,37 +66,29 @@ public class Enemy extends AttributeUser implements JsonableSprite
     }
 
 
+    /**
+     * called states if they want to cause an enemy to attack otherwise enemies
+     * will default attack during update calls
+     * 
+     * @param elapsedTime the time between GTGE update calls
+     */
     public void attack (long elapsedTime)
     {
         for (Attribute attribute : myAttributes)
         {
-            if (attribute.getClass().getSuperclass().equals(Attack.class))
-                ((Attack) attribute).update(elapsedTime);
-            
-                
+            if (attribute.getClass().getSuperclass().equals(Attack.class)) ((Attack) attribute).update(elapsedTime);
+
         }
-        
+
     }
 
 
-
-
-
-
-    
-
-
-
-
-   
-
-   
-
-
-
-
-
-
+    /**
+     * the enemy class overwrites the update in the super class this is because
+     * enemystate can influence the behavior of the enemy
+     * 
+     * @param elapsedTime the time in between GTGE update calls
+     */
     public void update (long elapsedTime)
     {
 
@@ -106,19 +102,29 @@ public class Enemy extends AttributeUser implements JsonableSprite
     }
 
 
-
-
+    /**
+     * Sets the state of the enemy
+     * 
+     * @param state an Enemystate
+     */
     public void setState (EnemyState state)
     {
         myState = state;
     }
 
+
+    /**
+     * returns the name of the enemy
+     */
     public String getName ()
     {
         return "Enemy";
     }
 
 
+    /**
+     * returns the string represenation of the enemy class
+     */
     public String toString ()
     {
         StringBuilder toReturn = new StringBuilder();
@@ -131,6 +137,9 @@ public class Enemy extends AttributeUser implements JsonableSprite
     }
 
 
+    /**
+     * clones a given enemy used in the level editor
+     */
     public Object clone ()
     {
         List<String> imageNames = new ArrayList<String>();
@@ -149,29 +158,9 @@ public class Enemy extends AttributeUser implements JsonableSprite
     }
 
 
-//    public boolean equals (Object o)
-//    {
-//        try
-//        {
-//
-//            Enemy toCompare = ((Enemy) o);
-//            if(!toString().equals(toCompare.toString()))
-//                    return false;
-//            for(String im: toCompare.getImageNames())
-//            {
-//                if(!getImageNames().contains(im))
-//                {
-//                    return false;
-//                }
-//            }
-//        }
-//        catch (ClassCastException e)
-//        {
-//            return false;
-//        }
-//        return false;
-//    }
-
+    /**
+     * The toJson method creates a json string representation of the enemy class
+     */
 
     public String toJson ()
     {
@@ -179,52 +168,73 @@ public class Enemy extends AttributeUser implements JsonableSprite
         Map<String, String> attributeList = new HashMap<String, String>();
         for (Attribute a : myAttributes)
         {
-           
+
             attributeList.put(a.getClass().toString(), a.toJson());
         }
         String additionalInformation = gson.toJson(attributeList);
-        
+
         return gson.toJson(new SpriteJsonData(this, additionalInformation));
 
     }
-    
-    
-    public Class<? extends CollisionAction> getActionClass (){
-    	return EnemyAction.class; 
+
+
+    /**
+     * returns the correct enemy action class that is used for collisions
+     */
+    public Class<? extends CollisionAction> getActionClass ()
+    {
+        return EnemyAction.class;
     }
 
 
-    public  Enemy fromJson (String json)
+    /**
+     * converts and enemy from json and correctly instantiates the enemy
+     */
+    public Enemy fromJson (String json)
     {
         Gson gson = new Gson();
-        
+
         SpriteJsonData spriteData = gson.fromJson(json, SpriteJsonData.class);
-        Enemy sprite = new Enemy(spriteData.getX(), spriteData.getY(), spriteData.getImageNames());
+        Enemy sprite =
+            new Enemy(spriteData.getX(),
+                      spriteData.getY(),
+                      spriteData.getImageNames());
         sprite.setGroup(spriteData.getGroup());
         Type collectionType = new TypeToken<HashMap<String, String>>()
         {}.getType();
-        Map<String, String> attributeMap = gson.fromJson(spriteData.getAdditionalInformation(), collectionType);
+        Map<String, String> attributeMap =
+            gson.fromJson(spriteData.getAdditionalInformation(), collectionType);
         for (String attributeClassName : attributeMap.keySet())
         {
-                for(AttributeFactory factory: myAttributeFactories)
+            for (AttributeFactory factory : myAttributeFactories)
+            {
+                if (factory.isThisKindOfAttribute(attributeClassName))
                 {
-                    if(factory.isThisKindOfAttribute(attributeClassName))
-                    {
-                        sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
-                    }
+                    sprite.addAttribute(factory.parseFromJson(attributeMap.get(attributeClassName)));
                 }
+            }
 
         }
         return sprite;
     }
-    
-    private Enemy(){}
-    
-    public static SpriteFactory<Enemy> getFactory()
+
+
+    /**
+     * used by the sprite factory
+     */
+    private Enemy ()
+    {}
+
+
+    /**
+     * calls the private enemy constructor used to determine if the sprite is an
+     * enemy
+     * 
+     * @return a SpriteFactory with a new enemy
+     */
+    public static SpriteFactory<Enemy> getFactory ()
     {
-        return new SpriteFactory<Enemy>( new Enemy());
+        return new SpriteFactory<Enemy>(new Enemy());
     }
 
-
-    
 }
