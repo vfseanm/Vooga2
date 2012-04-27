@@ -1,7 +1,5 @@
 package demo;
 
-import java.awt.event.KeyEvent;
-
 import java.io.File;
 
 import playfield.SingletonSpriteManager;
