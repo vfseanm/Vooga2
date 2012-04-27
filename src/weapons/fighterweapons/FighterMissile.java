@@ -1,6 +1,6 @@
 package weapons.fighterweapons;
 
-import java.awt.event.KeyEvent;
+
 import java.util.ResourceBundle;
 
 import playfield.SingletonSpriteManager;
@@ -9,15 +9,9 @@ import weapons.Weapon;
 
 
 import character.AttributeUser;
-
 import com.golden.gamedev.engine.BaseInput;
-
-import attributes.fighterattributes.FighterBasicMovement;
 import attributes.interfaces.Input;
 
-import editor.editorConstructor;
-
-@SuppressWarnings("serial")
 public class FighterMissile implements Weapon, Input {
 
 	transient protected ResourceBundle myGameKeys = ResourceBundle
@@ -30,12 +24,12 @@ public class FighterMissile implements Weapon, Input {
 	private int 					myTimer;
 	private double 					mySpeed;
 	private boolean 				canFire;
+	private boolean					facingRight;
 	private int						shootKey;
 
 	
 	public FighterMissile(AnimatedGameSprite missile, int damage, int delay,
-			double speed) {
-		
+			double speed) {	
 		myMissile.setGroup("FIGHTERMISSILE");
 		myMissile = missile;
 		myDamage = damage;
@@ -47,30 +41,21 @@ public class FighterMissile implements Weapon, Input {
 	}
 
 	public void use(AttributeUser character) {
-
-		if (myTimer == 0 && myUserInput.isKeyPressed(shootKey) && canFire) {
+		if (myTimer == 0 && myUserInput.isKeyPressed(shootKey) && canFire)
+		{
 			SingletonSpriteManager.getInstance().add(myMissile);
-			
-			if (character.getAttributeByName("FighterBasicMovement") != null) {
-				FighterBasicMovement mover = (FighterBasicMovement) character.getAttributeByName("FighterBasicMovement");
-				if (mover.isFacingRight())
-				{
-					myMissile.setHorizontalSpeed(mySpeed);
-					myMissile.setLocation(character.getX()+1, character.getY()/2);
-				}
-				else 
-				{
-					myMissile.setHorizontalSpeed(-mySpeed);
-					myMissile.setLocation(character.getX()-1, character.getY()/2);
-				}
-			}
-			else {
+			if (facingRight)
+			{
 				myMissile.setHorizontalSpeed(mySpeed);
-				myMissile.setLocation(character.getX(), character.getY()/2);
+				myMissile.setLocation(character.getX()+1, character.getY()/2);
+			}
+			else 
+			{
+				myMissile.setHorizontalSpeed(-mySpeed);
+				myMissile.setLocation(character.getX()-1, character.getY()/2);
 			}
 			canFire = false;
 		}
-		
 		else if (myTimer > myDelay) 
 		{
 			canFire = true;
@@ -79,6 +64,9 @@ public class FighterMissile implements Weapon, Input {
 		myTimer++; 
 	}
 
+	public void modifyFighterMissile(boolean value) {
+		facingRight = value;
+	}
 	
 	public double getDamage() {
 		return myDamage;

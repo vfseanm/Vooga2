@@ -1,11 +1,7 @@
 package fighter;
 
-import java.util.ArrayList;
-
 import attributes.Attribute;
-import attributes.fighterattributes.FighterJump;
-import attributes.sharedattributes.Hitpoints;
-import attributes.sharedattributes.NumberOfLives;
+
 import bonusobjects.BonusObject;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
@@ -46,7 +42,7 @@ public class FighterAction implements CollisionAction{
             for (Attribute toAdd: bonus.getAttributesToOffer()) {
             	sprite.addAttribute(toAdd);
             }
-            bonus.setActive(false);
+            // bonus.setActive(false);
         } catch (ClassCastException e)
         {
             System.out.println("You have implemented the collision framework incorrectly. The fighterGetPowerUp method is meant to be used with PowerUps.");
@@ -59,7 +55,7 @@ public class FighterAction implements CollisionAction{
         {
             BonusObject bonus = (BonusObject) ccntext.getOtherSprite(sprite);
             sprite.addCarryableAttributes(bonus.getAttributesToOffer());
-            bonus.setActive(false);
+            // bonus.setActive(false);
         } catch (ClassCastException e)
         {
             System.out.println("You have implemented the collision framework incorrectly. The fighterGetCarryable method is meant to be used with Carryables.");
@@ -67,29 +63,16 @@ public class FighterAction implements CollisionAction{
 	}
 	
 	public void instantFighterDeath (CollisionContext ccntext, CollisionSpec cspec){
-		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
 			sprite.setLocation(-10000, -1000);
-		}
+			sprite.setActive(false);
 	}
 	
 	public void fighterLoseHitpoints (CollisionContext ccntext, CollisionSpec cspec){
-			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
-			
-			for (Attribute skill: ability){
-				if (skill.getName().equals("Hitpoints")){
-					((Hitpoints)skill).modifyHitpoints(-10);
-				}
-			}
+		sprite.modifyAttribute("Hitpoints", -10);
 	}
 	
 	public void fighterLoseLife (CollisionContext ccntext, CollisionSpec cspec){
-			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
-			
-			for (Attribute skill: ability){
-				if (skill.getName().equals("NumberOfLives")){
-					((NumberOfLives) skill).modifyNumberOfLives(-1);
-				}
-			}
+		sprite.modifyAttribute("NumberOfLives", -1);
 	}
 
 	public void setSprite(AnimatedGameSprite sprite) {

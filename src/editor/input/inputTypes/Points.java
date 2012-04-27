@@ -2,19 +2,16 @@ package editor.input.inputTypes;
 
 import java.awt.Point;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import sprite.AnimatedGameSprite;
-
-import com.golden.gamedev.engine.BaseInput;
-import com.google.gson.Gson;
-
 import editor.Framework;
-import editor.dialogues.DialogueBox;
 
 
 
+@SuppressWarnings("serial")
 public class Points implements InputType, Serializable{
 private ArrayList<Point> myPoints;
 

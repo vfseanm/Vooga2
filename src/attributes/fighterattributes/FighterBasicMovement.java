@@ -2,13 +2,12 @@ package attributes.fighterattributes;
 
 import character.AttributeUser;
 
+
 import com.golden.gamedev.engine.BaseInput;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
-
-import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
 
 import attributes.*;
@@ -40,10 +39,6 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 	@editorConstructor(parameterNames = { "horizontal movement" })
 	public FighterBasicMovement(double horizMove) {
 	    super(horizMove);
-	    System.out.println(KeyEvent.VK_RIGHT);
-	       System.out.println(KeyEvent.VK_LEFT);
-	        System.out.println(KeyEvent.VK_UP);
-	        System.out.println(KeyEvent.VK_DOWN);
 
 		 if (horizMove < 0) 
 	        	throw new RuntimeException("You must enter a positive number for the horizontal movement");
@@ -63,12 +58,14 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 		if (isActive) {
 			if (myUserInput.isKeyDown(leftKey)) {
 				myGameCharacter.moveX(-myHorizMovement);
+				myGameCharacter.modifyAttribute("FighterMissile", false);
 				movingRight = false;
 				movingLeft = true;
 			}
 
 			if (myUserInput.isKeyDown(rightKey)) {
 				myGameCharacter.moveX(myHorizMovement);
+				myGameCharacter.modifyAttribute("FighterMissile", true);
 				movingRight = true;
 				movingLeft = false;
 			}

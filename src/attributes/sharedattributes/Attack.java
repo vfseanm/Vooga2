@@ -1,4 +1,4 @@
-package attributes.enemyattributes;
+package attributes.sharedattributes;
 
 import attributes.Attribute;
 import attributes.interfaces.Updateable;

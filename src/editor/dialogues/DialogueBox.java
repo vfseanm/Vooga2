@@ -39,7 +39,8 @@ public abstract class DialogueBox extends JPanel {
 
     public abstract DialogueBox clone();
 
-    public static String getClassName(Class c) {
+    @SuppressWarnings("rawtypes")
+	public static String getClassName(Class c) {
         String[] classPath = c.getName().split("\\.");
         return classPath[classPath.length - 1];
     }

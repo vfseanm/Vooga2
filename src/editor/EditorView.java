@@ -1,22 +1,19 @@
 package editor;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.gui.*;
 import com.golden.gamedev.gui.toolkit.*;
-import com.golden.gamedev.object.Background;
-import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.buttons.ObjectPlacingButton;
 import editor.buttons.DialogueOpeningButton;
@@ -25,7 +22,6 @@ import editor.buttons.SaveButton;
 import editor.dialogues.DialogueBox;
 import editor.dialogues.FighterDialogueBox;
 import editor.dialogues.GameDialogue;
-import editor.exampleStuff.EditEnemyButtonDialogueBox;
 import editor.file.JsonLevelWriter;
 import editor.file.LevelLoader;
 import editor.file.LevelWriter;
@@ -79,7 +75,8 @@ public abstract class EditorView extends Game{
         framework.add(bottomBox);
     }
 
-    public void setFrameworkTop()
+    @SuppressWarnings("unchecked")
+	public void setFrameworkTop()
     {
         framework = new FrameWork(bsInput, 1300, 800);
 

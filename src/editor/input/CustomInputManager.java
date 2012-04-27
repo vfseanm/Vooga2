@@ -1,27 +1,16 @@
 package editor.input;
 
 import java.awt.Dimension;
+
 import java.awt.HeadlessException;
-import java.awt.Toolkit;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import sprite.AnimatedGameSprite;
 
 import editor.ReflectionUtil;
 import editor.editorConstructor;
-import editor.dialogues.AttributeSelectionPanel;
-import editor.dialogues.AttributeSelectionPanel.CheckBoxListener;
 import editor.input.inputTypes.InputType;
-
-import attributes.Attribute;
 
 public class CustomInputManager extends InputManager{
 
@@ -31,10 +20,12 @@ public class CustomInputManager extends InputManager{
     private Object[] argList;
     private int currentArgumentCounter;
     
-    private Class[] paramTypes;
+    @SuppressWarnings("rawtypes")
+	private Class[] paramTypes;
     
     
-    public CustomInputManager(Class c, DialogueController controller)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public CustomInputManager(Class c, DialogueController controller)
     {
         myController = controller;
         myClass = c;
@@ -57,7 +48,8 @@ public class CustomInputManager extends InputManager{
     }
 
     
-    public void run()
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public void run()
     {
             Constructor constructor = ReflectionUtil.getAnnotatedConstructor(myClass);
             Annotation a = constructor.getAnnotation(editorConstructor.class);

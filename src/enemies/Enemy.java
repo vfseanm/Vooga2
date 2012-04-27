@@ -4,6 +4,7 @@ package enemies;
 
 
 import java.lang.reflect.Type;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,13 +16,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import character.AttributeUser;
 import attributes.*;
-import attributes.enemyattributes.Attack;
 import attributes.enemyattributes.Flying;
 import attributes.enemyattributes.JumpingMovement;
 import attributes.enemyattributes.OneDirectionMovement;
 import attributes.enemyattributes.PathFollowingMovement;
 import attributes.enemyattributes.SideToSideMovement;
 import attributes.enemyattributes.UpDownMovement;
+import attributes.sharedattributes.Attack;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
 import editor.json.AttributeFactory;
