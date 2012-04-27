@@ -224,8 +224,7 @@ public class Framework implements Serializable {
             }
         }
         Framework framework = new Framework(name, type, prototype);
-        System.out.println("type: " + framework.getType() + "  name: "
-                + framework.getName());
+
         for (String s : instanceList)
         {
             List<Double> coordinates = gson.fromJson(s, collectionType2);
