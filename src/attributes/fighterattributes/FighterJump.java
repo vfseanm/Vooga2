@@ -59,7 +59,6 @@ public class FighterJump extends Attribute
         {
             if (canJump && myUserInput.isKeyPressed(jumpKey))
             {
-
                 canJump = false;
                 isJumping = true;
             }
@@ -76,12 +75,12 @@ public class FighterJump extends Attribute
                     isJumping = false;
                     myGameCharacter.allowAttribute("Gravity", true);
                     myGameCharacter.allowAttribute("FighterJump", false);
-                    canJump = true;
                     myTimer = 0;
                 }
             }
             myTimer++;
         }
+        else canJump = true;
     }
 
 
