@@ -93,8 +93,8 @@ public class DemoGame extends PlatformGame {
         spec6.addActMap("FIGHTER", "");
         
         List<String> switchImages = new ArrayList<String>();
-        switchImages.add("resources/scrollerSwitch1.png"); 
-        switchImages.add("resources/scrollerSwitch2.png");
+        switchImages.add("resources/scrollerSwitchUp.png"); 
+        switchImages.add("resources/scrollerSwitchDown.png");
         Sidescroller newScroller = new ShiftLeftSidescroller(new ShiftRightSidescroller(new ConcreteSidescroller()));
         mySidescrollerSwitch = new SidescrollerSwitch(1300, 295, switchImages, newScroller, this);
         
