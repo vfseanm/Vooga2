@@ -47,6 +47,7 @@ public abstract class TwoPartMovement extends Attribute implements Updateable
             if (time >= myPartDuration)
             {
                 isPart1 = (!isPart1);
+                time = 0;
             }
         }
     }

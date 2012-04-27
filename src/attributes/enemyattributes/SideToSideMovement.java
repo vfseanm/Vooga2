@@ -38,7 +38,7 @@ public class SideToSideMovement extends TwoPartMovement implements Updateable, J
 
     protected void movementPart2 ()
     {
-       myGameCharacter.setY(myGameCharacter.getX()+myDistance);
+       myGameCharacter.setX(myGameCharacter.getX()+myDistance);
     }
     
     public void modifySideToSideMovement(int distance, int duration){
