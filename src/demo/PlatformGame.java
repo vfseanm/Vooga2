@@ -28,6 +28,7 @@ public abstract  class PlatformGame extends Game {
     {  
         myPlayfield = SingletonSpriteManager.getInstance();
         myKeyController = SingletonKeyController.getInstance();
+        myKeyController.convertResourceBundleToMap();
     }
     
     public void loadLevel(String filename)

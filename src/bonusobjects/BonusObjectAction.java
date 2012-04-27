@@ -7,6 +7,7 @@ import attributes.sharedattributes.Hitpoints;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
 
+
 import sprite.AnimatedGameSprite;
 import collisions.CollisionAction;
 import collisions.CollisionContext;
@@ -54,6 +55,8 @@ public class BonusObjectAction implements CollisionAction{
 			
 				}
 			}
+			sprite.modifyAttribute("NumberOfLives", -1);
+
 		}
 	}
 	
