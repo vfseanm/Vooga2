@@ -22,7 +22,6 @@ public class FighterAction implements CollisionAction{
 		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight());
 			sprite.allowAttribute("Jump", true);
-			sprite.allowAttribute("Gravity", false);
 		}
 	}
 	
