@@ -41,6 +41,8 @@ public class SingletonSpriteManager
 
     public void add (Sprite sprite)
     {
+        
+
         if (sprite instanceof AnimatedGameSprite &&
             !(sprite instanceof Fighter))
         {
@@ -74,6 +76,6 @@ public class SingletonSpriteManager
     public void setMySprites (List<AnimatedGameSprite> list)
     {
         mySprites = list;
-
+       
     }
 }

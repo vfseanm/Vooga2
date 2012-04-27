@@ -43,23 +43,20 @@ public class DemoGame extends PlatformGame {
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
-	private Sprite sprite;
 	public DemoGame()
 		{
 	    super();
 	}
 	public void initResources() 
 	{
-	    sprite = new Sprite(0,0);
-	    sprite.setVerticalSpeed(1);
-	    sprite.setImage(getImage("resources/Bowser.jpg"));
+	  
 	    loadLevel("demo1");
 	    SpriteGroup allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
 	        allSprites.add(sprite);
 	    }
 	    
-        myCollisions = new Collisions();
+        myCollisions = new GameCollisionManager();
 	    
         ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
         CollisionSpec spec = new CollisionSpec();
@@ -69,7 +66,9 @@ public class DemoGame extends PlatformGame {
         spec2.addActMap("FIGHTER", "fighterHitObject");
         spec2.addActMap("PLATFORM", "");
         specList.add(spec2);
+        System.out.println(myCollisions);
         
+        myCollisions.setCollisionGroup(allSprites, allSprites);
         myCollisions.addSpecList(specList);
 
 
@@ -104,8 +103,8 @@ public class DemoGame extends PlatformGame {
 //        scrollerSwitch = new SidescrollerSwitch(350, 400, switchImage, newscroll, this);
         //myPlayfield.addCollisionGroup(allSprites, allSprites, myCollisions);
         
-        mySidescroller = new ForcedRightSidescroller(new ConcreteSidescroller());
-        mySidescroller.setUserInput(bsInput);
+        //mySidescroller = new ForcedRightSidescroller(new ConcreteSidescroller());
+        //mySidescroller.setUserInput(bsInput);
 
         
         
@@ -149,18 +148,17 @@ public class DemoGame extends PlatformGame {
 //	    //myPlatform.render(arg0);
 //	    //mySwitch.render(arg0);
 	    myFighter.render(arg0);
-	    sprite.render(arg0);
+	  
 	}
 
 	@Override
 	public void update(long elapsedTime) 
 	{
-	   myCollisions.checkCollision();
-	   sprite.update(elapsedTime); 
+	   myCollisions.checkCollision(); 
 	   myPlayfield.update(elapsedTime);
 	   myFighter.update(elapsedTime);
-	   
-	   // mySidescroller.update(elapsedTime);
+	   //System.out.println(mySidescroller);
+	   mySidescroller.update(elapsedTime);
 
 	}
 }

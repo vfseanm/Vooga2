@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
@@ -20,10 +21,15 @@ import editor.json.JsonableAttribute;
 @SuppressWarnings("serial")
 public class FighterFly extends Attribute implements Updateable, Movement, Input, JsonableAttribute
 {
+	transient protected ResourceBundle myGameKeys = ResourceBundle
+    .getBundle("demo.GameKeysResourceBundle");
+	
 	private BaseInput	myUserInput;
 	private double		myFlightMovement;
 	private boolean		movingUp;
 	private boolean		movingDown;
+	private int 		upKey;
+	private int			downKey;
 	
     @editorConstructor(parameterNames = {"flight movement"})
     public FighterFly(double flightMovement)
@@ -32,6 +38,8 @@ public class FighterFly extends Attribute implements Updateable, Movement, Input
         if (flightMovement < 0) 
         	throw new RuntimeException("You must enter a positive number for the flight movement");
         myFlightMovement = flightMovement;
+        upKey = Integer.parseInt(myGameKeys.getString("UP"));
+		downKey = Integer.parseInt(myGameKeys.getString("DOWN"));
     }
 
 
@@ -40,13 +48,13 @@ public class FighterFly extends Attribute implements Updateable, Movement, Input
     	if (isActive) {
     		myGameCharacter.allowAttribute("Gravity", false);
     		
-			if (myUserInput.isKeyDown(KeyEvent.VK_UP)) {
+			if (myUserInput.isKeyDown(upKey)) {
 				myGameCharacter.moveY(-myFlightMovement);
 				movingUp = true;
 				movingDown = false;
 			}
 
-			if (myUserInput.isKeyDown(KeyEvent.VK_DOWN)) {
+			if (myUserInput.isKeyDown(downKey)) {
 				myGameCharacter.moveY(myFlightMovement);
 				movingUp = false;
 				movingDown = true;
