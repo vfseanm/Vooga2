@@ -9,6 +9,8 @@ import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
 
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+
 import attributes.*;
 import attributes.interfaces.Input;
 import attributes.interfaces.Movement;
@@ -25,9 +27,14 @@ import attributes.interfaces.Updateable;
 @SuppressWarnings("serial")
 public class FighterBasicMovement extends Attribute implements Updateable, Movement, Input, JsonableAttribute {
 
+	transient protected ResourceBundle myGameKeys = ResourceBundle
+    .getBundle("demo.GameKeysResourceBundle");
+	
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
 	public boolean		facingRight;
+	public int			rightKey;
+	public int			leftKey;
 	
 	@editorConstructor(parameterNames = { "horizontal movement" })
 	public FighterBasicMovement(double horizMove) {
@@ -35,6 +42,8 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 		 if (horizMove < 0) 
 	        	throw new RuntimeException("You must enter a positive number for the horizontal movement");
 		myHorizMovement = horizMove;
+		rightKey = Integer.parseInt(myGameKeys.getString("RIGHT"));
+		leftKey = Integer.parseInt(myGameKeys.getString("LEFT"));
 	}
 	
 	
@@ -46,12 +55,12 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 
 	public void update(long elapsedTime) {
 		if (isActive) {
-			if (myUserInput.isKeyDown(KeyEvent.VK_LEFT)) {
+			if (myUserInput.isKeyDown(leftKey)) {
 				myGameCharacter.moveX(-myHorizMovement);
 				facingRight = false;
 			}
 
-			if (myUserInput.isKeyDown(KeyEvent.VK_RIGHT)) {
+			if (myUserInput.isKeyDown(rightKey)) {
 				myGameCharacter.moveX(myHorizMovement);
 				facingRight = true;
 			}

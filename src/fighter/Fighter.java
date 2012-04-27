@@ -1,9 +1,9 @@
 package fighter;
 
-import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,9 +36,6 @@ import attributes.sharedattributes.Visibility;
 
 @SuppressWarnings("serial")
 public class Fighter extends AttributeUser implements JsonableSprite  {
-	
-	transient protected ResourceBundle myGameKeys = ResourceBundle
-    .getBundle("demo.GameKeysResourceBundle");
 
     private List<Attribute> myCarryableAttributes;
     private List<Attribute> myDuplicateAttributes;
@@ -75,7 +72,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
     private Fighter()
     {
         super();
-        setGroup("FIGHTER");
     };
     
     public String getGroup(){
@@ -91,6 +87,7 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
             myself.myAttributes = new ArrayList<Attribute>();
             myself.myCarryableAttributes = new ArrayList<Attribute>();
             myself.myDuplicateAttributes = new ArrayList<Attribute>();
+            myself.setGroup("FIGHTER");
         }
         return myself;
     }
@@ -103,17 +100,18 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
     
 
     /**
-     * Adds Attributes, removing older, duplicate versions; also sets user input
-     * for the Fighter's Movement Attributes, enabling use of key strokes.
+     * Adds unique Attributes to myAttributes and duplicates to myDuplicateAttributes, 
+     * where they will be held, inactive, till later use. 
+     * Sets user input for the Fighter's Movement Attributes, enabling use of key strokes
+     * to the Fighter.
      */
     public void addAttribute(Attribute toAdd)
     {
-        Attribute currentVersion = getAttributeByName(toAdd.getName());
-        if (currentVersion != null)
+        if (hasAttributeByName(toAdd.getName()))
         {
-            myAttributes.remove(currentVersion);
+            myDuplicateAttributes.add(toAdd);
         }
-        super.addAttribute(toAdd);
+        else super.addAttribute(toAdd);
         
         Class[] attributeInterfaces = toAdd.getClass().getInterfaces();
     	if (Arrays.asList(attributeInterfaces).contains(Input.class)) {
@@ -122,6 +120,28 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
     	}
     }
     
+    
+    
+    /**
+     * Adds unique Attributes to myAttributes and duplicates to myDuplicateAttributes, 
+     * where they will be held, inactive, till later use. 
+     * Sets user input for the Fighter's Movement Attributes, enabling use of key strokes
+     * to control the Fighter.
+     */
+    public void removeAttributeByName(String name) {
+		for (Attribute attribute : myAttributes) {
+			if (attribute.getName().equalsIgnoreCase(name))
+				myAttributes.remove(attribute);
+		}
+		
+		for (Attribute attribute : myDuplicateAttributes) {
+			if (attribute.getName().equalsIgnoreCase(name))
+			{
+				myAttributes.add(attribute);
+				myDuplicateAttributes.remove(attribute);		
+			}
+		}
+	}
 
     public void addCarryableAttributes(List<Attribute> carryables)
     {
@@ -154,23 +174,26 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
 	public double[] getMovement() {
 		double[] horizVertMovement = new double[2];
 		for (Attribute attribute : myAttributes) {
-			if (attribute.getClass().getInterfaces().length >= 2) {
-	            if (attribute.getClass().getInterfaces()[1].equals(Movement.class)) {
-	            	Movement scrollSpeed = (Movement) attribute;
-	            	horizVertMovement[0] += scrollSpeed.getHorizMovement();
-	            	horizVertMovement[1] += scrollSpeed.getVertMovement();
-	            }
-			}
+			Class[] attributeInterfaces = attribute.getClass().getInterfaces();
+        	if (Arrays.asList(attributeInterfaces).contains(Movement.class)) {
+        		Movement scrollSpeed = (Movement) attribute;
+        		horizVertMovement[0] += scrollSpeed.getHorizMovement();
+            	horizVertMovement[1] += scrollSpeed.getVertMovement();
+        	}
 		}
 		return horizVertMovement;
 	}
 	
 	public List<Attribute> getCarryableAttributes()
 	{
-	    return myCarryableAttributes;
+	    return Collections.unmodifiableList(myCarryableAttributes);
 	}
 	
 	
+	 /**
+     * Sets user input for the Fighter and all the Movement Attributes it starts
+     * with, enabling use of key strokes to control the Fighter.
+     */
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
 		System.out.println("seting inpput");

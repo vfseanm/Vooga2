@@ -1,9 +1,9 @@
 package attributes.fighterattributes;
 
-import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
@@ -20,11 +20,17 @@ import attributes.interfaces.Updateable;
 @SuppressWarnings("serial")
 public class FighterJump extends Attribute implements Updateable, Movement, Input, JsonableAttribute
 {
+	
+	transient protected ResourceBundle myGameKeys = ResourceBundle
+    .getBundle("demo.GameKeysResourceBundle");
+	
 	private BaseInput 		myUserInput;
     private double 			myJumpHeight;
     private double			myDelay;
+    private boolean 		canJump;
     private boolean 		isJumping;
     private int 			myTimer;
+    private int 			jumpKey;
 
 
     @editorConstructor(parameterNames = { "jump height", "time" })
@@ -35,8 +41,9 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
         	throw new RuntimeException("You must enter a positive number for the jump height");
         myJumpHeight = jumpHeight;
         myDelay = delay;
-        isJumping = false;
-        myTimer = 0;     
+        canJump = true;
+        myTimer = 0;
+        jumpKey = Integer.parseInt(myGameKeys.getString("JUMP"));
     }
 
     
@@ -45,41 +52,33 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
         myJumpHeight += jumpHeight;
         myDelay += time;
     }
-    
-    
-//    public void setActivity(boolean active){
-//    	if (!active) {
-//    		myGameCharacter.allowAttribute("Gravity", true);
-//    	}
-//    	else {
-//    		myGameCharacter.allowAttribute("Gravity", false);
-//    	}
-//    	isActive = active;
-//    }
 
     
     public void update(long elapsedTime)
     {  	
         if (isActive)
         {
-        	if (myUserInput.isKeyPressed(KeyEvent.VK_SPACE)) 
+        	if (canJump && myUserInput.isKeyPressed(jumpKey)) 
     		{
-    		    isJumping = true;
     		    myGameCharacter.allowAttribute("Gravity", false);
-    		    myTimer = 0;
+    		    canJump = false;
+    		    isJumping = true;
     		}
         	
-            if (isJumping && myTimer <= myDelay)
+            if (isJumping)
             {
-                myGameCharacter.moveY(-myJumpHeight);
+            	if (myTimer <= myDelay) myGameCharacter.moveY(-myJumpHeight);
+            	else 
+            	{
+            		canJump = true;
+            		isJumping = false;
+                    myGameCharacter.allowAttribute("Gravity", true);
+                    myGameCharacter.allowAttribute("FighterJump", false);
+                    myTimer = 0;
+            	}
             }
-            else
-            {    
-            	isJumping = false;
-                myGameCharacter.allowAttribute("Gravity", true);               
-            }
+            myTimer++;
         }     
-        myTimer++;
     }
 
 
