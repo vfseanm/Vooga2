@@ -18,7 +18,11 @@ import enemies.Enemy;
 
 import attributes.Attribute;
 
-
+/**
+ * Dialogue box used to create new Enemy framework
+ * @author Becky and Sean
+ *
+ */
 @SuppressWarnings("serial")
 public class EnemyDialogueBox extends DialogueBox {
 
@@ -29,7 +33,10 @@ public class EnemyDialogueBox extends DialogueBox {
     private JTextField myName;
     private JTextField myGroup;
 
-
+    /**
+     * 
+     * @param m level editor controller from which this dialogue box is opened
+     */
     public EnemyDialogueBox(EditorController m)
     {
         super(m);
@@ -37,7 +44,10 @@ public class EnemyDialogueBox extends DialogueBox {
         add(makeInputPanel(), BorderLayout.NORTH);
     }
 
-
+    /**
+     * makes the selection panel for the dialogue box, allowing the user to specify the information
+     * needed to created a new Enemy Framework
+     */
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
@@ -76,7 +86,11 @@ public class EnemyDialogueBox extends DialogueBox {
 
         return panel;
     }
-
+    /**
+     * creates the framework from the information gathered from the selection panel
+     * @return the framework created
+     * @throws RuntimeException
+     */
     public Framework getFramework() throws RuntimeException
     {
         if(myImagePaths==null)
@@ -100,11 +114,15 @@ public class EnemyDialogueBox extends DialogueBox {
         return framework;
     }
 
-
+    /**
+     * clones the dialogue box
+     */
     public DialogueBox clone() {
         return new EnemyDialogueBox(editorController);
     }
-
+    /**
+     * creates framework and adds button when the create enemy button is clicked
+     */
     protected void BoxCompletedAction() {
         try{
         Framework framework = getFramework();

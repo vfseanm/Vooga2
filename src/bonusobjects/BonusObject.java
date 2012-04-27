@@ -147,7 +147,6 @@ public class BonusObject extends AttributeUser implements JsonableSprite {
             {
                 if(factory.isThisKindOfAttribute(attributeClassName))
                 {
-                    System.out.println("adding attribute to offer");
                     sprite.addAttributeToOffer(factory.parseFromJson(attributeToOfferMap.get(attributeClassName)));
                 }
             }
