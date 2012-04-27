@@ -50,7 +50,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	  
-	    loadLevel("demo1");
+	    loadLevel("level1");
 	    SpriteGroup allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
 	        allSprites.add(sprite);
@@ -73,7 +73,7 @@ public class DemoGame extends PlatformGame {
 
 
 	    
-	    
+	    System.out.println(myPlayfield.getMySprites());
 	    
 	    
 	    
@@ -133,6 +133,7 @@ public class DemoGame extends PlatformGame {
 		events.add(event);
 		myContext = new Context(events, plats);
 		*/
+		
 	}
 
 	@Override

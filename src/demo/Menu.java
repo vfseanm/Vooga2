@@ -39,8 +39,7 @@ public class Menu extends DialogueBox {
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(800, 325));
 
-        attributePanel = new AttributeSelectionPanel(packagesToSearch, Fighter
-                .getInstance().getAttributes(), dialogueController);
+        attributePanel = new AttributeSelectionPanel(packagesToSearch, Fighter.getInstance().getAttributes(), dialogueController);
 
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Fighter to have:");
@@ -50,8 +49,7 @@ public class Menu extends DialogueBox {
         JLabel title2 = new JLabel(
                 "Carryable attributes for the Fighter to Have:");
 
-        carryablePanel = new AttributeSelectionPanel(packagesToSearch, Fighter
-                .getInstance().getCarryableAttributes(), dialogueController);
+        carryablePanel = new AttributeSelectionPanel(packagesToSearch, Fighter.getInstance().getCarryableAttributes(), dialogueController);
 
         JPanel panel3 = new JPanel();
         panel3.add(title2);
