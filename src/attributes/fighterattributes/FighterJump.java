@@ -22,9 +22,9 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
 {
 	private BaseInput 		myUserInput;
     private double 			myJumpHeight;
-    private double			myTime;
+    private double			myDelay;
     private boolean 		isJumping;
-    private int 			time;
+    private int 			myTimer;
 
 
     @editorConstructor(parameterNames = { "jump height", "time" })
@@ -34,16 +34,16 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
         if (jumpHeight < 0) 
         	throw new RuntimeException("You must enter a positive number for the jump height");
         myJumpHeight = jumpHeight;
-        myTime = delay;
+        myDelay = delay;
         isJumping = false;
-        time = 0;     
+        myTimer = 0;     
     }
 
     
     public void modifyJump (double jumpHeight, int time)
     {
         myJumpHeight += jumpHeight;
-        myTime += time;
+        myDelay += time;
     }
     
     
@@ -58,7 +58,7 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
 //    }
 
     
-    public void update (long elapsedTime)
+    public void update(long elapsedTime)
     {  	
         if (isActive)
         {
@@ -66,10 +66,10 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
     		{
     		    isJumping = true;
     		    myGameCharacter.allowAttribute("Gravity", false);
-    		    time = 0;
+    		    myTimer = 0;
     		}
         	
-            if (isJumping && time <= myTime)
+            if (isJumping && myTimer <= myDelay)
             {
                 myGameCharacter.moveY(-myJumpHeight);
             }
@@ -79,7 +79,7 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
                 myGameCharacter.allowAttribute("Gravity", true);               
             }
         }     
-        time++;
+        myTimer++;
     }
 
 
@@ -89,7 +89,7 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
 
 	@Override
 	public Object clone() {
-		return new FighterJump(myJumpHeight, myTime);
+		return new FighterJump(myJumpHeight, myDelay);
 	}
 	
 	
@@ -103,7 +103,7 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
     public String toString ()
     {
         return "Attribute = Jump. My jump height = " + myJumpHeight +
-               " ; my jump time = " + myTime;
+               " ; my jump time = " + myDelay;
     }
 
 
@@ -122,7 +122,7 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
         Gson gson = new Gson();
         List<Double> argList = new ArrayList<Double>();
         argList.add(myJumpHeight);
-        argList.add(myTime);
+        argList.add(myDelay);
         return gson.toJson(argList);
     }
     

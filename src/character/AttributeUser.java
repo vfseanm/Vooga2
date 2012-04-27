@@ -27,7 +27,7 @@ public abstract class AttributeUser extends AnimatedGameSprite {
 	}
 	
 	protected AttributeUser(){
-	    myAttributes=new ArrayList<Attribute>();
+	    myAttributes = new ArrayList<Attribute>();
 	};
 
 	
@@ -38,11 +38,10 @@ public abstract class AttributeUser extends AnimatedGameSprite {
 		}
 		return false;
 	}
-
 	
 	public Attribute getAttributeByName(String name) {
 		for (Attribute attribute : myAttributes) {
-			if (attribute.getName().equalsIgnoreCase(name))
+			if (attribute.getClass().getName().equalsIgnoreCase(name))
 				return attribute;
 		}
 		return null;
