@@ -9,15 +9,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import com.golden.gamedev.engine.BaseIO;
+import com.golden.gamedev.engine.BaseLoader;
+
 import sidescrolling.ConcreteSidescroller;
 import sidescrolling.DecoratedSidescroller;
 import sidescrolling.Sidescroller;
 import sidescrolling.border.BorderSidescroller;
 import sidescrolling.forced.ForcedSidescroller;
 import sidescrolling.shift.ShiftSidescroller;
+import sprite.AnimatedGameSprite;
 
 import editor.EditorController;
 import editor.ReflectionUtil;
@@ -80,9 +86,8 @@ public class GameDialogue extends DialogueBox {
     protected void BoxCompletedAction() {
         BufferedImage image;
         try {
-            image = ImageIO.read(new File(
-                    myImagePaths.get(myImagePaths.size() - 1)));
-            System.out.println(myImagePaths.get(0));
+            BaseLoader loader = new BaseLoader(new BaseIO(AnimatedGameSprite.class), Color.PINK);
+            image = loader.getImage(myImagePaths.get(myImagePaths.size()-1));
             editorController.setBackground(image, myImagePaths.get(0));
         } catch (Exception exc) {
             System.out.println("There has been a problem importing your image");
