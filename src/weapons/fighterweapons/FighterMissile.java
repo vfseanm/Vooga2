@@ -1,16 +1,17 @@
-package attributes.fighterattributes;
+package weapons.fighterweapons;
 
 import java.awt.event.KeyEvent;
 
-import playfield.SingletonPlayField;
-
+import playfield.SingletonSpriteManager;
 import sprite.AnimatedGameSprite;
-
 import weapons.Weapon;
+
 
 import character.AttributeUser;
 
 import com.golden.gamedev.engine.BaseInput;
+
+import attributes.fighterattributes.FighterBasicMovement;
 import attributes.interfaces.Input;
 
 import editor.editorConstructor;
@@ -26,7 +27,7 @@ public class FighterMissile implements Weapon, Input {
 	private double 					mySpeed;
 	private boolean 				canFire;
 
-	@editorConstructor(parameterNames = { "missile", "damage", "delay", "speed" })
+	
 	public FighterMissile(AnimatedGameSprite missile, int damage, int delay,
 			double speed) {
 		myMissile.setGroup("FIGHTERMISSILE");
@@ -41,7 +42,7 @@ public class FighterMissile implements Weapon, Input {
 	public void use(AttributeUser character) {
 
 		if (myTimer == 0 && myUserInput.isKeyPressed((KeyEvent.VK_SPACE)) && canFire) {
-			SingletonPlayField.getInstance().add(myMissile);
+			SingletonSpriteManager.getInstance().add(myMissile);
 			
 			if (character.getAttributeByName("FighterBasicMovement") != null) {
 				FighterBasicMovement mover = (FighterBasicMovement) character.getAttributeByName("FighterBasicMovement");

@@ -1,7 +1,9 @@
-package weapons;
+package weapons.enemyweapons;
 
 import playfield.SingletonSpriteManager;
 import sprite.AnimatedGameSprite;
+import weapons.Weapon;
+
 import com.golden.gamedev.object.Sprite;
 import character.AttributeUser;
 

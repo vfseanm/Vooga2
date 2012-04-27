@@ -50,7 +50,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	  
-	    loadLevel("level1");
+	    loadLevel("demo1");
 	    SpriteGroup allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
 	        allSprites.add(sprite);
@@ -65,6 +65,7 @@ public class DemoGame extends PlatformGame {
         spec2.addActMap("FIGHTER", "fighterStandOnTop");
         spec2.addActMap("FIGHTER", "fighterHitObject");
         spec2.addActMap("PLATFORM", "");
+        spec2.addActMap("PLATFORM", "actionBreak");
         specList.add(spec2);
         System.out.println(myCollisions);
         
@@ -73,7 +74,7 @@ public class DemoGame extends PlatformGame {
 
 
 	    
-	    
+	    System.out.println(myPlayfield.getMySprites());
 	    
 	    
 	    
@@ -133,6 +134,7 @@ public class DemoGame extends PlatformGame {
 		events.add(event);
 		myContext = new Context(events, plats);
 		*/
+		
 	}
 
 	@Override

@@ -1,9 +1,10 @@
-package attributes.fighterattributes;
-
+package weapons.fighterweapons;
 import java.awt.event.KeyEvent;
+
+import java.util.List;
 import java.util.ResourceBundle;
 
-import playfield.SingletonPlayField;
+import playfield.SingletonSpriteManager;
 
 import attributes.Attribute;
 import attributes.interfaces.Input;
@@ -33,7 +34,7 @@ public class FighterTargetedMissile implements Weapon, Input{
 	private boolean 				canFire;
 	private int						shootKey;
 
-	@editorConstructor(parameterNames = { "missile", "damage", "delay", "speed" })
+	
 	public FighterTargetedMissile(AnimatedGameSprite missile, int damage, int delay,
 			double speed) {
 		myMissile = missile;
@@ -48,10 +49,11 @@ public class FighterTargetedMissile implements Weapon, Input{
 	public void use(AttributeUser character) {
 
 		if (myTimer == 0 && myUserInput.isKeyPressed((shootKey)) && canFire) {
-			SingletonPlayField.getInstance().add(myMissile);
+			SingletonSpriteManager.getInstance().add(myMissile);
 			myMissile.setLocation(character.getX(), character.getY());
 			
-			// ADD ABOVE METHOD TO LOOP THROUGH ENEMIES & SHOOT AT CLOSEST
+			List<AnimatedGameSprite> otherSprite = SingletonSpriteManager.getInstance().getMySprites();
+		
 
 			canFire = false;
 		} else if (myTimer > myDelay) {
