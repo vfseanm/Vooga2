@@ -102,6 +102,7 @@ public class DemoGame extends PlatformGame {
 	@Override
 	public void update(long elapsedTime) 
 	{		
+	   System.out.println("X location " + myFighter.getX());
 	   updateFSM(elapsedTime);
 	   myEnemy.update(elapsedTime);
 	   myCollisions.checkCollision(); 
