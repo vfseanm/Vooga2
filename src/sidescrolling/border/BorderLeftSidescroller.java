@@ -33,7 +33,6 @@ public class BorderLeftSidescroller extends BorderSidescroller {
      */
     public void move(Sprite sprite) {
 
-        //System.out.println("Left Boundary " + boundary);
 
         int leftKey = SingletonKeyController.getInstance().getKeyCode(("LEFT"));
         if (myUserInput.isKeyDown(leftKey) && fighter.getX() <= boundary) {

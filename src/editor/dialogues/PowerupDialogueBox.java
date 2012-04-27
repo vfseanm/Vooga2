@@ -11,7 +11,11 @@ import bonusobjects.BonusObject;
 import editor.EditorController;
 import editor.Framework;
 import attributes.Attribute;
-
+/**
+ * Dialogue box to specify information about how new powerup framework can be created
+ * @author Becky and Sean
+ *
+ */
 @SuppressWarnings("serial")
 public class PowerupDialogueBox extends DialogueBox {
 
@@ -22,14 +26,19 @@ public class PowerupDialogueBox extends DialogueBox {
     private AttributeSelectionPanel attributesToGivePanel;
     private JTextField myName;
     private JTextField myGroup;
-
+    /**
+     * 
+     * @param m level editor controller
+     */
     public PowerupDialogueBox(EditorController m) {
         super(m);
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
 
     }
-
+    /**
+     * selection panel on which user can specify information about the powerup
+     */
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException {
         ArrayList<String> packagesToSearch = new ArrayList<String>();
@@ -87,7 +96,11 @@ public class PowerupDialogueBox extends DialogueBox {
         return panel;
     }
 
-    
+    /**
+     * creates the framework from the information specified on the selection panel
+     * @return the framework created
+     * @throws RuntimeException
+     */
     public Framework getFramework() throws RuntimeException {
         if(myImagePaths==null)
         {
@@ -111,12 +124,16 @@ public class PowerupDialogueBox extends DialogueBox {
         return framework;
 
     }
-
+    /**
+     * clones the powerup dialogue box
+     */
     @Override
     public DialogueBox clone() {
         return new PowerupDialogueBox(editorController);
     }
-
+    /**
+     * creates new framework and button in the editor
+     */
     @Override
     protected void BoxCompletedAction() {
         try{

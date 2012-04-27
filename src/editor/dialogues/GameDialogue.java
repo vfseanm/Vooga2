@@ -22,7 +22,11 @@ import sprite.AnimatedGameSprite;
 
 import editor.EditorController;
 import editor.ReflectionUtil;
-
+/**
+ * Dialogue box used to specify information needed to configure game (background and sidescrolling)
+ * @author Becky and Sean
+ *
+ */
 @SuppressWarnings("serial")
 public class GameDialogue extends DialogueBox {
 
@@ -30,7 +34,10 @@ public class GameDialogue extends DialogueBox {
     public static final String BLANK = " ";
     @SuppressWarnings("rawtypes")
 	private HashMap<JCheckBox, Class> classMap;
-
+    /**
+     * 
+     * @param m level editor controller used to make dialogue box
+     */
     public GameDialogue(EditorController m) {
 
         super(m);
@@ -38,7 +45,9 @@ public class GameDialogue extends DialogueBox {
         add(makeInputPanel(), BorderLayout.NORTH);
 
     }
-
+    /**
+     * creates panel on which user will choose information to specify about the game
+     */
     @SuppressWarnings("rawtypes")
 	public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException {
@@ -75,11 +84,15 @@ public class GameDialogue extends DialogueBox {
 
         return panel;
     }
-
+    /**
+     * clones the game dialogue box
+     */
     public DialogueBox clone() {
         return new GameDialogue(editorController);
     }
-
+    /**
+     * action to be performed when user chooses to configure the game
+     */
     protected void BoxCompletedAction() {
         BufferedImage image;
         try {

@@ -10,9 +10,17 @@ import java.io.ObjectInputStream;
 import java.util.Scanner;
 
 import editor.Level;
-
+/**
+ * Loads a level that is stored either using json or serialization
+ * @author Becky
+ *
+ */
 public class LevelLoader {
-    
+    /**
+     * reads the level in from the file and loads appropriately
+     * @param file to be read in
+     * @return Level to be loaded
+     */
     public Level readLevel(File file)
     {
         Scanner scanner = null;

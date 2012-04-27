@@ -147,7 +147,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
 
     public void addCarryableAttributes(List<Attribute> carryables)
     {
-    	System.out.println("adding carryables" + carryables);
         myCarryableAttributes.addAll(carryables);
     }
 
@@ -199,7 +198,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
      */
 	public void setUserInput(BaseInput userInput) {
 		myUserInput = userInput;
-		System.out.println("seting inpput");
 	
 		for (Attribute ability: getAttributes()) {
         	Class[] attributeInterfaces = ability.getClass().getInterfaces();

@@ -13,7 +13,11 @@ import platforms.platformtypes.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+/**
+ * Dialogue box used to create a new Platform framework
+ * @author Becky and Sean
+ *
+ */
 @SuppressWarnings("serial")
 public class PlatformDialogueBox extends DialogueBox {
 
@@ -24,14 +28,19 @@ public class PlatformDialogueBox extends DialogueBox {
 
     @SuppressWarnings("rawtypes")
     private HashMap<JCheckBox, Class> classMap;
-
+    /**
+     * 
+     * @param m level editor controller
+     */
     public PlatformDialogueBox(EditorController m) {
         super(m);
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
 
     }
-
+    /**
+     * creates selection panel on which user can specify information about the platform they want to create
+     */
     @SuppressWarnings("rawtypes")
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException {
@@ -73,7 +82,11 @@ public class PlatformDialogueBox extends DialogueBox {
 
         return panel;
     }
-
+    /**
+     * creates framework from information specified on the panel
+     * @return the Framework to be added to the editor
+     * @throws RuntimeException
+     */
     public Framework getFramework() throws RuntimeException {
         if(myImagePaths==null)
         {
@@ -96,11 +109,15 @@ public class PlatformDialogueBox extends DialogueBox {
         return new Framework(myName.getText(), "platform", prototype);
 
     }
-
+    /**
+     * clones the platform dialogue box
+     */
     public DialogueBox clone() {
         return new PlatformDialogueBox(editorController);
     }
-
+    /**
+     * creates framework and adds new framework and button to level editor
+     */
     protected void BoxCompletedAction() {
         
         try{

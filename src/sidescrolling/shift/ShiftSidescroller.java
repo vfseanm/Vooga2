@@ -30,14 +30,16 @@ public abstract class ShiftSidescroller extends DecoratedSidescroller {
      */
     public abstract boolean fighterOffCorrectSide();
     
+    public abstract void moveFighter();
+    
     /**
      * Updates this sidescroller by moving all sprites appropriately if the fighter moves off the screen
      * in the direction associated with the subclass.
      */
     public void update(long elapsedTime) {
         if (fighterOffCorrectSide()) {
-            move(fighter);
             updateSprites();
+            move(fighter);
         }
         super.update(elapsedTime);
     }

@@ -1,10 +1,10 @@
 package attributes.sharedattributes;
 
 import java.awt.image.BufferedImage;
+
 import attributes.Attribute;
 import character.AttributeUser;
 import com.google.gson.Gson;
-import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
 

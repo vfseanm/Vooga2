@@ -31,16 +31,26 @@ import enemies.Enemy;
 
 import sprite.AnimatedGameSprite;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "rawtypes" })
 public class Framework implements Serializable {
     protected List<AnimatedGameSprite> mySprites;
-    // transient protected BufferedImage[] myImages;
-    // protected List<String> imageNames;
+
     private AnimatedGameSprite prototypeSprite;
     private String myType;
     private String myName;
-    
-
+    private static List<SpriteFactory> factories ;
+    static
+    {
+        factories = new ArrayList<SpriteFactory>();
+        factories.add( Enemy.getFactory());
+        factories.add( BreakablePlatform.getFactory());
+        factories.add(SimplePlatform.getFactory());
+        factories.add(SideToSidePlatform.getFactory());
+        factories.add(UpDownPlatform.getFactory());
+        factories.add(RotatingPlatform.getFactory());
+        factories.add(BonusObject.getFactory());
+        factories.add(WildAndCrazyObject.getFactory());
+    }
     public Framework(String name, String type, AnimatedGameSprite s)
     {
         myName = name;
@@ -183,7 +193,6 @@ public class Framework implements Serializable {
 
     }
 
-    @SuppressWarnings("rawtypes")
 	public static Framework fromJson(String json)
     {
         Gson gson = new Gson();
@@ -198,15 +207,7 @@ public class Framework implements Serializable {
         String prototypeJson = list.get(3);
         List<String> instanceList = gson.fromJson(list.get(4), collectionType);
 
-        List<SpriteFactory> factories = new ArrayList<SpriteFactory>();
-        factories.add( Enemy.getFactory());
-        factories.add( BreakablePlatform.getFactory());
-        factories.add(SimplePlatform.getFactory());
-        factories.add(SideToSidePlatform.getFactory());
-        factories.add(UpDownPlatform.getFactory());
-        factories.add(RotatingPlatform.getFactory());
-        factories.add(BonusObject.getFactory());
-        factories.add(WildAndCrazyObject.getFactory());
+        
         
         
         AnimatedGameSprite prototype = null;
