@@ -33,7 +33,7 @@ public class BorderRightSidescroller extends BorderSidescroller {
      * right border and the right key is being held down.
      */
     public void move(Sprite sprite) {
-        int rightKey = SingletonKeyController.getInstance().getKeyCode(("LEFT"));
+        int rightKey = SingletonKeyController.getInstance().getKeyCode(("RIGHT"));
         if (myUserInput.isKeyDown(rightKey) && fighter.getX() >= boundary) {
             sprite.moveX(-fighter.getMovement()[0]);
             fighter.setX(boundary);
