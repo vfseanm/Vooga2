@@ -84,13 +84,15 @@ public class FighterDialogueBox extends DialogueBox {
     }
 
     /**
-     * clones the dialogue box
+     * clones the fighter dialogue box
      */
     public DialogueBox clone() {
         return new FighterDialogueBox(editorController);
     }
 
-
+    /**
+     * creates the fighter from the information specified in the selection panel
+     */
     protected void BoxCompletedAction() {
         ArrayList<Attribute> attributes = attributePanel
                 .getSelectedAttributes();
@@ -132,6 +134,10 @@ public class FighterDialogueBox extends DialogueBox {
         setVisible(false);
 
     }
+    /**
+     * checks to ensure that files have been selected
+     * @throws RuntimeException
+     */
     private void checkErrors() throws RuntimeException
     {
         System.out.println(myImagePaths);

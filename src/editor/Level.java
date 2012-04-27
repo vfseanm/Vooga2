@@ -28,11 +28,14 @@ import sidescrolling.ConcreteSidescroller;
 import sidescrolling.Sidescroller;
 import sprite.AnimatedGameSprite;
 
-
+/**
+ * Stores and manipulates information about the level.
+ * Serves as the Model in the Model View Controller of the level editor
+ * @author Becky and Sean
+ *
+ */
 public class Level implements Serializable{
-    /**
-     * 
-     */
+
     private static final long serialVersionUID = -7585264855447840739L;
     
     
@@ -44,14 +47,20 @@ public class Level implements Serializable{
     private Sidescroller mySidescroller; // THERE SHOULD BE SOME DEFAULT SIDESCROLLING !!
 
   
-    
+    /**
+     * initializes the level
+     */
     public Level()
     {
         frameworks = new ArrayList<Framework>();
         backgroundImagePath = "";
        // sprites = new ArrayList<AnimatedGameSprite>();
     }
-    
+    /**
+     * replaces one sprite with another
+     * @param oldSprite sprite to be replaced
+     * @param newSprite sprite that will replaced
+     */
     public void replaceSprite(AnimatedGameSprite oldSprite, AnimatedGameSprite newSprite)
     {
         for(Framework f: frameworks)
@@ -65,12 +74,19 @@ public class Level implements Serializable{
 
     }
     
-
+    /**
+     * 
+     * @return an unmodifiable list of the frameworks
+     */
     public List<Framework> getFrameworks()
     {
         return Collections.unmodifiableList(frameworks);
     }
-   
+    
+   /**
+    * moves all of the sprites horizontally by the specified distance 
+    * @param x distance to move sprites
+    */
     public void moveHorizontally(double x)
     {
         for (Framework f : frameworks)
@@ -83,11 +99,19 @@ public class Level implements Serializable{
         }
     }
     
+    /**
+     * sets the side scroller in the level
+     * @param scroller to be set
+     */
     public void setSidescrolling(Sidescroller scroller)
     {
         mySidescroller = scroller;
     }
     
+    /**
+     * move all of the sprites vertically by the specified distance
+     * @param y distance to be moved
+     */
     public void moveVertically(double y)
     {
         for(Framework f: frameworks)
@@ -99,7 +123,10 @@ public class Level implements Serializable{
             myFighter.moveY(y);
         }
     }
-    
+    /**
+     * 
+     * @return the sidescroller currently stored
+     */
     public Sidescroller getSidescroller()
     {
         if (mySidescroller ==null)
@@ -109,19 +136,28 @@ public class Level implements Serializable{
             
         return mySidescroller;
     }
-    
+    /**
+     * clear the editor
+     */
     public void clear()
     {
         frameworks.clear();
         myFighter = null;
     }
     
+    /**
+     * 
+     * @return an unmodifiable list of all of the sprites in the level
+     */
     public List<AnimatedGameSprite> getAllSprites()
     {
         
         return Collections.unmodifiableList(getSprites());
     }
-    
+    /**
+     * 
+     * @return the sprites in the editor
+     */
     public List<AnimatedGameSprite> getSprites()
     {
         List<AnimatedGameSprite> sprites = new ArrayList<AnimatedGameSprite>();
@@ -135,7 +171,10 @@ public class Level implements Serializable{
         }
         return sprites;
     }
-    
+    /**
+     * remove the specified sprite from the level
+     * @param sprite to be removed
+     */
     public void removeSprite(AnimatedGameSprite sprite)
     {
         for(Framework f: frameworks)
@@ -146,29 +185,49 @@ public class Level implements Serializable{
             }
         }
     }
+    /**
+     * 
+     * @return the fighter
+     */
     public Fighter getFighter()
     {
         return myFighter;
     }
     
+    /**
+     * set a location of a particular sprite
+     * @param sprite to be set
+     * @param x coordinate to set
+     * @param y coordinate to set
+     */
     public void setSpriteLocation(AnimatedGameSprite sprite, double x, double y)
     {
         sprite.setLocation(x, y);
     }
+    
+    /**
+     * Set the fighter as specified 
+     * @param fighter to be set
+     */
     public void setFighter(Fighter fighter)
     {
-        //sprites.add(fighter);
         myFighter = fighter;
     }
-    
+    /**
+     * called when java's default serialization is being read from
+     * @param stream
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException
     {
         stream.defaultReadObject();
         updateImages();
-        
-        
     }
     
+    /**
+     * update all of the images when the images are to be loaded
+     */
     private void updateImages()
     {
         BaseLoader loader = new BaseLoader(new BaseIO(this.getClass()), Color.PINK);
@@ -191,6 +250,11 @@ public class Level implements Serializable{
         }
     }
     
+    /**
+     * set the background image
+     * @param image to set in the background
+     * @param imagePath the path of the image to be stored
+     */
     public void setBackground(BufferedImage image, String imagePath)
     {
         backgroundImagePath = imagePath;

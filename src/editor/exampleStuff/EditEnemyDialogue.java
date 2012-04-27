@@ -15,7 +15,12 @@ import editor.dialogues.AttributeSelectionPanel;
 import editor.dialogues.DialogueBox;
 import enemies.Enemy;
 import attributes.Attribute;
-
+/**
+ * Dialogue box with which user can edit an individual enemy
+ * Creates a new framework if the enemy has been modified
+ * @author Sean and Becky
+ *
+ */
 @SuppressWarnings("serial")
 public class EditEnemyDialogue extends DialogueBox {
 
@@ -25,7 +30,11 @@ public class EditEnemyDialogue extends DialogueBox {
     private JTextField myGroup;
     private Enemy mySprite;
     private AttributeSelectionPanel attributePanel;
-
+/**
+ * 
+ * @param m level editor controller
+ * @param sprite enemy to be modified
+ */
     public EditEnemyDialogue(EditorController m, Enemy sprite)
     {
         super(m);
@@ -35,7 +44,9 @@ public class EditEnemyDialogue extends DialogueBox {
         add(makeInputPanel(), BorderLayout.NORTH);
 
     }
-
+/**
+ * creates panel on which user can select the information they want to modify
+ */
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
@@ -78,13 +89,18 @@ public class EditEnemyDialogue extends DialogueBox {
 
         return panel;
     }
-
+/**
+ * clones the EditEnemyDialogueBox
+ */
     @Override
     public DialogueBox clone()
     {
         return new EditEnemyDialogue(editorController, mySprite);
     }
-
+/**
+ * creates new enemy based on information specified in selection panel,
+ * makes a new framework and button if the enemy has been changed
+ */
     @Override
     protected void BoxCompletedAction()
     {

@@ -20,7 +20,11 @@ import enemies.Enemy;
 
 import attributes.Attribute;
 
-
+/**
+ * dialogue box that allows the user to specify how they want to change an entire framework of enemies
+ * @author Becky and Sean
+ *
+ */
 @SuppressWarnings("serial")
 public class EditEnemyButtonDialogueBox extends DialogueBox {
 
@@ -32,7 +36,11 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
     private Framework myFramework;
     private AttributeSelectionPanel attributePanel;
 
-    
+    /**
+     * 
+     * @param m level editor controller
+     * @param f enemy framework that is being changed
+     */
     public EditEnemyButtonDialogueBox(EditorController m, Framework f )
     {
         super(m);
@@ -41,7 +49,10 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         add(makeInputPanel(), BorderLayout.NORTH);
     }
     
-
+    /**
+     * creates panel that allows user to edit the information about the enemies
+     * created by the framework
+     */
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException
     {
@@ -87,12 +98,16 @@ public class EditEnemyButtonDialogueBox extends DialogueBox {
         return panel;
 
     }
-
+    /**
+     * clones the edit enemy button dialogue box
+     */
     @Override
     public DialogueBox clone() {
         return new EditEnemyButtonDialogueBox(editorController, myFramework);
     }
-
+    /**
+     * changes framework as specified in the selection panel
+     */
     protected void BoxCompletedAction() {
         if(myImagePaths.size()==0)
         {
