@@ -48,7 +48,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	  
-	    loadLevel("demo2");
+	    loadLevel("demo1");
 
 	    allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
@@ -64,9 +64,6 @@ public class DemoGame extends PlatformGame {
         spec.addActMap("ENEMY", "instantEnemyDeath");
         specList.add(spec);
         
-        CollisionSpec enemySpec = new CollisionSpec();
-        spec.addActMap("ENEMY", "enemyHitObject");
-        specList.add(spec);
         
         CollisionSpec spec2 = new CollisionSpec();
         spec2.addActMap("FIGHTER", "fighterStandOnTop");
@@ -77,7 +74,7 @@ public class DemoGame extends PlatformGame {
         
         CollisionSpec spec3 = new CollisionSpec();
         spec3.addActMap("ENEMY", "enemyStandOnTop");
-        spec3.addActMap("PLATFORM", "");
+        spec3.addActMap("VOOGA", "");
         specList.add(spec3);
         
         CollisionSpec spec4 = new CollisionSpec();
@@ -96,11 +93,7 @@ public class DemoGame extends PlatformGame {
         spec6.addActMap("PLATFORMSWITCH", "switchPlatform" );
         spec6.addActMap("FIGHTER", "");
         specList.add(spec6);
-        
-        CollisionSpec spec8 = new CollisionSpec ();
-        spec8.addActMap("ENEMY", "");
-        specList.add(spec8);
-     
+       
         
         List<String> switchImages = new ArrayList<String>();
         switchImages.add("resources/scrollerSwitchUp.png"); 
