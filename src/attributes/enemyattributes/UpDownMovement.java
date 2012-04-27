@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import attributes.interfaces.Updateable;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -18,7 +19,7 @@ import editor.json.JsonableAttribute;
 
 
 @SuppressWarnings("serial")
-public class UpDownMovement extends TwoPartMovement implements JsonableAttribute
+public class UpDownMovement extends TwoPartMovement implements Updateable,JsonableAttribute
 {
 
     @editorConstructor(parameterNames = { "distance" , "duration"})
