@@ -16,8 +16,7 @@ import fighter.Fighter;
  */
 public class SingletonPlayField extends PlayField
 {
-    private List<AnimatedGameSprite> 	mySprites;
-    private Fighter						myFighter;
+    private List<AnimatedGameSprite> mySprites;
 
 
     private SingletonPlayField ()
@@ -42,9 +41,9 @@ public class SingletonPlayField extends PlayField
     public void add (Sprite sprite)
     {
         super.add(sprite);
-        
-        if (sprite instanceof Fighter) myFighter = (Fighter) sprite;
-        else if (sprite instanceof AnimatedGameSprite) {
+        if (sprite instanceof AnimatedGameSprite &&
+            !(sprite instanceof Fighter))
+        {
             mySprites.add((AnimatedGameSprite) sprite);
         }
 
@@ -64,10 +63,5 @@ public class SingletonPlayField extends PlayField
         {
             super.add(sprite);
         }
-    }
-    
-    public Fighter getMyFighter() 
-    {
-    	return myFighter;
     }
 }

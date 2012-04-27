@@ -29,6 +29,7 @@ public class FighterMissile implements Weapon, Input {
 	@editorConstructor(parameterNames = { "missile", "damage", "delay", "speed" })
 	public FighterMissile(AnimatedGameSprite missile, int damage, int delay,
 			double speed) {
+		myMissile.setGroup("FIGHTERMISSILE");
 		myMissile = missile;
 		myDamage = damage;
 		myDelay = delay;
@@ -41,16 +42,29 @@ public class FighterMissile implements Weapon, Input {
 
 		if (myTimer == 0 && myUserInput.isKeyPressed((KeyEvent.VK_SPACE)) && canFire) {
 			SingletonPlayField.getInstance().add(myMissile);
-			myMissile.setLocation(character.getX(), character.getY());
 			
 			if (character.getAttributeByName("FighterBasicMovement") != null) {
 				FighterBasicMovement mover = (FighterBasicMovement) character.getAttributeByName("FighterBasicMovement");
-				if (mover.isFacingRight()) myMissile.setHorizontalSpeed(mySpeed);
-				else myMissile.setHorizontalSpeed(-mySpeed);
+				if (mover.isFacingRight())
+				{
+					myMissile.setHorizontalSpeed(mySpeed);
+					myMissile.setLocation(character.getX()+1, character.getY()/2);
+				}
+				else 
+				{
+					myMissile.setHorizontalSpeed(-mySpeed);
+					myMissile.setLocation(character.getX()-1, character.getY()/2);
+				}
 			}
-
+			else {
+				myMissile.setHorizontalSpeed(mySpeed);
+				myMissile.setLocation(character.getX(), character.getY()/2);
+			}
 			canFire = false;
-		} else if (myTimer > myDelay) {
+		}
+		
+		else if (myTimer > myDelay) 
+		{
 			canFire = true;
 			myTimer = 0;
 		}

@@ -93,7 +93,13 @@ public class FighterAction implements CollisionAction{
 	}
 
 	public void setSprite(AnimatedGameSprite sprite) {
-		this.sprite = (Fighter) sprite;
+		try 
+		{
+			this.sprite = (Fighter) sprite;
+		}
+		catch (ClassCastException e) {
+			System.out.println("You attempted to use a Fighter collision method with a sprite that is not a Fighter.");
+		}
 	}
 
 	
