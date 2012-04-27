@@ -80,7 +80,6 @@ public class Framework implements Serializable {
     {
         List<AnimatedGameSprite> newSprites = new ArrayList<AnimatedGameSprite>();
         prototypeSprite = sprite;
-        System.out.println(prototypeSprite.getImageNames());
         for (AnimatedGameSprite s : mySprites)
         {
 
@@ -145,7 +144,6 @@ public class Framework implements Serializable {
             BufferedImage[] images = new BufferedImage[s.getImageNames().size()];
             for (int i = 0; i < images.length; i++)
             {
-                // System.out.println("image names: "+s.getImageNames());
                 images[i] = loader.getImage(s.getImageNames().get(i));
             }
             s.setImages(images);
@@ -169,7 +167,6 @@ public class Framework implements Serializable {
         list.add(myType);
         list.add(myName);
         list.add(prototypeSprite.getClass().toString());
-        System.out.println("proto:   " + prototypeSprite.toJson());
         list.add(prototypeSprite.toJson());
 
         List<String> spriteList = new ArrayList<String>();
@@ -195,16 +192,12 @@ public class Framework implements Serializable {
         Type collectionType2 = new TypeToken<List<Double>>() {
         }.getType();
         List<String> list = gson.fromJson(json, collectionType);
-        // System.out.println(list);
         String type = list.get(0);
         String name = list.get(1);
         String prototypeClassName = list.get(2);
         String prototypeJson = list.get(3);
         List<String> instanceList = gson.fromJson(list.get(4), collectionType);
-        
-        /*AnimatedGameSprite prototype = (AnimatedGameSprite) JsonUtil
-                .getObjectFromJson(prototypeClassName, prototypeJson);
-        */
+
         List<SpriteFactory> factories = new ArrayList<SpriteFactory>();
         factories.add( Enemy.getFactory());
         factories.add( BreakablePlatform.getFactory());
@@ -234,11 +227,5 @@ public class Framework implements Serializable {
         }
         return framework;
     }   
-    
-/*    private Framework(){};
-    public static ObjectFromJsonFactory getFactory()
-    {
-        return new ObjectFromJsonFactory(new Framework());
-    }*/
 
 }

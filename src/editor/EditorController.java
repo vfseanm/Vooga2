@@ -179,7 +179,6 @@ public class EditorController implements EditorConstants{
         {
             myLevel.addFramework(framework);
         }
-        System.out.println("adding button");
         if (framework.getType().equals("enemy"))
         {
             if (enemyButtonCounter == 23)

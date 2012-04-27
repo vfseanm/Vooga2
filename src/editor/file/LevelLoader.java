@@ -31,11 +31,9 @@ public class LevelLoader {
             
         } catch (FileNotFoundException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
@@ -46,7 +44,6 @@ public class LevelLoader {
             fis = new FileInputStream(file);
             in = new ObjectInputStream(fis);
             Level myLevel = (Level) in.readObject();
-            // System.out.println(myLevel.getAllSprites().get(0).toString());
             in.close();
             return myLevel;
         } catch (IOException ex)
