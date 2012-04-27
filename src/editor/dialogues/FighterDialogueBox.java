@@ -90,12 +90,23 @@ public class FighterDialogueBox extends DialogueBox {
         Fighter fighter = Fighter.getInstance();
 
         if (fighter.getX() == 0 && fighter.getY() == 0) {
-            fighter.setLocation(50, 50);
+            fighter.setLocation(100, 100);
         }
-        
         try{
-            checkErrors();
-            fighter.setImageNamesandImages(myImagePaths);
+            
+            if(fighter.getImageNames()==null)
+            {
+                checkErrors();
+                fighter.setImageNamesandImages(myImagePaths);
+            }
+            else
+            {
+                if(myImagePaths.size()!=0)
+                {
+                    fighter.setImageNamesandImages(myImagePaths);
+                }
+            }
+            
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "You must select an image" );
@@ -112,7 +123,8 @@ public class FighterDialogueBox extends DialogueBox {
     }
     private void checkErrors() throws RuntimeException
     {
-        if(myImagePaths==null)
+        System.out.println(myImagePaths);
+        if(myImagePaths.size()==0)
         {
         throw new RuntimeException();
     }
