@@ -13,11 +13,8 @@ public class PlatformAction implements CollisionAction {
  	AnimatedGameSprite sprite;
 	
 	public void actionBreak (CollisionContext ccntext, CollisionSpec cspec){
-		//System.out.println("FUCK");
 		BreakablePlatform bplatform = (BreakablePlatform) sprite;
-		bplatform.actionBreak(sprite, ccntext, cspec);
-		//System.out.println("FUCK");
-		
+		bplatform.actionBreak(sprite, ccntext, cspec);	
 	}
 	
 	public void switchPlatform (CollisionContext ccntext, CollisionSpec cspec){

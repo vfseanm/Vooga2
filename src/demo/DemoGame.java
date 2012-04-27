@@ -160,6 +160,7 @@ public class DemoGame extends PlatformGame {
 	   myFighter.update(elapsedTime);
 	   //System.out.println(mySidescroller);
 	   mySidescroller.update(elapsedTime);
-
+	   System.out.println("X = " + myFighter.getX());
+	   System.out.println("Y = " + myFighter.getY());
 	}
 }
