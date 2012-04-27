@@ -1,19 +1,17 @@
 package editor.dialogues;
 
 import java.awt.Dimension;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import editor.InputListener;
@@ -25,14 +23,19 @@ import editor.input.DialogueController;
 import attributes.Attribute;
 
 public class AttributeSelectionPanel extends JPanel {
-    private HashMap<JCheckBox, Class> attributeMap;
+ 
+	private static final long serialVersionUID = 1L;
+	
+	@SuppressWarnings("rawtypes")
+	private HashMap<JCheckBox, Class> attributeMap;
     private HashMap<JCheckBox, Attribute> attributeInstanceMap;
     private List<String> packageNames;
     private List<Attribute> originallyCheckedOff;
     private DialogueController myController;
    
 
-    public AttributeSelectionPanel(List<String> packagesToSearch, List<Attribute> checkedOff, DialogueController controller)
+    @SuppressWarnings("rawtypes")
+	public AttributeSelectionPanel(List<String> packagesToSearch, List<Attribute> checkedOff, DialogueController controller)
     {
         myController = controller;
         attributeMap = new HashMap<JCheckBox, Class>();
@@ -42,7 +45,8 @@ public class AttributeSelectionPanel extends JPanel {
         this.add(makePanel());
     }
     
-    public AttributeSelectionPanel(List<String> packagesToSearch, DialogueController controller)
+    @SuppressWarnings("rawtypes")
+	public AttributeSelectionPanel(List<String> packagesToSearch, DialogueController controller)
     {
         myController = controller;
         attributeMap = new HashMap<JCheckBox, Class>();
@@ -53,7 +57,8 @@ public class AttributeSelectionPanel extends JPanel {
     }
     
     
-    public JPanel makePanel()
+    @SuppressWarnings("rawtypes")
+	public JPanel makePanel()
     {
         attributeMap = new HashMap<JCheckBox, Class>();
         attributeInstanceMap = new HashMap<JCheckBox, Attribute>();
@@ -110,11 +115,13 @@ public class AttributeSelectionPanel extends JPanel {
     }
 
     public class CheckBoxListener implements ActionListener, InputListener {
-        Class associatedClass;
+        @SuppressWarnings("rawtypes")
+		Class associatedClass;
         JCheckBox box;
         CustomInputManager input;
 
-        public CheckBoxListener(JCheckBox b, Class c)
+        @SuppressWarnings("rawtypes")
+		public CheckBoxListener(JCheckBox b, Class c)
         {
             associatedClass = c;
             box = b;
@@ -149,7 +156,8 @@ public class AttributeSelectionPanel extends JPanel {
         return attributes;
     }
     
-    public Constructor getAnnotatedConstructor(Class c)
+    @SuppressWarnings("rawtypes")
+	public Constructor getAnnotatedConstructor(Class c)
     {
         Constructor[] constructors = c.getConstructors();
         Constructor constructor = null;

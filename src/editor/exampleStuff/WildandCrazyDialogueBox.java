@@ -1,11 +1,11 @@
 package editor.exampleStuff;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,21 +15,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import attributes.Attribute;
-
 import editor.EditorController;
 import editor.Framework;
 import editor.InputListener;
 import editor.dialogues.DialogueBox;
 import editor.input.CustomInputManager;
-import enemies.Enemy;
 
+
+@SuppressWarnings("serial")
 public class WildandCrazyDialogueBox extends DialogueBox{
     
     private JTextField myName;
     private JTextField myGroup;
     private Zone myZone;
-    private GroupofEnemies myEnemies;
+    @SuppressWarnings("unused")
+	private GroupofEnemies myEnemies;
 
     public WildandCrazyDialogueBox(EditorController m) {
         super(m);
@@ -100,7 +100,8 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         JCheckBox box;
         CustomInputManager input;
         
-        public void actionPerformed(ActionEvent e)
+        @SuppressWarnings("rawtypes")
+		public void actionPerformed(ActionEvent e)
         {
             Class c = Zone.class;
             dialogueController.promptForInput(c, this);
@@ -115,7 +116,8 @@ public class WildandCrazyDialogueBox extends DialogueBox{
         JCheckBox box;
         CustomInputManager input;
         
-        public void actionPerformed(ActionEvent e)
+        @SuppressWarnings("rawtypes")
+		public void actionPerformed(ActionEvent e)
         {
             Class c = GroupofEnemies.class;
             dialogueController.promptForInput(c, this);

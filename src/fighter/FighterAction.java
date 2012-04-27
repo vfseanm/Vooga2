@@ -2,8 +2,8 @@ package fighter;
 
 import java.util.ArrayList;
 
+
 import attributes.Attribute;
-import attributes.fighterattributes.FighterJump;
 import attributes.sharedattributes.Hitpoints;
 import attributes.sharedattributes.NumberOfLives;
 import bonusobjects.BonusObject;

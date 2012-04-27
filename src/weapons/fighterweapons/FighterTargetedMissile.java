@@ -14,22 +14,26 @@ import enemies.Enemy;
 import sprite.*;
 import weapons.Weapon;
 
-@SuppressWarnings("serial")
 public class FighterTargetedMissile implements Weapon, Input{
 
 	transient protected ResourceBundle myGameKeys = ResourceBundle
     .getBundle("demo.GameKeysResourceBundle");
 	
 	private AnimatedGameSprite 			myMissile;
+	@SuppressWarnings("unused")
 	private List<Enemy>					myTargets;
+	@SuppressWarnings("unused")
 	private Enemy						myClosestEnemy;
 	private double[]					closestEnemyDistance;
+	@SuppressWarnings("unused")
 	private Enemy						myFurthestEnemy;
 	private double[]					furthestEnemyDistance;
 	private BaseInput 					myUserInput;
+ 	@SuppressWarnings("unused")
 	private int 						myDamage;
 	private int 						myDelay;
 	private int 						myTimer;
+	@SuppressWarnings("unused")
 	private double 						mySpeed;
 	private boolean						fireAtClosestOrFurthest;
 	private boolean 					canFire;
@@ -54,6 +58,7 @@ public class FighterTargetedMissile implements Weapon, Input{
 			SingletonSpriteManager.getInstance().add(myMissile);
 			myMissile.setLocation(character.getX(), character.getY());
 			
+			@SuppressWarnings("unused")
 			List<Enemy> myEnemies = SingletonSpriteManager.getInstance().getMyEnemies();
 			
 

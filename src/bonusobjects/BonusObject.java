@@ -30,7 +30,7 @@ import attributes.sharedattributes.Hitpoints;
 import attributes.sharedattributes.NumberOfLives;
 import attributes.sharedattributes.Visibility;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "rawtypes" })
 public class BonusObject extends AttributeUser implements JsonableSprite {
 
     protected AttributeUser myAttributeUser;

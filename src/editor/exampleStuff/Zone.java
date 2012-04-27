@@ -1,9 +1,9 @@
 package editor.exampleStuff;
 
 import java.awt.Point;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;

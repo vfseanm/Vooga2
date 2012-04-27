@@ -5,7 +5,8 @@ import editor.input.inputTypes.InputType;
 import sprite.AnimatedGameSprite;
 
 public abstract class InputManager {
-    protected Class myClass;
+    @SuppressWarnings("rawtypes")
+	protected Class myClass;
     protected InputType currentInput;
     protected DialogueController myController;
 
@@ -39,7 +40,8 @@ public abstract class InputManager {
         }
     }
     
-    public Class getAssociatedClass()
+    @SuppressWarnings("rawtypes")
+	public Class getAssociatedClass()
     {
         return myClass;
     }
