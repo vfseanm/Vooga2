@@ -54,9 +54,9 @@ public class FighterAction implements CollisionAction{
 	
 
 	public void instantFighterDeath (CollisionContext ccntext, CollisionSpec cspec){
-		System.out.println("instant fighter death" + ccntext.getSide());
+		
 		if ( (ccntext.getSide() != CollisionGroup.TOP_BOTTOM_COLLISION) ){
-			System.out.println (ccntext.getSide());
+			
 			sprite.setLocation(-10000, -1000);
 		}
 		}

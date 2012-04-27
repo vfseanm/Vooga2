@@ -41,23 +41,23 @@ public class OneDirectionMovement extends Attribute implements Updateable, Jsona
 
     public void update (long elaspedTime)
     {
-        if (myGameCharacter.isOnScreen() || isActive)
+        if (myAttributeUser.isOnScreen() || isActive)
         {
             if (myDirection.equalsIgnoreCase("left"))
             {
-                myGameCharacter.setX(myGameCharacter.getX() - myDistance);
+                myAttributeUser.setX(myAttributeUser.getX() - myDistance);
             }
             else if (myDirection.equalsIgnoreCase("right"))
             {
-                myGameCharacter.setX(myGameCharacter.getX() + myDistance);
+                myAttributeUser.setX(myAttributeUser.getX() + myDistance);
             }
             else if (myDirection.equalsIgnoreCase("up"))
             {
-                myGameCharacter.setY( myGameCharacter.getY() - myDistance);
+                myAttributeUser.setY( myAttributeUser.getY() - myDistance);
             }
             else if (myDirection.equalsIgnoreCase("down"))
             {
-                myGameCharacter.setY(myGameCharacter.getY() + myDistance);
+                myAttributeUser.setY(myAttributeUser.getY() + myDistance);
             }
 
         }

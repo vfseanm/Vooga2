@@ -3,6 +3,8 @@ package sidescrolling.border;
 import sidescrolling.Sidescroller;
 import com.golden.gamedev.object.Sprite;
 
+import demo.SingletonKeyController;
+
 
 /**
  * This object allows for normal sidescrolling in the right direction. A border will be created that when the 
@@ -31,7 +33,7 @@ public class BorderRightSidescroller extends BorderSidescroller {
      * right border and the right key is being held down.
      */
     public void move(Sprite sprite) {
-        int rightKey = Integer.parseInt(myKeysResources.getString("RIGHT"));
+        int rightKey = SingletonKeyController.getInstance().getKeyCode(("LEFT"));
         if (myUserInput.isKeyDown(rightKey) && fighter.getX() >= boundary) {
             sprite.moveX(-fighter.getMovement()[0]);
             fighter.setX(boundary);

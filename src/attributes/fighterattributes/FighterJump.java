@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import com.golden.gamedev.engine.BaseInput;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import demo.SingletonKeyController;
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
@@ -37,19 +39,20 @@ public class FighterJump extends Attribute
     private boolean canJump;
     private boolean isJumping;
     private int myTimer;
-    private int jumpKey;
 
 
     @editorConstructor(parameterNames = { "jump height", "time" })
     public FighterJump (double jumpHeight, double delay)
     {
         super(jumpHeight, delay);
-        if (jumpHeight < 0) throw new RuntimeException("You must enter a positive number for the jump height");
-        myJumpHeight = jumpHeight;
+        if (jumpHeight < 0) 
+        {
+        	System.out.println("You should enter a positive number for the jump height");
+        }
+        myJumpHeight = Math.abs(jumpHeight);
         myDelay = delay;
         canJump = true;
         myTimer = 0;
-        jumpKey = Integer.parseInt(myGameKeys.getString("JUMP"));
     }
 
 
@@ -70,10 +73,10 @@ public class FighterJump extends Attribute
     {
         if (isActive)
         {
-            if (canJump && myUserInput.isKeyPressed(jumpKey))
+            if (canJump && myUserInput.isKeyPressed(SingletonKeyController.getInstance().getKeyCode(("JUMP"))))
             {
                 isJumping = true;
-                //canJump = false;
+                canJump = false;
             }
 
             if (isJumping)
@@ -81,12 +84,12 @@ public class FighterJump extends Attribute
                 myTimer++;
                 if (myTimer <= myDelay)
                 {
-                    myGameCharacter.moveY(-myJumpHeight);
-                    myGameCharacter.allowAttribute("Gravity", false);
+                    myAttributeUser.moveY(-myJumpHeight);
+                    myAttributeUser.allowAttribute("Gravity", false);
                 }
                 else
                 {
-                    myGameCharacter.allowAttribute("Gravity", true);
+                    myAttributeUser.allowAttribute("Gravity", true);
                     myTimer = 0;
                     isJumping = false;
                 }

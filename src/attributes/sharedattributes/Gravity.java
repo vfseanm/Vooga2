@@ -37,7 +37,7 @@ public class Gravity extends Attribute implements Updateable, Movement, Jsonable
     public void update (long elapsedTime)
     {
         if (isActive) {
-        	myGameCharacter.moveY(myDistance);
+        	myAttributeUser.moveY(myDistance);
         }
     }
 

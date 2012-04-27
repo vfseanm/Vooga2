@@ -122,24 +122,13 @@ public class BreakablePlatform extends DecoratedPlatform implements
 	 * fighters and breakable platforms.
 	 */
 
-	// if user wants to change what items get released etc... they can change
-	// this by subclassing... or by
-	// modifying collision manager
 	public void doBreak() {
-		// only called if user defined collision action is called on breakable
-		// platform
-		System.out.println("executing doBreak()");
-		System.out.println(myBonusObjects);
 		releaseRandomItem();
-
 		numHitsToBreak--;
 		System.out.println(numHitsToBreak);
 		if (numHitsToBreak == 0) {
 			setActive(false);
-			setLocation(-1000, getY()); // move off screen so seems like
-										// disappeared since setActive(false)
-										// not working properly....
-			System.out.println(getX());
+			setLocation(-1000, getY()); 
 		}
 	}
 

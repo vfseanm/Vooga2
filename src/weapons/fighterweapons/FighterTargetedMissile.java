@@ -1,7 +1,6 @@
 package weapons.fighterweapons;
 
 import java.util.List;
-import java.util.ResourceBundle;
 
 import playfield.SingletonSpriteManager;
 
@@ -10,14 +9,13 @@ import attributes.interfaces.Input;
 import character.AttributeUser;
 
 import com.golden.gamedev.engine.BaseInput;
+
+import demo.SingletonKeyController;
 import enemies.Enemy;
 import sprite.*;
 import weapons.Weapon;
 
 public class FighterTargetedMissile implements Weapon, Input {
-
-	transient protected ResourceBundle myGameKeys = ResourceBundle
-			.getBundle("demo.GameKeysResourceBundle");
 
 	private AnimatedGameSprite myMissile;
 	@SuppressWarnings("unused")
@@ -36,7 +34,6 @@ public class FighterTargetedMissile implements Weapon, Input {
 	private double mySpeed;
 	private boolean fireAtClosest;
 	private boolean canFire;
-	private int shootKey;
 
 	public FighterTargetedMissile(AnimatedGameSprite missile, int damage,
 			int delay, double speed, boolean value) {
@@ -48,12 +45,11 @@ public class FighterTargetedMissile implements Weapon, Input {
 		myTimer = 0;
 		canFire = true;
 		fireAtClosest = value;
-		shootKey = Integer.parseInt(myGameKeys.getString("SHOOT"));
 	}
 
 	@SuppressWarnings("unused")
 	public void use(AttributeUser character) {
-		if (myTimer == 0 && myUserInput.isKeyPressed((shootKey)) && canFire) {
+		if (myTimer == 0 && myUserInput.isKeyPressed((SingletonKeyController.getInstance().getKeyCode(("SHOOT")))) && canFire) {
 			SingletonSpriteManager.getInstance().add(myMissile);
 			myMissile.setLocation(character.getX(), character.getY());
 

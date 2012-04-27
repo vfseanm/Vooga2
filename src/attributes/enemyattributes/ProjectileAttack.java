@@ -19,7 +19,7 @@ public class ProjectileAttack extends Attack
     @Override
     public void attack ()
     {
-        if (isActive) myWeapon.use(myGameCharacter);
+        if (isActive) myWeapon.use(myAttributeUser);
     }
 
 

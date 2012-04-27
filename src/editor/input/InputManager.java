@@ -35,7 +35,7 @@ public abstract class InputManager {
     {
         if(currentInput!=null)
         {
-            System.out.println("giving x and y to current input" + x + " and " + y);
+            
             currentInput.setXY(x, y);
         }
     }

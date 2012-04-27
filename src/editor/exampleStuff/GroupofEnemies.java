@@ -33,7 +33,7 @@ public class GroupofEnemies implements InputType, Serializable {
     }
 
     public ArrayList<AnimatedGameSprite> getEnemies() {
-        System.out.println("returning enemies:" + mySprites);
+        
         return mySprites;
     }
 
@@ -51,8 +51,7 @@ public class GroupofEnemies implements InputType, Serializable {
 
     public void setLeftClickedSprite(AnimatedGameSprite sprite) {
 
-        System.out.println("clicking on an enemy and giving it to the object!"
-                + sprite);
+      
         if (mySprites == null)
             mySprites = new ArrayList<AnimatedGameSprite>();
         mySprites.add(sprite);

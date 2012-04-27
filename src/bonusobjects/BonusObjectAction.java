@@ -7,6 +7,7 @@ import attributes.sharedattributes.Hitpoints;
 
 import com.golden.gamedev.object.collision.CollisionGroup;
 
+
 import sprite.AnimatedGameSprite;
 import collisions.CollisionAction;
 import collisions.CollisionContext;
@@ -51,9 +52,11 @@ public class BonusObjectAction implements CollisionAction{
 			for (Attribute skill: ability){
 				if (skill.getName().equals("Hitpoints")){
 					((Hitpoints)skill).modifyHitpoints(-10);
-					System.out.println ((Hitpoints)skill);
+			
 				}
 			}
+			sprite.modifyAttribute("NumberOfLives", -1);
+
 		}
 	}
 	

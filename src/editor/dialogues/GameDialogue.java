@@ -98,7 +98,7 @@ public class GameDialogue extends DialogueBox {
         try {
             BaseLoader loader = new BaseLoader(new BaseIO(AnimatedGameSprite.class), Color.PINK);
             image = loader.getImage(myImagePaths.get(myImagePaths.size()-1));
-            System.out.println(myImagePaths.get(0));
+           
             editorController.setBackground(image, myImagePaths.get(0));
         } catch (Exception exc) {
             System.out.println("There has been a problem importing your image");

@@ -123,8 +123,6 @@ public class DemoGame extends PlatformGame {
 	public void update(long elapsedTime) 
 	{		
 
-	    
-
 	   updateFSM(elapsedTime);
 	   myEnemy.update(elapsedTime);
 	   myCollisions.checkCollision(); 

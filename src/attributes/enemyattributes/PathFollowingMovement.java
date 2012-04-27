@@ -30,7 +30,7 @@ public class PathFollowingMovement extends Attribute
         super(path);
         myPath = path.getLine();
         index = 0;
-        System.out.println("my path:" + myPath);
+   
     }
 
 
@@ -40,7 +40,7 @@ public class PathFollowingMovement extends Attribute
         {
             if (index < myPath.size() && index >= 0)
             {
-                myGameCharacter.setLocation(myPath.get(index).getX(),
+                myAttributeUser.setLocation(myPath.get(index).getX(),
                                             myPath.get(index).getY());
             }
             else

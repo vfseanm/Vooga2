@@ -140,7 +140,7 @@ public class FighterDialogueBox extends DialogueBox {
      */
     private void checkErrors() throws RuntimeException
     {
-        System.out.println(myImagePaths);
+       
         if(myImagePaths.size()==0)
         {
         throw new RuntimeException();

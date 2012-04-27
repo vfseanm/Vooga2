@@ -3,12 +3,14 @@ package attributes.fighterattributes;
 import character.AttributeUser;
 
 
+
 import com.golden.gamedev.engine.BaseInput;
+
+import demo.SingletonKeyController;
 
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
-import java.util.ResourceBundle;
 
 import attributes.*;
 import attributes.interfaces.Input;
@@ -25,26 +27,21 @@ import attributes.interfaces.Updateable;
 
 @SuppressWarnings("serial")
 public class FighterBasicMovement extends Attribute implements Updateable, Movement, Input, JsonableAttribute {
-
-	transient protected ResourceBundle myGameKeys = ResourceBundle
-    .getBundle("demo.GameKeysResourceBundle");
 	
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
 	public boolean		movingRight;
 	public boolean		movingLeft;
-	public int			rightKey;
-	public int			leftKey;
 	
 	@editorConstructor(parameterNames = { "horizontal movement" })
 	public FighterBasicMovement(double horizMove) {
 	    super(horizMove);
 
 		 if (horizMove < 0) 
-	        	throw new RuntimeException("You must enter a positive number for the horizontal movement");
-		myHorizMovement = horizMove;
-		rightKey = Integer.parseInt(myGameKeys.getString("RIGHT"));
-		leftKey = Integer.parseInt(myGameKeys.getString("LEFT"));
+		 {
+			 System.out.println("You must enter a positive number for the horizontal movement");
+		 }
+		myHorizMovement = Math.abs(horizMove);
 	}
 	
 	
@@ -56,16 +53,16 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 
 	public void update(long elapsedTime) {
 		if (isActive) {
-			if (myUserInput.isKeyDown(leftKey)) {
-				myGameCharacter.moveX(-myHorizMovement);
-				myGameCharacter.modifyAttribute("FighterMissile", false);
+			if (myUserInput.isKeyDown(SingletonKeyController.getInstance().getKeyCode(("LEFT")))) {
+				myAttributeUser.moveX(-myHorizMovement);
+				myAttributeUser.modifyAttribute("FighterMissile", false);
 				movingRight = false;
 				movingLeft = true;
 			}
 
-			if (myUserInput.isKeyDown(rightKey)) {
-				myGameCharacter.moveX(myHorizMovement);
-				myGameCharacter.modifyAttribute("FighterMissile", true);
+			if (myUserInput.isKeyDown(SingletonKeyController.getInstance().getKeyCode(("RIGHT")))) {
+				myAttributeUser.moveX(myHorizMovement);
+				myAttributeUser.modifyAttribute("FighterMissile", true);
 				movingRight = true;
 				movingLeft = false;
 			}
@@ -104,8 +101,8 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 		return movingRight;
 	}
 	
-	public void setGameCharacter(AttributeUser gameCharacter) {
-		myGameCharacter = gameCharacter;
+	public void setAttributeUser(AttributeUser gameCharacter) {
+		myAttributeUser = gameCharacter;
 	}
 
 
