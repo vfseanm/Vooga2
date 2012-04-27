@@ -124,7 +124,6 @@ public class DemoGame extends PlatformGame {
 	{		
 
 	    
-	   //System.out.println("X location " + myFighter.getX());
 
 	   updateFSM(elapsedTime);
 	   myEnemy.update(elapsedTime);

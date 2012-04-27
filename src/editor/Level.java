@@ -318,7 +318,7 @@ public class Level implements Serializable{
     /**
      * takes a json string and creates a level
      * @param json string to be loaded
-     * @return Level that is created
+     * @return Level that is created fromJson
      */
     public static Level fromJson(String json)
     {
