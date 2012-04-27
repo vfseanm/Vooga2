@@ -47,6 +47,8 @@ public class FighterAction implements CollisionAction{
         {
             System.out.println("You have implemented the collision framework incorrectly. The fighterGetPowerUp method is meant to be used with PowerUps.");
         }
+		System.out.println ("Here it is!" + sprite.getAttributes());
+
 	}
 	
 	
@@ -54,6 +56,7 @@ public class FighterAction implements CollisionAction{
 		try
         {
             BonusObject bonus = (BonusObject) ccntext.getOtherSprite(sprite);
+            System.out.println("giving"+ bonus.getAttributesToOffer());
             sprite.addCarryableAttributes(bonus.getAttributesToOffer());
             // bonus.setActive(false);
         } catch (ClassCastException e)
@@ -62,10 +65,15 @@ public class FighterAction implements CollisionAction{
         }
 	}
 	
+
 	public void instantFighterDeath (CollisionContext ccntext, CollisionSpec cspec){
+		System.out.println("instant fighter death" + ccntext.getSide());
+		if ( (ccntext.getSide() != CollisionGroup.TOP_BOTTOM_COLLISION) ){
+			System.out.println (ccntext.getSide());
 			sprite.setLocation(-10000, -1000);
-			sprite.setActive(false);
-	}
+		}
+		}
+
 	
 	public void fighterLoseHitpoints (CollisionContext ccntext, CollisionSpec cspec){
 		sprite.modifyAttribute("Hitpoints", -10);

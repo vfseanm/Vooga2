@@ -53,7 +53,6 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         myAttributeFactories.add(Gravity.getFactory());
         myAttributeFactories.add(Hitpoints.getFactory());
         myAttributeFactories.add(NumberOfLives.getFactory());
-        myAttributeFactories.add(NumberOfLives.getFactory());
         myAttributeFactories.add(FighterScore.getFactory());
         myAttributeFactories.add(Visibility.getFactory());  
     }
@@ -148,6 +147,7 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
 
     public void addCarryableAttributes(List<Attribute> carryables)
     {
+    	System.out.println("adding carryables" + carryables);
         myCarryableAttributes.addAll(carryables);
     }
 

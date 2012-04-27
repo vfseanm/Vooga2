@@ -11,7 +11,7 @@ public class DialogueOpeningButton extends TButton
 {
     private EditorView myView;
     private DialogueBox myDialogueBox;
-
+    
     public DialogueOpeningButton(String name,
                     int x,
                     int y,

@@ -3,17 +3,15 @@ package platforms.platformtypes;
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 
-
-
- /**
+/**
  * Class used to decorate platforms in order to add up and down movement i.e.
  * this class will allow the user to add functionality to a platform to allow it
  * to traverse a vertical distance repeatedly.
  * 
- * @author yankeenjg
+ * @author Nick Gordon
  * 
  */
- public class UpDownPlatform extends DecoratedPlatform implements JsonableSprite {
+public class UpDownPlatform extends DecoratedPlatform implements JsonableSprite {
 
 	private static final long serialVersionUID = -3578102991430723896L;
 
@@ -63,22 +61,21 @@ import editor.json.SpriteFactory;
 		return myPlatformResources.getString("UpDown")
 				+ myDecoratorComponent.toString();
 	}
- 	
-    public Object clone()
-    {
-        AbstractPlatform toWrap = null;
-        if(myDecoratorComponent!=null)
-        {
-            toWrap = (AbstractPlatform) myDecoratorComponent.clone();
-            
-        }
-        return new UpDownPlatform(toWrap);
-        
-    }
-    
-    private UpDownPlatform(){};
-    public static SpriteFactory<UpDownPlatform> getFactory()
-    {
-        return new SpriteFactory<UpDownPlatform>(new UpDownPlatform());
-    }
+
+	public Object clone() {
+		AbstractPlatform toWrap = null;
+		if (myDecoratorComponent != null) {
+			toWrap = (AbstractPlatform) myDecoratorComponent.clone();
+
+		}
+		return new UpDownPlatform(toWrap);
+
+	}
+
+	private UpDownPlatform() {
+	};
+
+	public static SpriteFactory<UpDownPlatform> getFactory() {
+		return new SpriteFactory<UpDownPlatform>(new UpDownPlatform());
+	}
 }
