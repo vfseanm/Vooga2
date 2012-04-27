@@ -32,15 +32,19 @@ public class PowerupDialogueBox extends DialogueBox {
 
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException {
-
         ArrayList<String> packagesToSearch = new ArrayList<String>();
-        packagesToSearch.add("attributes");
+        packagesToSearch.add("attributes.enemyattributes");
+        packagesToSearch.add("attributes.sharedattributes");
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(800, 325));
+        panel.setPreferredSize(new Dimension(800, 375));
         powerupAttributePanel = new AttributeSelectionPanel(packagesToSearch,
                 dialogueController);
+        packagesToSearch.clear();
+        
+        packagesToSearch.add("attributes.fighterattributes");
+        packagesToSearch.add("attributes.sharedattributes");
         JPanel panel2 = new JPanel();
         JLabel title1 = new JLabel("Attributes for the Power-Up to have:");
         panel2.add(title1);

@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import attributes.interfaces.Updateable;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -15,7 +16,7 @@ import editor.json.JsonableAttribute;
 //Change location to coordinate
 
 @SuppressWarnings("serial")
-public class SideToSideMovement extends TwoPartMovement implements JsonableAttribute
+public class SideToSideMovement extends TwoPartMovement implements Updateable, JsonableAttribute
 {
     
 
