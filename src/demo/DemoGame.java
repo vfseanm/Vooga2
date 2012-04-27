@@ -58,6 +58,10 @@ public class DemoGame extends PlatformGame {
         spec.addActMap("ENEMY", "instantEnemyDeath");
         specList.add(spec);
         
+        CollisionSpec enemySpec = new CollisionSpec();
+        spec.addActMap("ENEMY", "enemyHitObject");
+        specList.add(spec);
+        
         CollisionSpec spec2 = new CollisionSpec();
         spec2.addActMap("FIGHTER", "fighterStandOnTop");
         spec2.addActMap("FIGHTER", "fighterHitObject");
