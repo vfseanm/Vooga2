@@ -73,7 +73,7 @@ public class DemoGame extends PlatformGame {
 
 
 	    
-	    
+	    System.out.println(myPlayfield.getMySprites());
 	    
 	    
 	    
@@ -133,6 +133,7 @@ public class DemoGame extends PlatformGame {
 		events.add(event);
 		myContext = new Context(events, plats);
 		*/
+		
 	}
 
 	@Override
