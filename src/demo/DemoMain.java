@@ -15,7 +15,7 @@ public class DemoMain
         int gameWidth = Integer.parseInt(mySidescrollerResources.getString("gameWidth"));
         int gameHeight = Integer.parseInt(mySidescrollerResources.getString("gameHeight"));
         GameLoader loader = new GameLoader();
-        loader.setup(new DemoGame(), new Dimension(gameWidth, gameHeight), false);
+        loader.setup(new DemoGame(), new Dimension(600, 600), false);
         loader.start();
     }
 }

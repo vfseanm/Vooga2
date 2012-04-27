@@ -3,11 +3,12 @@ package demo;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
-import playfield.SingletonPlayField;
+import playfield.SingletonSpriteManager;
 
 import sidescrolling.Sidescroller; 
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import editor.Level;
@@ -20,14 +21,14 @@ public abstract  class PlatformGame extends Game {
     protected Level myLevel;
 
     protected Fighter myFighter;
-    //protected ImageBackground myBackground;
-    protected SingletonPlayField myPlayfield;
+    protected ImageBackground myBackground;
+    protected SingletonSpriteManager myPlayfield;
     protected Sidescroller mySidescroller;
     protected boolean	pause;
     
     public PlatformGame()
     {  
-        myPlayfield = SingletonPlayField.getInstance(); 
+        myPlayfield = SingletonSpriteManager.getInstance();
     }
     
     public String getGroup(){
@@ -46,14 +47,11 @@ public abstract  class PlatformGame extends Game {
             myPlayfield.add(myFighter);
         }
         myPlayfield.setMySprites(myLevel.getSprites());
-        ImageBackground myBackground = myLevel.getBackground();
+        myBackground = myLevel.getBackground();
         
         
-        myPlayfield.setBackground(myBackground);
-        
-        
-        //mySidescroller = myLevel.getSidescroller();
-        //mySidescroller.setUserInput(bsInput);
+        mySidescroller = myLevel.getSidescroller();
+        mySidescroller.setUserInput(bsInput);
     }
     
     public void update(long elapsedTime) {

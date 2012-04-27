@@ -84,6 +84,7 @@ public class EnemyDialogueBox extends DialogueBox {
             throw new RuntimeException();
         }
         Enemy prototype = new Enemy(0,0, myImagePaths);
+        System.out.println(myImagePaths);
         ArrayList<Attribute> attributes = attributePanel.getSelectedAttributes();
         for(Attribute a: attributes)
         {

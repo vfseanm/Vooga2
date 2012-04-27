@@ -1,5 +1,6 @@
 package playfield;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import sprite.AnimatedGameSprite;
@@ -14,12 +15,12 @@ import fighter.Fighter;
  * 
  * @author Alex
  */
-public class SingletonPlayField extends PlayField
+public class SingletonSpriteManager
 {
     private List<AnimatedGameSprite> mySprites;
 
 
-    private SingletonPlayField ()
+    private SingletonSpriteManager ()
     {
         mySprites = new ArrayList<AnimatedGameSprite>();
 
@@ -27,12 +28,12 @@ public class SingletonPlayField extends PlayField
 
     private static class SingletonPlayFieldHolder
     {
-        public static final SingletonPlayField instance =
-            new SingletonPlayField();
+        public static final SingletonSpriteManager instance =
+            new SingletonSpriteManager();
     }
 
 
-    public static SingletonPlayField getInstance ()
+    public static SingletonSpriteManager getInstance()
     {
         return SingletonPlayFieldHolder.instance;
     }
@@ -41,12 +42,28 @@ public class SingletonPlayField extends PlayField
     public void add (Sprite sprite)
     {
         super.add(sprite);
+
         if (sprite instanceof AnimatedGameSprite &&
             !(sprite instanceof Fighter))
         {
             mySprites.add((AnimatedGameSprite) sprite);
         }
 
+    }
+    public void render(Graphics2D pen)
+    {
+        
+        for (AnimatedGameSprite s: mySprites)
+        {
+            s.render(pen);
+        }
+    }
+    public void update(long time)
+    {
+        for (Sprite s: mySprites)
+        {
+            s.update(time);
+        }
     }
 
 
