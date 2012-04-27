@@ -147,6 +147,7 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
 
     public void addCarryableAttributes(List<Attribute> carryables)
     {
+    	System.out.println("adding carryables" + carryables);
         myCarryableAttributes.addAll(carryables);
     }
 

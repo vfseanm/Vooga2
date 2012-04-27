@@ -47,6 +47,8 @@ public class FighterAction implements CollisionAction{
         {
             System.out.println("You have implemented the collision framework incorrectly. The fighterGetPowerUp method is meant to be used with PowerUps.");
         }
+		System.out.println ("Here it is!" + sprite.getAttributes());
+
 	}
 	
 	
@@ -54,6 +56,7 @@ public class FighterAction implements CollisionAction{
 		try
         {
             BonusObject bonus = (BonusObject) ccntext.getOtherSprite(sprite);
+            System.out.println("giving"+ bonus.getAttributesToOffer());
             sprite.addCarryableAttributes(bonus.getAttributesToOffer());
             // bonus.setActive(false);
         } catch (ClassCastException e)

@@ -97,6 +97,11 @@ public class DemoGame extends PlatformGame {
         spec6.addActMap("FIGHTER", "");
         specList.add(spec6);
         
+        CollisionSpec spec8 = new CollisionSpec ();
+        spec8.addActMap("ENEMY", "");
+        specList.add(spec8);
+     
+        
         List<String> switchImages = new ArrayList<String>();
         switchImages.add("resources/scrollerSwitchUp.png"); 
         switchImages.add("resources/scrollerSwitchDown.png");
