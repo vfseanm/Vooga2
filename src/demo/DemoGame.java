@@ -81,7 +81,7 @@ public class DemoGame extends PlatformGame {
         specList.add(spec3);
         
         CollisionSpec spec4 = new CollisionSpec();
-        spec4.addActMap("BONUSOBJECT", "");
+        spec4.addActMap("BONUSOBJECT", "bonusObjectDestruction");
         spec4.addActMap("FIGHTER", "fighterHitObject");
         spec4.addActMap("FIGHTER", "fighterGetPowerUp");
         spec4.addActMap("FIGHTER", "fighterGetCarryable");
@@ -145,6 +145,7 @@ public class DemoGame extends PlatformGame {
 		images.add("resources/Bowser.jpg");
 		myEnemy = new Enemy(1500, 200, images);
 		myEnemy.setState(PassiveState.getInstance());
+		myEnemy.setGroup("UNIQUE");
 		
 		List<String> images2 = new ArrayList<String>();
 		images2.add("resources/Fireball.jpg");
