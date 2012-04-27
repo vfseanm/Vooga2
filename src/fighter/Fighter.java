@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bonusobjects.BonusObject;
 import collisions.CollisionAction;
 
 import com.golden.gamedev.engine.BaseInput;
@@ -90,10 +91,27 @@ public class Fighter extends AttributeUser implements JsonableSprite  {
         }
         return myself;
     }
+    public Attribute getAttributeByName(String name) {
+        for (Attribute attribute : myAttributes) {
+            if (attribute.getClass().getName().equalsIgnoreCase(name))
+                return attribute;
+        }
+        return null;
+    }
+
+    
+
+
+    
+    public void addPowerUp(BonusObject bonus) {
+        for (Attribute toAdd: bonus.getAttributesToOffer()) {
+            addAttribute(toAdd);
+        }
+    }
 
     public void update(long elapsedTime)
     {
-        performAttributeActions(elapsedTime);
+        performUpdateableAttributes(elapsedTime);
     }
     
     

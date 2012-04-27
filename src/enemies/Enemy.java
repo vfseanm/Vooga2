@@ -243,14 +243,14 @@ public class Enemy extends AttributeUser implements JsonableSprite
         if (myState != null) myState.excuteBehavior(this, elapsedTime);
         else
         {
-            updateUpdateableAttributes(elapsedTime);
+            performUpdateableAttributes(elapsedTime);
 
         }
 
     }
 
 
-    public void updateUpdateableAttributes (long elapsedTime)
+    public void performUpdateableAttributes (long elapsedTime)
     {
         for (Attribute attribute : myAttributes)
         {
