@@ -10,7 +10,11 @@ import editor.EditorController;
 import fighter.Fighter;
 import attributes.Attribute;
 
-
+/**
+ * Dialogue box used to create the fighter in the level
+ * @author Becky and Sean
+ *
+ */
 @SuppressWarnings("serial")
 public class FighterDialogueBox extends DialogueBox {
 
@@ -19,14 +23,19 @@ public class FighterDialogueBox extends DialogueBox {
 
     AttributeSelectionPanel attributePanel;
     AttributeSelectionPanel carryablePanel;
-
+    /**
+     * 
+     * @param m controller that the dialogue box is called by 
+     */
     public FighterDialogueBox(EditorController m) {
 
         super(m);
         setLayout(new BorderLayout());
         add(makeInputPanel(), BorderLayout.NORTH);
     }
-
+    /**
+     * creates the selection panel for the user to specify the information needed to create the fighter
+     */
     public JComponent makeSelectionPanel() throws ClassNotFoundException,
             IOException {
 
@@ -74,7 +83,9 @@ public class FighterDialogueBox extends DialogueBox {
 
     }
 
-
+    /**
+     * clones the dialogue box
+     */
     public DialogueBox clone() {
         return new FighterDialogueBox(editorController);
     }
