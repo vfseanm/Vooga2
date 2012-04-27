@@ -1,6 +1,7 @@
 package fighter;
 
 import attributes.Attribute;
+
 import bonusobjects.BonusObject;
 
 import com.golden.gamedev.object.collision.CollisionGroup;

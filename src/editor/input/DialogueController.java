@@ -1,6 +1,5 @@
 package editor.input;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -9,13 +8,12 @@ import sprite.AnimatedGameSprite;
 import editor.Framework;
 import editor.InputListener;
 import editor.ReflectionUtil;
-import editor.editorConstructor;
 import editor.dialogues.DialogueBox;
-import editor.dialogues.AttributeSelectionPanel.CheckBoxListener;
 import editor.input.inputTypes.InputType;
 
 public class DialogueController {
-    private DialogueBox myBox;
+    @SuppressWarnings("unused")
+	private DialogueBox myBox;
     protected ArrayList<AnimatedGameSprite> selectedSprites;
     private InputManager currentInputManager;
     private InputListener currentOutput;
@@ -62,7 +60,8 @@ public class DialogueController {
      * This makes a SingleInputManager if the class requested implements InputType. Otherwise, it must be an object with a constructor
      * taking in classes that implement InputType or are one of: boolean, String, int, double
      */
-    public void promptForInput(Class c, InputListener toNotify)  
+    @SuppressWarnings({ "rawtypes", "unused" })
+	public void promptForInput(Class c, InputListener toNotify)  
     {
         currentOutput = toNotify;
         
@@ -89,7 +88,8 @@ public class DialogueController {
         currentInputManager.run();
     }
     
-    public void constructObject(Object[] argList)
+    @SuppressWarnings("rawtypes")
+	public void constructObject(Object[] argList)
     {
         Constructor constructor = ReflectionUtil.getAnnotatedConstructor(currentInputManager.getAssociatedClass());
         try {

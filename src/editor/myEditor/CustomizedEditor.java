@@ -1,17 +1,7 @@
 package editor.myEditor;
-
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JFrame;
-
-import com.golden.gamedev.gui.TLabel;
-import com.golden.gamedev.gui.toolkit.UIConstants;
-
 import editor.EditorView;
 import editor.buttons.DialogueOpeningButton;
-import editor.buttons.ObjectPlacingButton;
 import editor.dialogues.EnemyDialogueBox;
 import editor.dialogues.PlatformDialogueBox;
 import editor.dialogues.PowerupDialogueBox;

@@ -61,7 +61,7 @@ public abstract class Sidescroller implements Serializable  {
         if(!this.getClass().equals(ConcreteSidescroller.class))
         {
             List<String> classNames = new ArrayList<String>();
-            for(Class c: ((DecoratedSidescroller) this).getClassesOfDecorators())
+            for(@SuppressWarnings("rawtypes") Class c: ((DecoratedSidescroller) this).getClassesOfDecorators())
             {
                 classNames.add(c.toString());
             }

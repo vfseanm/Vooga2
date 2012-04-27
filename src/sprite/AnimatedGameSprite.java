@@ -121,6 +121,7 @@ public class AnimatedGameSprite extends AdvanceSprite implements Serializable, C
     }
     
 
+	@SuppressWarnings("unused")
 	public String toJson()
     {
         Gson gson = new Gson();

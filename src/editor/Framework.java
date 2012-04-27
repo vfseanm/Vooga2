@@ -2,11 +2,9 @@ package editor;
 
 import java.awt.Color;
 
+
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
 import java.util.ArrayList;
@@ -160,7 +158,8 @@ public class Framework implements Serializable {
         return prototypeSprite;
     }
 
-    public String toJson()
+    @SuppressWarnings("unused")
+	public String toJson()
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>() {
@@ -187,7 +186,8 @@ public class Framework implements Serializable {
 
     }
 
-    public static Framework fromJson(String json)
+    @SuppressWarnings("rawtypes")
+	public static Framework fromJson(String json)
     {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<String>>() {

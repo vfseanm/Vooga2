@@ -67,7 +67,8 @@ public class EditorController implements EditorConstants{
               }
           }
     }
-    public boolean checkInterference(Sprite s)
+    @SuppressWarnings("static-access")
+	public boolean checkInterference(Sprite s)
     {
         boolean t = true;
         for (Sprite sprite : getAllSprites())

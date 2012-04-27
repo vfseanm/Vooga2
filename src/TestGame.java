@@ -1,22 +1,15 @@
 import platforms.platformtypes.*;
 
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import platforms.*;
 import playfield.SingletonSpriteManager;
 
-import sidescrolling.*;
 import sprite.AnimatedGameSprite;
-
-import attributes.*;
-import attributes.enemyattributes.JumpingMovement;
-import attributes.enemyattributes.OneDirectionMovement;
 import attributes.enemyattributes.SideToSideMovement;
-import attributes.enemyattributes.UpDownMovement;
-import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
 import bonusobjects.BonusObject;
 import collisions.CollisionSpec;
@@ -26,8 +19,7 @@ import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import enemies.Enemy;
-import enemies.EnemyAction;
-import fighter.Fighter;
+
 
 
 public class TestGame extends Game {
@@ -37,7 +29,9 @@ public class TestGame extends Game {
 	private AbstractPlatform p, p3;
 	private BreakablePlatform p1;
 	private SimplePlatform p2;
+	@SuppressWarnings("unused")
 	private PlayField myPF;
+	@SuppressWarnings("unused")
 	private GameCollisionManager gc;
 	private ArrayList<AnimatedGameSprite> list = new ArrayList<AnimatedGameSprite>();
 	private CollisionSpec cs, cs2;
@@ -48,6 +42,7 @@ public class TestGame extends Game {
 	
 	ArrayList<CollisionSpec> specList = new ArrayList<CollisionSpec>();
 
+	@SuppressWarnings("unused")
 	@Override
 	public void initResources ()
 	{
