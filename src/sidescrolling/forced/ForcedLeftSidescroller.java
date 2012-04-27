@@ -34,6 +34,7 @@ public class ForcedLeftSidescroller extends ForcedSidescroller {
      * Moves a sprite to the left and prevents the fighter from moving off the right side of the screen.
      */
     public void move(Sprite sprite) {
+        System.out.println(sprite + " test " + forcedLeftSpeed);
         sprite.moveX(forcedLeftSpeed);
         if (fighter.getX() >= rightBorder - fighter.getWidth()) {
             fighter.setX(rightBorder - fighter.getWidth());

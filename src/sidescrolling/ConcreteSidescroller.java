@@ -50,4 +50,5 @@ public class ConcreteSidescroller extends Sidescroller  {
     public void setUserInput(BaseInput userInput) {
         return;
     }
+
 }
