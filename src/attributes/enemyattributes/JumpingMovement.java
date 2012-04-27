@@ -16,8 +16,7 @@ import attributes.Attribute;
 import attributes.interfaces.Updateable;
 
 
-// go do isActive and use that
-// turnaround
+
 @SuppressWarnings("serial")
 public class JumpingMovement extends Attribute implements Updateable, JsonableAttribute
 {
