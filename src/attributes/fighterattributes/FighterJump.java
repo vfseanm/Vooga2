@@ -15,7 +15,6 @@ import attributes.interfaces.Input;
 import attributes.interfaces.Movement;
 import attributes.interfaces.Updateable;
 
-
 @SuppressWarnings("serial")
 public class FighterJump extends Attribute
     implements Updateable, Movement, Input, JsonableAttribute
@@ -53,42 +52,48 @@ public class FighterJump extends Attribute
     }
 
 
+    public void modifyJump (boolean jump)
+    {
+        canJump = jump;
+    }
+
+
     public void update (long elapsedTime)
     {
         if (isActive)
         {
             if (canJump && myUserInput.isKeyPressed(jumpKey))
             {
-            	System.out.println("commanded to jump");
-                canJump = false;
                 isJumping = true;
+                canJump = false;
             }
 
             if (isJumping)
             {
+                myTimer++;
                 if (myTimer <= myDelay)
                 {
-                	System.out.println("jumping");
                     myGameCharacter.moveY(-myJumpHeight);
                     myGameCharacter.allowAttribute("Gravity", false);
                 }
                 else
                 {
                     myGameCharacter.allowAttribute("Gravity", true);
-                    myGameCharacter.allowAttribute("FighterJump", false);
                     myTimer = 0;
                     isJumping = false;
                 }
             }
-            myTimer++;
+
         }
     }
 
-    
-    public void modifyFighterJump(boolean value) {
-    	canJump = value;
+
+    public void modifyFighterJump (boolean value)
+    {
+        canJump = value;
     }
-    
+
+
     public void invert ()
     {
         myJumpHeight = -myJumpHeight;
