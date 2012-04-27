@@ -16,8 +16,8 @@ import platforms.fsmframework.PlatformSwitch;
 import platforms.fsmframework.RandomEvent;
 import platforms.fsmframework.SimpleEvent;
 import platforms.fsmframework.SwitchEvent;
-import platforms.fsmframework.SwitchOff;
-import platforms.fsmframework.SwitchOn;
+import platforms.fsmframework.SimpleState;
+import platforms.fsmframework.UpDownState;
 import platforms.platformtypes.*;
 import com.golden.gamedev.Game;
 
@@ -53,8 +53,8 @@ public class PlatformTest extends Game {
 		List<AbstractPlatform> plats = new ArrayList<AbstractPlatform>();
 		plats.add(sp);
 		List<AbstractPlatformState> transition = new ArrayList<AbstractPlatformState>();
-		transition.add(new SwitchOff());
-		transition.add(new SwitchOn());
+		transition.add(new SimpleState());
+		transition.add(new UpDownState());
 		AbstractEvent event = new SimpleEvent(transition, plats);
 		event = new SwitchEvent(mySwitch, event);
 		event = new RandomEvent(event);

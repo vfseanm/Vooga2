@@ -1,14 +1,11 @@
 package platforms.fsmframework;
-import java.util.ArrayList;
-
-import java.util.List;
 import platforms.platformtypes.AbstractPlatform;
 import platforms.platformtypes.SimplePlatform;
 
 
-public class SwitchOff extends AbstractPlatformState {
+public class SimpleState extends AbstractPlatformState {
 
-	public SwitchOff() {}
+	public SimpleState() {}
 	
 	
 	//from constructor

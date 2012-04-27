@@ -8,13 +8,13 @@ import java.util.List;
 import platforms.platformtypes.AbstractPlatform;
 import platforms.platformtypes.UpDownPlatform;
 
-public class SwitchOn extends AbstractPlatformState {
+public class UpDownState extends AbstractPlatformState {
 
 
 	private List<AbstractPlatform> newPlatforms = new ArrayList<AbstractPlatform>();
 	
 	
-	public SwitchOn() {}
+	public UpDownState() {}
 	
 	public void decoratePlatforms() {
 		//newPlatforms = new ArrayList<AbstractPlatform>();
