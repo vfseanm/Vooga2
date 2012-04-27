@@ -1,12 +1,10 @@
 package enemies;
 
-import java.lang.reflect.InvocationTargetException;
 
 
-import java.lang.reflect.Method;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +22,6 @@ import attributes.enemyattributes.OneDirectionMovement;
 import attributes.enemyattributes.PathFollowingMovement;
 import attributes.enemyattributes.SideToSideMovement;
 import attributes.enemyattributes.UpDownMovement;
-import attributes.interfaces.Updateable;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
 import editor.json.AttributeFactory;
