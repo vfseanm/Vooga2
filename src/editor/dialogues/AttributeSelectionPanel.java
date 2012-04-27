@@ -63,9 +63,9 @@ public class AttributeSelectionPanel extends JPanel {
         try
         {
             List<Class> listOfClasses = new ArrayList<Class>();
-            for(String s: packageNames)
+            for(String packageName: packageNames)
             {
-                listOfClasses.addAll(ReflectionUtil.getInstancesOf(s, Attribute.class));
+                listOfClasses.addAll(ReflectionUtil.getInstancesOf(packageName, Attribute.class));
             }
 
             for (Class c : listOfClasses)

@@ -172,8 +172,9 @@ public abstract class EditorView extends Game{
     
     private void runKeyInput()
     {
-        if (leftClickedSprite != null
-                && bsInput.isKeyDown(java.awt.event.KeyEvent.VK_DELETE))
+        if ((leftClickedSprite != null
+                && bsInput.isKeyDown(java.awt.event.KeyEvent.VK_DELETE)) || leftClickedSprite != null
+                        && bsInput.isKeyDown(java.awt.event.KeyEvent.VK_BACK_SPACE))
         {
             myController.removeSprite(leftClickedSprite);
             leftClickedSprite = null;
