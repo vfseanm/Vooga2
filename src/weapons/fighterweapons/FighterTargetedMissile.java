@@ -1,8 +1,7 @@
 package weapons.fighterweapons;
-
-import java.awt.List;
 import java.awt.event.KeyEvent;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 import playfield.SingletonSpriteManager;
@@ -53,7 +52,7 @@ public class FighterTargetedMissile implements Weapon, Input{
 			SingletonSpriteManager.getInstance().add(myMissile);
 			myMissile.setLocation(character.getX(), character.getY());
 			
-			ArrayList<AnimatedGameSprite> otherSprite = SingletonSpriteManager.getInstance().getMySprites();
+			List<AnimatedGameSprite> otherSprite = SingletonSpriteManager.getInstance().getMySprites();
 		
 
 			canFire = false;
