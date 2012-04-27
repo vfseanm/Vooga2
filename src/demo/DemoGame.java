@@ -74,14 +74,12 @@ public class DemoGame extends PlatformGame {
         
         CollisionSpec spec3 = new CollisionSpec();
         spec3.addActMap("ENEMY", "enemyStandOnTop");
-        spec3.addActMap("VOOGA", "");
+        spec3.addActMap("PLATFORM", "");
         specList.add(spec3);
         
         CollisionSpec spec4 = new CollisionSpec();
         spec4.addActMap("BONUSOBJECT", "bonusObjectDestruction");
-        spec4.addActMap("FIGHTER", "fighterHitObject");
         spec4.addActMap("FIGHTER", "fighterGetPowerUp");
-        spec4.addActMap("FIGHTER", "fighterGetCarryable");
         specList.add(spec4);
         
         CollisionSpec spec5 = new CollisionSpec();
