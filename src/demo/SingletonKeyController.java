@@ -29,7 +29,6 @@ public class SingletonKeyController {
 		while (keys.hasMoreElements()) {
 			String key = keys.nextElement();
 			myKeyCodes.put(key, myGameKeys.getString(key));
-			System.out.println("added key = " + key + "  & value = " + (myGameKeys.getString(key)));
 		}
 	}
 	
