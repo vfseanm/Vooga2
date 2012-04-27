@@ -143,16 +143,17 @@ public class DemoGame extends PlatformGame {
 	private void initEnemyFSM() {
 		List<String> images = new ArrayList<String>();
 		images.add("resources/Bowser.jpg");
-		myEnemy = new Enemy(3000, 200, images);
+		myEnemy = new Enemy(1500, 200, images);
 		myEnemy.setState(PassiveState.getInstance());
 		
 		List<String> images2 = new ArrayList<String>();
 		images2.add("resources/Fireball.jpg");
 		AnimatedGameSprite wep = new AnimatedGameSprite(-1000, -1000, images2);
-		Weapon weapon = new Fireball(wep, 0.1, 100000000, 200);
+		Weapon weapon = new Fireball(wep, -0.1, 100000000, 200);
 		Attribute att = new ProjectileAttack(weapon);
 		myEnemy.addAttribute(att);
 		allSprites.add(myEnemy);
+		myPlayfield.add(myEnemy);
 	}
 	
 	
