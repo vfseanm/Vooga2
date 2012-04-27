@@ -184,8 +184,8 @@ public abstract class AttributeUser extends AnimatedGameSprite
      * method in a given attribute and takes the necessary parameters to modify
      * this attribute
      * 
-     * @param name
-     * @param o
+     * @param name name of the attribute to call the modify method on
+     * @param o the parameters necessary to call the modify method
      */
     public void modifyAttribute (String name, Object ... o)
     {
@@ -193,12 +193,25 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * calls the helper method accessAttributeMethod reverts a given attribute
+     * to the original state (the one which it was constructor with)
+     * 
+     * @param name name of the attribute
+     */
     public void restoreOriginalAttribute (String name)
     {
         accessAttributeMethod("restore", name);
     }
 
 
+    /**
+     * calls the helper method accessAttributeMethod to invert attributes the
+     * attribute you try to invert needs to be an updateable attribute and it
+     * will call the invert method on that attribute
+     * 
+     * @param name name of the attribute that you want to be inverted
+     */
     public void invertAttribute (String name)
     {
         for (Attribute attribute : myAttributes)
@@ -219,6 +232,15 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * Finds the given attribute by name and then sets the activity to the given
+     * value
+     * 
+     * @param name the name of the attribute which you are trying to set the
+     *            activity of
+     * @param activity boolean variable which will be used to set the isActive
+     *            of the attribute
+     */
     public void allowAttribute (String name, boolean activity)
     {
         for (Attribute attribute : myAttributes)
@@ -231,6 +253,11 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * Calls the performUpdateableAttributes Is called by the GTGE update call
+     * 
+     * @param elapsedTime the time change during each update call
+     */
     public void update (long elapsedTime)
     {
 
@@ -239,6 +266,12 @@ public abstract class AttributeUser extends AnimatedGameSprite
     }
 
 
+    /**
+     * calls the update method of all the attributes that implement the
+     * updateable interface
+     * 
+     * @param elapsedTime the time change during each update call
+     */
     public void performUpdateableAttributes (long elapsedTime)
     {
         for (Attribute attribute : myAttributes)
@@ -259,7 +292,9 @@ public abstract class AttributeUser extends AnimatedGameSprite
         }
     }
 
-
+    /**
+     * returns a String representation of an Attribute User
+     */
     public String toString ()
     {
         StringBuilder toReturn = new StringBuilder();
