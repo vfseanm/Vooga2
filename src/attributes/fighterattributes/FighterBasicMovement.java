@@ -17,7 +17,7 @@ import attributes.interfaces.Updateable;
 
 /**
  * This Attribute allows basic movement (right/left) by the parameterized distance
- * myHorizMovement. The GameCharacter that has the attribute will move based on user 
+ * myHorizMovement. The AttributeUser that has the attribute will move based on user 
  * input, which must be set after the Attribute is constructed.
  *  
  * @author Tori

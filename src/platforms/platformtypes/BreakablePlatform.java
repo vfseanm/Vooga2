@@ -14,7 +14,7 @@ import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 
 import bonusobjects.BonusObject;
- 
+
 /**
  * This class provides functionality that can be added on to simple platforms or
  * other decorated platforms to allow for platforms that "break" when the
@@ -22,13 +22,15 @@ import bonusobjects.BonusObject;
  * platform will release a power up or other bonus object that was stored in
  * this class.
  * 
- * @author yankeenjg
+ * @author Nick Gordon
  */
-public class BreakablePlatform extends DecoratedPlatform implements JsonableSprite {
+public class BreakablePlatform extends DecoratedPlatform implements
+		JsonableSprite {
 
 	private static final long serialVersionUID = 1254073087890380273L;
-	private List<BonusObject> myBonusObjects = new ArrayList<BonusObject>();  // need to fix in level editor so this can be set...
-	int numHitsToBreak = Integer.parseInt(myPlatformResources.getString("DefaultNumHitsToBreak"));
+	private List<BonusObject> myBonusObjects = new ArrayList<BonusObject>();
+	int numHitsToBreak = Integer.parseInt(myPlatformResources
+			.getString("DefaultNumHitsToBreak"));
 
 	/**
 	 * Constructor for a breakable platform
@@ -39,7 +41,7 @@ public class BreakablePlatform extends DecoratedPlatform implements JsonableSpri
 	public BreakablePlatform(AbstractPlatform decoratorComponent) {
 		super(decoratorComponent);
 	}
-	
+
 	public void setNumHitsToBreak(int numHits) {
 		numHitsToBreak = numHits;
 	}
@@ -65,7 +67,7 @@ public class BreakablePlatform extends DecoratedPlatform implements JsonableSpri
 	public void addBonusObject(BonusObject bonusObject) {
 		bonusObject.setActive(false);
 		myBonusObjects.add(bonusObject);
-		
+
 	}
 
 	/**
@@ -78,22 +80,31 @@ public class BreakablePlatform extends DecoratedPlatform implements JsonableSpri
 		if (myBonusObjects != null && myBonusObjects.size() > index) {
 			BonusObject object = myBonusObjects.get(index);
 			object.setActive(true);
-			object.setLocation(getX(), getY() + 50);
-			object.setHorizontalSpeed(Double.parseDouble(myPlatformResources.getString("BonusObjectSpeed")));
+			object.setLocation(getX(), getY() +  Integer.parseInt(myPlatformResources.getString("PlatformOffset")));
+			object.setHorizontalSpeed(Double.parseDouble(myPlatformResources
+					.getString("BonusObjectSpeed")));
 			myBonusObjects.remove(index);
 		}
 	}
-	
+
+	/**
+	 * Releases all bonus objects associated with this breakable platform
+	 */
 	protected void releaseAllItems() {
-		double speed = Integer.parseInt(myPlatformResources.getString("BonusObjectSpeed"));
+		double speed = Integer.parseInt(myPlatformResources
+				.getString("BonusObjectSpeed"));
 		for (BonusObject object : myBonusObjects) {
 			object.setActive(true);
 			object.setLocation(getX(), getY());
 			object.setHorizontalSpeed(speed);
-			speed += Integer.parseInt(myPlatformResources.getString("BonusObjectSpeed"));
+			speed += Integer.parseInt(myPlatformResources
+					.getString("BonusObjectSpeed"));
 		}
 	}
-	
+
+	/**
+	 * Releases a random bonus object associated with this breakable platform
+	 */
 	protected void releaseRandomItem() {
 		Random rand = new Random();
 		if (myBonusObjects.size() != 0) {
@@ -110,24 +121,28 @@ public class BreakablePlatform extends DecoratedPlatform implements JsonableSpri
 	 * fighter. This method should only be called in the collision manager for
 	 * fighters and breakable platforms.
 	 */
-	
-	//if user wants to change what items get released etc... they can change this by subclassing... or by
-	//modifying collision manager
+
+	// if user wants to change what items get released etc... they can change
+	// this by subclassing... or by
+	// modifying collision manager
 	public void doBreak() {
-		// only called if user defined collision action is called on breakable platform
+		// only called if user defined collision action is called on breakable
+		// platform
 		System.out.println("executing doBreak()");
 		System.out.println(myBonusObjects);
 		releaseRandomItem();
-		
+
 		numHitsToBreak--;
 		System.out.println(numHitsToBreak);
 		if (numHitsToBreak == 0) {
 			setActive(false);
-			setLocation(-1000, getY()); //move off screen so seems like disappeared since setActive(false) not working properly....
+			setLocation(-1000, getY()); // move off screen so seems like
+										// disappeared since setActive(false)
+										// not working properly....
 			System.out.println(getX());
 		}
 	}
- 	
+
 	/**
 	 * Used in saving platforms in the level editor this method creates a string
 	 * representing this platform class as well as the platforms that it
@@ -137,7 +152,7 @@ public class BreakablePlatform extends DecoratedPlatform implements JsonableSpri
 	public String toString() {
 		return myPlatformResources.getString("Breakable")
 				+ myDecoratorComponent.toString();
- 	}
+	}
 
 	@Override
 	public Object clone() {
@@ -145,19 +160,20 @@ public class BreakablePlatform extends DecoratedPlatform implements JsonableSpri
 		toWrap = (AbstractPlatform) myDecoratorComponent.clone();
 		return new BreakablePlatform(toWrap);
 	}
-	
-	
-	public void actionBreak (AnimatedGameSprite sprite, CollisionContext ccntext, CollisionSpec cspec){
-		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
-			System.out.println ("Break is not working!");
-			((BreakablePlatform)sprite).doBreak();
+
+	public void actionBreak(AnimatedGameSprite sprite,
+			CollisionContext ccntext, CollisionSpec cspec) {
+		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION) {
+			System.out.println("Break is not working!");
+			((BreakablePlatform) sprite).doBreak();
 		}
 	}
-	
-	private BreakablePlatform(){};
-	public static SpriteFactory<BreakablePlatform> getFactory()
-	{
-	    return new SpriteFactory<BreakablePlatform>(new BreakablePlatform());
+
+	private BreakablePlatform() {
+	};
+
+	public static SpriteFactory<BreakablePlatform> getFactory() {
+		return new SpriteFactory<BreakablePlatform>(new BreakablePlatform());
 	}
-   
+
 }
