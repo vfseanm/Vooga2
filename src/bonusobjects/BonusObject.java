@@ -24,6 +24,13 @@ import editor.json.SpriteJsonData;
 
 import attributes.*;
 import attributes.enemyattributes.Flying;
+import attributes.enemyattributes.JumpingMovement;
+import attributes.enemyattributes.OneDirectionMovement;
+import attributes.enemyattributes.PathFollowingMovement;
+import attributes.enemyattributes.UpDownMovement;
+import attributes.fighterattributes.FighterBasicMovement;
+import attributes.fighterattributes.FighterFly;
+import attributes.fighterattributes.FighterJump;
 import attributes.fighterattributes.FighterScore;
 import attributes.sharedattributes.Gravity;
 import attributes.sharedattributes.Hitpoints;
@@ -44,10 +51,18 @@ public class BonusObject extends AttributeUser implements JsonableSprite {
         myAttributeFactories.add(Gravity.getFactory());
         myAttributeFactories.add(Hitpoints.getFactory());
         myAttributeFactories.add(NumberOfLives.getFactory());
-        myAttributeFactories.add(NumberOfLives.getFactory());
         myAttributeFactories.add(FighterScore.getFactory());
         myAttributeFactories.add(Visibility.getFactory());
-        
+        myAttributeFactories.add(Flying.getFactory());
+        myAttributeFactories.add(JumpingMovement.getFactory());
+        myAttributeFactories.add(OneDirectionMovement.getFactory());
+        myAttributeFactories.add(PathFollowingMovement.getFactory());
+        myAttributeFactories.add(UpDownMovement.getFactory());
+        myAttributeFactories.add(FighterScore.getFactory());
+        myAttributeFactories.add(FighterFly.getFactory());
+        myAttributeFactories.add(FighterJump.getFactory());
+        myAttributeFactories.add(FighterBasicMovement.getFactory());
+        myAttributeFactories.add(JumpingMovement.getFactory());
     }
 
     public BonusObject(double x, double y, List<String> image)
@@ -132,6 +147,7 @@ public class BonusObject extends AttributeUser implements JsonableSprite {
             {
                 if(factory.isThisKindOfAttribute(attributeClassName))
                 {
+                    System.out.println("adding attribute to offer");
                     sprite.addAttributeToOffer(factory.parseFromJson(attributeToOfferMap.get(attributeClassName)));
                 }
             }
