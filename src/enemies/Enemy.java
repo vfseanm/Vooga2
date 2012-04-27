@@ -37,7 +37,7 @@ import enemies.state.EnemyState;
 @SuppressWarnings({ "serial", "rawtypes" })
 public class Enemy extends AttributeUser implements JsonableSprite
 {
-    private ArrayList<Attribute> myAttributes;
+    
     private EnemyState myState;
     private static List<AttributeFactory> myAttributeFactories;
     static
@@ -58,7 +58,6 @@ public class Enemy extends AttributeUser implements JsonableSprite
     public Enemy (double x, double y, List<String> image)
     {
         super(x, y, image);
-        myAttributes = new ArrayList<Attribute>();
         setGroup("ENEMY");
     }
 
@@ -82,7 +81,7 @@ public class Enemy extends AttributeUser implements JsonableSprite
 
 
 
-
+    
 
 
 
