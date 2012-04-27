@@ -82,7 +82,7 @@ public class FighterJump extends Attribute
             }
             myTimer++;
         }
-        canJump = true;
+        else canJump = true;
     }
 
     
