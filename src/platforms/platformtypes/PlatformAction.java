@@ -14,7 +14,7 @@ public class PlatformAction implements CollisionAction {
 	
 	public void actionBreak (CollisionContext ccntext, CollisionSpec cspec){
 		BreakablePlatform bplatform = (BreakablePlatform) sprite;
-		bplatform.actionBreak(sprite, ccntext, cspec);	
+		bplatform.actionBreak(sprite, ccntext, cspec);		
 	}
 	
 	public void switchPlatform (CollisionContext ccntext, CollisionSpec cspec){
