@@ -32,7 +32,8 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 	
 	public BaseInput 	myUserInput;
 	public double 		myHorizMovement;
-	public boolean		facingRight;
+	public boolean		movingRight;
+	public boolean		movingLeft;
 	public int			rightKey;
 	public int			leftKey;
 	
@@ -62,12 +63,14 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 		if (isActive) {
 			if (myUserInput.isKeyDown(leftKey)) {
 				myGameCharacter.moveX(-myHorizMovement);
-				facingRight = false;
+				movingRight = false;
+				movingLeft = true;
 			}
 
 			if (myUserInput.isKeyDown(rightKey)) {
 				myGameCharacter.moveX(myHorizMovement);
-				facingRight = true;
+				movingRight = true;
+				movingLeft = false;
 			}
 		}
 	}
@@ -85,7 +88,8 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 
 	
 	public double getHorizMovement() {
-		if (isActive) return myHorizMovement;
+		if (movingRight) return myHorizMovement;
+		if (movingLeft)	 return -myHorizMovement;
 		return 0;
 	}
 	
@@ -100,7 +104,7 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
 	 * @return boolean = whether the GameCharacter is facing right (true/false)
 	 */
 	public boolean isFacingRight() {
-		return facingRight;
+		return movingRight;
 	}
 	
 	public void setGameCharacter(AttributeUser gameCharacter) {
@@ -118,10 +122,10 @@ public class FighterBasicMovement extends Attribute implements Updateable, Movem
     }
     
    public  FighterBasicMovement fromJson(String json)
-    {
+   {
         double movement = Double.parseDouble(json);
         return new FighterBasicMovement(movement);
-    }
+   }
    
    
    private FighterBasicMovement(){};

@@ -60,8 +60,8 @@ public class FighterJump extends Attribute
             if (canJump && myUserInput.isKeyPressed(jumpKey))
             {
             	System.out.println("commanded to jump");
+            	canJump = false;
                 isJumping = true;
-                canJump = false;
             }
 
             if (isJumping)
@@ -82,7 +82,6 @@ public class FighterJump extends Attribute
             }
             myTimer++;
         }
-        else canJump = true;
     }
 
     
