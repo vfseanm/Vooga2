@@ -53,43 +53,52 @@ public class FighterJump extends Attribute
     }
 
 
+    public void modifyJump (boolean jump)
+    {
+        canJump = jump;
+    }
+
+
     public void update (long elapsedTime)
     {
         if (isActive)
         {
             if (canJump && myUserInput.isKeyPressed(jumpKey))
             {
-            	System.out.println("commanded to jump");
+                System.out.println("commanded to jump");
                 isJumping = true;
                 canJump = false;
             }
 
             if (isJumping)
             {
+                myTimer++;
                 if (myTimer <= myDelay)
                 {
-                	System.out.println("jumping");
+                    System.out.println("jumping");
                     myGameCharacter.moveY(-myJumpHeight);
                     myGameCharacter.allowAttribute("Gravity", false);
                 }
                 else
                 {
                     myGameCharacter.allowAttribute("Gravity", true);
-                    myGameCharacter.allowAttribute("FighterJump", false);
+                    //myGameCharacter.allowAttribute("FighterJump", false);
                     myTimer = 0;
                     isJumping = false;
                 }
             }
-            myTimer++;
+
         }
-        else canJump = true;
+        //else canJump = true;
     }
 
-    
-    public void modifyFighterJump(boolean value) {
-    	canJump = value;
+
+    public void modifyFighterJump (boolean value)
+    {
+        canJump = value;
     }
-    
+
+
     public void invert ()
     {
         myJumpHeight = -myJumpHeight;
