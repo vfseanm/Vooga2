@@ -53,15 +53,17 @@ public class AggressiveState implements EnemyState
 
     public boolean changeState (Enemy enemy, Fighter fighter)
     {
-       System.out.println("hi");
+       
 
         if (!enemy.isOnScreen())
         {
+            
             enemy.setState(PassiveState.getInstance());
             return true;
         }
-        if (fighter.getY() != enemy.getY())
+        if (Math.abs(fighter.getY() - enemy.getY())>20)
         {
+            
             enemy.setState(DefensiveState.getInstance());
             return true;
         }

@@ -23,18 +23,20 @@ public class Fireball implements Weapon
         myDamage = damage;
         myDelay = delay;
         myFireball.setHorizontalSpeed(speed);
+        SingletonSpriteManager.getInstance().add(myFireball);
 
     }
 
     //uses the fireball attack only when the counter allows
     public void use (AttributeUser character)
     {
-        System.out.println(myFireball.getX());
+        
     
         if (counter == 0)
         {
-            SingletonSpriteManager.getInstance().add(myFireball);
+            
             myFireball.setLocation(character.getX(), character.getY());
+            myFireball.setHorizontalSpeed(myFireball.getHorizontalSpeed());
             
             
         }
