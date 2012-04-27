@@ -26,7 +26,6 @@ import platforms.fsmframework.AbstractPlatformState;
 import platforms.fsmframework.Context;
 import platforms.fsmframework.PlatformSwitch;
 import platforms.fsmframework.SwitchEvent;
-import platforms.fsmframework.UpDownState;
 import platforms.platformtypes.*;
 import collisions.CollisionSpec;
 
