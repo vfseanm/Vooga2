@@ -35,7 +35,7 @@ public class Hitpoints extends Attribute implements JsonableAttribute
         {
             if(myGameCharacter.hasAttributeByName("NumberOfLives"))
             {
-                myGameCharacter.updateAttribute("NumberOfLives", -1);
+                myGameCharacter.modifyAttribute("NumberOfLives", -1);
                 myGameCharacter.restoreOriginalAttribute("Hitpoints");
             }
             

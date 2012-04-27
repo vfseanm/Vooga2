@@ -1,6 +1,7 @@
 package weapons.fighterweapons;
 
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
 
 import playfield.SingletonSpriteManager;
 import sprite.AnimatedGameSprite;
@@ -19,6 +20,9 @@ import editor.editorConstructor;
 @SuppressWarnings("serial")
 public class FighterMissile implements Weapon, Input {
 
+	transient protected ResourceBundle myGameKeys = ResourceBundle
+    .getBundle("demo.GameKeysResourceBundle");
+	
 	private AnimatedGameSprite 		myMissile;
 	private BaseInput 				myUserInput;
 	private int 					myDamage;
@@ -26,10 +30,12 @@ public class FighterMissile implements Weapon, Input {
 	private int 					myTimer;
 	private double 					mySpeed;
 	private boolean 				canFire;
+	private int						shootKey;
 
 	
 	public FighterMissile(AnimatedGameSprite missile, int damage, int delay,
 			double speed) {
+		
 		myMissile.setGroup("FIGHTERMISSILE");
 		myMissile = missile;
 		myDamage = damage;
@@ -37,11 +43,12 @@ public class FighterMissile implements Weapon, Input {
 		mySpeed = Math.abs(speed);
 		myTimer = 0;
 		canFire = true;
+		shootKey = Integer.parseInt(myGameKeys.getString("SHOOT"));
 	}
 
 	public void use(AttributeUser character) {
 
-		if (myTimer == 0 && myUserInput.isKeyPressed((KeyEvent.VK_SPACE)) && canFire) {
+		if (myTimer == 0 && myUserInput.isKeyPressed(shootKey) && canFire) {
 			SingletonSpriteManager.getInstance().add(myMissile);
 			
 			if (character.getAttributeByName("FighterBasicMovement") != null) {
@@ -72,7 +79,7 @@ public class FighterMissile implements Weapon, Input {
 		myTimer++; 
 	}
 
-	// useful for collisons to inflict damage
+	
 	public double getDamage() {
 		return myDamage;
 	}

@@ -31,7 +31,7 @@ public class PassiveState implements EnemyState
         Fighter opponent = Fighter.getInstance();
         if (!changeState(enemy, opponent))
         ;
-        enemy.updateUpdateableAttributes(elapsedTime);
+        enemy.performUpdateableAttributes(elapsedTime);
 
     }
 

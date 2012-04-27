@@ -28,8 +28,7 @@ public class DemoGame extends PlatformGame {
 	    super();
 	}
 	
-	public void initResources() 
-	{ 
+	public void initResources() { 
 	    loadLevel("demo1");
 	    SpriteGroup allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {

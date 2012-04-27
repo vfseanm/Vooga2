@@ -54,8 +54,19 @@ public class FighterTargetedMissile implements Weapon, Input{
 			SingletonSpriteManager.getInstance().add(myMissile);
 			myMissile.setLocation(character.getX(), character.getY());
 			
+			List<Enemy> myEnemies = SingletonSpriteManager.getInstance().getMyEnemies();
 			
-		
+			for (Enemy potentialTarget: myEnemies) 
+			{
+				double horizDistance = character.getX() - potentialTarget.getX();
+				double vertDistance = character.getY() - potentialTarget.getY();
+				
+			}
+			double ratio = vertDistance / horizDistance;
+			if (horizDistance < 0)
+				myMissile.setSpeed(-mySpeed, -mySpeed * ratio);
+			else
+				myMissile.setSpeed(mySpeed, mySpeed * ratio);
 
 			canFire = false;
 		} else if (myTimer > myDelay) {
@@ -65,14 +76,8 @@ public class FighterTargetedMissile implements Weapon, Input{
 		myTimer++; 
 	}
 	
-	public void findTargets() {
-		for (AnimatedGameSprite sprite: SingletonSpriteManager.getInstance().getMySprites()) 
-		{
-			if (sprite instanceof Enemy) 
-			{
-				myTargets.add((Enemy) sprite);
-			}
-		}
+	public int[] calculateDistance() {
+		
 	}
 
 	public void invert() {
