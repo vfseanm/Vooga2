@@ -39,12 +39,11 @@ import fighter.Fighter;
 public class DemoGame extends PlatformGame {
     private SidescrollerSwitch scrollerSwitch;
 
-	private GameCollisionManager gc;
+	private GameCollisionManager gc, myCollisions;
 	private PlatformSwitch mySwitch;
 	private AbstractPlatform myPlatform;
 	private Context myContext;
 	private Sprite sprite;
-	private Collisions myCollisions;
 	public DemoGame()
 		{
 	    super();
