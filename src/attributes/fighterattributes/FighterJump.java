@@ -76,7 +76,7 @@ public class FighterJump extends Attribute
             if (canJump && myUserInput.isKeyPressed(SingletonKeyController.getInstance().getKeyCode(("JUMP"))))
             {
                 isJumping = true;
-                //canJump = false;
+                canJump = false;
             }
 
             if (isJumping)
