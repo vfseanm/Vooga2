@@ -11,6 +11,7 @@ import sidescrolling.Sidescroller;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.background.ImageBackground;
 
+import editor.EditorController;
 import editor.Level;
 import editor.file.LevelLoader;
 import fighter.Fighter;
@@ -18,8 +19,9 @@ import fighter.Fighter;
 public abstract  class PlatformGame extends Game {
     
 
-    protected Level myLevel;
-
+    protected Level 					myLevel;
+    protected LevelLoader				myLevelLoader;
+    protected File 						myLevelFile;
     protected Fighter 					myFighter;
     protected ImageBackground 			myBackground;
     protected SingletonSpriteManager 	myPlayfield;
@@ -33,10 +35,12 @@ public abstract  class PlatformGame extends Game {
     
     public void loadLevel(String filename)
     {
-        LevelLoader loader = new LevelLoader();
-        myLevel = loader.readLevel(new File(filename));
+        myLevelFile = new File(filename);
+        myLevelLoader = new LevelLoader();
+        myLevel = myLevelLoader.readLevel(myLevelFile);
+        	
         myFighter = myLevel.getFighter();
-        if(myFighter != null)
+        if (myFighter != null)
         {
             myFighter.setUserInput(bsInput);            
             myPlayfield.add(myFighter);
@@ -50,6 +54,26 @@ public abstract  class PlatformGame extends Game {
         mySidescroller.setUserInput(bsInput);
     }
     
+    public void reloadLevel(String filename)
+    {
+    	myFighter = myLevel.getFighter();
+
+        myLevel = myLevelLoader.readLevel(myLevelFile);
+        if (myFighter != null)
+        {
+            myFighter.setX(myLevel.getFighter().getX());
+            myFighter.setY(myLevel.getFighter().getY());
+        }
+        myPlayfield.setMySprites(myLevel.getSprites());
+        myBackground = myLevel.getBackground();
+        
+        
+        mySidescroller = myLevel.getSidescroller();
+        System.out.println(myLevel.getSidescroller());
+        mySidescroller.setUserInput(bsInput);
+    }
+    
+    
     public void update(long elapsedTime) {
     	if (bsInput.isKeyPressed(KeyEvent.VK_P))
         {
@@ -59,7 +83,7 @@ public abstract  class PlatformGame extends Game {
     	
     	if (bsInput.isKeyPressed(KeyEvent.VK_M))
         {
-           // pop up menu
+          //  Menu options = new Menu(EditorController m);
         }
     	
     	if (!pause) myPlayfield.update(elapsedTime);
