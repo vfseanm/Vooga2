@@ -70,10 +70,10 @@ public class FighterJump extends Attribute implements Updateable, Movement, Inpu
             	if (myTimer <= myDelay) myGameCharacter.moveY(-myJumpHeight);
             	else 
             	{
-            		canJump = true;
             		isJumping = false;
                     myGameCharacter.allowAttribute("Gravity", true);
                     myGameCharacter.allowAttribute("FighterJump", false);
+                    canJump = true;
                     myTimer = 0;
             	}
             }
