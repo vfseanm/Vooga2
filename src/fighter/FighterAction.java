@@ -20,10 +20,6 @@ public class FighterAction implements CollisionAction{
 	
 	public void fighterStandOnTop (CollisionContext ccntext, CollisionSpec cspec){ 	
 		if (ccntext.getSide() == CollisionGroup.TOP_BOTTOM_COLLISION){
-            System.out.println("top bottom between");
-            System.out.println(sprite);
-            //AnimatedGameSprite a =  ccntext.getOtherSprite(sprite);
-            //System.out.println(ccntext.getOtherSprite(sprite));// + sprite + "and" + ccntext.getOtherSprite(sprite));
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()-sprite.getHeight());
 			sprite.allowAttribute("Jump", true);
 			sprite.allowAttribute("Gravity", false);
@@ -32,11 +28,9 @@ public class FighterAction implements CollisionAction{
 	
 	public void fighterHitObject (CollisionContext ccntext, CollisionSpec cspec){ 		
 		if (ccntext.getSide() == CollisionGroup.LEFT_RIGHT_COLLISION){
-		    System.out.println("left right");
 			sprite.setX(ccntext.getOtherSprite(sprite).getX()-sprite.getWidth());
 		}
 		if (ccntext.getSide() == CollisionGroup.RIGHT_LEFT_COLLISION){
-		    System.out.println("right left");
 			sprite.setX(ccntext.getOtherSprite(sprite).getX()+ccntext.getOtherSprite(sprite).getWidth());
 		}
 		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
@@ -92,7 +86,7 @@ public class FighterAction implements CollisionAction{
 			ArrayList<Attribute> ability = (ArrayList<Attribute>) sprite.getAttributes(); 
 			
 			for (Attribute skill: ability){
-				if (skill.getName().equals("NumberOfLoves")){
+				if (skill.getName().equals("NumberOfLives")){
 					((NumberOfLives) skill).modifyNumberOfLives(-1);
 				}
 			}
