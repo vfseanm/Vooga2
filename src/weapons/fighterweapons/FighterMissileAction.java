@@ -1,10 +1,11 @@
 package weapons.fighterweapons;
 
 import sprite.AnimatedGameSprite;
+import collisions.CollisionAction;
 import collisions.CollisionContext;
 import collisions.CollisionSpec;
 
-public class FighterMissileAction {
+public class FighterMissileAction implements CollisionAction {
 	
 	AnimatedGameSprite myMissile;
 	
