@@ -42,7 +42,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	  
-	    loadLevel("demo2");
+	    loadLevel("demo1");
 
 	    allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
@@ -83,7 +83,7 @@ public class DemoGame extends PlatformGame {
         specList.add(spec5);
         
         CollisionSpec spec6 = new CollisionSpec();
-        spec6.addActMap("SWITCH", "switchPlatform" );
+        spec6.addActMap("PLATFORMSWITCH", "switchPlatform" );
         spec6.addActMap("FIGHTER", "");
      
         myCollisions.setCollisionGroup(allSprites, allSprites);
@@ -117,7 +117,7 @@ public class DemoGame extends PlatformGame {
 	private void initEnemyFSM() {
 		List<String> images = new ArrayList<String>();
 		images.add("resources/Bowser.jpg");
-		myEnemy = new Enemy(1000, 200, images);
+		myEnemy = new Enemy(3000, 200, images);
 		myEnemy.setState(PassiveState.getInstance());
 		
 		List<String> images2 = new ArrayList<String>();
