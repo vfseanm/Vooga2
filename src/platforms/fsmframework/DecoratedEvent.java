@@ -65,8 +65,6 @@ public abstract class DecoratedEvent extends AbstractEvent {
 			changeToPreviousState();
 		}
 		myDecoratorComponent.update(elapsedTime);
-		
-		
 	}
 
 }
