@@ -2,9 +2,13 @@ package demo;
 
 import java.awt.Graphics2D;
 
+
 import attributes.Attribute;
 import attributes.sharedattributes.ProjectileAttack;
 import collisions.GameCollisionManager;
+import sidescrolling.ConcreteSidescroller;
+import sidescrolling.Sidescroller;
+import sidescrolling.shift.*;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 import weapons.enemyweapons.Fireball;
@@ -85,6 +89,12 @@ public class DemoGame extends PlatformGame {
         CollisionSpec spec6 = new CollisionSpec();
         spec6.addActMap("SWITCH", "switchPlatform" );
         spec6.addActMap("FIGHTER", "");
+        
+        List<String> switchImages = new ArrayList<String>();
+        switchImages.add("resources/scrollerSwitch1.jpg"); 
+        switchImages.add("resources/scrollerSwitch2.jpg");
+        Sidescroller newScroller = new ShiftLeftSidescroller(new ShiftRightSidescroller(new ConcreteSidescroller()));
+        mySwitch = new PlatformSwitch(2500, 660, switchImages);
      
         myCollisions.setCollisionGroup(allSprites, allSprites);
         myCollisions.addSpecList(specList);
