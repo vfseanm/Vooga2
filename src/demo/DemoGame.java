@@ -1,8 +1,5 @@
 package demo;
-
 import java.awt.Graphics2D;
-
-
 import attributes.Attribute;
 import attributes.sharedattributes.ProjectileAttack;
 import collisions.GameCollisionManager;
@@ -13,7 +10,6 @@ import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 import weapons.enemyweapons.Fireball;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +44,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	  
-	    loadLevel("demo1");
+	    loadLevel("demo2");
 
 	    allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
