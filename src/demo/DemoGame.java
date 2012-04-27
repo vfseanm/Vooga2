@@ -42,8 +42,6 @@ public class DemoGame extends PlatformGame {
         spec.addActMap("FIGHTER", "fighterLoseLife");
         spec.addActMap("FIGHTER", "fighterLoseHitpoints");
         spec.addActMap("FIGHTER", "instantFighterDeath");
-        spec.addActMap("FIGHTER", "");
-        spec.addActMap("FIGHTER", "");
         spec.addActMap("ENEMY", "instantEnemyDeath");
         spec.addActMap("ENEMY", "enemyLoseLife");
         specList.add(spec);
@@ -60,7 +58,18 @@ public class DemoGame extends PlatformGame {
         spec3.addActMap("PLATFORM", "");
         specList.add(spec3);
         
+        CollisionSpec spec4 = new CollisionSpec();
+        spec4.addActMap("BONUSOBJECT", "");
+        spec4.addActMap("FIGHTER", "fighterHitObject");
+        spec4.addActMap("FIGHTER", "fighterGetPowerUp");
+        spec4.addActMap("FIGHTER", "fighterGetCarryable");
+        specList.add(spec4);
         
+        CollisionSpec spec5 = new CollisionSpec();
+        spec5.addActMap("BONUSOBJECT", "bonusObjectStandOnTop");
+        spec5.addActMap("PLATFORM", "");
+        specList.add(spec5);
+    
         myCollisions.setCollisionGroup(allSprites, allSprites);
         myCollisions.addSpecList(specList);
         
