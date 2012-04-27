@@ -1,7 +1,5 @@
 package demo;
 
-import java.awt.event.KeyEvent;
-
 import java.io.File;
 
 import playfield.SingletonSpriteManager;
@@ -30,6 +28,7 @@ public abstract  class PlatformGame extends Game {
     {  
         myPlayfield = SingletonSpriteManager.getInstance();
         myKeyController = SingletonKeyController.getInstance();
+        myKeyController.convertResourceBundleToMap();
     }
     
     public void loadLevel(String filename)

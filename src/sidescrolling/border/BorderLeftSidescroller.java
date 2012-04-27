@@ -4,6 +4,8 @@ import sidescrolling.Sidescroller;
 
 import com.golden.gamedev.object.Sprite;
 
+import demo.SingletonKeyController;
+
 /**
  * This object allows for normal sidescrolling in the left direction. A border will be created that when the 
  * Fighter crosses it from the right and is moving in the left direction, all objects in the level will move right
@@ -33,7 +35,7 @@ public class BorderLeftSidescroller extends BorderSidescroller {
 
         //System.out.println("Left Boundary " + boundary);
 
-        int leftKey = Integer.parseInt(myKeysResources.getString("LEFT"));
+        int leftKey = SingletonKeyController.getInstance().getKeyCode(("LEFT"));
         if (myUserInput.isKeyDown(leftKey) && fighter.getX() <= boundary) {
             sprite.moveX(-fighter.getMovement()[0]);
             fighter.setX(boundary);
