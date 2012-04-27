@@ -32,9 +32,9 @@ public class FighterAction implements CollisionAction{
 		}
 		if (ccntext.getSide() == CollisionGroup.RIGHT_LEFT_COLLISION){
 			sprite.setX(ccntext.getOtherSprite(sprite).getX()+ccntext.getOtherSprite(sprite).getWidth());
+			
 		}
 		if (ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
-
 			sprite.setY(ccntext.getOtherSprite(sprite).getY()+ccntext.getOtherSprite(sprite).getHeight());
 		}
 	}

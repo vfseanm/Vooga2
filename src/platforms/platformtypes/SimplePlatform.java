@@ -1,9 +1,6 @@
 package platforms.platformtypes;
-import platforms.fsmframework.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import editor.json.JsonableSprite;
 import editor.json.SpriteFactory;
 

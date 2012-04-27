@@ -50,11 +50,11 @@ public class EnemyAction implements CollisionAction {
 		}
 	}
 
-	public void attack (CollisionContext ccntext, CollisionSpec cspec){
+	/*public void attack (CollisionContext ccntext, CollisionSpec cspec){
 		if ((ccntext.getSide() == CollisionGroup.LEFT_RIGHT_COLLISION) || (ccntext.getSide() == CollisionGroup.RIGHT_LEFT_COLLISION)){
 			sprite.attack(2);
 		}
-	}
+	}*/
 
 	public void setSprite(AnimatedGameSprite sprite) {
 		this.sprite = (Enemy) sprite;

@@ -17,7 +17,7 @@ public class UpDownState extends AbstractPlatformState {
 	public UpDownState() {}
 	
 	public void decoratePlatforms() {
-		//newPlatforms = new ArrayList<AbstractPlatform>();
+		newPlatforms = new ArrayList<AbstractPlatform>();
 		for (AbstractPlatform platform : myControlledPlatforms) {
 			newPlatforms.add(new UpDownPlatform(platform));
 		}
@@ -27,8 +27,6 @@ public class UpDownState extends AbstractPlatformState {
 	public void handle(long elapsedTime) {
 		for (AbstractPlatform platform : newPlatforms) {
 			platform.update(elapsedTime);	
-			//System.out.println(platform.toString());
-			//System.out.println("BUZZ");
 		}
 	}
 }

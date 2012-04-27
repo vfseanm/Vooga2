@@ -62,8 +62,6 @@ public class Enemy extends AttributeUser implements JsonableSprite
     }
 
 
-
-
     public void attack (long elapsedTime)
     {
         for (Attribute attribute : myAttributes)
