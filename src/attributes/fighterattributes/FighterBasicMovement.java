@@ -8,7 +8,6 @@ import com.golden.gamedev.engine.BaseInput;
 import editor.editorConstructor;
 import editor.json.AttributeFactory;
 import editor.json.JsonableAttribute;
-
 import java.util.ResourceBundle;
 
 import attributes.*;

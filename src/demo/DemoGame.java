@@ -2,9 +2,14 @@ package demo;
 
 import java.awt.Graphics2D;
 
+
 import attributes.Attribute;
 import attributes.sharedattributes.ProjectileAttack;
 import collisions.GameCollisionManager;
+import sidescrolling.ConcreteSidescroller;
+import sidescrolling.Sidescroller;
+import sidescrolling.shift.*;
+import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 import weapons.enemyweapons.Fireball;
@@ -34,6 +39,7 @@ public class DemoGame extends PlatformGame {
 	private AbstractEvent myEvent;
 	private Enemy myEnemy;
 	private SpriteGroup allSprites;
+	private SidescrollerSwitch mySidescrollerSwitch;
 	
 
 	public DemoGame() {
@@ -42,7 +48,7 @@ public class DemoGame extends PlatformGame {
 	public void initResources() 
 	{
 	  
-	    loadLevel("demoOLD");
+	    loadLevel("demo1");
 
 	    allSprites = new SpriteGroup("allSprites");
 	    for(AnimatedGameSprite sprite: myPlayfield.getMySprites()) {
@@ -83,8 +89,22 @@ public class DemoGame extends PlatformGame {
         specList.add(spec5);
         
         CollisionSpec spec6 = new CollisionSpec();
-        spec6.addActMap("SWITCH", "switchPlatform" );
+        spec6.addActMap("PLATFORMSWITCH", "switchPlatform" );
         spec6.addActMap("FIGHTER", "");
+        
+        List<String> switchImages = new ArrayList<String>();
+        switchImages.add("resources/scrollerSwitch1.png"); 
+        switchImages.add("resources/scrollerSwitch2.png");
+        Sidescroller newScroller = new ShiftLeftSidescroller(new ShiftRightSidescroller(new ConcreteSidescroller()));
+        mySidescrollerSwitch = new SidescrollerSwitch(1500, 480, switchImages, newScroller, this);
+        
+        allSprites.add(mySidescrollerSwitch);
+        myPlayfield.add(mySidescrollerSwitch);
+        
+        CollisionSpec spec7 = new CollisionSpec();
+        spec7.addActMap("SIDESCROLLERSWITCH", "switchSidescroller");
+        spec7.addActMap("FIGHTER", "");
+        specList.add(spec7);
      
         myCollisions.setCollisionGroup(allSprites, allSprites);
         myCollisions.addSpecList(specList);
@@ -121,7 +141,7 @@ public class DemoGame extends PlatformGame {
 	private void initEnemyFSM() {
 		List<String> images = new ArrayList<String>();
 		images.add("resources/Bowser.jpg");
-		myEnemy = new Enemy(1000, 200, images);
+		myEnemy = new Enemy(3000, 200, images);
 		myEnemy.setState(PassiveState.getInstance());
 		
 		List<String> images2 = new ArrayList<String>();

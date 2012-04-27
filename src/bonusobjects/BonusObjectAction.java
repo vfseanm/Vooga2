@@ -29,11 +29,19 @@ public class BonusObjectAction implements CollisionAction{
 			sprite.allowAttribute("JumpingMovement", false);
 		}
 	}
-
-	public void instantBonusObjectDestruction (CollisionContext ccntext, CollisionSpec cspec){
-		if (ccntext.getSide() != CollisionGroup.BOTTOM_TOP_COLLISION){
-			sprite.setLocation(-10000, -1000);
-			sprite.setActive(false);
+	
+	public void bonusObjectDestruction(CollisionContext ccntext, CollisionSpec cspec){ 	
+		sprite.setLocation(-10000, -1000);
+		sprite.setActive(false);
+		
+	}
+	
+	public void bonusObjectCollideWithOtherObject (CollisionContext ccntext, CollisionSpec cspec){ 	
+		if (ccntext.getSide() == CollisionGroup.LEFT_RIGHT_COLLISION || ccntext.getSide()!=CollisionGroup.RIGHT_LEFT_COLLISION){
+			sprite.setHorizontalSpeed(0);
+		}
+		else if(ccntext.getSide() == CollisionGroup.BOTTOM_TOP_COLLISION){
+			sprite.setVerticalSpeed(0);
 		}
 	}
 
