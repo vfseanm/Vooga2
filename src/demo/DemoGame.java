@@ -9,6 +9,7 @@ import collisions.GameCollisionManager;
 import sidescrolling.ConcreteSidescroller;
 import sidescrolling.Sidescroller;
 import sidescrolling.shift.*;
+import sidescrolling.special.SidescrollerSwitch;
 import sprite.AnimatedGameSprite;
 import weapons.Weapon;
 import weapons.enemyweapons.Fireball;
@@ -38,6 +39,7 @@ public class DemoGame extends PlatformGame {
 	private AbstractEvent myEvent;
 	private Enemy myEnemy;
 	private SpriteGroup allSprites;
+	private SidescrollerSwitch mySidescrollerSwitch;
 	
 
 	public DemoGame() {
@@ -96,10 +98,18 @@ public class DemoGame extends PlatformGame {
         specList.add(spec6);
         
         List<String> switchImages = new ArrayList<String>();
-        switchImages.add("resources/scrollerSwitch1.jpg"); 
-        switchImages.add("resources/scrollerSwitch2.jpg");
+        switchImages.add("resources/scrollerSwitch1.png"); 
+        switchImages.add("resources/scrollerSwitch2.png");
         Sidescroller newScroller = new ShiftLeftSidescroller(new ShiftRightSidescroller(new ConcreteSidescroller()));
-        mySwitch = new PlatformSwitch(2500, 660, switchImages);
+        mySidescrollerSwitch = new SidescrollerSwitch(1500, 480, switchImages, newScroller, this);
+        
+        allSprites.add(mySidescrollerSwitch);
+        myPlayfield.add(mySidescrollerSwitch);
+        
+        CollisionSpec spec7 = new CollisionSpec();
+        spec7.addActMap("SIDESCROLLERSWITCH", "switchSidescroller");
+        spec7.addActMap("FIGHTER", "");
+        specList.add(spec7);
      
         myCollisions.setCollisionGroup(allSprites, allSprites);
         myCollisions.addSpecList(specList);
