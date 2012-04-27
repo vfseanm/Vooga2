@@ -45,7 +45,6 @@ public abstract  class PlatformGame extends Game {
             myFighter.setUserInput(bsInput);            
             myPlayfield.add(myFighter);
         }
-        System.out.println("fighter:" + myFighter);
         myPlayfield.setMySprites(myLevel.getSprites());
         ImageBackground myBackground = myLevel.getBackground();
         
@@ -53,8 +52,8 @@ public abstract  class PlatformGame extends Game {
         myPlayfield.setBackground(myBackground);
         
         
-        mySidescroller = myLevel.getSidescroller();
-        mySidescroller.setUserInput(bsInput);
+        //mySidescroller = myLevel.getSidescroller();
+        //mySidescroller.setUserInput(bsInput);
     }
     
     public void update(long elapsedTime) {

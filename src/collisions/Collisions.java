@@ -1,4 +1,4 @@
-package demo;
+package collisions;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import sprite.AnimatedGameSprite;
-import collisions.CollisionAction;
-import collisions.CollisionContext;
-import collisions.CollisionSpec;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.AdvanceCollisionGroup;
@@ -29,6 +26,8 @@ public class Collisions extends CollisionGroup
     {
         CollisionSpec cspec = traverseSpec((AnimatedGameSprite) sprite1, (AnimatedGameSprite) sprite2);  
         performAction(cspec, (AnimatedGameSprite) sprite1, (AnimatedGameSprite) sprite2, getCollisionSide());
+
+
     }
     
     public void addSpecList(List<CollisionSpec> gs){
